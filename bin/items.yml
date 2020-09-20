@@ -471,7 +471,7 @@ sword_goldknife:
   name: Gold Knife
   type: weapon
   rarity: EPIC
-  item: GOLDEN_NUGGET
+  item: GOLD_NUGGET
   attributes:
     damage: +17
     killcoins: +5
