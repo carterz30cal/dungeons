@@ -44,7 +44,7 @@ public class ShopManager
 			for (String i : shop.getConfigurationSection(s + ".items").getKeys(false))
 			{
 				ShopItem item = new ShopItem();
-				item.item = i;
+				item.item = i.split(";")[0];
 				item.price = shop.getInt(s + ".items." + i + ".price", 10);
 				item.enchants = shop.getString(s + ".items." + i + ".enchants", "");
 				item.sharps = shop.getString(s + ".items." + i + ".sharps", "");

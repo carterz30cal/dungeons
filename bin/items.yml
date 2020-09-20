@@ -467,6 +467,14 @@ armour_cultist_boots:
     health: -10
     armour: +5
     killcoins: +2
+sword_goldknife:
+  name: Gold Knife
+  type: weapon
+  rarity: EPIC
+  item: GOLDEN_NUGGET
+  attributes:
+    damage: +17
+    killcoins: +5
 ### TIER ONE INGREDIENTS (ingredient is assumed if no type: is present) ###
 
 # drenched drops

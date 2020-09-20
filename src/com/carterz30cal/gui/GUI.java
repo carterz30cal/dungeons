@@ -558,7 +558,7 @@ public class GUI
 				new GUI(MenuType.CRAFTING,p);
 				break;
 			case 15:
-				new GUI(MenuType.ENCHANTING,p);
+				new RewardsGUI(p);
 				break;
 			case 20:
 				new GUI(MenuType.PERKS,p);

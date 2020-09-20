@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.HashMap;
 
 import org.bukkit.configuration.InvalidConfigurationException;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -19,7 +20,7 @@ public class EnchantHandler
 	public static EnchantHandler eh;
 	public HashMap<String,Enchant> enchants;
 	
-	private YamlConfiguration config;
+	private FileConfiguration config;
 	public EnchantHandler()
 	{
 		eh = this;
@@ -31,7 +32,7 @@ public class EnchantHandler
 			fEnchants.getParentFile().mkdirs();
 			Dungeons.instance.saveResource("enchants.yml",false);
 		}
-		YamlConfiguration config = new YamlConfiguration();
+		config = new YamlConfiguration();
 		try 
 		{
 			config.load(fEnchants);

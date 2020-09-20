@@ -39,6 +39,17 @@ enchants:
         3: 1
         4: 2
         5: 2
+  blade:
+    name: Blade
+    description: Increases damage by DAMAGEP%
+    max: 2
+    effects:
+      damagep: 0.08
+    book:
+      catalyst: 0
+      rarities:
+        1: 0
+        2: 1
   ironskin:
     name: Ironskin
     description: HEALTH health. Increases armour by ARMOUR%

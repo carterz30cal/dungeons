@@ -58,6 +58,8 @@ public class GUICreator
 			return "Recipe Browser";
 		case ENCHANTING:
 			return "Enchanting";
+		case REWARDS:
+			return "Rewards";
 		case ANVIL:
 			return "Anvil";
 		case ADMIN:

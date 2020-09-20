@@ -7,7 +7,7 @@ shopkeepsteve:
       price: 200
     pickaxe_flimsy:
       price: 250
-    book: 
+    book;midastouch: 
       price: 750
       enchants: midastouch,1
     armour_adventurer_helmet:
@@ -32,10 +32,9 @@ midasfollower:
       price: 3000
     armour_cultist_boots:
       price: 3000  
-    book: 
-      price: 750
-      enchants: sharpness,5
-    book: 
-      price: 750
-      enchants: elder,1
+    sword_goldknife:
+      price: 2100
+    book;blade: 
+      price: 1250
+      enchants: blade,1
       
