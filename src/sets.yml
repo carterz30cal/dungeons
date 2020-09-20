@@ -1,0 +1,60 @@
+paper:
+  set:
+    lore: You have many paper cuts
+    attributes:
+      damagep: +0.2
+      health: -50
+  synergy:
+    lore: The paper cuts really sting
+    attributes:
+      damage: +40
+      health: -50
+
+water:
+  set:
+    lore: This feels cold
+    attributes:
+      health: +40
+      armour: +10
+  synergy:
+    lore: Natural power surges through your weapon
+    attributes:
+      damage: +5
+      health: +40
+
+bone:
+  set: 
+    lore: Uncomfortable but protective
+    attributes:
+      armour: +30
+    effects:
+      TAG_PROTECTION:
+        tag: skeleton
+        lore: Reduces damage from skeletons by 20%
+        strength: +0.2
+  synergy:
+    lore: The souls empower you
+    attributes:
+      damage: +5
+      armour: +10
+      
+leaf:
+  set:
+    lore: Leaves are quite difficult to wear
+    attributes:
+      health: +500
+      regen: +4
+      damagep: -0.65
+  synergy:
+    lore: The weapon combines with your suit
+    attributes:
+      health: +20
+      damagep: +0.65
+      
+ancientcultist:
+  set:
+    lore: Smells musty
+    attributes:
+      damage: +20
+      killcoins: +4
+    

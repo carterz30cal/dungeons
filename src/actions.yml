@@ -1,0 +1,37 @@
+heal:
+  text: =GOLDENTITY used Heal and regained =REDHEALTH=GOLD health
+  requires: health,<50%
+  particles:
+    particle: VILLAGER_HAPPY
+    patterns:
+      cross: 0,1,0
+      yline: -1,1,0 1,1,0 0,1,-1 0,1,1
+  effects:
+    health: 50
+swarm_drenched:
+  text: =GOLDA swarm of =REDBaby Drenched=GOLD has appeared!
+  requires: distance,>6
+  remove: true
+  effects:
+    summon: drenched0,3
+swarm_drenched_large:
+  text: =GOLDA =BOLD=REDHUGE=RESET=GOLD swarm of =REDBaby Drenched=GOLD has appeared!
+  requires: distance,>6
+  remove: true
+  effects:
+    summon: drenched0,9
+chicken_mitosis:
+  text: =BOLD=REDIT'S UNDERGOING MITOSIS
+  requires: always
+  effects:
+    summon: friendlychicken
+bonewraith_sword:
+  text: no no, no no no no, no no no no, no no, no
+  requires: distance,<4
+  effects:
+    weapon: sword_wraith
+bonewraith_bow:
+  text: no no, no no no no, no no no no, no no, no
+  requires: distance,>4
+  effects:
+    weapon: bow_wraith

@@ -1,0 +1,8 @@
+shopkeepsteve:
+  name: Steve's Adventuring Goods
+  items: sword_cheap 10-bow_flimsy 200-pickaxe_flimsy 250-book 750 midastouch,1-armour_adventurer_helmet 650-sword_adventurers 850 sweeping,2-catalyst=0 1250-sharpener_crude 400
+midasfollower:
+  name: Ancient Stuff Ltd
+  items: sharpener_midas 4000-armour_cultist_helmet 3000
+    
+      

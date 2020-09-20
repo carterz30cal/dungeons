@@ -1,0 +1,110 @@
+enchants:
+  midastouch:
+    name: Midas Touch
+    description: Gain an extra KILLCOINS coins per kill
+    max: 5
+    effects:
+      killcoins: 1
+    book:
+      catalyst: 0
+      rarities:
+        1: 0
+        2: 0
+        3: 1
+        4: 1
+        5: 2
+  protection:
+    name: Protection
+    description: Increases armour by ARMOUR%
+    max: 3
+    effects:
+      armour: 0.2
+    book:
+      catalyst: 0
+      rarities:
+        1: 0
+        2: 1
+        3: 1
+  sharpness:
+    name: Sharpness
+    description: Increases damage by DAMAGEP%
+    max: 5
+    effects:
+      damagep: 0.1
+    book:
+      catalyst: 0
+      rarities:
+        1: 0
+        2: 1
+        3: 1
+        4: 2
+        5: 2
+  ironskin:
+    name: Ironskin
+    description: HEALTH health. Increases armour by ARMOUR%
+    max: 2
+    effects:
+      armour: 0.10
+      health: -12
+    book:
+      catalyst: 1
+      rarities:
+        1: 2
+        2: 3
+  vitality:
+    name: Vitality
+    description: Increases regen by REGEN
+    max: 3
+    effects:
+      regen: 2
+    book:
+      catalyst: 1
+      rarities:
+        1: 1
+        2: 1
+        3: 2
+  elder:
+    name: Elder
+    description: Doubles this item's base stats
+    max: 1
+    effects:
+      modifier: 1
+    book:
+      catalyst: 1
+      rarities:
+        1: 3
+  sweeping:
+    name: Sweeping
+    description: Increases sweeping damage by SWEEP%
+    max: 3
+    effects:
+      sweep: 0.2
+    book:
+      catalyst: 1
+      rarities:
+        1: 1
+        2: 2
+        3: 3
+  synergy:
+    name: Synergy
+    description: Increases this item's stats while its set bonus is active by SYNERGY%
+    max: 3
+    effects:
+      synergy: 0.25
+    book:
+      catalyst: 2
+      rarities:
+        1: 2
+        2: 3
+        3: 4
+  strengthening:
+    name: Strengthening
+    description: Increases damage by DAMAGEP%
+    max: 2
+    effects:
+      damagep: 0.05
+    book:
+      catalyst: 2
+      rarities:
+        1: 1
+        2: 3

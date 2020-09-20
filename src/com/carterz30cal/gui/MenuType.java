@@ -1,0 +1,19 @@
+package com.carterz30cal.gui;
+
+public enum MenuType
+{
+	MAINMENU,
+	SKILLS,
+	PERKS,
+	EXPERIENCE,
+	BACKPACK,
+	CRAFTING,
+	RECIPES,
+	ENCHANTING,
+	REWARDS,
+	ANVIL,
+	SETTINGS,
+	ADMIN,
+	ADMIN_ITEMBROWSER,
+	OTHER
+}

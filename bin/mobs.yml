@@ -1,0 +1,355 @@
+drenched0:
+  name: Drenched
+  type: DROWNED
+  health: 20
+  damage: 6
+  xp: 1
+  knockbackResist: 0
+  baby: true
+  equipment:
+    main: sword_cheap
+    helmet: armour_water_helmet
+    chestplate: armour_water_chestplate
+  drops:
+    wetpaper:
+      drop: 1/4
+      amount: 1-1
+drenched1:
+  name: Drenched
+  type: DROWNED
+  health: 85
+  damage: 20
+  xp: 15
+  knockbackResist: 0
+  perk: waterway_drenched
+  actions: heal
+  equipment:
+    main: sword_water
+    helmet: armour_water_helmet
+    chestplate: armour_water_chestplate
+    leggings: armour_water_leggings
+    boots: armour_water_boots
+  drops:
+    wetpaper:
+      drop: 2/3
+      amount: 1-3
+    fragment_water:
+      drop: 1/8
+      amount: 1-1
+    catalyst=0:
+      drop: 1/225
+      amount: 1-1
+    armour_water_helmet:
+      drop: 1/200
+      amount: 1-1
+    armour_water_chestplate:
+      drop: 1/200
+      amount: 1-1
+    armour_water_leggings:
+      drop: 1/200
+      amount: 1-1
+    armour_water_boots:
+      drop: 1/200
+      amount: 1-1
+drenched2:
+  name: Drenched
+  type: DROWNED
+  health: 145
+  damage: 25
+  xp: 25
+  knockbackResist: 0.1
+  perk: waterway_drenched
+  actions: heal
+  equipment:
+    main: sword_water
+    helmet: armour_water_helmet
+    chestplate: armour_water_chestplate
+    leggings: armour_water_leggings
+    boots: armour_water_boots
+  drops:
+    wetpaper:
+      drop: 2/3
+      amount: 2-4
+    fragment_water:
+      drop: 1/8
+      amount: 1-2
+    catalyst=0:
+      drop: 1/225
+      amount: 1-1
+    armour_water_helmet:
+      drop: 1/180
+      amount: 1-1
+    armour_water_chestplate:
+      drop: 1/180
+      amount: 1-1
+    armour_water_leggings:
+      drop: 1/180
+      amount: 1-1
+    armour_water_boots:
+      drop: 1/180
+      amount: 1-1
+drenched3:
+  name: Drenched
+  type: DROWNED
+  health: 160
+  damage: 55
+  xp: 30
+  perk: waterway_drenched
+  knockbackResist: 0.25
+  actions: heal
+  equipment:
+    main: sword_water
+    helmet: armour_water_helmet
+    chestplate: armour_water_chestplate
+    leggings: armour_water_leggings
+    boots: armour_water_boots
+  drops:
+    wetpaper:
+      drop: 2/3
+      amount: 3-5
+    fragment_water:
+      drop: 1/8
+      amount: 1-3
+    catalyst=0:
+      drop: 1/225
+      amount: 1-1
+    armour_water_helmet:
+      drop: 1/175
+      amount: 1-1
+    armour_water_chestplate:
+      drop: 1/175
+      amount: 1-1
+    armour_water_leggings:
+      drop: 1/175
+      amount: 1-1
+    armour_water_boots:
+      drop: 1/175
+      amount: 1-1
+drenched4:
+  name: Drenched
+  type: DROWNED
+  health: 240
+  damage: 70
+  xp: 36
+  knockbackResist: 0.5
+  perk: waterway_drenched
+  actions: heal,swarm_drenched
+  equipment:
+    main: sword_water
+    helmet: armour_water_helmet
+    chestplate: armour_water_chestplate
+    leggings: armour_water_leggings
+    boots: armour_water_boots
+  drops:
+    wetpaper:
+      drop: 2/3
+      amount: 2-8
+    fragment_water:
+      drop: 1/8
+      amount: 2-3
+    catalyst=0:
+      drop: 1/200
+      amount: 1-1
+    armour_water_helmet:
+      drop: 1/170
+      amount: 1-1
+    armour_water_chestplate:
+      drop: 1/170
+      amount: 1-1
+    armour_water_leggings:
+      drop: 1/170
+      amount: 1-1
+    armour_water_boots:
+      drop: 1/170
+      amount: 1-1
+bonewraith1:
+  name: Bone Wraith
+  type: SKELETON
+  health: 900
+  damage: 50
+  xp: 70
+  knockbackResist: 1
+  perk: null
+  action: bonewraith_sword,bonewraith_bow
+  equipment: 
+    main: sword_wraith
+    chestplate: armour_paper_chestplate
+  drops:
+    sword_wraith:
+      drop: 1/75
+      amount: 1-1
+creepyspider1:
+  name: Creepy Spider
+  type: SPIDER
+  health: 190
+  damage: 130
+  xp: 40
+  knockbackResist: 0
+  perk: spiders
+  equipment: {}
+  drops:
+    spidersilk:
+      drop: 1/3
+      amount: 1-1
+creepyspider2:
+  name: Creepy Spider
+  type: SPIDER
+  health: 250
+  damage: 170
+  xp: 60
+  knockbackResist: 0.1
+  perk: spiders
+  equipment: {}
+  drops:
+    spidersilk:
+      drop: 1/3
+      amount: 1-2
+creepyspiderqueen:
+  name: Creepy Spider Queen
+  type: SPIDER
+  health: 2666
+  damage: 300
+  xp: 300
+  knockbackResist: 0.8
+  perk: spiders
+  equipment: {}
+  drops:
+    spidersilk:
+      drop: 1/1
+      amount: 16-64
+    sword_web:
+      drop: 1/100
+      amount: 1-1
+drenched5:
+  name: Elder Drenched
+  type: DROWNED
+  health: 450
+  damage: 90
+  xp: 50
+  knockbackResist: 0.8
+  perk: waterway_drenched
+  actions: heal,swarm_drenched
+  equipment:
+    main: sword_water
+    helmet: armour_water_helmet
+    chestplate: armour_ocean_chestplate
+    leggings: armour_water_leggings
+    boots: armour_water_boots
+  drops:
+    wetpaper:
+      drop: 1/1
+      amount: 1-10
+    fragment_water:
+      drop: 1/2
+      amount: 1-3
+    catalyst=0:
+      drop: 1/170
+      amount: 1-1
+drenched6:
+  name: The Moist
+  type: DROWNED
+  health: 780
+  damage: 80
+  xp: 80
+  knockbackResist: 1
+  perk: waterway_drenched
+  actions: heal,swarm_drenched_large
+  equipment:
+    main: sword_water
+    helmet: armour_ocean_helmet
+    chestplate: armour_ocean_chestplate
+    leggings: armour_paper_leggings
+    boots: armour_ocean_boots
+  drops:
+    wetpaper:
+      drop: 1/1
+      amount: 16-32
+    fragment_water:
+      drop: 1/1
+      amount: 1-5
+    catalyst=0:
+      drop: 1/400
+      amount: 1-1
+grave1:
+  name: Grave Skeleton
+  type: SKELETON
+  health: 250
+  damage: 80
+  xp: 30
+  knockbackResist: 0.2
+  perk: necropolis_skeletons
+  equipment:
+    main: sword_bone_rare
+    helmet: armour_bone_helmet
+  drops:
+    boneshard:
+      drop: 1/2
+      amount: 1-4
+    catalyst=0:
+      drop: 1/400
+      amount: 1-1
+grave2:
+  name: Grave Skeleton
+  type: SKELETON
+  health: 300
+  damage: 100
+  xp: 40
+  knockbackResist: 0.25
+  perk: necropolis_skeletons
+  equipment:
+    main: sword_bone_rare
+    helmet: armour_bone_helmet
+    chestplate: armour_bone_chestplate
+  drops:
+    ingredients_boneshard:
+      drop: 1/2
+      amount: 1-5
+    catalyst=0:
+      drop: 1/400
+      amount: 1-1
+grave3:
+  name: Grave Skeleton
+  type: SKELETON
+  health: 400
+  damage: 105
+  xp: 45
+  knockbackResist: 0.5
+  perk: necropolis_skeletons
+  equipment:
+    main: sword_bone_rare
+    helmet: armour_bone_helmet
+    chestplate: armour_bone_chestplate
+    leggings: null
+    boots: armour_bone_boots
+  drops:
+    boneshard:
+      drop: 2/3
+      amount: 1-5
+    catalyst=0:
+      drop: 1/395
+      amount: 1-1
+grave4:
+  name: Grave Skeleton
+  type: SKELETON
+  health: 430
+  damage: 130
+  xp: 50
+  knockbackResist: 0.75
+  perk: necropolis_skeletons
+  equipment:
+    main: sword_bone_rare
+    helmet: armour_bone_helmet
+    chestplate: armour_bone_chestplate
+    leggings: armour_bone_leggings
+    boots: armour_bone_boots
+  drops:
+    boneshard:
+      drop: 2/3
+      amount: 2-7
+    catalyst=0:
+      drop: 1/390
+      amount: 1-1
+
+
+    
+    

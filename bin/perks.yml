@@ -1,0 +1,18 @@
+waterway_drenched:
+  name: Drenched
+  namecolour: BLUE
+  icon: ROTTEN_FLESH
+  effects:
+    health: 2
+spiders:
+  name: Spiders
+  namecolour: DARK_RED
+  icon: SPIDER_EYE
+  effects:
+    damage: 1
+necropolis_skeletons:
+  name: Grave Skeletons
+  namecolour: WHITE
+  icon: BONE
+  effects:
+    armour: 1

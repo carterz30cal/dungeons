@@ -1,0 +1,333 @@
+craft_paper:
+  product: paper
+  amount: 1
+  xp: 5
+  materials:
+    P: wetpaper,64
+  recipe:
+    0: P 0 0
+    1: 0 0 0
+    2: 0 0 0
+craft_paperstick:
+  product: stick_paper
+  amount: 1
+  xp: 10
+  materials:
+    W: wetpaper,32
+  recipe:
+    0: 0 0 0
+    1: 0 W 0
+    2: 0 W 0
+craft_paperarmour_helmet:
+  product: armour_paper_helmet
+  amount: 1
+  xp: 50
+  materials:
+    P: paper,1
+  recipe:
+    0: P P P
+    1: P 0 P
+    2: 0 0 0
+craft_paperarmour_chestplate:
+  product: armour_paper_chestplate
+  amount: 1
+  xp: 80
+  materials:
+    P: paper,1
+  recipe:
+    0: P 0 P
+    1: P P P
+    2: P P P
+craft_paperarmour_leggings:
+  product: armour_paper_leggings
+  amount: 1
+  xp: 70
+  materials:
+    P: paper,1
+  recipe:
+    0: P P P
+    1: P 0 P
+    2: P 0 P
+craft_paperarmour_boots:
+  product: armour_paper_boots
+  amount: 1
+  xp: 40
+  materials:
+    P: paper,1
+  recipe:
+    0: 0 0 0
+    1: P 0 P
+    2: P 0 P
+craft_papersword:
+  product: sword_paper
+  amount: 1
+  xp: 100
+  materials:
+    P: paper,3
+    S: stick_paper,1
+  recipe:
+    0: 0 P 0
+    1: 0 P 0
+    2: 0 S 0
+craft_paperbow:
+  product: bow_paper
+  amount: 1
+  xp: 100
+  materials:
+    P: paper,2
+    S: stick_paper,1
+    I: spidersilk,3
+  recipe:
+    0: 0 P S
+    1: P 0 I
+    2: 0 P S
+craft_paperpickaxe:
+  product: pickaxe_paper
+  amount: 1
+  xp: 100
+  materials:
+    P: paper,1
+    S: stick_paper,1
+  recipe:
+    0: P P P
+    1: 0 S 0
+    2: 0 S 0
+craft_waterarmour_helmet:
+  product: armour_water_helmet
+  amount: 1
+  xp: 50
+  materials:
+    N: fragment_water,1
+  recipe:
+    0: N N N
+    1: N 0 N
+    2: 0 0 0
+craft_waterarmour_chestplate:
+  product: armour_water_chestplate
+  amount: 1
+  xp: 80
+  materials:
+    N: fragment_water,1
+  recipe:
+    0: N 0 N
+    1: N N N
+    2: N N N
+craft_waterarmour_leggings:
+  product: armour_water_leggings
+  amount: 1
+  xp: 70
+  materials:
+    N: fragment_water,1
+  recipe:
+    0: N N N
+    1: N 0 N
+    2: N 0 N
+craft_waterarmour_boots:
+  product: armour_water_boots
+  amount: 1
+  xp: 40
+  materials:
+    N: fragment_water,1
+  recipe:
+    0: 0 0 0
+    1: N 0 N
+    2: N 0 N
+craft_watersword:
+  product: sword_water
+  amount: 1
+  xp: 20
+  materials:
+    N: fragment_water,2
+    S: stick_paper,1
+  recipe:
+    0: 0 N 0
+    1: 0 N 0
+    2: 0 S 0
+craft_watersword_rare:
+  product: sword_ocean
+  amount: 1
+  xp: 40
+  materials:
+    W: sword_water,1
+    F: fragment_water,6
+    S: stick_paper,2
+  recipe:
+    0: 0 W 0
+    1: F W F
+    2: 0 S 0
+craft_waterpickaxe:
+  product: pickaxe_water
+  amount: 1
+  xp: 20
+  materials:
+    N: fragment_water,3
+    S: stick_paper,1
+  recipe:
+    0: N N N
+    1: 0 S 0
+    2: 0 S 0
+craft_bone:
+  product: bone
+  amount: 1
+  xp: 8
+  materials:
+    S: boneshard,16
+  recipe:
+    0: 0 0 S
+    1: 0 S 0
+    2: S 0 0
+craft_stick_bone:
+  product: stick_bone
+  amount: 1
+  xp: 25
+  materials:
+    B: bone,1
+    S: boneshard,16
+  recipe:
+    0: 0 0 S
+    1: S B 0
+    2: B S 0
+craft_bonesword:
+  product: sword_bone_rare
+  amount: 1
+  xp: 60
+  materials:
+    B: bone,2
+    O: boneshard,32
+    S: stick_bone,1
+  recipe:
+    0: 0 B 0
+    1: 0 B 0
+    2: 0 S 0
+craft_oceanicsilk:
+  product: spidersilk_water
+  amount: 1
+  xp: 66
+  materials:
+    S: spidersilk,8
+    F: fragment_water,1
+    G: fragment_water,2
+  recipe:
+    0: 0 F 0
+    1: G S G
+    2: 0 F 0
+craft_oceanarmour_helmet:
+  product: armour_ocean_helmet
+  amount: 1
+  xp: 55
+  materials:
+    N: spidersilk_water,1
+  recipe:
+    0: N N N
+    1: N 0 N
+    2: 0 0 0
+craft_oceanarmour_chestplate:
+  product: armour_ocean_chestplate
+  amount: 1
+  xp: 90
+  materials:
+    N: spidersilk_water,1
+  recipe:
+    0: N 0 N
+    1: N N N
+    2: N N N
+craft_oceanarmour_leggings:
+  product: armour_ocean_leggings
+  amount: 1
+  xp: 85
+  materials:
+    N: spidersilk_water,1
+  recipe:
+    0: N N N
+    1: N 0 N
+    2: N 0 N
+craft_oceanarmour_boots:
+  product: armour_ocean_boots
+  amount: 1
+  xp: 50
+  materials:
+    N: spidersilk_water,1
+  recipe:
+    0: 0 0 0
+    1: N 0 N
+    2: N 0 N
+
+craft_leafball:
+  product: leaf_ball
+  amount: 1
+  xp: 12
+  materials:
+    L: fragment_leaf,16
+  recipe:
+    0: L L L
+    1: L 0 L
+    2: L L L
+craft_leafbranch:
+  product: sword_leaf
+  amount: 1
+  xp: 80
+  materials:
+    B: leaf_ball,1
+    S: stick_paper,2
+  recipe:
+    0: 0 B 0
+    1: 0 B 0
+    2: 0 S 0
+craft_leafarmour_helmet:
+  product: armour_leaf_helmet
+  amount: 1
+  xp: 50
+  materials:
+    B: leaf_ball,1
+    L: fragment_leaf,32
+  recipe:
+    0: L L L
+    1: L B L
+    2: 0 0 0
+craft_leafarmour_chestplate:
+  product: armour_leaf_chestplate
+  amount: 1
+  xp: 160
+  materials:
+    B: leaf_ball,2
+    L: fragment_leaf,32
+  recipe:
+    0: L 0 L
+    1: L B L
+    2: L B L
+craft_leafarmour_leggings:
+  product: armour_leaf_leggings
+  amount: 1
+  xp: 70
+  materials:
+    B: leaf_ball,1
+    L: fragment_leaf,32
+  recipe:
+    0: L L L
+    1: L B L
+    2: L 0 L
+craft_leafarmour_boots:
+  product: armour_leaf_boots
+  amount: 1
+  xp: 40
+  materials:
+    B: leaf_ball,1
+    L: fragment_leaf,32
+  recipe:
+    0: L B L
+    1: L 0 L
+    2: 0 0 0
+craft_sharpener_sharp:
+  product: sharpener_sharp
+  amount: 1
+  xp: 35
+  materials:
+    C: sharpener_crude,2
+    B: leaf_ball,2
+    P: paper,4
+  recipe:
+    0: C B 0
+    1: P 0 0
+    2: 0 0 0
+
+    

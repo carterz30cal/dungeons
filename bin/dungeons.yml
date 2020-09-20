@@ -1,0 +1,39 @@
+waterway:
+  name: Waterway
+  spawn: 23,104,21000
+  oreblock: BROWN_WOOL
+  orexp: 6
+  ores:
+    GREEN_TERRACOTTA: fragment_leaf
+    GREEN_CONCRETE: fragment_leaf
+  spawns:
+    -15,100,21002: drenched1
+    -11,101,20985: drenched1
+    -20,97,21016: drenched1
+    -21,97,21013: drenched1
+    -26,94,21000: drenched1
+    -24,103,20982: drenched1
+    
+    -23,94,20989: drenched2
+    -19,94,20986: drenched2
+    
+    -33,107,20999: drenched2
+    -19,117,21002: drenched2
+    -31,117,21007: drenched3
+    
+    -48,104,20968: drenched2
+    -42,104,20961: drenched3
+    -47,104,20962: drenched3
+    
+    -47,100,20998: drenched2
+    -59,100,21000: drenched3
+    
+    -11,94,21000: creepyspider1
+    -8,94,21000: creepyspider1
+    -9,94,21003: creepyspider1
+    -22,91,21017: creepyspider2
+    -22,91,21013: creepyspider2
+    -20,91,21014: creepyspider2
+    -25,91,21015: creepyspiderqueen
+    
+    -22,106,20992: bonewraith1
