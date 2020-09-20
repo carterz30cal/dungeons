@@ -1,10 +1,11 @@
 package com.carterz30cal.items;
 
+import java.util.ArrayList;
 
 public class Shop
 {
 	public String name;
-	public String[] items;
+	public ArrayList<ShopItem> items;
 	
 	public Shop()
 	{

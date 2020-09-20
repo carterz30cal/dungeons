@@ -1,5 +1,6 @@
 package com.carterz30cal.player;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -57,6 +58,7 @@ public class DungeonsPlayerManager
 			playerc.createSection(path + ".backpack");
 		}
 	}
+	@SuppressWarnings("deprecation")
 	public void save(DungeonsPlayer dp)
 	{
 		FileConfiguration playerc = Dungeons.instance.getPlayerConfig();
@@ -84,6 +86,8 @@ public class DungeonsPlayerManager
 			else playerc.set(path + ".backpack." + slot, null);
 		}
 		playerc.set(path + ".coins", dp.coins);
+		Date set = new Date();
+		playerc.set(path + ".lastlogin", set.getDate() + "/" + set.getMonth() + "/" + set.getYear());
 		playerc.set(path + ".settings.progressbar", dp.settingSkillsDisplay);
 		playerc.set(path + ".settings.perkbackground", dp.perkBackground);
 		playerc.set(path + ".settings.colourblind", dp.colourblindMode);

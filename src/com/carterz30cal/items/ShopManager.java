@@ -2,6 +2,7 @@ package com.carterz30cal.items;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.bukkit.configuration.InvalidConfigurationException;
@@ -39,7 +40,16 @@ public class ShopManager
 		{
 			Shop sh = new Shop();
 			sh.name = shop.getString(s + ".name", "Ye Olde Shoppe");
-			sh.items = shop.getString(s + ".items").split("-");
+			sh.items = new ArrayList<ShopItem>();
+			for (String i : shop.getConfigurationSection(s + ".items").getKeys(false))
+			{
+				ShopItem item = new ShopItem();
+				item.item = i;
+				item.price = shop.getInt(s + ".items." + i + ".price", 10);
+				item.enchants = shop.getString(s + ".items." + i + ".enchants", "");
+				item.sharps = shop.getString(s + ".items." + i + ".sharps", "");
+				sh.items.add(item);
+			}
 			shops.put(s,sh);
 		}
 	}

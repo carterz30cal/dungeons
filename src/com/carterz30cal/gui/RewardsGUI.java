@@ -1,5 +1,13 @@
 package com.carterz30cal.gui;
 
-public class RewardsGUI {
+import org.bukkit.entity.Player;
+
+public class RewardsGUI extends GUI
+{
+
+	public RewardsGUI(Player p) {
+		super(p);
+		// TODO Auto-generated constructor stub
+	}
 
 }

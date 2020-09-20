@@ -14,6 +14,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import com.carterz30cal.items.ItemBuilder;
 import com.carterz30cal.items.Shop;
+import com.carterz30cal.items.ShopItem;
 import com.carterz30cal.player.DungeonsPlayer;
 import com.carterz30cal.player.DungeonsPlayerManager;
 
@@ -40,29 +41,24 @@ public class ShopGUI extends GUI
 			if ((i+1) % 9 < 2 || i / 9 == 0 || i / 9 == 5) contents[i] = GUICreator.pane(Material.BLACK_STAINED_GLASS_PANE);
 			else
 			{
-				if (ootem >= shop.items.length) 
+				if (ootem >= shop.items.size()) 
 				{
 					contents[i] = GUICreator.pane(Material.WHITE_STAINED_GLASS_PANE);
 				}
 				else
 				{
-					String[] o = shop.items[ootem].split(" ");
-					ItemStack item = null;
-					if (o.length == 3) 
-					{
-						item = ItemBuilder.i.build(o[0], null, o[2]);
-						enchants[i] = o[2];
-					}
-					else item = ItemBuilder.i.build(o[0], null);
-					int cost = Integer.parseInt(o[1]);
-					items[i] = o[0];
-					costs[i] = cost;
+					ShopItem it = shop.items.get(ootem);
+							
+					ItemStack item = ItemBuilder.i.build(it.item, null,it.enchants,it.sharps);
+
+					items[i] = it.item;
+					costs[i] = it.price;
 					ItemMeta u = item.getItemMeta();
 					List<String> lore = u.getLore();
 					lore.add("");
-					if (cost > 1) lore.add(ChatColor.GOLD + "Costs " + Integer.parseInt(o[1]) + " coins");
-					else if (cost == 1) lore.add(ChatColor.GOLD + "Costs 1 coin");
-					else lore.add(ChatColor.GOLD + "FREE");
+					if (it.price > 1) lore.add(ChatColor.GOLD + "Costs " + it.price + " coins");
+					else if (it.price == 1) lore.add(ChatColor.GOLD + "Costs 1 coin");
+					else lore.add(ChatColor.GOLD + "FREE!");
 					u.setLore(lore);
 					item.setItemMeta(u);
 					
