@@ -75,7 +75,7 @@ public class ListenerEntityDamage implements Listener
 				int damage = arrow.getPersistentDataContainer().getOrDefault(DungeonMobCreator.arrowDamage, PersistentDataType.INTEGER,1);
 				ChatColor hitColour = ChatColor.WHITE;
 				if (arrow.isCritical()) hitColour = ChatColor.RED;
-				else damage *= 0.2;
+				else damage *= 0.5;
 				
 				if (shooter instanceof Player)
 				{

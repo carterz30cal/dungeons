@@ -8,6 +8,15 @@ sword_paper:
   item: STONE_SWORD
   attributes:
     damage: +45
+sword_cardboard:
+  name: Cardboard Sword
+  type: weapon
+  rarity: EPIC
+  item: STONE_SWORD
+  set: paper
+  glow: true
+  attributes:
+    damage: +75
 bow_paper:
   name: Paper Bow
   type: weapon
@@ -94,7 +103,7 @@ armour_water_helmet:
   item: LEATHER_HELMET
   colour: 0,85,170
   attributes:
-    health: +10
+    health: +15
     
 armour_water_chestplate:
   name: Water Suit
@@ -103,7 +112,7 @@ armour_water_chestplate:
   item: LEATHER_CHESTPLATE
   colour: 0,85,170
   attributes:
-    health: +20
+    health: +25
     
 armour_water_leggings:
   name: Water Shorts
@@ -112,7 +121,7 @@ armour_water_leggings:
   item: LEATHER_LEGGINGS
   colour: 0,85,170
   attributes:
-    health: +15
+    health: +20
     
 armour_water_boots:
   name: Water Boots
@@ -121,7 +130,7 @@ armour_water_boots:
   item: LEATHER_BOOTS
   colour: 0,85,170
   attributes:
-    health: +5
+    health: +10
 # the ocean set is a direct upgrade of the water set, being on par with the leaf set for tankiness (leaf set has higher health, but ocean set buffs armour slightly)
 armour_ocean_helmet:
   name: Ocean Cap
@@ -328,7 +337,7 @@ bow_leaf:
   set: leaf
   item: BOW
   attributes:
-    damage: +20
+    damage: +17
     health: +25
 bow_royalleaf:
   name: Royal Leaf Bow
@@ -337,7 +346,7 @@ bow_royalleaf:
   set: leaf
   item: BOW
   attributes:
-    damage: +38
+    damage: +35
     health: +50
 sword_leaf:
   name: Branch
@@ -346,8 +355,8 @@ sword_leaf:
   set: leaf
   item: STICK
   attributes:
-    damage: +20
-    health: +40
+    damage: +18
+    health: +50
 # the STARTER ITEM, EVERYONE GETS ONE
 sword_cheap:
   name: Cheap 'Sword'
@@ -630,30 +639,30 @@ loot_drenchedminiboss:
       amount: 1-3
       chance: 1
     fragment_water:
-      amount: 2-4
+      amount: 3-4
       chance: 1
     spidersilk_water:
-      amount: 1-8
+      amount: 1-3
       chance: 2
     leaf_ball:
-      amount: 1-4
+      amount: 1-3
       chance: 2
     cardboard:
-      amount: 1
-      chance: 17
+      amount: 1-2
+      chance: 22
     sword_hyperblade_waterway:
       amount: 1
-      chance: 15
+      chance: 18
     pickaxe_hyperpick_waterway:
       amount: 1
-      chance: 20
+      chance: 25
     book;protection:
       amount: 1
-      chance: 25
+      chance: 40
       enchants: protection,1
     catalyst=0:
       amount: 1-2
-      chance: 75
+      chance: 80
 sword_hyperblade_waterway:
   name: Wooden Hyperblade
   type: weapon
@@ -663,15 +672,7 @@ sword_hyperblade_waterway:
   attributes:
     damage: +40
     regen: +5
-sword_cardboard:
-  name: Cardboard Sword
-  type: weapon
-  rarity: EPIC
-  item: STONE_SWORD
-  set: paper
-  glow: true
-  attributes:
-    damage: +75
+
 pickaxe_hyperpick_waterway:
   name: Wooden Hyperpick
   type: tool
