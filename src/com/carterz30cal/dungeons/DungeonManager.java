@@ -63,6 +63,15 @@ public class DungeonManager
 				SpawnPosition spl = new SpawnPosition(new Location(Bukkit.getWorld("hub"),Integer.parseInt(spawns[0]),Integer.parseInt(spawns[1]),Integer.parseInt(spawns[2])));
 				dungeon.spawns.put(spl, data.getString(d + ".spawns." + spawn));
 			}
+			// DungeonMining setup here
+			dungeon.mining.xp = data.getInt(d + ".mining.xp", 0);
+			for (String o : data.getConfigurationSection(d + ".mining.ores").getKeys(false))
+			{
+				Material block = Material.valueOf(o);
+				dungeon.mining.blocks.put(block, Material.valueOf(data.getString(d + ".mining.ores." + o + ".replacement", "BEDROCK")));
+				dungeon.mining.ores.put(block, data.getString(d + ".mining.ores." + o + ".ore", "bad_item"));
+			}
+			
 			dungeon.oreReplacement = Material.valueOf(data.getString(d + ".oreblock", "BEDROCK"));
 			dungeon.orexp = data.getInt(d + ".orexp", 10);
 			for (String ore : data.getConfigurationSection(d + ".ores").getKeys(false))

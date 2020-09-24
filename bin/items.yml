@@ -682,4 +682,9 @@ pickaxe_hyperpick_waterway:
   attributes:
     orechance: +0.60
     bonusxp: +0.1
-    
+bad_item:
+  name: Bad Item
+  type: error
+  rarity: LEGENDARY
+  item: BARRIER
+  glow: true

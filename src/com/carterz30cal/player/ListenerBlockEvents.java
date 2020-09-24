@@ -1,7 +1,5 @@
 package com.carterz30cal.player;
 
-import java.util.Random;
-
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -20,12 +18,7 @@ import com.carterz30cal.tasks.TaskBlockReplace;
 
 public class ListenerBlockEvents implements Listener 
 {
-	private Random r;
 	
-	public ListenerBlockEvents()
-	{
-		r = new Random();
-	}
 	@EventHandler
 	public void onBlockBreak(BlockBreakEvent e)
 	{
@@ -34,16 +27,19 @@ public class ListenerBlockEvents implements Listener
 		Material b = e.getBlock().getType();
 		Dungeon d = DungeonManager.i.dungeons.getOrDefault(DungeonManager.i.hash(e.getPlayer().getLocation().getBlockZ()),DungeonManager.i.hub);
 		DungeonsPlayer p = DungeonsPlayerManager.i.get(e.getPlayer());
-		if (d.ores.containsKey(b))
+		if (d.mining.blocks.containsKey(b))
 		{
-			if (p.skills.add("mining", (int) Math.round(d.orexp*p.stats.miningXp))) p.skills.sendLevelMessage("mining", e.getPlayer());
+			int xp = (int)Math.ceil(d.mining.xp * p.stats.miningXp);
+			if (p.skills.add("mining", xp)) p.skills.sendLevelMessage("mining", e.getPlayer());
+			
 			if (Math.random() <= p.stats.oreChance) 
 			{
-				ItemStack ore = ItemBuilder.i.build(d.ores.get(b),null);
-				ore.setAmount((int) Math.round(Math.random()*3));
+				ItemStack ore = ItemBuilder.i.build(d.mining.ores.get(b),null);
+				ore.setAmount(1+(int)(Math.random()*3));
 				e.getPlayer().getInventory().addItem(ore);
-				float pitch = (float)(0.4 + (r.nextDouble()*0.4));
-				new SoundTask(e.getPlayer().getLocation(),e.getPlayer(),Sound.BLOCK_NOTE_BLOCK_CHIME,pitch,0.7f).runTaskLater(Dungeons.instance, 1);
+				
+				new SoundTask(e.getPlayer().getLocation(),e.getPlayer(),Sound.ENTITY_ITEM_PICKUP,1f,0.5f).runTask(Dungeons.instance);
+				d.mining.progress += ore.getAmount(); // TODO UPDATE LATER WITH ACTUAL FUNCTION THAT HANDLES SPAWNING OF BOSSES
 			}
 			new TaskBlockReplace(e.getBlock(),b).runTaskLater(Dungeons.instance, 100);
 			e.getBlock().setType(d.oreReplacement);

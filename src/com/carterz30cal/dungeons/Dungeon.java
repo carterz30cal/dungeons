@@ -14,6 +14,8 @@ public class Dungeon
 	public Location spawn;
 	public HashMap<SpawnPosition,String> spawns;
 	
+	public DungeonMining mining;
+	
 	public Material oreReplacement;
 	public HashMap<Material,String> ores;
 	public int orexp;
@@ -26,5 +28,6 @@ public class Dungeon
 		ores = new HashMap<Material,String>();
 		oreReplacement = Material.BEDROCK;
 		activated = true;
+		mining = new DungeonMining();
 	}
 }
