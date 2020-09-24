@@ -92,6 +92,19 @@ craft_paperpickaxe:
     0: P P P
     1: 0 S 0
     2: 0 S 0
+craft_cardboardsword:
+  product: sword_cardboard
+  amount: 1
+  xp: 250
+  materials:
+    C: cardboard,1
+    O: cardboard,2
+    P: paper,2
+    S: stick_paper,4
+  recipe:
+    0: 0 C 0
+    1: P O P
+    2: 0 S 0
 craft_waterarmour_helmet:
   product: armour_water_helmet
   amount: 1
@@ -143,7 +156,7 @@ craft_watersword:
     0: 0 N 0
     1: 0 N 0
     2: 0 S 0
-craft_watersword_rare:
+craft_oceansword:
   product: sword_ocean
   amount: 1
   xp: 40
@@ -155,6 +168,17 @@ craft_watersword_rare:
     0: 0 W 0
     1: F W F
     2: 0 S 0
+craft_oceanbow:
+  product: bow_ocean
+  amount: 1
+  xp: 150
+  materials:
+    F: fragment_water,4
+    S: spidersilk_water,3
+  recipe:
+    0: 0 F S
+    1: F 0 S
+    2: 0 F S
 craft_waterpickaxe:
   product: pickaxe_water
   amount: 1

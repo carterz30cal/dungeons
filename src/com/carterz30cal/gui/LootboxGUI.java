@@ -4,11 +4,14 @@ import java.util.ArrayList;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
+import com.carterz30cal.dungeons.Dungeons;
 import com.carterz30cal.dungeons.EnchantHandler;
+import com.carterz30cal.dungeons.SoundTask;
 import com.carterz30cal.items.ItemBuilder;
 import com.carterz30cal.items.ItemLootbox;
 
@@ -40,8 +43,12 @@ public class LootboxGUI extends GUI
 		{
 			int o = order[l];
 			int f = loots.get(l);
-			ItemStack reward = ItemBuilder.i.build(lootbox.items.get(f), null);
-			
+			ItemStack reward = ItemBuilder.i.build(lootbox.items.get(f), null,lootbox.enchants.get(f));
+			Integer[] amounts = lootbox.amounts.get(f);
+			int am = 1;
+			if (amounts.length == 1) am = amounts[0];
+			else am = (int)(amounts[0]+(amounts[1]-amounts[0])*Math.random());
+			reward.setAmount(am);
 			contents[o] = reward;
 			contents[o-9] = pane(lootbox.chance.get(f));
 		}
@@ -51,9 +58,11 @@ public class LootboxGUI extends GUI
     @Override
 	public boolean handleClick(InventoryClickEvent e,int position,Player p)
 	{
+    	if (position >= 36) return false;
     	if (!EnchantHandler.eh.isUIElement(e.getCurrentItem()))
     	{
     		p.getInventory().addItem(e.getCurrentItem());
+    		new SoundTask(p.getLocation(),p,Sound.ENTITY_ARROW_HIT_PLAYER,0.8f,0.8f).runTask(Dungeons.instance);
     		inventory.setItem(position, GUICreator.item(Material.BEDROCK, 
     				e.getCurrentItem().getItemMeta().getDisplayName() + ChatColor.RED + " Already Claimed!", null, 1));
     	}

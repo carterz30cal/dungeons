@@ -165,6 +165,7 @@ public class ItemBuilder
 					}
 					lootbox.amounts.add(actualamounts);
 					lootbox.chance.add(data.getInt(it + ".loot." + loot + ".chance", 1));
+					lootbox.enchants.add(data.getString(it + ".loot." + loot + ".enchants", ""));
 				}
 			}
 			if (data.contains(it + ".attributes"))

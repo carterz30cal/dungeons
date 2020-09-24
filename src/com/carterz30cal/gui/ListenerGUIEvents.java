@@ -166,6 +166,13 @@ public class ListenerGUIEvents implements Listener
 				break;
 			}
 		}
+		else if (player.gui instanceof LootboxGUI)
+		{
+			for (ItemStack item : player.gui.inventory.getContents())
+			{
+				if (!EnchantHandler.eh.isUIElement(item)) player.player.getInventory().addItem(item);
+			}
+		}
 		player.gui = null;
 	}
 }

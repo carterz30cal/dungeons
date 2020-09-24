@@ -77,7 +77,15 @@ sword_ocean:
   attributes:
     damage: +27
     health: +30
-
+bow_ocean:
+  name: Ocean Bow
+  type: weapon
+  rarity: RARE
+  set: water
+  item: BOW
+  attributes:
+    damage: +30
+    health: +30
     
 armour_water_helmet:
   name: Water Cap
@@ -632,13 +640,20 @@ loot_drenchedminiboss:
       chance: 2
     cardboard:
       amount: 1
-      chance: 12
+      chance: 17
     sword_hyperblade_waterway:
       amount: 1
       chance: 15
     pickaxe_hyperpick_waterway:
       amount: 1
       chance: 20
+    book;protection:
+      amount: 1
+      chance: 25
+      enchants: protection,1
+    catalyst=0:
+      amount: 1-2
+      chance: 75
 sword_hyperblade_waterway:
   name: Wooden Hyperblade
   type: weapon

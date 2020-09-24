@@ -101,7 +101,7 @@ public class DungeonsPlayerStats
 			float globMod = 1+EnchantHandler.eh.getEffect(m, "modifier");
 			if (set) globMod += EnchantHandler.eh.getEffect(m, "synergy");
 			
-			armour += a.attributes.getOrDefault("armour",0.0)*(globMod+EnchantHandler.eh.getEffect(m, "armour"));
+			armour += Math.ceil(a.attributes.getOrDefault("armour",0.0)*(globMod+EnchantHandler.eh.getEffect(m, "armour")));
 			health += (a.attributes.getOrDefault("health",0.0)*globMod)+EnchantHandler.eh.getEffect(m, "health");
 			regen += (a.attributes.getOrDefault("regen",0.0)*globMod)+EnchantHandler.eh.getEffect(m, "regen");
 			damag += (a.attributes.getOrDefault("damage",0.0)*globMod)+EnchantHandler.eh.getEffect(m, "damage");

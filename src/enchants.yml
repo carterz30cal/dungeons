@@ -15,7 +15,7 @@ enchants:
         5: 2
   protection:
     name: Protection
-    description: Increases armour by ARMOUR%
+    description: Increases this piece's armour by ARMOUR%
     max: 3
     effects:
       armour: 0.2
