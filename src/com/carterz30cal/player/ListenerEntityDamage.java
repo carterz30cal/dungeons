@@ -206,10 +206,9 @@ public class ListenerEntityDamage implements Listener
 				dp.damage(dp.stats.health/10, true);
 				break;
 			case FALL:
-				dp.damage((int)Math.pow(p.getFallDistance()/4, 2), true);
+				dp.damage((int)Math.pow(p.getFallDistance()/2.75, 2), true);
 				break;
 			default:
-				e.setCancelled(true);
 				break;
 			}
 		}

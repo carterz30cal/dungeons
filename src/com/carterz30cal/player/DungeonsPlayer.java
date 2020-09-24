@@ -27,6 +27,7 @@ public class DungeonsPlayer
 	public DungeonsPlayerStats stats;
 	public DungeonsPlayerDisplay display;
 	public DungeonsPlayerPerks perks;
+
 	public Dungeon area;
 	
 	public GUI gui;

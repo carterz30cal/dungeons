@@ -39,10 +39,10 @@ public class ListenerBlockEvents implements Listener
 				e.getPlayer().getInventory().addItem(ore);
 				
 				new SoundTask(e.getPlayer().getLocation(),e.getPlayer(),Sound.ENTITY_ITEM_PICKUP,1f,0.5f).runTask(Dungeons.instance);
-				d.mining.progress += ore.getAmount(); // TODO UPDATE LATER WITH ACTUAL FUNCTION THAT HANDLES SPAWNING OF BOSSES
+				d.mining.progress();
 			}
 			new TaskBlockReplace(e.getBlock(),b).runTaskLater(Dungeons.instance, 100);
-			e.getBlock().setType(d.oreReplacement);
+			e.getBlock().setType(d.mining.blocks.get(b));
 		}
 	}
 	

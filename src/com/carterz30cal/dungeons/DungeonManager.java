@@ -71,13 +71,11 @@ public class DungeonManager
 				dungeon.mining.blocks.put(block, Material.valueOf(data.getString(d + ".mining.ores." + o + ".replacement", "BEDROCK")));
 				dungeon.mining.ores.put(block, data.getString(d + ".mining.ores." + o + ".ore", "bad_item"));
 			}
-			
-			dungeon.oreReplacement = Material.valueOf(data.getString(d + ".oreblock", "BEDROCK"));
-			dungeon.orexp = data.getInt(d + ".orexp", 10);
-			for (String ore : data.getConfigurationSection(d + ".ores").getKeys(false))
-			{
-				dungeon.ores.put(Material.valueOf(ore),data.getString(d + ".ores." + ore, "bedrock"));
-			}
+			dungeon.mining.requirement = data.getInt(d + ".mining.boss.requirement", 500);
+			dungeon.mining.boss = data.getString(d + ".mining.boss.mob", "drenched0");
+			String[] loc = data.getString(d + ".mining.boss.spawn").split(",");
+			Location location = new Location(Bukkit.getWorld("hub"),Integer.parseInt(loc[0]),Integer.parseInt(loc[1]),Integer.parseInt(loc[2]));
+			dungeon.mining.spawn = new SpawnPosition(location);
 			warps.put(d, dungeon);
 			dungeons.put(hash, dungeon);
 		}

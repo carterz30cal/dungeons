@@ -1,5 +1,6 @@
 package com.carterz30cal.mobs;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -28,7 +29,7 @@ public class DungeonMob
 	public SpawnPosition owner;
 	public DungeonMobType type;
 	
-	public TaskCombatTag combat;
+	public ArrayList<Player> tagged;
 	public boolean summon;
 	
 	public DungeonMob (DungeonMobType t,Damageable e,Entity s,Entity a,SpawnPosition o,MobModifier m)
@@ -41,7 +42,7 @@ public class DungeonMob
 		modifier = m;
 		owner = o;
 		owner.mob = this;
-		
+		tagged = new ArrayList<Player>();
 		health = health();
 		
 		mobs.put(entity.getUniqueId(), this);
@@ -87,10 +88,10 @@ public class DungeonMob
 		if (health > 0) 
 		{
 			name();
-			if (combat == null) 
+			if (type.actions != null && !tagged.contains(damager)) 
 			{
-				combat = new TaskCombatTag(damager,this);
-				combat.runTaskTimer(Dungeons.instance, 100,200);
+				new TaskCombatTag(damager,this).runTaskTimer(Dungeons.instance, 20,20);
+				tagged.add(damager);
 			}
 		}
 		else destroy(damager);

@@ -27,7 +27,9 @@ public class TaskSpawn extends BukkitRunnable
 		{
 			DungeonsPlayer pd = DungeonsPlayerManager.i.get(p);
 			int h = DungeonManager.i.hash(p.getLocation().getBlockZ());
+			pd.area.players.remove(pd.player);
 			pd.area = DungeonManager.i.dungeons.getOrDefault(h, DungeonManager.i.hub);
+			pd.area.players.add(pd.player);
 			if (p.getGameMode() == GameMode.SURVIVAL) players.add(p.getLocation());
 			pd.area.activated = true;
 		}

@@ -4,8 +4,8 @@ waterway:
   mining:
     boss:
       mob: drenched_miniboss
-      spawn: 0,0,0
-      requirement: 50
+      spawn: -66,103,21002
+      requirement: 10
     xp: 18
     ores:
       GREEN_TERRACOTTA:
@@ -14,13 +14,6 @@ waterway:
       GREEN_CONCRETE:
         ore: fragment_leaf
         replacement: BROWN_WOOL
-        
-      
-  oreblock: BROWN_WOOL
-  orexp: 18
-  ores:
-    GREEN_TERRACOTTA: fragment_leaf
-    GREEN_CONCRETE: fragment_leaf
   spawns:
     -15,100,21002: drenched1
     -11,101,20985: drenched1

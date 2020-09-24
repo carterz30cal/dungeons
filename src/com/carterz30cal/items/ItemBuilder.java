@@ -386,8 +386,8 @@ public class ItemBuilder
 		}
 		else 
 		{
-			if (item.glow) meta.addEnchant(Enchantment.DURABILITY, 1, true);
-			else meta.removeEnchant(Enchantment.DURABILITY);
+			if (item.glow) meta.addEnchant(Enchantment.DIG_SPEED, 2, true);
+			else meta.removeEnchant(Enchantment.DIG_SPEED);
 		}
 
 		if (owner != null && item.set != null)

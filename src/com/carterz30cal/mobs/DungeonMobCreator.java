@@ -8,7 +8,6 @@ import java.util.HashMap;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
-import org.bukkit.Particle;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -79,23 +78,9 @@ public class DungeonMobCreator
 		for (String p : action.getKeys(false))
 		{
 			MobAction a = new MobAction();
-			a.text = action.getString(p + ".text", "oops. data not found o_O");
-			String[] cond = action.getString(p + ".requires","always").split(",");
-			a.condAttr = cond[0];
-			if (cond.length > 1) 
-			{
-				a.condTog = cond[1].charAt(0) == ">".charAt(0);
-				int end = cond[1].length();
-				if (cond[1].endsWith("%")) end--;
-				a.condAm = Double.parseDouble(cond[1].substring(1, end));
-			}
 			
-			if (action.contains(p + ".particle")) a.p = Particle.valueOf(action.getString(p + ".particle"));
-			else a.p = null;
-			for (String e : action.getConfigurationSection(p + ".effects").getKeys(false))
-			{
-				a.effects.put(e, action.get(p + ".effects." + e));
-			}
+			for (String ef : action.getConfigurationSection(p).getKeys(false)) a.effects.put(ef, action.getString(p + "." + ef));
+			
 			actions.put(p, a);
 		}
 		for (String mob : data.getKeys(false))
@@ -136,11 +121,15 @@ public class DungeonMobCreator
 			}
 			type.drops = drops;
 			String[] acts = data.getString(mob + ".actions", "none").split(",");
-			type.actions = new MobAction[acts.length];
-			for (int act = 0; act < acts.length;act++)
+			if (acts[0].equals("none")) type.actions = null;
+			else 
 			{
-				MobAction o = actions.get(acts[act]);
-				if (o != null) type.actions[act] = o;
+				type.actions = new MobAction[acts.length];
+				for (int act = 0; act < acts.length;act++)
+				{
+					MobAction o = actions.get(acts[act]);
+					if (o != null) type.actions[act] = o;
+				}
 			}
 			ArrayList<String> tags = new ArrayList<String>();
 			for (String tag : data.getString(mob + ".tags","").split(","))
@@ -157,7 +146,7 @@ public class DungeonMobCreator
 		MobModifier healthy = new MobModifier();
 		healthy.name = "Healthy";
 		healthy.colour = ChatColor.GREEN;
-		healthy.health = 0.6;
+		healthy.health = 0.75;
 		MobModifier tanky = new MobModifier();
 		tanky.name = "Tanky";
 		tanky.colour = ChatColor.GRAY;
@@ -165,8 +154,8 @@ public class DungeonMobCreator
 		MobModifier hulk = new MobModifier();
 		hulk.name = "Hulk";
 		hulk.colour = ChatColor.DARK_RED;
-		hulk.damageReduction = 0.85;
-		hulk.health = 0.4;
+		hulk.damageReduction = 0.65;
+		hulk.health = 0.2;
 		
 		modifiers.add(healthy);
 		modifiers.add(tanky);
@@ -200,25 +189,26 @@ public class DungeonMobCreator
 			return false;
 		}
 		DungeonMobType type = types.get(mob);
+		if (type == null)
+		{
+			System.out.println("[Dungeons] Mob type not found: " + mob);
+			return false;
+		}
 		LivingEntity entity = (LivingEntity)pos.position.getWorld().spawnEntity(pos.position, type.type);
 		Silverfish silverfish = (Silverfish)pos.position.getWorld().spawnEntity(pos.position,EntityType.SILVERFISH);
 		ArmorStand armourstand = (ArmorStand)pos.position.getWorld().spawnEntity(pos.position, EntityType.ARMOR_STAND);
 		
 		armourstand.setVisible(false);
-		//armourstand.setInvulnerable(true);
 		armourstand.setMarker(true);
-		//armourstand.setCustomName(type.name + " " + ChatColor.RED + type.maxHealth + "/" + type.maxHealth);
 		armourstand.setCustomNameVisible(true);
 		
 		silverfish.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 10000000, 5));
 		silverfish.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 10000000, 255));
-		//silverfish.setInvulnerable(true);
 		silverfish.setSilent(true);
 		silverfish.setRemoveWhenFarAway(false);
 		silverfish.addPassenger(armourstand);
 		
 		entity.setRemoveWhenFarAway(false);
-		
 		EntityType ty = type.type;
 		if (ty == EntityType.ZOMBIE || ty == EntityType.DROWNED 
 				|| ty == EntityType.HUSK || ty == EntityType.ZOMBIFIED_PIGLIN)
@@ -236,7 +226,7 @@ public class DungeonMobCreator
 		}
 		else ((Spider)entity).setAware(true);
 		//entity.setAI(true);
-		
+		for (PotionEffect potion : entity.getActivePotionEffects()) entity.removePotionEffect(potion.getType());
 		entity.addPassenger(silverfish);
 		MobModifier mod = null;
 		if (Math.random() <= 0.1) mod = modifiers.get((int)Math.round(Math.random()*(modifiers.size()-1)));

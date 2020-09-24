@@ -22,7 +22,6 @@ drenched1:
   xp: 15
   knockbackResist: 0
   perk: waterway_drenched
-  actions: heal
   equipment:
     main: sword_water
     helmet: armour_water_helmet
@@ -59,7 +58,6 @@ drenched2:
   xp: 25
   knockbackResist: 0.1
   perk: waterway_drenched
-  actions: heal
   equipment:
     main: sword_water
     helmet: armour_water_helmet
@@ -96,7 +94,6 @@ drenched3:
   xp: 30
   perk: waterway_drenched
   knockbackResist: 0.25
-  actions: heal
   equipment:
     main: sword_water
     helmet: armour_water_helmet
@@ -133,7 +130,6 @@ drenched4:
   xp: 36
   knockbackResist: 0.5
   perk: waterway_drenched
-  actions: heal,swarm_drenched
   equipment:
     main: sword_water
     helmet: armour_water_helmet
@@ -163,15 +159,20 @@ drenched4:
       drop: 1/170
       amount: 1-1
 drenched_miniboss:
-  name: Drenched
+  name: The Titan Drench
   type: DROWNED
   health: 5000
   damage: 65
-  xp: 1750
+  xp: 1100
   knockbackResist: 1
+  actions: drain,regen
   perk: waterway_drenched
   equipment:
+    main: DIAMOND_SWORD
     helmet: IRON_HELMET
+    chestplate: DIAMOND_CHESTPLATE
+    leggings: DIAMOND_LEGGINGS
+    boots: IRON_BOOTS
   drops:
     loot_drenchedminiboss:
       drop: 1/1
@@ -184,13 +185,12 @@ bonewraith1:
   xp: 70
   knockbackResist: 1
   perk: null
-  action: bonewraith_sword,bonewraith_bow
   equipment: 
     main: sword_wraith
     chestplate: armour_paper_chestplate
   drops:
     sword_wraith:
-      drop: 1/75
+      drop: 1/76
       amount: 1-1
 creepyspider1:
   name: Creepy Spider
@@ -233,56 +233,6 @@ creepyspiderqueen:
       amount: 16-64
     sword_web:
       drop: 1/100
-      amount: 1-1
-drenched5:
-  name: Elder Drenched
-  type: DROWNED
-  health: 450
-  damage: 90
-  xp: 50
-  knockbackResist: 0.8
-  perk: waterway_drenched
-  actions: heal,swarm_drenched
-  equipment:
-    main: sword_water
-    helmet: armour_water_helmet
-    chestplate: armour_ocean_chestplate
-    leggings: armour_water_leggings
-    boots: armour_water_boots
-  drops:
-    wetpaper:
-      drop: 1/1
-      amount: 1-10
-    fragment_water:
-      drop: 1/2
-      amount: 1-3
-    catalyst=0:
-      drop: 1/170
-      amount: 1-1
-drenched6:
-  name: The Moist
-  type: DROWNED
-  health: 780
-  damage: 80
-  xp: 80
-  knockbackResist: 1
-  perk: waterway_drenched
-  actions: heal,swarm_drenched_large
-  equipment:
-    main: sword_water
-    helmet: armour_ocean_helmet
-    chestplate: armour_ocean_chestplate
-    leggings: armour_paper_leggings
-    boots: armour_ocean_boots
-  drops:
-    wetpaper:
-      drop: 1/1
-      amount: 16-32
-    fragment_water:
-      drop: 1/1
-      amount: 1-5
-    catalyst=0:
-      drop: 1/400
       amount: 1-1
 grave1:
   name: Grave Skeleton
