@@ -1,9 +1,11 @@
-package com.carterz30cal.mobs;
+package com.carterz30cal.dungeons;
 
 import java.util.HashMap;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
+
+import com.carterz30cal.mobs.SpawnPosition;
 
 
 public class Dungeon

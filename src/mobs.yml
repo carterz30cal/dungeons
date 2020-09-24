@@ -162,6 +162,20 @@ drenched4:
     armour_water_boots:
       drop: 1/170
       amount: 1-1
+drenched_miniboss:
+  name: Drenched
+  type: DROWNED
+  health: 5000
+  damage: 65
+  xp: 1750
+  knockbackResist: 1
+  perk: waterway_drenched
+  equipment:
+    helmet: IRON_HELMET
+  drops:
+    loot_drenchedminiboss:
+      drop: 1/1
+      amount: 1-1
 bonewraith1:
   name: Bone Wraith
   type: SKELETON

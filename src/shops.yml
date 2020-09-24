@@ -33,7 +33,7 @@ midasfollower:
     armour_cultist_boots:
       price: 3000  
     sword_goldknife:
-      price: 2100
+      price: 2220
     book;blade: 
       price: 1250
       enchants: blade,1

@@ -19,7 +19,6 @@ import com.carterz30cal.crafting.RecipeManager;
 import com.carterz30cal.gui.ListenerGUIEvents;
 import com.carterz30cal.items.ItemBuilder;
 import com.carterz30cal.items.ShopManager;
-import com.carterz30cal.mobs.DungeonManager;
 import com.carterz30cal.mobs.DungeonMob;
 import com.carterz30cal.mobs.DungeonMobCreator;
 import com.carterz30cal.mobs.ListenerChunkUnload;

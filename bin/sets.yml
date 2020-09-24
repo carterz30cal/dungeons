@@ -53,8 +53,8 @@ leaf:
       
 ancientcultist:
   set:
-    lore: Smells musty
+    lore: This doesn't smell too great
     attributes:
-      damage: +20
-      killcoins: +4
+      damagep: +0.1
+      killcoins: +3
     

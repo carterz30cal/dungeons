@@ -134,14 +134,39 @@ public class ItemBuilder
 		{
 			keys[kin] = it;
 			kin++;
-			Item item = new Item();
-			item.type = data.getString(it + ".type", "ingredient");
+			String type = data.getString(it + ".type", "ingredient");
+			Item item;
+			if (type.equals("lootbox")) item = new ItemLootbox();
+			else item = new Item();
+
+			item.type = type;
 			item.rarity = Rarity.valueOf(data.getString(it + ".rarity", "COMMON"));
 			item.name = rarityColours[item.rarity.ordinal()] + data.getString(it + ".name", "null");
 			item.attributes = new HashMap<String,Double>();
 			item.glow = data.getBoolean(it + ".glow", false);
 			item.material = Material.valueOf(data.getString(it + ".item"));
 			
+			if (type.equals("lootbox"))
+			{
+				ItemLootbox lootbox = (ItemLootbox)item;
+				for (String loot : data.getConfigurationSection(it + ".loot").getKeys(false))
+				{
+					lootbox.items.add(loot.split(";")[0]);
+					String[] amounts = data.getString(it + ".loot." + loot + ".amount", "1").split("-");
+					Integer[] actualamounts = new Integer[2];
+					if (amounts.length > 1) 
+					{
+						actualamounts[0] = Integer.parseInt(amounts[0]); actualamounts[1] = Integer.parseInt(amounts[1]);
+					}
+					else
+					{
+						int am = Integer.parseInt(amounts[0]);
+						actualamounts[0] = am; actualamounts[1] = am;
+					}
+					lootbox.amounts.add(actualamounts);
+					lootbox.chance.add(data.getInt(it + ".loot." + loot + ".chance", 1));
+				}
+			}
 			if (data.contains(it + ".attributes"))
 			{
 				for (String attr : data.getConfigurationSection(it + ".attributes").getKeys(false))
@@ -398,8 +423,24 @@ public class ItemBuilder
 			if (!owner.highlightRenamed && !c.equals(item.name)) lore.add(ChatColor.DARK_GRAY + ChatColor.stripColor(item.name));
 		}
 		
+		if (item.type.equals("lootbox"))
+		{
+			lore.add("");
+			lore.add(ChatColor.GOLD + "Click to open the lootbox");
+			lore.add(ChatColor.GOLD + " and get awesome rewards!");
+		}
 		meta.setLore(lore);
 		return meta;
+	}
+	public ItemStack maxStack(ItemStack i)
+	{
+		if (!i.hasItemMeta()) return i;
+		PersistentDataContainer p = i.getItemMeta().getPersistentDataContainer();
+		if (p == null) return i;
+		Item item = items.get(p.getOrDefault(kItem, PersistentDataType.STRING, null));
+		if (item != null && (item.type.equals("weapon") || item.type.equals("armour") || item.type.equals("tool"))) i.setAmount(1);
+		else i.setAmount(i.getMaxStackSize());
+		return i;
 	}
 	public boolean canSharpen(ItemStack i)
 	{

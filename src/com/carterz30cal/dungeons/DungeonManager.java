@@ -1,4 +1,4 @@
-package com.carterz30cal.mobs;
+package com.carterz30cal.dungeons;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,7 +11,7 @@ import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
-import com.carterz30cal.dungeons.Dungeons;
+import com.carterz30cal.mobs.SpawnPosition;
 
 public class DungeonManager
 {

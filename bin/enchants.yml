@@ -44,7 +44,7 @@ enchants:
     description: Increases damage by DAMAGEP%
     max: 2
     effects:
-      damagep: 0.08
+      damagep: 0.1
     book:
       catalyst: 0
       rarities:
@@ -89,7 +89,7 @@ enchants:
     description: Increases sweeping damage by SWEEP%
     max: 3
     effects:
-      sweep: 0.2
+      sweep: 0.25
     book:
       catalyst: 1
       rarities:

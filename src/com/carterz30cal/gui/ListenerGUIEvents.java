@@ -1,5 +1,6 @@
 package com.carterz30cal.gui;
 
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -11,10 +12,14 @@ import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.persistence.PersistentDataType;
 
 import com.carterz30cal.dungeons.Dungeons;
 import com.carterz30cal.dungeons.EnchantHandler;
+import com.carterz30cal.dungeons.SoundTask;
+import com.carterz30cal.items.Item;
 import com.carterz30cal.items.ItemBuilder;
+import com.carterz30cal.items.ItemLootbox;
 import com.carterz30cal.items.Shop;
 import com.carterz30cal.items.ShopManager;
 import com.carterz30cal.player.BackpackItem;
@@ -60,6 +65,19 @@ public class ListenerGUIEvents implements Listener
 			if (e.getItem() != null && e.getItem().isSimilar(ItemBuilder.menuItem))
 			{
 				new TaskGUI(new GUI(MenuType.MAINMENU,e.getPlayer()),p).runTaskLater(Dungeons.instance, 1);
+			}
+			else if (e.getItem() != null)
+			{
+				Item item = ItemBuilder.i.items.get(e.getItem().getItemMeta().getPersistentDataContainer().get(ItemBuilder.kItem, PersistentDataType.STRING));
+				if (item != null && item.type.equals("lootbox"))
+				{
+					e.getItem().setAmount(e.getItem().getAmount()-1);
+					new SoundTask(e.getPlayer().getLocation(),e.getPlayer(),Sound.BLOCK_NOTE_BLOCK_PLING,0.6f,0.6f).runTaskLater(Dungeons.instance, 1);
+					new SoundTask(e.getPlayer().getLocation(),e.getPlayer(),Sound.BLOCK_NOTE_BLOCK_PLING,0.6f,0.7f).runTaskLater(Dungeons.instance, 7);
+					new SoundTask(e.getPlayer().getLocation(),e.getPlayer(),Sound.BLOCK_NOTE_BLOCK_PLING,0.6f,0.8f).runTaskLater(Dungeons.instance, 14);
+					
+					new LootboxGUI((ItemLootbox)item,e.getPlayer());
+				}
 			}
 		}
 		

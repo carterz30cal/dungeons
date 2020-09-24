@@ -1,8 +1,24 @@
 waterway:
   name: Waterway
   spawn: 23,104,21000
+  mining:
+    boss:
+      mob: drenched_miniboss
+      spawn: 0,0,0
+      ores: 50
+    ores:
+      GREEN_TERRACOTTA:
+        ore: fragment_leaf,1-3
+        xp: 18
+        replacement: BROWN_WOOL
+      GREEN_CONCRETE:
+        ore: fragment_leaf,2-2
+        xp: 17
+        replacement: BROWN_WOOL
+        
+      
   oreblock: BROWN_WOOL
-  orexp: 6
+  orexp: 18
   ores:
     GREEN_TERRACOTTA: fragment_leaf
     GREEN_CONCRETE: fragment_leaf

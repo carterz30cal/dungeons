@@ -16,6 +16,7 @@ import org.bukkit.inventory.ItemStack;
 import com.carterz30cal.dungeons.Dungeons;
 import com.carterz30cal.dungeons.EnchantHandler;
 import com.carterz30cal.dungeons.SoundTask;
+import com.carterz30cal.items.ItemBuilder;
 import com.carterz30cal.player.BackpackItem;
 import com.carterz30cal.player.DungeonsPlayer;
 import com.carterz30cal.player.DungeonsPlayerManager;
@@ -320,7 +321,7 @@ public class GUI
 			else if (!EnchantHandler.eh.isUIElement(e.getCurrentItem()))
 			{
 				ItemStack add = e.getCurrentItem().clone();
-				add.setAmount(add.getMaxStackSize());
+				add = ItemBuilder.i.maxStack(add);
 				p.getInventory().addItem(add);
 			}
 				

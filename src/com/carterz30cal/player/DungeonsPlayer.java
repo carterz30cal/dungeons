@@ -12,11 +12,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.util.Vector;
 
+import com.carterz30cal.dungeons.Dungeon;
+import com.carterz30cal.dungeons.DungeonManager;
 import com.carterz30cal.dungeons.Dungeons;
 import com.carterz30cal.dungeons.SoundTask;
 import com.carterz30cal.gui.GUI;
-import com.carterz30cal.mobs.Dungeon;
-import com.carterz30cal.mobs.DungeonManager;
 
 public class DungeonsPlayer
 {

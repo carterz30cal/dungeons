@@ -11,11 +11,11 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 
+import com.carterz30cal.dungeons.Dungeon;
+import com.carterz30cal.dungeons.DungeonManager;
 import com.carterz30cal.dungeons.Dungeons;
 import com.carterz30cal.dungeons.SoundTask;
 import com.carterz30cal.items.ItemBuilder;
-import com.carterz30cal.mobs.Dungeon;
-import com.carterz30cal.mobs.DungeonManager;
 import com.carterz30cal.tasks.TaskBlockReplace;
 
 public class ListenerBlockEvents implements Listener 

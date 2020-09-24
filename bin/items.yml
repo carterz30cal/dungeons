@@ -77,6 +77,7 @@ sword_ocean:
   attributes:
     damage: +27
     health: +30
+
     
 armour_water_helmet:
   name: Water Cap
@@ -384,21 +385,21 @@ pickaxe_water:
   rarity: COMMON
   item: DIAMOND_PICKAXE
   attributes:
-    orechance: 0.30
+    orechance: 0.36
 pickaxe_flimsy:
   name: Flimsy Pickaxe
   type: tool
   rarity: COMMON
   item: STONE_PICKAXE
   attributes:
-    orechance: 0.25
+    orechance: 0.30
 pickaxe_paper:
   name: Paper Pickaxe
   type: tool
   rarity: RARE
   item: STONE_PICKAXE
   attributes:
-    orechance: 0.33
+    orechance: 0.40
     bonusxp: 0.25
     
 ### STEVE'S ADVENTURING SHOP SPECIALS
@@ -473,8 +474,8 @@ sword_goldknife:
   rarity: EPIC
   item: GOLD_NUGGET
   attributes:
-    damage: +17
-    killcoins: +5
+    damage: +16
+    killcoins: +6
 ### TIER ONE INGREDIENTS (ingredient is assumed if no type: is present) ###
 
 # drenched drops
@@ -486,6 +487,10 @@ paper:
   rarity: RARE
   item: PAPER
   glow: true
+cardboard:
+  name: Cardboard
+  rarity: EPIC
+  item: PAPER
 # spider drops
 spidersilk:
   name: Spider Silk
@@ -604,6 +609,61 @@ catalyst=2:
   type: catalyst
   rarity: INCREDIBLE
   item: NETHER_STAR
-
-    
+  
+# WATERWAY LOOTBOX + LOOTBOX EXCLUSIVES
+loot_drenchedminiboss:
+  name: Drenched Lootbox
+  type: lootbox
+  rarity: RARE
+  item: CHEST
+  glow: true
+  loot:
+    paper:
+      amount: 1-3
+      chance: 1
+    fragment_water:
+      amount: 2-4
+      chance: 1
+    spidersilk_water:
+      amount: 1-8
+      chance: 2
+    leaf_ball:
+      amount: 1-4
+      chance: 2
+    cardboard:
+      amount: 1
+      chance: 12
+    sword_hyperblade_waterway:
+      amount: 1
+      chance: 15
+    pickaxe_hyperpick_waterway:
+      amount: 1
+      chance: 20
+sword_hyperblade_waterway:
+  name: Wooden Hyperblade
+  type: weapon
+  rarity: EPIC
+  item: WOODEN_SWORD
+  glow: true
+  attributes:
+    damage: +40
+    regen: +5
+sword_cardboard:
+  name: Cardboard Sword
+  type: weapon
+  rarity: EPIC
+  item: STONE_SWORD
+  set: paper
+  glow: true
+  attributes:
+    damage: +75
+pickaxe_hyperpick_waterway:
+  name: Wooden Hyperpick
+  type: tool
+  rarity: EPIC
+  item: WOODEN_PICKAXE
+  glow: true
+  attributes:
+    orechance: +0.60
+    bonusxp: +0.1
     

@@ -5,8 +5,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import com.carterz30cal.mobs.Dungeon;
-import com.carterz30cal.mobs.DungeonManager;
+import com.carterz30cal.dungeons.Dungeon;
+import com.carterz30cal.dungeons.DungeonManager;
 
 public class CommandHub implements CommandExecutor
 {

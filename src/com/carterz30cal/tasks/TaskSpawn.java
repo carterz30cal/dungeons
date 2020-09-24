@@ -9,8 +9,8 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import com.carterz30cal.mobs.Dungeon;
-import com.carterz30cal.mobs.DungeonManager;
+import com.carterz30cal.dungeons.Dungeon;
+import com.carterz30cal.dungeons.DungeonManager;
 import com.carterz30cal.mobs.DungeonMobCreator;
 import com.carterz30cal.mobs.SpawnPosition;
 import com.carterz30cal.player.DungeonsPlayer;
