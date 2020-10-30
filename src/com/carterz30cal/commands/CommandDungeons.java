@@ -12,16 +12,20 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 
+import com.carterz30cal.bosses.BossManager;
 import com.carterz30cal.dungeons.Dungeon;
 import com.carterz30cal.dungeons.DungeonManager;
 import com.carterz30cal.gui.GUI;
 import com.carterz30cal.gui.MenuType;
+import com.carterz30cal.gui.ShopGUI;
 import com.carterz30cal.items.ItemBuilder;
+import com.carterz30cal.items.ShopManager;
 import com.carterz30cal.mobs.DungeonMobCreator;
 import com.carterz30cal.mobs.SpawnPosition;
 import com.carterz30cal.player.BackpackItem;
 import com.carterz30cal.player.DungeonsPlayer;
 import com.carterz30cal.player.DungeonsPlayerManager;
+import com.carterz30cal.player.ListenerBlockEvents;
 
 public class CommandDungeons implements CommandExecutor
 {
@@ -33,6 +37,13 @@ public class CommandDungeons implements CommandExecutor
 			case "version":
 				sender.sendMessage("currently running v1.0.0");
 				break;
+			case "boss":
+				if (args.length == 1) return false;
+				BossManager.summon(args[1]);
+				break;
+			case "updates":
+				if (sender.isOp()) ListenerBlockEvents.allowBlockPhysics = !ListenerBlockEvents.allowBlockPhysics;
+				break;
 			case "menu":
 				if (sender instanceof Player)
 				{
@@ -41,6 +52,9 @@ public class CommandDungeons implements CommandExecutor
 				} else {
 					sender.sendMessage("this command is executable by players only.");
 				}
+				break;
+			case "shop":
+				new ShopGUI(ShopManager.shops.get(args[1].toLowerCase()),(Player)sender);
 				break;
 			case "clearbackpack":
 				if (args.length == 1) return false;

@@ -15,6 +15,7 @@ import org.bukkit.persistence.PersistentDataType;
 import com.carterz30cal.items.Item;
 import com.carterz30cal.items.ItemBuilder;
 
+@Deprecated
 public class EnchantHandler
 {
 	public static EnchantHandler eh;

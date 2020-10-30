@@ -7,6 +7,7 @@ import java.util.HashMap;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -79,7 +80,10 @@ public class DungeonMobCreator
 		{
 			MobAction a = new MobAction();
 			
-			for (String ef : action.getConfigurationSection(p).getKeys(false)) a.effects.put(ef, action.getString(p + "." + ef));
+			for (String ef : action.getConfigurationSection(p).getKeys(false)) 
+			{
+				a.effects.add(ef.split(";")[0] + ":" + action.getString(p + "." + ef));
+			}
 			
 			actions.put(p, a);
 		}
@@ -97,7 +101,7 @@ public class DungeonMobCreator
 			type.baby = data.getBoolean(mob + ".baby", false);
 			type.main = ItemBuilder.i.build(data.getString(mob + ".equipment.main", "null"),null);
 			type.offhand = ItemBuilder.i.build(data.getString(mob + ".equipment.offhand", "null"),null);
-			
+			if (type.offhand == null) type.offhand = new ItemStack(Material.AIR);
 			ItemStack[] equipment = new ItemStack[4];
 			equipment[3] = ItemBuilder.i.build(data.getString(mob + ".equipment.helmet", "null"),null);
 			equipment[2] = ItemBuilder.i.build(data.getString(mob + ".equipment.chestplate", "null"),null);
@@ -106,20 +110,26 @@ public class DungeonMobCreator
 			type.wearing = equipment;
 			
 			ArrayList<MobDrop> drops = new ArrayList<MobDrop>();
-			for (String drop : data.getConfigurationSection(mob + ".drops").getKeys(false))
+			if (data.contains(mob + ".drops"))
 			{
-				String p = mob + ".drops." + drop;
-				MobDrop d = new MobDrop();
-				
-				d.chance = Double.parseDouble(data.getString(p + ".drop", "1/1").split("/")[0])
-						/
-						Double.parseDouble(data.getString(p + ".drop", "1/1").split("/")[1]);
-				d.item = drop;
-				d.minAmount = Integer.parseInt(data.getString(p + ".amount", "1-1").split("-")[0]);
-				d.maxAmount = Integer.parseInt(data.getString(p + ".amount", "1-1").split("-")[1]);
-				drops.add(d);
+				for (String drop : data.getConfigurationSection(mob + ".drops").getKeys(false))
+				{
+					String p = mob + ".drops." + drop;
+					MobDrop d = new MobDrop();
+					
+					d.chance = Double.parseDouble(data.getString(p + ".drop", "1/1").split("/")[0])
+							/
+							Double.parseDouble(data.getString(p + ".drop", "1/1").split("/")[1]);
+					d.enchants = data.getString(p + ".enchants", null);
+					d.item = drop.split(";")[0];
+					d.minAmount = Integer.parseInt(data.getString(p + ".amount", "1-1").split("-")[0]);
+					d.maxAmount = Integer.parseInt(data.getString(p + ".amount", "1-1").split("-")[1]);
+					drops.add(d);
+				}
+				type.drops = drops;
 			}
-			type.drops = drops;
+			else type.drops = null;
+			
 			String[] acts = data.getString(mob + ".actions", "none").split(",");
 			if (acts[0].equals("none")) type.actions = null;
 			else 
@@ -146,7 +156,7 @@ public class DungeonMobCreator
 		MobModifier healthy = new MobModifier();
 		healthy.name = "Healthy";
 		healthy.colour = ChatColor.GREEN;
-		healthy.health = 0.75;
+		healthy.health = 1.2;
 		MobModifier tanky = new MobModifier();
 		tanky.name = "Tanky";
 		tanky.colour = ChatColor.GRAY;
@@ -154,8 +164,8 @@ public class DungeonMobCreator
 		MobModifier hulk = new MobModifier();
 		hulk.name = "Hulk";
 		hulk.colour = ChatColor.DARK_RED;
-		hulk.damageReduction = 0.65;
-		hulk.health = 0.2;
+		hulk.damageReduction = 0.6;
+		hulk.health = 0.25;
 		
 		modifiers.add(healthy);
 		modifiers.add(tanky);
@@ -177,23 +187,21 @@ public class DungeonMobCreator
 		
 		return h;
 	}
-	public void create(String mob,SpawnPosition pos)
+
+	public DungeonMob create(String mob,SpawnPosition pos)
 	{
-		create(mob,pos,false);
-	}
-	public boolean create(String mob,SpawnPosition pos,boolean summon)
-	{
-		if (summon && summons >= 30) 
-		{
-			System.out.println(ChatColor.RED + "[Dungeons] Summon Cap Has Been Reached");
-			return false;
-		}
 		DungeonMobType type = types.get(mob);
-		if (type == null)
-		{
-			System.out.println("[Dungeons] Mob type not found: " + mob);
-			return false;
-		}
+		return create(type,pos,false);
+	}
+	public DungeonMob create(String mob,SpawnPosition pos,boolean silent)
+	{
+		DungeonMobType type = types.get(mob);
+		return create(type,pos,silent);
+	}
+	public DungeonMob create (DungeonMobType type,SpawnPosition pos,boolean silent)
+	{
+		if (type == null) return null;
+
 		LivingEntity entity = (LivingEntity)pos.position.getWorld().spawnEntity(pos.position, type.type);
 		Silverfish silverfish = (Silverfish)pos.position.getWorld().spawnEntity(pos.position,EntityType.SILVERFISH);
 		ArmorStand armourstand = (ArmorStand)pos.position.getWorld().spawnEntity(pos.position, EntityType.ARMOR_STAND);
@@ -207,7 +215,7 @@ public class DungeonMobCreator
 		silverfish.setSilent(true);
 		silverfish.setRemoveWhenFarAway(false);
 		silverfish.addPassenger(armourstand);
-		
+		entity.setSilent(silent);
 		entity.setRemoveWhenFarAway(false);
 		EntityType ty = type.type;
 		if (ty == EntityType.ZOMBIE || ty == EntityType.DROWNED 
@@ -216,7 +224,7 @@ public class DungeonMobCreator
 			if (type.baby) ((Ageable)entity).setBaby();
 			else ((Ageable)entity).setAdult();
 		}
-
+		
 		if (type.type != EntityType.SPIDER)
 		{
 			entity.getEquipment().clear();
@@ -231,11 +239,10 @@ public class DungeonMobCreator
 		MobModifier mod = null;
 		if (Math.random() <= 0.1) mod = modifiers.get((int)Math.round(Math.random()*(modifiers.size()-1)));
 		DungeonMob n = new DungeonMob(type,entity,silverfish,armourstand,pos,mod);
-		n.summon = summon;
-		if (summon) summons++;
+
 		DungeonMob.mobs.put(entity.getUniqueId(), n);
 		DungeonMob.silverfi.put(silverfish.getUniqueId(), n);
 		DungeonMob.arm.put(armourstand.getUniqueId(), n);
-		return true;
+		return n;
 	}
 }

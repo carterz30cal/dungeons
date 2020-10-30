@@ -1,5 +1,120 @@
-# paper equipment is focused around dealing damage - the tier one glass cannon build.
-# it is obtained through killing drenched which drop wet paper. 
+######################################
+#      TIER ONE INGREDIENTS  		 #
+######################################
+wetpaper:
+  name: Wet Paper
+  item: PAPER
+paper:
+  name: Paper
+  rarity: RARE
+  item: PAPER
+  glow: true
+  
+spidersilk:
+  name: Spider Silk
+  item: STRING
+  
+mush:
+  name: Mush
+  item: BONE_MEAL
+  
+leafmash:
+  name: Leaf Mash
+  item: GREEN_DYE
+leafball:
+  name: Leaf Ball
+  rarity: RARE
+  item: SLIME_BALL
+  
+stick_paper:
+  name: Flimsy Paper Stick
+  item: STICK
+stick_leaf:
+  name: Springy Branch
+  item: STICK
+  
+water_fragment:
+  name: Water Fragment
+  item: CYAN_DYE
+ocean_fragment:
+  name: Ocean Fragment
+  type: ingredient
+  rarity: RARE
+  item: CYAN_DYE
+  glow: true
+holywater_fragment:
+  name: Holy Water Fragment
+  type: ingredient
+  rarity: EPIC
+  item: LIGHT_BLUE_DYE
+  
+  
+waterway_keyshard:
+  name: Waterway Key Shard
+  type: ingredient
+  rarity: EPIC
+  item: QUARTZ
+  
+waterway_core:
+  name: Waterway Core Shard
+  type: ingredient
+  rarity: EPIC
+  item: PLAYER_HEAD
+  skull:
+    data: ewogICJ0aW1lc3RhbXAiIDogMTYwMjUzMjcxNzAyNiwKICAicHJvZmlsZUlkIiA6ICJkNjBmMzQ3MzZhMTI0N2EyOWI4MmNjNzE1YjAwNDhkYiIsCiAgInByb2ZpbGVOYW1lIiA6ICJCSl9EYW5pZWwiLAogICJzaWduYXR1cmVSZXF1aXJlZCIgOiB0cnVlLAogICJ0ZXh0dXJlcyIgOiB7CiAgICAiU0tJTiIgOiB7CiAgICAgICJ1cmwiIDogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOGVhYjE5MDhlZGFhMzJhMDM2ZGEwYzFkMDdmMDgxZmU3ZWY1Zjg4ZmFhMTMyNjNiMmM0MmE3Yzc2MDVlZTY0YyIKICAgIH0KICB9Cn0=
+    sig: pw93ehb06oSW99tl/4Ux8wR9IXfigt72WdoN/tIAl/ohArXucM37iqreU7k7YIRYd+CnRuKLxZKCUP9+64SKtUtZiYEgWOZl8MzwlAL1/oK1BrVVNpyp1ov8ZN3cXS1+k4BSjVJ8aHnLdJNgxKKw/r/+TGVl3Un4WqA1o+uUtSqwK/1pE2cEx9cnJEPw/TWA9YD0/ugmgKBpX4ynGE/OHDH5NAQ6OUYhrRI6v8X03Vqhr8hrcXgFKAXOMu7CEnFMCfUUYq0jFJhhbTb8UTrOyNkTAyc6UDZ7Z9H74m0D5Q4fanYQ6oAo45Nsrshe8ltcuhrSbsooAo6ohi4aMsQZ8AbwS3eTfBV9mrVT/YGpj27h8c9dRBiWjTL3GL8L61QZtRiBdSTdmvPEeDuhbBZrbNTJwJoZZYRnLM+bVlnssqEVZfjFA4VHM2CEuN9G6yIGyWfJO2lPWQ5m1mr8re2uqvNd/KU7A9MIgGAhTyelnNWZpMw6gk+5vECukQv3ofFyASw/hRIIgTZqS+ldGbFv2QpgczEp6H2R/9MJVVesV6OLbnDWtHNbE+eiF4HnYPfJei2mqnpuXcRA31xBHF5qhykuDnxfykvzfeKUQ3WR9cUFIY9m5FIdhDi76e5+qgWPXUF6SaA2VfdPYQC+piar1G0Fs0f19DR/Q0iz7K+inHA=
+##############################################
+##            -- SWORDS --   		        ##
+##              TIER ONE  					##
+##############################################
+sword_flimsy:
+  name: Cheap 'Sword'
+  type: weapon
+  rarity: COMMON
+  item: STICK
+  attributes:
+    damage: +10
+sword_water:
+  name: Water Blade
+  type: weapon
+  set: water
+  item: DIAMOND_SWORD
+  attributes:
+    damage: +18
+    health: +15
+sword_mush:
+  name: Mushy Dagger
+  type: weapon
+  item: STONE_SWORD
+  attributes:
+    damage: +18
+    armour: +5
+sword_adventurers:
+  name: Adventurer's Cutlass
+  type: weapon
+  rarity: COMMON
+  item: GOLDEN_SWORD
+  attributes:
+    damage: +19
+    killcoins: +3
+sword_leaf:
+  name: Leaf Spear
+  type: weapon
+  rarity: RARE
+  set: leaf
+  item: STICK
+  attributes:
+    damage: +23
+    regen: +7
+sword_ocean:
+  name: Ocean Blade
+  type: weapon
+  rarity: RARE
+  set: water
+  item: DIAMOND_SWORD
+  attributes:
+    damage: +26
+    health: +40
 sword_paper:
   name: Paper Sword
   type: weapon
@@ -7,16 +122,77 @@ sword_paper:
   set: paper
   item: STONE_SWORD
   attributes:
-    damage: +45
-sword_cardboard:
-  name: Cardboard Sword
+    damage: +40
+    health: -40
+    regen: -2
+sword_hyperblade:
+  name: Hyperblade
   type: weapon
   rarity: EPIC
-  item: STONE_SWORD
-  set: paper
+  item: WOODEN_SWORD
   glow: true
   attributes:
-    damage: +75
+    damage: +27
+    regen: +10
+sword_holywater:
+  name: Holy Water Blade
+  type: weapon
+  rarity: EPIC
+  set: water
+  item: DIAMOND_SWORD
+  glow: true
+  attributes:
+    damage: +29
+    health: +60
+    regen: +3
+sword_holyhyperblade:
+  name: Holy Hyperblade
+  type: weapon
+  rarity: INCREDIBLE
+  item: GOLDEN_SWORD
+  glow: true
+  attributes:
+    damage: +28
+    regen: +12
+##############################################
+##             -- BOWS --   		        ##
+##              TIER ONE  					##
+##############################################
+bow_flimsy:
+  name: Flimsy Bow
+  type: weapon
+  rarity: COMMON
+  item: BOW
+  attributes:
+    damage: +14
+bow_water:
+  name: Bow of Water
+  type: weapon
+  rarity: COMMON
+  item: BOW
+  set: water
+  attributes:
+    damage: +20
+    regen: +2
+bow_leaf:
+  name: Leaf Longbow
+  type: weapon
+  rarity: RARE
+  set: leaf
+  item: BOW
+  attributes:
+    damage: +24
+    health: +20
+    regen: +4
+bow_ocean:
+  name: Bow of the Ocean
+  type: weapon
+  rarity: RARE
+  set: water
+  item: BOW
+  attributes:
+    damage: +27
+    regen: +3
 bow_paper:
   name: Paper Bow
   type: weapon
@@ -24,7 +200,125 @@ bow_paper:
   set: paper
   item: BOW
   attributes:
-    damage: +30
+    damage: +38
+    health: -40
+    regen: -2
+bow_holywater:
+  name: Holy Bow of Water
+  type: weapon
+  rarity: EPIC
+  set: water
+  item: BOW
+  glow: true
+  attributes:
+    damage: +31
+    regen: +4
+######### TIER ONE - EARLY ###########
+# SETS HERE ARE: WATER, MUSH         #
+######################################
+
+pickaxe_flimsy:
+  name: Flimsy Pickaxe
+  type: tool
+  item: WOODEN_PICKAXE
+  attributes:
+    orechance: +0.30  
+
+    
+
+pickaxe_water:
+  name: Water Pickaxe
+  type: tool
+  item: DIAMOND_PICKAXE
+  attributes:
+    orechance: +0.5
+armour_water_helmet:
+  name: Water Cap
+  type: armour
+  set: water
+  item: LEATHER_HELMET
+  colour: 0,85,170
+  attributes:
+    health: +15
+armour_water_chestplate:
+  name: Water Suit
+  type: armour
+  set: water
+  item: LEATHER_CHESTPLATE
+  colour: 0,85,170
+  attributes:
+    health: +35 
+armour_water_leggings:
+  name: Water Shorts
+  type: armour
+  set: water
+  item: LEATHER_LEGGINGS
+  colour: 0,85,170
+  attributes:
+    health: +20
+armour_water_boots:
+  name: Water Boots
+  type: armour
+  set: water
+  item: LEATHER_BOOTS
+  colour: 0,85,170
+  attributes:
+    health: +10
+
+
+pickaxe_mush:
+  name: Mush Pick
+  type: tool
+  item: STONE_PICKAXE
+  attributes:
+    orechance: +0.4
+    bonusxp: +0.15
+armour_mush_helmet:
+  name: Mush Helmet
+  type: armour
+  set: mush
+  item: PLAYER_HEAD
+  skull:
+    data: ewogICJ0aW1lc3RhbXAiIDogMTYwMTcyMTY3NjY5NSwKICAicHJvZmlsZUlkIiA6ICI3ZGEyYWIzYTkzY2E0OGVlODMwNDhhZmMzYjgwZTY4ZSIsCiAgInByb2ZpbGVOYW1lIiA6ICJHb2xkYXBmZWwiLAogICJzaWduYXR1cmVSZXF1aXJlZCIgOiB0cnVlLAogICJ0ZXh0dXJlcyIgOiB7CiAgICAiU0tJTiIgOiB7CiAgICAgICJ1cmwiIDogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWY4OTZkOTVkMDBkMmQwZGE2ZDkyMDFmNTllZWY1NjI4NDY0YzEzMDdkNDU1MjZlMzI2MWI2MzdkODFiNThkYiIKICAgIH0KICB9Cn0=
+    sig: Ks136Q9f/omsE7r1IrLzDyt0jK3bBhaLY7iiF1ATW9vzWBBZzIPnhmhQdOhGLrbuij8JuTpYBqrEfo0u0toyNE0uDSivjiKPNCDzwwms8PnCh+G08nOLufKqM6BYTHYf7ivnul5OArSDruTnItO3WgnqIMIBRfPyoj75trQxe5699qIb+q6PxWQRzOuEbGcZcfPRjf88qFpl43n2X0mluPZubcjXACBmkKenLCeAckejsw7Sq7jMrd2RkOiI74E7BszurGtK0IhkDTMMy7VtW1qXdIFupThisGfxZ5r70IWtfXh5F3y4pRgPqoIy2wJEW7Nb2q+NoQ1oYu4dSLqet0Kzk00U8lbTq9Ei85xHQvzbgKFCXgLCf9bIRhteOkqUzQgHTA1mxlfVaIcWfDciWBtRleMkNPYOhnTRXmzuFz9pyKQ6/qte1WU0s44UNZU4ZVuhGYtF0gzkZ1TtcNaUr9So5906r+T5IwYwpcNk9M63C52IF8o1GAkQ2r+wNY+qCRg7BgkiXOudOiodaKdQ0ugWRldIQnxlbTRpzEBw9O/X5Ash+YMrnx7F/nxox5qcVy5arkMfGgOkUExwasWE7x7488jhcPjv75PL46XFu3yDa+ZYWwFfwEXA7jmUSgLxV3JViNJUI4tGqAhtjPIIBWKbQQtmM6Ht9cjM41J2UTA=
+  attributes:
+    armour: +5
+    orechance: +0.05
+armour_mush_chestplate:
+  name: Mush Shirt
+  type: armour
+  set: mush
+  item: LEATHER_CHESTPLATE
+  colour: 214,217,220
+  attributes:
+    armour: +10
+    orechance: +0.05
+armour_mush_leggings:
+  name: Mush Trousers
+  type: armour
+  set: mush
+  item: LEATHER_LEGGINGS
+  colour: 214,217,220
+  attributes:
+    armour: +10
+    orechance: +0.05
+armour_mush_boots:
+  name: Mush Shoes
+  type: armour
+  set: mush
+  item: LEATHER_BOOTS
+  colour: 214,217,220
+  attributes:
+    armour: +5
+    orechance: +0.05
+
+
+    
+######## TIER ONE - MID TIER ##########
+# E.G: PAPER, LEAF, OCEAN             #
+#######################################
+
+
 armour_paper_helmet:
   name: Paper Hat
   type: armour
@@ -33,7 +327,7 @@ armour_paper_helmet:
   item: LEATHER_HELMET
   colour: 255,255,255
   attributes:
-    armour: +2
+    armour: +5
     damagep: +0.05
 armour_paper_chestplate:
   name: Paper Shirt
@@ -43,7 +337,7 @@ armour_paper_chestplate:
   item: LEATHER_CHESTPLATE
   colour: 255,255,255
   attributes:
-    armour: +4
+    armour: +5
     damagep: +0.1
 armour_paper_leggings:
   name: Paper Leggings
@@ -53,7 +347,7 @@ armour_paper_leggings:
   item: LEATHER_LEGGINGS
   colour: 255,255,255
   attributes:
-    armour: +2
+    armour: +5
     damagep: +0.1
 armour_paper_boots:
   name: Paper Shoes
@@ -63,74 +357,178 @@ armour_paper_boots:
   item: LEATHER_BOOTS
   colour: 255,255,255
   attributes:
-    armour: +2
+    armour: +5
     damagep: +0.05
     
-    
-# the water set is the early game health tank set. it is focused around survivability, which is why it's the easiest set to obtain, as new players severely lack
-# survivability due to their no armour and only 200 health (a creepy spider can kill a new player in two hits)    
-sword_water:
-  name: Water Blade
-  type: weapon
-  set: water
-  item: DIAMOND_SWORD
-  attributes:
-    damage: +20
-# the ocean sword doesn't deal as much damage as the other rare swords, but it does boost health by a quite sizable amount
-sword_ocean:
-  name: Ocean Blade
-  type: weapon
-  rarity: RARE
-  set: water
-  item: DIAMOND_SWORD
-  attributes:
-    damage: +27
-    health: +30
-bow_ocean:
-  name: Ocean Bow
-  type: weapon
-  rarity: RARE
-  set: water
-  item: BOW
-  attributes:
-    damage: +30
-    health: +30
-    
-armour_water_helmet:
-  name: Water Cap
+armour_silk_helmet:
+  name: Silk Hat
   type: armour
-  set: water
+  set: silk
   item: LEATHER_HELMET
-  colour: 0,85,170
+  colour: 255,255,255
   attributes:
-    health: +15
-    
-armour_water_chestplate:
-  name: Water Suit
+    regen: +1
+    damage: +1
+armour_silk_chestplate:
+  name: Silk Shirt
   type: armour
-  set: water
+  set: silk
   item: LEATHER_CHESTPLATE
-  colour: 0,85,170
+  colour: 255,255,255
   attributes:
-    health: +25
-    
-armour_water_leggings:
-  name: Water Shorts
+    regen: +3
+    damage: +2
+armour_silk_leggings:
+  name: Silk Leggings
   type: armour
-  set: water
+  set: silk
   item: LEATHER_LEGGINGS
-  colour: 0,85,170
+  colour: 255,255,255
   attributes:
-    health: +20
-    
-armour_water_boots:
-  name: Water Boots
+    regen: +2
+    damage: +1
+armour_silk_boots:
+  name: Silk Shoes
   type: armour
-  set: water
+  set: silk
   item: LEATHER_BOOTS
-  colour: 0,85,170
+  colour: 255,255,255
   attributes:
-    health: +10
+    damage: +1
+armour_leaf_helmet:
+  name: Leaf Hat
+  type: armour
+  rarity: RARE
+  set: leaf
+  item: LEATHER_HELMET
+  colour: 0,200,30
+  attributes:
+    health: +50
+    damagep: -0.05
+armour_leaf_chestplate:
+  name: Leaf Body
+  type: armour
+  rarity: RARE
+  set: leaf
+  item: LEATHER_CHESTPLATE
+  colour: 0,200,30
+  attributes:
+    health: +125
+    damagep: -0.15
+armour_leaf_leggings:
+  name: Leaf Trousers
+  type: armour
+  rarity: RARE
+  set: leaf
+  item: LEATHER_LEGGINGS
+  colour: 0,200,30
+  attributes:
+    health: +75
+    damagep: -0.1
+armour_leaf_boots:
+  name: Leaf Shoes
+  type: armour
+  rarity: RARE
+  set: leaf
+  item: LEATHER_BOOTS
+  colour: 0,200,30
+  attributes:
+    health: +50
+    damagep: -0.05
+
+
+
+    
+######## TIER ONE - BOSS LOOT ######### 
+## CLOUD BOOTS, WOODEN HYPERBLADE ETC #
+#######################################
+loot_drenchedminiboss:
+  name: Drenched Lootbox
+  type: lootbox
+  rarity: RARE
+  item: CHEST
+  glow: true
+  loot:
+    paper:
+      amount: 2-6
+      chance: 1
+    ocean_fragment:
+      amount: 1-6
+      chance: 1
+    leafball:
+      amount: 3-5
+      chance: 2
+    catalyst=0:
+      amount: 1
+      chance: 4
+    sword_hyperblade:
+      amount: 1
+      chance: 5
+    book;protection:
+      amount: 1
+      chance: 10
+      enchants: protection,1
+    book;ironskin:
+      amount: 1
+      chance: 10
+      enchants: ironskin,1
+    armour_cloud_boots:
+      amount: 1
+      chance: 20
+    armour_titan_chestplate:
+      amount: 1
+      chance: 25
+armour_cloud_boots:
+  name: Cloud Boots
+  type: armour
+  rarity: EPIC
+  item: IRON_BOOTS
+  ability: cloudboots
+  attributes:
+    health: +40
+    armour: +15
+armour_titan_chestplate:
+  name: Titan Plate
+  type: armour
+  rarity: EPIC
+  item: GOLDEN_CHESTPLATE
+  attributes:
+    armour: +50
+    damage: +5
+    damagep: +0.2
+
+loot_waterway:
+  name: Dried Drenched Lootbox
+  type: lootbox
+  rarity: EPIC
+  item: CHEST
+  glow: true
+  loot:
+    waterway_core:
+      amount: 2-7
+      chance: 1
+    holywater_fragment:
+      amount: 1-3
+      chance: 1
+    sharpener_steeledge:
+      amount: 1
+      chance: 4
+    book;tough:
+      amount: 1
+      chance: 15
+      enchants: tough,1
+    book;blade3:
+      amount: 1
+      chance: 15
+      enchants: blade,3
+    
+    
+
+
+
+
+    
+
 # the ocean set is a direct upgrade of the water set, being on par with the leaf set for tankiness (leaf set has higher health, but ocean set buffs armour slightly)
 armour_ocean_helmet:
   name: Ocean Cap
@@ -255,45 +653,8 @@ armour_bone_boots:
   attributes:
     armour: +10
     
-# the leaf set boasts the most health out of all of the tier one armour sets, and will probably be the goto set for boss fights due to it's incredible survivability.
-# however, it severely affects your damage quite severely. (-50% damage)
-# it gives you some weak weapons which are not affected by the 50% damage reduction but they're quite weak.
-armour_leaf_helmet:
-  name: Leaf Hat
-  type: armour
-  rarity: RARE
-  set: leaf
-  item: LEATHER_HELMET
-  colour: 0,200,30
-  attributes:
-    health: +50
-armour_leaf_chestplate:
-  name: Leaf Body
-  type: armour
-  rarity: RARE
-  set: leaf
-  item: LEATHER_CHESTPLATE
-  colour: 0,200,30
-  attributes:
-    health: +100
-armour_leaf_leggings:
-  name: Leaf Trousers
-  type: armour
-  rarity: RARE
-  set: leaf
-  item: LEATHER_LEGGINGS
-  colour: 0,200,30
-  attributes:
-    health: +100
-armour_leaf_boots:
-  name: Leaf Shoes
-  type: armour
-  rarity: RARE
-  set: leaf
-  item: LEATHER_BOOTS
-  colour: 0,200,30
-  attributes:
-    health: +50
+
+
 armour_royalleaf_helmet:
   name: Royal Leaf Crown
   type: armour
@@ -302,122 +663,28 @@ armour_royalleaf_helmet:
   item: GOLDEN_HELMET
   attributes:
     health: +200
-armour_royalleaf_chestplate:
-  name: Royal Leaf Body
-  type: armour
-  rarity: EPIC
-  set: leaf
-  item: LEATHER_CHESTPLATE
-  colour: 0,200,30
-  attributes:
-    health: +300
-armour_royalleaf_leggings:
-  name: Royal Leaf Trousers
-  type: armour
-  rarity: EPIC
-  set: leaf
-  item: LEATHER_LEGGINGS
-  colour: 0,200,30
-  attributes:
-    health: +200
-armour_royalleaf_boots:
-  name: Royal Leaf Shoes
-  type: armour
-  rarity: EPIC
-  set: leaf
-  item: LEATHER_BOOTS
-  colour: 0,200,30
-  attributes:
-    health: +100
-    
-bow_leaf:
-  name: Leaf Bow
-  type: weapon
-  rarity: RARE
-  set: leaf
-  item: BOW
-  attributes:
-    damage: +17
-    health: +25
-bow_royalleaf:
-  name: Royal Leaf Bow
-  type: weapon
-  rarity: EPIC
-  set: leaf
-  item: BOW
-  attributes:
-    damage: +35
-    health: +50
-sword_leaf:
-  name: Branch
-  type: weapon
-  rarity: RARE
-  set: leaf
-  item: STICK
-  attributes:
-    damage: +18
-    health: +50
-# the STARTER ITEM, EVERYONE GETS ONE
-sword_cheap:
-  name: Cheap 'Sword'
-  type: weapon
-  rarity: COMMON
-  item: STICK
-  attributes:
-    damage: +12
-bow_flimsy:
-  name: Flimsy Bow
-  type: weapon
-  rarity: COMMON
-  item: BOW
-  attributes:
-    damage: +25
-# MISCELLANOUS TIER ONE WEAPONS
-sword_wraith:
-  name: Wraith's Axe
-  type: weapon
-  rarity: EPIC
-  item: IRON_AXE
-  attributes:
-    damage: +70
-bow_wraith:
-  name: Wraith's Spirit Bow
-  type: weapon
-  rarity: EPIC
-  item: BOW
-  glow: true
-  attributes:
-    damage: +50
+
+
+
+
+
+
 sword_web:
   name: Web Cleaver
   type: weapon
   rarity: EPIC
   item: GOLDEN_SWORD
   attributes:
-    damage: +60
+    damage: -666
 # PICKAXES
-pickaxe_water:
-  name: Water Pickaxe
-  type: tool
-  rarity: COMMON
-  item: DIAMOND_PICKAXE
-  attributes:
-    orechance: 0.36
-pickaxe_flimsy:
-  name: Flimsy Pickaxe
-  type: tool
-  rarity: COMMON
-  item: STONE_PICKAXE
-  attributes:
-    orechance: 0.30
 pickaxe_paper:
   name: Paper Pickaxe
   type: tool
   rarity: RARE
   item: STONE_PICKAXE
   attributes:
-    orechance: 0.40
-    bonusxp: 0.25
+    orechance: +0.15
+    bonusxp: +0.6
     
 ### STEVE'S ADVENTURING SHOP SPECIALS
 armour_adventurer_helmet:
@@ -429,14 +696,7 @@ armour_adventurer_helmet:
   attributes:
     killcoins: +3
     damage: +5
-sword_adventurers:
-  name: Adventurer's Cutlass
-  type: weapon
-  rarity: COMMON
-  item: GOLDEN_SWORD
-  attributes:
-    damage: +24
-    killcoins: +2
+
     
 ### MIDAS FOLLOWER STUFF
 armour_cultist_helmet:
@@ -495,73 +755,8 @@ sword_goldknife:
     killcoins: +6
 ### TIER ONE INGREDIENTS (ingredient is assumed if no type: is present) ###
 
-# drenched drops
-wetpaper:
-  name: Wet Paper
-  item: PAPER
-paper:
-  name: Paper
-  rarity: RARE
-  item: PAPER
-  glow: true
-cardboard:
-  name: Cardboard
-  rarity: EPIC
-  item: PAPER
-# spider drops
-spidersilk:
-  name: Spider Silk
-  item: STRING
-spidersilk_water:
-  name: Oceanic Silk
-  rarity: RARE
-  item: STRING
-  glow: true
-spidersilk_bone:
-  name: Brittle Silk
-  rarity: RARE
-  item: STRING
-  glow: true
-spidersilk_titan:
-  name: Titan Silk
-  rarity: LEGENDARY
-  item: STRING
-  glow: true
 
-# necropolis skeleton drops
-boneshard:
-  name: Bone Shard
-  item: WHITE_DYE
-bone:
-  name: Bone
-  rarity: RARE
-  item: BONE
-  
-# thematic fragments (usually one type per dungeon)
-fragment_water:
-  name: Water Fragment
-  item: CYAN_DYE
-fragment_bone:
-  name: Bone Fragment
-  item: GRAY_DYE
-fragment_leaf:
-  name: Leaf Mash
-  item: GREEN_DYE
-  
-leaf_ball:
-  name: Leaf Ball
-  item: SLIME_BALL
-  glow: true
-# required ingredient for weapon crafts
-stick_paper:
-  name: Flimsy Paper Stick
-  item: STICK
-  glow: true
-stick_bone:
-  name: Sturdy Bone Stick
-  rarity: RARE
-  item: STICK
-  glow: true
+
   
 # sharpeners
 sharpener_crude:
@@ -608,6 +803,16 @@ sharpener_midas:
     plus: GOLD
   attributes:
     killcoins: +3
+sharpener_steeledge:
+  name: Steel Edge
+  type: sharpener
+  rarity: EPIC
+  item: IRON_INGOT
+  sharpener:
+    id: steeledge
+    plus: WHITE
+  attributes:
+    damagep: 0.075
 # enchanting catalysts
 catalyst=0:
   name: Combination Catalyst Shard
@@ -627,64 +832,35 @@ catalyst=2:
   rarity: INCREDIBLE
   item: NETHER_STAR
   
-# WATERWAY LOOTBOX + LOOTBOX EXCLUSIVES
-loot_drenchedminiboss:
-  name: Drenched Lootbox
-  type: lootbox
-  rarity: RARE
-  item: CHEST
-  glow: true
-  loot:
-    paper:
-      amount: 1-3
-      chance: 1
-    fragment_water:
-      amount: 3-4
-      chance: 1
-    spidersilk_water:
-      amount: 1-3
-      chance: 2
-    leaf_ball:
-      amount: 1-3
-      chance: 2
-    cardboard:
-      amount: 1-2
-      chance: 22
-    sword_hyperblade_waterway:
-      amount: 1
-      chance: 18
-    pickaxe_hyperpick_waterway:
-      amount: 1
-      chance: 25
-    book;protection:
-      amount: 1
-      chance: 40
-      enchants: protection,1
-    catalyst=0:
-      amount: 1-2
-      chance: 80
-sword_hyperblade_waterway:
-  name: Wooden Hyperblade
-  type: weapon
-  rarity: EPIC
-  item: WOODEN_SWORD
-  glow: true
-  attributes:
-    damage: +40
-    regen: +5
-
-pickaxe_hyperpick_waterway:
-  name: Wooden Hyperpick
-  type: tool
-  rarity: EPIC
-  item: WOODEN_PICKAXE
-  glow: true
-  attributes:
-    orechance: +0.60
-    bonusxp: +0.1
 bad_item:
   name: Bad Item
   type: error
   rarity: LEGENDARY
   item: BARRIER
   glow: true
+  
+  
+  
+  
+  
+  
+  
+  
+####################################
+# SUMMONING KEYS                   #
+####################################
+summonkey_waterway:
+  name: Waterway Key
+  type: key
+  rarity: EPIC
+  item: TRIPWIRE_HOOK
+sword_admin:
+  name: Sword of the Admins
+  type: weapon
+  rarity: LEGENDARY
+  item: NETHERITE_SWORD
+  glow: true
+  attributes:
+    damage: +10000
+    armour: +10000
+    regen: +10000

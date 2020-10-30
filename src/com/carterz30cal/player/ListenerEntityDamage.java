@@ -12,6 +12,7 @@ import org.bukkit.entity.AbstractArrow.PickupStatus;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -31,6 +32,8 @@ import org.bukkit.potion.PotionEffectType;
 import com.carterz30cal.dungeons.Dungeons;
 import com.carterz30cal.dungeons.IndicatorTask;
 import com.carterz30cal.dungeons.SoundTask;
+import com.carterz30cal.enchants.AbsEnchant;
+import com.carterz30cal.enchants.EnchantManager;
 import com.carterz30cal.mobs.DungeonMob;
 import com.carterz30cal.mobs.DungeonMobCreator;
 import com.carterz30cal.tasks.TaskDamageKnockback;
@@ -95,7 +98,7 @@ public class ListenerEntityDamage implements Listener
 				
 
 			}
-			if (e.getDamager() instanceof Player)
+			else if (e.getDamager() instanceof Player)
 			{
 				Player p = (Player)e.getDamager();
 				DungeonsPlayer dp = DungeonsPlayerManager.i.get(p);
@@ -103,6 +106,11 @@ public class ListenerEntityDamage implements Listener
 				if (mob == null)
 				{
 					if (!e.getEntity().isInvulnerable()) e.getEntity().remove();
+					return;
+				}
+				else if (mob.entity.isInvulnerable()) 
+				{
+					e.setCancelled(true);
 					return;
 				}
 				e.setCancelled(false);
@@ -131,12 +139,12 @@ public class ListenerEntityDamage implements Listener
 				indicators.add(t);
 				
 				mob.damage(damage, p);
-				
+				((LivingEntity)mob.entity).setNoDamageTicks(0);
 				if (mob.type.knockbackResist*(1/p.getAttackCooldown()) > Math.random() || (mob.modifier != null && mob.modifier.damageReduction > 0.45))
 				{
 					new TaskDamageKnockback(e.getEntity(),0).runTaskLater(Dungeons.instance, 1);
 				}
-
+				if (((Player)e.getDamager()).getInventory().getItemInMainHand() != null) for (AbsEnchant en : EnchantManager.get(((Player)e.getDamager()).getInventory().getItemInMainHand().getItemMeta().getPersistentDataContainer())) if (en != null) en.onHitAfter(dp, mob,h);
 				//if (((Damageable)e.getEntity()).getHealth() > 1) e.setDamage(1);
 			}
 		}
@@ -203,10 +211,10 @@ public class ListenerEntityDamage implements Listener
 				dp.damage(Math.max(dp.stats.health/2,200), true);
 				break;
 			case WITHER:
-				dp.damage(dp.stats.health/10, true);
+				dp.damage(20, true);
 				break;
 			case FALL:
-				dp.damage((int)Math.pow(p.getFallDistance()/2.75, 2), true);
+				dp.damage((int)Math.pow(p.getFallDistance()/2.25, 2.1), true);
 				break;
 			default:
 				break;
@@ -214,17 +222,27 @@ public class ListenerEntityDamage implements Listener
 		}
 		else 
 		{
+			DungeonMob mob = DungeonMob.mobs.get(e.getEntity().getUniqueId());
 			switch (e.getCause())
 			{
 			case SUFFOCATION:
+				if (mob != null)
+				{
+					mob.damage(5, null);
+				}
+				break;
 			case VOID:
-				DungeonMob mob = DungeonMob.mobs.get(e.getEntity().getUniqueId());
 				if (mob != null) mob.destroy(null);
 				else
 				{
 					e.getEntity().remove();
 				}
 				break;
+			case ENTITY_EXPLOSION:
+			case BLOCK_EXPLOSION:
+				new TaskDamageKnockback(e.getEntity(),0).runTask(Dungeons.instance);
+			case LIGHTNING:
+				e.getEntity().setFireTicks(0);
 			default:
 				e.setCancelled(true);
 			}
@@ -249,6 +267,7 @@ public class ListenerEntityDamage implements Listener
 	@EventHandler
 	public void onEntityDeath(EntityDeathEvent e)
 	{
+		e.setDroppedExp(0);
 		e.getDrops().clear();
 	}
 	@EventHandler

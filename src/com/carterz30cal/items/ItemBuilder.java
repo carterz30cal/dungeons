@@ -29,7 +29,10 @@ import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
 import com.carterz30cal.dungeons.Dungeons;
-import com.carterz30cal.dungeons.EnchantHandler;
+import com.carterz30cal.enchants.AbsEnchant;
+import com.carterz30cal.enchants.EnchantManager;
+import com.carterz30cal.mobs.DungeonMobCreator;
+import com.carterz30cal.mobs.MobAction;
 import com.carterz30cal.player.DungeonsPlayer;
 import com.carterz30cal.utility.StringManipulator;
 import com.mojang.authlib.GameProfile;
@@ -119,6 +122,8 @@ public class ItemBuilder
 					s.set_attributes.put(attr, sets.getDouble(set + ".set.attributes." + attr));
 				}
 			}
+			s.set_ability = sets.getString(set + ".set.ability","none");
+
 			if (sets.contains(set + ".synergy.attributes"))
 			{
 				for (String attr : sets.getConfigurationSection(set + ".synergy.attributes").getKeys(false))
@@ -181,15 +186,14 @@ public class ItemBuilder
 				item.data.put("g", Integer.parseInt(data.getString(it + ".colour").split(",")[1]));
 				item.data.put("b", Integer.parseInt(data.getString(it + ".colour").split(",")[2]));
 			}
+			if (data.contains(it + ".set")) item.set = itemsets.get(data.getString(it + ".set"));
+			if (data.contains(it + ".ability")) item.data.put("ability", data.getString(it + ".ability"));
 			if (item.material == Material.PLAYER_HEAD)
 			{
 				item.data.put("skull_data", data.getString(it + ".skull.data"));
 				item.data.put("skull_sig", data.getString(it + ".skull.sig"));
 			}
-			if (data.contains(it + ".set"))
-			{
-				item.set = itemsets.get(data.getString(it + ".set"));
-			}
+			
 			if (data.contains(it + ".sharpener"))
 			{
 				ItemSharpener sha = new ItemSharpener();
@@ -246,25 +250,30 @@ public class ItemBuilder
 		}
 		if (item.material == Material.PLAYER_HEAD)
 		{
-			SkullMeta smeta = (SkullMeta)meta;
-			GameProfile profile = new GameProfile(UUID.randomUUID(), null);
-	        profile.getProperties().put("textures", new Property("textures", (String)item.data.get("skull_data"),(String)item.data.get("skull_sig")));
-	        Field profileField = null;
-	        try {
-	            profileField = smeta.getClass().getDeclaredField("profile");
-	        } catch (NoSuchFieldException | SecurityException e) {
-	            e.printStackTrace();
-	        }
-	        profileField.setAccessible(true);
-	        try {
-	            profileField.set(smeta, profile);
-	        } catch (IllegalArgumentException | IllegalAccessException e) {
-	            e.printStackTrace();
-	        }
+			meta = generateSkullMeta(meta,(String)item.data.get("skull_data"),(String)item.data.get("skull_sig"));
 		}
 		ret.setItemMeta(updateMeta(meta,owner));
 		
 		return ret;
+	}
+	public static ItemMeta generateSkullMeta(ItemMeta meta, String data, String sig)
+	{
+		SkullMeta smeta = (SkullMeta)meta;
+		GameProfile profile = new GameProfile(UUID.nameUUIDFromBytes(data.getBytes()), null);
+        profile.getProperties().put("textures", new Property("textures", data,sig));
+        Field profileField = null;
+        try {
+            profileField = smeta.getClass().getDeclaredField("profile");
+        } catch (NoSuchFieldException | SecurityException e) {
+            e.printStackTrace();
+        }
+        profileField.setAccessible(true);
+        try {
+            profileField.set(smeta, profile);
+        } catch (IllegalArgumentException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+		return smeta;
 	}
 	private ItemStack book(DungeonsPlayer owner,String enchants)
 	{
@@ -296,21 +305,20 @@ public class ItemBuilder
 			if (t == "book") 
 			{
 				lore.add("");
-				String[] i_enchants = meta.getPersistentDataContainer().get(kEnchants, PersistentDataType.STRING).split(";");
-				Rarity highest = Rarity.COMMON;
-				for (String e : i_enchants)
+				ArrayList<AbsEnchant> enchants = EnchantManager.get(meta.getPersistentDataContainer());
+				int rarity = 0;
+				for (AbsEnchant e : enchants)
 				{
-					if (highest.ordinal() < EnchantHandler.eh.getRarity(e)) highest = Rarity.values()[EnchantHandler.eh.getRarity(e)];
-					if (i_enchants.length < 5)
+					rarity = Math.max(rarity, e.rarity());
+					if (enchants.size() > 4) lore.add(ChatColor.DARK_PURPLE + e.name());
+					else
 					{
-						
-						lore.add(ChatColor.DARK_PURPLE + EnchantHandler.eh.getName(e) + " " + EnchantHandler.getLevel(e));
-						lore.add(" " + ChatColor.LIGHT_PURPLE + EnchantHandler.eh.getDescription(e));
+						lore.add(ChatColor.DARK_PURPLE + e.name());
+						lore.add(ChatColor.LIGHT_PURPLE + " " + e.description());
 					}
-					else lore.add(ChatColor.DARK_PURPLE + EnchantHandler.eh.getName(e) + " " + EnchantHandler.getLevel(e));
 				}
-				meta.setDisplayName(rarityColours[highest.ordinal()] + ChatColor.stripColor(meta.getDisplayName()));
-				lore.add(0,ChatColor.DARK_GRAY + StringManipulator.capitalise(highest.toString()) + " Enchanted Book");
+				meta.setDisplayName(rarityColours[rarity] + ChatColor.stripColor(meta.getDisplayName()));
+				lore.add(0,ChatColor.DARK_GRAY + StringManipulator.capitalise(Rarity.values()[rarity].toString()) + " Enchanted Book");
 				meta.setLore(lore);
 			}
 			return meta;
@@ -373,15 +381,15 @@ public class ItemBuilder
 		{
 			meta.addEnchant(Enchantment.DURABILITY, 1, true);
 			lore.add("");
-			String[] i_enchants = meta.getPersistentDataContainer().get(kEnchants, PersistentDataType.STRING).split(";");
-			for (String e : i_enchants)
+			ArrayList<AbsEnchant> enchants = EnchantManager.get(meta.getPersistentDataContainer());
+			for (AbsEnchant e : enchants)
 			{
-				if (i_enchants.length < 5)
+				if (enchants.size() > 4) lore.add(ChatColor.DARK_PURPLE + e.name());
+				else
 				{
-					lore.add(ChatColor.DARK_PURPLE + EnchantHandler.eh.getName(e) + " " + EnchantHandler.getLevel(e));
-					lore.add(" " + ChatColor.LIGHT_PURPLE + EnchantHandler.eh.getDescription(e));
+					lore.add(ChatColor.DARK_PURPLE + e.name());
+					lore.add(ChatColor.LIGHT_PURPLE + " " + e.description());
 				}
-				else lore.add(ChatColor.DARK_PURPLE + EnchantHandler.eh.getName(e) + " " + EnchantHandler.getLevel(e));
 			}
 		}
 		else 
@@ -389,7 +397,20 @@ public class ItemBuilder
 			if (item.glow) meta.addEnchant(Enchantment.DIG_SPEED, 2, true);
 			else meta.removeEnchant(Enchantment.DIG_SPEED);
 		}
-
+		if (item.data.containsKey("ability"))
+		{
+			MobAction action = DungeonMobCreator.i.actions.get(item.data.get("ability"));
+			String description = "";
+			for (String ac : action.effects)
+			{
+				if (ac.split(":")[0].equals("description")) description = ac.split(":")[1];
+			}
+			if (!description.equals(""))
+			{
+				lore.add("");
+				lore.add(ChatColor.LIGHT_PURPLE + "" + ChatColor.BOLD + "Ability: " + ChatColor.RESET + ChatColor.LIGHT_PURPLE + description);
+			}
+		}
 		if (owner != null && item.set != null)
 		{	
 			if ((item.type.equals("armour") && owner.stats.set) || (item.type.equals("weapon") && owner.stats.synergy))
@@ -405,6 +426,19 @@ public class ItemBuilder
 						String d = Math.round(attribute.getValue()*100) + "%";
 						if (attribute.getValue().intValue() == attribute.getValue()) d = Integer.toString(attribute.getValue().intValue());
 						lore.add(" " + attributeColours.get(attribute.getKey()) + d);
+					}
+					if (!item.set.set_ability.equals("none"))
+					{
+						MobAction action = DungeonMobCreator.i.actions.get(item.set.set_ability);
+						String description = "";
+						for (String ac : action.effects)
+						{
+							if (ac.split(":")[0].equals("description")) description = ac.split(":")[1];
+						}
+						if (!description.equals(""))
+						{
+							lore.add(ChatColor.LIGHT_PURPLE + " " + ChatColor.BOLD + "Ability: " + ChatColor.RESET + ChatColor.LIGHT_PURPLE + description);
+						}
 					}
 				}
 				else 
@@ -492,7 +526,7 @@ public class ItemBuilder
 			int eLevel = Integer.parseInt(enchant.split(",")[1]);
 			
 			if (eLevel > eCurr) enchantments.put(e, eLevel);
-			else if (eLevel == eCurr && eLevel < EnchantHandler.eh.enchants.get(e).maxLevel) enchantments.put(e, eLevel+1);
+			else if (eLevel == eCurr && isMax(eLevel,e)) enchantments.put(e, eLevel+1);
 		}
 		
 		for (String enchant : item2.getItemMeta().getPersistentDataContainer().get(kEnchants, PersistentDataType.STRING).split(";"))
@@ -502,7 +536,7 @@ public class ItemBuilder
 			int eLevel = Integer.parseInt(enchant.split(",")[1]);
 			
 			if (eLevel > eCurr) enchantments.put(e, eLevel);
-			else if (eLevel == eCurr && eLevel < EnchantHandler.eh.enchants.get(e).maxLevel) enchantments.put(e, eLevel+1);
+			else if (eLevel == eCurr && isMax(eLevel,e)) enchantments.put(e, eLevel+1);
 		}
 		
 		String enchants = "";
@@ -520,5 +554,15 @@ public class ItemBuilder
 		meta = updateMeta(meta,null);
 		ret.setItemMeta(meta);
 		return ret;
+	}
+	
+	public static boolean isMax(int level, String enchant)
+	{
+		try {
+			if (level < EnchantManager.enchantments.get(enchant).newInstance().max()) return false;
+			else return true;
+		} 
+		catch (InstantiationException | IllegalAccessException e1) { e1.printStackTrace(); }
+		return true;
 	}
 }

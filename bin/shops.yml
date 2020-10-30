@@ -1,29 +1,32 @@
 shopkeepsteve:
   name: Steve's Adventuring Goods
   items:
-    sword_cheap:
+    sword_flimsy:
       price: 10
     bow_flimsy:
-      price: 200
+      price: 50
     pickaxe_flimsy:
-      price: 250
-    book;midastouch: 
-      price: 750
-      enchants: midastouch,1
+      price: 50
+    book;blade: 
+      price: 350
+      enchants: blade,1
+    book;lucky: 
+      price: 275
+      enchants: lucky,1
     armour_adventurer_helmet:
-      price: 650
+      price: 600
     sword_adventurers:
-      price: 850
+      price: 525
       enchants: sweeping,2
     catalyst=0:
-      price: 1250
+      price: 600
     sharpener_crude:
-      price: 400
+      price: 250
 midasfollower:
   name: Ancient Stuff Ltd
   items: 
     sharpener_midas:
-      price: 4000
+      price: 2000
     armour_cultist_helmet:
       price: 3000
     armour_cultist_chestplate:
@@ -34,7 +37,7 @@ midasfollower:
       price: 3000  
     sword_goldknife:
       price: 2220
-    book;blade: 
-      price: 1250
-      enchants: blade,1
+    book;midastouch: 
+      price: 700
+      enchants: midastouch,1
       

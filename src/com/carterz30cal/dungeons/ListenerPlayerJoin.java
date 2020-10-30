@@ -6,8 +6,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
+import com.carterz30cal.npcs.NPC;
+import com.carterz30cal.npcs.NPCManager;
 import com.carterz30cal.player.DungeonsPlayerManager;
-import com.carterz30cal.player.NPCManager;
 
 public class ListenerPlayerJoin implements Listener
 {
@@ -18,7 +19,10 @@ public class ListenerPlayerJoin implements Listener
 		
 		e.setJoinMessage(ChatColor.AQUA + e.getPlayer().getDisplayName() + " has joined");
 		
-		NPCManager.sendNPCs(e.getPlayer());
+		for (NPC n : NPCManager.i.npcs)
+		{
+			n.send(e.getPlayer());
+		}
 	}
 	
 	@EventHandler

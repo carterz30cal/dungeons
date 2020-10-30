@@ -13,6 +13,7 @@ import com.carterz30cal.dungeons.Dungeon;
 import com.carterz30cal.dungeons.DungeonManager;
 import com.carterz30cal.mobs.DungeonMobCreator;
 import com.carterz30cal.mobs.SpawnPosition;
+import com.carterz30cal.npcs.NPCManager;
 import com.carterz30cal.player.DungeonsPlayer;
 import com.carterz30cal.player.DungeonsPlayerManager;
 
@@ -57,6 +58,8 @@ public class TaskSpawn extends BukkitRunnable
 			}
 			d.activated = false;
 		}
+		
+		NPCManager.sendNPCs();
 	}
 	
 }

@@ -1,5 +1,6 @@
 package com.carterz30cal.gui;
 
+import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -8,12 +9,14 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 
+import com.carterz30cal.bosses.BossManager;
 import com.carterz30cal.dungeons.Dungeons;
 import com.carterz30cal.dungeons.EnchantHandler;
 import com.carterz30cal.dungeons.SoundTask;
@@ -26,7 +29,6 @@ import com.carterz30cal.player.BackpackItem;
 import com.carterz30cal.player.DungeonsPlayer;
 import com.carterz30cal.player.DungeonsPlayerManager;
 import com.carterz30cal.tasks.TaskGUI;
-import com.carterz30cal.tasks.TaskGUICrafting;
 
 public class ListenerGUIEvents implements Listener
 {
@@ -49,6 +51,15 @@ public class ListenerGUIEvents implements Listener
 		}
 	}
 	@EventHandler(priority=EventPriority.HIGHEST)
+	public void onInventoryDrag(InventoryDragEvent e)
+	{
+		Player p = (Player)e.getWhoClicked();
+		DungeonsPlayer data = DungeonsPlayerManager.i.get(p);
+
+		if (data.gui == null) return;
+		else e.setCancelled(data.gui.handleDrag(e,p));
+	}
+	@EventHandler(priority=EventPriority.HIGHEST)
 	public void onDrop(PlayerDropItemEvent e)
 	{
 		if (e.getItemDrop().getItemStack().isSimilar(ItemBuilder.menuItem))
@@ -60,15 +71,24 @@ public class ListenerGUIEvents implements Listener
 	public void onInteract(PlayerInteractEvent e)
 	{
 		Player p = e.getPlayer();
+		if (e.getAction() == Action.LEFT_CLICK_BLOCK || e.getAction() == Action.RIGHT_CLICK_BLOCK)
+		{
+			if (e.getItem() != null && e.getClickedBlock().getType() == Material.JUKEBOX)
+			{
+				String it = e.getItem().getItemMeta().getPersistentDataContainer().getOrDefault(ItemBuilder.kItem, PersistentDataType.STRING,null);
+
+				if (it != null && BossManager.bossTypes.containsKey(it)) if (BossManager.summon(it)) e.getItem().setAmount(e.getItem().getAmount()-1);
+			}
+		}
 		if (e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK)
 		{
 			if (e.getItem() != null && e.getItem().isSimilar(ItemBuilder.menuItem))
 			{
 				new TaskGUI(new GUI(MenuType.MAINMENU,e.getPlayer()),p).runTaskLater(Dungeons.instance, 1);
 			}
-			else if (e.getItem() != null)
+			else if (e.getItem() != null && e.getItem().hasItemMeta())
 			{
-				Item item = ItemBuilder.i.items.get(e.getItem().getItemMeta().getPersistentDataContainer().get(ItemBuilder.kItem, PersistentDataType.STRING));
+				Item item = ItemBuilder.i.items.get(e.getItem().getItemMeta().getPersistentDataContainer().getOrDefault(ItemBuilder.kItem, PersistentDataType.STRING,null));
 				if (item != null && item.type.equals("lootbox"))
 				{
 					e.getItem().setAmount(e.getItem().getAmount()-1);
@@ -85,7 +105,7 @@ public class ListenerGUIEvents implements Listener
 	@EventHandler
 	public void onEntityInteract(PlayerInteractEntityEvent e)
 	{
-		Shop shop = ShopManager.positions.get(e.getRightClicked());
+		Shop shop = ShopManager.shops.get(e.getRightClicked().getPersistentDataContainer().getOrDefault(ItemBuilder.kItem, PersistentDataType.STRING, ""));
 		if (shop != null)
 		{
 			new ShopGUI(shop,e.getPlayer());
@@ -130,18 +150,6 @@ public class ListenerGUIEvents implements Listener
 				}
 			}
 		}
-		else if (player.gui.type == MenuType.CRAFTING)
-		{
-			for (int slot : TaskGUICrafting.slots)
-			{
-				ItemStack item = player.gui.inventory.getItem(slot);
-				if (!EnchantHandler.eh.isUIElement(item)) 
-				{
-					if (player.player.getInventory().firstEmpty() == -1) player.player.getWorld().dropItem(player.player.getLocation(), item);
-					else player.player.getInventory().addItem(item);
-				}
-			}
-		}
 		else if (player.gui.type == MenuType.RECIPES)
 		{
 			ItemStack item = player.gui.inventory.getItem(10);
@@ -164,6 +172,12 @@ public class ListenerGUIEvents implements Listener
 				if (player.gui.inventory.getItem(19) != null) player.player.getInventory().addItem(player.gui.inventory.getItem(19));
 				if (player.gui.inventory.getItem(25) != null) player.player.getInventory().addItem(player.gui.inventory.getItem(25));
 				break;
+			case 3:
+				for (int i = 0; i < 9; i++)
+				{
+					ItemStack c = player.gui.inventory.getItem(AnvilGUI.craftingSlots[i]);
+					if (c != null) player.player.getInventory().addItem(c);
+				}
 			}
 		}
 		else if (player.gui instanceof LootboxGUI)

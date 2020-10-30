@@ -45,7 +45,7 @@ public class BackpackItem
 		else players.set(slotPath + ".amount", null);
 	}
 	
-	public ItemStack create(boolean highlight)
+	public ItemStack create()
 	{
 		ItemStack base = ItemBuilder.i.build(itemType, null,enchants,sharp);
 		base.setAmount(amount);

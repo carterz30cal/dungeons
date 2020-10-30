@@ -54,9 +54,14 @@ public class TaskGUIRecipeBrowser extends BukkitRunnable
 		String r = RecipeManager.i.recipeBrowser_byIngredient.get(pa).get(g.page-1);
 		FileConfiguration rc = RecipeManager.i.recipeConfig;
 		
-		ItemStack product = ItemBuilder.i.build(rc.getString(r + ".product"),null);
+		String[] prod = rc.getString(r + ".product").split(",");
+		ItemStack product;
+		if (rc.getString(r + ".enchants","").equals("")) product = ItemBuilder.i.build(prod[0],null);
+		else product = ItemBuilder.i.build(prod[0],null,rc.getString(r + ".enchants",""));
 		
-		product.setAmount(rc.getInt(r + ".amount", 1));
+		if (prod.length > 1) product.setAmount(Integer.parseInt(prod[1]));
+		else product.setAmount(1);
+		
 		g.inventory.setItem(16, product);
 		
 		HashMap<String,String> materials = new HashMap<String,String>();
@@ -67,7 +72,7 @@ public class TaskGUIRecipeBrowser extends BukkitRunnable
 		}
 		for (int k = 0; k < 3; k++)
 		{
-			String[] rec = rc.getString(r + ".recipe." + k).split(" ");
+			String[] rec = rc.getString(r + ".recipe." + k,"0 0 0").split(" ");
 			for (int j = 0; j < 3;j++)
 			{
 				if (rec[j].equals("0")) 

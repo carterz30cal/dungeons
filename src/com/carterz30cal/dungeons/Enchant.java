@@ -3,7 +3,7 @@ package com.carterz30cal.dungeons;
 import java.util.HashMap;
 
 
-
+@Deprecated
 public class Enchant
 {
 	public String name;

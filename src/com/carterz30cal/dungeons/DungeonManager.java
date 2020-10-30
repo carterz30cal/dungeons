@@ -2,9 +2,11 @@ package com.carterz30cal.dungeons;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.configuration.InvalidConfigurationException;
@@ -19,6 +21,7 @@ public class DungeonManager
 	// we will do something similar to the crafting hashes
 	// the hash will be your z coord divided by 1000 and minus 20k
 	public HashMap<Integer,Dungeon> dungeons;
+	public ArrayList<Dungeon> ordered;
 	public HashMap<String,Dungeon> warps;
 	public Dungeon hub;
 	
@@ -27,11 +30,13 @@ public class DungeonManager
 		i = this;
 		
 		dungeons = new HashMap<Integer,Dungeon>();
+		ordered = new ArrayList<Dungeon>();
 		warps = new HashMap<String,Dungeon>();
 		hub = new Dungeon();
 		hub.name = "The Hub";
 		hub.spawn = new Location(Bukkit.getWorld("hub"),-10000,24,10004);
-		
+		hub.killsperlevel = 100000;
+		warps.put("hub", hub);
 		File dataFile = new File(Dungeons.instance.getDataFolder(), "dungeons.yml");
 		if (!dataFile.exists())
 		{
@@ -52,6 +57,7 @@ public class DungeonManager
 		for (String d : data.getKeys(false))
 		{
 			Dungeon dungeon = new Dungeon();
+			dungeon.id = d;
 			dungeon.name = data.getString(d + ".name");
 			String[] sp = data.getString(d + ".spawn").split(",");
 			int hash = hash(Integer.parseInt(sp[2]));
@@ -63,6 +69,7 @@ public class DungeonManager
 				SpawnPosition spl = new SpawnPosition(new Location(Bukkit.getWorld("hub"),Integer.parseInt(spawns[0]),Integer.parseInt(spawns[1]),Integer.parseInt(spawns[2])));
 				dungeon.spawns.put(spl, data.getString(d + ".spawns." + spawn));
 			}
+			
 			// DungeonMining setup here
 			dungeon.mining.xp = data.getInt(d + ".mining.xp", 0);
 			for (String o : data.getConfigurationSection(d + ".mining.ores").getKeys(false))
@@ -73,11 +80,20 @@ public class DungeonManager
 			}
 			dungeon.mining.requirement = data.getInt(d + ".mining.boss.requirement", 500);
 			dungeon.mining.boss = data.getString(d + ".mining.boss.mob", "drenched0");
-			String[] loc = data.getString(d + ".mining.boss.spawn").split(",");
+			String[] loc = data.getString(d + ".mining.boss.spawn","0,0,0").split(",");
 			Location location = new Location(Bukkit.getWorld("hub"),Integer.parseInt(loc[0]),Integer.parseInt(loc[1]),Integer.parseInt(loc[2]));
 			dungeon.mining.spawn = new SpawnPosition(location);
+			
+			// Dungeon Explorer stuff
+			dungeon.icon_data = data.getString(d + ".explorer.icon.data");
+			dungeon.icon_sig = data.getString(d + ".explorer.icon.sig");
+			dungeon.expl_lore = data.getString(d + ".explorer.lore",ChatColor.RED + "PLACEHOLDER");
+			dungeon.killsperlevel = data.getInt(d + ".explorer.killsperlevel",1);
+			
+			dungeon.unfinished = data.getBoolean(d + ".unfinished", false);
 			warps.put(d, dungeon);
 			dungeons.put(hash, dungeon);
+			ordered.add(dungeon);
 		}
 	}
 	

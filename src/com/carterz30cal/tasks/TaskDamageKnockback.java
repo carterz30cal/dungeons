@@ -21,7 +21,8 @@ public class TaskDamageKnockback extends BukkitRunnable
 		Vector vel = e.getVelocity();
 		vel.setX(vel.getX()*modifier);
 		vel.setZ(vel.getZ()*modifier);
-		if (e.getFallDistance() < 1) vel.setY(vel.getY()*modifier);
+		vel.setY(vel.getY()*modifier);
+
 		e.setVelocity(vel);
 	}
 	

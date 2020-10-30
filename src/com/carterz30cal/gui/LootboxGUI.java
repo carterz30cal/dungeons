@@ -72,7 +72,7 @@ public class LootboxGUI extends GUI
     
 	public static ItemStack pane (int rarity)
 	{
-		if (rarity == 1) return GUICreator.item(Material.LIGHT_BLUE_STAINED_GLASS_PANE, "Guaranteed", null, 1);
+		if (rarity == 1) return GUICreator.item(Material.LIGHT_BLUE_STAINED_GLASS_PANE, ChatColor.BLUE + "Guaranteed", null, 1);
 		else if (rarity <= 5) return GUICreator.item(Material.LIME_STAINED_GLASS_PANE, ChatColor.GREEN + "Common", null, 1);
 		else if (rarity <= 15) return GUICreator.item(Material.YELLOW_STAINED_GLASS_PANE, ChatColor.GOLD + "Uncommon", null, 1);
 		else if (rarity <= 50) return GUICreator.item(Material.ORANGE_STAINED_GLASS_PANE, ChatColor.RED + "Rare", null, 1);

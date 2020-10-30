@@ -1,23 +1,30 @@
 package com.carterz30cal.player;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map.Entry;
 
 import org.bukkit.GameMode;
+import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
+import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import com.carterz30cal.dungeons.Dungeons;
-import com.carterz30cal.dungeons.EnchantHandler;
+import com.carterz30cal.enchants.AbsEnchant;
+import com.carterz30cal.enchants.EnchantManager;
 import com.carterz30cal.items.Item;
 import com.carterz30cal.items.ItemBuilder;
 import com.carterz30cal.items.ItemSet;
 import com.carterz30cal.items.ItemSharpener;
+import com.carterz30cal.mobs.DungeonMobCreator;
+import com.carterz30cal.mobs.MobAction;
+import com.carterz30cal.tasks.TaskBlockReplace;
 
 public class DungeonsPlayerStats
 {
@@ -27,6 +34,7 @@ public class DungeonsPlayerStats
 	public int health = 200;
 	public int regen;
 	public int damage;
+	public double damagemod;
 	public int damageSweep;
 	public int bonuskillcoins;
 	public boolean set;
@@ -53,12 +61,7 @@ public class DungeonsPlayerStats
 			Item a = ItemBuilder.i.items.get(armour.getItemMeta().getPersistentDataContainer().get(ItemBuilder.kItem, PersistentDataType.STRING));
 			if (sett == null && a.set != null) sett = a.set;
 			else if (sett == null) break;
-			else if (sett != null && a.set == null)
-			{
-				sett = null;
-				break;
-			}
-			else if (!sett.equals(a.set))
+			else if ((sett != null && a.set == null) || !sett.equals(a.set))
 			{
 				sett = null;
 				break;
@@ -90,78 +93,63 @@ public class DungeonsPlayerStats
 		oreChance = 0;
 		miningXp = 1;
 		bonuskillcoins = 0;
-		double damag = 0;
-		double damageMod = 1;
+		damagemod = 1;
 		
-		for (ItemStack item : p.getInventory().getArmorContents())
+		DungeonsPlayerStatBank fbank = new DungeonsPlayerStatBank();
+		fbank.d = dp;
+		ArrayList<AbsEnchant> allench = new ArrayList<AbsEnchant>();
+		ArrayList<ItemStack> items = new ArrayList<ItemStack>();
+		for (ItemStack item : p.getInventory().getArmorContents()) if (item != null && item.getType() != Material.AIR) items.add(item);
+		if (h != null && (h.type.equals("weapon") || h.type.equals("tool"))) items.add(held);
+		
+		for (ItemStack item : items)
 		{
-			if (item == null || item.getType() == Material.AIR) continue;
-			Item a = ItemBuilder.i.items.get(item.getItemMeta().getPersistentDataContainer().get(ItemBuilder.kItem, PersistentDataType.STRING));
-			ItemMeta m = item.getItemMeta();
-			float globMod = 1+EnchantHandler.eh.getEffect(m, "modifier");
-			if (set) globMod += EnchantHandler.eh.getEffect(m, "synergy");
+			ItemMeta meta = item.getItemMeta();
+			item.setItemMeta(ItemBuilder.i.updateMeta(meta, dp));
 			
-			armour += Math.ceil(a.attributes.getOrDefault("armour",0.0)*(globMod+EnchantHandler.eh.getEffect(m, "armour")));
-			health += (a.attributes.getOrDefault("health",0.0)*globMod)+EnchantHandler.eh.getEffect(m, "health");
-			regen += (a.attributes.getOrDefault("regen",0.0)*globMod)+EnchantHandler.eh.getEffect(m, "regen");
-			damag += (a.attributes.getOrDefault("damage",0.0)*globMod)+EnchantHandler.eh.getEffect(m, "damage");
-			damageMod += (a.attributes.getOrDefault("damagep",0.0)*globMod)+EnchantHandler.eh.getEffect(m, "damagep");
-			bonuskillcoins += a.attributes.getOrDefault("killcoins",0.0);
-			item.setItemMeta(ItemBuilder.i.updateMeta(m, dp));
-		}
-		
-		if (set)
-		{
-			armour += sett.set_attributes.getOrDefault("armour",(double)0);
-			health += sett.set_attributes.getOrDefault("health",(double)0);
-			regen += sett.set_attributes.getOrDefault("regen",(double)0);
-			damag += sett.set_attributes.getOrDefault("damage",(double)0);
-			damageMod += sett.set_attributes.getOrDefault("damagep",(double)0);
-		}
-		
-		if (h != null && h.type.equals("weapon"))
-		{
-			ItemMeta hm = held.getItemMeta();
-			@SuppressWarnings("unchecked")
-			HashMap<String,Double> attributes = (HashMap<String, Double>) h.attributes.clone();
-			String[] sharps = hm.getPersistentDataContainer().getOrDefault(ItemBuilder.kSharps, PersistentDataType.STRING, "").split(";");
-			for (String s : sharps)
+			Item i = ItemBuilder.i.items.get(meta.getPersistentDataContainer().get(ItemBuilder.kItem, PersistentDataType.STRING));
+			if (i == null) continue;
+			DungeonsPlayerStatBank bank = new DungeonsPlayerStatBank();
+			bank.d = dp;
+			bank.add(i.attributes);
+			if (i.type.equals("weapon")) 
 			{
-				ItemSharpener sharpener = ItemBuilder.i.sharps.get(s);
-				if (sharpener == null) continue;
-				for (Entry<String,Double> at : sharpener.attributes.entrySet())
+				String[] sharps = meta.getPersistentDataContainer().getOrDefault(ItemBuilder.kSharps, PersistentDataType.STRING, "").split(";");
+				for (String s : sharps)
 				{
-					double atv = attributes.getOrDefault(at.getKey(), 0.0);
-					attributes.put(at.getKey(), atv+at.getValue());
+					ItemSharpener sharpener = ItemBuilder.i.sharps.get(s);
+					if (sharpener == null) continue;
+					else bank.add(sharpener.attributes);
 				}
 			}
-			
-			float globMod = 1+EnchantHandler.eh.getEffect(hm, "modifier");
-			if (set) globMod += EnchantHandler.eh.getEffect(hm, "synergy");
-			armour += attributes.getOrDefault("armour",0.0)*(globMod+EnchantHandler.eh.getEffect(hm, "armour"));
-			health += (attributes.getOrDefault("health",0.0)*globMod)+EnchantHandler.eh.getEffect(hm, "health");
-			regen += (attributes.getOrDefault("regen",0.0)*globMod)+EnchantHandler.eh.getEffect(hm, "regen");
-			damag += (attributes.getOrDefault("damage",0.0)*globMod)+EnchantHandler.eh.getEffect(hm, "damage");
-			damageMod += (attributes.getOrDefault("damagep",0.0)*globMod)+EnchantHandler.eh.getEffect(hm, "damagep");
-			bonuskillcoins += attributes.getOrDefault("killcoins",0.0)+EnchantHandler.eh.getEffect(hm, "killcoins");
-			if (synergy)
-			{
-				armour += sett.syn_attributes.getOrDefault("armour",(double)0);
-				health += sett.syn_attributes.getOrDefault("health",(double)0);
-				regen += sett.syn_attributes.getOrDefault("regen",(double)0);
-				damag += sett.syn_attributes.getOrDefault("damage",(double)0);
-				damageMod += sett.syn_attributes.getOrDefault("damagep",(double)0);
+			ArrayList<AbsEnchant> enchants = EnchantManager.get(meta.getPersistentDataContainer());
+			allench.addAll(enchants);
+			if (enchants != null && !enchants.isEmpty()) for (AbsEnchant e : enchants) {
+				DungeonsPlayerStatBank b = e.onBank(bank);
+				if (b != null) bank = b;
 			}
-			held.setItemMeta(ItemBuilder.i.updateMeta(hm, dp));
 			
+			if (i.data.containsKey("ability")) itemAction(DungeonMobCreator.i.actions.get(i.data.get("ability")));
 			
+			add(fbank,bank);
 		}
-		else if (h != null && h.type.equals("tool"))
+		//
+		
+		//
+		if (set)
 		{
-			ItemMeta hm = held.getItemMeta();
-			oreChance += h.attributes.getOrDefault("orechance", 0.0);
-			miningXp += h.attributes.getOrDefault("bonusxp", 0.0);
-			held.setItemMeta(ItemBuilder.i.updateMeta(hm, dp));
+			DungeonsPlayerStatBank bank = new DungeonsPlayerStatBank();
+			bank.add(sett.set_attributes);
+			add(fbank,bank);
+			
+			if (!sett.set_ability.equals("none")) itemAction(DungeonMobCreator.i.actions.get(sett.set_ability));
+		}
+		
+		if (h != null && h.type.equals("weapon") && synergy)
+		{
+			DungeonsPlayerStatBank bank = new DungeonsPlayerStatBank();
+			bank.add(sett.syn_attributes);
+			add(fbank,bank);
 		}
 		
 		for (String perk : dp.perks.getPerks())
@@ -171,27 +159,102 @@ public class DungeonsPlayerStats
 			armour += per.getInt(perk + ".effects.armour",0)*level;
 			health += per.getInt(perk + ".effects.health",0)*level;
 			regen += per.getInt(perk + ".effects.regen",0)*level;
-			damag += per.getDouble(perk + ".effects.damage",0)*level;
+			damage += per.getDouble(perk + ".effects.damage",0)*level;
 		}
 		
+		for (AbsEnchant ench : allench) 
+		{
+			DungeonsPlayerStatBank sb = ench.onFinalBank(fbank);
+			if (sb != null) fbank = sb;
+		}
+		add(fbank);
 		
 		if (dp != null)
 		{
-			damageMod += DungeonsPlayerManager.i.get(p).skills.getSkillLevel("combat")*0.04;
+			damagemod += DungeonsPlayerManager.i.get(p).skills.getSkillLevel("combat")*0.04;
 			oreChance += DungeonsPlayerManager.i.get(p).skills.getSkillLevel("mining")*0.01;
+			if (dp.area != null && dp.explorer.areas() > 0)
+			{
+				bonuskillcoins += dp.explorer.bonusCoins(dp.area.id);
+				miningXp += dp.explorer.bonusXp(dp.area.id);
+			}
 		}
 		armour = Math.max(0, armour);
-		damage = (int) Math.max(1 + DungeonsPlayerManager.i.get(p).skills.getSkillLevel("combat"), Math.round(damag * damageMod));
+		damage = (int) Math.max(1 + DungeonsPlayerManager.i.get(p).skills.getSkillLevel("combat"), Math.round(damage * damagemod));
 		if (p.hasPotionEffect(PotionEffectType.WITHER))
 		{
 			damage /= (p.getPotionEffect(PotionEffectType.WITHER).getAmplifier()+2);
 		}
 		p.setSaturation(20);
 		p.setFoodLevel(20);
-		if (held.hasItemMeta()) damageSweep = (int) Math.round((damag/3f)*(1+EnchantHandler.eh.getEffect(held.getItemMeta(), "sweep")));
-		health = Math.max(1, health);
-		regen = Math.max(1, regen);
+		if (held.hasItemMeta()) damageSweep += damage/3;
+		health = Math.max(10, health);
+		regen = Math.max(0, regen);
 	}
-
-
+	public double get (HashMap<String,Double> map,String value)
+	{
+		return map.getOrDefault(value, 0d);
+	}
+	public void add(DungeonsPlayerStatBank bank,DungeonsPlayerStatBank addition)
+	{
+		bank.health    += addition.health;
+		bank.armour    += addition.armour;
+		bank.regen     += addition.regen;
+		
+		bank.damage    += addition.damage;
+		bank.damagemod += addition.damagemod;
+		bank.sweep     += addition.sweep;
+		bank.xpbonus   += addition.xpbonus;
+		bank.orechance += addition.orechance;
+	}
+	public void add(DungeonsPlayerStatBank bank)
+	{
+		health         += bank.health;
+		armour         += bank.armour;
+		regen          += bank.regen;
+		
+		damage         += bank.damage;
+		damagemod      += bank.damagemod;
+		damageSweep    += bank.sweep;
+		bonuskillcoins += bank.killcoins;
+		
+		oreChance      += bank.orechance;
+		miningXp       += bank.xpbonus;
+	}
+	public void itemAction(MobAction a)
+	{
+		boolean stop = false;
+		for (String action : a.effects)
+		{
+			if (stop) break;
+			String[] data = action.split(":")[1].split(",");
+			switch (action.split(":")[0])
+			{
+			case "reqblock":
+				Block block = p.getLocation().add(Integer.parseInt(data[0]),Integer.parseInt(data[1]),Integer.parseInt(data[2])).getBlock();
+				if (block.getType() != Material.valueOf(data[3])) stop = true;
+				break;
+			case "ylevel":
+				int distance = p.getLocation().getBlockY();
+				if ((data[0].equals("over") && distance < Integer.parseInt(data[1]))
+						|| (data[0].equals("under") && distance >= Integer.parseInt(data[1]))) stop = true;
+				break;
+			case "block":
+				Location rep = p.getLocation().add(Integer.parseInt(data[0]),Integer.parseInt(data[1]),Integer.parseInt(data[2]));
+				Block b = rep.getBlock();
+				Material previous = b.getType();
+				b.setType(Material.valueOf(data[3]));
+				if (!Dungeons.instance.blocks.containsKey(b))
+				{
+					TaskBlockReplace tbr = new TaskBlockReplace(b,previous);
+					tbr.runTaskLater(Dungeons.instance, Integer.parseInt(data[4]));
+					Dungeons.instance.blocks.put(b, tbr);
+				}
+				break;
+			case "potion":
+				p.addPotionEffect(new PotionEffect(PotionEffectType.getByName(data[0]),100,Integer.parseInt(data[1]),false,false));
+			}
+			
+		}
+	}
 }

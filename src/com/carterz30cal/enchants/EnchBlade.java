@@ -1,0 +1,55 @@
+package com.carterz30cal.enchants;
+
+import org.bukkit.entity.ArmorStand;
+
+import com.carterz30cal.dungeons.DungeonMiningTable;
+import com.carterz30cal.mobs.DungeonMob;
+import com.carterz30cal.player.DungeonsPlayer;
+import com.carterz30cal.player.DungeonsPlayerStatBank;
+
+public class EnchBlade extends AbsEnchant {
+
+	@Override
+	public String description() {
+		return "Increases damage by " + 10*level + "%";
+	}
+
+	@Override
+	public String name() {
+		return "Blade " + level;
+	}
+
+	@Override
+	public int max() {
+		return 2;
+	}
+
+	@Override
+	public int catalyst() {
+		return 0;
+	}
+
+	@Override
+	public int rarity() {
+		return 1;
+	}
+
+	@Override
+	public DungeonsPlayerStatBank onBank(DungeonsPlayerStatBank bank) {
+		bank.damagemod += 0.1*level;
+		return bank;
+	}
+
+	@Override
+	public DungeonMiningTable onMine(DungeonMiningTable mine) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void onHitAfter(DungeonsPlayer player, DungeonMob hit,ArmorStand ind) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

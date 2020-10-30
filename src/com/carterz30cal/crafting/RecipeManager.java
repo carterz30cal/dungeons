@@ -50,9 +50,16 @@ public class RecipeManager
 		recipeBrowser_byIngredient = new HashMap<String,ArrayList<String>>();
 		for (String p : recipeConfig.getKeys(false))
 		{
-			ItemStack product = ItemBuilder.i.build(recipeConfig.getString(p + ".product"),null);
-			product.setAmount(recipeConfig.getInt(p + ".amount", 1));
-			int xp = recipeConfig.getInt(p + ".xp", 1); // reduce space used on common recipes (wet paper -> paper will keep as example)
+			String[] prod = recipeConfig.getString(p + ".product").split(",");
+			String enchants = recipeConfig.getString(p + ".enchants","");
+			ItemStack product;
+			if (enchants.equals("")) product = ItemBuilder.i.build(prod[0],null);
+			else product = ItemBuilder.i.build(prod[0],null,enchants);
+
+			if (prod.length > 1) product.setAmount(Integer.parseInt(prod[1]));
+			else product.setAmount(1);
+			
+			int xp = recipeConfig.getInt(p + ".xp", 1); 
 			
 			HashMap<String,String> materials = new HashMap<String,String>();
 			for (String mat : recipeConfig.getConfigurationSection(p + ".materials").getKeys(false))
@@ -60,13 +67,13 @@ public class RecipeManager
 				String ing = recipeConfig.getString(p + ".materials." + mat);
 				materials.put(mat,ing);
 				recipeBrowser_byIngredient.putIfAbsent(ing.split(",")[0], new ArrayList<String>());
-				recipeBrowser_byIngredient.get(ing.split(",")[0]).add(p);
+				if (!recipeBrowser_byIngredient.get(ing.split(",")[0]).contains(p)) recipeBrowser_byIngredient.get(ing.split(",")[0]).add(p);
 			}
 			String recipe = "";
 			int[] amounts = new int[9];
 			for (int i = 0; i < 3; i++)
 			{
-				String[] r = recipeConfig.getString(p + ".recipe." + i).split(" ");
+				String[] r = recipeConfig.getString(p + ".recipe." + i,"0 0 0").split(" ");
 				for (int j = 0; j < 3;j++)
 				{
 					if (r[j].equals("0")) 

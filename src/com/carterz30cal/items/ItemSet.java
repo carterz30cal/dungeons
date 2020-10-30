@@ -7,6 +7,7 @@ public class ItemSet
 	// set
 	public String set_lore;
 	public HashMap<String,Double> set_attributes;
+	public String set_ability;
 	// synergy
 	public String syn_lore;
 	public HashMap<String,Double> syn_attributes;

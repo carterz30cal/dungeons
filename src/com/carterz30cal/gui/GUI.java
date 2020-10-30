@@ -10,6 +10,7 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
@@ -22,7 +23,6 @@ import com.carterz30cal.player.DungeonsPlayer;
 import com.carterz30cal.player.DungeonsPlayerManager;
 import com.carterz30cal.tasks.TaskAGUIBrowser;
 import com.carterz30cal.tasks.TaskGUI;
-import com.carterz30cal.tasks.TaskGUICrafting;
 import com.carterz30cal.tasks.TaskGUIEnchanting;
 import com.carterz30cal.tasks.TaskGUIRecipeBrowser;
 import com.carterz30cal.utility.StringManipulator;
@@ -96,16 +96,16 @@ public class GUI
 			
 			contents[10] = GUICreator.pane(Material.WHITE_STAINED_GLASS_PANE);
 			contents[11] = GUICreator.item(Material.STONE_SWORD, "Skills", null, 1);
-			contents[12] = GUICreator.item(Material.COMPASS, "Experience", null, 1);
+			contents[12] = GUICreator.item(Material.COMPASS, ChatColor.GREEN + "Dungeon Explorer", null, 1);
 			contents[13] = GUICreator.item(Material.PLAYER_HEAD, "Friends", null, 1);
-			contents[14] = GUICreator.item(Material.STICK, "Crafting", null, 1);
-			contents[15] = GUICreator.item(Material.GOLD_BLOCK, ChatColor.GOLD + "Rewards", null, 1);
+			contents[14] = GUICreator.item(Material.BOOK, "Calendar", null, 1);
+			contents[15] = GUICreator.item(Material.GOLD_INGOT, ChatColor.GOLD + "Rewards", null, 1);
 			contents[16] = GUICreator.pane(Material.WHITE_STAINED_GLASS_PANE);
 			
 			contents[19] = GUICreator.pane(Material.WHITE_STAINED_GLASS_PANE);
 			contents[20] = GUICreator.item(Material.REDSTONE, "Perks", null, 1);
 			contents[21] = GUICreator.item(Material.LEATHER, "Backpack", null, 1);
-			contents[22] = GUICreator.item(Material.STONE_BUTTON, "Settings", null, 1);
+			contents[22] = GUICreator.item(Material.CREEPER_SPAWN_EGG, ChatColor.BLUE + "Beastiary", null, 1);
 			contents[23] = GUICreator.item(Material.APPLE, "Recipe Browser", null, 1);
 			contents[24] = GUICreator.item(Material.ANVIL, "Anvil", null, 1);
 			contents[25] = GUICreator.pane(Material.WHITE_STAINED_GLASS_PANE);
@@ -135,11 +135,14 @@ public class GUI
 			doRender = false;
 			break;
 		case BACKPACK:
+			/*
 			for (BackpackItem item : player.backpack)
 			{
 				if (item == null) continue;
 				contents[item.slot] = item.create(player.highlightRenamed);
 			}
+			*/
+			new BackpackGUI(player.player);
 			break;
 		case SETTINGS:
 			ChatColor pbc = ChatColor.GREEN;
@@ -206,6 +209,7 @@ public class GUI
 			}
 			contents[10] = GUICreator.item(Material.ORANGE_STAINED_GLASS_PANE, "Item Slot", null, 1);
 			contents[16] = GUICreator.item(Material.BARRIER,ChatColor.RED + "No recipes associated with this item",null,1);
+			contents[35] = GUICreator.item(Material.CRAFTING_TABLE, ChatColor.GOLD + "Crafting Shortcut", null, 1);
 			break;
 		case ENCHANTING:
 			for (int slot = 0; slot < size; slot++)
@@ -442,74 +446,9 @@ public class GUI
 			}
 			
 		}
-		else if (type == MenuType.CRAFTING)
-		{
-			ItemStack set = null;
-			int slot = position;
-			
-			if (position < mSize)
-			{
-				int modulo = position % 9;
-				if (modulo > 2 && modulo < 6 && position < 27)
-				{
-					if (e.getClick() == ClickType.LEFT)
-					{
-						ItemStack clicked = e.getView().getItem(position);
-						if (EnchantHandler.eh.isUIElement(clicked)) 
-						{
-							if (e.getCursor().getType() == Material.AIR) return true;
-							set = e.getCursor();
-						}
-						else
-						{
-							set = GUICreator.pane();
-							
-							if (p.getInventory().firstEmpty() == -1) p.getWorld().dropItem(p.getLocation(), clicked);
-							else p.getInventory().addItem(clicked);
-						}
-						e.getView().setCursor(null);
-					}
-					else if (e.getClick() == ClickType.RIGHT)
-					{
-						ItemStack clicked = e.getView().getItem(position);
-						ItemStack cursor = e.getView().getCursor();
-						if (EnchantHandler.eh.isUIElement(clicked)) 
-						{
-							if (cursor.getType() == Material.AIR) return true;
-							set = cursor.clone();
-							set.setAmount(1);
-							cursor.setAmount(cursor.getAmount()-1);
-						}
-						else if (clicked.getAmount() < 64)
-						{
-							if (cursor.getType() == Material.AIR) return true;
-							set = cursor.clone();
-							set.setAmount(clicked.getAmount()+1);
-							cursor.setAmount(cursor.getAmount()-1);
-						}
-						if (cursor.getAmount() == 0) e.getView().setCursor(null);
-						//e.getView().setCursor(null);
-					}
-					
-				}
-				
-				else if (position == GUICreator.bottom(mSize)-9 && !EnchantHandler.eh.isUIElement(inventory.getItem(position)))
-				{
-					int t = 0;
-					if (e.getClick() == ClickType.SHIFT_LEFT) t = 1;
-					new TaskGUICrafting(null,t,p).runTaskLater(Dungeons.instance, 1);
-					return true;
-				}
-			}
-			
-			if (set != null)
-			{
-				new TaskGUICrafting(set,slot,p).runTaskLater(Dungeons.instance, 1);
-				return true;
-			}
-		}
 		if (type == MenuType.RECIPES)
 		{
+			if (position == 35) new AnvilGUI(p,3);
 			if (position == 10)
 			{
 				ItemStack c = inventory.getItem(10);
@@ -547,16 +486,16 @@ public class GUI
 				if (p.isOp()) new GUI(MenuType.ADMIN,p);
 				break;
 			case 11:
-				new GUI(MenuType.SKILLS,p);
+				new SkillsGUI(p);
 				break;
 			case 12:
-				//new GUI(MenuType.EXPERIENCE,p);
+				new DungeonExplorerGUI(p);
 				break;
 			case 13:
 				//new GUI(MenuType.FRIENDS,p);
 				break;
 			case 14:
-				new GUI(MenuType.CRAFTING,p);
+				//new GUI(MenuType.CRAFTING,p);
 				break;
 			case 15:
 				new RewardsGUI(p);
@@ -624,5 +563,10 @@ public class GUI
 		}
 		if (type == MenuType.BACKPACK) return false;
 		else return true;
+	}
+	
+	public boolean handleDrag(InventoryDragEvent e,Player p)
+	{
+		return true;
 	}
 }

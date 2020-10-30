@@ -2,6 +2,7 @@ package com.carterz30cal.player;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map.Entry;
 import java.util.UUID;
 
 import org.bukkit.configuration.file.FileConfiguration;
@@ -56,6 +57,7 @@ public class DungeonsPlayerManager
 			playerc.createSection(path + ".perks");
 			playerc.createSection(path + ".settings");
 			playerc.createSection(path + ".backpack");
+			playerc.createSection(path + ".explorer");
 		}
 	}
 	@SuppressWarnings("deprecation")
@@ -85,6 +87,14 @@ public class DungeonsPlayerManager
 			}
 			else playerc.set(path + ".backpack." + slot, null);
 		}
+		if (dp.explorer.areaPoints.size() > 0)
+		{
+			for (Entry<String,Integer> dungeon : dp.explorer.areaPoints.entrySet())
+			{
+				playerc.set(path + ".explorer." + dungeon.getKey(), dungeon.getValue());
+			}
+		}
+		
 		playerc.set(path + ".coins", dp.coins);
 		Date set = new Date();
 		playerc.set(path + ".lastlogin", set.getDate() + "/" + set.getMonth() + "/" + set.getYear());

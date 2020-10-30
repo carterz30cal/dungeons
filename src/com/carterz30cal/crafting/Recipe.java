@@ -17,6 +17,7 @@ public class Recipe
 		xp = x;
 	}
 	
+	
 	public boolean isCraftable(ItemStack[] ingredients)
 	{
 		for (int i = 0; i < 9; i++)

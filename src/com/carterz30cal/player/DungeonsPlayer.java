@@ -2,9 +2,12 @@ package com.carterz30cal.player;
 
 
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -27,12 +30,15 @@ public class DungeonsPlayer
 	public DungeonsPlayerStats stats;
 	public DungeonsPlayerDisplay display;
 	public DungeonsPlayerPerks perks;
-
+	public DungeonsPlayerExplorer explorer;
 	public Dungeon area;
 	
 	public GUI gui;
+	@Deprecated
 	public BackpackItem[] backpack;
+	public ArrayList<BackpackItem[]> backpackb;
 	
+	public HashMap<String,String> settings;
 	public int settingSkillsDisplay;
 	public int perkBackground;
 	public boolean colourblindMode;
@@ -48,7 +54,7 @@ public class DungeonsPlayer
 		skills = new DungeonsPlayerSkills(p);
 		stats = new DungeonsPlayerStats(p);
 		perks = new DungeonsPlayerPerks(p);
-		
+		explorer = new DungeonsPlayerExplorer(p);
 		//stats.refresh();
 		health = stats.health;
 		area = DungeonManager.i.hub;
@@ -66,11 +72,13 @@ public class DungeonsPlayer
 		if (date.length == 1) lastLogin = null;
 		else lastLogin = new Date(Integer.parseInt(date[2])-1900,Integer.parseInt(date[1]),Integer.parseInt(date[0]));
 		
+		settings = new HashMap<String,String>();
 		settingSkillsDisplay = Dungeons.instance.getPlayerConfig().getInt(p.getUniqueId() + ".settings.progressbar", 0);
 		perkBackground = Dungeons.instance.getPlayerConfig().getInt(p.getUniqueId() + ".settings.perkbackground", 0);
 		colourblindMode = Dungeons.instance.getPlayerConfig().getBoolean(p.getUniqueId() + ".settings.colourblind", false);
 		highlightRenamed = i.getBoolean(p.getUniqueId() + ".settings.highlightrenamed",false);
 		
+		skills.d = this;
 	}
 	@SuppressWarnings("deprecation")
 	public boolean rewardEligible()
@@ -84,7 +92,12 @@ public class DungeonsPlayer
 	public void damage(int amount,boolean penetrating)
 	{
 		int damage = amount;
-		if (!penetrating) damage -= stats.armour;
+		if (player.getGameMode() == GameMode.CREATIVE) damage = 0;
+		if (!penetrating) 
+		{
+			double dr = 1.0 - ((double)stats.armour / (stats.armour+100));
+			damage = (int)Math.round((double)damage * dr);
+		}
 		
 		health -= Math.max(1, damage);
 		player.setHealth(Math.max(1, getHealthPercent()*20));

@@ -8,6 +8,7 @@ public class StringManipulator
 	public static int[] progressLengths =  {50,15,15,15,15};
 	public static ChatColor[] rainbowOrder = {ChatColor.RED,ChatColor.LIGHT_PURPLE,ChatColor.DARK_PURPLE,ChatColor.DARK_BLUE,
 			ChatColor.BLUE,ChatColor.AQUA,ChatColor.GREEN,ChatColor.YELLOW,ChatColor.GOLD};
+    public static String[] romanNumerals = {"I","II","III","IV","V","VI","VII","VIII","IX","X"};
 	public static String capitalise(String inp)
 	{
 		return inp.substring(0,1).toUpperCase() + inp.substring(1).toLowerCase();
@@ -31,7 +32,7 @@ public class StringManipulator
 		}
 		return bar;
 	}
-	
+
 	public static String rainbow(String original)
 	{
 		String rainbowed = "";

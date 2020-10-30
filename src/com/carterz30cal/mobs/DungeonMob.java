@@ -7,7 +7,10 @@ import java.util.UUID;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Damageable;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 import com.carterz30cal.dungeons.Dungeons;
 import com.carterz30cal.tasks.TaskCombatTag;
@@ -30,7 +33,7 @@ public class DungeonMob
 	public DungeonMobType type;
 	
 	public ArrayList<Player> tagged;
-	public boolean summon;
+	public HashMap<String,Integer> summonCaps;
 	
 	public DungeonMob (DungeonMobType t,Damageable e,Entity s,Entity a,SpawnPosition o,MobModifier m)
 	{
@@ -44,7 +47,7 @@ public class DungeonMob
 		owner.mob = this;
 		tagged = new ArrayList<Player>();
 		health = health();
-		
+		summonCaps = new HashMap<String,Integer>();
 		mobs.put(entity.getUniqueId(), this);
 		
 		name();
@@ -63,8 +66,11 @@ public class DungeonMob
 		silverfish.remove();
 		armourstand.remove();
 		
-		if (damager != null) type.onKilled(damager,modifier);
-		if (summon) DungeonMobCreator.summons--;
+		if (damager != null) 
+		{
+			type.onKilled(damager,modifier);
+			//new SoundTask(damager.getLocation(),damager,Sound.ENTITY_ZOMBIE_DEATH,0.2f,0.65f).runTask(Dungeons.instance);
+		}
 	}
 	public void heal(int amount)
 	{
@@ -93,6 +99,8 @@ public class DungeonMob
 				new TaskCombatTag(damager,this).runTaskTimer(Dungeons.instance, 20,20);
 				tagged.add(damager);
 			}
+			//new SoundTask(damager.getLocation(),damager,Sound.ENTITY_ZOMBIE_HURT,0.2f,((float)health*1.5f)/health()).runTask(Dungeons.instance);
+			if (((float)health) / health() <= 0.3) ((LivingEntity)entity).addPotionEffect(new PotionEffect(PotionEffectType.SLOW,40,0,false,false));
 		}
 		else destroy(damager);
 	}

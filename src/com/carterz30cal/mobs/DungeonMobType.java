@@ -27,6 +27,7 @@ public class DungeonMobType
 	public int xp;
 	public double knockbackResist;
 	public boolean baby;
+	public boolean boss;
 	
 	public ItemStack main;
 	public ItemStack offhand;
@@ -43,6 +44,7 @@ public class DungeonMobType
 	}
 	public void onKilled(Player killer,MobModifier modifier)
 	{
+		if (boss) return;
 		DungeonsPlayer d = DungeonsPlayerManager.i.get(killer);
 		
 		int pl = d.perks.getLevel(perk);
@@ -56,11 +58,15 @@ public class DungeonMobType
 		int coinreward = (maxHealth/20)+d.stats.bonuskillcoins;
 		if (modifier != null) coinreward += 5;
 		d.coins += coinreward;
+		d.explorer.add(d.area.id,1);
+		if (drops == null) return;
 		for (MobDrop drop : drops)
 		{
 			if (r.nextDouble() <= drop.chance)
 			{
-				ItemStack item = ItemBuilder.i.build(drop.item, d);
+				ItemStack item;
+				if (drop.enchants != null) item = ItemBuilder.i.build(drop.item, d,drop.enchants);
+				else item = ItemBuilder.i.build(drop.item, d);
 				item.setAmount(r.nextInt((drop.maxAmount+1)-drop.minAmount)+drop.minAmount);
 				if (killer.getInventory().firstEmpty() == -1) killer.getWorld().dropItem(killer.getLocation(), item);
 				else killer.getInventory().addItem(item);

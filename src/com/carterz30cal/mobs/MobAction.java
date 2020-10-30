@@ -1,13 +1,13 @@
 package com.carterz30cal.mobs;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
 public class MobAction
 {
-	public HashMap<String,String> effects;
+	public ArrayList<String> effects;
 	
 	public MobAction ()
 	{
-		effects = new HashMap<String,String>();
+		effects = new ArrayList<String>();
 	}
 }

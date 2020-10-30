@@ -12,10 +12,10 @@ import com.carterz30cal.utility.StringManipulator;
 public class DungeonsPlayerSkills
 {
 	public static int levelCap = 25;
-	private static final int levelDifficulty = 100;
+	private static final int levelDifficulty = 60;
 	
 	private HashMap<String,Integer> skills;
-	
+	public DungeonsPlayer d;
 	public DungeonsPlayerSkills(Player p)
 	{
 		skills = new HashMap<String,Integer>();
@@ -35,7 +35,7 @@ public class DungeonsPlayerSkills
 			if (points > 0) level++;
 			else break;
 		}
-		return level;
+		return Math.min(levelCap, level);
 	}
 	public int getSkill(String skill)
 	{
@@ -48,6 +48,7 @@ public class DungeonsPlayerSkills
 	// Returns true if skill levelled up
 	public boolean add(String skill,int points)
 	{
+		points = (int)Math.round(points * d.stats.miningXp);
 		int total = skills.getOrDefault(skill,0)+points;
 		int level = getSkillLevel(skill);
 		skills.put(skill, total);

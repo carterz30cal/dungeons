@@ -53,6 +53,8 @@ public class ShopGUI extends GUI
 
 					items[i] = it.item;
 					costs[i] = it.price;
+					enchants[i] = it.enchants;
+					
 					ItemMeta u = item.getItemMeta();
 					List<String> lore = u.getLore();
 					lore.add("");

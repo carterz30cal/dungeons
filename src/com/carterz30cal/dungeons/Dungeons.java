@@ -1,9 +1,10 @@
 package com.carterz30cal.dungeons;
 import org.bukkit.Bukkit;
+import org.bukkit.World;
+import org.bukkit.block.Block;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -13,9 +14,11 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.UUID;
 
+import com.carterz30cal.bosses.BossManager;
 import com.carterz30cal.commands.CommandDungeons;
 import com.carterz30cal.commands.CommandHub;
 import com.carterz30cal.crafting.RecipeManager;
+import com.carterz30cal.enchants.EnchantManager;
 import com.carterz30cal.gui.ListenerGUIEvents;
 import com.carterz30cal.items.ItemBuilder;
 import com.carterz30cal.items.ShopManager;
@@ -23,16 +26,17 @@ import com.carterz30cal.mobs.DungeonMob;
 import com.carterz30cal.mobs.DungeonMobCreator;
 import com.carterz30cal.mobs.ListenerChunkUnload;
 import com.carterz30cal.mobs.ListenerDismountEvent;
+import com.carterz30cal.npcs.NPCManager;
 import com.carterz30cal.player.DungeonsPlayerManager;
 import com.carterz30cal.player.ListenerBlockEvents;
 import com.carterz30cal.player.ListenerEntityDamage;
-import com.carterz30cal.player.NPCManager;
+import com.carterz30cal.tasks.TaskBlockReplace;
 import com.carterz30cal.tasks.TaskSpawn;
 public class Dungeons extends JavaPlugin 
 {
 	public static Dungeons instance;
 	public static long scoreboardTick;
-	
+	public static World w;
 	private ListenerEntityDamage damager;
 	private ListenerPlayerJoin join;
 	private ListenerGUIEvents listenerGUI;
@@ -51,10 +55,13 @@ public class Dungeons extends JavaPlugin
 	
 	private File fPerks;
 	public FileConfiguration fPerksC;
+	
+	public HashMap<Block,TaskBlockReplace> blocks;
 	@Override
 	public void onEnable()
 	{
 		instance = this;
+		w = Bukkit.getWorld("hub");
 		
 		new ItemBuilder();
 		
@@ -70,6 +77,7 @@ public class Dungeons extends JavaPlugin
 		
 		initFiles();
 		
+		new EnchantManager();
 		new DungeonManager();
 		new RecipeManager();
 		new DungeonsPlayerManager();
@@ -77,15 +85,17 @@ public class Dungeons extends JavaPlugin
 	    new DungeonMobCreator();
 	    new ShopManager();
 		new NPCManager();
+		new BossManager();
 		
 		DungeonMob.mobs = new HashMap<UUID,DungeonMob>();
 		DungeonMob.silverfi = new HashMap<UUID,DungeonMob>();
 		DungeonMob.arm = new HashMap<UUID,DungeonMob>();
+		blocks = new HashMap<Block,TaskBlockReplace>();
 		loadOnline();
 		
-		display.runTaskTimer(this, 0, 10);
+		display.runTaskTimer(this, 0, 5);
 		regen.runTaskTimer(this, 0, 40);
-		new TaskSpawn().runTaskTimer(Dungeons.instance, 0, 400);
+		new TaskSpawn().runTaskTimer(Dungeons.instance, 0, 325);
 		
 		PluginManager pm = getServer().getPluginManager();
 		
@@ -98,6 +108,8 @@ public class Dungeons extends JavaPlugin
 		
 		getCommand("dungeons").setExecutor(new CommandDungeons());
 		getCommand("warp").setExecutor(new CommandHub());
+		
+		NPCManager.sendall();
 	}
 	
 	private void initFiles()
@@ -186,11 +198,12 @@ public class Dungeons extends JavaPlugin
 			mob.destroy(null);
 		}
 		
-		for (Entity slime : ShopManager.positions.keySet()) slime.remove();
-		for (Player p : Bukkit.getOnlinePlayers()) 
+		NPCManager.purge();
+		
+		for (TaskBlockReplace t : blocks.values())
 		{
-			p.closeInventory();
-			NPCManager.removeNPCs(p);
+			t.block.setType(t.material);
+			t.cancel();
 		}
 	}
 
