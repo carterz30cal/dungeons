@@ -29,6 +29,7 @@ import com.carterz30cal.player.BackpackItem;
 import com.carterz30cal.player.DungeonsPlayer;
 import com.carterz30cal.player.DungeonsPlayerManager;
 import com.carterz30cal.tasks.TaskGUI;
+import com.carterz30cal.utility.InventoryHandler;
 
 public class ListenerGUIEvents implements Listener
 {
@@ -117,19 +118,9 @@ public class ListenerGUIEvents implements Listener
 		Player p = (Player)e.getPlayer();
 		DungeonsPlayer player = DungeonsPlayerManager.i.get(p);
 		if (player.gui == null) return;
-		if (player.gui.type == MenuType.BACKPACK)
+		if (player.gui instanceof BackpackGUI)
 		{
-			int slot = 0;
-			while (slot < 54)
-			{
-				if (player.gui.inventory.getItem(slot) == null) 
-				{
-					player.backpack[slot] = null;
-
-				}
-				else player.backpack[slot] = new BackpackItem(player.gui.inventory.getItem(slot),slot);
-				slot++;
-			}
+			((BackpackGUI)player.gui).save(player);
 		}
 		else if (player.gui.type == MenuType.ENCHANTING && player.gui.drop)
 		{
@@ -184,7 +175,7 @@ public class ListenerGUIEvents implements Listener
 		{
 			for (ItemStack item : player.gui.inventory.getContents())
 			{
-				if (!EnchantHandler.eh.isUIElement(item)) player.player.getInventory().addItem(item);
+				if (!EnchantHandler.eh.isUIElement(item)) InventoryHandler.addItem(player, item);
 			}
 		}
 		player.gui = null;

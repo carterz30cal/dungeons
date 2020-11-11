@@ -36,28 +36,26 @@ stick_leaf:
 water_fragment:
   name: Water Fragment
   item: CYAN_DYE
+  
 ocean_fragment:
   name: Ocean Fragment
-  type: ingredient
   rarity: RARE
   item: CYAN_DYE
   glow: true
+  
 holywater_fragment:
   name: Holy Water Fragment
-  type: ingredient
   rarity: EPIC
   item: LIGHT_BLUE_DYE
   
   
 waterway_keyshard:
   name: Waterway Key Shard
-  type: ingredient
   rarity: EPIC
   item: QUARTZ
   
 waterway_core:
   name: Waterway Core Shard
-  type: ingredient
   rarity: EPIC
   item: PLAYER_HEAD
   skull:
@@ -122,7 +120,7 @@ sword_paper:
   set: paper
   item: STONE_SWORD
   attributes:
-    damage: +40
+    damage: +45
     health: -40
     regen: -2
 sword_hyperblade:
@@ -154,6 +152,14 @@ sword_holyhyperblade:
   attributes:
     damage: +28
     regen: +12
+sword_guardian:
+  name: Guardian's Warhammer
+  type: weapon
+  rarity: EPIC
+  item: IRON_AXE
+  attributes:
+    damage: +70
+    armour: +20
 ##############################################
 ##             -- BOWS --   		        ##
 ##              TIER ONE  					##
@@ -477,7 +483,7 @@ loot_drenchedminiboss:
       chance: 20
     armour_titan_chestplate:
       amount: 1
-      chance: 25
+      chance: 20
 armour_cloud_boots:
   name: Cloud Boots
   type: armour
@@ -485,17 +491,16 @@ armour_cloud_boots:
   item: IRON_BOOTS
   ability: cloudboots
   attributes:
-    health: +40
-    armour: +15
+    health: +30
+    armour: +20
 armour_titan_chestplate:
   name: Titan Plate
   type: armour
   rarity: EPIC
   item: GOLDEN_CHESTPLATE
+  ability: titanplate
   attributes:
-    armour: +50
-    damage: +5
-    damagep: +0.2
+    armour: +60
 
 loot_waterway:
   name: Dried Drenched Lootbox

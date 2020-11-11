@@ -14,6 +14,7 @@ import com.carterz30cal.dungeons.SoundTask;
 import com.carterz30cal.items.ItemBuilder;
 import com.carterz30cal.player.DungeonsPlayer;
 import com.carterz30cal.player.DungeonsPlayerManager;
+import com.carterz30cal.utility.InventoryHandler;
 
 public class DungeonMobType
 {
@@ -68,11 +69,14 @@ public class DungeonMobType
 				if (drop.enchants != null) item = ItemBuilder.i.build(drop.item, d,drop.enchants);
 				else item = ItemBuilder.i.build(drop.item, d);
 				item.setAmount(r.nextInt((drop.maxAmount+1)-drop.minAmount)+drop.minAmount);
-				if (killer.getInventory().firstEmpty() == -1) killer.getWorld().dropItem(killer.getLocation(), item);
-				else killer.getInventory().addItem(item);
 				
 				new SoundTask(killer.getLocation(),killer,Sound.ENTITY_ITEM_PICKUP,1,1).runTaskLater(Dungeons.instance, 3);
-				if (drop.chance*100 < 1) killer.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "RARE DROP! " + ChatColor.RESET + item.getItemMeta().getDisplayName());
+				if (drop.chance*100 < 1) 
+				{
+					killer.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "RARE DROP! " + ChatColor.RESET + item.getItemMeta().getDisplayName());
+					InventoryHandler.addItem(d, item);
+				}
+				else InventoryHandler.addItem(d, item,true);
 			}
 		}
 	}

@@ -28,6 +28,7 @@ import com.carterz30cal.mobs.SpawnPosition;
 import com.carterz30cal.player.DungeonsPlayer;
 import com.carterz30cal.tasks.TaskSendMsg;
 import com.carterz30cal.utility.BoundingBox;
+import com.carterz30cal.utility.InventoryHandler;
 
 import net.md_5.bungee.api.ChatColor;
 
@@ -38,10 +39,12 @@ public class BossWaterway extends AbsBoss
 	
 	public ArrayList<DungeonMob> alle;
 	public ArrayList<DungeonMob> s1_drenched;
+	public ArrayList<DungeonMob> s2_guardians;
 	public ArrayList<Block> changed;
 	private int tick;
 	
 	private boolean hasWarned;
+	private boolean guardians;
 	
 	public static String[] lightningPhrases = {"Eat lightning, X!","Do you like lightning X?","Fear my power, X!"};
 	
@@ -62,7 +65,7 @@ public class BossWaterway extends AbsBoss
 		ty.wearing = new ItemStack[4];
 		
 		bar = Bukkit.createBossBar(ChatColor.GOLD + "Dried Drench", BarColor.RED, BarStyle.SEGMENTED_20, new BarFlag[0]);
-		changed = new ArrayList<Block>();
+		
 	}
 	
 	
@@ -85,8 +88,10 @@ public class BossWaterway extends AbsBoss
 		((LivingEntity)abh.rep.entity).setAI(false);
 		players = area.getWithin();
 		s1_drenched = new ArrayList<DungeonMob>();
+		s2_guardians = new ArrayList<DungeonMob>();
 		alle = new ArrayList<DungeonMob>();
 		alle.add(abh.rep);
+		changed = new ArrayList<Block>();
 		new TaskSendMsg(players, ChatColor.RED + "[DRENCH] " + ChatColor.GRAY + "Welcome, puny adventurers."   ,2);
 		new TaskSendMsg(players, ChatColor.RED + "[DRENCH] " + ChatColor.GRAY + "I hope you're ready for this!",4);
 		new TaskSendMsg(players, ChatColor.RED + "[DRENCH] " + ChatColor.GRAY + "Here, fight these."           ,6);
@@ -99,6 +104,7 @@ public class BossWaterway extends AbsBoss
 		{
 			players.get(i).player.teleport(new Location(Dungeons.w,-104 + (i % 5), 97, 20996 + (i / 5),0,-10));
 			bar.addPlayer(players.get(i).player);
+			players.get(i).heal(players.get(i).stats.health);
 		}
 		
 		//-101, 104, 20988
@@ -149,13 +155,17 @@ public class BossWaterway extends AbsBoss
 		else
 		{
 			new TaskSendMsg(players, ChatColor.GOLD + "You have been rewarded with a Dried Drench Lootbox",0);
-			for (DungeonsPlayer d : players) d.player.getInventory().addItem(ItemBuilder.i.build("loot_waterway", null));
+			for (DungeonsPlayer d : players) InventoryHandler.addItem(d, ItemBuilder.i.build("loot_waterway", null));
 		}
 		
 		for (DungeonMob m : alle) if (m.entity != null) m.destroy(null);
 		BossManager.bosses.remove("summonkey_waterway");
 		
-		for (Block b : changed) b.setType(Material.AIR);
+		for (Block b : changed)
+		{
+			b.setType(Material.AIR);
+			b.getState().update(true, true);
+		}
 	}
 
 	@Override
@@ -195,16 +205,30 @@ public class BossWaterway extends AbsBoss
 		}
 		else
 		{
-			if (tick == 20*2) ((LivingEntity)abh.rep.entity).setAI(true);
+			if (guardians && s2_guardians != null) for (int k = 0; k < s2_guardians.size();k++) if (s2_guardians.get(k).health < 1) s2_guardians.remove(k);
 			double projess = ((double)abh.rep.health) / ((double)abh.rep.health());
 			bar.setProgress(Math.min(1, Math.max(0,projess)));
-			if (tick == 20*4) for (DungeonsPlayer d : players) new BossProjectile(this,abh.rep.entity.getLocation(),d.player,12,Particle.SOUL);
-			else if (tick > 20*10 && tick % 240 == 239)
+			if (tick == 20*2) ((LivingEntity)abh.rep.entity).setAI(true);
+			else if (tick == 20*4) for (DungeonsPlayer d : players) new BossProjectile(this,abh.rep.entity.getLocation(),d.player,12,Particle.SOUL);
+			else if (tick > 20*10 && tick % 240 == 239) for (DungeonsPlayer d : players) new BossProjectile(this,abh.rep.entity.getLocation(),d.player,8,Particle.SOUL);
+			
+			if (!guardians && tick >= 20*8 && abh.rep.health < 4000)
 			{
-				/*
-				new TaskSendMsg(players, ChatColor.RED + "[DRENCH] " + ChatColor.GRAY + "It's Wither Time!",0);
-				for (DungeonsPlayer d : players) new BossProjectile(this,abh.rep.entity.getLocation(),d.player,8,Particle.SOUL);
-				*/
+				guardians = true;
+				new TaskSendMsg(players, ChatColor.RED + "[DRENCH] " + ChatColor.GRAY + "I'd watch out, my guardians hit hard.",0);
+				((LivingEntity)abh.rep.entity).setAI(false);
+				for (int i = 0; i < 5; i++)
+				{
+					DungeonMob m = DungeonMobCreator.i.create("driedguardian", new SpawnPosition(-102.5, 111, 21002.5),true);
+					s2_guardians.add(m);
+					alle.add(m);
+				}
+			}
+			else if (s2_guardians != null && guardians && s2_guardians.size() == 0)
+			{
+				new TaskSendMsg(players, ChatColor.RED + "[DRENCH] " + ChatColor.GRAY + "Back to fighting i guess.",0);
+				((LivingEntity)abh.rep.entity).setAI(true);
+				s2_guardians = null;
 			}
 		}
 		

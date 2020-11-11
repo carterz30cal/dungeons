@@ -5,6 +5,7 @@ package com.carterz30cal.player;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.UUID;
 
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -50,6 +51,7 @@ public class DungeonsPlayer
 	public DungeonsPlayer(Player p)
 	{
 		FileConfiguration i = Dungeons.instance.getPlayerConfig();
+		UUID u = p.getUniqueId();
 		player = p;
 		skills = new DungeonsPlayerSkills(p);
 		stats = new DungeonsPlayerStats(p);
@@ -62,10 +64,17 @@ public class DungeonsPlayer
 		display = new DungeonsPlayerDisplay(p,this);
 		gui = null;
 		backpack = new BackpackItem[54];
-		for (String slo : Dungeons.instance.getPlayerConfig().getConfigurationSection(p.getUniqueId() + ".backpack").getKeys(false))
+		backpackb = new ArrayList<BackpackItem[]>();
+		for (String slo : i.getConfigurationSection(u + ".backpack").getKeys(false))
 		{
-			backpack[Integer.parseInt(slo)] = new BackpackItem(p.getUniqueId() + ".backpack." + slo,Integer.parseInt(slo));
+			BackpackItem[] page = new BackpackItem[45];
+			for (int k = 0; k < 45; k++)
+			{
+				if (i.contains(u + ".backpack." + slo + "." + k)) page[k] = new BackpackItem(u + ".backpack." + slo + "." + k,k);
+			}
+			backpackb.add(page);
 		}
+		if (backpackb.size() == 0) backpackb.add(new BackpackItem[45]);
 		coins = Dungeons.instance.getPlayerConfig().getInt(p.getUniqueId() + ".coins", 10);
 		
 		String[] date = i.getString(p.getUniqueId() + ".lastlogin","").split("/");

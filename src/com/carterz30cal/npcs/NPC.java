@@ -52,7 +52,8 @@ public class NPC
     }
 	public void spawnHitbox()
 	{
-		if (slime != null) return;
+		
+		if (slime != null && slime.isValid()) return;
 		
 		Player p = npc.getBukkitEntity().getPlayer();
 		slime = (Slime) p.getLocation().getWorld().spawnEntity(p.getLocation(), EntityType.SLIME);

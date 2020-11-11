@@ -14,6 +14,8 @@ import com.carterz30cal.dungeons.EnchantHandler;
 import com.carterz30cal.dungeons.SoundTask;
 import com.carterz30cal.items.ItemBuilder;
 import com.carterz30cal.items.ItemLootbox;
+import com.carterz30cal.player.DungeonsPlayerManager;
+import com.carterz30cal.utility.InventoryHandler;
 
 import net.md_5.bungee.api.ChatColor;
 
@@ -62,7 +64,7 @@ public class LootboxGUI extends GUI
     	if (position >= 36) return false;
     	if (!EnchantHandler.eh.isUIElement(e.getCurrentItem()))
     	{
-    		p.getInventory().addItem(e.getCurrentItem());
+    		InventoryHandler.addItem(DungeonsPlayerManager.i.get(p), e.getCurrentItem().clone());
     		new SoundTask(p.getLocation(),p,Sound.ENTITY_ARROW_HIT_PLAYER,0.8f,0.8f).runTask(Dungeons.instance);
     		inventory.setItem(position, GUICreator.item(Material.BEDROCK, 
     				e.getCurrentItem().getItemMeta().getDisplayName() + ChatColor.RED + " Already Claimed!", null, 1));

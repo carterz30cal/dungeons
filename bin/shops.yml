@@ -40,4 +40,6 @@ midasfollower:
     book;midastouch: 
       price: 700
       enchants: midastouch,1
+    waterway_keyshard:
+      price: 250
       

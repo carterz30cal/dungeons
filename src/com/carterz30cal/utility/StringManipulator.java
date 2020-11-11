@@ -1,5 +1,7 @@
 package com.carterz30cal.utility;
 
+import java.util.ArrayList;
+
 import org.bukkit.ChatColor;
 
 public class StringManipulator
@@ -44,5 +46,11 @@ public class StringManipulator
 			pos += 0.5;
 		}
 		return rainbowed;
+	}
+	public static ArrayList<String> toArray(String orig)
+	{
+		ArrayList<String> n = new ArrayList<String>();
+		n.add(orig);
+		return n;
 	}
 }

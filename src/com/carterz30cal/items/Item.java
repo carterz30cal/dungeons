@@ -8,6 +8,8 @@ public class Item
 {
 	public String type;
 	public String name;
+	public int id;
+	
 	
 	public ItemSet set;
 	public Material material;

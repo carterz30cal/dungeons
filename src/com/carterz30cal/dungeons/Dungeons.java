@@ -22,6 +22,7 @@ import com.carterz30cal.enchants.EnchantManager;
 import com.carterz30cal.gui.ListenerGUIEvents;
 import com.carterz30cal.items.ItemBuilder;
 import com.carterz30cal.items.ShopManager;
+import com.carterz30cal.items.abilities.AbilityManager;
 import com.carterz30cal.mobs.DungeonMob;
 import com.carterz30cal.mobs.DungeonMobCreator;
 import com.carterz30cal.mobs.ListenerChunkUnload;
@@ -77,6 +78,7 @@ public class Dungeons extends JavaPlugin
 		
 		initFiles();
 		
+		new AbilityManager();
 		new EnchantManager();
 		new DungeonManager();
 		new RecipeManager();
@@ -86,6 +88,8 @@ public class Dungeons extends JavaPlugin
 	    new ShopManager();
 		new NPCManager();
 		new BossManager();
+		
+		
 		
 		DungeonMob.mobs = new HashMap<UUID,DungeonMob>();
 		DungeonMob.silverfi = new HashMap<UUID,DungeonMob>();

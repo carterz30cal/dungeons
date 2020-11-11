@@ -74,11 +74,13 @@ public class DungeonsPlayerManager
 		{
 			playerc.set(path + ".perks." + perk, dp.perks.getKills(perk));
 		}
+		/*
 		HashMap<Integer,BackpackItem> items = new HashMap<Integer,BackpackItem>();
 		for (BackpackItem item : dp.backpack)
 		{
 			if (item != null) items.put(item.slot, item);
 		}
+		
 		for (int slot = 0; slot < 54;slot++)
 		{
 			if (items.containsKey(slot))
@@ -87,6 +89,8 @@ public class DungeonsPlayerManager
 			}
 			else playerc.set(path + ".backpack." + slot, null);
 		}
+		*/
+		for (int p = 0; p < dp.backpackb.size(); p++) for (BackpackItem item : dp.backpackb.get(p)) if (item != null) item.save(path + ".backpack." + p);
 		if (dp.explorer.areaPoints.size() > 0)
 		{
 			for (Entry<String,Integer> dungeon : dp.explorer.areaPoints.entrySet())

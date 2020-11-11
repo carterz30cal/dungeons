@@ -22,6 +22,8 @@ import com.carterz30cal.items.Item;
 import com.carterz30cal.items.ItemBuilder;
 import com.carterz30cal.items.ItemSet;
 import com.carterz30cal.items.ItemSharpener;
+import com.carterz30cal.items.abilities.AbilityManager;
+import com.carterz30cal.items.abilities.AbsAbility;
 import com.carterz30cal.mobs.DungeonMobCreator;
 import com.carterz30cal.mobs.MobAction;
 import com.carterz30cal.tasks.TaskBlockReplace;
@@ -29,6 +31,8 @@ import com.carterz30cal.tasks.TaskBlockReplace;
 public class DungeonsPlayerStats
 {
 	public Player p;
+	public ArrayList<AbsAbility> abilities;
+	
 	
 	public int armour;
 	public int health = 200;
@@ -44,11 +48,12 @@ public class DungeonsPlayerStats
 	public DungeonsPlayerStats(Player player)
 	{
 		p = player;
+		abilities = new ArrayList<AbsAbility>();
 	}
 	public void refresh()
 	{
 		DungeonsPlayer dp = DungeonsPlayerManager.i.get(p);
-		
+		abilities = new ArrayList<AbsAbility>();
 		// check for set
 		ItemSet sett = null;
 		for (ItemStack armour : p.getInventory().getArmorContents())
@@ -122,6 +127,7 @@ public class DungeonsPlayerStats
 					else bank.add(sharpener.attributes);
 				}
 			}
+			if (i.data.containsKey("ability")) abilities.add(AbilityManager.get((String) i.data.get("ability")));
 			ArrayList<AbsEnchant> enchants = EnchantManager.get(meta.getPersistentDataContainer());
 			allench.addAll(enchants);
 			if (enchants != null && !enchants.isEmpty()) for (AbsEnchant e : enchants) {
@@ -129,7 +135,7 @@ public class DungeonsPlayerStats
 				if (b != null) bank = b;
 			}
 			
-			if (i.data.containsKey("ability")) itemAction(DungeonMobCreator.i.actions.get(i.data.get("ability")));
+			//if (i.data.containsKey("ability")) itemAction(DungeonMobCreator.i.actions.get(i.data.get("ability")));
 			
 			add(fbank,bank);
 		}
@@ -142,7 +148,7 @@ public class DungeonsPlayerStats
 			bank.add(sett.set_attributes);
 			add(fbank,bank);
 			
-			if (!sett.set_ability.equals("none")) itemAction(DungeonMobCreator.i.actions.get(sett.set_ability));
+			if (!sett.set_ability.equals("none")) abilities.add(AbilityManager.get(sett.set_ability));
 		}
 		
 		if (h != null && h.type.equals("weapon") && synergy)

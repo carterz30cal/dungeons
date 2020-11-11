@@ -27,13 +27,7 @@ spiderdrain:
   distance: under,10
   line: TOTEM,30,2
   damage: 18
-# ACTIONS ARE ALSO USED BY ITEMS
-cloudboots:
-  description: Clouds appear below your feet
-  reqblock: 0,-1,0,AIR
-  ylevel: under,110
-  block: 0,-1,0,WHITE_WOOL,12
-speed:
-  description: Gives permanent Speed 2
-  potion: SPEED,1
+
+
+
 

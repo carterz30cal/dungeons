@@ -190,16 +190,20 @@ driedguardian:
   name: Boss Guardian
   type: WITHER_SKELETON
   health: 600
-  damage: 90
-  xp: 90
-  knockbackResist: 1
+  damage: 150
+  xp: 130
+  knockbackResist: 0
   equipment:
     main: IRON_AXE
     offhand: IRON_AXE
     helmet: NETHERITE_HELMET
     chestplate: NETHERITE_CHESTPLATE
-    leggings: AIR
+    leggings: GOLDEN_BOOTS
     boots: GOLDEN_BOOTS
+  drops:
+    sword_guardian:
+      drop: 1/200
+      amount: 1-1
 sniperskeleton:
   name: Sniper
   type: SKELETON

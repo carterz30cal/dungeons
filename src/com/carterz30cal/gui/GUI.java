@@ -134,16 +134,6 @@ public class GUI
 			new GUI(1,p);
 			doRender = false;
 			break;
-		case BACKPACK:
-			/*
-			for (BackpackItem item : player.backpack)
-			{
-				if (item == null) continue;
-				contents[item.slot] = item.create(player.highlightRenamed);
-			}
-			*/
-			new BackpackGUI(player.player);
-			break;
 		case SETTINGS:
 			ChatColor pbc = ChatColor.GREEN;
 			if (player.colourblindMode) pbc = ChatColor.BLUE;
@@ -504,7 +494,7 @@ public class GUI
 				new GUI(MenuType.PERKS,p);
 				break;
 			case 21:
-				new GUI(MenuType.BACKPACK,p);
+				new BackpackGUI(p);
 				break;
 			case 22:
 				new GUI(MenuType.SETTINGS,p);

@@ -34,6 +34,7 @@ import com.carterz30cal.dungeons.IndicatorTask;
 import com.carterz30cal.dungeons.SoundTask;
 import com.carterz30cal.enchants.AbsEnchant;
 import com.carterz30cal.enchants.EnchantManager;
+import com.carterz30cal.items.abilities.AbsAbility;
 import com.carterz30cal.mobs.DungeonMob;
 import com.carterz30cal.mobs.DungeonMobCreator;
 import com.carterz30cal.tasks.TaskDamageKnockback;
@@ -127,7 +128,8 @@ public class ListenerEntityDamage implements Listener
 					}
 					damage = dp.stats.damageSweep;
 				}
-				else damage = Math.round(damage*p.getAttackCooldown());
+				if (p.getAttackCooldown() < 0.95) damage = damage / 5;
+				
 				
 				Location hitLocation = e.getEntity().getLocation().subtract(e.getEntity().getLocation().subtract(p.getLocation()).multiply(0.3))
 						.add(0,1.25,0);
@@ -187,6 +189,8 @@ public class ListenerEntityDamage implements Listener
 		{
 			Player p = (Player)e.getEntity();
 			DungeonsPlayer dp = DungeonsPlayerManager.i.get((Player)e.getEntity());
+			for (AbsAbility a : dp.stats.abilities) if (a.onDamage(dp,e.getCause())) e.setCancelled(true);
+			if (e.isCancelled()) return;
 			switch (e.getCause())
 			{
 			case DROWNING:

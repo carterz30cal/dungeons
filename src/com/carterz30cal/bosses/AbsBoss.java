@@ -36,4 +36,10 @@ public abstract class AbsBoss
 	{
 		
 	}
+	
+	public void remove (DungeonsPlayer d)
+	{
+		if (!players.contains(d)) return;
+		players.remove(d);
+	}
 }

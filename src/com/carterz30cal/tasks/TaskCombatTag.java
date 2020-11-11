@@ -20,7 +20,7 @@ public class TaskCombatTag extends BukkitRunnable
 	
 	public TaskCombatTag(Player player,DungeonMob mob)
 	{
-		p = DungeonsPlayerManager.i.get(player);
+		if (player != null) p = DungeonsPlayerManager.i.get(player);
 		m = mob;
 	}
 	// an action can occur once every second (each action has different criteria)
