@@ -11,8 +11,8 @@ waterway:
     boss:
       mob: drenched_miniboss
       spawn: -66,103,21002
-      requirement: 200
-    xp: 18
+      requirement: 125
+    xp: 15
     ores:
       GREEN_TERRACOTTA:
         ore: leafmash
@@ -71,16 +71,60 @@ waterway:
     -35,119,20974: drenched3
 necropolis:
   name: Necropolis
-  spawn: 0,100,0
-  unfinished: true
+  spawn: 0,103,22000
+  unfinished: false
   explorer:
     icon:
       data: ewogICJ0aW1lc3RhbXAiIDogMTYwMjM1ODI5OTI3OCwKICAicHJvZmlsZUlkIiA6ICI0ZWQ4MjMzNzFhMmU0YmI3YTVlYWJmY2ZmZGE4NDk1NyIsCiAgInByb2ZpbGVOYW1lIiA6ICJGaXJlYnlyZDg4IiwKICAic2lnbmF0dXJlUmVxdWlyZWQiIDogdHJ1ZSwKICAidGV4dHVyZXMiIDogewogICAgIlNLSU4iIDogewogICAgICAidXJsIiA6ICJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlL2IxMTZkMjhjZTc3ZjlmZWY3YTZmYjQwODIyNGUzYmU4NDUzMGE0MmMzYzYxZWFhN2U4NTNkNzYyZDRlZDgyNzEiCiAgICB9CiAgfQp9#
       sig: M55L1zW0Ci0lLXDiTJfKPu71k9tpsorao5ZRYH4/Fmr9JbTWrT6hRYt3ZlvNZj6uEgbxSseFYA+Xp+qGoqE1Z2BE0Z/oO2/IrzC12uhvVd7FTFzmjjcgRJjgTwhm8vxEsAXjE2TOsXdT6DGSm0sPc+iUSoJGMDSwC+yTYuATa1L8UUplAq17nw+vRAayS2iel0Wvkj/P0yYKLaZEM14GpC6UWV/NzRl/XBP/esS1OLqZe3zFg76bqf6WUVbcDLI4ZhHL+NkClDN2a62YncO4+pEtEEL6bRCA+alKjCCxoxHkLXdYoCXja8Wr1S5E64SBZYjptm/f/C9NfKQyyEf5YnxCwHn/0y5PKXkY7AmhLAc5Myv+OQv8lkbwRKOlnii7h0MrKp30HJ1a/NaSIz+xIEEaUlTg7NrKYV84oMh6xs58NodGLPn+6MQo1H3n4IvlbD0tY0lXX3ro8I3MPb8+FTQu6RsRPdtMFc89Nx1ssaVWBYDVfrK9rJXlzZCt7XdebM9RL7FQSaHVVZfwWnc3xOdFOj710lrj0NdGZtTydhg37gs4T9htwxp6PuoMBF3TUMvy5cJeKM0Z0sRJprsj/EKxBE2WN7167VMuwLPoWxUIAOPp36mhGRepz37FG8u1lpYtC0FFhf7NIUDvQfBjh0IZLbHeBaZEN8pENHcGE28=
     lore: The skeletons of valiant warriors defend their resting place./ Be careful who you disturb.
-    killsperlevel: 275
+    killsperlevel: 250
   mining:
     boss: {}
-    ores: {}
-  spawns: {}    
+    xp: 21
+    ores: 
+      RED_WOOL:
+        ore: beating_mass
+        replacement: OBSIDIAN
+  spawns:
+    12,101,21990: skeleton1
+    22,101,22005: skeleton1
+    28,101,21999: skeleton1
+    16,101,22008: skeleton1
+    26,101,22014: skeleton1
+    20,101,22021: skeleton1
+    
+    -19,99,22021: miner1
+    -8,97,22033: miner1
+    -2,95,22041: miner1
+    -19,95,22037: miner1
+    -21,94,22029: miner1
+    -28,89,22037: miner1
+    -8,87,22034: miner1
+    
+    -7,86,22002: skeleton2
+    -2,86,21994: skeleton2
+    -0,86,22002: skeleton2
+    -17,86,21999: skeleton2
+    
+    -11,117,22053: skeleton2
+    -17,117,22050: skeleton2
+    -12,117,22060: skeleton2
+    -18,117,22063: skeleton2
+    -11,117,22067: skeleton2
+    
+    -23,110,22089: slime3
+    -19,110,22106: slime3
+    -25,110,22121: slime3
+    -31,110,22105: slime3
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     

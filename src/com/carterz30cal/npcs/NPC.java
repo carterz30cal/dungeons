@@ -4,9 +4,9 @@ import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_16_R2.CraftServer;
-import org.bukkit.craftbukkit.v1_16_R2.CraftWorld;
-import org.bukkit.craftbukkit.v1_16_R2.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_16_R3.CraftServer;
+import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
+import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Slime;
@@ -19,19 +19,22 @@ import com.carterz30cal.items.ItemBuilder;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 
-import net.minecraft.server.v1_16_R2.EntityPlayer;
-import net.minecraft.server.v1_16_R2.MinecraftServer;
-import net.minecraft.server.v1_16_R2.PacketPlayOutEntityDestroy;
-import net.minecraft.server.v1_16_R2.PacketPlayOutNamedEntitySpawn;
-import net.minecraft.server.v1_16_R2.PacketPlayOutPlayerInfo;
-import net.minecraft.server.v1_16_R2.PlayerConnection;
-import net.minecraft.server.v1_16_R2.PlayerInteractManager;
-import net.minecraft.server.v1_16_R2.WorldServer;
-import net.minecraft.server.v1_16_R2.PacketPlayOutPlayerInfo.EnumPlayerInfoAction;
+import net.minecraft.server.v1_16_R3.DataWatcher;
+import net.minecraft.server.v1_16_R3.DataWatcherObject;
+import net.minecraft.server.v1_16_R3.DataWatcherRegistry;
+import net.minecraft.server.v1_16_R3.MinecraftServer;
+import net.minecraft.server.v1_16_R3.PacketPlayOutEntityDestroy;
+import net.minecraft.server.v1_16_R3.PacketPlayOutEntityMetadata;
+import net.minecraft.server.v1_16_R3.PacketPlayOutNamedEntitySpawn;
+import net.minecraft.server.v1_16_R3.PacketPlayOutPlayerInfo;
+import net.minecraft.server.v1_16_R3.PlayerConnection;
+import net.minecraft.server.v1_16_R3.PlayerInteractManager;
+import net.minecraft.server.v1_16_R3.WorldServer;
+import net.minecraft.server.v1_16_R3.PacketPlayOutPlayerInfo.EnumPlayerInfoAction;
 
 public class NPC
 {
-	public EntityPlayer npc;
+	public NPCp npc;
 	public Slime slime;
 	
 	public String shopId;
@@ -44,9 +47,13 @@ public class NPC
         PlayerInteractManager m = new PlayerInteractManager(world);
         GameProfile prof = new GameProfile(UUID.randomUUID(), name);
         prof.getProperties().put("textures", new Property("textures", skinData, skinSignature));
+
         
-        npc = new EntityPlayer(server,world,prof,m);
+        npc = new NPCp(server,world,prof,m);
+        
         npc.setLocation(location.getX(), location.getY(), location.getZ(), location.getYaw(), location.getPitch());
+        npc.setHeadRotation(location.getYaw());
+        
         
         shopId = "none";
     }
@@ -75,8 +82,13 @@ public class NPC
 	{
 		PlayerConnection connection = ((CraftPlayer)r).getHandle().playerConnection;
 		
+		
 		connection.sendPacket(new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.ADD_PLAYER, npc));
         connection.sendPacket(new PacketPlayOutNamedEntitySpawn(npc));
+        DataWatcher watcher = new DataWatcher(null);
+
+        watcher.register(new DataWatcherObject<>(16, DataWatcherRegistry.a), (byte)127);
+        connection.sendPacket(new PacketPlayOutEntityMetadata(npc.getId(), watcher, true));
         Bukkit.getScheduler().runTaskLater(Dungeons.instance, new Runnable() {
             
             @Override

@@ -1,0 +1,52 @@
+sword_fishingforkcommon:
+  name: Fishing Spear
+  type: weapon
+  rarity: COMMON
+  item: TRIDENT
+  ability: fishingt1
+sword_fishingforkrare:
+  name: Nice Fishing Spear
+  type: weapon
+  rarity: RARE
+  item: TRIDENT
+  ability: fishingt2
+sword_fishingforkincredible:
+  name: Excellent Fishing Spear
+  type: weapon
+  rarity: INCREDIBLE
+  item: TRIDENT
+  ability: fishingt3
+sword_fishingforklegendary:
+  name: Legends Fishing Spear
+  type: weapon
+  rarity: LEGENDARY
+  item: TRIDENT
+  ability: fishingt4
+ 
+ 
+fishing_fish:
+  name: Fish
+  item: COD
+fishing_fishbarrel:
+  name: Fish Barrel
+  item: PLAYER_HEAD
+  rarity: RARE
+  skull:
+    data: ewogICJ0aW1lc3RhbXAiIDogMTYwODM5ODMwNTA2MywKICAicHJvZmlsZUlkIiA6ICIxOTI1MjFiNGVmZGI0MjVjODkzMWYwMmE4NDk2ZTExYiIsCiAgInByb2ZpbGVOYW1lIiA6ICJTZXJpYWxpemFibGUiLAogICJzaWduYXR1cmVSZXF1aXJlZCIgOiB0cnVlLAogICJ0ZXh0dXJlcyIgOiB7CiAgICAiU0tJTiIgOiB7CiAgICAgICJ1cmwiIDogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOGRjZDEyOWRmZDZjMmY5ZWViM2JlMDA2NDJjMDkzODhmYmVmYWQ3ZTlhYzVhMmY2NjA5NzExNWM2MTY0MjdhMiIKICAgIH0KICB9Cn0=
+    sig: uAWNlZHjUNGpcvetp2WoVWUl+mDvqnsHDkQxiXY4Cd5p05jWYNOBG4OqoXQ+29XtpWqvcg00F9PT0uYCaHASsiVIqpbhM2uuMLGcpDIXTWYIu+8mPFYjm8NWTq4TaqcRs+TtNRSU+BeTJZg0joPXFEgUWIRJQOONcdxjn4rdEJSxl0cz3PuUxU6Qja5QpvYTkhng8n06p9e916FfZCqMwfoicy2HvxxYD+GMyPzUdj9eZQXl1QK95w4+ZyQ5fRQovhKEPN1jjQtGusOL/kYyvkk6RDq7Jw38Aaq9wvnp5H1Vo3XSKEKQzgTXRmBTpJUp10hjbIZ/WLg/bzCQmSOXy8QWgM/WBb8vZssF0dZvDZCvUScM0UQw0Kip1tZol8rcOHfT0BNWcbM9YUWuuHhBpai7F6pxsmiKgORzVW/x56jTBYa2fbOBSbm5L9rxCRVxws54TZHRYwvAw4RERYXov+2U/7F6xQwJ3+wtCq/0y9mmLvIYGkJ6C0DT38i1fJF0mALX1UXpspoyGReAby+KexpZcMPHjYAnruwG/b4qngevuseu5Np4kY8W7A4SGZbt720OtaGyMLfVHi2+Kcw8FXfa4Olkzi9EnMB/Uc/tCpohgIt5+6bQ2vyCP/ETD0by9j91MXbFo+F2i9HrlckbbgZytKNDeB2f+CiBZeEGJRs=
+fishing_pearl:
+  name: Rare Pearl
+  rarity: RARE
+  item: HEART_OF_THE_SEA
+  
+bow_pond:
+  name: Bow of the Pond
+  type: weapon
+  rarity: RARE
+  item: BOW
+  set: water
+  glow: true
+  attributes:
+    damage: +23
+    health: +50
+

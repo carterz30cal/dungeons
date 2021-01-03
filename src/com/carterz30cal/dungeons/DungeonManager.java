@@ -13,6 +13,7 @@ import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
+import com.carterz30cal.mobs.DMobManager;
 import com.carterz30cal.mobs.SpawnPosition;
 
 public class DungeonManager
@@ -69,7 +70,7 @@ public class DungeonManager
 				SpawnPosition spl = new SpawnPosition(new Location(Bukkit.getWorld("hub"),Integer.parseInt(spawns[0]),Integer.parseInt(spawns[1]),Integer.parseInt(spawns[2])));
 				dungeon.spawns.put(spl, data.getString(d + ".spawns." + spawn));
 			}
-			
+			if (data.contains(d + ".modifiers")) for (String m : data.getString(d + ".modifiers").split(",")) dungeon.modifiers.add(DMobManager.modifiers.get(m));
 			// DungeonMining setup here
 			dungeon.mining.xp = data.getInt(d + ".mining.xp", 0);
 			for (String o : data.getConfigurationSection(d + ".mining.ores").getKeys(false))

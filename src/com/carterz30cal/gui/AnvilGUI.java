@@ -173,8 +173,10 @@ public class AnvilGUI extends GUI
 			{
 				ItemStack item = inventory.getItem(19);
 				ItemStack book = inventory.getItem(25);
-				String catalyst = inventory.getItem(22).getItemMeta().getPersistentDataContainer().get(ItemBuilder.kItem, PersistentDataType.STRING);
-				if (Integer.parseInt(catalyst.split("=")[1]) == EnchantManager.catalyst(item, book))
+				ItemStack catalyst = inventory.getItem(22);
+				
+				int can = ItemBuilder.canEnchant(item, book, catalyst);
+				if (can == 0)
 				{
 					ItemStack product = inventory.getItem(19).clone();
 					product = ItemBuilder.i.enchantItem(product, inventory.getItem(25));
@@ -183,11 +185,23 @@ public class AnvilGUI extends GUI
 				}
 				else
 				{
-					String[] explan = new String[]
+					String error = null;
+					switch (can)
 					{
-						" " + ChatColor.RED + "Requires " + ItemBuilder.i.build("catalyst=" + EnchantManager.catalyst(item, book), null).getItemMeta().getDisplayName()
-					};
-					ItemStack barrier = GUICreator.item(Material.BARRIER, ChatColor.RED + "Incorrect Catalyst!", explan, 1);
+					case 1:
+						error = "Incompatible Enchantment!";
+						break;
+					case 2:
+						error = "Item is a book!";
+						break;
+					case 3:
+						error = "Requires a " + ItemBuilder.i.items.get("catalyst=" + EnchantManager.catalyst(book)).name;
+						break;
+					default:
+						break;
+					}
+
+					ItemStack barrier = GUICreator.item(Material.BARRIER, ChatColor.RED + "Error!", ChatColor.RED + " " + error);
 					
 					inventory.setItem(40, barrier);
 				}
@@ -242,7 +256,7 @@ public class AnvilGUI extends GUI
 			else if (position % 9 <= 2 && position >= 18) cancel = false;
 			
 			int t = 0;
-			if (position == 31)
+			if (position == 31 || position == 34)
 			{
 				if (e.getClick() == ClickType.RIGHT) t = 2;
 				else if (e.getClick() == ClickType.LEFT) t = 1;
@@ -293,7 +307,8 @@ public class AnvilGUI extends GUI
 		if (recipe != null && recipe.isCraftable(ingredients))
 		{
 			for (int i = 0; i < 9; i++) inventory.setItem(i+9,GUICreator.pane(Material.BLUE_STAINED_GLASS_PANE));
-			ItemStack displayItem = recipe.product.clone();
+			ItemStack displayItem = recipe.upgradedProduct(ingredients);
+			ItemStack product = displayItem.clone();
 			ItemMeta meta = displayItem.getItemMeta();
 			List<String> lore = meta.getLore();
 			lore.add("");
@@ -307,13 +322,13 @@ public class AnvilGUI extends GUI
 			{
 			case 1:
 				recipe.craft(ingredients);
-				p.getInventory().addItem(recipe.product.clone());
+				p.getInventory().addItem(product);
 				break;
 			case 2:
 				while (recipe.isCraftable(ingredients))
 				{
 					ingredients = recipe.craft(ingredients);
-					p.getInventory().addItem(recipe.product.clone());
+					p.getInventory().addItem(product.clone());
 				}
 				break;
 			}

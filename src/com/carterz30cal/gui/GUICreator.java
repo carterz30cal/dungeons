@@ -136,6 +136,26 @@ public class GUICreator
 		
 		return item;
 	}
+	public static ItemStack item(Material mat,String name,String lore)
+	{
+		ItemStack item = new ItemStack(mat);
+		ItemMeta meta = item.getItemMeta();
+		meta.setDisplayName(ChatColor.WHITE + name);
+		
+		ArrayList<String> l = new ArrayList<String>();
+		if (lore != null)
+		{
+			l.add(lore);
+			meta.setLore(l);
+		}
+		else meta.setLore(null);
+		meta.getPersistentDataContainer().set(ItemBuilder.kItem, PersistentDataType.STRING, "uielement");
+		meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+		meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+		item.setItemMeta(meta);
+		
+		return item;
+	}
 	public static int middle(int size) 
 	{
 		return size/2;

@@ -15,7 +15,7 @@ import com.carterz30cal.dungeons.Dungeon;
 import com.carterz30cal.dungeons.DungeonManager;
 import com.carterz30cal.dungeons.Dungeons;
 
-import net.md_5.bungee.api.ChatColor;
+import org.bukkit.ChatColor;
 
 public class NPCManager
 {

@@ -1,0 +1,86 @@
+soaked1:
+  name: Soaked
+  type: DROWNED
+  health: 80
+  damage: 15
+  speed: 0.6
+  kbresist: 0
+  perk: waterway_drenched
+  equipment:
+    main: WOODEN_SHOVEL
+    helmet: armour_ocean_helmet
+    chestplate: armour_ocean_chestplate
+    leggings: CHAINMAIL_LEGGINGS
+    boots: CHAINMAIL_BOOTS
+  drops:
+    water_fragment:
+      drop: 1/3
+      amount: 1-1
+    storm_crystals:
+      drop: 1/4
+      amount: 1-1
+    catalyst=0:
+      drop: 1/110
+      amount: 1-1
+    book:
+      drop: 1/80
+      amount: 1-1
+      enchants: shocking,1
+soaked2:
+  name: Soaked
+  type: DROWNED
+  health: 180
+  damage: 30
+  speed: 0.6
+  kbresist: 0
+  perk: waterway_drenched
+  equipment:
+    main: STONE_SHOVEL
+    helmet: armour_ocean_helmet
+    chestplate: armour_ocean_chestplate
+    leggings: CHAINMAIL_LEGGINGS
+    boots: CHAINMAIL_BOOTS
+  drops:
+    water_fragment:
+      drop: 1/3
+      amount: 1-1
+    storm_crystals:
+      drop: 1/4
+      amount: 1-1
+    catalyst=0:
+      drop: 1/110
+      amount: 1-1
+    book:
+      drop: 1/80
+      amount: 1-1
+      enchants: shocking,1
+soaked3:
+  name: Soaked
+  type: DROWNED
+  health: 290
+  damage: 45
+  speed: 0.6
+  kbresist: 0
+  perk: waterway_drenched
+  equipment:
+    main: IRON_SHOVEL
+    helmet: armour_ocean_helmet
+    chestplate: armour_ocean_chestplate
+    leggings: CHAINMAIL_LEGGINGS
+    boots: CHAINMAIL_BOOTS
+  drops:
+    water_fragment:
+      drop: 1/2
+      amount: 1-1
+    storm_crystals:
+      drop: 1/3
+      amount: 1-1
+    catalyst=0:
+      drop: 1/100
+      amount: 1-1
+    book:
+      drop: 1/78
+      amount: 1-1
+      enchants: shocking,1
+
+  

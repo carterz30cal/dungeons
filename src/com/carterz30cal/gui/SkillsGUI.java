@@ -15,7 +15,7 @@ import com.carterz30cal.player.DungeonsPlayerManager;
 import com.carterz30cal.player.DungeonsPlayerSkills;
 import com.carterz30cal.utility.StringManipulator;
 
-import net.md_5.bungee.api.ChatColor;
+import org.bukkit.ChatColor;
 
 public class SkillsGUI extends GUI
 {

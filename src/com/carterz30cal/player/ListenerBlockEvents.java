@@ -57,7 +57,9 @@ public class ListenerBlockEvents implements Listener
 				d.mining.progress();
 			}
 			if (p.skills.add("mining", mine.xp)) p.skills.sendLevelMessage("mining", e.getPlayer());
-			new TaskBlockReplace(e.getBlock(),b).runTaskLater(Dungeons.instance, 100);
+			TaskBlockReplace tbr = new TaskBlockReplace(e.getBlock(),b);
+			tbr.runTaskLater(Dungeons.instance, 100);
+			Dungeons.instance.blocks.put(e.getBlock(), tbr);
 			e.getBlock().setType(d.mining.blocks.get(b));
 		}
 	}

@@ -13,7 +13,7 @@ shopkeepsteve:
     book;lucky: 
       price: 275
       enchants: lucky,1
-    armour_adventurer_helmet:
+    armour_adventurers_helmet:
       price: 600
     sword_adventurers:
       price: 525
@@ -42,4 +42,20 @@ midasfollower:
       enchants: midastouch,1
     waterway_keyshard:
       price: 250
+fisherman:
+  name: Fishin'
+  items:
+    sword_fishingforkcommon:
+      price: 1000
+    sword_fishingforkrare:
+      price: 1
+    sword_fishingforkincredible:
+      price: 1
+    sword_fishingforklegendary:
+      price: 1
+skeletonmerchant:
+  name: UNFINISHED
+  items:
+    bone:
+      price: -1000
       

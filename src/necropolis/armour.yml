@@ -1,0 +1,75 @@
+armour-bone:
+  name: Bone
+  suffix: Helmet,Chestplate,Leggings,Boots
+  set: bone
+  item: LEATHER
+  colour: 200,200,200
+  req: 4
+  attributes:
+    armour: 50,60,55,45
+armour_lordhelm_helmet:
+  name: Lord's Helm
+  type: armour
+  rarity: INCREDIBLE
+  set: bone
+  item: PLAYER_HEAD
+  req: 8
+  skull:
+    data: ewogICJ0aW1lc3RhbXAiIDogMTYwNzE5OTMxMjgyMSwKICAicHJvZmlsZUlkIiA6ICIyMWUzNjdkNzI1Y2Y0ZTNiYjI2OTJjNGEzMDBhNGRlYiIsCiAgInByb2ZpbGVOYW1lIiA6ICJHZXlzZXJNQyIsCiAgInNpZ25hdHVyZVJlcXVpcmVkIiA6IHRydWUsCiAgInRleHR1cmVzIiA6IHsKICAgICJTS0lOIiA6IHsKICAgICAgInVybCIgOiAiaHR0cDovL3RleHR1cmVzLm1pbmVjcmFmdC5uZXQvdGV4dHVyZS85MWY3ZTQxZDYzZjQwNmEyY2JkODJlNzcyOTgzM2ExNzFkMDNmNDE5MmI4NWE1N2Q5YzIzODg4ZjRmOWRmMTUzIgogICAgfQogIH0KfQ==
+    sig: KyNZ1xLZMKVIXZZMpTNXhZHShM0g2s39aL5bf0Me1KDZjR+3Mj96bcSz/bwHIqiCpWakyvqZwpcSWnGNIu/BGwFZ+Nbl7EhVhXQwrckLvT0j5Ab7E5NncdLohRAW6TxXCnMJW1Kp3SdocSPBRwMlpPOJP6p/GnrvwOVD+XhwDUg5h8ZtbjeKNtb1Q44HQlGv1Zp0SLBjby0t1/FgNslPmgPRMlWiSzNNGq7Ep/wsSYyACaTjdD9e5U5O9JVPdCB9seFpsuqgdBiuWzCKHmVs1FXvXBpePMj70wSusUhU1q3ocaV7KTmjKCXqi2abpYjYgK6jqwQi6Mb5Fw5JsntquQJbgCaANUFDmRexhXp3SSWHxDY5U/q8gC0IQcZ2JOkWG0sYlLE6u1E+utRpPq5NZqQaR1fB1hM1dqyffvvlT5ZKfUd+6iYHn+Bqfmx9/s1F9N61DwaKSsUal5yML68X19KRzHND7vb2WewXse4d5siFT0MgfnSe3+nB0Bi6XfcgrocFLjno8BhuepLmjZRusWgyymgTorc++hkGUX3/pNh2htTEOpPPdB2a0i6HZYw/uhJArxF/q8Iht43svG2Paozmsb/P8ws9rwE7sfzLjwu5zhThwBGHnQHwb9yLYwOUdWoWFW8XhO1gtpgdEk/qDOjYNqPczNgiZKGk8niiO5k=
+  attributes:
+    armour: 90
+    damagep: +0.1
+armour-tissue:
+  name: Tissue
+  suffix: Helmet,Chestplate,Leggings,Shoes
+  rarity: RARE
+  set: tissue
+  item: LEATHER
+  colour: 190,30,30
+  req: 5
+  attributes:
+    health: 45,90,50,35
+    armour: 25,40,30,20
+armour-slime:
+  name: Slime
+  suffix: Cube,Shirt,Shorts,Sandals
+  rarity: RARE
+  set: slime
+  item: LEATHER
+  colour: 0,150,0
+  req: 5
+  skull:
+    data: ewogICJ0aW1lc3RhbXAiIDogMTYwNzgwMDk3MTk3MywKICAicHJvZmlsZUlkIiA6ICIyM2YxYTU5ZjQ2OWI0M2RkYmRiNTM3YmZlYzEwNDcxZiIsCiAgInByb2ZpbGVOYW1lIiA6ICIyODA3IiwKICAic2lnbmF0dXJlUmVxdWlyZWQiIDogdHJ1ZSwKICAidGV4dHVyZXMiIDogewogICAgIlNLSU4iIDogewogICAgICAidXJsIiA6ICJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlL2QyNDBhOTU0Y2Q2OGY5ZmVjYThjNmNjMWUxMGQxY2I0NDAwNTFkMGQ0N2E4NGY4NjVkNzhiNGFiMGI2ZjQxYzEiCiAgICB9CiAgfQp9
+    sig: KcWAFYJHZlxOQZ8qfE/AgztL/8GNXF8slPusDxFl0TxEIi6878uKi9CHYhovM+osg8tLhX4wouIgvxLcrljZOwsJ+9+jU77KGHr6uaFzKJ7H19wNS2HcYxrd49AZ/wGXpTkf8KWIBNcwzdcK6xOX+Siq4wmlQsWPys0CTybts5TeR0/8eyBV9AwlI2H1vQJzXe2oYZuf4BQuvM4qnl/pRfiuQkfIA8fSlF8mcFdPwRKsQz9Ngk28gE/afyQ4O9MuncnBPABBclUW52MMqzI1d9VwqS9Fo9oGx6ZYmvE9bothganQZXgp70l/30nyj7X/2YKR7hBPFxpVN1uwFRYu5qUgIb7jFBYJKHw8Q+6q09H+tb4ksnOPG4ZM6BHQSL6pIAbYFieUvWKlh8aqsTArYWJwhENeaBu2A0I6RtsVegPa2AX4FHbWV04SKIiF00cUYnC/mRyEKVZNUaRnkp27D1AxCynsgFwfwcZMUHNk4Xhu2q5EFCoORhJxZ5HmClKTQqZLx3zb01tyJcuCizFisyz1uyRb0P3sl2Ptji3pqQWavlel/KvR77mVQKLSg2pvPofrDXGQtyYLd6a0NTpogfNUBEz1RnIDrur8F0ddcb/HFr2U51X2ALKnz7HNF8m32mpfFriqLHaz9J1BC8Hm6D+1DST5KsaC1EVkJZI77QQ=
+  attributes:
+    health: 100,150,100,100
+    armour: 10,10,10,5
+    damage: -2,-5,-2,-1
+    
+armour-soul:
+  name: Soul Reaper
+  suffix: Mask,Chestplate,Leggings,Boots
+  rarity: RARE
+  set: soul
+  item: LEATHER
+  colour: 106,49,212
+  req: 6
+  skull:
+    data: ewogICJ0aW1lc3RhbXAiIDogMTYwNTU1NzQ0OTM0OSwKICAicHJvZmlsZUlkIiA6ICJiYzRlZGZiNWYzNmM0OGE3YWM5ZjFhMzlkYzIzZjRmOCIsCiAgInByb2ZpbGVOYW1lIiA6ICI4YWNhNjgwYjIyNDYxMzQwIiwKICAic2lnbmF0dXJlUmVxdWlyZWQiIDogdHJ1ZSwKICAidGV4dHVyZXMiIDogewogICAgIlNLSU4iIDogewogICAgICAidXJsIiA6ICJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlLzc1MTIyZDMyNzYzYjI3ZmExMWIxODY1MTFiZDYxNzI2ZGFhZWEzZTE2MGVjNjdlMzU2OWUwOGFjYmFlM2VkMGMiCiAgICB9CiAgfQp9
+    sig: lTOXhNIUAWCdueehbI8B1Laa3zEaXpb+Os9QQRtDuV07jMNkHaMFeZ7exXoowRuIVwhZq2X+aSsFT907hWLO/p9fWc6bylS49Zb/ZnXbld2xYmrU2VI65NikSyMRybb2fdh+k+5UkyPaX9oo2F566MXDEKXfJfbBILnp9qPXlety72kIqSeUZmB/NG7a/VqHqBM0+0NhrpoJUjjmJfPFlBmkwyUj7I0TrfBhT1fE928B3eI1cKadyt9TgOphq128QLMx0e5tWqwQGE/xX/G/Q3ngX5lovu3GzwwU8+UwXbJ/qktP1lSXJgcIRhS6wmWf/2p+Bk2uWCHmsyVHkaVA8PQ+3C0M8vu4srL3FXpM7aVZNnMKlVICUOKT6tIxGC7ZLkXfEjN/s5Xph8Z+pgr7eUZbqUqIj6LXxs9ELBq2PMFbn8jKWnxJ9xmm3SNLqOJo+EZOnYalxV7xrHAxpk19KT8A8N7oT6++DLircgbC8fNZAH8PQRWYwtEhdovUg5LtBfoNfvS2SMIvLqtPVs6toYh3DK/OxkA1kUuvmRiraAycgXQcg89HBtxlOV8yUoo0qeWyeLayb5WzqrzA31QV8s/QyzPpwJwvWB1vW4Q4dM/XqG8D47A6stgt4NPKi5RBo9i2qijkONoaC6S/IhbpeBo1xvKavSQCgovq3nbZKXc=
+  attributes:
+    health: 60,80,65,50
+    armour: 0,30,15,0
+    damage: 4,10,5,3
+armour-ghoul:
+  name: Ghoul
+  suffix: Head,Chestplate,Trousers,Shoes
+  rarity: UNUSUAL
+  set: ghoul
+  item: ZOMBIE_HEAD,LEATHER
+  colour: 9,148,16
+  req: 6
+  attributes:
+    health: 20,50,30,15
+    armour: 5,20,15,10

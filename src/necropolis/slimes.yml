@@ -1,0 +1,36 @@
+slime3:
+  name: Slime
+  type: SLIME
+  health: 350
+  damage: 50
+  xp: 30
+  knockbackResist: 0
+  tags: slime
+  data:
+    0: size:4,splitcount:2,splitmob:slime2
+  equipment: {}
+  drops: {}
+slime2:
+  name: Slime
+  type: SLIME
+  health: 150
+  damage: 35
+  xp: 10
+  knockbackResist: 0
+  tags: slime
+  data:
+    0: size:3,splitcount:3,splitmob:slime1
+  equipment: {}
+  drops: {}
+slime1:
+  name: Slime
+  type: SLIME
+  health: 80
+  damage: 10
+  xp: 2
+  knockbackResist: 0
+  tags: slime
+  data:
+    0: size:2
+  equipment: {}
+  drops: {}

@@ -32,7 +32,10 @@ public class EnchantManager
 		enchantments.put("execution", EnchExecution.class);
 		enchantments.put("titan", EnchTitan.class);
 		enchantments.put("tough", EnchTough.class);
+		enchantments.put("pulse", EnchPulse.class);
+		enchantments.put("shocking", EnchShocking.class);
 	}
+	@Deprecated
 	public static int catalyst(ItemStack item, ItemStack book)
 	{
 		ArrayList<AbsEnchant> ench = get(item.getItemMeta().getPersistentDataContainer());
@@ -43,6 +46,16 @@ public class EnchantManager
 		
 		return catalyst;
 	}
+	public static int catalyst(ItemStack book)
+	{
+		ArrayList<AbsEnchant> ench = get(book.getItemMeta().getPersistentDataContainer());
+		
+		int catalyst = 0;
+		for (AbsEnchant e : ench) catalyst = Math.max(e.catalyst(), catalyst);
+		
+		return catalyst;
+	}
+	
 	public static ArrayList<AbsEnchant> get(PersistentDataContainer con)
 	{
 		if (con == null) return null;

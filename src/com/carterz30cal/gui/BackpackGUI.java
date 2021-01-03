@@ -61,6 +61,10 @@ public class BackpackGUI extends GUI
 			if (page-1 >= d.backpackb.size()) d.backpackb.add(npage);
 			else d.backpackb.set(page-1, npage);
 		}
+		else
+		{
+			if (page == d.backpackb.size()) d.backpackb.remove(page-1);
+		}
 	}
 	@Override
 	public boolean handleClick (InventoryClickEvent e, int position, Player p)
@@ -86,11 +90,6 @@ public class BackpackGUI extends GUI
 	@Override
 	public boolean handleDrag(InventoryDragEvent e,Player p)
 	{
-		/*
-		boolean stop = false;
-		for (int s : e.getInventorySlots()) if (s >= 45 && s < 54) stop = true;
-		return stop;
-		*/
 		return false;
 	}
 }

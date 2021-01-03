@@ -11,7 +11,7 @@ public class EnchIronskin extends AbsEnchant {
 
 	@Override
 	public String description() {
-		return "Exchanges every " + (int)(9 - level) + " base health for 1 armour";
+		return "Exchanges every " + (int)(6 - level) + " base health for 1 armour";
 	}
 
 	@Override
@@ -21,14 +21,18 @@ public class EnchIronskin extends AbsEnchant {
 
 	@Override
 	public int max() {
-		return 4;
+		return 3;
 	}
 
 	@Override
 	public int catalyst() {
 		return 0;
 	}
-
+	@Override
+	public String type()
+	{
+		return "armour";
+	}
 	@Override
 	public int rarity() {
 		return (level/2)+2;
@@ -36,8 +40,8 @@ public class EnchIronskin extends AbsEnchant {
 
 	@Override
 	public DungeonsPlayerStatBank onBank(DungeonsPlayerStatBank bank) {
-		int pts = (bank.base.getOrDefault("health", 0d)).intValue() / (9-level);
-		bank.health -= (9 - level) * pts;
+		int pts = (bank.base.getOrDefault("health", 0d)).intValue() / (6-level);
+		bank.health -= (6 - level) * pts;
 		bank.armour += pts;
 		return bank;
 	}
@@ -48,10 +52,5 @@ public class EnchIronskin extends AbsEnchant {
 		return null;
 	}
 
-	@Override
-	public void onHitAfter(DungeonsPlayer player, DungeonMob hit,ArmorStand ind) {
-		// TODO Auto-generated method stub
-		
-	}
 
 }

@@ -12,7 +12,7 @@ import com.carterz30cal.dungeons.Dungeons;
 import com.carterz30cal.player.DungeonsPlayer;
 import com.carterz30cal.tasks.TaskBlockReplace;
 
-import net.md_5.bungee.api.ChatColor;
+import org.bukkit.ChatColor;
 
 public class AbilityCloudBoots extends AbsAbility
 {

@@ -1,0 +1,101 @@
+drenched5:
+  name: Drenched
+  type: DROWNED
+  health: 230
+  damage: 75
+  kbresist: 1
+  perk: waterway_drenched
+  boss: true
+  equipment:
+    main: GOLDEN_SWORD
+    helmet: armour_water_helmet
+    chestplate: armour_water_chestplate
+    leggings: GOLDEN_LEGGINGS
+    boots: GOLDEN_BOOTS
+  drops:
+    wetpaper:
+      drop: 1/1
+      amount: 1-5
+    water_fragment:
+      drop: 1/3
+      amount: 1-2
+    catalyst=0:
+      drop: 1/115
+      amount: 1-1
+    book:
+      drop: 1/125
+      amount: 1-1
+      enchants: trunk,1
+driedguardian:
+  name: Boss Guardian
+  type: WITHER_SKELETON
+  health: 400
+  damage: 120
+  kbresist: 0
+  boss: true
+  equipment:
+    main: IRON_AXE
+    offhand: IRON_AXE
+    helmet: NETHERITE_HELMET
+    chestplate: NETHERITE_CHESTPLATE
+    leggings: GOLDEN_BOOTS
+    boots: GOLDEN_BOOTS
+  drops:
+    sword_guardian:
+      drop: 1/115
+      amount: 1-1
+sniperskeleton:
+  name: Sniper
+  type: SKELETON
+  health: 190
+  damage: 55
+  kbresist: 1
+  boss: true
+  equipment:
+    main: BOW
+  drops: {}
+drenched_miniboss:
+  name: Titan Drench
+  type: DROWNED
+  health: 5000
+  damage: 90
+  kbresist: 1
+  actions: drain,longdrain,swarm,creepers,regen,strongregen
+  perk: waterway_drenched
+  boss: true
+  equipment:
+    main: DIAMOND_SWORD
+    helmet: IRON_HELMET
+    chestplate: DIAMOND_CHESTPLATE
+    leggings: DIAMOND_LEGGINGS
+    boots: IRON_BOOTS
+  drops:
+    loot_drenchedminiboss:
+      drop: 1/1
+      amount: 1-1
+drenched_miniboss_baby:
+  name: Baby Titan
+  type: DROWNED
+  health: 35
+  damage: 20
+  data:
+    0: baby
+  equipment:
+    main: IRON_SWORD
+    helmet: IRON_HELMET
+    chestplate: DIAMOND_CHESTPLATE
+  drops:
+    wetpaper:
+      drop: 3/4
+      amount: 1-3
+drenched_miniboss_creeper:
+  name: Titan Creep
+  type: CREEPER
+  health: 180
+  damage: 150
+  kbresist: 1
+  equipment: {}
+  drops:
+    wetpaper:
+      drop: 1/1
+      amount: 1-10

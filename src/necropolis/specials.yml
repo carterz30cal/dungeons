@@ -1,0 +1,5 @@
+crypt_key:
+  name: Crypt Key
+  rarity: RARE
+  item: TRIPWIRE_HOOK
+  ability: cryptkey

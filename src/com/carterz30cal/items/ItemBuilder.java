@@ -37,10 +37,13 @@ import com.carterz30cal.enchants.AbsEnchant;
 import com.carterz30cal.enchants.EnchantManager;
 import com.carterz30cal.items.abilities.AbilityManager;
 import com.carterz30cal.items.abilities.AbsAbility;
+import com.carterz30cal.items.magic.ItemSpell;
+import com.carterz30cal.items.magic.ItemWand;
 import com.carterz30cal.player.DungeonsPlayer;
 import com.carterz30cal.utility.StringManipulator;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
+
 
 public class ItemBuilder
 {
@@ -50,7 +53,7 @@ public class ItemBuilder
 	public static final NamespacedKey kCustomName = new NamespacedKey(Dungeons.instance,"name");
 	public static final NamespacedKey kEnchants = new NamespacedKey(Dungeons.instance,"enchants");
 	public static final NamespacedKey kSharps = new NamespacedKey(Dungeons.instance,"sharps");
-	public ChatColor[] rarityColours = {ChatColor.GRAY,ChatColor.BLUE,ChatColor.RED,ChatColor.LIGHT_PURPLE,ChatColor.GOLD};
+	public ChatColor[] rarityColours = {ChatColor.GRAY,ChatColor.BLUE,ChatColor.AQUA,ChatColor.RED,ChatColor.LIGHT_PURPLE,ChatColor.GOLD};
 	public HashMap<String,String> attributeColours;
 	public HashMap<String,Item> items;
 	public HashMap<String,ItemSet> itemsets;
@@ -62,14 +65,23 @@ public class ItemBuilder
 	
 	public static int itemCount;
 	
+	private static String[] armour_pieces = {
+			"_HELMET","_CHESTPLATE","_LEGGINGS","_BOOTS"
+	};
 	
 	public static final String[] files = {
-			"waterway/armour.yml"
+			"waterway/armour","waterway/ingredients","waterway/weapons","waterway/tools",
+			"waterway/sharpeners","waterway/lootboxes","waterway/items_rainevent","waterway/items_spearfishing",
+			"waterway/magic",
+			"necropolis/ingredients","necropolis/armour","necropolis/weapons","necropolis/tools",
+			"necropolis/sharpeners"
 			};
+	public static final String[] setFiles = {
+			"waterway/sets","necropolis/sets"
+	};
 	
 	
-	
-	public void copyToFile(InputStream inputStream, File file) {
+	public static void copyToFile(InputStream inputStream, File file) {
 	    try(OutputStream outputStream = new FileOutputStream(file)) {
 	        IOUtils.copy(inputStream, outputStream);
 	    }
@@ -83,41 +95,6 @@ public class ItemBuilder
 	{
 		i = this;
 		
-		File dataFile = new File(Dungeons.instance.getDataFolder(), "items.yml");
-		File setFile = new File(Dungeons.instance.getDataFolder(),"sets.yml");
-		if (!dataFile.exists())
-		{
-			dataFile.getParentFile().mkdirs();
-			Dungeons.instance.saveResource("items.yml",false);
-			
-		}
-		if (!setFile.exists())
-		{
-			setFile.getParentFile().mkdirs();
-			Dungeons.instance.saveResource("sets.yml",false);
-		}
-		
-		/*
-		FileConfiguration data = new YamlConfiguration();
-		
-		try 
-		{
-			data.load(dataFile);
-	    } 
-		catch (IOException | InvalidConfigurationException e) 
-		{
-	        e.printStackTrace();
-	    }
-	    */
-		FileConfiguration sets = new YamlConfiguration();
-		try 
-		{
-			sets.load(setFile);
-	    } 
-		catch (IOException | InvalidConfigurationException e) 
-		{
-	        e.printStackTrace();
-	    }
 		items = new HashMap<String,Item>();
 		itemsets = new HashMap<String,ItemSet>();
 		
@@ -134,32 +111,60 @@ public class ItemBuilder
 		
 		attributeColours.put("killcoins", ChatColor.GOLD + "Bonus Coins: " + w);
 		
+		attributeColours.put("mana", ChatColor.LIGHT_PURPLE + "Mana: " + w);
+		
 		sharps = new HashMap<String,ItemSharpener>();
 		sharpeners = new HashMap<String,String>();
 		
-		for (String set : sets.getKeys(false))
+		for (String f : setFiles)
 		{
-			ItemSet s = new ItemSet();
-			s.set_lore = sets.getString(set + ".set.lore", "this is supposed to be lore");
-			s.syn_lore = sets.getString(set + ".synergy.lore", "this is supposed to be lore");
-			if (sets.contains(set + ".set.attributes"))
+			File file = null;
+			try
 			{
-				for (String attr : sets.getConfigurationSection(set + ".set.attributes").getKeys(false))
-				{
-					s.set_attributes.put(attr, sets.getDouble(set + ".set.attributes." + attr));
-				}
+				file = File.createTempFile("setfile." + f, null);
+			} catch (IOException e1)
+			{
+				e1.printStackTrace();
 			}
-			s.set_ability = sets.getString(set + ".set.ability","none");
+			if (file == null) continue;
+			copyToFile(Dungeons.instance.getResource(f + ".yml"),file);
+			FileConfiguration sets = new YamlConfiguration();
+			try 
+			{
+				sets.load(file);
+		    } 
+			catch (IOException | InvalidConfigurationException e) 
+			{
+		        e.printStackTrace();
+		    }
+			
+			
+			
+			for (String set : sets.getKeys(false))
+			{
+				ItemSet s = new ItemSet();
+				s.set_lore = sets.getString(set + ".set.lore", "this is supposed to be lore");
+				s.syn_lore = sets.getString(set + ".synergy.lore", "this is supposed to be lore");
+				if (sets.contains(set + ".set.attributes"))
+				{
+					for (String attr : sets.getConfigurationSection(set + ".set.attributes").getKeys(false))
+					{
+						s.set_attributes.put(attr, sets.getDouble(set + ".set.attributes." + attr));
+					}
+				}
+				s.set_ability = sets.getString(set + ".set.ability","none");
 
-			if (sets.contains(set + ".synergy.attributes"))
-			{
-				for (String attr : sets.getConfigurationSection(set + ".synergy.attributes").getKeys(false))
+				if (sets.contains(set + ".synergy.attributes"))
 				{
-					s.syn_attributes.put(attr, sets.getDouble(set + ".synergy.attributes." + attr));
+					for (String attr : sets.getConfigurationSection(set + ".synergy.attributes").getKeys(false))
+					{
+						s.syn_attributes.put(attr, sets.getDouble(set + ".synergy.attributes." + attr));
+					}
 				}
+				itemsets.put(set, s);
 			}
-			itemsets.put(set, s);
 		}
+		
 		
 		for (String f : files)
 		{
@@ -172,7 +177,7 @@ public class ItemBuilder
 				e1.printStackTrace();
 			}
 			if (file == null) continue;
-			copyToFile(Dungeons.instance.getResource(f),file);
+			copyToFile(Dungeons.instance.getResource(f + ".yml"),file);
 			FileConfiguration data = new YamlConfiguration();
 			try 
 			{
@@ -185,78 +190,9 @@ public class ItemBuilder
 			
 			
 			
-			for (String it : data.getKeys(false))
-			{
-				String type = data.getString(it + ".type", "ingredient");
-				Item item;
-				if (type.equals("lootbox")) item = new ItemLootbox();
-				else item = new Item();
-
-				item.type = type;
-				item.rarity = Rarity.valueOf(data.getString(it + ".rarity", "COMMON"));
-				item.name = rarityColours[item.rarity.ordinal()] + data.getString(it + ".name", "null");
-				item.attributes = new HashMap<String,Double>();
-				item.glow = data.getBoolean(it + ".glow", false);
-				item.material = Material.valueOf(data.getString(it + ".item"));
-				item.id = itemCount;
-				
-				if (type.equals("lootbox"))
-				{
-					ItemLootbox lootbox = (ItemLootbox)item;
-					for (String loot : data.getConfigurationSection(it + ".loot").getKeys(false))
-					{
-						lootbox.items.add(loot.split(";")[0]);
-						String[] amounts = data.getString(it + ".loot." + loot + ".amount", "1").split("-");
-						Integer[] actualamounts = new Integer[2];
-						if (amounts.length > 1) 
-						{
-							actualamounts[0] = Integer.parseInt(amounts[0]); actualamounts[1] = Integer.parseInt(amounts[1]);
-						}
-						else
-						{
-							int am = Integer.parseInt(amounts[0]);
-							actualamounts[0] = am; actualamounts[1] = am;
-						}
-						lootbox.amounts.add(actualamounts);
-						lootbox.chance.add(data.getInt(it + ".loot." + loot + ".chance", 1));
-						lootbox.enchants.add(data.getString(it + ".loot." + loot + ".enchants", ""));
-					}
-				}
-				if (data.contains(it + ".attributes"))
-				{
-					for (String attr : data.getConfigurationSection(it + ".attributes").getKeys(false))
-					{
-						item.attributes.put(attr, data.getDouble(it + ".attributes." + attr));
-					}
-				}
-				if (data.contains(it + ".colour"))
-				{
-					item.data.put("r", Integer.parseInt(data.getString(it + ".colour").split(",")[0]));
-					item.data.put("g", Integer.parseInt(data.getString(it + ".colour").split(",")[1]));
-					item.data.put("b", Integer.parseInt(data.getString(it + ".colour").split(",")[2]));
-				}
-				if (data.contains(it + ".set")) item.set = itemsets.get(data.getString(it + ".set"));
-				if (data.contains(it + ".ability")) item.data.put("ability", data.getString(it + ".ability"));
-				if (item.material == Material.PLAYER_HEAD)
-				{
-					item.data.put("skull_data", data.getString(it + ".skull.data"));
-					item.data.put("skull_sig", data.getString(it + ".skull.sig"));
-				}
-				
-				if (data.contains(it + ".sharpener"))
-				{
-					ItemSharpener sha = new ItemSharpener();
-					sha.plusColour = ChatColor.valueOf(data.getString(it + ".sharpener.plus").toUpperCase());
-					sha.attributes = item.attributes;
-					
-					sharps.put(data.getString(it + ".sharpener.id"), sha);
-					sharpeners.put(it, data.getString(it + ".sharpener.id"));
-				}
-				
-				items.put(it, item);
-				itemCount++;
-			}
+			for (String it : data.getKeys(false)) generate(data,it);
 		}
+		System.out.println(itemCount);
 		keys = new String[itemCount];
 		for (Entry<String,Item> i : items.entrySet()) keys[i.getValue().id] = i.getKey();
 		
@@ -270,6 +206,163 @@ public class ItemBuilder
 		menuItem.setItemMeta(mm);
 	}
 
+	
+	public void generate(FileConfiguration data, String it)
+	{
+		System.out.println(it);
+		String[] sp = it.split("-");
+		if (sp.length == 1) generate_regular(data,it);
+		else if (sp[0].equals("armour")) generate_armour(data,it);
+	}
+	public void generate_armour(FileConfiguration data,String it)
+	{
+		String mats = data.getString(it + ".item");
+		Material[] material = new Material[4];
+		if (mats.split(",").length == 4) for (int s = 0; s < 4; s++) material[s] = Material.valueOf(mats.split(",")[s]);
+		else if (mats.split(",").length == 2)
+		{
+			for (int s = 0; s < 4; s++) 
+			{	
+				if (s == 0) material[0] = Material.valueOf(mats.split(",")[0]);
+				else material[s] = Material.valueOf(mats.split(",")[1] + armour_pieces[s]);
+			}
+		}
+		else for (int s = 0; s < 4; s++) material[s] = Material.valueOf(mats + armour_pieces[s]);
+		for (int i = 0; i < 4;i++)
+		{
+			Item item = new Item();
+			item.type = "armour";
+			item.rarity = Rarity.valueOf(data.getString(it + ".rarity", "COMMON"));
+			item.name = rarityColours[item.rarity.ordinal()] + data.getString(it + ".name", "null") + " " + data.getString(it + ".suffix", "null,null,null,null").split(",")[i];
+			item.attributes = new HashMap<String,Double>();
+			item.glow = data.getBoolean(it + ".glow", false);
+			item.combatReq = data.getInt(it + ".req", 0);
+			
+			
+			
+			if (i == 0 && data.contains(it + ".skull"))
+			{
+				item.material = Material.PLAYER_HEAD;
+				item.data.put("skull_data", data.getString(it + ".skull.data"));
+				item.data.put("skull_sig", data.getString(it + ".skull.sig"));
+			}
+			else item.material = material[i];
+			item.id = itemCount;
+			
+			for (String attr : data.getConfigurationSection(it + ".attributes").getKeys(false))
+			{
+				double d = Double.parseDouble(data.getString(it + ".attributes." + attr).split(",")[i]);
+				if (d != 0) item.attributes.put(attr, d);
+				
+			}
+			
+			if (data.contains(it + ".colour") && !(i == 0 && data.contains(it + ".skull")))
+			{
+				item.data.put("r", Integer.parseInt(data.getString(it + ".colour").split(",")[0]));
+				item.data.put("g", Integer.parseInt(data.getString(it + ".colour").split(",")[1]));
+				item.data.put("b", Integer.parseInt(data.getString(it + ".colour").split(",")[2]));
+			}
+			if (data.contains(it + ".set")) item.set = itemsets.get(data.getString(it + ".set"));
+			
+			items.put("armour_" + data.getString(it + ".name", "null").toLowerCase() + armour_pieces[i].toLowerCase(), item);
+			itemCount++;
+		}
+	}
+	public void generate_regular(FileConfiguration data, String it)
+	{
+		String type = data.getString(it + ".type", "ingredient");
+		Item item;
+		if (type.equals("lootbox")) item = new ItemLootbox();
+		else if (type.equals("wand")) item = new ItemWand();
+		else if (type.equals("spell")) item = new ItemSpell();
+		else item = new Item();
+
+		item.type = type;
+		item.rarity = Rarity.valueOf(data.getString(it + ".rarity", "COMMON"));
+		item.name = rarityColours[item.rarity.ordinal()] + data.getString(it + ".name", "null");
+		item.attributes = new HashMap<String,Double>();
+		item.glow = data.getBoolean(it + ".glow", false);
+		item.material = Material.valueOf(data.getString(it + ".item"));
+		item.id = itemCount;
+		item.combatReq = data.getInt(it + ".req", 0);
+		
+		
+		if (type.equals("lootbox"))
+		{
+			ItemLootbox lootbox = (ItemLootbox)item;
+			for (String loot : data.getConfigurationSection(it + ".loot").getKeys(false))
+			{
+				lootbox.items.add(loot.split(";")[0]);
+				String[] amounts = data.getString(it + ".loot." + loot + ".amount", "1").split("-");
+				Integer[] actualamounts = new Integer[2];
+				if (amounts.length > 1) 
+				{
+					actualamounts[0] = Integer.parseInt(amounts[0]); actualamounts[1] = Integer.parseInt(amounts[1]);
+				}
+				else
+				{
+					int am = Integer.parseInt(amounts[0]);
+					actualamounts[0] = am; actualamounts[1] = am;
+				}
+				lootbox.amounts.add(actualamounts);
+				lootbox.chance.add(data.getInt(it + ".loot." + loot + ".chance", 1));
+				lootbox.enchants.add(data.getString(it + ".loot." + loot + ".enchants", ""));
+			}
+		}
+		if (item instanceof ItemWand)
+		{
+			ItemWand wand = (ItemWand)item;
+			wand.mana = data.getInt(it + ".wand.mana",0);
+		}
+		if (item instanceof ItemSpell)
+		{
+			ItemSpell spell = (ItemSpell)item;
+			String[] c = data.getString(it + ".spell.colour", "255,0,0").split(",");
+			spell.colour = Color.fromRGB(Integer.parseInt(c[0]), Integer.parseInt(c[1]), Integer.parseInt(c[2]));
+			spell.damage = data.getInt(it + ".spell.damage",0);
+			spell.speed = data.getDouble(it + ".spell.speed", 1);
+			spell.mana = data.getInt(it + ".spell.mana",0);
+			spell.pierces = data.getInt(it + ".spell.pierces",0);
+		}
+		if (data.contains(it + ".attributes"))
+		{
+			for (String attr : data.getConfigurationSection(it + ".attributes").getKeys(false))
+			{
+				item.attributes.put(attr, data.getDouble(it + ".attributes." + attr));
+			}
+		}
+		if (data.contains(it + ".colour"))
+		{
+			item.data.put("r", Integer.parseInt(data.getString(it + ".colour").split(",")[0]));
+			item.data.put("g", Integer.parseInt(data.getString(it + ".colour").split(",")[1]));
+			item.data.put("b", Integer.parseInt(data.getString(it + ".colour").split(",")[2]));
+		}
+		if (data.contains(it + ".set")) item.set = itemsets.get(data.getString(it + ".set"));
+		if (data.contains(it + ".ability")) item.data.put("ability", data.getString(it + ".ability"));
+		if (item.material == Material.PLAYER_HEAD)
+		{
+			item.data.put("skull_data", data.getString(it + ".skull.data"));
+			item.data.put("skull_sig", data.getString(it + ".skull.sig"));
+		}
+		
+		if (data.contains(it + ".sharpener"))
+		{
+			ItemSharpener sha = new ItemSharpener();
+			sha.plusColour = ChatColor.valueOf(data.getString(it + ".sharpener.plus").toUpperCase());
+			sha.attributes = item.attributes;
+			
+			sharps.put(data.getString(it + ".sharpener.id"), sha);
+			sharpeners.put(it, data.getString(it + ".sharpener.id"));
+		}
+		itemCount++;
+		items.put(it, item);
+	}
+	public ItemStack build(String s,int amount)
+	{
+		ItemStack product = build(s,null,"","");
+		product.setAmount(amount);
+		return product;
+	}
 	public ItemStack build(String s,DungeonsPlayer owner)
 	{
 		return build(s,owner,"","");
@@ -299,7 +392,8 @@ public class ItemBuilder
 		meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 		meta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
         
-		if (item.type.equals("armour") || item.type.equals("weapon")) 
+		if (item.type.equals("armour") || item.type.equals("weapon") || item.type.equals("wand") || item.type.equals("spell")
+				|| item.type.equals("modifier")) 
 		{
 			meta.addAttributeModifier(Attribute.GENERIC_ARMOR, new AttributeModifier("zeroarmour",0,Operation.MULTIPLY_SCALAR_1));
 		}
@@ -310,6 +404,15 @@ public class ItemBuilder
 		ret.setItemMeta(updateMeta(meta,owner));
 		
 		return ret;
+	}
+	public static boolean isUIElement(ItemStack item)
+	{
+		if (item == null) return false;
+		if (!item.hasItemMeta()) return false;
+		
+		String itemn = item.getItemMeta().getPersistentDataContainer().getOrDefault(ItemBuilder.kItem, PersistentDataType.STRING, "not a book");
+		if (itemn.equals("uielement")) return true;
+		else return false;
 	}
 	public static ItemMeta generateSkullMeta(ItemMeta meta, String data, String sig)
 	{
@@ -368,7 +471,9 @@ public class ItemBuilder
 					if (enchants.size() > 4) lore.add(ChatColor.DARK_PURPLE + e.name());
 					else
 					{
-						lore.add(ChatColor.DARK_PURPLE + e.name());
+						if (e.level < e.max()) lore.add(ChatColor.DARK_PURPLE + e.name());
+						else if (e.level == e.max()) lore.add(ChatColor.BLUE + e.name());
+						else lore.add(ChatColor.GOLD + e.name());
 						lore.add(ChatColor.LIGHT_PURPLE + " " + e.description());
 					}
 				}
@@ -392,10 +497,7 @@ public class ItemBuilder
 		if (owner != null && owner.highlightRenamed && !c.equals(item.name)) meta.setDisplayName(cs + w + " (" + item.name + w + ")");
 		else meta.setDisplayName(cs);
 		
-		
-		
-		if (!item.type.equals("armour")) lore.add(ChatColor.DARK_GRAY + StringManipulator.capitalise(item.rarity.toString()) +" " + StringManipulator.capitalise(item.type));
-		else 
+		if (item.type.equals("armour"))
 		{
 			String[] m = item.material.toString().split("_");
 			if (m[0].equals("LEATHER"))
@@ -407,8 +509,8 @@ public class ItemBuilder
 				lore.add(ChatColor.DARK_GRAY + StringManipulator.capitalise(item.rarity.toString()) + " Helmet");
 			}
 			else lore.add(ChatColor.DARK_GRAY + StringManipulator.capitalise(item.rarity.toString()) + " " + StringManipulator.capitalise(m[1]));
-			
 		}
+		else if (!item.type.equals("wand")) lore.add(ChatColor.DARK_GRAY + StringManipulator.capitalise(item.rarity.toString()) +" " + StringManipulator.capitalise(item.type));
 		
 		if (item.attributes.size() > 0)
 		{
@@ -432,9 +534,24 @@ public class ItemBuilder
 				lore.add(attributeColours.get(attribute.getKey()) + d);
 			}
 		}
+		if (item instanceof ItemWand) 
+		{
+			ItemWand wand = (ItemWand)item;
+			if (get(meta,ItemWand.kSpell) != null)
+			{
+				lore.add(ChatColor.GRAY + "Spell: " + ((ItemSpell)get(meta,ItemWand.kSpell)).name);
+			}
+			lore.add("");
+			lore.add(ChatColor.GRAY + "Mana cost: " + ChatColor.AQUA + wand.cost(meta));
+			if (get(meta,ItemWand.kModifier) != null)
+			{
+				Item mod = get(meta,ItemWand.kModifier);
+				lore.addAll(addAbility((String)mod.data.get("ability"),""));
+			}
+		}
 		if (!meta.getPersistentDataContainer().get(kEnchants, PersistentDataType.STRING).equals(""))
 		{
-			meta.addEnchant(Enchantment.DURABILITY, 1, true);
+			if (item.type != "armour") meta.addEnchant(Enchantment.DURABILITY, 1, true);
 			lore.add("");
 			ArrayList<AbsEnchant> enchants = EnchantManager.get(meta.getPersistentDataContainer());
 			for (AbsEnchant e : enchants)
@@ -442,7 +559,9 @@ public class ItemBuilder
 				if (enchants.size() > 4) lore.add(ChatColor.DARK_PURPLE + e.name());
 				else
 				{
-					lore.add(ChatColor.DARK_PURPLE + e.name());
+					if (e.level < e.max()) lore.add(ChatColor.DARK_PURPLE + e.name());
+					else if (e.level == e.max()) lore.add(ChatColor.BLUE + e.name());
+					else lore.add(ChatColor.GOLD + e.name());
 					lore.add(ChatColor.LIGHT_PURPLE + " " + e.description());
 				}
 			}
@@ -452,6 +571,7 @@ public class ItemBuilder
 			if (item.glow) meta.addEnchant(Enchantment.DIG_SPEED, 2, true);
 			else meta.removeEnchant(Enchantment.DIG_SPEED);
 		}
+		if (item.material == Material.TRIDENT) meta.addEnchant(Enchantment.LOYALTY, 5, true);
 		if (item.data.containsKey("ability"))
 		{
 			lore.add("");
@@ -491,7 +611,7 @@ public class ItemBuilder
 			
 			if (!owner.highlightRenamed && !c.equals(item.name)) lore.add(ChatColor.DARK_GRAY + ChatColor.stripColor(item.name));
 		}
-		
+		if ((owner == null || item.combatReq > owner.skills.getSkillLevel("combat")) && item.combatReq > 0) lore.add(ChatColor.RED + "Requires Combat Level " + item.combatReq);
 		if (item.type.equals("lootbox"))
 		{
 			lore.add("");
@@ -522,7 +642,8 @@ public class ItemBuilder
 		PersistentDataContainer p = i.getItemMeta().getPersistentDataContainer();
 		if (p == null) return i;
 		Item item = items.get(p.getOrDefault(kItem, PersistentDataType.STRING, null));
-		if (item != null && (item.type.equals("weapon") || item.type.equals("armour") || item.type.equals("tool"))) i.setAmount(1);
+		if (item != null && (item.type.equals("weapon") || item.type.equals("armour") || item.type.equals("tool")
+				|| item.type.equals("wand") || item.type.equals("spell") || item.type.equals("modifier"))) i.setAmount(1);
 		else i.setAmount(i.getMaxStackSize());
 		return i;
 	}
@@ -561,6 +682,40 @@ public class ItemBuilder
 		item.setItemMeta(moot);
 		return item;
 	}
+	
+	/*
+	 * ITEM1 must be the item being enchanted.
+	 * 0 = YES
+	 * 1 = incompatible enchantment
+	 * 2 = item is a book!
+	 * 3 = catalyst is incorrect
+	 */
+	public static int canEnchant(ItemStack item1,ItemStack item2,ItemStack catalyst)
+	{
+		ArrayList<AbsEnchant> enchants = EnchantManager.get(item1.getItemMeta().getPersistentDataContainer());
+		enchants.addAll(EnchantManager.get(item2.getItemMeta().getPersistentDataContainer()));
+		String type = i.items.get(item1.getItemMeta().getPersistentDataContainer().get(kItem, PersistentDataType.STRING)).type;
+		int c = Integer.parseInt(catalyst.getItemMeta().getPersistentDataContainer().get(kItem, PersistentDataType.STRING).split("=")[1]);
+		//if (type.equals("book")) return 2;
+		if (EnchantManager.catalyst(item2) != c) return 3;
+		for (AbsEnchant e : enchants) if (!e.type().equals(type)) return 1;
+		return 0;
+	}
+	
+	public static Item get(ItemStack item)
+	{
+		if (item == null || !item.hasItemMeta()) return null;
+		return i.items.get(item.getItemMeta().getPersistentDataContainer().get(kItem, PersistentDataType.STRING));
+	}
+	public static Item get(ItemMeta item)
+	{
+		return i.items.get(item.getPersistentDataContainer().get(kItem, PersistentDataType.STRING));
+	}
+	public static Item get(ItemStack item,NamespacedKey key)
+	{
+		return i.items.get(item.getItemMeta().getPersistentDataContainer().get(key, PersistentDataType.STRING));
+	}
+	
 	public ItemStack enchantItem(ItemStack item1,ItemStack item2)
 	{
 		ItemStack ret = item1.clone();
@@ -575,7 +730,7 @@ public class ItemBuilder
 			int eLevel = Integer.parseInt(enchant.split(",")[1]);
 			
 			if (eLevel > eCurr) enchantments.put(e, eLevel);
-			else if (eLevel == eCurr && isMax(eLevel,e)) enchantments.put(e, eLevel+1);
+			else if (eLevel == eCurr && !isMax(eLevel,e)) enchantments.put(e, eLevel+1);
 		}
 		
 		for (String enchant : item2.getItemMeta().getPersistentDataContainer().get(kEnchants, PersistentDataType.STRING).split(";"))
@@ -585,7 +740,7 @@ public class ItemBuilder
 			int eLevel = Integer.parseInt(enchant.split(",")[1]);
 			
 			if (eLevel > eCurr) enchantments.put(e, eLevel);
-			else if (eLevel == eCurr && isMax(eLevel,e)) enchantments.put(e, eLevel+1);
+			else if (eLevel == eCurr && !isMax(eLevel,e)) enchantments.put(e, eLevel+1);
 		}
 		
 		String enchants = "";
@@ -613,5 +768,10 @@ public class ItemBuilder
 		} 
 		catch (InstantiationException | IllegalAccessException e1) { e1.printStackTrace(); }
 		return true;
+	}
+
+	public static Item get(ItemMeta item, NamespacedKey key) 
+	{
+		return i.items.get(item.getPersistentDataContainer().get(key, PersistentDataType.STRING));
 	}
 }

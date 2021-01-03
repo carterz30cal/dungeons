@@ -12,10 +12,12 @@ import org.bukkit.inventory.ItemStack;
 import com.carterz30cal.dungeons.Dungeons;
 import com.carterz30cal.dungeons.SoundTask;
 import com.carterz30cal.items.ItemBuilder;
+import com.carterz30cal.items.abilities.AbsAbility;
 import com.carterz30cal.player.DungeonsPlayer;
 import com.carterz30cal.player.DungeonsPlayerManager;
 import com.carterz30cal.utility.InventoryHandler;
 
+@Deprecated
 public class DungeonMobType
 {
 	public EntityType type;
@@ -27,8 +29,10 @@ public class DungeonMobType
 	public int armour;
 	public int xp;
 	public double knockbackResist;
+	public double damageResist;
 	public boolean baby;
 	public boolean boss;
+	public EntityType ai;
 	
 	public ItemStack main;
 	public ItemStack offhand;
@@ -45,7 +49,7 @@ public class DungeonMobType
 	}
 	public void onKilled(Player killer,MobModifier modifier)
 	{
-		if (boss) return;
+		/*
 		DungeonsPlayer d = DungeonsPlayerManager.i.get(killer);
 		
 		int pl = d.perks.getLevel(perk);
@@ -55,7 +59,7 @@ public class DungeonMobType
 			new SoundTask(killer.getLocation(),killer,Sound.BLOCK_GLASS_BREAK,2f,1).runTaskLater(Dungeons.instance,20);
 		}
 		if (d.skills.add("combat", xp)) d.skills.sendLevelMessage("combat", killer);
-		
+		for (AbsAbility a : d.stats.abilities) a.onKill(d,this);
 		int coinreward = (maxHealth/20)+d.stats.bonuskillcoins;
 		if (modifier != null) coinreward += 5;
 		d.coins += coinreward;
@@ -71,7 +75,7 @@ public class DungeonMobType
 				item.setAmount(r.nextInt((drop.maxAmount+1)-drop.minAmount)+drop.minAmount);
 				
 				new SoundTask(killer.getLocation(),killer,Sound.ENTITY_ITEM_PICKUP,1,1).runTaskLater(Dungeons.instance, 3);
-				if (drop.chance*100 < 1) 
+				if (drop.chance*100 < 2.5) 
 				{
 					killer.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "RARE DROP! " + ChatColor.RESET + item.getItemMeta().getDisplayName());
 					InventoryHandler.addItem(d, item);
@@ -79,5 +83,6 @@ public class DungeonMobType
 				else InventoryHandler.addItem(d, item,true);
 			}
 		}
+		*/
 	}
 }

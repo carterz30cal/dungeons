@@ -30,7 +30,11 @@ public class EnchTrunk extends AbsEnchant {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
+	@Override
+	public String type()
+	{
+		return "weapon";
+	}
 	@Override
 	public int rarity() {
 		// TODO Auto-generated method stub
@@ -49,10 +53,5 @@ public class EnchTrunk extends AbsEnchant {
 		return null;
 	}
 
-	@Override
-	public void onHitAfter(DungeonsPlayer player, DungeonMob hit,ArmorStand ind) {
-		// TODO Auto-generated method stub
-		
-	}
 
 }

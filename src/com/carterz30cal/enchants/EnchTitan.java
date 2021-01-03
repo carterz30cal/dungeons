@@ -32,7 +32,11 @@ public class EnchTitan extends AbsEnchant
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
+	@Override
+	public String type()
+	{
+		return "armour";
+	}
 	@Override
 	public int rarity() {
 		// TODO Auto-generated method stub
@@ -54,11 +58,4 @@ public class EnchTitan extends AbsEnchant
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	@Override
-	public void onHitAfter(DungeonsPlayer player, DungeonMob hit, ArmorStand ind) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

@@ -7,7 +7,7 @@ import com.carterz30cal.dungeons.Dungeons;
 public class SpawnPosition
 {
 	public Location position;
-	public DungeonMob mob;
+	public DMob mob;
 	
 	public SpawnPosition(Location pos)
 	{

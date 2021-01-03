@@ -28,7 +28,11 @@ public class EnchBlade extends AbsEnchant {
 	public int catalyst() {
 		return 0;
 	}
-
+	@Override
+	public String type()
+	{
+		return "weapon";
+	}
 	@Override
 	public int rarity() {
 		return 1;
@@ -46,10 +50,5 @@ public class EnchBlade extends AbsEnchant {
 		return null;
 	}
 
-	@Override
-	public void onHitAfter(DungeonsPlayer player, DungeonMob hit,ArmorStand ind) {
-		// TODO Auto-generated method stub
-		
-	}
 
 }

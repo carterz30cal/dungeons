@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 
+import com.carterz30cal.mobs.DMobType;
 import com.carterz30cal.player.DungeonsPlayer;
 
 public class AbilityTitanPlate extends AbsAbility {
@@ -17,9 +18,9 @@ public class AbilityTitanPlate extends AbsAbility {
 	}
 
 	@Override
-	public boolean onDamage(DungeonsPlayer d, DamageCause c)
+	public double onDamage(DungeonsPlayer d,double dealt, DamageCause c,DMobType mob)
 	{
 		if (c == DamageCause.ENTITY_ATTACK || c == DamageCause.PROJECTILE) d.heal(5);
-		return false;
+		return 1;
 	}
 }

@@ -1,10 +1,6 @@
 package com.carterz30cal.enchants;
 
-import org.bukkit.entity.ArmorStand;
-
 import com.carterz30cal.dungeons.DungeonMiningTable;
-import com.carterz30cal.mobs.DungeonMob;
-import com.carterz30cal.player.DungeonsPlayer;
 import com.carterz30cal.player.DungeonsPlayerStatBank;
 
 public class EnchPaper extends AbsEnchant {
@@ -28,7 +24,11 @@ public class EnchPaper extends AbsEnchant {
 	public int catalyst() {
 		return 0;
 	}
-
+	@Override
+	public String type()
+	{
+		return "tool";
+	}
 	@Override
 	public int rarity() {
 		return Math.max(0,level-1);
@@ -45,10 +45,5 @@ public class EnchPaper extends AbsEnchant {
 		return mine;
 	}
 
-	@Override
-	public void onHitAfter(DungeonsPlayer player, DungeonMob hit,ArmorStand ind) {
-		// TODO Auto-generated method stub
-		
-	}
 
 }

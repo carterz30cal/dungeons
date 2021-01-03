@@ -1,0 +1,39 @@
+fish1:
+  name: Fish
+  type: TROPICAL_FISH
+  health: 1
+  speed: 1
+  dmgresist: 1
+  tags: spearfish
+  equipment: {}
+  drops: 
+    fishing_fish:
+      drop: 3/4
+      amount: 1-1
+fish2:
+  name: Guardian
+  type: GUARDIAN
+  health: 5
+  speed: 0.7
+  dmgresist: 1
+  tags: spearfish
+  equipment: {}
+  drops:
+    fishing_fish:
+      drop: 3/4
+      amount: 1-2
+fish3:
+  name: Large Guardian
+  type: GUARDIAN
+  health: 23
+  speed: 0.4
+  dmgresist: 1
+  tags: spearfish
+  equipment: {}
+  drops: 
+    fishing_fish:
+      drop: 1/1
+      amount: 1-8
+    fishing_pearl:
+      drop: 1/3
+      amount: 1-1

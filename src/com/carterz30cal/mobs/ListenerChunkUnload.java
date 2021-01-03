@@ -13,9 +13,9 @@ public class ListenerChunkUnload implements Listener
 	{
 		for (Entity entity : e.getChunk().getEntities())
 		{
-			DungeonMob mob = DungeonMob.mobs.get(entity.getUniqueId());
+			DMob mob = DMobManager.get(entity);
 			if (mob != null) mob.destroy(null);
-			else if (entity.getType() == EntityType.SLIME) entity.remove();
+			else if (entity.getType() == EntityType.SLIME || entity.getType() == EntityType.ARMOR_STAND) entity.remove();
 		}
 	}
 }

@@ -17,6 +17,8 @@ public class BossProjectile extends BukkitRunnable
 	public double spread;
 	public Particle particle;
 	
+	private int lifetime;
+	
 	public BossProjectile(AbsBoss owner, Location start, Player end, double s, Particle visual)
 	{
 		boss = owner;
@@ -25,12 +27,13 @@ public class BossProjectile extends BukkitRunnable
 		speed = s;
 		particle = visual;
 		spread = 0.25;
-		
+		lifetime = 0;
 		runTaskTimer(Dungeons.instance,1,1);
 	}
 	@Override
 	public void run()
 	{
+		lifetime++;
 		Dungeons.w.spawnParticle(particle,current,2,spread,spread,spread,0);
 		Location d = target.getEyeLocation().subtract(current);
 		current = current.add(d.multiply(speed/100));
@@ -39,5 +42,6 @@ public class BossProjectile extends BukkitRunnable
 			boss.projectileHit(this, target);
 			cancel();
 		}
+		else if (lifetime > 200) cancel();
 	}
 }

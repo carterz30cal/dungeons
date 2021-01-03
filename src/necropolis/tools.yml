@@ -1,0 +1,7 @@
+mass_harvester:
+  name: Mass Harvester
+  item: SHEARS
+  type: tool
+  rarity: RARE
+  attributes:
+    orechance: 0.6

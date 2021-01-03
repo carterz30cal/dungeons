@@ -12,8 +12,11 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.UUID;
 
+import com.carterz30cal.areas.EventTicker;
+import com.carterz30cal.areas.NecropolisCrypts;
+import com.carterz30cal.areas.WaterwayRain;
+import com.carterz30cal.areas.WaterwaySpearFishing;
 import com.carterz30cal.bosses.BossManager;
 import com.carterz30cal.commands.CommandDungeons;
 import com.carterz30cal.commands.CommandHub;
@@ -23,8 +26,7 @@ import com.carterz30cal.gui.ListenerGUIEvents;
 import com.carterz30cal.items.ItemBuilder;
 import com.carterz30cal.items.ShopManager;
 import com.carterz30cal.items.abilities.AbilityManager;
-import com.carterz30cal.mobs.DungeonMob;
-import com.carterz30cal.mobs.DungeonMobCreator;
+import com.carterz30cal.mobs.DMobManager;
 import com.carterz30cal.mobs.ListenerChunkUnload;
 import com.carterz30cal.mobs.ListenerDismountEvent;
 import com.carterz30cal.npcs.NPCManager;
@@ -50,9 +52,6 @@ public class Dungeons extends JavaPlugin
 	
 	private File players;
 	private FileConfiguration playersC;
-	
-	private File lItems;
-	private FileConfiguration lItemsC;
 	
 	private File fPerks;
 	public FileConfiguration fPerksC;
@@ -83,17 +82,19 @@ public class Dungeons extends JavaPlugin
 		new DungeonManager();
 		new RecipeManager();
 		new DungeonsPlayerManager();
-		new EnchantHandler();
-	    new DungeonMobCreator();
+	    new DMobManager();
 	    new ShopManager();
 		new NPCManager();
 		new BossManager();
 		
 		
+		new EventTicker();
+		new WaterwayRain();
+		new WaterwaySpearFishing();
+		new NecropolisCrypts();
 		
-		DungeonMob.mobs = new HashMap<UUID,DungeonMob>();
-		DungeonMob.silverfi = new HashMap<UUID,DungeonMob>();
-		DungeonMob.arm = new HashMap<UUID,DungeonMob>();
+		//-69, 100, 20994
+		
 		blocks = new HashMap<Block,TaskBlockReplace>();
 		loadOnline();
 		
@@ -133,7 +134,7 @@ public class Dungeons extends JavaPlugin
 		{
             e.printStackTrace();
         }
-		
+		/*
 		lItems = new File(getDataFolder(),"items.yml");
 		if (!lItems.exists())
 		{
@@ -147,9 +148,10 @@ public class Dungeons extends JavaPlugin
 		} 
 		catch (IOException | InvalidConfigurationException e)
 		{
-            e.printStackTrace();
+            e.p
+            rintStackTrace();
         }
-		
+		*/
 		
 		
 		
@@ -196,12 +198,8 @@ public class Dungeons extends JavaPlugin
 		{
 			e.printStackTrace();
 		}
-		DungeonMob.noremove = true;
-		for (DungeonMob mob : DungeonMob.mobs.values())
-		{
-			mob.destroy(null);
-		}
-		
+		DMobManager.end();
+		EventTicker.end();
 		NPCManager.purge();
 		
 		for (TaskBlockReplace t : blocks.values())

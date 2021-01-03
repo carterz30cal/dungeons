@@ -1,0 +1,42 @@
+bone:
+  set: 
+    lore: Uncomfortable but protective
+    attributes:
+      armour: +45
+    ability: boneset
+  synergy:
+    lore: It's rather heavy...
+    attributes:
+      damage: +7
+soul:
+  set: 
+    lore: You see into the soul realm
+    attributes:
+      regen: +5
+    ability: soulreap
+  synergy:
+    lore: You feel connected to past spirits
+    attributes:
+      regen: +2
+beating:
+  set: 
+    lore: It smells of iron
+    attributes:
+      armour: +15
+      regen: +4
+
+slime:
+  set:
+    lore: Bouncy!
+    attributes:
+      health: +150
+      damagep: -0.1
+    ability: slimeset
+
+ghoul:
+  set:
+    lore: You are now a husk of a being
+    attributes:
+      health: -20
+      damagep: +0.1
+    ability: ghoulset

@@ -5,10 +5,11 @@ import java.util.HashMap;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
-import com.carterz30cal.mobs.DungeonMobCreator;
+import com.carterz30cal.mobs.DMob;
+import com.carterz30cal.mobs.DMobManager;
 import com.carterz30cal.mobs.SpawnPosition;
 
-import net.md_5.bungee.api.ChatColor;
+import org.bukkit.ChatColor;
 
 public class DungeonMining 
 {
@@ -41,7 +42,7 @@ public class DungeonMining
 		{
 			for (Player p : dungeon.players) p.sendMessage(ChatColor.RED + "A miniboss is spawning in " + dungeon.name + "!");
 			progress = 0;
-			DungeonMobCreator.i.create(boss, spawn);
+			new DMob(DMobManager.types.get(boss),spawn,spawn.position,false);
 		}
 	}
 }

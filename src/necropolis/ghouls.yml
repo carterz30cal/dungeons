@@ -1,0 +1,35 @@
+ghoul1:
+  name: Ghoul
+  type: ZOMBIE
+  health: 200
+  damage: 100
+  xp: 47
+  knockbackResist: 0
+  tags: ghoul
+  equipment: 
+    main: IRON_SWORD
+  drops:
+    decaying_flesh:
+      drop: 1/5
+      amount: 1-1
+    ghoul_bone:
+      drop: 1/135
+      amount: 1-1
+ghoul2:
+  name: Ghoul
+  type: ZOMBIE
+  health: 250
+  damage: 115
+  xp: 52
+  knockbackResist: 0
+  tags: ghoul
+  equipment: 
+    chestplate: CHAINMAIL_CHESTPLATE
+    main: IRON_SWORD
+  drops:
+    decaying_flesh:
+      drop: 1/5
+      amount: 1-1
+    ghoul_bone:
+      drop: 1/135
+      amount: 1-1

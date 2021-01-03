@@ -1,0 +1,73 @@
+wetpaper:
+  name: Wet Paper
+  item: PAPER
+paper:
+  name: Paper
+  rarity: RARE
+  item: PAPER
+  glow: true
+  
+spidersilk:
+  name: Spider Silk
+  item: STRING
+  
+mush:
+  name: Mush
+  item: BONE_MEAL
+  
+leafmash:
+  name: Leaf Mash
+  item: GREEN_DYE
+leafball:
+  name: Leaf Ball
+  rarity: RARE
+  item: SLIME_BALL
+  
+stick_paper:
+  name: Flimsy Paper Stick
+  item: STICK
+stick_leaf:
+  name: Springy Branch
+  item: STICK
+
+
+  
+water_fragment:
+  name: Water Fragment
+  item: CYAN_DYE
+ocean_fragment:
+  name: Ocean Fragment
+  rarity: RARE
+  item: CYAN_DYE
+  glow: true
+holywater_fragment:
+  name: Holy Water Fragment
+  rarity: EPIC
+  item: LIGHT_BLUE_DYE
+
+  
+waterway_keyshard:
+  name: Waterway Key Shard
+  rarity: EPIC
+  item: QUARTZ
+
+summonkey_waterway:
+  name: Waterway Key
+  type: key
+  rarity: EPIC
+  item: TRIPWIRE_HOOK
+waterway_core:
+  name: Waterway Core Piece
+  rarity: EPIC
+  item: PLAYER_HEAD
+  skull:
+    data: ewogICJ0aW1lc3RhbXAiIDogMTYwMjUzMjcxNzAyNiwKICAicHJvZmlsZUlkIiA6ICJkNjBmMzQ3MzZhMTI0N2EyOWI4MmNjNzE1YjAwNDhkYiIsCiAgInByb2ZpbGVOYW1lIiA6ICJCSl9EYW5pZWwiLAogICJzaWduYXR1cmVSZXF1aXJlZCIgOiB0cnVlLAogICJ0ZXh0dXJlcyIgOiB7CiAgICAiU0tJTiIgOiB7CiAgICAgICJ1cmwiIDogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOGVhYjE5MDhlZGFhMzJhMDM2ZGEwYzFkMDdmMDgxZmU3ZWY1Zjg4ZmFhMTMyNjNiMmM0MmE3Yzc2MDVlZTY0YyIKICAgIH0KICB9Cn0=
+    sig: pw93ehb06oSW99tl/4Ux8wR9IXfigt72WdoN/tIAl/ohArXucM37iqreU7k7YIRYd+CnRuKLxZKCUP9+64SKtUtZiYEgWOZl8MzwlAL1/oK1BrVVNpyp1ov8ZN3cXS1+k4BSjVJ8aHnLdJNgxKKw/r/+TGVl3Un4WqA1o+uUtSqwK/1pE2cEx9cnJEPw/TWA9YD0/ugmgKBpX4ynGE/OHDH5NAQ6OUYhrRI6v8X03Vqhr8hrcXgFKAXOMu7CEnFMCfUUYq0jFJhhbTb8UTrOyNkTAyc6UDZ7Z9H74m0D5Q4fanYQ6oAo45Nsrshe8ltcuhrSbsooAo6ohi4aMsQZ8AbwS3eTfBV9mrVT/YGpj27h8c9dRBiWjTL3GL8L61QZtRiBdSTdmvPEeDuhbBZrbNTJwJoZZYRnLM+bVlnssqEVZfjFA4VHM2CEuN9G6yIGyWfJO2lPWQ5m1mr8re2uqvNd/KU7A9MIgGAhTyelnNWZpMw6gk+5vECukQv3ofFyASw/hRIIgTZqS+ldGbFv2QpgczEp6H2R/9MJVVesV6OLbnDWtHNbE+eiF4HnYPfJei2mqnpuXcRA31xBHF5qhykuDnxfykvzfeKUQ3WR9cUFIY9m5FIdhDi76e5+qgWPXUF6SaA2VfdPYQC+piar1G0Fs0f19DR/Q0iz7K+inHA=
+
+catalyst=0:
+  name: Combination Catalyst Shard
+  type: catalyst
+  rarity: RARE
+  item: QUARTZ
+  glow: true
+  

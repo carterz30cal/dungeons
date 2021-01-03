@@ -1,0 +1,30 @@
+pickaxe_flimsy:
+  name: Flimsy Pickaxe
+  type: tool
+  item: WOODEN_PICKAXE
+  attributes:
+    orechance: +0.3
+
+pickaxe_water:
+  name: Water Pickaxe
+  type: tool
+  item: DIAMOND_PICKAXE
+  attributes:
+    orechance: +0.5
+
+pickaxe_mush:
+  name: Mush Pick
+  type: tool
+  item: STONE_PICKAXE
+  attributes:
+    orechance: +0.4
+    bonusxp: +0.2
+    
+pickaxe_paper:
+  name: Paper Pickaxe
+  type: tool
+  rarity: RARE
+  item: STONE_PICKAXE
+  attributes:
+    orechance: +0.2
+    bonusxp: +0.75

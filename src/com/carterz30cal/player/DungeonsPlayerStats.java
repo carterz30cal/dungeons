@@ -4,15 +4,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.bukkit.GameMode;
-import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.block.Block;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
-import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import com.carterz30cal.dungeons.Dungeons;
@@ -24,9 +21,6 @@ import com.carterz30cal.items.ItemSet;
 import com.carterz30cal.items.ItemSharpener;
 import com.carterz30cal.items.abilities.AbilityManager;
 import com.carterz30cal.items.abilities.AbsAbility;
-import com.carterz30cal.mobs.DungeonMobCreator;
-import com.carterz30cal.mobs.MobAction;
-import com.carterz30cal.tasks.TaskBlockReplace;
 
 public class DungeonsPlayerStats
 {
@@ -36,6 +30,7 @@ public class DungeonsPlayerStats
 	
 	public int armour;
 	public int health = 200;
+	public int mana;
 	public int regen;
 	public int damage;
 	public double damagemod;
@@ -66,7 +61,7 @@ public class DungeonsPlayerStats
 			Item a = ItemBuilder.i.items.get(armour.getItemMeta().getPersistentDataContainer().get(ItemBuilder.kItem, PersistentDataType.STRING));
 			if (sett == null && a.set != null) sett = a.set;
 			else if (sett == null) break;
-			else if ((sett != null && a.set == null) || !sett.equals(a.set))
+			else if ((sett != null && a.set == null) || !sett.equals(a.set) || a.combatReq > dp.skills.getSkillLevel("combat"))
 			{
 				sett = null;
 				break;
@@ -92,6 +87,7 @@ public class DungeonsPlayerStats
 		
 		armour = 0;
 		health = 200;
+		mana = 0;
 		regen = 1;
 		damage = 0;
 		damageSweep = 0;
@@ -114,6 +110,7 @@ public class DungeonsPlayerStats
 			
 			Item i = ItemBuilder.i.items.get(meta.getPersistentDataContainer().get(ItemBuilder.kItem, PersistentDataType.STRING));
 			if (i == null) continue;
+			else if (i.combatReq > dp.skills.getSkillLevel("combat")) continue;
 			DungeonsPlayerStatBank bank = new DungeonsPlayerStatBank();
 			bank.d = dp;
 			bank.add(i.attributes);
@@ -134,8 +131,6 @@ public class DungeonsPlayerStats
 				DungeonsPlayerStatBank b = e.onBank(bank);
 				if (b != null) bank = b;
 			}
-			
-			//if (i.data.containsKey("ability")) itemAction(DungeonMobCreator.i.actions.get(i.data.get("ability")));
 			
 			add(fbank,bank);
 		}
@@ -191,9 +186,9 @@ public class DungeonsPlayerStats
 		{
 			damage /= (p.getPotionEffect(PotionEffectType.WITHER).getAmplifier()+2);
 		}
+		damageSweep += Math.round(damage / 4d);
 		p.setSaturation(20);
 		p.setFoodLevel(20);
-		if (held.hasItemMeta()) damageSweep += damage/3;
 		health = Math.max(10, health);
 		regen = Math.max(0, regen);
 	}
@@ -204,6 +199,7 @@ public class DungeonsPlayerStats
 	public void add(DungeonsPlayerStatBank bank,DungeonsPlayerStatBank addition)
 	{
 		bank.health    += addition.health;
+		bank.mana      += addition.mana;
 		bank.armour    += addition.armour;
 		bank.regen     += addition.regen;
 		
@@ -212,10 +208,12 @@ public class DungeonsPlayerStats
 		bank.sweep     += addition.sweep;
 		bank.xpbonus   += addition.xpbonus;
 		bank.orechance += addition.orechance;
+		bank.killcoins += addition.killcoins;
 	}
 	public void add(DungeonsPlayerStatBank bank)
 	{
 		health         += bank.health;
+		mana           += bank.mana;
 		armour         += bank.armour;
 		regen          += bank.regen;
 		
@@ -226,41 +224,5 @@ public class DungeonsPlayerStats
 		
 		oreChance      += bank.orechance;
 		miningXp       += bank.xpbonus;
-	}
-	public void itemAction(MobAction a)
-	{
-		boolean stop = false;
-		for (String action : a.effects)
-		{
-			if (stop) break;
-			String[] data = action.split(":")[1].split(",");
-			switch (action.split(":")[0])
-			{
-			case "reqblock":
-				Block block = p.getLocation().add(Integer.parseInt(data[0]),Integer.parseInt(data[1]),Integer.parseInt(data[2])).getBlock();
-				if (block.getType() != Material.valueOf(data[3])) stop = true;
-				break;
-			case "ylevel":
-				int distance = p.getLocation().getBlockY();
-				if ((data[0].equals("over") && distance < Integer.parseInt(data[1]))
-						|| (data[0].equals("under") && distance >= Integer.parseInt(data[1]))) stop = true;
-				break;
-			case "block":
-				Location rep = p.getLocation().add(Integer.parseInt(data[0]),Integer.parseInt(data[1]),Integer.parseInt(data[2]));
-				Block b = rep.getBlock();
-				Material previous = b.getType();
-				b.setType(Material.valueOf(data[3]));
-				if (!Dungeons.instance.blocks.containsKey(b))
-				{
-					TaskBlockReplace tbr = new TaskBlockReplace(b,previous);
-					tbr.runTaskLater(Dungeons.instance, Integer.parseInt(data[4]));
-					Dungeons.instance.blocks.put(b, tbr);
-				}
-				break;
-			case "potion":
-				p.addPotionEffect(new PotionEffect(PotionEffectType.getByName(data[0]),100,Integer.parseInt(data[1]),false,false));
-			}
-			
-		}
 	}
 }

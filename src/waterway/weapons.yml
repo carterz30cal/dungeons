@@ -1,0 +1,191 @@
+sword_flimsy:
+  name: Cheap 'Sword'
+  type: weapon
+  rarity: COMMON
+  item: STICK
+  attributes:
+    damage: +10
+    
+sword_water:
+  name: Water Blade
+  type: weapon
+  set: water
+  item: DIAMOND_SWORD
+  attributes:
+    damage: +18
+    health: +15
+    
+sword_mush:
+  name: Mushy Dagger
+  type: weapon
+  item: STONE_SWORD
+  attributes:
+    damage: +18
+    armour: +5
+    
+sword_adventurers:
+  name: Adventurer's Cutlass
+  type: weapon
+  rarity: COMMON
+  item: GOLDEN_SWORD
+  attributes:
+    damage: +19
+    killcoins: +3
+    
+sword_leaf:
+  name: Leaf Spear
+  type: weapon
+  rarity: RARE
+  set: leaf
+  item: STICK
+  attributes:
+    damage: +23
+    health: +85
+    
+sword_ocean:
+  name: Ocean Blade
+  type: weapon
+  rarity: RARE
+  set: water
+  item: DIAMOND_SWORD
+  attributes:
+    damage: +26
+    health: +40
+    
+sword_paper:
+  name: Paper Sword
+  type: weapon
+  rarity: RARE
+  set: paper
+  item: STONE_SWORD
+  attributes:
+    damage: +40
+    health: -50
+    
+    
+sword_hyperblade:
+  name: Hyperblade
+  type: weapon
+  rarity: EPIC
+  item: WOODEN_SWORD
+  glow: true
+  attributes:
+    damage: +27
+    regen: +10
+sword_hyperspear:
+  name: Hyperspear
+  type: weapon
+  rarity: EPIC
+  item: STICK
+  glow: true
+  set: leaf
+  attributes:
+    damage: +25
+    health: +60
+    regen: +8
+sword_holywater:
+  name: Holy Water Blade
+  type: weapon
+  rarity: EPIC
+  set: water
+  item: DIAMOND_SWORD
+  glow: true
+  attributes:
+    damage: +29
+    health: +60
+    regen: +3
+    
+sword_holyhyperblade:
+  name: Holy Hyperblade
+  type: weapon
+  rarity: INCREDIBLE
+  item: GOLDEN_SWORD
+  glow: true
+  attributes:
+    damage: +28
+    regen: +12
+    
+sword_guardian:
+  name: Guardian's Warhammer
+  type: weapon
+  rarity: EPIC
+  item: IRON_AXE
+  attributes:
+    damage: +45
+    armour: +30
+    
+sword_goldknife:
+  name: Gold Knife
+  type: weapon
+  rarity: EPIC
+  item: GOLD_NUGGET
+  attributes:
+    damage: +19
+    killcoins: +9
+    
+
+
+bow_flimsy:
+  name: Flimsy Bow
+  type: weapon
+  rarity: COMMON
+  item: BOW
+  attributes:
+    damage: +15
+    
+bow_water:
+  name: Bow of Water
+  type: weapon
+  rarity: COMMON
+  item: BOW
+  set: water
+  attributes:
+    damage: +21
+    regen: +1
+    
+bow_leaf:
+  name: Leaf Longbow
+  type: weapon
+  rarity: RARE
+  set: leaf
+  item: BOW
+  attributes:
+    damage: +21
+    health: +85
+bow_ocean:
+  name: Bow of the Ocean
+  type: weapon
+  rarity: RARE
+  set: water
+  item: BOW
+  attributes:
+    damage: +26
+    regen: +2
+bow_paper:
+  name: Paper Bow
+  type: weapon
+  rarity: RARE
+  set: paper
+  item: BOW
+  attributes:
+    damage: +45
+    health: -40
+    regen: -2
+bow_holywater:
+  name: Holy Bow of Water
+  type: weapon
+  rarity: EPIC
+  set: water
+  item: BOW
+  glow: true
+  attributes:
+    damage: +30
+    regen: +5
+    
+ 
+    
+    
+    
+    
+    
+    

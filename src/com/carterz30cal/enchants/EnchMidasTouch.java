@@ -33,7 +33,11 @@ public class EnchMidasTouch extends AbsEnchant
 	{
 		return 5;
 	}
-
+	@Override
+	public String type()
+	{
+		return "weapon";
+	}
 	@Override
 	public int catalyst()
 	{
@@ -48,11 +52,6 @@ public class EnchMidasTouch extends AbsEnchant
 	public DungeonMiningTable onMine(DungeonMiningTable mine) {
 		// TODO Auto-generated method stub
 		return null;
-	}
-	@Override
-	public void onHitAfter(DungeonsPlayer player, DungeonMob hit,ArmorStand ind) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

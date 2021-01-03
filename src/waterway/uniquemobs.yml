@@ -1,0 +1,58 @@
+bonewraith1:
+  name: Bone Wraith
+  type: SKELETON
+  health: 850
+  damage: 40
+  kbresist: 1
+  equipment: 
+    main: IRON_AXE
+    chestplate: armour_paper_chestplate
+  drops: {}
+creepyspider1:
+  name: Creepy Spider
+  type: SPIDER
+  health: 400
+  damage: 90
+  kbresist: 0
+  perk: spiders
+  equipment: {}
+  drops:
+    spidersilk:
+      drop: 1/1
+      amount: 1-3
+creepyspider2:
+  name: Creepy Spider
+  type: SPIDER
+  health: 600
+  damage: 105
+  kbresist: 0.1
+  perk: spiders
+  equipment: {}
+  drops:
+    spidersilk:
+      drop: 1/1
+      amount: 2-6
+creepyspiderqueen:
+  name: Creepy Spider Queen
+  type: SPIDER
+  health: 4000
+  damage: 300
+  kbresist: 1
+  perk: spiders
+  equipment: {}
+  drops:
+    spidersilk:
+      drop: 1/1
+      amount: 6-16
+zombietower:
+  name: Zombie Tower
+  type: ZOMBIE,ZOMBIE,ZOMBIE
+  health: 800
+  damage: 30
+  kbresist: 1
+  data:
+    0: baby
+    1: baby
+    2: baby
+  equipment: {}
+  drops: {}

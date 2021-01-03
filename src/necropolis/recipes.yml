@@ -1,0 +1,40 @@
+
+bone_stick:
+  product: stick_bone
+  xp: 10
+  materials:
+    X: bone,8
+  pattern: stick
+
+bone_sword:
+  product: sword_bone
+  xp: 70
+  materials:
+    X: bone,16
+    S: stick_bone,1
+  pattern: sword
+  
+bone_helmet:
+  product: armour_bone_helmet
+  xp: 66
+  materials:
+    X: bone,8
+  pattern: helmet
+bone_chestplate:
+  product: armour_bone_chestplate
+  xp: 66
+  materials:
+    X: bone,8
+  pattern: chestplate
+bone_leggings:
+  product: armour_bone_leggings
+  xp: 66
+  materials:
+    X: bone,8
+  pattern: leggings
+bone_boots:
+  product: armour_bone_boots
+  xp: 66
+  materials:
+    X: bone,8
+  pattern: boots

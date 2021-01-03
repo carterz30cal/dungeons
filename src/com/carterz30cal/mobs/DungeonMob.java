@@ -12,9 +12,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import com.carterz30cal.dungeons.Dungeons;
-import com.carterz30cal.tasks.TaskCombatTag;
+import com.carterz30cal.items.abilities.AbsAbility;
+import com.carterz30cal.player.DungeonsPlayerManager;
 
+@Deprecated
 public class DungeonMob
 {
 	public static boolean noremove = false;
@@ -35,6 +36,8 @@ public class DungeonMob
 	public ArrayList<Player> tagged;
 	public HashMap<String,Integer> summonCaps;
 	
+	private int lastDamage;
+	
 	public DungeonMob (DungeonMobType t,Damageable e,Entity s,Entity a,SpawnPosition o,MobModifier m)
 	{
 		type = t;
@@ -44,7 +47,7 @@ public class DungeonMob
 		armourstand = a;
 		modifier = m;
 		owner = o;
-		owner.mob = this;
+		//owner.mob = this;
 		tagged = new ArrayList<Player>();
 		health = health();
 		summonCaps = new HashMap<String,Integer>();
@@ -52,25 +55,27 @@ public class DungeonMob
 		
 		name();
 	}
+	public void removeFrom()
+	{
+		if (noremove) return;
+		
+		mobs.remove(entity.getUniqueId());
+		if (silverfish != null) silverfi.remove(silverfish.getUniqueId());
+		arm.remove(armourstand.getUniqueId());
+	}
 	public void destroy(Player damager)
 	{
+		health = 0;
 		if (owner != null) owner.mob = null;
-		if (!noremove)
-		{
-			mobs.remove(entity.getUniqueId());
-			silverfi.remove(silverfish.getUniqueId());
-			arm.remove(armourstand.getUniqueId());
-		}
+
 		if (noremove) entity.remove();
 		else entity.setHealth(0);
-		silverfish.remove();
+		if (silverfish != null) silverfish.remove();
 		armourstand.remove();
 		
-		if (damager != null) 
-		{
-			type.onKilled(damager,modifier);
-			//new SoundTask(damager.getLocation(),damager,Sound.ENTITY_ZOMBIE_DEATH,0.2f,0.65f).runTask(Dungeons.instance);
-		}
+		removeFrom();
+		
+		if (damager != null) type.onKilled(damager,modifier);
 	}
 	public void heal(int amount)
 	{
@@ -87,22 +92,42 @@ public class DungeonMob
 		if (modifier == null) armourstand.setCustomName(type.name + " " + ChatColor.RED + health + "/" + health());
 		else armourstand.setCustomName(modifier.colour + modifier.name + " " + type.name + " " + ChatColor.RED + health + "/" + health());
 	}
-	public void damage(int damage,Player damager)
+	
+	public int getLastDamage()
 	{
-		if (modifier == null) health -= (damage-type.armour);
-		else health -= (damage-type.armour)*(1-modifier.damageReduction);
+		return lastDamage;
+	}
+	public void damageTrue(int damage,Player damager)
+	{
+		health -= damage;
+		lastDamage = damage;
 		if (health > 0) 
 		{
 			name();
-			if (type.actions != null && !tagged.contains(damager)) 
-			{
-				new TaskCombatTag(damager,this).runTaskTimer(Dungeons.instance, 20,20);
-				tagged.add(damager);
-			}
-			//new SoundTask(damager.getLocation(),damager,Sound.ENTITY_ZOMBIE_HURT,0.2f,((float)health*1.5f)/health()).runTask(Dungeons.instance);
 			if (((float)health) / health() <= 0.3) ((LivingEntity)entity).addPotionEffect(new PotionEffect(PotionEffectType.SLOW,40,0,false,false));
 		}
 		else destroy(damager);
+	}
+	public void damage(int damage,Player damager)
+	{
+		damage(damage,damager,null);
+	}
+	public void damage(int damage,Player damager,ArrayList<AbsAbility> abilities)
+	{
+		/*
+		int d = damage;
+		d = (int)Math.round((d-type.armour)*(1-type.damageResist));
+		if (modifier != null) d = (int)(d * (1-modifier.damageReduction));
+		if (abilities != null && damager != null) for (AbsAbility a : abilities) d = a.onAttack(DungeonsPlayerManager.i.get(damager), this, d);
+		health -= d;
+		lastDamage = d;
+		if (health > 0) 
+		{
+			name();
+			if (((float)health) / health() <= 0.3) ((LivingEntity)entity).addPotionEffect(new PotionEffect(PotionEffectType.SLOW,40,0,false,false));
+		}
+		else destroy(damager);
+		*/
 	}
 	
 	public static DungeonMob getMob(UUID mob)

@@ -18,6 +18,28 @@ public class AbilityManager
 		abilities.put("cloudboots", AbilityCloudBoots.class);
 		abilities.put("silkbonus", AbilitySilkSet.class);
 		abilities.put("titanplate", AbilityTitanPlate.class);
+		abilities.put("soulreap", AbilitySoulreap.class);
+		abilities.put("soulstealer", AbilitySoulstealer.class);
+		abilities.put("ghoulbone",AbilityGhoulBone.class);
+		abilities.put("ghoulset",AbilityGhoulSet.class);
+		abilities.put("boneset", AbilityBoneSet.class);
+		abilities.put("stormbreaker", AbilityStormbreaker.class);
+		abilities.put("stormfork", AbilityStormfork.class);
+		abilities.put("stormset", AbilityStormSet.class);
+		abilities.put("slimeset", AbilitySlimeSet.class);
+		abilities.put("slimebow", AbilitySlimeBow.class);
+		abilities.put("rainsummon", AbilityRainSummon.class);
+		abilities.put("fishingt1", AbilitySpearFishingT1.class);
+		abilities.put("fishingt2", AbilitySpearFishingT2.class);
+		abilities.put("fishingt3", AbilitySpearFishingT3.class);
+		abilities.put("fishingt4", AbilitySpearFishingT4.class);
+		abilities.put("cryptkey", AbilityCryptKey.class);
+		
+		
+		
+		abilities.put("spellconcentration", ModSpellConcentration.class);
+		abilities.put("manaefficient", ModManaEfficient.class);
+		abilities.put("frozen", ModFrozen.class);
 	}
 	
 	public static AbsAbility get(String code)

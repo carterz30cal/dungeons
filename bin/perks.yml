@@ -10,9 +10,9 @@ spiders:
   icon: SPIDER_EYE
   effects:
     damage: 1
-necropolis_skeletons:
+skeletons:
   name: Grave Skeletons
   namecolour: WHITE
   icon: BONE
   effects:
-    armour: 1
+    armour: 2

@@ -28,7 +28,11 @@ public class EnchProtection extends AbsEnchant {
 	public int catalyst() {
 		return 0;
 	}
-
+	@Override
+	public String type()
+	{
+		return "armour";
+	}
 	@Override
 	public int rarity() {
 		return level-1;
@@ -46,10 +50,5 @@ public class EnchProtection extends AbsEnchant {
 		return null;
 	}
 
-	@Override
-	public void onHitAfter(DungeonsPlayer player, DungeonMob hit,ArmorStand ind) {
-		// TODO Auto-generated method stub
-		
-	}
 
 }

@@ -1,0 +1,168 @@
+drenched1:
+  name: Drenched
+  type: DROWNED
+  health: 70
+  damage: 10
+  speed: 0.8
+  kbresist: 0
+  perk: waterway_drenched
+  equipment:
+    main: DIAMOND_SWORD
+    helmet: armour_water_helmet
+    chestplate: armour_water_chestplate
+    leggings: armour_water_leggings
+    boots: armour_water_boots
+  drops:
+    wetpaper:
+      drop: 1/1
+      amount: 1-2
+    water_fragment:
+      drop: 1/6
+      amount: 1-1
+    catalyst=0:
+      drop: 1/225
+      amount: 1-1
+    magic_dust:
+      drop: 1/100
+      amount: 1-1
+    armour_water_helmet:
+      drop: 1/200
+      amount: 1-1
+    armour_water_chestplate:
+      drop: 1/200
+      amount: 1-1
+    armour_water_leggings:
+      drop: 1/200
+      amount: 1-1
+    armour_water_boots:
+      drop: 1/200
+      amount: 1-1
+drenched2:
+  name: Drenched
+  type: DROWNED
+  health: 160
+  damage: 20
+  speed: 0.8
+  kbresist: 0
+  perk: waterway_drenched
+  equipment:
+    main: sword_water
+    helmet: armour_water_helmet
+    chestplate: armour_water_chestplate
+    leggings: armour_water_leggings
+    boots: armour_water_boots
+  drops:
+    wetpaper:
+      drop: 1/1
+      amount: 1-3
+    water_fragment:
+      drop: 1/6
+      amount: 1-2
+    catalyst=0:
+      drop: 1/225
+      amount: 1-1
+    magic_dust:
+      drop: 1/100
+      amount: 1-1
+    armour_water_helmet:
+      drop: 1/180
+      amount: 1-1
+    armour_water_chestplate:
+      drop: 1/180
+      amount: 1-1
+    armour_water_leggings:
+      drop: 1/180
+      amount: 1-1
+    armour_water_boots:
+      drop: 1/180
+      amount: 1-1
+    book:
+      drop: 1/160
+      amount: 1-1
+      enchants: trunk,1
+drenched3:
+  name: Drenched
+  type: DROWNED
+  health: 240
+  damage: 33
+  speed: 0.8
+  kbresist: 0
+  perk: waterway_drenched
+  equipment:
+    main: sword_water
+    helmet: armour_water_helmet
+    chestplate: armour_water_chestplate
+    leggings: armour_water_leggings
+    boots: armour_water_boots
+  drops:
+    wetpaper:
+      drop: 1/1
+      amount: 2-4
+    water_fragment:
+      drop: 1/6
+      amount: 1-3
+    catalyst=0:
+      drop: 1/225
+      amount: 1-1
+    magic_dust:
+      drop: 1/100
+      amount: 1-1
+    armour_water_helmet:
+      drop: 1/175
+      amount: 1-1
+    armour_water_chestplate:
+      drop: 1/175
+      amount: 1-1
+    armour_water_leggings:
+      drop: 1/175
+      amount: 1-1
+    armour_water_boots:
+      drop: 1/175
+      amount: 1-1
+    book:
+      drop: 1/160
+      amount: 1-1
+      enchants: trunk,1
+drenched4:
+  name: Drenched
+  type: DROWNED
+  health: 400
+  damage: 65
+  speed: 0.8
+  kbresist: 0
+  perk: waterway_drenched
+  equipment:
+    main: sword_water
+    helmet: armour_water_helmet
+    chestplate: armour_water_chestplate
+    leggings: armour_water_leggings
+    boots: armour_water_boots
+  drops:
+    wetpaper:
+      drop: 1/1
+      amount: 4-6
+    water_fragment:
+      drop: 1/6
+      amount: 1-4
+    catalyst=0:
+      drop: 1/200
+      amount: 1-1
+    magic_dust:
+      drop: 1/100
+      amount: 1-1
+    armour_water_helmet:
+      drop: 1/170
+      amount: 1-1
+    armour_water_chestplate:
+      drop: 1/170
+      amount: 1-1
+    armour_water_leggings:
+      drop: 1/170
+      amount: 1-1
+    armour_water_boots:
+      drop: 1/170
+      amount: 1-1
+    book:
+      drop: 1/160
+      amount: 1-1
+      enchants: trunk,1

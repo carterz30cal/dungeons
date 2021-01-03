@@ -1,0 +1,96 @@
+magic_dust:
+  name: Magic Dust
+  item: GLOWSTONE_DUST
+  rarity: EPIC
+  glow: true
+mud:
+  name: Enchanted Mud
+  item: CHARCOAL
+  rarity: EPIC
+  glow: true
+wand_crude:
+  name: Crude Wand
+  type: wand
+  item: BLAZE_ROD
+  rarity: RARE
+  wand:
+    mana: 25
+spell_mudball:
+  name: Mud Ball
+  type: spell
+  rarity: RARE
+  item: BROWN_DYE
+  glow: true
+  spell:
+    damage: 60
+    colour: 85,63,35
+    pierces: 0
+    speed: 0.5
+spell_leaftome:
+  name: Leaf Tome
+  type: spell
+  rarity: RARE
+  item: OAK_LEAVES
+  spell:
+    damage: 22
+    mana: -10
+    colour: 0,170,25
+    pierces: 10
+    speed: 1
+spell_waterbolt:
+  name: Water Bolt
+  type: spell
+  rarity: EPIC
+  item: BOOK
+  glow: true
+  spell:
+    damage: 35
+    mana: -7
+    colour: 0,80,165
+    pierces: 4
+    speed: 0.75
+
+modifier_spellconcentration:
+  name: Spell Concentration
+  type: modifier
+  rarity: EPIC
+  item: IRON_HOE
+  glow: true
+  ability: spellconcentration
+modifier_manacost:
+  name: Mana-Efficient Binding
+  type: modifier
+  rarity: EPIC
+  item: DRIED_KELP
+  glow: true
+  ability: manaefficient
+modifier_frozen:
+  name: Elemental Ice
+  type: modifier
+  rarity: INCREDIBLE
+  item: BLUE_ICE
+  glow: true
+  ability: frozen
+armour-mud:
+  name: Mud
+  suffix: Helmet,Chestplate,Leggings,Boots
+  rarity: RARE
+  set: mud
+  item: LEATHER
+  colour: 85,63,35
+  attributes:
+    health: 25,25,25,25
+    mana: 50,50,50,50
+armour-manacultist:
+  name: Mana Cultist
+  suffix: Hood,Robe,Leggings,Shoes
+  rarity: INCREDIBLE
+  set: manacultist
+  item: LEATHER
+  skull:
+    data: ewogICJ0aW1lc3RhbXAiIDogMTYwODc1MDc3Mzc1NCwKICAicHJvZmlsZUlkIiA6ICJmZDYwZjM2ZjU4NjE0ZjEyYjNjZDQ3YzJkODU1Mjk5YSIsCiAgInByb2ZpbGVOYW1lIiA6ICJSZWFkIiwKICAic2lnbmF0dXJlUmVxdWlyZWQiIDogdHJ1ZSwKICAidGV4dHVyZXMiIDogewogICAgIlNLSU4iIDogewogICAgICAidXJsIiA6ICJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlL2FhNmI1ZmVhYzczNGU5M2FiODViNTZkMmYxMjQwMjZlZGE4YjBiNzZmMzdkZDgwOTE1ODQyZTJjMTM3ODNlNzIiCiAgICB9CiAgfQp9
+    sig: J44jxpG2xKRu7F0KiuLZg9JLwMVFHrXJjDylYdvndMbxmhOUfq+Qm3gN8JwNsFNej5EcNBZilX70pVfxWq/cWCba/sy2g7ArEKXPyZFGB9+AFy9ztoFqworYh6bYeD0tZKGKn12KZG+5ecZFsw/fRC0A98qTqROl68o0sNe0Fydyxx7sSEPAUwzIbW6hC3kXa1lZYC9kwjN0HZtV9y5FhsaLx1We5hvpN9ZsqAWIFKgcqJSAbJcPkxcZAZaF2/LVsgIG684FT4UYUaJNRrqRUYlip3FxP97WkpAdgU5VhzzhdPKiKqBV8VBY9bG2tQUXzPiWobI1MMvxer1KweyxVEfIIbycTSP7nVyR2t4XtAifW2yjzJhRRI4xX8SBR2OAjY70TAYeZ26dZoU9o1kL9EriBSJOcx1tRGOg10JB7kG2t8pYtcXGbPlxSu7F9WM5Xv1PjyEWqPymmlVfjXEQHmg/alNwkanxMlJYEpR+S9fBDcCSsFC7ewTyqP9Tpa3Xt8uzTfDKrESd4qMT8c7bIwtEL0FnNunKjZMfZG2l2zYjY3TTrr2wrGkeUOhXwdRXewetr+1VFRhU9Dr2jcj9DxVA8AbWWA1wkOnpqWzGE4x3/mePvGdt/aYQTkqlJcQoo+ej1Zcut8P0fH2v//DlwBlBDTLoqJkPR5dTleo/ISo=
+  colour: 10,12,233
+  attributes:
+    health: -25,-25,-25,-25
+    mana: 125,125,125,125

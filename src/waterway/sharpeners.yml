@@ -1,0 +1,57 @@
+sharpener_crude:
+  name: Crude Flint
+  type: sharpener
+  rarity: COMMON
+  item: FLINT
+  sharpener:
+    id: crude
+    plus: GRAY
+  attributes:
+    damage: +2
+    
+sharpener_sharp:
+  name: Sharp Flint
+  type: sharpener
+  rarity: RARE
+  item: FLINT
+  glow: true
+  sharpener:
+    id: sharp
+    plus: DARK_GRAY
+  attributes:
+    damage: +4
+    
+sharpener_vine:
+  name: Vines
+  type: sharpener
+  rarity: RARE
+  item: VINE
+  glow: true
+  sharpener:
+    id: vines
+    plus: GREEN
+  attributes:
+    regen: +1
+    
+sharpener_midas:
+  name: Midas Flint
+  type: sharpener
+  rarity: EPIC
+  item: GOLD_INGOT
+  glow: true
+  sharpener:
+    id: midas
+    plus: GOLD
+  attributes:
+    killcoins: +3
+    
+sharpener_steeledge:
+  name: Steel Edge
+  type: sharpener
+  rarity: EPIC
+  item: IRON_INGOT
+  sharpener:
+    id: steeledge
+    plus: WHITE
+  attributes:
+    damagep: 0.075

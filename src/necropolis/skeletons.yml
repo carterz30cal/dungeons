@@ -1,0 +1,57 @@
+skeleton1:
+  name: Skeleton
+  type: SKELETON
+  health: 450
+  damage: 75
+  kbresist: 0
+  perk: skeletons
+  equipment: 
+    main: IRON_SWORD
+  drops:
+    bone:
+      drop: 2/3
+      amount: 1-2
+skeleton2:
+  name: Skeleton
+  type: SKELETON
+  health: 580
+  damage: 85
+  kbresist: 0.1
+  perk: skeletons
+  equipment: 
+    main: IRON_SWORD
+    helmet: IRON_HELMET
+  drops:
+    bone:
+      drop: 2/3
+      amount: 1-3
+skeleton3:
+  name: Skeleton
+  type: SKELETON
+  health: 625
+  damage: 100
+  kbresist: 0.1
+  perk: skeletons
+  equipment: 
+    main: IRON_SWORD
+    helmet: IRON_HELMET
+    chestplate: IRON_CHESTPLATE
+  drops:
+    bone:
+      drop: 2/3
+      amount: 1-4
+
+miner1:
+  name: Miner Skeleton
+  type: SKELETON
+  health: 395
+  damage: 120
+  kbresist: 0.3
+  dmgresist: 0.2
+  perk: skeletons
+  equipment:
+    main: IRON_PICKAXE
+    helmet: GOLDEN_HELMET
+    chestplate: armour_bone_chestplate
+    leggings: armour_bone_leggings
+    boots: armour_bone_boots

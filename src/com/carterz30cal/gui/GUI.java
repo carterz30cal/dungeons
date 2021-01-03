@@ -5,7 +5,6 @@ import java.util.HashMap;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.Sound;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
@@ -15,15 +14,10 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import com.carterz30cal.dungeons.Dungeons;
-import com.carterz30cal.dungeons.EnchantHandler;
-import com.carterz30cal.dungeons.SoundTask;
 import com.carterz30cal.items.ItemBuilder;
-import com.carterz30cal.player.BackpackItem;
 import com.carterz30cal.player.DungeonsPlayer;
 import com.carterz30cal.player.DungeonsPlayerManager;
 import com.carterz30cal.tasks.TaskAGUIBrowser;
-import com.carterz30cal.tasks.TaskGUI;
-import com.carterz30cal.tasks.TaskGUIEnchanting;
 import com.carterz30cal.tasks.TaskGUIRecipeBrowser;
 import com.carterz30cal.utility.StringManipulator;
 
@@ -312,7 +306,7 @@ public class GUI
 				page++;
 				new TaskAGUIBrowser(this,p).runTaskLater(Dungeons.instance, 1);
 			}
-			else if (!EnchantHandler.eh.isUIElement(e.getCurrentItem()))
+			else if (!ItemBuilder.isUIElement(e.getCurrentItem()))
 			{
 				ItemStack add = e.getCurrentItem().clone();
 				add = ItemBuilder.i.maxStack(add);
@@ -320,129 +314,13 @@ public class GUI
 			}
 				
 		}
-		else if (type == MenuType.ENCHANTING)
-		{
-			ItemStack set = null;
-			int pos = position;
-			if (e.getClick() == ClickType.SHIFT_LEFT && position >= mSize)
-			{
-				ItemStack shiftItem = e.getView().getItem(position);
-				if (EnchantHandler.eh.isBook(shiftItem) && EnchantHandler.eh.isUIElement(inventory.getItem(GUICreator.top()+9)))
-				{
-					set = shiftItem;
-					pos = GUICreator.top()+9;
-					e.getView().setItem(position, null);
-				}
-				else if (EnchantHandler.eh.enchantable(shiftItem) && EnchantHandler.eh.isUIElement(inventory.getItem(GUICreator.top())))
-				{
-					set = shiftItem;
-					pos = GUICreator.top();
-					e.getView().setItem(position, null);
-				}
-				else if (EnchantHandler.eh.isCatalyst(shiftItem) && EnchantHandler.eh.isUIElement(inventory.getItem(GUICreator.top()+18)))
-				{
-					set = shiftItem;
-					pos = GUICreator.top()+18;
-					e.getView().setItem(position, null);
-				}
-			}
-			else if ((position == GUICreator.top()
-					|| position == GUICreator.top()+9
-					|| position == GUICreator.top()+18))
-			{
-				ItemStack purple = GUICreator.item(Material.PURPLE_STAINED_GLASS_PANE, ChatColor.DARK_PURPLE + "Enchantable Item Slot", null, 1);
-				ItemStack yellow = GUICreator.item(Material.YELLOW_STAINED_GLASS_PANE, ChatColor.GOLD + "Book Slot", null, 1);
-				ItemStack black = GUICreator.item(Material.BLACK_STAINED_GLASS_PANE, ChatColor.GRAY + "Catalyst Slot", null, 1);
-				
-				ItemStack clickItem = inventory.getItem(position);
-				if (!EnchantHandler.eh.isUIElement(clickItem))
-				{
-					switch (position)
-					{
-					case 4:
-						set = purple;
-						e.getView().setCursor(null);
-						break;
-					case 13:
-						set = yellow;
-						e.getView().setCursor(null);
-						break;
-					case 22:
-						set = black;
-						e.getView().setCursor(null);
-						break;
-					default:
-						set = null;
-						e.getView().setCursor(null);
-						break;
-					}
-					
-					if (p.getInventory().firstEmpty() == -1) p.getWorld().dropItem(p.getLocation(), clickItem);
-					else p.getInventory().addItem(clickItem);
-					
-					
-				}
-				else 
-				{
-					set = null;
-					switch (position)
-					{
-					case 4:
-						if (EnchantHandler.eh.enchantable(e.getCursor())) 
-						{
-							set = e.getCursor();
-							e.getView().setCursor(null);
-						}
-						break;
-					case 13:
-						if (EnchantHandler.eh.isBook(e.getCursor()))
-						{
-							set = e.getCursor();
-							e.getView().setCursor(null);
-						}
-						break;
-					case 22:
-						if (EnchantHandler.eh.isCatalyst(e.getCursor()))
-						{
-							set = e.getCursor();
-							e.getView().setCursor(null);
-						}
-						break;
-					default:
-						break;
-					}
-					
-				}
-				
-			}
-			else if (position == 40 && !EnchantHandler.eh.isUIElement(inventory.getItem(40)))
-			{
-				p.getInventory().addItem(inventory.getItem(40));
-				ItemStack catalyst = inventory.getItem(GUICreator.top()+18);
-				if (catalyst.getAmount() > 1)
-				{
-					catalyst.setAmount(catalyst.getAmount()-1);
-					p.getInventory().addItem(catalyst);
-				}
-				new SoundTask(p.getLocation(), p, Sound.BLOCK_ENCHANTMENT_TABLE_USE, 2, 1).runTaskLater(Dungeons.instance, 4);
-				drop = false;
-				new TaskGUI(new GUI(MenuType.ENCHANTING,p),p).runTaskLater(Dungeons.instance, 1);
-				return true;
-			}
-			if (set != null) 
-			{
-				new TaskGUIEnchanting(set,pos,p).runTaskLater(Dungeons.instance, 1);
-				return true;
-			}
-			
-		}
 		if (type == MenuType.RECIPES)
 		{
 			if (position == 35) new AnvilGUI(p,3);
 			if (position == 10)
 			{
 				ItemStack c = inventory.getItem(10);
-				if (EnchantHandler.eh.isUIElement(c))
+				if (ItemBuilder.isUIElement(c))
 				{
 					if (e.getView().getCursor().getType() == Material.AIR) return true;
 					new TaskGUIRecipeBrowser(this,e.getView().getCursor()).runTaskLater(Dungeons.instance, 1);

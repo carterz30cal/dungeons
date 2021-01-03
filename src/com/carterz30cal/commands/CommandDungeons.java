@@ -1,7 +1,7 @@
 package com.carterz30cal.commands;
 
 
-import java.util.Map.Entry;
+import java.util.ArrayList;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -13,15 +13,14 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 
 import com.carterz30cal.bosses.BossManager;
-import com.carterz30cal.dungeons.Dungeon;
-import com.carterz30cal.dungeons.DungeonManager;
 import com.carterz30cal.gui.GUI;
 import com.carterz30cal.gui.MenuType;
 import com.carterz30cal.gui.ShopGUI;
 import com.carterz30cal.items.ItemBuilder;
 import com.carterz30cal.items.ShopManager;
-import com.carterz30cal.mobs.DungeonMobCreator;
-import com.carterz30cal.mobs.SpawnPosition;
+import com.carterz30cal.items.magic.ItemWand;
+import com.carterz30cal.mobs.DMob;
+import com.carterz30cal.mobs.DMobManager;
 import com.carterz30cal.player.BackpackItem;
 import com.carterz30cal.player.DungeonsPlayer;
 import com.carterz30cal.player.DungeonsPlayerManager;
@@ -33,6 +32,7 @@ public class CommandDungeons implements CommandExecutor
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
 	{
 		if (args.length == 0) return false;
+		if (sender instanceof Player && !sender.isOp()) return true;
 		switch (args[0].toLowerCase()) {
 			case "version":
 				sender.sendMessage("currently running v1.0.0");
@@ -60,7 +60,8 @@ public class CommandDungeons implements CommandExecutor
 				if (args.length == 1) return false;
 				Player pl = Bukkit.getPlayer(args[1]);
 				DungeonsPlayer dpl = DungeonsPlayerManager.i.get(pl);
-				dpl.backpack = new BackpackItem[54];
+				dpl.backpackb = new ArrayList<BackpackItem[]>();
+				dpl.backpackb.add(new BackpackItem[45]);
 				break;
 			case "removeperk":
 				if (args.length < 3) return false;
@@ -81,6 +82,22 @@ public class CommandDungeons implements CommandExecutor
 					DungeonsPlayer d = DungeonsPlayerManager.i.get(Bukkit.getPlayerExact(args[2]));
 					d.coins += Integer.parseInt(args[1]);
 				}
+				break;
+			case "skill":
+				if (args.length == 1) return false;
+				DungeonsPlayer d = DungeonsPlayerManager.i.get((Player)sender);
+				d.skills.add("combat", -d.skills.getSkill("combat"));
+				d.skills.add("combat", Integer.parseInt(args[1]));
+				break;
+			case "wand":
+				DungeonsPlayer du = DungeonsPlayerManager.i.get((Player)sender);
+				ItemStack wand = ItemBuilder.i.build(args[1], du);
+				ItemMeta wme = wand.getItemMeta();
+				wme.getPersistentDataContainer().set(ItemWand.kSpell, PersistentDataType.STRING, args[2]);
+				if (args.length == 4) wme.getPersistentDataContainer().set(ItemWand.kModifier, PersistentDataType.STRING, args[3]);
+				ItemBuilder.i.updateMeta(wme, du);
+				wand.setItemMeta(wme);
+				du.player.getInventory().addItem(wand);
 				break;
 			case "item":
 				if (args.length == 1) return false;
@@ -114,18 +131,6 @@ public class CommandDungeons implements CommandExecutor
 				meta.getPersistentDataContainer().set(ItemBuilder.kSharps, PersistentDataType.STRING, args[1]);
 				item.setItemMeta(meta);
 				break;
-			case "activate":
-				if (args.length < 2) return false;
-				Dungeon dungeon = DungeonManager.i.dungeons.get(Integer.parseInt(args[1]));
-				
-				for (Entry<SpawnPosition, String> spawn : dungeon.spawns.entrySet())
-				{
-					if (spawn.getKey().mob == null)
-					{
-						DungeonMobCreator.i.create(spawn.getValue().toLowerCase(), spawn.getKey());
-					}
-				}
-				break;
 			case "spawn":
 				if (args.length < 2) return false;
 				if (sender instanceof Player)
@@ -134,8 +139,7 @@ public class CommandDungeons implements CommandExecutor
 					if (args.length == 3) amount = Integer.parseInt(args[2]);
 					while (amount > 0)
 					{
-						//MobCreator.i.summon(((Player) sender).getLocation(),args[1].toLowerCase());
-						DungeonMobCreator.i.create(args[1].toLowerCase(), new SpawnPosition(((Player) sender).getLocation()));
+						new DMob(DMobManager.types.get(args[1]),null,((Player) sender).getLocation(),true);
 						amount--;
 					}
 				}

@@ -1,0 +1,22 @@
+bone:
+  name: Bone
+  item: BONE
+stick_bone:
+  name: Carved Bone Stick
+  item: STICK
+decaying_flesh:
+  name: Decaying Flesh
+  item: ROTTEN_FLESH
+  rarity: RARE
+beating_mass:
+  name: Beating Mass
+  item: RED_DYE
+  rarity: COMMON
+gel:
+  name: Gel
+  item: SLIME_BALL
+  rarity: COMMON
+stick_gel:
+  name: Gel Hilt
+  item: SLIME_BLOCK
+  rarity: RARE

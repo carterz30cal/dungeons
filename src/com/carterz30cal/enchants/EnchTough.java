@@ -11,7 +11,7 @@ public class EnchTough extends AbsEnchant {
 
 	@Override
 	public String description() {
-		return "If this piece has 20 armour, grant " + (5+(5*level)) + " more";
+		return "If this piece has at least 20 armour, grant " + (5+(5*level)) + " more";
 	}
 
 	@Override
@@ -28,7 +28,11 @@ public class EnchTough extends AbsEnchant {
 	public int catalyst() {
 		return 0;
 	}
-
+	@Override
+	public String type()
+	{
+		return "armour";
+	}
 	@Override
 	public int rarity() {
 		return level;
@@ -45,9 +49,5 @@ public class EnchTough extends AbsEnchant {
 		return null;
 	}
 
-	@Override
-	public void onHitAfter(DungeonsPlayer player, DungeonMob hit, ArmorStand ind) {
-		
-	}
 
 }

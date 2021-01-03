@@ -7,35 +7,38 @@ paper:
   synergy:
     lore: The paper cuts really sting
     attributes:
-      damage: +20
-      health: -50
+      damage: +40
+      damagep: +0.15
 
 water:
   set:
     lore: This feels cold
     attributes:
-      armour: +15
+      health: +35
   synergy:
     lore: Natural power surges through your weapon
     attributes:
       damage: +5
       health: +40
+      
+mud:
+  set:
+    lore: You really are stuck in the mud
+    attributes:
+      mana: +100
+      
+pond:
+  set:
+    lore: Don't quack
+    attributes:
+      damagep: +0.05
+      
 mush:
   set:
     lore: Are you sure you should wear this?
     attributes:
       health: +20
       orechance: +0.05
-bone:
-  set: 
-    lore: Uncomfortable but protective
-    attributes:
-      armour: +30
-  synergy:
-    lore: The souls empower you
-    attributes:
-      damage: +5
-      armour: +20
       
 leaf:
   set:
@@ -47,13 +50,24 @@ leaf:
     lore: The weapon combines with your suit
     attributes:
       damagep: +0.65
-      
+
+storm:
+  set:
+    lore: It shocks you occasionally
+    attributes:
+      health: -20
+    ability: stormset
 ancientcultist:
   set:
     lore: This doesn't smell too great
     attributes:
       damagep: +0.2
       killcoins: +4
+manacultist:
+  set:
+    lore: The robe contains ancient power
+    attributes:
+      mana: +500
 silk:
   set:
     lore: Silk is slippery

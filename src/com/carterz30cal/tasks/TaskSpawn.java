@@ -11,7 +11,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import com.carterz30cal.dungeons.Dungeon;
 import com.carterz30cal.dungeons.DungeonManager;
-import com.carterz30cal.mobs.DungeonMobCreator;
+import com.carterz30cal.mobs.DMobManager;
 import com.carterz30cal.mobs.SpawnPosition;
 import com.carterz30cal.npcs.NPCManager;
 import com.carterz30cal.player.DungeonsPlayer;
@@ -52,7 +52,7 @@ public class TaskSpawn extends BukkitRunnable
 				}
 				if (spa && spawn.getKey().mob == null)
 				{
-					DungeonMobCreator.i.create(spawn.getValue().toLowerCase(), spawn.getKey());
+					DMobManager.spawn(spawn.getValue(), spawn.getKey());
 				}
 				
 			}

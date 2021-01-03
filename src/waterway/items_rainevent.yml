@@ -1,0 +1,47 @@
+stick_stormhilt:
+  name: Storm Hilt
+  rarity: UNUSUAL
+  item: STICK
+storm_crystals:
+  name: Storm Crystals
+  rarity: UNUSUAL
+  item: PRISMARINE_CRYSTALS
+  
+rainbringer:
+  name: Rain Bringer
+  type: artifact
+  rarity: UNUSUAL
+  item: BLAZE_ROD
+  ability: rainsummon
+  
+sword_stormbreaker:
+  name: Stormbreaker
+  type: weapon
+  rarity: UNUSUAL
+  item: DIAMOND_AXE
+  ability: stormbreaker
+  attributes:
+    damage: +30
+    regen: +5
+
+sword_stormfork:
+  name: Stormfork
+  type: weapon
+  rarity: UNUSUAL
+  item: TRIDENT
+  ability: stormfork
+  attributes:
+    damage: +40
+    regen: +5
+
+armour-storm:
+  name: Storm
+  suffix: Helm,Chestplate,Leggings,Boots
+  rarity: UNUSUAL
+  item: DIAMOND
+  set: storm
+  attributes:
+    armour: 10,24,15,6
+    regen: 1,3,2,1
+    damagep: +0.05,+0.05,+0.05,+0.05
+  

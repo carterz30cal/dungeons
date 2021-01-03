@@ -20,34 +20,59 @@ public class RecipeManager
 	public static RecipeManager i;
 	
 	public HashMap<String,Recipe> recipes;
-	public HashMap<String,ArrayList<String>> recipeBrowser_byIngredient;
-	private File recipeFile;
-	public final FileConfiguration recipeConfig;
+	public HashMap<String,ArrayList<Recipe>> recipeBrowser_byIngredient;
+	
+	public static String[] files = {
+			"waterway/recipes","waterway/recipes_magic",
+			"necropolis/recipes"
+			};
+	public static HashMap<String,String[]> patterns;
+	
+	
 	
 	public RecipeManager()
 	{
 		i = this;
-		
-		// init file
-		recipeFile = new File(Dungeons.instance.getDataFolder(), "recipes.yml");
-		if (!recipeFile.exists())
-		{
-			recipeFile.getParentFile().mkdirs();
-			Dungeons.instance.saveResource("recipes.yml",false);
-		}
-		
-		recipeConfig = new YamlConfiguration();
-		try 
-		{
-			recipeConfig.load(recipeFile);
-        } 
-		catch (IOException | InvalidConfigurationException e) 
-		{
-            e.printStackTrace();
-        }
 		// fetch recipes and construct the objects
 		recipes = new HashMap<String,Recipe>();
-		recipeBrowser_byIngredient = new HashMap<String,ArrayList<String>>();
+		recipeBrowser_byIngredient = new HashMap<String,ArrayList<Recipe>>();
+		
+		patterns = new HashMap<String,String[]>();
+		
+		patterns.put("helmet", new String[] {"X X X","X 0 X","0 0 0"});
+		patterns.put("chestplate", new String[] {"X 0 X","X X X","X X X"});
+		patterns.put("leggings", new String[] {"X X X","X 0 X","X 0 X"});
+		patterns.put("boots", new String[] {"0 0 0","X 0 X","X 0 X"});
+		
+		patterns.put("sword", new String[] {"0 X 0","0 X 0","0 S 0"});
+		patterns.put("stick", new String[] {"0 X 0","0 X 0","0 X 0"});
+		
+		for (String f : files)
+		{
+			File file = null;
+			try
+			{
+				file = File.createTempFile("recipefile." + f, null);
+			} catch (IOException e1)
+			{
+				e1.printStackTrace();
+			}
+			if (file == null) continue;
+			ItemBuilder.copyToFile(Dungeons.instance.getResource(f + ".yml"),file);
+			FileConfiguration data = new YamlConfiguration();
+			try 
+			{
+				data.load(file);
+		    } 
+			catch (IOException | InvalidConfigurationException e) 
+			{
+		        e.printStackTrace();
+		    }
+			generate(data);
+		}
+	}
+	private void generate (FileConfiguration recipeConfig)
+	{
 		for (String p : recipeConfig.getKeys(false))
 		{
 			String[] prod = recipeConfig.getString(p + ".product").split(",");
@@ -66,14 +91,21 @@ public class RecipeManager
 			{
 				String ing = recipeConfig.getString(p + ".materials." + mat);
 				materials.put(mat,ing);
-				recipeBrowser_byIngredient.putIfAbsent(ing.split(",")[0], new ArrayList<String>());
-				if (!recipeBrowser_byIngredient.get(ing.split(",")[0]).contains(p)) recipeBrowser_byIngredient.get(ing.split(",")[0]).add(p);
 			}
 			String recipe = "";
 			int[] amounts = new int[9];
+			String[] types = new String[9];
+			String[] pattern = null;
+			if (recipeConfig.contains(p + ".pattern"))
+			{
+				pattern = patterns.getOrDefault(recipeConfig.getString(p + ".pattern"),null);
+			}
 			for (int i = 0; i < 3; i++)
 			{
-				String[] r = recipeConfig.getString(p + ".recipe." + i,"0 0 0").split(" ");
+				String[] r;
+				if (pattern == null) r = recipeConfig.getString(p + ".recipe." + i,"0 0 0").split(" ");
+				else r = pattern[i].split(" ");
+				
 				for (int j = 0; j < 3;j++)
 				{
 					if (r[j].equals("0")) 
@@ -84,12 +116,23 @@ public class RecipeManager
 					else 
 					{
 						recipe += r[j];
-						amounts[(i*3)+j] = Integer.parseInt(materials.getOrDefault(r[j], "nothing,0").split(",")[1]);
+						String[] pah = materials.getOrDefault(r[j], "nothing,0").split(",");
+						amounts[(i*3)+j] = Integer.parseInt(pah[1]);
+						if (pah[0].equals("nothing")) types[(i*3)+j] = null;
+						else types[(i*3)+j] = pah[0];
 					}
 				}
 				
 			}
-			recipes.put(create(recipe,materials),new Recipe(product,xp,amounts));
+			Recipe fin = new Recipe(product,xp,amounts,types);
+			recipes.put(create(recipe,materials),fin);
+			
+			for (String m : materials.values()) 
+			{
+				String mat = m.split(",")[0];
+				recipeBrowser_byIngredient.putIfAbsent(mat, new ArrayList<Recipe>());
+				if (!recipeBrowser_byIngredient.get(mat).contains(fin)) recipeBrowser_byIngredient.get(mat).add(fin);
+			}
 		}
 	}
 	public static Recipe getRecipe(ItemStack[] ingredients)

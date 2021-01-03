@@ -1,0 +1,75 @@
+mud:
+  product: mud,24
+  xp: 100
+  materials:
+    M: mush,8
+    L: leafmash,32
+    P: paper,1
+    D: magic_dust,1
+  recipe:
+    0: M L P
+    1: L D L
+    2: P L M
+crude_wand:
+  product: wand_crude
+  xp: 150
+  materials:
+    X: stick_paper,1
+    S: magic_dust,1
+  pattern: sword
+
+mudball_spell:
+  product: spell_mudball
+  xp: 80
+  materials:
+    C: waterway_core,3
+    M: mud,4
+  recipe:
+    0: 0 M 0
+    1: M C M
+    2: 0 M 0
+leaftome_spell:
+  product: spell_leaftome
+  xp: 50
+  materials:
+    C: waterway_core,1
+    B: leaf_ball,1
+    D: magic_dust,1
+  recipe:
+    0: 0 C 0
+    1: B D B
+    2: 0 C 0
+frozen_modifier:
+  product: modifier_frozen
+  xp: 270
+  materials:
+    D: magic_dust,2
+    H: holywater_fragment,8
+  recipe:
+    0: 0 D 0
+    1: D H D
+    2: 0 D 0
+mud_helmet:
+  product: armour_mud_helmet
+  xp: 66
+  materials:
+    X: mud,1
+  pattern: helmet
+mud_chestplate:
+  product: armour_mud_chestplate
+  xp: 66
+  materials:
+    X: mud,1
+  pattern: chestplate
+mud_leggings:
+  product: armour_mud_leggings
+  xp: 66
+  materials:
+    X: mud,1
+  pattern: leggings
+mud_boots:
+  product: armour_mud_boots
+  xp: 66
+  materials:
+    X: mud,1
+  pattern: boots

@@ -1,0 +1,42 @@
+sword_bone:
+  name: Bone Sword
+  type: weapon
+  item: IRON_SWORD
+  set: bone
+  req: 4
+  attributes:
+    damage: +35
+    armour: +50
+sword_ghoul:
+  name: Ghoul Bone
+  type: weapon
+  rarity: RARE
+  item: BONE
+  glow: true
+  req: 4
+  ability: ghoulbone
+  attributes:
+    damage: +40
+    regen: +3
+sword_soul:
+  name: Soulstealer Sword
+  type: weapon
+  rarity: RARE
+  item: WOODEN_SWORD
+  set: soul
+  ability: soulstealer
+  req: 6
+  attributes:
+    damage: +20
+    health: +75
+    
+bow_slime:
+  name: Slime Bow
+  type: weapon
+  rarity: RARE
+  item: BOW
+  req: 6
+  ability: slimebow
+  attributes:
+    damage: +35
+    health: +100

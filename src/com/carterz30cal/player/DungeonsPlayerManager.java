@@ -56,7 +56,6 @@ public class DungeonsPlayerManager
 			playerc.createSection(path + ".skills");
 			playerc.createSection(path + ".perks");
 			playerc.createSection(path + ".settings");
-			playerc.createSection(path + ".backpack");
 			playerc.createSection(path + ".explorer");
 		}
 	}
@@ -90,6 +89,8 @@ public class DungeonsPlayerManager
 			else playerc.set(path + ".backpack." + slot, null);
 		}
 		*/
+		playerc.set(path + ".backpack", null);
+		playerc.createSection(path + ".backpack");
 		for (int p = 0; p < dp.backpackb.size(); p++) for (BackpackItem item : dp.backpackb.get(p)) if (item != null) item.save(path + ".backpack." + p);
 		if (dp.explorer.areaPoints.size() > 0)
 		{

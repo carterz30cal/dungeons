@@ -1,0 +1,651 @@
+##############################################
+##          -- INGREDIENTS --   		    ##
+##               TIER ONE  					##
+##############################################
+mush:
+  product: mush,2
+  xp: 1
+  materials:
+    P: wetpaper,3
+    W: water_fragment,1
+  recipe:
+    0: P W P
+paper:
+  product: paper
+  xp: 10
+  materials: 
+    P: wetpaper,8
+  recipe:
+    0: P P P
+    1: P 0 P
+    2: P P P
+paperstick:
+  product: stick_paper
+  xp: 4
+  materials:
+    P: wetpaper,8
+  recipe:
+    0: 0 P 0
+    1: 0 P 0
+    2: 0 P 0
+ocean_fragment:
+  product: ocean_fragment
+  xp: 10
+  materials:
+    F: water_fragment,1
+    M: leafmash,24
+  recipe:
+    0: 0 F 0
+    1: F M F
+    2: 0 F 0
+leafball:
+  product: leafball
+  xp: 8
+  materials:
+    M: leafmash,4
+  recipe:
+    0: M M M
+    1: M 0 M
+    2: M M M
+leafstick:
+  product: stick_leaf
+  xp: 6
+  materials:
+    M: leafmash,8
+  recipe:
+    0: 0 M 0
+    1: 0 M 0
+    2: 0 M 0
+stormstick:
+  product: stick_stormhilt
+  xp: 18
+  materials:
+    C: storm_crystals,3
+    F: ocean_fragment,2
+  recipe:
+    0: 0 C 0
+    1: 0 F 0
+    2: 0 C 0
+rainbringer:
+  product: rainbringer
+  xp: 60
+  materials:
+    C: waterway_core,2
+    H: stick_stormhilt,1
+  recipe:
+    0: 0 C 0
+    1: 0 H 0
+    2: 0 H 0
+summonkey_waterway:
+  product: summonkey_waterway
+  xp: 300
+  materials:
+    F: waterway_core,2
+    S: waterway_keyshard,1
+  recipe:
+    0: 0 S 0
+    1: S F S
+    2: 0 S 0
+##############################################
+##          -- ARMOUR SETS --   		    ##
+##              TIER ONE  					##
+##############################################
+water_helmet:
+  product: armour_water_helmet
+  xp: 50
+  materials:
+    F: water_fragment,1
+  recipe:
+    0: F F F
+    1: F 0 F
+water_chestplate:
+  product: armour_water_chestplate
+  xp: 80
+  materials:
+    F: water_fragment,1
+  recipe:
+    0: F 0 F
+    1: F F F
+    2: F F F
+water_leggings:
+  product: armour_water_leggings
+  xp: 70
+  materials:
+    F: water_fragment,1
+  recipe:
+    0: F F F
+    1: F 0 F
+    2: F 0 F
+water_boots:
+  product: armour_water_boots
+  xp: 40
+  materials:
+    F: water_fragment,1
+  recipe:
+    1: F 0 F
+    2: F 0 F
+ocean_helmet:
+  product: armour_ocean_helmet
+  xp: 100
+  materials:
+    F: ocean_fragment,1
+    A: armour_water_helmet,1
+  recipe:
+    0: F F F
+    1: F A F
+ocean_chestplate:
+  product: armour_ocean_chestplate
+  xp: 160
+  materials:
+    F: ocean_fragment,1
+    A: armour_water_chestplate,1
+  recipe:
+    0: F A F
+    1: F F F
+    2: F F F
+ocean_leggings:
+  product: armour_ocean_leggings
+  xp: 140
+  materials:
+    F: ocean_fragment,1
+    A: armour_water_leggings,1
+  recipe:
+    0: F F F
+    1: F A F
+    2: F 0 F
+ocean_boots:
+  product: armour_ocean_boots
+  xp: 80
+  materials:
+    F: ocean_fragment,1
+    A: armour_water_boots,1
+  recipe:
+    1: F A F
+    2: F 0 F
+blessedocean_leggings:
+  product: armour_blessedocean_leggings
+  xp: 450
+  materials:
+    L: armour_ocean_leggings,1
+    F: holywater_fragment,2
+    O: ocean_fragment,2
+  recipe:
+    0: F F F
+    1: O L O
+    2: O 0 O
+mush_helmet:
+  product: armour_mush_helmet
+  xp: 50
+  materials:
+    F: mush,1
+  recipe:
+    0: F F F
+    1: F 0 F
+mush_chestplate:
+  product: armour_mush_chestplate
+  xp: 80
+  materials:
+    F: mush,1
+  recipe:
+    0: F 0 F
+    1: F F F
+    2: F F F
+mush_leggings:
+  product: armour_mush_leggings
+  xp: 70
+  materials:
+    F: mush,1
+  recipe:
+    0: F F F
+    1: F 0 F
+    2: F 0 F
+mush_boots:
+  product: armour_mush_boots
+  xp: 40
+  materials:
+    F: mush,1
+  recipe:
+    1: F 0 F
+    2: F 0 F
+    
+silk_helmet:
+  product: armour_silk_helmet
+  xp: 50
+  materials:
+    F: spidersilk,2
+  recipe:
+    0: F F F
+    1: F 0 F
+silk_chestplate:
+  product: armour_silk_chestplate
+  xp: 80
+  materials:
+    F: spidersilk,2
+  recipe:
+    0: F 0 F
+    1: F F F
+    2: F F F
+silk_leggings:
+  product: armour_silk_leggings
+  xp: 70
+  materials:
+    F: spidersilk,2
+  recipe:
+    0: F F F
+    1: F 0 F
+    2: F 0 F
+silk_boots:
+  product: armour_silk_boots
+  xp: 40
+  materials:
+    F: spidersilk,2
+  recipe:
+    1: F 0 F
+    2: F 0 F
+    
+leaf_helmet:
+  product: armour_leaf_helmet
+  xp: 50
+  materials:
+    F: leafmash,16
+    B: leafball,1
+  recipe:
+    0: F F F
+    1: F B F
+leaf_chestplate:
+  product: armour_leaf_chestplate
+  xp: 80
+  materials:
+    F: leafmash,16
+    B: leafball,3
+  recipe:
+    0: F 0 F
+    1: F B F
+    2: F F F
+leaf_leggings:
+  product: armour_leaf_leggings
+  xp: 70
+  materials:
+    F: leafmash,16
+    B: leafball,1
+  recipe:
+    0: F F F
+    1: F B F
+    2: F 0 F
+leaf_boots:
+  product: armour_leaf_boots
+  xp: 40
+  materials:
+    F: leafmash,16
+    B: leafball,1
+  recipe:
+    1: F B F
+    2: F 0 F
+    
+paper_helmet:
+  product: armour_paper_helmet
+  xp: 100
+  materials:
+    F: paper,1
+  recipe:
+    0: F F F
+    1: F 0 F
+paper_chestplate:
+  product: armour_paper_chestplate
+  xp: 160
+  materials:
+    F: paper,1
+  recipe:
+    0: F 0 F
+    1: F F F
+    2: F F F
+paper_leggings:
+  product: armour_paper_leggings
+  xp: 140
+  materials:
+    F: paper,1
+  recipe:
+    0: F F F
+    1: F 0 F
+    2: F 0 F
+paper_boots:
+  product: armour_paper_boots
+  xp: 80
+  materials:
+    F: paper,1
+  recipe:
+    1: F 0 F
+    2: F 0 F
+titan_chestplate:
+  product: armour_titan_chestplate
+  xp: 300
+  materials:
+    C: waterway_core,1
+  recipe:
+    0: C 0 C
+    1: C C C
+    2: C C C
+storm_helm:
+  product: armour_storm_helmet
+  xp: 100
+  materials:
+    C: storm_crystals,6
+  recipe:
+    0: C C C
+    1: C 0 C
+storm_boots:
+  product: armour_storm_boots
+  xp: 90
+  materials:
+    C: storm_crystals,6
+  recipe:
+    1: C 0 C
+    2: C 0 C
+##############################################
+##            -- SWORDS --   		        ##
+##              TIER ONE  					##
+##############################################
+mush_sword:
+  product: sword_mush
+  xp: 30
+  materials:
+    M: mush,3
+    S: stick_paper,1
+  recipe:
+    0: 0 M 0 
+    1: 0 M 0
+    2: 0 S 0
+water_sword:
+  product: sword_water
+  xp: 40
+  materials:
+    F: water_fragment,2
+    S: stick_paper,1
+  recipe:
+    0: 0 F 0 
+    1: 0 F 0
+    2: 0 S 0
+leaf_sword:
+  product: sword_leaf
+  xp: 100
+  materials:
+    M: leafmash,16
+    B: leafball,1
+    S: stick_leaf,3
+  recipe:
+    0: 0 M 0 
+    1: M B M
+    2: 0 S 0
+paper_sword:
+  product: sword_paper
+  xp: 160
+  materials:
+    P: paper,4
+    S: stick_paper,1
+  recipe:
+    0: 0 P 0
+    1: 0 P 0
+    2: 0 S 0
+ocean_sword:
+  product: sword_ocean
+  xp: 60
+  materials:
+    W: sword_water,1
+    S: stick_leaf,1
+    F: ocean_fragment,2
+  recipe:
+    0: 0 F 0 
+    1: F W F
+    2: 0 S 0
+hyperspear_sword:
+  product: sword_hyperspear
+  xp: 200
+  materials:
+    S: sword_leaf,1
+    H: sword_hyperblade,1
+    C: waterway_core,3
+  recipe:
+    0: 0 S 0 
+    1: 0 H 0 
+    2: 0 C 0 
+holyhyperblade_sword:
+  product: sword_holyhyperblade
+  xp: 500
+  materials:
+    H: sword_hyperblade,1
+    F: holywater_fragment,4
+  recipe:
+    0: 0 H 0 
+    1: 0 H 0 
+    2: 0 F 0
+holywater_sword:
+  product: sword_holywater
+  xp: 200
+  materials:
+    W: sword_ocean,1
+    F: holywater_fragment,2
+  recipe:
+    0: 0 F 0 
+    1: 0 F 0
+    2: 0 W 0
+    
+fish_barrel:
+  product: fishing_fishbarrel
+  xp: 40
+  materials:
+    I: fishing_fish,8
+  recipe:
+    0: I I I
+    1: I 0 0
+    2: 0 0 0
+fishingforkT2:
+  product: sword_fishingforkrare
+  xp: 50
+  materials:
+    F: sword_fishingforkcommon,1
+    I: fishing_fish,8
+  recipe:
+    0: 0 I 0
+    1: I F I
+    2: 0 I 0
+fishingforkT3:
+  product: sword_fishingforkincredible
+  xp: 120
+  materials:
+    F: sword_fishingforkrare,1
+    I: fishing_fishbarrel,4
+  recipe:
+    0: 0 I 0
+    1: I F I
+    2: 0 I 0
+fishingforkT4:
+  product: sword_fishingforklegendary
+  xp: 50
+  materials:
+    F: sword_fishingforkincredible,1
+    I: fishing_fishbarrel,8
+    P: fishing_pearl,1
+  recipe:
+    0: P I P
+    1: I F I
+    2: P I P
+    
+    
+    
+    
+    
+stormbreaker: 
+  product: sword_stormbreaker
+  xp: 140
+  materials:
+    H: stick_stormhilt,1
+    C: storm_crystals,6
+  recipe:
+    0: C C 0
+    1: C H 0
+    2: 0 H 0 
+stormfork:
+  product: sword_stormfork
+  xp: 400
+  materials:
+    H: stick_stormhilt,3
+    C: storm_crystals,32
+  recipe:
+    0: C 0 C
+    1: C 0 C
+    2: 0 H 0 
+##############################################
+##             -- BOWS --   		        ##
+##              TIER ONE  					##
+##############################################
+water_bow:
+  product: bow_water
+  xp: 40
+  materials:
+    F: water_fragment,5
+    S: stick_paper,1
+    I: spidersilk,5
+  recipe:
+    0: 0 S S
+    1: F 0 I
+    2: 0 S S
+leaf_bow:
+  product: bow_leaf
+  xp: 80
+  materials:
+    B: leafball,2
+    S: stick_leaf,1
+    I: spidersilk,20
+  recipe:
+    0: 0 B S
+    1: S 0 I
+    2: 0 B S
+paper_bow:
+  product: bow_paper
+  xp: 100
+  materials:
+    W: wetpaper,32
+    P: paper,2
+    S: stick_paper,1
+    I: spidersilk,32
+  recipe:
+    0: 0 W S
+    1: P 0 I
+    2: 0 W S
+ocean_bow:
+  product: bow_ocean
+  xp: 80
+  materials:
+    W: bow_water,1
+    F: ocean_fragment,4
+    S: stick_paper,1
+    L: stick_leaf,1
+    I: spidersilk,5
+  recipe:
+    0: 0 S L
+    1: F W I
+    2: 0 S L
+holywater_bow:
+  product: bow_holywater
+  xp: 200
+  materials:
+    W: bow_ocean,1
+    F: holywater_fragment,2
+    I: spidersilk,32
+  recipe:
+    0: 0 F F
+    1: F W I
+    2: 0 F F
+##############################################
+##           -- PICKAXES --   		        ##
+##              TIER ONE  					##
+##############################################
+mush_pickaxe:
+  product: pickaxe_mush
+  xp: 30
+  materials:
+    M: mush,2
+    S: stick_paper,1
+  recipe:
+    0: M M M
+    1: 0 S 0
+    2: 0 S 0
+water_pickaxe:
+  product: pickaxe_water
+  xp: 30
+  materials:
+    F: water_fragment,1
+    S: stick_paper,1
+  recipe:
+    0: F F F
+    1: 0 S 0
+    2: 0 S 0
+paper_pickaxe:
+  product: pickaxe_paper
+  xp: 120
+  materials:
+    P: paper,2
+    S: stick_paper,1
+  recipe:
+    0: P P P
+    1: 0 S 0
+    2: 0 S 0
+##############################################
+##           -- ENCHANTS --   		        ##
+##              TIER ONE  					##
+##############################################
+paper_enchantbook:
+  product: book
+  enchants: paper,1
+  xp: 200
+  materials:
+    P: paper,1
+    S: stick_paper,2
+  recipe:
+    1: 0 P P
+    2: 0 P S
+execution_enchantbook:
+  product: book
+  enchants: execution,1
+  xp: 175
+  materials:
+    P: paper,1
+    S: sharpener_crude,2
+  recipe:
+    1: 0 0 P
+    2: 0 P S
+titan_enchantbook:
+  product: book
+  enchants: titan,1
+  xp: 175
+  materials:
+    P: paper,1
+    L: leafball,2
+    F: water_fragment,3
+  recipe:
+    1: 0 L P
+    2: 0 P F
+##############################################
+##           -- SHARPENERS --   		    ##
+##              TIER ONE  					##
+##############################################
+sharp_flint:
+  product: sharpener_sharp,2
+  xp: 70
+  materials:
+    S: sharpener_crude,1
+    C: waterway_core,1
+  recipe:
+    1: S C S
+    2: S S S
+##############################################
+##           -- SCRAPPING --   		        ##
+##              TIER ONE  					##
+##############################################
+hyperblade_scrap:
+  product: waterway_core
+  xp: 200
+  materials:
+    H: sword_hyperblade,1
+  recipe:
+    1: 0 H 0 

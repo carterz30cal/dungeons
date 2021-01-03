@@ -25,7 +25,8 @@ import com.carterz30cal.gui.GUI;
 public class DungeonsPlayer
 {
 	public Player player;
-	private int health;
+	private double health;
+	private double mana;
 	public int coins;
 	public DungeonsPlayerSkills skills;
 	public DungeonsPlayerStats stats;
@@ -35,8 +36,7 @@ public class DungeonsPlayer
 	public Dungeon area;
 	
 	public GUI gui;
-	@Deprecated
-	public BackpackItem[] backpack;
+
 	public ArrayList<BackpackItem[]> backpackb;
 	
 	public HashMap<String,String> settings;
@@ -58,22 +58,26 @@ public class DungeonsPlayer
 		perks = new DungeonsPlayerPerks(p);
 		explorer = new DungeonsPlayerExplorer(p);
 		//stats.refresh();
-		health = stats.health;
+		health = 1;
+		mana = 1;
 		area = DungeonManager.i.hub;
 		
-		display = new DungeonsPlayerDisplay(p,this);
+		display = new DungeonsPlayerDisplay(this);
 		gui = null;
-		backpack = new BackpackItem[54];
 		backpackb = new ArrayList<BackpackItem[]>();
-		for (String slo : i.getConfigurationSection(u + ".backpack").getKeys(false))
+		if (i.contains(u + ".backpack"))
 		{
-			BackpackItem[] page = new BackpackItem[45];
-			for (int k = 0; k < 45; k++)
+			for (String slo : i.getConfigurationSection(u + ".backpack").getKeys(false))
 			{
-				if (i.contains(u + ".backpack." + slo + "." + k)) page[k] = new BackpackItem(u + ".backpack." + slo + "." + k,k);
+				BackpackItem[] page = new BackpackItem[45];
+				for (int k = 0; k < 45; k++)
+				{
+					if (i.contains(u + ".backpack." + slo + "." + k)) page[k] = new BackpackItem(u + ".backpack." + slo + "." + k,k);
+				}
+				backpackb.add(page);
 			}
-			backpackb.add(page);
 		}
+		
 		if (backpackb.size() == 0) backpackb.add(new BackpackItem[45]);
 		coins = Dungeons.instance.getPlayerConfig().getInt(p.getUniqueId() + ".coins", 10);
 		
@@ -108,8 +112,8 @@ public class DungeonsPlayer
 			damage = (int)Math.round((double)damage * dr);
 		}
 		
-		health -= Math.max(1, damage);
-		player.setHealth(Math.max(1, getHealthPercent()*20));
+		health -= (double)damage/stats.health;
+		player.setHealth(Math.max(1, health*20));
 		if (health <= 0)
 		{
 			Location sp = DungeonManager.i.dungeons.getOrDefault(DungeonManager.i.hash(player.getLocation().getBlockZ()),
@@ -119,7 +123,7 @@ public class DungeonsPlayer
 			player.setVelocity(new Vector(0,0,0));
 			player.teleport(sp);
 			new SoundTask(player.getLocation(),player,Sound.BLOCK_BEACON_DEACTIVATE,2.5f,1f).runTaskLater(Dungeons.instance, 5);
-			health = stats.health;
+			health = 1;
 			player.setHealth(20);
 			for (PotionEffect pot : player.getActivePotionEffects())
 			{
@@ -133,12 +137,44 @@ public class DungeonsPlayer
 	}
 	public void heal(int amount)
 	{
-		health += amount;
-		if (health > stats.health) health = stats.health;
+		health += (double)amount/(double)stats.health;
+		if (health > 1) health = 1;
 
-		player.setHealth(Math.max(1, getHealthPercent()*20));
+		player.setHealth(Math.max(1, health*20));
 	}
-	public int getHealth() {return health;}
-	public float getHealthPercent() {return Math.min(1, (float)health/(float)stats.health);}
+	public void heal(double amount)
+	{
+		health += amount;
+		if (health > 1) health = 1;
+
+		player.setHealth(Math.max(1, health*20));
+	}
+	public boolean useMana(int amount)
+	{
+		int m = getMana();
+		if (m >= amount) mana -= amount/(double)stats.mana;
+		showManaLevel();
+		return m >= amount;
+	}
+	public boolean playerHasMana() 
+	{
+		return stats.mana > 0;
+	}
+	public void showManaLevel()
+	{
+		if (stats.mana == 0) player.setExp(0);
+		else player.setExp((float) mana);
+		
+		player.setLevel(0);
+	}
+	public void regainMana(double amount)
+	{
+		mana = Math.max(0, Math.min(1, mana + amount));
+		showManaLevel();
+	}
+	public int getMana() {return (int)(stats.mana*mana);}
+	public double getManaPercent() {return mana;}
+	public int getHealth() {return (int) (stats.health*health);}
+	public double getHealthPercent() {return health;}
 	
 }

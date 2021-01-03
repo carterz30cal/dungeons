@@ -20,7 +20,12 @@ public class ListenerPlayerJoin implements Listener
 	{
 		DungeonsPlayerManager.i.create(e.getPlayer());
 		
-		e.setJoinMessage(ChatColor.AQUA + e.getPlayer().getDisplayName() + " has joined");
+		if (e.getPlayer().getName() == "carterz30cal")
+		{
+			e.setJoinMessage(ChatColor.GOLD + e.getPlayer().getDisplayName() + " is here");
+			Dungeons.w.strikeLightning(e.getPlayer().getLocation());
+		}
+		else e.setJoinMessage(ChatColor.AQUA + e.getPlayer().getDisplayName() + " has joined");
 		
 		for (NPC n : NPCManager.i.npcs)
 		{

@@ -8,6 +8,7 @@ public class DungeonsPlayerStatBank
 	public DungeonsPlayer d;
 	
 	public int health;
+	public int mana;
 	public int armour;
 	public int regen;
 	
@@ -29,9 +30,11 @@ public class DungeonsPlayerStatBank
 	public void add(HashMap<String,Double> attr)
 	{
 		health    += attr.getOrDefault("health", 0d).intValue();
+		mana      += attr.getOrDefault("mana", 0d).intValue();
 		armour    += attr.getOrDefault("armour", 0d).intValue();
 		regen     += attr.getOrDefault("regen", 0d).intValue();
 		damage    += attr.getOrDefault("damage", 0d).intValue();
+		sweep     += attr.getOrDefault("sweep", 0d).intValue();
 		damagemod += attr.getOrDefault("damagep", 0d);
 		killcoins += attr.getOrDefault("killcoins", 0d).intValue();
 		orechance += attr.getOrDefault("orechance", 0d);

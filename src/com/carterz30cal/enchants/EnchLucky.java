@@ -1,17 +1,13 @@
 package com.carterz30cal.enchants;
 
-import org.bukkit.entity.ArmorStand;
-
 import com.carterz30cal.dungeons.DungeonMiningTable;
-import com.carterz30cal.mobs.DungeonMob;
-import com.carterz30cal.player.DungeonsPlayer;
 import com.carterz30cal.player.DungeonsPlayerStatBank;
 
 public class EnchLucky extends AbsEnchant {
 
 	@Override
 	public String description() {
-		return "Increases ore chance by " + (3*level) + "%";
+		return "Increases ore chance by " + (5*level) + "%";
 	}
 
 	@Override
@@ -28,7 +24,11 @@ public class EnchLucky extends AbsEnchant {
 	public int catalyst() {
 		return 0;
 	}
-
+	@Override
+	public String type()
+	{
+		return "tool";
+	}
 	@Override
 	public int rarity() {
 		return level/3;
@@ -36,7 +36,7 @@ public class EnchLucky extends AbsEnchant {
 
 	@Override
 	public DungeonsPlayerStatBank onBank(DungeonsPlayerStatBank bank) {
-		bank.orechance += 0.03*level;
+		bank.orechance += 0.05*level;
 		return bank;
 	}
 
@@ -46,10 +46,6 @@ public class EnchLucky extends AbsEnchant {
 		return null;
 	}
 
-	@Override
-	public void onHitAfter(DungeonsPlayer player, DungeonMob hit,ArmorStand ind) {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 }

@@ -10,14 +10,13 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
 import com.carterz30cal.dungeons.Dungeons;
-import com.carterz30cal.dungeons.EnchantHandler;
 import com.carterz30cal.dungeons.SoundTask;
 import com.carterz30cal.items.ItemBuilder;
 import com.carterz30cal.items.ItemLootbox;
 import com.carterz30cal.player.DungeonsPlayerManager;
 import com.carterz30cal.utility.InventoryHandler;
 
-import net.md_5.bungee.api.ChatColor;
+import org.bukkit.ChatColor;
 
 public class LootboxGUI extends GUI
 {
@@ -62,7 +61,7 @@ public class LootboxGUI extends GUI
 	public boolean handleClick(InventoryClickEvent e,int position,Player p)
 	{
     	if (position >= 36) return false;
-    	if (!EnchantHandler.eh.isUIElement(e.getCurrentItem()))
+    	if (!ItemBuilder.isUIElement(e.getCurrentItem()))
     	{
     		InventoryHandler.addItem(DungeonsPlayerManager.i.get(p), e.getCurrentItem().clone());
     		new SoundTask(p.getLocation(),p,Sound.ENTITY_ARROW_HIT_PLAYER,0.8f,0.8f).runTask(Dungeons.instance);
