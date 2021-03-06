@@ -1,35 +1,41 @@
 ghoul1:
   name: Ghoul
   type: ZOMBIE
-  health: 200
+  health: 325
+  level: 6
   damage: 100
-  xp: 47
-  knockbackResist: 0
   tags: ghoul
   equipment: 
+    helmet: LEATHER_HELMET
     main: IRON_SWORD
   drops:
     decaying_flesh:
-      drop: 1/5
+      drop: 1/7
       amount: 1-1
-    ghoul_bone:
+    catalyst=0:
+      drop: 1/110
+      amount: 1-1
+    sword_ghoul:
       drop: 1/135
       amount: 1-1
 ghoul2:
   name: Ghoul
   type: ZOMBIE
-  health: 250
-  damage: 115
-  xp: 52
-  knockbackResist: 0
+  health: 800
+  level: 8
+  damage: 125
   tags: ghoul
   equipment: 
+    helmet: CHAINMAIL_HELMET
     chestplate: CHAINMAIL_CHESTPLATE
     main: IRON_SWORD
   drops:
     decaying_flesh:
-      drop: 1/5
+      drop: 1/6
       amount: 1-1
-    ghoul_bone:
+    catalyst=0:
+      drop: 1/110
+      amount: 1-1
+    sword_ghoul:
       drop: 1/135
       amount: 1-1

@@ -21,6 +21,7 @@ import org.bukkit.entity.Slime;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 import com.carterz30cal.areas.AbsDungeonEvent;
 import com.carterz30cal.areas.EventTicker;
@@ -29,12 +30,18 @@ import com.carterz30cal.dungeons.Dungeons;
 import com.carterz30cal.dungeons.SoundTask;
 import com.carterz30cal.items.ItemBuilder;
 import com.carterz30cal.items.abilities.AbsAbility;
+import com.carterz30cal.mobs.abilities.DMobAbility;
+import com.carterz30cal.mobs.packet.EntitySkinned;
+import com.carterz30cal.player.CharacterSkill;
 import com.carterz30cal.player.DungeonsPlayer;
 import com.carterz30cal.player.DungeonsPlayerManager;
 import com.carterz30cal.tasks.TaskArmourstand;
+import com.carterz30cal.tasks.TaskMobAbilities;
 import com.carterz30cal.tasks.TaskSetEquipment;
 import com.carterz30cal.utility.InventoryHandler;
 import com.carterz30cal.utility.StringManipulator;
+
+import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
 
 public class DMob
 {
@@ -49,17 +56,17 @@ public class DMob
 	public int health;
 	public int lastDamage;
 	
+	public double nextHealMultiplier;
+	
 	private UUID ident;
 	private Random r;
 	public int coins()
 	{
 		return (type.health / 25) + modifier.coins;
 	}
-	public int xp()
+	public long xp()
 	{
-		double bonus = 1;
-		if (modifier != DMobModifier.base) bonus += 0.35;
-		return (int)(((type.health / 50) + (type.damage / 25)) * bonus);
+		return CharacterSkill.requirement(type.level) / 50;
 	}
 	
 	public int health()
@@ -67,24 +74,51 @@ public class DMob
 		return (int)(type.health * modifier.health);
 	}
 	
-	public void update()
+	public String update()
 	{
-		String nom = type.name + " " + ChatColor.RED + health + "/" + health();
+		String nom = CharacterSkill.prettyText(type.level) + " " + type.name + " " + ChatColor.RED + health + "❤";
+		if (type.level == 0) nom = type.name + " " + ChatColor.RED + health + "❤";
 		if (modifier != DMobModifier.base) nom = modifier.text + modifier.name + nom;
-		display.setCustomName(nom);
+		if (display != null) display.setCustomName(nom);
+		
+		return nom;
 	}
 	public void remove()
 	{
-		for (Entity e : entities) e.remove();
-		display.remove();
+		health = 0;
+		for (Entity e : entities) 
+		{
+			if (e instanceof Player) ((EntitySkinned)((CraftPlayer)((Player)e)).getHandle()).remove();
+			else e.remove();
+		}
+		if (display != null) display.remove();
+		
+		for (DMobAbility a : type.abilities) 
+		{
+			a.killed(this);
+			a.mobs.remove(this);
+		}
 	}
 	public void destroy(Player damager)
 	{
-		for (Entity e : entities) ((LivingEntity)e).setHealth(0);
+		if (display == null) return;
+		for (Entity e : entities) 
+		{
+			if (e instanceof Player) ((EntitySkinned)((CraftPlayer)((Player)e)).getHandle()).kill();
+			else ((LivingEntity)e).setHealth(0);
+		}
 		
 		DMobManager.mobs.remove(ident);
 		display.remove();
+		display = null;
 		
+		health = 0;
+		
+		for (DMobAbility a : type.abilities) 
+		{
+			a.killed(this);
+			a.mobs.remove(this);
+		}
 		if (owner != null) owner.mob = null;
 		if (damager != null) rewards(damager);
 	}
@@ -92,13 +126,9 @@ public class DMob
 	private void rewards(Player damager)
 	{
 		DungeonsPlayer d = DungeonsPlayerManager.i.get(damager);
-		int pl = d.perks.getLevel(type.perk);
-		d.perks.add(type.perk);
-		if (d.perks.getLevel(type.perk) > pl)
-		{
-			new SoundTask(damager.getLocation(),damager,Sound.BLOCK_GLASS_BREAK,2f,1).runTaskLater(Dungeons.instance,20);
-		}
-		if (d.skills.add("combat", xp())) d.skills.sendLevelMessage("combat", damager);
+
+		d.level.give(xp());
+		
 		for (AbsAbility a : d.stats.abilities) a.onKill(d,type);
 		int coinreward = coins() + d.stats.bonuskillcoins;
 		if (modifier != null) coinreward += 5;
@@ -115,9 +145,13 @@ public class DMob
 				item.setAmount(r.nextInt((drop.maxAmount+1)-drop.minAmount)+drop.minAmount);
 				
 				new SoundTask(damager.getLocation(),damager,Sound.ENTITY_ITEM_PICKUP,1,1).runTaskLater(Dungeons.instance, 3);
-				if (drop.chance*100 < 2.5) 
+				if (drop.chance*100 < 2.5 || drop.rareMessage) 
 				{
-					damager.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "RARE DROP! " + ChatColor.RESET + item.getItemMeta().getDisplayName());
+					if (drop.chance*100 < 0.1)
+					{
+						damager.sendMessage(ChatColor.LIGHT_PURPLE + "" + ChatColor.BOLD + "INCREDIBLE DROP! " + ChatColor.RESET + item.getItemMeta().getDisplayName());
+					}
+					else damager.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "RARE DROP! " + ChatColor.RESET + item.getItemMeta().getDisplayName());
 					InventoryHandler.addItem(d, item);
 				}
 				else InventoryHandler.addItem(d, item,true);
@@ -125,7 +159,12 @@ public class DMob
 		}
 	}
 	
-	
+	public void heal(int healing)
+	{
+		health = (int) Math.min(health+Math.max(0, healing * nextHealMultiplier), health());
+		nextHealMultiplier = 1;
+		update();
+	}
 	public void damage(int damage)
 	{
 		damage(damage,null,false,null);
@@ -144,17 +183,20 @@ public class DMob
 	}
 	public void damage(int damage,Player damager,boolean trueDamage,ArrayList<AbsAbility> abilities)
 	{
+		if (entities.get(0).isInvulnerable()) return;
 		if (trueDamage)
 		{
-			health = -damage;
+			health -= damage;
 			lastDamage = damage;
 		}
 		else
 		{
-			int d = damage;
+			int d = damage - type.armour;
+			d = Math.max(0, d);
 			d = (int)Math.round(d*(1-type.dmgresist));
 			if (modifier != null) d = (int)(d * (1-modifier.dmgresist));
 			if (abilities != null && damager != null) for (AbsAbility a : abilities) d = a.onAttack(DungeonsPlayerManager.i.get(damager), this, d);
+			d = Math.max(0, d);
 			health -= d;
 			lastDamage = d;
 		}
@@ -181,54 +223,71 @@ public class DMob
 		
 		entities = new ArrayList<Entity>();
 		ident = null;
+		
+		this.type = type;
+		modifier = DMobModifier.base;
+		health = health();
+		new TaskArmourstand(this);
 		for (int j = 0; j < type.entities.size();j++)
 		{
 			EntityType t = type.entities.get(j);
-			LivingEntity entity = (LivingEntity)position.getWorld().spawnEntity(position, t);
+			
+			LivingEntity entity;
+			if (type instanceof SkinnedType) entity = EntitySkinned.createNPC(Dungeons.w, position,this).getBukkitEntity().getPlayer();
+			else entity = (LivingEntity)position.getWorld().spawnEntity(position, t);
+			
 			if (j == 0) ident = entity.getUniqueId();
 			entity.getPersistentDataContainer().set(identifier, PersistentDataType.STRING, ident.toString());
-			entity.setRemoveWhenFarAway(false);
+			if (!(type instanceof SkinnedType))
+			{
+				entity.setRemoveWhenFarAway(false);
+				entity.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).addModifier(new AttributeModifier("walkspeed",type.speed-1,Operation.MULTIPLY_SCALAR_1));
+				if (entity.getVehicle() != null) entity.getVehicle().remove();
+				for (Entity pas : entity.getPassengers()) pas.remove();
+				if (entity instanceof Ageable)
+				{
+					if (StringManipulator.contains(type.entityData.get(j),"baby")) ((Ageable)entity).setBaby();
+					else ((Ageable)entity).setAdult();
+				}
+				if (entity instanceof Slime)
+				{
+					((Slime)entity).setSize(Integer.parseInt(StringManipulator.get(type.entityData.get(j),"size")));
+				}
+				for (PotionEffect potion : entity.getActivePotionEffects()) entity.removePotionEffect(potion.getType());
+				if (type.invisible) entity.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY,1000000,0,true));
+				entity.setSilent(type.silent);
+				entity.getEquipment().clear();
+			}
 			
-			entity.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).addModifier(new AttributeModifier("walkspeed",type.speed-1,Operation.MULTIPLY_SCALAR_1));
-			if (entity.getVehicle() != null) entity.getVehicle().remove();
-			if (entity instanceof Ageable)
-			{
-				if (StringManipulator.contains(type.entityData.get(j),"baby")) ((Ageable)entity).setBaby();
-				else ((Ageable)entity).setAdult();
-			}
-			if (entity instanceof Slime)
-			{
-				((Slime)entity).setSize(Integer.parseInt(StringManipulator.get(type.entityData.get(j),"size")));
-			}
-			for (PotionEffect potion : entity.getActivePotionEffects()) entity.removePotionEffect(potion.getType());
 			entities.add(entity);
 			if (j > 0) entities.get(j-1).addPassenger(entity);
 			
-			entity.getEquipment().clear();
+			
 		}
-		display = (ArmorStand)position.getWorld().spawnEntity(position, EntityType.ARMOR_STAND);
+		display = (ArmorStand)position.getWorld().spawnEntity(entities.get(entities.size()-1).getLocation(), EntityType.ARMOR_STAND);
+		
 		display.setVisible(false);
+		display.setSmall(true);
 		display.setMarker(true);
 		display.setCustomNameVisible(true);
 		display.setGravity(false);
+		
 		if (o != null) 
 		{
 			o.mob = this;
 			owner = o;
 		}
-		this.type = type;
-		modifier = DMobModifier.base;
-		health = health();
+		
 		update();
-		new TaskArmourstand(this);
+		
 		new TaskSetEquipment(this);
-		/*
-		MobModifier mod = null;
-		if (Math.random() <= 0.1 && !type.boss) mod = modifiers.get((int)Math.round(Math.random()*(modifiers.size()-1)));
-		DungeonMob n;
-		if (type.type == EntityType.ELDER_GUARDIAN) n = new MobElderGuardian(type,entity,silverfish,armourstand,pos,mod);
-		else n = new DungeonMob(type,entity,silverfish,armourstand,pos,mod);
-		*/
+		
+		if (type.abilities.size() > 0) 
+		{
+			new TaskMobAbilities(this);
+			for (DMobAbility a : type.abilities) a.add(this);
+		}
+
 		DMobManager.mobs.put(ident,this);
 	}
 }

@@ -23,8 +23,8 @@ public class RecipeManager
 	public HashMap<String,ArrayList<Recipe>> recipeBrowser_byIngredient;
 	
 	public static String[] files = {
-			"waterway/recipes","waterway/recipes_magic",
-			"necropolis/recipes"
+			"waterway/recipes","waterway/recipes_magic","waterway/recipes_titan",
+			"necropolis/recipes","necropolis/recipes_digging","necropolis/crypts_recipes"
 			};
 	public static HashMap<String,String[]> patterns;
 	
@@ -46,6 +46,9 @@ public class RecipeManager
 		
 		patterns.put("sword", new String[] {"0 X 0","0 X 0","0 S 0"});
 		patterns.put("stick", new String[] {"0 X 0","0 X 0","0 X 0"});
+		
+		patterns.put("block", new String[] {"X X X","X X X","X X X"});
+		patterns.put("upgrade", new String[] {"X X X","X U X","X X X"});
 		
 		for (String f : files)
 		{

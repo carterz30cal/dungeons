@@ -41,7 +41,6 @@ armour-storm:
   item: DIAMOND
   set: storm
   attributes:
-    armour: 10,24,15,6
-    regen: 1,3,2,1
-    damagep: +0.05,+0.05,+0.05,+0.05
+    damagep: 0.05,0.05,0.05,0.05
+    regen: 2,2,2,2
   

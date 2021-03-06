@@ -14,7 +14,7 @@ wand_crude:
   item: BLAZE_ROD
   rarity: RARE
   wand:
-    mana: 25
+    mana: 30
 spell_mudball:
   name: Mud Ball
   type: spell
@@ -22,7 +22,7 @@ spell_mudball:
   item: BROWN_DYE
   glow: true
   spell:
-    damage: 60
+    damage: 70
     colour: 85,63,35
     pierces: 0
     speed: 0.5
@@ -32,8 +32,8 @@ spell_leaftome:
   rarity: RARE
   item: OAK_LEAVES
   spell:
-    damage: 22
-    mana: -10
+    damage: 35
+    mana: -12
     colour: 0,170,25
     pierces: 10
     speed: 1
@@ -44,8 +44,8 @@ spell_waterbolt:
   item: BOOK
   glow: true
   spell:
-    damage: 35
-    mana: -7
+    damage: 45
+    mana: -8
     colour: 0,80,165
     pierces: 4
     speed: 0.75

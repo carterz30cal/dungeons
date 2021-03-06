@@ -19,6 +19,39 @@ public class StringManipulator
 		return inp.substring(0,1).toUpperCase() + inp.substring(1).toLowerCase();
 	}
 	
+	public static String neat_sorting(BackpackSort sort)
+	{
+		switch (sort)
+		{
+		case VALUABLES_FIRST:
+			return "Valuables first";
+		default:
+			return "null";
+		}
+	}
+	
+	public static String truncate(long number)
+	{
+		String[] t = {"","k","m","b","t","q","Q"};
+		
+		for (int i = t.length-1;i > 0;i--)
+		{
+			long div = (long) Math.pow(10, i*3);
+			if (number / div >= 1) return (Math.floor(number / (div/10)) / 10) + t[i];
+		}
+		return Long.toString(number);
+	}
+	public static String truncateLess(long number)
+	{
+		String[] t = {"","k","m","b","t","q","Q"};
+		
+		for (int i = t.length-1;i > 0;i--)
+		{
+			long div = (long) Math.pow(10, i*3);
+			if (number / div >= 1) return (Math.floor(number / (div/100)) / 100) + t[i];
+		}
+		return Long.toString(number);
+	}
 	public static boolean contains(String[] data,String thing)
 	{
 		if (data == null) return false;

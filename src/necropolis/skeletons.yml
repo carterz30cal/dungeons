@@ -1,10 +1,12 @@
 skeleton1:
   name: Skeleton
   type: SKELETON
-  health: 450
-  damage: 75
+  health: 500
+  speed: 0.7
+  level: 6
+  damage: 65
   kbresist: 0
-  perk: skeletons
+  tags: skeleton
   equipment: 
     main: IRON_SWORD
   drops:
@@ -14,10 +16,12 @@ skeleton1:
 skeleton2:
   name: Skeleton
   type: SKELETON
-  health: 580
+  health: 600
+  speed: 0.7
+  level: 7
   damage: 85
   kbresist: 0.1
-  perk: skeletons
+  tags: skeleton
   equipment: 
     main: IRON_SWORD
     helmet: IRON_HELMET
@@ -28,10 +32,12 @@ skeleton2:
 skeleton3:
   name: Skeleton
   type: SKELETON
-  health: 625
-  damage: 100
+  health: 700
+  speed: 0.7
+  level: 8
+  damage: 105
   kbresist: 0.1
-  perk: skeletons
+  tags: skeleton
   equipment: 
     main: IRON_SWORD
     helmet: IRON_HELMET
@@ -39,19 +45,27 @@ skeleton3:
   drops:
     bone:
       drop: 2/3
-      amount: 1-4
+      amount: 2-5
 
 miner1:
   name: Miner Skeleton
   type: SKELETON
-  health: 395
-  damage: 120
-  kbresist: 0.3
+  health: 300
+  damage: 90
+  level: 6
+  speed: 0.7
   dmgresist: 0.2
-  perk: skeletons
+  tags: skeleton
   equipment:
-    main: IRON_PICKAXE
+    main: GOLDEN_PICKAXE
     helmet: GOLDEN_HELMET
     chestplate: armour_bone_chestplate
     leggings: armour_bone_leggings
     boots: armour_bone_boots
+  drops:
+    bone:
+      drop: 1/1
+      amount: 2-3
+    pickaxe_miners:
+      drop: 1/125
+      amount: 1-1

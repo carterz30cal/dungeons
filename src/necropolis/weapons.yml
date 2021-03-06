@@ -3,21 +3,38 @@ sword_bone:
   type: weapon
   item: IRON_SWORD
   set: bone
-  req: 4
+  req: 8
   attributes:
-    damage: +35
+    damage: +33
     armour: +50
+sword_tissue:
+  name: Tendon Whip
+  type: weapon
+  rarity: EPIC
+  item: FISHING_ROD
+  req: 11
+  attributes:
+    damage: +38
+    regen: +8
+sword_dustwhip:
+  name: Dust Whip
+  type: weapon
+  rarity: INCREDIBLE
+  item: FISHING_ROD
+  req: 13
+  attributes:
+    damage: +64
+    armour: -15
 sword_ghoul:
   name: Ghoul Bone
   type: weapon
   rarity: RARE
   item: BONE
   glow: true
-  req: 4
+  req: 10
   ability: ghoulbone
   attributes:
     damage: +40
-    regen: +3
 sword_soul:
   name: Soulstealer Sword
   type: weapon
@@ -25,18 +42,65 @@ sword_soul:
   item: WOODEN_SWORD
   set: soul
   ability: soulstealer
-  req: 6
+  req: 999
   attributes:
-    damage: +20
-    health: +75
-    
+    damage: +30
+    health: +60
+sword_boneshard:
+  name: Bone Shard
+  type: weapon
+  rarity: EPIC
+  item: PRISMARINE_SHARD
+  glow: true
+  req: 14
+  attributes:
+    damage: +60
+    armour: +30
+sword_berserkersaxe:
+  name: Berserker's Axe
+  type: weapon
+  rarity: EPIC
+  item: GOLDEN_AXE
+  req: 15
+  ability: silkbonus
+  attributes:
+    damage: +70
+sword_slime:
+  name: Corrosive Gel
+  type: weapon
+  rarity: EPIC
+  item: SLIME_BALL
+  glow: true
+  req: 11
+  ability: acidity
+  attributes:
+    damage: +55
+    health: -111
+sword_huskscythe:
+  name: Husk Scythe
+  type: weapon
+  rarity: EPIC
+  item: IRON_HOE
+  req: 12
+  ability: scythe
+  attributes:
+    damage: +33
+    health: -15
+bow_crypthunter:
+  name: Crypt Hunter Longbow
+  type: weapon
+  item: BOW
+  rarity: EPIC
+  req: 12
+  attributes:
+    damage: +60
 bow_slime:
   name: Slime Bow
   type: weapon
-  rarity: RARE
+  rarity: EPIC
   item: BOW
-  req: 6
+  req: 9
   ability: slimebow
   attributes:
-    damage: +35
+    damage: +40
     health: +100

@@ -40,7 +40,7 @@ public class DungeonMining
 		progress++;
 		if (progress >= requirement) 
 		{
-			for (Player p : dungeon.players) p.sendMessage(ChatColor.RED + "A miniboss is spawning in " + dungeon.name + "!");
+			for (Player p : dungeon.players) p.sendMessage(ChatColor.RED + "You hear a deep rumbling!");
 			progress = 0;
 			new DMob(DMobManager.types.get(boss),spawn,spawn.position,false);
 		}

@@ -1,0 +1,189 @@
+digging_shovelT1:
+  name: Digging Shovel
+  item: GOLDEN_SHOVEL
+  type: tool
+  rarity: RARE
+  ability: diggingshovel
+digging_shovelT2:
+  name: Digging Shovel
+  item: GOLDEN_SHOVEL
+  type: tool
+  rarity: EPIC
+  ability: diggingshovel
+digging_shovelT3:
+  name: Digging Shovel
+  item: GOLDEN_SHOVEL
+  type: tool
+  rarity: INCREDIBLE
+  ability: diggingshovel
+digging_shovelT4:
+  name: Digging Shovel
+  item: GOLDEN_SHOVEL
+  type: tool
+  rarity: LEGENDARY
+  ability: diggingshovel
+  
+digging_stone:
+  name: Worn Stone
+  item: COBBLESTONE
+  rarity: RARE
+digging_ancientstone:
+  name: Ancient Stone
+  item: GRANITE
+  rarity: EPIC
+digging_leather:
+  name: Precursor Skin
+  item: LEATHER
+  rarity: EPIC
+  glow: true
+  description: Nobody knows where they came from, or why;they came here. All we know is that they;weren't very friendly.
+  nodesc: true
+digging_core:
+  name: Precursor Core
+  item: ORANGE_DYE
+  rarity: INCREDIBLE
+  glow: true
+  description: The Precursors used these as energy sources.;Unfortunately, any attempt to study them usually;results in an explosion. Handle with caution.
+  nodesc: true
+digging_crystal:
+  name: Mythical Crystal
+  item: DIAMOND
+  rarity: INCREDIBLE
+  glow: true
+  description: We don't know how these came to exist.;They're incredibly useful though.
+  nodesc: true
+digging_metal:
+  name: Cursed Ingot
+  item: NETHERITE_INGOT
+  rarity: EPIC
+  description: This ingot is exceedingly heavy and;emanates a feeling of unrest around;itself which makes you want to get;away from it as soon as possible.
+  nodesc: true
+digging_totem2:
+  name: Precursor Totem
+  type: artifact
+  item: TOTEM_OF_UNDYING
+  rarity: EPIC
+  ability: totem2
+  
+  
+armour_precursorcrown_helmet:
+  name: Precursor Crown
+  type: armour
+  item: GOLDEN_HELMET
+  rarity: EPIC
+  ability: precursorcrown
+  attributes:
+    health: -120
+armour_gemstone_helmet:
+  name: Gemstone Crown
+  type: armour
+  item: LEATHER_HELMET
+  rarity: INCREDIBLE
+  ability: gemstonecrown
+  colour: 116,36,227
+  attributes:
+    mana: +400
+sword_cursedboneblade:
+  name: Cursed Blade
+  type: weapon
+  item: IRON_SWORD
+  rarity: INCREDIBLE
+  glow: true
+  req: 16
+  attributes:
+    damage: +65
+    armour: +40
+sword_precursor:
+  name: Blade of Ancients
+  type: weapon
+  item: NETHERITE_SWORD
+  rarity: EPIC
+  ability: prejudice
+  attributes:
+    damage: +50
+    health: -75
+loot_digging2:
+  name: Precursor Box
+  type: lootbox
+  item: LOOM
+  rarity: EPIC
+  loot:
+    digging_leather:
+      amount: 2-6
+      chance: 1
+    digging_core:
+      amount: 1
+      chance: 1
+    sharpener_cursedbinding:
+      amount: 1
+      chance: 2
+    book;spirit:
+      amount: 1
+      enchants: spirit,1
+      chance: 3
+    book;protection:
+      amount: 1
+      enchants: protection,2
+      chance: 4
+sharpener_strangealloy:
+  name: Strange Alloy
+  type: sharpener
+  rarity: EPIC
+  item: NETHERITE_SCRAP
+  sharpener:
+    id: strangealloy
+    plus: AQUA
+  attributes:
+    armour: +5
+sharpener_cursedbinding:
+  name: Cursed Binding
+  type: sharpener
+  rarity: EPIC
+  item: STRING
+  glow: true
+  sharpener:
+    id: cursedbinding
+    plus: DARK_RED
+  attributes:
+    damage: +3
+    armour: +2
+    
+digging_defendermedal:
+  name: Defender Medal
+  type: appliable
+  rarity: INCREDIBLE
+  item: SCUTE
+  glow: true
+  modifier:
+    types: LEATHER_CHESTPLATE,IRON_CHESTPLATE,GOLDEN_CHESTPLATE,DIAMOND_CHESTPLATE,CHAINMAIL_CHESTPLATE,NETHERITE_CHESTPLATE
+    prefix: Defender's
+    attributes:
+      armour: 15
+  description: Awarded by the Precursors for extreme acts;of bravery. Provides a minor armour boost;when it is applied to chestplates.
+digging_royalmedal:
+  name: Royal Medal
+  type: appliable
+  rarity: LEGENDARY
+  item: GOLD_NUGGET
+  glow: true
+  modifier:
+    types: LEATHER_CHESTPLATE,IRON_CHESTPLATE,GOLDEN_CHESTPLATE,DIAMOND_CHESTPLATE,CHAINMAIL_CHESTPLATE,NETHERITE_CHESTPLATE
+    prefix: Royal
+    attributes:
+      armour: 15
+  description: These are reserved for the bravest of the brave. ;Defenders have dedicated their entire lives;to these. Provides an armour boost when applied;to a chestplate.
+
+armour-golem:
+  name: Golem
+  suffix: Helmet,Chestplate,Leggings,Boots
+  rarity: EPIC
+  item: IRON
+  req: 14
+  set: golem
+  attributes:
+    armour: 60,80,70,55
+    mana: 25,25,25,25
+    
+  
+  
+  

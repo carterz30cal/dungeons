@@ -1,0 +1,64 @@
+crypts_zombie2:
+  name: Crypt Zombie
+  type: ZOMBIE
+  health: 1150
+  damage: 130
+  kbresist: 0.1
+  speed: 0.9
+  level: 8
+  equipment: 
+    main: WOODEN_HOE
+    chestplate: CHAINMAIL_CHESTPLATE
+  drops:
+    cake:
+      drop: 1/10000
+      amount: 1-1
+
+crypts_hulk:
+  name: Crypt Hulk
+  type: ZOMBIE
+  health: 800
+  damage: 240
+  armour: 140
+  kbresist: 1
+  speed: 0.5
+  level: 9
+  equipment: 
+    main: IRON_SWORD
+    helmet: IRON_HELMET
+    chestplate: IRON_CHESTPLATE
+    leggings: IRON_LEGGINGS
+    boots: IRON_BOOTS
+  drops:
+    cake:
+      drop: 1/10000
+      amount: 1-1
+      
+crypts_mage2:
+  name: Crypt Mage
+  type: SKELETON
+  health: 3000
+  damage: 90
+  speed: 0
+  level: 9
+  equipment: 
+    main: BLAZE_ROD
+    helmet: armour_sewer_helmet
+    chestplate: armour_sewer_chestplate
+    leggings: armour_sewer_leggings
+    boots: armour_sewer_boots
+  drops:
+    spell_sewerscroll:
+      drop: 1/80
+      amount: 1-1
+    decaying_flesh:
+      drop: 1/5
+      amount: 1-1
+  abilities:
+    caster:
+      projectiles: -1
+      speed: 7
+      range: 10
+      damage: 100
+      cooldown: 65
+      colour: 61,168,214

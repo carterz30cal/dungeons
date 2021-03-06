@@ -11,8 +11,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import com.carterz30cal.bosses.BossManager;
+import com.carterz30cal.dungeons.Dungeons;
 import com.carterz30cal.gui.GUI;
 import com.carterz30cal.gui.MenuType;
 import com.carterz30cal.gui.ShopGUI;
@@ -22,9 +24,11 @@ import com.carterz30cal.items.magic.ItemWand;
 import com.carterz30cal.mobs.DMob;
 import com.carterz30cal.mobs.DMobManager;
 import com.carterz30cal.player.BackpackItem;
+import com.carterz30cal.player.CharacterSkill;
 import com.carterz30cal.player.DungeonsPlayer;
 import com.carterz30cal.player.DungeonsPlayerManager;
 import com.carterz30cal.player.ListenerBlockEvents;
+import com.carterz30cal.player.ListenerEntityDamage;
 
 public class CommandDungeons implements CommandExecutor
 {
@@ -44,6 +48,11 @@ public class CommandDungeons implements CommandExecutor
 			case "updates":
 				if (sender.isOp()) ListenerBlockEvents.allowBlockPhysics = !ListenerBlockEvents.allowBlockPhysics;
 				break;
+			case "resetquests":
+				if (args.length == 1) return false;
+				DungeonsPlayer dp = DungeonsPlayerManager.i.get(Bukkit.getPlayer(args[1]));
+				for (String quest : dp.questProgress.keySet()) dp.questProgress.put(quest, "start");
+				break;
 			case "menu":
 				if (sender instanceof Player)
 				{
@@ -52,6 +61,10 @@ public class CommandDungeons implements CommandExecutor
 				} else {
 					sender.sendMessage("this command is executable by players only.");
 				}
+				break;
+			case "pvp":
+				ListenerEntityDamage.pvp = !ListenerEntityDamage.pvp;
+				sender.sendMessage("pvp is now: " + ListenerEntityDamage.pvp);
 				break;
 			case "shop":
 				new ShopGUI(ShopManager.shops.get(args[1].toLowerCase()),(Player)sender);
@@ -62,12 +75,6 @@ public class CommandDungeons implements CommandExecutor
 				DungeonsPlayer dpl = DungeonsPlayerManager.i.get(pl);
 				dpl.backpackb = new ArrayList<BackpackItem[]>();
 				dpl.backpackb.add(new BackpackItem[45]);
-				break;
-			case "removeperk":
-				if (args.length < 3) return false;
-				Player pp = Bukkit.getPlayer(args[1]);
-				DungeonsPlayer ppl = DungeonsPlayerManager.i.get(pp);
-				ppl.perks.remove(args[2]);
 				break;
 			case "coins":
 				if (args.length == 1) return false;
@@ -83,11 +90,26 @@ public class CommandDungeons implements CommandExecutor
 					d.coins += Integer.parseInt(args[1]);
 				}
 				break;
-			case "skill":
+			case "level":
 				if (args.length == 1) return false;
 				DungeonsPlayer d = DungeonsPlayerManager.i.get((Player)sender);
-				d.skills.add("combat", -d.skills.getSkill("combat"));
-				d.skills.add("combat", Integer.parseInt(args[1]));
+				if (args.length == 3) d = DungeonsPlayerManager.i.get(Bukkit.getPlayer(args[2]));
+				
+				int request = Integer.parseInt(args[1]);
+				d.level.experience = 0;
+				d.level.pointAllocation.clear();
+				d.level.points = 0;
+				if (request > 0) d.level.give(CharacterSkill.requirement(request)+1);
+				break;
+			case "xp":
+				if (args.length < 2) return false;
+				DungeonsPlayer dn = DungeonsPlayerManager.i.get((Player)sender);
+				
+				int requests = Integer.parseInt(args[1]);
+				dn.level.experience = 0;
+				dn.level.pointAllocation.clear();
+				dn.level.points = 0;
+				if (requests > 0) dn.level.give(requests);
 				break;
 			case "wand":
 				DungeonsPlayer du = DungeonsPlayerManager.i.get((Player)sender);
@@ -139,7 +161,16 @@ public class CommandDungeons implements CommandExecutor
 					if (args.length == 3) amount = Integer.parseInt(args[2]);
 					while (amount > 0)
 					{
-						new DMob(DMobManager.types.get(args[1]),null,((Player) sender).getLocation(),true);
+						new BukkitRunnable()
+						{
+
+							@Override
+							public void run()
+							{
+								new DMob(DMobManager.types.get(args[1]),null,((Player) sender).getLocation().clone(),true);
+							}
+							
+						}.runTaskLater(Dungeons.instance, amount-1);
 						amount--;
 					}
 				}

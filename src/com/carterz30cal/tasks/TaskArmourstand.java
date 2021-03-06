@@ -18,7 +18,19 @@ public class TaskArmourstand extends BukkitRunnable {
 	}
 	@Override
 	public void run() {
-		if (!entity.display.isValid()) cancel();
+		if (entity.display == null || !entity.display.isValid())
+		{
+			cancel();
+			return;
+		}
+		
+		
+		entity.display.setVisible(false);
+		entity.display.setSmall(true);
+		entity.display.setMarker(true);
+		entity.display.setCustomNameVisible(true);
+		entity.display.setGravity(false);
+		entity.update();
 		
 		Entity top = entity.entities.get(entity.entities.size()-1);
 		Location l = top.getLocation();

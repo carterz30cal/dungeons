@@ -24,6 +24,7 @@ import net.minecraft.server.v1_16_R3.DataWatcherObject;
 import net.minecraft.server.v1_16_R3.DataWatcherRegistry;
 import net.minecraft.server.v1_16_R3.MinecraftServer;
 import net.minecraft.server.v1_16_R3.PacketPlayOutEntityDestroy;
+import net.minecraft.server.v1_16_R3.PacketPlayOutEntityHeadRotation;
 import net.minecraft.server.v1_16_R3.PacketPlayOutEntityMetadata;
 import net.minecraft.server.v1_16_R3.PacketPlayOutNamedEntitySpawn;
 import net.minecraft.server.v1_16_R3.PacketPlayOutPlayerInfo;
@@ -38,6 +39,7 @@ public class NPC
 	public Slime slime;
 	
 	public String shopId;
+	public Location loc;
 	
 	public NPC(String name,String skinData,String skinSignature,Location location)
 	{
@@ -48,11 +50,14 @@ public class NPC
         GameProfile prof = new GameProfile(UUID.randomUUID(), name);
         prof.getProperties().put("textures", new Property("textures", skinData, skinSignature));
 
+        loc = location.clone();
+        location.setYaw(location.getYaw()+45);
         
         npc = new NPCp(server,world,prof,m);
         
         npc.setLocation(location.getX(), location.getY(), location.getZ(), location.getYaw(), location.getPitch());
-        npc.setHeadRotation(location.getYaw());
+        
+        //npc.setHeadRotation(((location.getYaw() * 256f) / 360f));
         
         
         shopId = "none";
@@ -85,6 +90,7 @@ public class NPC
 		
 		connection.sendPacket(new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.ADD_PLAYER, npc));
         connection.sendPacket(new PacketPlayOutNamedEntitySpawn(npc));
+        connection.sendPacket(new PacketPlayOutEntityHeadRotation(this.npc,(byte) ((loc.getYaw() * 256f) / 360f)));
         DataWatcher watcher = new DataWatcher(null);
 
         watcher.register(new DataWatcherObject<>(16, DataWatcherRegistry.a), (byte)127);

@@ -10,10 +10,16 @@ import org.bukkit.inventory.ItemStack;
 import com.carterz30cal.player.BackpackItem;
 import com.carterz30cal.player.DungeonsPlayer;
 import com.carterz30cal.player.DungeonsPlayerManager;
+import com.carterz30cal.utility.BackpackSort;
+import com.carterz30cal.utility.InventoryHandler;
+import com.carterz30cal.utility.StringManipulator;
+
+import net.md_5.bungee.api.ChatColor;
 
 public class BackpackGUI extends GUI
 {
-
+	public int sorting = 0; // sorting method index
+	
 	public BackpackGUI(Player p) {
 		super(p);
 		
@@ -43,6 +49,7 @@ public class BackpackGUI extends GUI
 			}
 		}
 		
+		contents[49] = GUICreator.item(Material.FURNACE, ChatColor.GOLD + "Sort", ChatColor.RED + "Method: " + StringManipulator.neat_sorting(BackpackSort.values()[sorting]));
 		inventory.setContents(contents);
 	}
 	public void save(DungeonsPlayer d)
@@ -83,6 +90,24 @@ public class BackpackGUI extends GUI
 			page++;
 			createPage(d);
 			render(p);
+		}
+		if (position == 49)
+		{
+			if (e.isRightClick())
+			{
+				sorting++;
+				if (sorting == BackpackSort.values().length) sorting = 0;
+				save(d);
+				createPage(d);
+				render(p);
+			}
+			else if (e.isLeftClick()) 
+			{
+				save(d);
+				InventoryHandler.sortBackpack(d, BackpackSort.values()[sorting]);
+				createPage(d);
+				render(p);
+			}
 		}
 		if (position >= 45 && position < 54) return true;
 		else return false;

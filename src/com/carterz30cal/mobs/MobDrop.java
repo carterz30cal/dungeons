@@ -7,4 +7,6 @@ public class MobDrop
 	public double chance;
 	public int minAmount;
 	public int maxAmount;
+	
+	public boolean rareMessage;
 }

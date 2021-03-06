@@ -8,8 +8,8 @@ decaying_flesh:
   name: Decaying Flesh
   item: ROTTEN_FLESH
   rarity: RARE
-beating_mass:
-  name: Beating Mass
+tissue:
+  name: Tissue
   item: RED_DYE
   rarity: COMMON
 gel:

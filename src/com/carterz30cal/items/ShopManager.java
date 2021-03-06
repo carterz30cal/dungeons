@@ -16,22 +16,32 @@ public class ShopManager
 	public static ShopManager i;
 	public static HashMap<String,Shop> shops;
 	
+	
 	public ShopManager ()
 	{
 		i = this;
 		
 		shops = new HashMap<String,Shop>();
 		
-		File shopFile = new File(Dungeons.instance.getDataFolder(), "shops.yml");
-		if (!shopFile.exists())
+		File file = null;
+		try
 		{
-			shopFile.getParentFile().mkdirs();
-			Dungeons.instance.saveResource("shops.yml",false);
+			file = File.createTempFile("shopfile.shops", null);
+		} catch (IOException e1)
+		{
+			e1.printStackTrace();
 		}
-		
+
+		ItemBuilder.copyToFile(Dungeons.instance.getResource("shops.yml"),file);
 		FileConfiguration shop = new YamlConfiguration();
-		try { shop.load(shopFile); }
-		catch (IOException | InvalidConfigurationException e) { e.printStackTrace(); }
+		try 
+		{
+			shop.load(file);
+		} 
+		catch (IOException | InvalidConfigurationException e) 
+		{
+		    e.printStackTrace();
+		}
 		
 		for (String s : shop.getKeys(false))
 		{

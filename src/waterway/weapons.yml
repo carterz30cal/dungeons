@@ -58,20 +58,13 @@ sword_paper:
   rarity: RARE
   set: paper
   item: STONE_SWORD
+  req: 5
   attributes:
     damage: +40
     health: -50
     
     
-sword_hyperblade:
-  name: Hyperblade
-  type: weapon
-  rarity: EPIC
-  item: WOODEN_SWORD
-  glow: true
-  attributes:
-    damage: +27
-    regen: +10
+
 sword_hyperspear:
   name: Hyperspear
   type: weapon
@@ -105,20 +98,22 @@ sword_holyhyperblade:
     damage: +28
     regen: +12
     
-sword_guardian:
-  name: Guardian's Warhammer
+sword_protector:
+  name: Protector's Warhammer
   type: weapon
   rarity: EPIC
   item: IRON_AXE
+  req: 6
   attributes:
-    damage: +45
-    armour: +30
+    damagep: +0.8
+    armour: +60
     
 sword_goldknife:
   name: Gold Knife
   type: weapon
   rarity: EPIC
   item: GOLD_NUGGET
+  req: 5
   attributes:
     damage: +19
     killcoins: +9

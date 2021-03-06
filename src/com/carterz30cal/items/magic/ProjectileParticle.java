@@ -5,7 +5,6 @@ import java.util.Collection;
 
 import org.bukkit.Color;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
@@ -67,7 +66,7 @@ public class ProjectileParticle extends BukkitRunnable
 	public void check()
 	{
 		if (owner.player.getLocation().distance(current) > 30) cancel();
-		if (Dungeons.w.getBlockAt(current).getType() != Material.AIR) cancel();
+		if (!Dungeons.w.getBlockAt(current).isPassable()) cancel();
 		Collection<Entity> entities = Dungeons.w.getNearbyEntities(current, 0.5, 0.5, 0.5);
 		for (Entity e : entities)
 		{

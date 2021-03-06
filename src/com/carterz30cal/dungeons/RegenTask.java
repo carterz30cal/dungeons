@@ -16,7 +16,8 @@ public class RegenTask extends BukkitRunnable {
 		{
 			if (p.getFireTicks() > 0) continue;
 			DungeonsPlayer dp = DungeonsPlayerManager.i.get(p);
-			int heal = (int)Math.round(((double)dp.stats.health)*0.01) + dp.stats.regen;
+			//int heal = (int)Math.round(((double)dp.stats.health)*0.01) + dp.stats.regen;
+			int heal = dp.stats.regen;
 			dp.heal(heal);
 		}
 	}

@@ -1,5 +1,27 @@
-crypt_key:
+crypt_key1:
   name: Crypt Key
+  type: key
   rarity: RARE
   item: TRIPWIRE_HOOK
   ability: cryptkey
+  
+crypt_key2:
+  name: Ornate Crypt Key
+  type: key
+  rarity: EPIC
+  item: TRIPWIRE_HOOK
+  ability: cryptkey2
+  glow: true
+crypt_key3:
+  name: Exalted Crypt Key
+  type: key
+  rarity: INCREDIBLE
+  item: TRIPWIRE_HOOK
+  ability: cryptkey3
+  glow: true
+cake:
+  name: Cake
+  type: cake
+  rarity: LEGENDARY
+  item: CAKE
+  nolore: true

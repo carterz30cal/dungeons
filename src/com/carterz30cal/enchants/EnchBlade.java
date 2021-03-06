@@ -1,10 +1,6 @@
 package com.carterz30cal.enchants;
 
-import org.bukkit.entity.ArmorStand;
-
 import com.carterz30cal.dungeons.DungeonMiningTable;
-import com.carterz30cal.mobs.DungeonMob;
-import com.carterz30cal.player.DungeonsPlayer;
 import com.carterz30cal.player.DungeonsPlayerStatBank;
 
 public class EnchBlade extends AbsEnchant {
@@ -35,7 +31,7 @@ public class EnchBlade extends AbsEnchant {
 	}
 	@Override
 	public int rarity() {
-		return 1;
+		return Math.max(0, level-2);
 	}
 
 	@Override

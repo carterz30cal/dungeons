@@ -1,11 +1,2 @@
-sharpener_bloodcoating:
-  name: Blood Coating
-  type: sharpener
-  rarity: RARE
-  item: RED_WOOL
-  sharpener:
-    id: bloodcoating
-    plus: RED
-  attributes:
-    damage: +1
-    health: +9
+
+

@@ -2,6 +2,7 @@ soaked1:
   name: Soaked
   type: DROWNED
   health: 80
+  level: 2
   damage: 15
   speed: 0.6
   kbresist: 0
@@ -17,7 +18,7 @@ soaked1:
       drop: 1/3
       amount: 1-1
     storm_crystals:
-      drop: 1/4
+      drop: 1/2
       amount: 1-1
     catalyst=0:
       drop: 1/110
@@ -31,6 +32,7 @@ soaked2:
   type: DROWNED
   health: 180
   damage: 30
+  level: 3
   speed: 0.6
   kbresist: 0
   perk: waterway_drenched
@@ -45,7 +47,7 @@ soaked2:
       drop: 1/3
       amount: 1-1
     storm_crystals:
-      drop: 1/4
+      drop: 1/2
       amount: 1-1
     catalyst=0:
       drop: 1/110
@@ -59,6 +61,7 @@ soaked3:
   type: DROWNED
   health: 290
   damage: 45
+  level: 4
   speed: 0.6
   kbresist: 0
   perk: waterway_drenched
@@ -73,7 +76,7 @@ soaked3:
       drop: 1/2
       amount: 1-1
     storm_crystals:
-      drop: 1/3
+      drop: 1/2
       amount: 1-1
     catalyst=0:
       drop: 1/100

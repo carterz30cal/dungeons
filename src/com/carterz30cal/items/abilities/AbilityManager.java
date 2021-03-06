@@ -3,6 +3,7 @@ package com.carterz30cal.items.abilities;
 import java.util.HashMap;
 
 import com.carterz30cal.dungeons.Dungeons;
+import com.carterz30cal.items.abilities.runes.*;
 import com.carterz30cal.tasks.TaskTickAbilities;
 
 public class AbilityManager
@@ -33,13 +34,41 @@ public class AbilityManager
 		abilities.put("fishingt2", AbilitySpearFishingT2.class);
 		abilities.put("fishingt3", AbilitySpearFishingT3.class);
 		abilities.put("fishingt4", AbilitySpearFishingT4.class);
+		abilities.put("fishingstrange", AbilitySpearFishingStrange.class);
 		abilities.put("cryptkey", AbilityCryptKey.class);
-		
-		
+		abilities.put("cryptkey2", AbilityCryptKey2.class);
+		abilities.put("cryptkey3", AbilityCryptKey3.class);
+		abilities.put("cryptraider", AbilityCryptRaiderSet.class);
+		abilities.put("handsomereward", AbilityHandsomeReward.class);
+		abilities.put("venomfang", AbilityVenomFang.class);
+		abilities.put("venomhelm", AbilityVenomHelm.class);
+		abilities.put("diggingshovel", AbilityDigging.class);
+		abilities.put("totem2", AbilityTotem2.class);
+		abilities.put("precursorcrown", AbilityPrecursorCrown.class);
+		abilities.put("prejudice", AbilityPrejudice.class);
+		abilities.put("cryptknight", AbilityCryptKnight.class);
+		abilities.put("acidity", AbilityAcidity.class);
+		abilities.put("golem", AbilityGolemSet.class);
+		abilities.put("spores", AbilitySpores.class);
+		abilities.put("gemstonecrown", AbilityGemstoneCrown.class);
+		abilities.put("soulfire", AbilitySoulfire.class);
+		abilities.put("scythe", AbilityScythe.class);
 		
 		abilities.put("spellconcentration", ModSpellConcentration.class);
 		abilities.put("manaefficient", ModManaEfficient.class);
 		abilities.put("frozen", ModFrozen.class);
+		abilities.put("cryptgrimoire", ModCryptGrimoire.class);
+		
+		
+		abilities.put("rune_blood",RuneBlood.class);
+		abilities.put("rune_snake",RuneSnake.class);
+		abilities.put("rune_rich" ,RuneRich.class);
+		abilities.put("rune_acid" ,RuneAcid.class);
+		abilities.put("rune_square",RuneSquare.class);
+		abilities.put("rune_slayer",RuneSlayer.class);
+		abilities.put("rune_hunt",RuneHunt.class);
+		abilities.put("rune_tap",RuneTap.class);
+		abilities.put("rune_sweat",RuneSweat.class);
 	}
 	
 	public static AbsAbility get(String code)

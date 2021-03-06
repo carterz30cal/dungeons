@@ -8,18 +8,22 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-
+import org.bukkit.inventory.Inventory;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 import com.carterz30cal.areas.EventTicker;
-import com.carterz30cal.areas.NecropolisCrypts;
+import com.carterz30cal.areas.NecropolisCrypts2;
 import com.carterz30cal.areas.WaterwayRain;
 import com.carterz30cal.areas.WaterwaySpearFishing;
 import com.carterz30cal.bosses.BossManager;
 import com.carterz30cal.commands.CommandDungeons;
 import com.carterz30cal.commands.CommandHub;
+import com.carterz30cal.commands.CommandLeaderboard;
+import com.carterz30cal.commands.CommandTrade;
 import com.carterz30cal.crafting.RecipeManager;
 import com.carterz30cal.enchants.EnchantManager;
 import com.carterz30cal.gui.ListenerGUIEvents;
@@ -30,11 +34,14 @@ import com.carterz30cal.mobs.DMobManager;
 import com.carterz30cal.mobs.ListenerChunkUnload;
 import com.carterz30cal.mobs.ListenerDismountEvent;
 import com.carterz30cal.npcs.NPCManager;
+import com.carterz30cal.packets.Packetz;
 import com.carterz30cal.player.DungeonsPlayerManager;
 import com.carterz30cal.player.ListenerBlockEvents;
 import com.carterz30cal.player.ListenerEntityDamage;
+import com.carterz30cal.quests.Quest;
 import com.carterz30cal.tasks.TaskBlockReplace;
 import com.carterz30cal.tasks.TaskSpawn;
+import com.carterz30cal.utility.RandomFunctions;
 public class Dungeons extends JavaPlugin 
 {
 	public static Dungeons instance;
@@ -66,6 +73,8 @@ public class Dungeons extends JavaPlugin
 		new ItemBuilder();
 		
 		listenerGUI = new ListenerGUIEvents();
+		ListenerGUIEvents.cancelled = new ArrayList<Inventory>();
+		
 		listenerChunk = new ListenerChunkUnload();
 		listenerDismount = new ListenerDismountEvent();
 		listenerBlock = new ListenerBlockEvents();
@@ -91,8 +100,10 @@ public class Dungeons extends JavaPlugin
 		new EventTicker();
 		new WaterwayRain();
 		new WaterwaySpearFishing();
-		new NecropolisCrypts();
+		//new NecropolisCrypts();
+		new NecropolisCrypts2();
 		
+		RandomFunctions.r = new Random();
 		//-69, 100, 20994
 		
 		blocks = new HashMap<Block,TaskBlockReplace>();
@@ -113,8 +124,15 @@ public class Dungeons extends JavaPlugin
 		
 		getCommand("dungeons").setExecutor(new CommandDungeons());
 		getCommand("warp").setExecutor(new CommandHub());
+		getCommand("leaderboard").setExecutor(new CommandLeaderboard());
+		getCommand("trade").setExecutor(new CommandTrade());
 		
 		NPCManager.sendall();
+		
+		Quest.init();
+		Packetz.init();
+		
+		
 	}
 	
 	private void initFiles()
@@ -134,27 +152,7 @@ public class Dungeons extends JavaPlugin
 		{
             e.printStackTrace();
         }
-		/*
-		lItems = new File(getDataFolder(),"items.yml");
-		if (!lItems.exists())
-		{
-			lItems.getParentFile().mkdirs();
-			saveResource("items.yml",false);
-		}
-		lItemsC = new YamlConfiguration();
-		try 
-		{
-			lItemsC.load(lItems);
-		} 
-		catch (IOException | InvalidConfigurationException e)
-		{
-            e.p
-            rintStackTrace();
-        }
-		*/
-		
-		
-		
+
 		fPerks = new File(getDataFolder(),"perks.yml");
 		if (!fPerks.exists())
 		{
@@ -207,6 +205,8 @@ public class Dungeons extends JavaPlugin
 			t.block.setType(t.material);
 			t.cancel();
 		}
+		
+		Quest.remove();
 	}
 
 }

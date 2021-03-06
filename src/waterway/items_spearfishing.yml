@@ -22,6 +22,12 @@ sword_fishingforklegendary:
   rarity: LEGENDARY
   item: TRIDENT
   ability: fishingt4
+sword_fishingforkstrange:
+  name: Strange Fishing Spear
+  type: weapon
+  rarity: UNUSUAL
+  item: TRIDENT
+  ability: fishingstrange
  
  
 fishing_fish:

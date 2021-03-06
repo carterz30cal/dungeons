@@ -1,0 +1,69 @@
+sword_cryptknight:
+  name: Crypt Knight Sword
+  type: weapon
+  item: GOLDEN_SWORD
+  rarity: EPIC
+  req: 13
+  ability: cryptknight
+  attributes:
+    damage: +50
+    regen: +5
+
+sword_corruptknight:
+  name: Corrupt Knight Sword
+  type: weapon
+  item: GOLDEN_SWORD
+  rarity: INCREDIBLE
+  req: 14
+  ability: cryptknight
+  glow: true
+  attributes:
+    damage: +70
+    armour: -15
+    
+sword_soulfire:
+  name: Soulfire Grimoire
+  type: weapon
+  item: BOOK
+  rarity: EPIC
+  req: 15
+  glow: true
+  ability: soulfire
+  attributes:
+    damage: +45
+    mana: +250
+sword_holyknight:
+  name: Holy Knight Sword
+  type: weapon
+  item: GOLDEN_SWORD
+  rarity: INCREDIBLE
+  req: 14
+  ability: cryptknight
+  glow: true
+  attributes:
+    damage: +45
+    regen: +18
+    
+crypt_dust:
+  name: Crypt Dust
+  rarity: RARE
+  item: GRAY_DYE
+  nodesc: true
+  description: This slowly accumulates in Crypts. It has;many different uses, including improving;armours and weapons
+  
+strange_tissue:
+  name: Strange Tissue
+  rarity: EPIC
+  item: LIGHT_GRAY_DYE
+  
+warmers:
+  name: Warmers
+  type: appliable
+  rarity: EPIC
+  item: FIRE_CHARGE
+  modifier:
+    types: LEATHER_LEGGINGS,IRON_LEGGINGS,GOLDEN_LEGGINGS,DIAMOND_LEGGINGS,CHAINMAIL_LEGGINGS,NETHERITE_LEGGINGS
+    prefix: Warm
+    attributes:
+      health: +20
+  description: It's chilly in these crypts. Provides a minor;health boost when applied to leggings.

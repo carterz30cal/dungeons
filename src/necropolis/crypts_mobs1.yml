@@ -1,0 +1,264 @@
+crypts_zombie:
+  name: Crypt Zombie
+  type: ZOMBIE
+  health: 700
+  damage: 100
+  kbresist: 0
+  level: 6
+  equipment: 
+    main: WOODEN_HOE
+    chestplate: CHAINMAIL_CHESTPLATE
+  drops:
+    cake:
+      drop: 1/10000
+      amount: 1-1
+
+
+crypts_zombiebaby:
+  name: Crypt Zombie
+  type: ZOMBIE
+  health: 400
+  damage: 65
+  speed: 0.8
+  kbresist: 0
+  level: 6
+  data:
+    0: baby
+  equipment: 
+    main: WOODEN_HOE
+    helmet: LEATHER_HELMET
+    chestplate: CHAINMAIL_CHESTPLATE
+    boots: LEATHER_HELMET
+  drops: {}
+crypts_mage:
+  name: Crypt Mage
+  type: SKELETON
+  health: 1300
+  damage: 90
+  speed: 0
+  level: 9
+  equipment: 
+    main: BLAZE_ROD
+    helmet: armour_sewer_helmet
+    chestplate: armour_sewer_chestplate
+    leggings: armour_sewer_leggings
+    boots: armour_sewer_boots
+  drops:
+    spell_sewerscroll:
+      drop: 1/85
+      amount: 1-1
+    decaying_flesh:
+      drop: 1/5
+      amount: 1-1
+  abilities:
+    caster:
+      projectiles: -1
+      speed: 7
+      range: 8
+      damage: 80
+      cooldown: 70
+      colour: 61,168,214
+
+crypts_runeghoul:
+  name: Rune Ghoul
+  type: ZOMBIE
+  health: 4000
+  damage: 80
+  level: 9
+  speed: 0.9
+  tags: ghoul
+  equipment: 
+    main: GOLDEN_HOE
+    helmet: GOLDEN_HELMET
+    chestplate: GOLDEN_CHESTPLATE
+    leggings: armour_sewer_leggings
+    boots: armour_sewer_boots
+  drops:
+    spell_sewerscroll:
+      drop: 1/70
+      amount: 1-1
+  abilities:
+    regen:
+      regen: 10
+      cooldown: 30
+crypts_runemage:
+  name: Rune Mage
+  type: WITHER_SKELETON
+  health: 2200
+  armour: 18
+  damage: 0
+  level: 9
+  speed: 0.05
+  equipment: 
+    main: GOLDEN_SHOVEL
+    helmet: GOLDEN_HELMET
+    chestplate: armour_sewer_chestplate
+    leggings: armour_sewer_leggings
+    boots: armour_sewer_boots
+  drops:
+    spell_sewerscroll:
+      drop: 1/70
+      amount: 1-1
+    decaying_flesh:
+      drop: 1/3
+      amount: 1-1
+  abilities:
+    caster:
+      projectiles: -1
+      speed: 4
+      range: 7
+      damage: 140
+      cooldown: 100
+      colour: 20,20,20
+crypts_spider:
+  name: Spider
+  type: SPIDER
+  health: 1200
+  damage: 100
+  kbresist: 1
+  speed: 0.5
+  level: 7
+  equipment: {}
+  drops: {}
+crypts_smallspider:
+  name: Spider
+  type: CAVE_SPIDER
+  health: 600
+  damage: 40
+  kbresist: 1
+  speed: 0.8
+  level: 7
+  equipment: {}
+  drops: {}
+
+crypts_skeleton:
+  name: Undead Soldier
+  type: SKELETON
+  health: 550
+  armour: 5
+  damage: 130
+  kbresist: 0.5
+  speed: 0.8
+  level: 7
+  equipment:
+    main: IRON_SWORD
+    helmet: armour_undeadsoldier_helmet
+    chestplate: armour_undeadsoldier_chestplate
+    leggings: armour_undeadsoldier_leggings
+    boots: armour_undeadsoldier_boots
+  drops:
+    armour_undeadsoldier_helmet:
+      drop: 1/100
+      amount: 1-1
+    armour_undeadsoldier_chestplate:
+      drop: 1/100
+      amount: 1-1
+    armour_undeadsoldier_leggings:
+      drop: 1/100
+      amount: 1-1
+    armour_undeadsoldier_boots:
+      drop: 1/100
+      amount: 1-1
+crypts_skeleton2:
+  name: Undead Soldier
+  type: SKELETON
+  health: 900
+  armour: 10
+  damage: 145
+  kbresist: 0.6
+  level: 7
+  equipment:
+    main: IRON_SWORD
+    helmet: armour_undeadsoldier_helmet
+    chestplate: armour_undeadsoldier_chestplate
+    leggings: armour_undeadsoldier_leggings
+    boots: armour_undeadsoldier_boots
+  drops:
+    armour_undeadsoldier_helmet:
+      drop: 1/100
+      amount: 1-1
+    armour_undeadsoldier_chestplate:
+      drop: 1/100
+      amount: 1-1
+    armour_undeadsoldier_leggings:
+      drop: 1/100
+      amount: 1-1
+    armour_undeadsoldier_boots:
+      drop: 1/100
+      amount: 1-1
+crypts_skeletoncaptain:
+  name: Undead Captain
+  type: SKELETON
+  health: 1600
+  armour: 20
+  damage: 170
+  kbresist: 1
+  speed: 0.75
+  level: 9
+  equipment:
+    main: GOLDEN_SWORD
+    helmet: armour_undeadcaptain_helmet
+    chestplate: armour_undeadcaptain_chestplate
+    leggings: armour_undeadcaptain_leggings
+    boots: armour_undeadcaptain_boots
+  drops:
+    armour_undeadcaptain_helmet:
+      drop: 1/90
+      amount: 1-1
+    armour_undeadcaptain_chestplate:
+      drop: 1/90
+      amount: 1-1
+    armour_undeadcaptain_leggings:
+      drop: 1/90
+      amount: 1-1
+    armour_undeadcaptain_boots:
+      drop: 1/90
+      amount: 1-1
+      
+crypts_skeletoncommander:
+  name: Undead Commander
+  type: SKELETON
+  health: 5000
+  armour: 35
+  damage: 210
+  kbresist: 1
+  speed: 1
+  level: 10
+  abilities:
+    swap:
+      distance: 3
+      swap: DIAMOND_SWORD
+  equipment:
+    main: BOW
+    helmet: armour_undeadcaptain_helmet
+    chestplate: armour_sewer_chestplate
+    leggings: armour_undeadcaptain_leggings
+    boots: DIAMOND_BOOTS
+  drops:
+    armour_undeadcaptain_helmet:
+      drop: 1/90
+      amount: 1-1
+    armour_undeadcaptain_chestplate:
+      drop: 1/90
+      amount: 1-1
+    armour_undeadcaptain_leggings:
+      drop: 1/90
+      amount: 1-1
+    armour_undeadcaptain_boots:
+      drop: 1/90
+      amount: 1-1
+
+crypts_reaper:
+  name: Crypt Reaper
+  type: SKINNED
+  health: 1766
+  armour: 25
+  damage: 120
+  kbresist: 1
+  speed: 0.8
+  level: 9
+  skin:
+    data: ewogICJ0aW1lc3RhbXAiIDogMTYxNDA3OTY5NzczNSwKICAicHJvZmlsZUlkIiA6ICIzZjM4YmViZGYwMWQ0MjNkYWI4MjczZjUwNGFiNGEyNyIsCiAgInByb2ZpbGVOYW1lIiA6ICJjazM0Nzk0MjM1NzUzNzMxIiwKICAic2lnbmF0dXJlUmVxdWlyZWQiIDogdHJ1ZSwKICAidGV4dHVyZXMiIDogewogICAgIlNLSU4iIDogewogICAgICAidXJsIiA6ICJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlL2JhZDM2ZTM5ZDJiZGY4NWQ4YjdjMjg0ODJhNmZmNjFiNjZkNDU0YzhiMDk3ODZiMDk3YjVhZjA1MjgyNWQyYTEiCiAgICB9CiAgfQp9
+    sig: ijqAu4yyGlTRrva1YpPDfpiLc+joXvXKQGXgrwCoueirhm3dub53eEvZ0H0bjrUv9RcASyocatcLFSdP2zNb2CIprtk6OQDn9HCRT4U6txHthqxfpF/1EPHJCTKDGVZkxBoKRhYgN8+IdLQDQxC6iBplRj9iL2C8tkZVNDsTZkmyVonP9jQ0eqYWAOq4dCBnD31+OApfyuBXJAKsura01ZHROpqW6G4DXP5gRO+spHD9nw3sVoWFXoTEEU2QiZX0TcIsEpnElzF5IMedFjOZ6ycBWoy9PFhAjWId5JnTgPioysfqlxy6Y25NAL1XYJoNXi9gWmh1pT36I5CJYtcIou4KVEFjm82/zyMpXXVkCOU0ogDXgC4K5NMq2VqXbPG8qXewRbLg+DusCbl+p0lS/RT6r1pSSp3s53jk7STm+hXcypIhX3lKoy3zTJ+ERS1U2IhzDiOUK7OcS/vogRwJoRtV66+CXKIBVDCy6zD058eEDn8TokJABiB7yQHs6GGOwWcCKM+ukdL6I5PJdMHUue6YN8NRzaNtR/rsn5KvR0pylHLXUm9uzv5FebOrovcUcjbyRIwZWMQicgjnVKpQV8jCI9VeduqIzqQ1QcPERzURxMr3jWhHf9AX7Dsey7MQFigvh2kZJdBVvGyKk75pFrXri52tlm56i+2tK4ZQy4Q=
+  equipment:
+    main: IRON_HOE

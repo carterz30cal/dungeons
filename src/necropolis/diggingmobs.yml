@@ -1,0 +1,455 @@
+digging_zombie1:
+  name: Zombie
+  type: ZOMBIE
+  health: 500
+  damage: 80
+  tags: ancient
+  level: 7
+  drops:
+    digging_stone:
+      drop: 3/4
+      amount: 1-2
+    digging_leather:
+      drop: 1/6
+      amount: 1-1
+      rare: true
+digging_wolf1:
+  name: Rabid Wolf
+  type: WOLF
+  health: 475
+  damage: 85
+  tags: ancient
+  level: 7
+  abilities:
+    targeter:
+      range: 10
+  drops:
+    digging_stone:
+      drop: 3/4
+      amount: 1-1
+    digging_leather:
+      drop: 1/6
+      amount: 1-1
+      rare: true
+digging_slime1:
+  name: Gel
+  type: SLIME
+  data:
+    0: size:2
+  health: 1000
+  damage: 60
+  tags: ancient
+  level: 7
+  abilities:
+    targeter:
+      range: 10
+  drops:
+    digging_stone:
+      drop: 3/4
+      amount: 1-1
+    digging_leather:
+      drop: 1/6
+      amount: 1-1
+      rare: true
+digging_ghoul1:
+  name: Ancient Ghoul
+  type: ZOMBIE
+  health: 550
+  level: 7
+  damage: 95
+  speed: 1.3
+  tags: ghoul,ancient
+  equipment: 
+    helmet: CHAINMAIL_HELMET
+    chestplate: CHAINMAIL_CHESTPLATE
+    boots: CHAINMAIL_BOOTS
+    main: NETHERITE_SWORD
+  drops:
+    digging_stone:
+      drop: 3/4
+      amount: 1-1
+    digging_leather:
+      drop: 1/6
+      amount: 1-1
+      rare: true
+    decaying_flesh:
+      drop: 1/6
+      amount: 1-1
+    sword_ghoul:
+      drop: 1/200
+      amount: 1-1
+digging_bug1:
+  name: Ancient Bug
+  type: SILVERFISH
+  health: 333
+  damage: 90
+  speed: 1.1
+  tags: ancient
+  level: 7
+  drops:
+    digging_stone:
+      drop: 3/4
+      amount: 1-2
+    digging_leather:
+      drop: 1/6
+      amount: 1-1
+      rare: true
+digging_axe1:
+  name: Cursed Axe
+  type: ZOMBIE
+  health: 444
+  damage: 98
+  speed: 1.5
+  tags: ancient
+  invisible: true
+  silent: true
+  level: 7
+  equipment:
+    main: GOLDEN_AXE
+  drops:
+    digging_stone:
+      drop: 3/4
+      amount: 1-2
+    digging_leather:
+      drop: 1/6
+      amount: 1-1
+      rare: true 
+digging_defender1:
+  name: Defender
+  type: SKINNED
+  health: 2000
+  damage: 70
+  armour: 15
+  speed: 0.7
+  level: 8
+  tags: ancient,defender
+  skin:
+    data: ewogICJ0aW1lc3RhbXAiIDogMTYxNDQzNDY1NzM3NiwKICAicHJvZmlsZUlkIiA6ICI0ZTMwZjUwZTdiYWU0M2YzYWZkMmE3NDUyY2ViZTI5YyIsCiAgInByb2ZpbGVOYW1lIiA6ICJfdG9tYXRvel8iLAogICJzaWduYXR1cmVSZXF1aXJlZCIgOiB0cnVlLAogICJ0ZXh0dXJlcyIgOiB7CiAgICAiU0tJTiIgOiB7CiAgICAgICJ1cmwiIDogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjMwZjRkODFjYWIzMDEzY2RjZWUxN2I4Y2RjOTVhMTUxZDI3NzBiMjdiNThiOWZjNTRjYjEzNmM0OTExMzI4OCIKICAgIH0KICB9Cn0=
+    sig: Q16l1aBFahfyqOtO/Eu50vXCkL7XZGM027Teg4rCgScdrP+k6PTN2/J+RbgQFOzDwEEiIY5e+pHZoHZ90ngId2XjdkdfCXZc16tvxIzfv4zei15MePh2VhulQKBnup/rHgjwSDxFARo09RSL10axpaPaI6WF3XQnX+Kx4go5moLc96zkNZ2y4DhFfJgKVOVzbbmydInhkjmupMlvWsub9G/nAY7fQ5gucasabF8MqEjlqHxwG22k6QcvHOjtAaugymRenVsBtJ29WfXqI5Bu4r8FZ7jlzvq9A6uocRG3XgVtwR5PwSVZe4ljmteD11vGM2WUK9kUA5GyG/O1kw0UyDOlJe6zByqNn5Xy1fePSNVieBw2kMW76vyeeBsKUWzzNPzmnNvuA6yChhEX+oc7PR8TZ05PXOWfPkCSjohy9Rgza357mXHpf3kD9o5BCmvcxMh4goRjFLOm84FWXLKrlieQUASrPRmKTD/8c/G08WRXEDR8BSq2smN7qZ6ngd8cGQXyvylzbnZgF68XsH7l4brCz7xSr6mbikufPt52PglD208hN+EtHWIMNa7BHBMO2PPx67nrAvo457peSWrevDO9pZFFCm09D0vdfoFjHhQ5dzJR9qzjG9Agsi4lCC055dQ6Vluv5S7rBWX3LHGPJNAlogdZVGz0G1QRoGCNQmg=
+  equipment:
+    main: WOODEN_SWORD
+  drops:
+    digging_stone:
+      drop: 3/4
+      amount: 1-1
+    digging_leather:
+      drop: 1/6
+      amount: 1-1
+      rare: true
+    digging_metal:
+      drop: 1/8
+      amount: 1-1
+      rare: true
+digging_defender2:
+  name: Defender
+  type: SKINNED
+  health: 3500
+  damage: 95
+  armour: 25
+  speed: 0.65
+  level: 9
+  tags: ancient,defender
+  skin:
+    data: ewogICJ0aW1lc3RhbXAiIDogMTYxNDQzNDY1NzM3NiwKICAicHJvZmlsZUlkIiA6ICI0ZTMwZjUwZTdiYWU0M2YzYWZkMmE3NDUyY2ViZTI5YyIsCiAgInByb2ZpbGVOYW1lIiA6ICJfdG9tYXRvel8iLAogICJzaWduYXR1cmVSZXF1aXJlZCIgOiB0cnVlLAogICJ0ZXh0dXJlcyIgOiB7CiAgICAiU0tJTiIgOiB7CiAgICAgICJ1cmwiIDogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjMwZjRkODFjYWIzMDEzY2RjZWUxN2I4Y2RjOTVhMTUxZDI3NzBiMjdiNThiOWZjNTRjYjEzNmM0OTExMzI4OCIKICAgIH0KICB9Cn0=
+    sig: Q16l1aBFahfyqOtO/Eu50vXCkL7XZGM027Teg4rCgScdrP+k6PTN2/J+RbgQFOzDwEEiIY5e+pHZoHZ90ngId2XjdkdfCXZc16tvxIzfv4zei15MePh2VhulQKBnup/rHgjwSDxFARo09RSL10axpaPaI6WF3XQnX+Kx4go5moLc96zkNZ2y4DhFfJgKVOVzbbmydInhkjmupMlvWsub9G/nAY7fQ5gucasabF8MqEjlqHxwG22k6QcvHOjtAaugymRenVsBtJ29WfXqI5Bu4r8FZ7jlzvq9A6uocRG3XgVtwR5PwSVZe4ljmteD11vGM2WUK9kUA5GyG/O1kw0UyDOlJe6zByqNn5Xy1fePSNVieBw2kMW76vyeeBsKUWzzNPzmnNvuA6yChhEX+oc7PR8TZ05PXOWfPkCSjohy9Rgza357mXHpf3kD9o5BCmvcxMh4goRjFLOm84FWXLKrlieQUASrPRmKTD/8c/G08WRXEDR8BSq2smN7qZ6ngd8cGQXyvylzbnZgF68XsH7l4brCz7xSr6mbikufPt52PglD208hN+EtHWIMNa7BHBMO2PPx67nrAvo457peSWrevDO9pZFFCm09D0vdfoFjHhQ5dzJR9qzjG9Agsi4lCC055dQ6Vluv5S7rBWX3LHGPJNAlogdZVGz0G1QRoGCNQmg=
+  equipment:
+    main: STONE_SWORD
+  drops:
+    digging_stone:
+      drop: 1/1
+      amount: 1-2
+    digging_leather:
+      drop: 1/6
+      amount: 1-2
+      rare: true
+    digging_metal:
+      drop: 1/8
+      amount: 1-2
+      rare: true
+digging_defender3:
+  name: True Defender
+  type: SKINNED
+  health: 10000
+  damage: 135
+  armour: 40
+  speed: 0.6
+  level: 11
+  tags: ancient,defender,trueancient
+  skin:
+    data: ewogICJ0aW1lc3RhbXAiIDogMTYxNDQ0MTU4NjMyOCwKICAicHJvZmlsZUlkIiA6ICIzOWEzOTMzZWE4MjU0OGU3ODQwNzQ1YzBjNGY3MjU2ZCIsCiAgInByb2ZpbGVOYW1lIiA6ICJkZW1pbmVjcmFmdGVybG9sIiwKICAic2lnbmF0dXJlUmVxdWlyZWQiIDogdHJ1ZSwKICAidGV4dHVyZXMiIDogewogICAgIlNLSU4iIDogewogICAgICAidXJsIiA6ICJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlL2VkODE4NTZjNGJiY2Y2MTI3OTk4YmJkODM0ZTM3ZDM1NTAyMmVjNTFhMDg2ZjQ5ODEzYmNhZjExMWUwY2U2NTYiCiAgICB9CiAgfQp9
+    sig: LncNt3giKfPeDXXfg3UgeglZ+Xt4WH05FeW3XSlI99cOy4Ngecal9mXpUsnSaj1nNF++X+Si/H2MjXTabOdT9pZYsWOuUWWybTakWwpnBU/rMKJmUl/uaYuF7dBho0ToNTQKpUChqORt16SS322FfequVyWEpMGmQrYHBruQv5Cz3nWAZ/vmk8/1HIpQ5P2lYWWMBs7n8b1GddVO34+K+pgl0haM9Y5ozKRgskbOKh6cye5UhKEtdGESWOHX4WC3WrgemYBIJko/7r6jNzW8jgPDIITlar5e6jNZhB63XBXJv3sN2GNMukCn35RSxrFjJz7DzkVs4tokDJ1RmVNfcJfqH5FksRANBgkqwG+Wajhzvt9N4FXHbznTxc1bV7zwDBkS9eFWuINAqmAtqQuvE0dL2SDNp8ALnmgqEDjS/fQ4Ymk5H+e+7WKkslS96nu3GpOqoYb6JchwIFXOLjtGeYJilJbxLhaiBC/zS9IxjBpQqm0o3TWceaMkUbX/903vm791t9wmntwh326K91FoEmThfCAWKbkzDA9gC0cPX/7oRPutDJ3p2RSRjY6YlHNUoTUmJkvNijJKqymQZroSByHH6ihbVo3cawsgbkLU/PnzBn87+m/AhYyi0ZsQ0jr6O++l1y6iB+Rxo46TrFsPla/N2u2rlGeflD+teY7fFQk=
+  equipment:
+    main: IRON_SWORD
+    offhand: IRON_SWORD
+  drops:
+    digging_stone:
+      drop: 1/1
+      amount: 1-3
+    digging_leather:
+      drop: 1/6
+      amount: 2-3
+      rare: true
+    digging_metal:
+      drop: 1/8
+      amount: 1-4
+      rare: true
+    digging_defendermedal:
+      drop: 1/30
+      amount: 1-1
+      rare: true
+digging_zombie2:
+  name: Zombie
+  type: ZOMBIE
+  health: 1000
+  damage: 95
+  tags: ancient
+  level: 9
+  drops:
+    digging_stone:
+      drop: 1/1
+      amount: 1-2
+    digging_leather:
+      drop: 1/6
+      amount: 1-2
+      rare: true
+digging_gremlin2:
+  name: Gremlin
+  type: ZOMBIE
+  data:
+    0: baby
+  health: 900
+  damage: 70
+  speed: 1.25
+  tags: ancient
+  level: 9
+  drops:
+    digging_stone:
+      drop: 1/1
+      amount: 1-2
+    digging_leather:
+      drop: 1/6
+      amount: 1-2
+      rare: true
+digging_slime2:
+  name: Gel
+  type: SLIME
+  data:
+    0: size:3
+  health: 3000
+  damage: 200
+  tags: ancient
+  level: 9
+  drops:
+    digging_stone:
+      drop: 3/4
+      amount: 1-1
+    digging_leather:
+      drop: 1/6
+      amount: 1-1
+      rare: true
+digging_ghoul2:
+  name: Ancient Ghoul
+  type: ZOMBIE
+  health: 1500
+  level: 9
+  damage: 130
+  speed: 1.3
+  tags: ghoul,ancient
+  equipment: 
+    helmet: CHAINMAIL_HELMET
+    chestplate: IRON_CHESTPLATE
+    boots: CHAINMAIL_BOOTS
+    main: NETHERITE_SWORD
+  drops:
+    digging_stone:
+      drop: 1/1
+      amount: 1-2
+    digging_leather:
+      drop: 1/6
+      amount: 1-2
+      rare: true
+    decaying_flesh:
+      drop: 1/6
+      amount: 1-1
+    sword_ghoul:
+      drop: 1/225
+      amount: 1-1
+digging_berserker2:
+  name: Berserker
+  type: SKELETON
+  health: 400
+  damage: 200
+  tags: ancient
+  level: 9
+  speed: 1.4
+  equipment:
+    main: sword_berserkersaxe
+    offhand: sword_berserkersaxe
+    helmet: GOLDEN_HELMET
+    chestplate: GOLDEN_CHESTPLATE
+    leggings: CHAINMAIL_LEGGINGS
+    boots: LEATHER_BOOTS
+  drops:
+    sword_berserkersaxe:
+      drop: 1/250
+      amount: 1-1
+    digging_stone:
+      drop: 1/1
+      amount: 1-2
+    digging_leather:
+      drop: 1/6
+      amount: 1-2
+      rare: true
+digging_wolf2:
+  name: Rabid Wolf
+  type: WOLF
+  health: 1050
+  damage: 120
+  tags: ancient
+  level: 9
+  abilities:
+    targeter:
+      range: 10
+  drops:
+    digging_stone:
+      drop: 1/1
+      amount: 1-2
+    digging_leather:
+      drop: 1/6
+      amount: 1-2
+      rare: true
+      
+digging_wolftamer2:
+  name: Wolftamer
+  type: SKELETON
+  level: 9
+  health: 3500
+  damage: 80
+  speed: 0.50
+  tags: ancient
+  abilities:
+    summons:
+      summon: digging_wolftamer2_wolf
+      count: 3
+      respawn: 200
+  equipment:
+    main: LEAD
+    helmet: LEATHER_HELMET
+    chestplate: LEATHER_CHESTPLATE
+    leggings: LEATHER_LEGGINGS
+    boots: LEATHER_BOOTS
+  drops:
+    digging_stone:
+      drop: 1/1
+      amount: 1-2
+    digging_leather:
+      drop: 1/6
+      amount: 1-2
+      rare: true
+digging_wolftamer2_wolf:
+  name: Angry Wolf
+  type: WOLF
+  health: 500
+  damage: 115
+  tags: ancient
+  level: 6
+  abilities:
+    targeter:
+      range: 15
+
+digging_skeleton2:
+  name: Raider
+  type: SKELETON
+  health: 1100
+  damage: 120
+  speed: 0.3
+  tags: ancient
+  level: 9
+  equipment:
+    main: BOW
+    chestplate: DIAMOND_CHESTPLATE
+  drops:
+    digging_stone:
+      drop: 1/1
+      amount: 1-2
+    digging_leather:
+      drop: 1/6
+      amount: 1-2
+      rare: true
+      
+digging_bug2:
+  name: Ancient Bug
+  type: SILVERFISH
+  health: 999
+  damage: 125
+  speed: 1.1
+  tags: ancient
+  level: 9
+  drops:
+    digging_stone:
+      drop: 1/1
+      amount: 1-2
+    digging_leather:
+      drop: 1/6
+      amount: 1-2
+      rare: true
+digging_cow2:
+  name: Crystal Cow
+  type: COW
+  health: 4000
+  damage: 0
+  speed: 1.4
+  tags: ancient
+  level: 5
+  drops:
+    digging_crystal:
+      drop: 1/3
+      amount: 1-1
+      rare: true
+digging_axe2:
+  name: Cursed Axe
+  type: ZOMBIE
+  health: 900
+  damage: 125
+  speed: 1.4
+  tags: ancient
+  level: 9
+  invisible: true
+  silent: true
+  equipment:
+    main: GOLDEN_AXE
+  drops:
+    digging_stone:
+      drop: 1/1
+      amount: 1-2
+    digging_leather:
+      drop: 1/6
+      amount: 1-2
+      rare: true 
+digging_boss2:
+  name: Precursor Golem
+  type: IRON_GOLEM
+  health: 10000
+  damage: 170
+  speed: 0.65
+  dmgresist: 0
+  tags: ancient
+  level: 10
+  abilities:
+    laser:
+      damage: 11
+      range: 20
+      cooldown: 20
+    rewarder:
+      reward: loot_digging2
+      threshold: 1000
+    targeter:
+      range: 10
+    overkill:
+      threshold: 350
+    
+  
+      
+      
+      
+      

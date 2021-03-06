@@ -35,6 +35,16 @@ public class BoundingBox
 		if (x >= xs && x <= xl && y >= ys && y <= yl && z >= zs && z <= zl) return true;
 		else return false;
 	}
+	public boolean isInside(int x,int z)
+	{
+		int xs = Math.min(first.getBlockX(), second.getBlockX());
+		int xl = Math.max(first.getBlockX(), second.getBlockX());
+		int zs = Math.min(first.getBlockZ(), second.getBlockZ());
+		int zl = Math.max(first.getBlockZ(), second.getBlockZ());
+		
+		if (x >= xs && x <= xl && z >= zs && z <= zl) return true;
+		else return false;
+	}
 	
 	public ArrayList<DungeonsPlayer> getWithin()
 	{

@@ -14,6 +14,7 @@ import org.bukkit.entity.Player;
 import com.carterz30cal.dungeons.Dungeon;
 import com.carterz30cal.dungeons.DungeonManager;
 import com.carterz30cal.dungeons.Dungeons;
+import com.carterz30cal.items.ItemBuilder;
 
 import org.bukkit.ChatColor;
 
@@ -28,23 +29,25 @@ public class NPCManager
 		i = this;
 		
 		npcs = new ArrayList<NPC>();
-		
-		File npcFile = new File(Dungeons.instance.getDataFolder(), "npcs.yml");
-		if (!npcFile.exists())
+		File npcFile = null;
+		try
 		{
-			npcFile.getParentFile().mkdirs();
-			Dungeons.instance.saveResource("npcs.yml",false);
+			npcFile = File.createTempFile("npcs", null);
+		} catch (IOException e1)
+		{
+			e1.printStackTrace();
 		}
 		
+		ItemBuilder.copyToFile(Dungeons.instance.getResource("npcs.yml"),npcFile);
 		FileConfiguration npc = new YamlConfiguration();
 		try 
 		{
 			npc.load(npcFile);
-        } 
+	    } 
 		catch (IOException | InvalidConfigurationException e) 
 		{
-            e.printStackTrace();
-        }
+	        e.printStackTrace();
+	    }
 		
 		for (String n : npc.getKeys(false))
 		{

@@ -32,7 +32,7 @@ public class Recipe
 		ItemStack u = ingredients[upgrade];
 		ItemMeta upm = up.getItemMeta();
 		Item i = ItemBuilder.get(u);
-		if (i == null || !i.type.equals("weapon") || u == null || !u.hasItemMeta()) return up;
+		if (i == null || !(i.type.equals("weapon") || i.type.equals("armour")) || u == null || !u.hasItemMeta()) return up;
 		for (NamespacedKey k : u.getItemMeta().getPersistentDataContainer().getKeys())
 		{
 			if (k.equals(ItemBuilder.kItem) || k.equals(ItemBuilder.kCustomName)) continue;

@@ -13,7 +13,25 @@ bone_sword:
     X: bone,16
     S: stick_bone,1
   pattern: sword
-  
+boneshard_sword:
+  product: sword_boneshard
+  materials:
+    S: sword_bone,1
+    D: crypt_dust,8
+    T: stick_bone,12
+  recipe:
+    0: 0 0 D
+    1: 0 S 0
+    2: T 0 0
+tendon_whip:
+  product: sword_tissue
+  materials:
+    X: decaying_flesh,5
+    T: tissue,48
+  recipe:
+    0: 0 0 X
+    1: 0 X T
+    2: X 0 T
 bone_helmet:
   product: armour_bone_helmet
   xp: 66
@@ -37,4 +55,134 @@ bone_boots:
   xp: 66
   materials:
     X: bone,8
+  pattern: boots
+  
+mass_harvester:
+  product: mass_harvester
+  materials:
+    X: stick_bone,1
+    B: bone,24
+  recipe:
+    0: 0 B 0
+    1: X 0 X
+    2: X 0 X
+    
+tissue_helmet:
+  product: armour_tissue_helmet
+  materials:
+    T: tissue,12
+    A: armour_ocean_helmet,1
+  recipe:
+    0: T T T
+    1: T A T
+tissue_chestplate:
+  product: armour_tissue_chestplate
+  materials:
+    T: tissue,12
+    A: armour_ocean_chestplate,1
+  recipe:
+    0: T T T
+    1: T A T
+    2: T T T
+tissue_leggings:
+  product: armour_tissue_leggings
+  materials:
+    T: tissue,12
+    A: armour_ocean_leggings,1
+  recipe:
+    0: T T T
+    1: T A T
+    2: T 0 T
+tissue_leggings_2:
+  product: armour_tissue_leggings
+  materials:
+    T: tissue,8
+    A: armour_blessedocean_leggings,1
+  recipe:
+    0: T T T
+    1: T A T
+    2: T 0 T
+tissue_boots:
+  product: armour_tissue_boots
+  materials:
+    T: tissue,12
+    A: armour_ocean_boots,1
+  recipe:
+    1: T A T
+    2: T 0 T
+    
+slimesword:
+  product: sword_slime
+  materials:
+    S: stick_gel,5
+    X: decaying_flesh,12
+  pattern: sword
+  
+vitals:
+  product: book
+  enchants: vitals,1
+  materials:
+    T: tissue,48
+    F: decaying_flesh,1
+  recipe:
+    1: 0 0 F
+    2: 0 F T
+armourpolish:
+  product: book
+  enchants: armourpolish,1
+  materials:
+    C: crypt_dust,5
+    G: gel,18
+    P: paper,1
+  recipe:
+    1: 0 P G
+    2: 0 G C
+    
+mushroom_blade:
+  product: mushroom_blade
+  materials:
+    X: mushroom,4
+  pattern: stick
+shroom_dagger:
+  product: shroom_dagger
+  materials:
+    S: sword_mush,1
+    B: mushroom_blade,1
+    T: tissue,64
+  recipe:
+    0: 0 B 0
+    1: 0 T 0
+    2: 0 S 0
+fungal_eruption:
+  product: fungal_eruption
+  materials:
+    S: shroom_dagger,1
+    H: holywater_fragment,5
+    F: fishing_fish,8
+    E: enchanted_mushroom,1
+  recipe:
+    0: F H F
+    1: 0 S 0
+    2: 0 E 0
+
+
+mushroom_helmet:
+  product: armour_mushroom_helmet
+  materials:
+    X: mushroom,3
+  pattern: helmet
+mushroom_chestplate:
+  product: armour_mushroom_chestplate
+  materials:
+    X: mushroom,3
+  pattern: chestplate
+mushroom_leggings:
+  product: armour_mushroom_leggings
+  materials:
+    X: mushroom,3
+  pattern: leggings
+mushroom_boots:
+  product: armour_mushroom_boots
+  materials:
+    X: mushroom,3
   pattern: boots

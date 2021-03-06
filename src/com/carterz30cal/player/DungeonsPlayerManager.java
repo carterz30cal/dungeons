@@ -1,6 +1,5 @@
 package com.carterz30cal.player;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.UUID;
@@ -54,41 +53,31 @@ public class DungeonsPlayerManager
 		{
 			playerc.createSection(path);
 			playerc.createSection(path + ".skills");
-			playerc.createSection(path + ".perks");
-			playerc.createSection(path + ".settings");
+			//playerc.createSection(path + ".perks");
+			//playerc.createSection(path + ".settings");
 			playerc.createSection(path + ".explorer");
+			playerc.createSection(path + ".quests");
 		}
 	}
-	@SuppressWarnings("deprecation")
+	
 	public void save(DungeonsPlayer dp)
 	{
 		FileConfiguration playerc = Dungeons.instance.getPlayerConfig();
 		String path = dp.player.getUniqueId().toString();
 		if (!playerc.contains(path)) createData(dp.player.getUniqueId());
-		for (String skill : dp.skills.getSkills())
+		
+		playerc.set(path + ".skills",null);
+		for (String skill : dp.level.pointAllocation.keySet())
 		{
-			playerc.set(path + ".skills." + skill, dp.skills.getSkill(skill));
+			playerc.set(path + ".skills." + skill, dp.level.pointAllocation.get(skill));
 		}
+		/*
 		for (String perk : dp.perks.getPerks())
 		{
 			playerc.set(path + ".perks." + perk, dp.perks.getKills(perk));
 		}
-		/*
-		HashMap<Integer,BackpackItem> items = new HashMap<Integer,BackpackItem>();
-		for (BackpackItem item : dp.backpack)
-		{
-			if (item != null) items.put(item.slot, item);
-		}
-		
-		for (int slot = 0; slot < 54;slot++)
-		{
-			if (items.containsKey(slot))
-			{
-				items.get(slot).save(path + ".backpack");
-			}
-			else playerc.set(path + ".backpack." + slot, null);
-		}
 		*/
+
 		playerc.set(path + ".backpack", null);
 		playerc.createSection(path + ".backpack");
 		for (int p = 0; p < dp.backpackb.size(); p++) for (BackpackItem item : dp.backpackb.get(p)) if (item != null) item.save(path + ".backpack." + p);
@@ -99,14 +88,20 @@ public class DungeonsPlayerManager
 				playerc.set(path + ".explorer." + dungeon.getKey(), dungeon.getValue());
 			}
 		}
-		
+		for (Entry<String,String> quest : dp.questProgress.entrySet())
+		{
+			playerc.set(path + ".quests." + quest.getKey(), quest.getValue());
+		}
 		playerc.set(path + ".coins", dp.coins);
-		Date set = new Date();
-		playerc.set(path + ".lastlogin", set.getDate() + "/" + set.getMonth() + "/" + set.getYear());
+		
+		/*
 		playerc.set(path + ".settings.progressbar", dp.settingSkillsDisplay);
 		playerc.set(path + ".settings.perkbackground", dp.perkBackground);
 		playerc.set(path + ".settings.colourblind", dp.colourblindMode);
 		playerc.set(path + ".settings.highlightrenamed", dp.highlightRenamed);
+		*/
+		playerc.set(path + ".experience", dp.level.experience);
+		playerc.set(path + ".points", dp.level.points);
 		
 	}
 }

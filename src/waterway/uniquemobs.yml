@@ -13,6 +13,7 @@ creepyspider1:
   type: SPIDER
   health: 400
   damage: 90
+  level: 4
   kbresist: 0
   perk: spiders
   equipment: {}
@@ -25,6 +26,7 @@ creepyspider2:
   type: SPIDER
   health: 600
   damage: 105
+  level: 5
   kbresist: 0.1
   perk: spiders
   equipment: {}
@@ -44,6 +46,16 @@ creepyspiderqueen:
     spidersilk:
       drop: 1/1
       amount: 6-16
+jackdoom:
+  name: Creeper, Aw Man!
+  type: CREEPER,CREEPER,CREEPER,CREEPER
+  health: 100000
+  damage: 8000
+  level: 69
+  speed: 5
+  kbresist: 1
+  equipment: {}
+  drops: {}
 zombietower:
   name: Zombie Tower
   type: ZOMBIE,ZOMBIE,ZOMBIE

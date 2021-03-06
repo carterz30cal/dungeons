@@ -32,8 +32,13 @@ public class EnchantManager
 		enchantments.put("execution", EnchExecution.class);
 		enchantments.put("titan", EnchTitan.class);
 		enchantments.put("tough", EnchTough.class);
-		enchantments.put("pulse", EnchPulse.class);
+		enchantments.put("polished", EnchPolished.class);
 		enchantments.put("shocking", EnchShocking.class);
+		enchantments.put("strength",EnchStrength.class);
+		enchantments.put("precursed", EnchPrecursed.class);
+		enchantments.put("spirit", EnchSpirit.class);
+		enchantments.put("vitals", EnchVitals.class);
+		enchantments.put("armourpolish", EnchArmourPolish.class);
 	}
 	@Deprecated
 	public static int catalyst(ItemStack item, ItemStack book)

@@ -1,0 +1,30 @@
+sword_zombiejim:
+  name: Rusty Knife
+  type: weapon
+  rarity: COMMON
+  item: FLINT
+  ability: handsomereward
+  attributes:
+    damage: +6
+    
+armour_zombiejim_chestplate:
+  name: Enchanted Chestplate
+  type: armour
+  rarity: RARE
+  item: LEATHER_CHESTPLATE
+  colour: 227,193,191
+  glow: true
+  attributes:
+    bonusxp: +0.3
+    damagep: -0.6
+armour_zombiejim_boots:
+  name: Jim's Favourite Slippers
+  type: armour
+  rarity: RARE
+  item: LEATHER_BOOTS
+  colour: 255,173,171
+  req: 6
+  attributes:
+    health: +250
+    armour: +20
+    regen: -100

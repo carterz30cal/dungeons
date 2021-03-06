@@ -5,7 +5,7 @@ import org.bukkit.entity.ArmorStand;
 import com.carterz30cal.dungeons.DungeonMiningTable;
 import com.carterz30cal.dungeons.Dungeons;
 import com.carterz30cal.mobs.DMob;
-import com.carterz30cal.mobs.DungeonMob;
+import com.carterz30cal.mobs.abilities.DMobAbility;
 import com.carterz30cal.player.DungeonsPlayer;
 import com.carterz30cal.player.DungeonsPlayerStatBank;
 
@@ -15,7 +15,7 @@ public class EnchShocking extends AbsEnchant {
 
 	@Override
 	public String description() {
-		return "Strikes boss mobs for " + (5*level) +  "% of their max hp on first hit!";
+		return "Strikes boss mobs for an additional " + (10*level) + "% damage!";
 	}
 
 	@Override
@@ -64,13 +64,12 @@ public class EnchShocking extends AbsEnchant {
 	public void onHitAfter(DungeonsPlayer player, DMob hit, ArmorStand ind) {
 		// TODO Auto-generated method stub
 		if (!hit.type.boss) return;
-		else if (hit.health+player.stats.damage == hit.health())
-		{
-			int damage = (int)Math.round(hit.health * (0.05 * level));
-			Dungeons.w.strikeLightningEffect(hit.entities.get(0).getLocation());
-			ind.setCustomName(ChatColor.BLUE + Integer.toString(damage + hit.lastDamage));
-			hit.damage(damage, player.player);
-		}
+		
+		int damage = (int) (player.stats.damage * (0.1*level));
+		Dungeons.w.strikeLightningEffect(hit.entities.get(0).getLocation());
+		ind.setCustomName(ChatColor.BLUE + Integer.toString(damage + hit.lastDamage));
+		for (DMobAbility mab : hit.type.abilities) damage = mab.damaged(hit, player,damage);
+		hit.damage(damage, player.player);
 	}
 
 }

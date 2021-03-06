@@ -1,5 +1,6 @@
 package com.carterz30cal.gui;
 
+
 import java.util.ArrayList;
 
 import org.bukkit.Bukkit;
@@ -10,87 +11,106 @@ import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import com.carterz30cal.items.ItemBuilder;
+import com.carterz30cal.player.CharacterSkill;
 import com.carterz30cal.player.DungeonsPlayer;
 import com.carterz30cal.player.DungeonsPlayerManager;
-import com.carterz30cal.player.DungeonsPlayerSkills;
 import com.carterz30cal.utility.StringManipulator;
 
 import org.bukkit.ChatColor;
 
 public class SkillsGUI extends GUI
 {
-	public static String[] skills = {"combat","mining","crafting","magic"};
-	public static Material[] icons = {Material.GOLDEN_SWORD,Material.GOLDEN_PICKAXE,Material.STICK,Material.BLAZE_ROD};
 	public SkillsGUI(Player p) {
 		super(p);
 		
 		DungeonsPlayer d = DungeonsPlayerManager.i.get(p);
-		DungeonsPlayerSkills s = d.skills;
-		int menuSize = 18 + (9*skills.length);
 		
-		inventory = Bukkit.createInventory(null, menuSize, "Skills");
+		int menuSize = 54;
+		
+		inventory = Bukkit.createInventory(null, menuSize, "Character Level");
 		ItemStack[] contents = new ItemStack[menuSize];
 		
-		for (int i = 0; i < menuSize; i++)
+		for (int i = 0; i < 54;i++)
 		{
-			if (i / 9 == 0 || i / 9 == (menuSize / 9)-1) contents[i] = GUICreator.pane();
-			else
-			{
-				String skill = skills[(i / 9) - 1];
-				int skLevel = s.getSkillLevel(skill);
-				int xpForLevel = DungeonsPlayerSkills.getLevelRequirement(s.getSkillLevel(skill))
-						- DungeonsPlayerSkills.getLevelRequirement(s.getSkillLevel(skill)-1);
-				int xpProgress = s.getSkill(skill) - DungeonsPlayerSkills.getLevelRequirement(s.getSkillLevel(skill)-1);
-				
-				float progress = (float)xpProgress/(float)xpForLevel;
-				//float progress = d.skills.getSkill(skill) / DungeonsPlayerSkills.getLevelRequirement(d.skills.getSkillLevel(skill)+1);
-				if (i % 9 == 1) 
-				{
-					ItemStack icon = GUICreator.item(icons[(i / 9) - 1], ChatColor.GOLD + StringManipulator.capitalise(skill) + " " + ChatColor.RED + s.getSkillLevel(skill), null, 1);
-					ItemMeta meta = icon.getItemMeta();
-					ArrayList<String> lore = new ArrayList<String>();
-					lore.add(" " + StringManipulator.progressBar(progress, 0, true) + " " + ChatColor.BLUE + Math.round(progress*100) + "%");
-					lore.add(ChatColor.DARK_GRAY + " " + (xpForLevel-xpProgress) + " xp to go");
-					lore.add(" ");
-					if (s.getSkillLevel(skill) > 0)
-					{
-						lore.add(ChatColor.GOLD + "" + ChatColor.BOLD + "Rewards");
-						switch (skill)
-						{
-						case "combat":
-							lore.add(ChatColor.GRAY + " +" + 4*skLevel + "% damage");
-							lore.add(ChatColor.GRAY + " +" + skLevel + " punch damage");
-							break;
-						case "mining":
-							lore.add(ChatColor.GRAY + " +" + skLevel + "% ore chance");
-							break;
-						case "crafting":
-							break;
-						case "magic":
-							break;
-						}
-					}
-					else lore.add(ChatColor.GOLD + "Level up " + StringManipulator.capitalise(skill) + " to unlock skill-specific bonuses!");
-					
-					meta.setLore(lore);
-					icon.setItemMeta(meta);
-					contents[i] = icon;
-				}
-				else if (i % 9 > 1 && i % 9 != 8)
-				{
-					if (progress > ((i % 9) - 1) / 6f) contents[i] = GUICreator.pane(Material.BLUE_STAINED_GLASS_PANE);
-					else contents[i] = GUICreator.pane(Material.RED_STAINED_GLASS_PANE);
-				}
-				else contents[i] = GUICreator.pane();
-			}
+			if (i % 9 == 0 || i % 9 == 8 || i / 9 == 0 || i / 9 == 5) contents[i] = GUICreator.pane(Material.BLACK_STAINED_GLASS_PANE);
+			else contents[i] = GUICreator.pane(Material.GRAY_STAINED_GLASS_PANE);
 		}
 		
+		ItemStack head = new ItemStack(Material.PLAYER_HEAD);
+		ItemMeta meta = ItemBuilder.generateSkullMeta(head.getItemMeta(), d.player);
+		meta.setDisplayName(CharacterSkill.prettyText(d.level.level()) +" "+ d.player.getDisplayName());
+		ArrayList<String> lore = new ArrayList<String>();
+		lore.add(ChatColor.BLUE + "Experience: " + ChatColor.WHITE + StringManipulator.truncateLess(d.level.experience)
+				+ " / " + StringManipulator.truncateLess(CharacterSkill.requirement(d.level.level()+1))
+				+ ChatColor.BLUE + " (" + d.level.prettyProgress() + "%)");
+		lore.add("");
+		lore.add("");
+		lore.add(ChatColor.WHITE + "Points available: " + d.level.points);
+		meta.setLore(lore);
+		head.setItemMeta(meta);
+		contents[4] = head;
+		
+		for (int pro = 11; pro < 16;pro++)
+		{
+			double poo = (pro - 10) * 0.2;
+			if (poo <= d.level.progress()) contents[pro] = GUICreator.pane(Material.LIME_STAINED_GLASS_PANE);
+			else if (poo - d.level.progress() <= 0.2 && poo - d.level.progress() > 0) contents[pro] = GUICreator.pane(Material.ORANGE_STAINED_GLASS_PANE);
+			else contents[pro] = GUICreator.pane(Material.RED_STAINED_GLASS_PANE);
+		}
+		
+		int level = d.level.get("health");
+		boolean glow = d.level.points > 0;
+		contents[29] = GUICreator.item(Material.APPLE          , ChatColor.RED  + "Vitality "  + level         ,"+" + (level*4) + " Health",glow);
+		level = d.level.get("armour");
+		contents[30] = GUICreator.item(Material.IRON_CHESTPLATE, ChatColor.BLUE + "Golem " + level          ,"+" + (level*3) + " Armour",glow);
+		level = d.level.get("damage");
+		contents[31] = GUICreator.item(Material.IRON_SWORD     , ChatColor.GRAY + "Knight " + level          ,"+" + (level*1) + " Damage",glow);
+		level = d.level.get("mana");
+		contents[32] = GUICreator.item(Material.BLAZE_POWDER   , ChatColor.LIGHT_PURPLE + "Wizardry " + level,"+" + (level*4) + " Mana",glow);
+		level = d.level.get("bonuscoins");
+		contents[33] = GUICreator.item(Material.GOLD_INGOT     , ChatColor.GOLD + "Wealth " + level          ,"+" + level + " coins per kill",glow && level < 20);
+		
+		contents[38] = GUICreator.item(Material.BARRIER, ChatColor.RED + "Coming soon!", ChatColor.DARK_RED + "This skill will release soon!");
+		contents[39] = GUICreator.item(Material.BARRIER, ChatColor.RED + "Coming soon!", ChatColor.DARK_RED + "This skill will release soon!");
+		contents[40] = GUICreator.item(Material.BARRIER, ChatColor.RED + "Coming soon!", ChatColor.DARK_RED + "This skill will release soon!");
+		contents[41] = GUICreator.item(Material.BARRIER, ChatColor.RED + "Coming soon!", ChatColor.DARK_RED + "This skill will release soon!");
+		contents[42] = GUICreator.item(Material.BARRIER, ChatColor.RED + "Coming soon!", ChatColor.DARK_RED + "This skill will release soon!");
+		
+		contents[49] = GUICreator.item(Material.PHANTOM_MEMBRANE, ChatColor.DARK_RED + "Scrub skills", ChatColor.DARK_RED + "Reset your skills and get all points back");
+				
 		inventory.setContents(contents);
 		render(p);
 	}
+
 	@Override
 	public boolean handleClick(InventoryClickEvent e, int position, Player p)
 	{
+		DungeonsPlayer d = DungeonsPlayerManager.i.get(p);
+		if (position == 49)
+		{
+			int pts = 0;
+			for (int t : d.level.pointAllocation.values()) pts += t;
+			d.level.pointAllocation.clear();
+			d.level.points += pts;
+			new SkillsGUI(p);
+			return true;
+		}
+		String add = null;
+		if (position == 29) add = "health";
+		else if (position == 30) add = "armour";
+		else if (position == 31) add = "damage";
+		else if (position == 32) add = "mana";
+		else if (position == 33 && d.level.get("bonuscoins") < 20) add = "bonuscoins";
+		
+		if (add != null && d.level.points > 0)
+		{
+			int lvl = d.level.get(add);
+			d.level.points--;
+			d.level.pointAllocation.put(add, ++lvl);
+			
+			new SkillsGUI(p);
+		}
 		return true;
 	}
 	@Override

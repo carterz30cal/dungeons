@@ -1,0 +1,75 @@
+armour-soul:
+  name: Soul Reaper
+  suffix: Mask,Chestplate,Leggings,Boots
+  rarity: EPIC
+  set: soul
+  item: LEATHER
+  colour: 106,49,212
+  req: 10
+  skull:
+    data: ewogICJ0aW1lc3RhbXAiIDogMTYwNTU1NzQ0OTM0OSwKICAicHJvZmlsZUlkIiA6ICJiYzRlZGZiNWYzNmM0OGE3YWM5ZjFhMzlkYzIzZjRmOCIsCiAgInByb2ZpbGVOYW1lIiA6ICI4YWNhNjgwYjIyNDYxMzQwIiwKICAic2lnbmF0dXJlUmVxdWlyZWQiIDogdHJ1ZSwKICAidGV4dHVyZXMiIDogewogICAgIlNLSU4iIDogewogICAgICAidXJsIiA6ICJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlLzc1MTIyZDMyNzYzYjI3ZmExMWIxODY1MTFiZDYxNzI2ZGFhZWEzZTE2MGVjNjdlMzU2OWUwOGFjYmFlM2VkMGMiCiAgICB9CiAgfQp9
+    sig: lTOXhNIUAWCdueehbI8B1Laa3zEaXpb+Os9QQRtDuV07jMNkHaMFeZ7exXoowRuIVwhZq2X+aSsFT907hWLO/p9fWc6bylS49Zb/ZnXbld2xYmrU2VI65NikSyMRybb2fdh+k+5UkyPaX9oo2F566MXDEKXfJfbBILnp9qPXlety72kIqSeUZmB/NG7a/VqHqBM0+0NhrpoJUjjmJfPFlBmkwyUj7I0TrfBhT1fE928B3eI1cKadyt9TgOphq128QLMx0e5tWqwQGE/xX/G/Q3ngX5lovu3GzwwU8+UwXbJ/qktP1lSXJgcIRhS6wmWf/2p+Bk2uWCHmsyVHkaVA8PQ+3C0M8vu4srL3FXpM7aVZNnMKlVICUOKT6tIxGC7ZLkXfEjN/s5Xph8Z+pgr7eUZbqUqIj6LXxs9ELBq2PMFbn8jKWnxJ9xmm3SNLqOJo+EZOnYalxV7xrHAxpk19KT8A8N7oT6++DLircgbC8fNZAH8PQRWYwtEhdovUg5LtBfoNfvS2SMIvLqtPVs6toYh3DK/OxkA1kUuvmRiraAycgXQcg89HBtxlOV8yUoo0qeWyeLayb5WzqrzA31QV8s/QyzPpwJwvWB1vW4Q4dM/XqG8D47A6stgt4NPKi5RBo9i2qijkONoaC6S/IhbpeBo1xvKavSQCgovq3nbZKXc=
+  attributes:
+    health: 60,80,65,50
+    armour: 0,50,20,0
+    damage: 5,8,6,4
+armour-crypt:
+  name: Crypt Raider
+  suffix: Helmet,Shirt,Leggings,Boots
+  rarity: EPIC
+  set: cryptraider
+  item: CHAINMAIL
+  req: 12
+  attributes:
+    regen: 5,7,5,4
+    armour: 45,60,50,35
+armour-crypt2:
+  name: Crypt Master
+  suffix: Helmet,Shirt,Leggings,Boots
+  rarity: INCREDIBLE
+  set: cryptraider
+  item: CHAINMAIL
+  glow: true
+  req: 18
+  attributes:
+    regen: 8,9,8,7
+    damage: 3,3,3,3
+    armour: 50,65,60,40
+armour-sewer:
+  name: Sewer
+  suffix: Mask,Chestplate,Trousers,Shoes
+  rarity: RARE
+  item: LEATHER
+  colour: 61,168,214
+  req: 11
+  skull:
+    data: ewogICJ0aW1lc3RhbXAiIDogMTYxMDIwNjQwNzgyOCwKICAicHJvZmlsZUlkIiA6ICJhMjk1ODZmYmU1ZDk0Nzk2OWZjOGQ4ZGE0NzlhNDNlZSIsCiAgInByb2ZpbGVOYW1lIiA6ICJWaWVydGVsdG9hc3RpaWUiLAogICJzaWduYXR1cmVSZXF1aXJlZCIgOiB0cnVlLAogICJ0ZXh0dXJlcyIgOiB7CiAgICAiU0tJTiIgOiB7CiAgICAgICJ1cmwiIDogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWEwZjc3ZTE2ZTc1ZmQ3OTNhMDk4ZTQzYWIxOTYyMDcyNTU4ZTNhZWQ4Y2M2ZWRjNTNkOWI2YTdiZjk0NjI3OCIKICAgIH0KICB9Cn0=
+    sig: ik8DSiQqEL960ePXyWgjTnuhQesKnSpHC6+oi4XGzAqExy/BnE0YpuNWuBsVsLEhTIzVCyKllQk3+KkQYhXkg+ffjQyz8Uo5tWZV/SFtwfUnR9WrLWOT3NehdPXJtp9Q1T15uZG27BkzwZuc2opk9iaytoc4xi35CTs4nnqVQEn2/OjF0xpY+sLFUDGPc64+haOxjn/zOVdhaxXBAt095cQEo1HEMFPqyFPcZufnlbcBiWYfNZsjQjwQhjR3gjC6xaEo8ZwX8ScFzDHzSsb76lEF4S9HQJXjFqc3Kb5xjvtDvuFOEa+rihufeHRnhyMMHq7h/9oEmhngcjAn0op8zAz1C890vJ+IaPP/dq4Pl3v5xLkLqjQB3hJc9TDc7oI5jLj21qLraW7LTDPIiWdnz72Y3ZyWBLmVkuwNP59dB3eo1ulTsEU5jzGI65LsrQdM524OysJTGUSBHgSwbIOhnAPF4wQBvEa1v7pLNJFDROoX0LkOhwimo1CKK+J6gHRI2mcEc957aKAkCmc/8YYSkQZt0GYecncnsQx7tEQFbyAuJ2aNgNpWTWNcFl5Gqi1FdAqwg4eqJA2CFA27SSf6uphq81KD4xvaYuYt5EMckchylaX8zHRH6xPeAowj7i1WTETPA22w5hkHFGzaKq+AYK5cuMxulpn5xrRZkD0hiCg=
+  attributes:
+    armour: 10,10,10,10
+    mana: 100,300,125,125
+    
+armour-undeadsoldier:
+  name: Undead Soldier
+  suffix: Helm,Tunic,Shorts,Shoes
+  rarity: RARE
+  item: LEATHER
+  colour: 219,147,39
+  req: 9
+  set: undeadsoldier
+  attributes:
+    armour: 35,40,35,30
+    health: -15,-30,-15,-15
+    damagep: 0.1,0.2,0.1,0.1
+armour-undeadcaptain:
+  name: Undead Captain
+  suffix: Helm,Tunic,Trousers,Shoes
+  rarity: EPIC
+  item: LEATHER
+  colour: 222,132,22
+  req: 10
+  set: undeadsoldier
+  attributes:
+    armour: 50,60,55,50
+    health: -20,-50,-20,-20
+    damagep: 0.15,0.3,0.15,0.1

@@ -11,14 +11,14 @@ public class AbilityGhoulBone extends AbsAbility {
 	public ArrayList<String> description() {
 		ArrayList<String> desc = new ArrayList<String>();
 		desc.add(prefix + "Ghoulbuster");
-		desc.add("Deals +60% damage to ghouls");
+		desc.add("Deals +75% damage to ghouls");
 		return desc;
 	}
 
 	@Override
 	public int onAttack(DungeonsPlayer d,DMob mob,int damage)
 	{
-		if (mob.type.tags.contains("ghoul")) return (int) (damage * 1.6);
+		if (mob.type.tags.contains("ghoul")) return (int) (damage * 1.75);
 		else return damage;
 	}
 }

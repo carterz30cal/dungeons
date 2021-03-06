@@ -3,8 +3,7 @@ slime3:
   type: SLIME
   health: 350
   damage: 50
-  xp: 30
-  knockbackResist: 0
+  level: 8
   tags: slime
   data:
     0: size:4,splitcount:2,splitmob:slime2
@@ -15,8 +14,7 @@ slime2:
   type: SLIME
   health: 150
   damage: 35
-  xp: 10
-  knockbackResist: 0
+  level: 0
   tags: slime
   data:
     0: size:3,splitcount:3,splitmob:slime1
@@ -27,8 +25,7 @@ slime1:
   type: SLIME
   health: 80
   damage: 10
-  xp: 2
-  knockbackResist: 0
+  level: 0
   tags: slime
   data:
     0: size:2

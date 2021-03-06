@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
@@ -13,11 +12,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 
-import com.carterz30cal.dungeons.Dungeons;
 import com.carterz30cal.items.ItemBuilder;
-import com.carterz30cal.player.DungeonsPlayer;
-import com.carterz30cal.player.DungeonsPlayerSkills;
-import com.carterz30cal.utility.StringManipulator;
 
 
 public class GUICreator 
@@ -145,13 +140,34 @@ public class GUICreator
 		ArrayList<String> l = new ArrayList<String>();
 		if (lore != null)
 		{
-			l.add(lore);
+			l.add(ChatColor.WHITE + lore);
 			meta.setLore(l);
 		}
 		else meta.setLore(null);
 		meta.getPersistentDataContainer().set(ItemBuilder.kItem, PersistentDataType.STRING, "uielement");
 		meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 		meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+		item.setItemMeta(meta);
+		
+		return item;
+	}
+	public static ItemStack item(Material mat,String name,String lore,boolean glow)
+	{
+		ItemStack item = new ItemStack(mat);
+		ItemMeta meta = item.getItemMeta();
+		meta.setDisplayName(ChatColor.WHITE + name);
+		
+		ArrayList<String> l = new ArrayList<String>();
+		if (lore != null)
+		{
+			l.add(ChatColor.WHITE + lore);
+			meta.setLore(l);
+		}
+		else meta.setLore(null);
+		meta.getPersistentDataContainer().set(ItemBuilder.kItem, PersistentDataType.STRING, "uielement");
+		meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+		meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+		if (glow) meta.addEnchant(Enchantment.DURABILITY, 1, true);
 		item.setItemMeta(meta);
 		
 		return item;
@@ -172,66 +188,6 @@ public class GUICreator
 	private static Inventory baseEmpty(int size,MenuType type)
 	{
 		return Bukkit.createInventory(null, size,name(type));
-	}
-	public static String[] skills(String skill,DungeonsPlayer dp,String bonusText)
-	{
-		DungeonsPlayerSkills skills = dp.skills;
-		int xpForLevel = DungeonsPlayerSkills.getLevelRequirement(skills.getSkillLevel(skill))
-				- DungeonsPlayerSkills.getLevelRequirement(skills.getSkillLevel(skill)-1);
-		int xpProgress = skills.getSkill(skill) - DungeonsPlayerSkills.getLevelRequirement(skills.getSkillLevel(skill)-1);
-		
-		float progress = (float)xpProgress/(float)xpForLevel;
-		String progressBar = StringManipulator.progressBar(progress,dp.settingSkillsDisplay,dp.colourblindMode);
-		
-		switch (skills.getSkillLevel(skill))
-		{
-		case 0:
-			String[] lo = {" " + progressBar,ChatColor.DARK_GRAY + " " + (xpForLevel-xpProgress) + " xp till next level"};
-			return lo;
-		case 25:
-			String[] lore = {" " + ChatColor.BOLD.toString() + StringManipulator.rainbow("MAX LEVEL"),"",
-					" " + ChatColor.GOLD + ChatColor.BOLD.toString() + "LEVEL BONUS: " + ChatColor.RESET + ChatColor.WHITE + bonusText
-			};
-			return lore;
-		default:
-			String[] lor = {" " + progressBar,ChatColor.DARK_GRAY + " " + (xpForLevel-xpProgress) + " xp till next level","",
-					" " + ChatColor.GOLD + ChatColor.BOLD.toString() + "LEVEL BONUS: " + ChatColor.RESET + ChatColor.WHITE + bonusText};
-			return lor;
-		}
-	}
-	public static ItemStack perk(String perk,DungeonsPlayer player)
-	{
-		FileConfiguration p = Dungeons.instance.fPerksC;
-		ChatColor namecolour = ChatColor.valueOf(p.getString(perk + ".namecolour"));
-		String name = namecolour + p.getString(perk + ".name") + " " + player.perks.getLevel(perk);
-		Material icon = Material.valueOf(p.getString(perk + ".icon"));
-		
-		ItemStack item = new ItemStack(icon,1);
-		ItemMeta meta = item.getItemMeta();
-		meta.setDisplayName(name);
-		ArrayList<String> lore = new ArrayList<String>();
-		
-		int level = player.perks.getLevel(perk);
-		for (String effect : p.getConfigurationSection(perk + ".effects").getKeys(false))
-		{
-			
-			if (effect.equals("damagep")) 
-			{
-				double effectAm = p.getDouble(perk + ".effects." + effect)*level;
-				lore.add(" " + ItemBuilder.i.attributeColours.get(effect) + ChatColor.WHITE + effectAm);
-			}
-			else
-			{
-				int effectAm = p.getInt(perk + ".effects." + effect)*level;
-				lore.add(" " + ItemBuilder.i.attributeColours.get(effect) + ChatColor.WHITE + effectAm);
-			}
-		}
-		lore.add("");
-		if (level < 10) lore.add(" " + ChatColor.GOLD + player.perks.getKills(perk) + "/" + player.perks.getKillsForLevel(level+1));
-		else lore.add("" + ChatColor.GOLD + player.perks.getKills(perk));
-		meta.setLore(lore);
-		item.setItemMeta(meta);
-		return item;
 	}
 	public static int typeSize(MenuType type)
 	{

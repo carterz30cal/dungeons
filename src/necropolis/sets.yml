@@ -18,13 +18,33 @@ soul:
     lore: You feel connected to past spirits
     attributes:
       regen: +2
-beating:
+cryptraider:
   set: 
-    lore: It smells of iron
+    lore: The magic of the crypt empowers you
+    attributes:
+      regen: +3
+    ability: cryptraider
+    
+undeadsoldier:
+  set: 
+    lore: Once a brave soldier, now very dead
+    attributes:
+      health: -25
+      damage: 12
+    
+tissue:
+  set: 
+    lore: You're slightly creeped out by the smell
     attributes:
       armour: +15
       regen: +4
 
+golem:
+  set:
+    lore: While hard to move, you do feel very safe
+    attributes:
+      health: +25
+    ability: golem
 slime:
   set:
     lore: Bouncy!

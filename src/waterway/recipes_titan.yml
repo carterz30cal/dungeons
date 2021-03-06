@@ -1,0 +1,67 @@
+hyperblade_scrap:
+  product: waterway_core
+  xp: 112
+  materials:
+    H: sword_hyperblade,1
+  recipe:
+    1: 0 H 0 
+hyperblade:
+  product: sword_hyperblade
+  xp: 70
+  materials:
+    X: waterway_core,4
+    S: stick_waterway,1
+  pattern: sword
+waterfragment:
+  product: water_fragment,5
+  materials:
+    F: holywater_fragment,1
+  recipe:
+    0: F 0 0
+  
+venomfang:
+  product: sword_venomfang
+  xp: 66
+  materials:
+    X: venomous_eye,2
+    S: stick_waterway,1
+  pattern: sword
+titanhelm:
+  product: armour_titan_helmet
+  xp: 110
+  materials:
+    X: waterway_core,5
+  pattern: helmet
+venomhelm:
+  product: armour_venomtitan_helmet
+  xp: 320
+  materials:
+    E: venomous_eye,2
+    H: armour_titan_helmet,1
+    F: sword_venomfang,1
+  recipe:
+    0: E E E
+    1: E H E
+    2: F 0 F
+titanlootbox:
+  product: loot_titan
+  xp: 0
+  materials:
+    C: waterway_core,2
+  recipe:
+    0: C C C
+    1: C 0 C
+    2: C C C
+
+fishingforkT4:
+  product: sword_fishingforklegendary
+  xp: 500
+  materials:
+    F: sword_fishingforkincredible,1
+    C: waterway_core,9
+    I: fishing_fishbarrel,8
+    P: fishing_pearl,1
+  recipe:
+    0: P I C
+    1: I F I
+    2: C I P

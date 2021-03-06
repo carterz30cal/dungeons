@@ -1,0 +1,91 @@
+corruptsword:
+  product: sword_corruptknight
+  materials:
+    S: sword_cryptknight,1
+    F: decaying_flesh,12
+    I: digging_leather,2
+    G: stick_gel,2
+  recipe:
+    0: 0 I 0
+    1: F S F
+    2: 0 G 0
+holysword:
+  product: sword_holyknight
+  materials:
+    S: sword_cryptknight,1
+    H: holywater_fragment,12
+    G: stick_gel,3
+    D: crypt_dust,4
+  recipe:
+    0: D D D
+    1: H S H
+    2: 0 G 0
+soulfire_book:
+  product: sword_soulfire
+  materials:
+    D: magic_dust,2
+    T: strange_tissue,1
+    H: stick_gel,2
+    L: digging_crystal,1
+  recipe:
+    1: 0 D T
+    2: 0 H L
+  
+dustwhip:
+  product: sword_dustwhip
+  materials:
+    W: sword_tissue,1
+    D: crypt_dust,3
+  recipe:
+    0: D D D
+    1: D W D
+    2: D D D
+    
+sewer_helmet:
+  product: armour_sewer_helmet
+  materials:
+    X: gel,16
+    U: armour_ocean_helmet,1
+  pattern: upgrade
+sewer_chestplate:
+  product: armour_sewer_chestplate
+  materials:
+    X: gel,16
+    U: armour_ocean_chestplate,1
+  pattern: upgrade
+sewer_leggings:
+  product: armour_sewer_leggings
+  materials:
+    X: gel,16
+    U: armour_ocean_leggings,1
+  pattern: upgrade
+sewer_boots:
+  product: armour_sewer_boots
+  materials:
+    X: gel,16
+    U: armour_ocean_boots,1
+  pattern: upgrade
+  
+vitals_3:
+  product: book
+  enchants: vitals,3
+  materials:
+    X: catalyst=0,4
+    S: strange_tissue,4
+    F: decaying_flesh,10
+  recipe:
+    0: X S F
+    1: F F F
+    2: 0 0 0
+warmers:
+  product: warmers
+  materials:
+    X: armour_water_leggings,1
+    C: crypt_dust,20
+    H: stick_gel,1
+  recipe:
+    0: H X H
+    1: H C H
+    2: H H H
+  
+  

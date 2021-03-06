@@ -3,6 +3,7 @@ package com.carterz30cal.areas;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 import com.carterz30cal.mobs.DMobType;
+import com.carterz30cal.player.DungeonsPlayer;
 
 public abstract class AbsDungeonEvent
 {
@@ -30,5 +31,10 @@ public abstract class AbsDungeonEvent
 	public boolean eventInteract(PlayerInteractEvent e)
 	{
 		return false;
+	}
+	
+	public void onPlayerDeath(DungeonsPlayer died)
+	{
+		
 	}
 }

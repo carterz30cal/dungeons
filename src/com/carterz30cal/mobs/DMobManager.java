@@ -30,7 +30,10 @@ public class DMobManager
 	
 	private static final String[] files = {
 			"waterway/drenched"   ,"waterway/bossmobs","waterway/uniquemobs","waterway/soaked","waterway/fishes",
-			"necropolis/skeletons","necropolis/ghouls","necropolis/slimes"
+			"waterway/titan_mobs",
+			"necropolis/skeletons","necropolis/ghouls","necropolis/slimes","necropolis/crypts_mobs1","necropolis/crypts_mobs2",
+			"necropolis/crypts_miniboss","necropolis/diggingmobs",
+			"necropolis/mushroom_mobs"
 	};
 	
 	public static DMob get(Entity e)
@@ -38,7 +41,15 @@ public class DMobManager
 		if (e == null) return null;
 		String s = e.getPersistentDataContainer().getOrDefault(DMob.identifier, PersistentDataType.STRING, null);
 		if (s == null) return null;
+		if (s.split("_").length > 1) return null;
 		return mobs.get(UUID.fromString(s));
+	}
+	public static String getId(Entity e)
+	{
+		if (e == null) return null;
+		String s = e.getPersistentDataContainer().getOrDefault(DMob.identifier, PersistentDataType.STRING, null);
+		if (s == null) return null;
+		return s;
 	}
 	public static void end()
 	{
@@ -61,10 +72,12 @@ public class DMobManager
 	}
 	public static DMob spawn(String mob,SpawnPosition pos)
 	{
+		if (mob == null) return null;
 		return new DMob(types.get(mob),pos,pos.position,true);
 	}
 	public static DMob spawn(String mob,SpawnPosition pos,boolean modifiers)
 	{
+		if (mob == null) return null;
 		return new DMob(types.get(mob),pos,pos.position,modifiers);
 	}
 	public DMobManager()
@@ -97,7 +110,11 @@ public class DMobManager
 		        e.printStackTrace();
 		    }
 			
-			for (String mob : data.getKeys(false)) types.put(mob,new DMobType(data,mob));
+			for (String mob : data.getKeys(false)) 
+			{
+				if (data.getString(mob + ".type").equals("SKINNED")) types.put(mob, new SkinnedType(data,mob));
+				else types.put(mob,new DMobType(data,mob));
+			}
 		}
 	}
 }

@@ -1,0 +1,47 @@
+
+mushroom:
+  name: Mushroom
+  item: RED_MUSHROOM
+  rarity: RARE
+mushroom_blade:
+  name: Mushroom Blade
+  item: MUSHROOM_STEM
+  rarity: EPIC
+shroom_dagger:
+  name: Shroom Dagger
+  type: weapon
+  rarity: EPIC
+  item: STONE_SWORD
+  req: 10
+  attributes:
+    damage: +42
+    health: +90
+    
+fungal_eruption:
+  name: Fungal Eruption
+  type: weapon
+  rarity: INCREDIBLE
+  item: STONE_SWORD
+  glow: true
+  req: 15
+  ability: spores
+  attributes:
+    damage: +55
+    health: +160
+    
+armour-mushroom:
+  name: Mushroom
+  suffix: Crown,Shirt,Trousers,Boots
+  rarity: EPIC
+  set: mushroom
+  item: LEATHER
+  colours:
+    0: 185,50,50
+    1: 190,70,70
+    2: 200,200,200
+    3: 210,210,210
+  ability: spores
+  req: 14
+  attributes:
+    health: 105,140,125,95
+    damage: 3,5,4,2

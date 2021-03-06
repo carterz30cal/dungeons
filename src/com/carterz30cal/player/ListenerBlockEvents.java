@@ -1,5 +1,8 @@
 package com.carterz30cal.player;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -23,10 +26,25 @@ import com.carterz30cal.tasks.TaskBlockReplace;
 public class ListenerBlockEvents implements Listener 
 {
 	public static boolean allowBlockPhysics = false;
+	public static final Set<Material> allowedPhysics = new HashSet<Material>();
+	
+	public ListenerBlockEvents()
+	{
+		allowedPhysics.add(Material.WEEPING_VINES_PLANT);
+		allowedPhysics.add(Material.TWISTING_VINES_PLANT);
+	}
 	@EventHandler
 	public void onBlockBreak(BlockBreakEvent e)
 	{
-		if (e.getPlayer().getGameMode() == GameMode.SURVIVAL) e.setCancelled(true);
+		if (e.getPlayer().getGameMode() == GameMode.SURVIVAL) 
+		{
+			if (DungeonsPlayerManager.i.get(e.getPlayer()).inCrypt && e.getBlock().getType() == Material.COBWEB)
+			{
+				e.setDropItems(false);
+				return;
+			}
+			else e.setCancelled(true);
+		}
 		else return;
 		Material b = e.getBlock().getType();
 		Dungeon d = DungeonManager.i.dungeons.getOrDefault(DungeonManager.i.hash(e.getPlayer().getLocation().getBlockZ()),DungeonManager.i.hub);
@@ -54,9 +72,9 @@ public class ListenerBlockEvents implements Listener
 			if (mine.loot.size() > 0)
 			{
 				new SoundTask(e.getPlayer().getLocation(),e.getPlayer(),Sound.ENTITY_ITEM_PICKUP,1f,0.5f).runTask(Dungeons.instance);
-				d.mining.progress();
+				p.level.give(mine.xp);
 			}
-			if (p.skills.add("mining", mine.xp)) p.skills.sendLevelMessage("mining", e.getPlayer());
+			d.mining.progress();
 			TaskBlockReplace tbr = new TaskBlockReplace(e.getBlock(),b);
 			tbr.runTaskLater(Dungeons.instance, 100);
 			Dungeons.instance.blocks.put(e.getBlock(), tbr);
@@ -66,11 +84,15 @@ public class ListenerBlockEvents implements Listener
 	@EventHandler
 	public void onBlockPhysics(BlockPhysicsEvent e)
 	{
-		e.setCancelled(allowBlockPhysics);
+		e.setCancelled(!allowBlockPhysics && !allowedPhysics.contains(e.getChangedType()));
 	}
 	@EventHandler
 	public void onBlockPlace(BlockPlaceEvent e)
 	{
-		if (e.getPlayer().getGameMode() == GameMode.SURVIVAL) e.setCancelled(true);
+		if (e.getPlayer().getGameMode() != GameMode.CREATIVE) e.setCancelled(true);
+		else
+		{
+			e.getBlock().getState().update(true, false);
+		}
 	}
 }

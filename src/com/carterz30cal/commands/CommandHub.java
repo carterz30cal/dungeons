@@ -7,6 +7,10 @@ import org.bukkit.entity.Player;
 
 import com.carterz30cal.dungeons.Dungeon;
 import com.carterz30cal.dungeons.DungeonManager;
+import com.carterz30cal.player.DungeonsPlayer;
+import com.carterz30cal.player.DungeonsPlayerManager;
+
+import net.md_5.bungee.api.ChatColor;
 
 public class CommandHub implements CommandExecutor
 {
@@ -16,6 +20,12 @@ public class CommandHub implements CommandExecutor
 		if (sender instanceof Player)
 		{
 			Player send = (Player)sender;
+			DungeonsPlayer dp = DungeonsPlayerManager.i.get(send);
+			if (dp.inCrypt) 
+			{
+				send.sendMessage(ChatColor.RED + "You are in a crypt!");
+				return true;
+			}
 			if (args.length == 0 || args[0].equals("hub")) send.teleport(DungeonManager.i.hub.spawn);
 			else 
 			{

@@ -23,20 +23,20 @@ shopkeepsteve:
     sharpener_crude:
       price: 250
 midasfollower:
-  name: Ancient Stuff Ltd
+  name: Ancient Stuff Ltd.
   items: 
     sharpener_midas:
-      price: 2000
+      price: 1200
     armour_cultist_helmet:
-      price: 3000
+      price: 2500
     armour_cultist_chestplate:
-      price: 3000
+      price: 2500
     armour_cultist_leggings:
-      price: 3000
+      price: 2500
     armour_cultist_boots:
-      price: 3000  
+      price: 2500  
     sword_goldknife:
-      price: 2220
+      price: 2000
     book;midastouch: 
       price: 700
       enchants: midastouch,1
@@ -47,15 +47,20 @@ fisherman:
   items:
     sword_fishingforkcommon:
       price: 1000
-    sword_fishingforkrare:
-      price: 1
-    sword_fishingforkincredible:
-      price: 1
-    sword_fishingforklegendary:
-      price: 1
+    bowl:
+      price: 150
 skeletonmerchant:
-  name: UNFINISHED
+  name: Merchant
   items:
-    bone:
-      price: -1000
+    crypt_key1:
+      price: 1350
+    crypt_key2:
+      price: 4500
+    crypt_key3:
+      price: 20000
+digsite:
+  name: Don't Ask Questions Ltd.
+  items:
+    digging_shovelT1:
+      price: 4000
       

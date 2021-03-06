@@ -1,0 +1,71 @@
+mushroom1:
+  name: Shroom Servant
+  type: SKELETON
+  level: 7
+  health: 900
+  armour: 10
+  damage: 77
+  speed: 0.7
+  tags: mushroom
+  abilities:
+    regen:
+      regen: 15
+      cooldown: 20
+  equipment:
+    main: RED_MUSHROOM
+    helmet: RED_MUSHROOM_BLOCK
+  drops:
+    mushroom:
+      drop: 3/4
+      amount: 1-2
+  
+mushroom2:
+  name: Shroom Soldier
+  type: SKELETON
+  level: 8
+  health: 1400
+  armour: 20
+  damage: 90
+  speed: 0.7
+  tags: mushroom
+  abilities:
+    regen:
+      regen: 15
+      cooldown: 20
+  equipment:
+    main: RED_MUSHROOM
+    offhand: BROWN_MUSHROOM
+    helmet: RED_MUSHROOM_BLOCK
+    leggings: armour_tissue_leggings
+    boots: armour_tissue_boots
+  drops:
+    mushroom:
+      drop: 3/4
+      amount: 1-3
+mushroom_king:
+  name: Shroom King
+  type: SKELETON
+  level: 9
+  health: 8000
+  armour: 38
+  damage: 120
+  speed: 0.5
+  tags: mushroom
+  abilities:
+    regen:
+      regen: 15
+      cooldown: 20
+  equipment:
+    main: RED_MUSHROOM
+    offhand: BROWN_MUSHROOM
+    helmet: RED_MUSHROOM_BLOCK
+    chestplate: armour_tissue_chestplate
+    leggings: armour_tissue_leggings
+    boots: armour_tissue_boots
+  drops:
+    mushroom:
+      drop: 1/1
+      amount: 1-4
+    enchanted_mushroom:
+      drop: 1/2
+      amount: 1-1

@@ -1,10 +1,7 @@
 package com.carterz30cal.enchants;
 
-import org.bukkit.entity.ArmorStand;
 
 import com.carterz30cal.dungeons.DungeonMiningTable;
-import com.carterz30cal.mobs.DungeonMob;
-import com.carterz30cal.player.DungeonsPlayer;
 import com.carterz30cal.player.DungeonsPlayerStatBank;
 
 public class EnchTitan extends AbsEnchant
@@ -12,7 +9,7 @@ public class EnchTitan extends AbsEnchant
 
 	@Override
 	public String description() {
-		return "If above 80% health, gain " + (3*level) + " armour";
+		return "If above 70% health, gain " + (4*level) + " armour";
 	}
 
 	@Override
@@ -40,7 +37,7 @@ public class EnchTitan extends AbsEnchant
 	@Override
 	public int rarity() {
 		// TODO Auto-generated method stub
-		return level+1;
+		return level;
 	}
 
 	@Override
@@ -50,7 +47,7 @@ public class EnchTitan extends AbsEnchant
 	@Override 
 	public DungeonsPlayerStatBank onFinalBank(DungeonsPlayerStatBank bank)
 	{
-		if (bank.d.getHealthPercent() >= 0.8) bank.armour += 3*level;
+		if (bank.d.getHealthPercent() >= 0.7) bank.armour += 4*level;
 		return bank;
 	}
 	@Override

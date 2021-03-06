@@ -1,0 +1,24 @@
+spell_sewerscroll:
+  name: Sewer Scroll
+  type: spell
+  rarity: RARE
+  item: WRITABLE_BOOK
+  spell:
+    mana: 12
+    damage: 95
+    colour: 0,168,100
+    pierces: 1
+    speed: 0.55
+wand_sewer:
+  name: Sewer Wand
+  type: wand
+  item: BLAZE_ROD
+  rarity: EPIC
+  wand:
+    mana: 23
+crypt_grimoire:
+  name: Crypt Mage's Grimoire
+  type: modifier
+  rarity: INCREDIBLE
+  item: BOOK
+  ability: cryptgrimoire

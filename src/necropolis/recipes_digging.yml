@@ -1,0 +1,127 @@
+ancient_stone:
+  product: digging_ancientstone
+  xp: 8
+  materials:
+    X: digging_stone,3
+  pattern: block
+
+
+    
+tier2shovel:
+  product: digging_shovelT2
+  xp: 40
+  materials:
+    S: digging_shovelT1,1
+    X: digging_leather,5
+    J: digging_ancientstone,10
+  recipe:
+    0: 0 X 0
+    1: 0 S 0
+    2: 0 J 0
+tier3shovel:
+  product: digging_shovelT3
+  xp: 400
+  materials:
+    S: digging_shovelT2,1
+    X: digging_leather,12
+    J: digging_ancientstone,32
+    C: digging_core,1
+  recipe:
+    0: 0 C 0
+    1: X S X
+    2: 0 J 0
+    
+precursor_sword:
+  product: sword_precursor
+  materials:
+    X: digging_ancientstone,8
+    S: stick_bone,2
+  pattern: sword
+precursor_crown:
+  product: armour_precursorcrown_helmet
+  materials:
+    S: digging_ancientstone,20
+    C: digging_crystal,1
+    L: digging_leather,8
+  recipe:
+    0: C S C
+    1: L 0 L
+gemstone_crown:
+  product: armour_gemstone_helmet
+  materials:
+    X: digging_crystal,1
+  pattern: helmet
+
+cursed_blade:
+  product: sword_cursedboneblade
+  materials:
+    S: sword_boneshard,1
+    C: digging_crystal,1
+    T: digging_ancientstone,8
+  recipe:
+    0: 0 C 0
+    1: T S T
+    2: 0 T 0
+totem2:
+  product: digging_totem2
+  xp: 100
+  materials:
+    S: digging_ancientstone,20
+    C: digging_crystal,1
+  recipe:
+    1: 0 S 0
+    2: 0 C 0
+    
+golem_helmet:
+  product: armour_golem_helmet
+  materials:
+    X: digging_metal,1
+  pattern: helmet
+golem_chestplate:
+  product: armour_golem_chestplate
+  materials:
+    X: digging_metal,1
+  pattern: chestplate
+golem_leggings:
+  product: armour_golem_leggings
+  materials:
+    X: digging_metal,1
+  pattern: leggings
+golem_boots:
+  product: armour_golem_boots
+  materials:
+    X: digging_metal,1
+  pattern: boots
+
+royal_medal:
+  product: digging_royalmedal
+  materials:
+    X: digging_metal,4
+    M: digging_defendermedal,1
+    C: digging_crystal,1
+  recipe:
+    0: 0 C 0
+    1: X M X
+    2: 0 X 0
+    
+precursed_book:
+  product: book
+  enchants: precursed,1
+  materials:
+    S: digging_leather,1
+    X: digging_ancientstone,3
+  recipe:
+    1: 0 S S
+    2: 0 S X
+precursed_book6:
+  product: book
+  enchants: precursed,6
+  materials:
+    S: digging_leather,16
+    X: digging_ancientstone,48
+    L: catalyst=0,32
+    C: digging_core,1
+  recipe:
+    0: S S L
+    1: X X 0
+    2: 0 0 C

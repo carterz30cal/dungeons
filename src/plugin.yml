@@ -3,6 +3,7 @@ author: carterz30cal
 main: com.carterz30cal.dungeons.Dungeons
 version: 1.0.0
 api-version: 1.13
+depend: [ProtocolLib]
 commands:
  dungeons:
   description: "all command functionality for dungeons."
@@ -12,3 +13,11 @@ commands:
   description: "warp back to the hub"
   usage: "Incorrect destination!"
   aliases: w
+ leaderboard:
+  description: "get the top online players"
+  usage: ""
+  aliases: top
+ trade:
+  description: "trade"
+  usage: "/trade <player>"
+  aliases: t

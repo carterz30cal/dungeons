@@ -52,8 +52,8 @@ public class AnvilGUI extends GUI
 					else contents[i] = GUICreator.item(Material.GLASS_BOTTLE, ChatColor.BLUE + "Enchanting", null, 1);
 					break;
 				case 1:
-					if (page == 2) contents[i] = GUICreator.item(Material.DIAMOND_SWORD, ChatColor.BLUE + "Sharpening", null, 1);
-					else contents[i] = GUICreator.item(Material.IRON_SWORD, ChatColor.BLUE + "Sharpening", null, 1);
+					if (page == 2) contents[i] = GUICreator.item(Material.DIAMOND_SWORD, ChatColor.BLUE + "Applying", null, 1);
+					else contents[i] = GUICreator.item(Material.IRON_SWORD, ChatColor.BLUE + "Applying", null, 1);
 					break;
 				case 2:
 					if (page == 3) contents[i] = GUICreator.item(Material.CRAFTING_TABLE, ChatColor.GOLD + "Crafting",null, 1);
@@ -159,7 +159,6 @@ public class AnvilGUI extends GUI
 			{
 				if (inventory.getItem(25) == null) inventory.setItem(25, mov);
 				else if (inventory.getItem(19) == null) inventory.setItem(19, mov);
-				else return true;
 			}
 			else if (cli.type.equals("catalyst") && inventory.getItem(22) == null) inventory.setItem(22, mov);
 			else if (inventory.getItem(19) == null) inventory.setItem(19, mov);
@@ -233,17 +232,21 @@ public class AnvilGUI extends GUI
 			}
 			ItemStack pop = click.clone();
 			pop.setAmount(1);
-			if (cli.type.equals("sharpener") && inventory.getItem(25) == null) inventory.setItem(25,pop);
+			if ((cli.type.equals("sharpener") || cli.type.equals("rune") || cli.type.equals("appliable")) && inventory.getItem(25) == null) inventory.setItem(25,pop);
 			else if (inventory.getItem(19) == null) inventory.setItem(19, pop);
 			else return true;
 			click.setAmount(click.getAmount()-1);
 			
 			ItemStack weapon = inventory.getItem(19);
 			ItemStack sharp = inventory.getItem(25);
-			if (weapon != null && sharp != null && ItemBuilder.i.canSharpen(weapon))
+			if (weapon != null && sharp != null)
 			{
 				for (int i = 36; i < 45; i++) inventory.setItem(i, GUICreator.pane(Material.BLUE_STAINED_GLASS_PANE));
-				inventory.setItem(22, ItemBuilder.i.sharpenItem(weapon, sharp));
+				Item k = ItemBuilder.get(sharp);
+				if (k.type.equals("rune")) inventory.setItem(22, ItemBuilder.i.addRune(weapon, 
+						sharp.getItemMeta().getPersistentDataContainer().get(ItemBuilder.kItem, PersistentDataType.STRING)));
+				else if (k.type.equals("appliable")) inventory.setItem(22, ItemBuilder.addExtra(weapon, sharp));
+				else if (ItemBuilder.i.canSharpen(weapon)) inventory.setItem(22, ItemBuilder.i.sharpenItem(weapon, sharp));
 			}
 			else
 			{

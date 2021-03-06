@@ -2,6 +2,7 @@ drenched1:
   name: Drenched
   type: DROWNED
   health: 70
+  level: 1
   damage: 10
   speed: 0.8
   kbresist: 0
@@ -17,7 +18,7 @@ drenched1:
       drop: 1/1
       amount: 1-2
     water_fragment:
-      drop: 1/6
+      drop: 1/5
       amount: 1-1
     catalyst=0:
       drop: 1/225
@@ -42,6 +43,7 @@ drenched2:
   type: DROWNED
   health: 160
   damage: 20
+  level: 2
   speed: 0.8
   kbresist: 0
   perk: waterway_drenched
@@ -56,7 +58,7 @@ drenched2:
       drop: 1/1
       amount: 1-3
     water_fragment:
-      drop: 1/6
+      drop: 1/5
       amount: 1-2
     catalyst=0:
       drop: 1/225
@@ -83,10 +85,11 @@ drenched2:
 drenched3:
   name: Drenched
   type: DROWNED
-  health: 240
-  damage: 33
-  speed: 0.8
+  health: 260
+  damage: 35
+  speed: 0.75
   kbresist: 0
+  level: 3
   perk: waterway_drenched
   equipment:
     main: sword_water
@@ -99,8 +102,11 @@ drenched3:
       drop: 1/1
       amount: 2-4
     water_fragment:
-      drop: 1/6
+      drop: 1/5
       amount: 1-3
+    ocean_fragment:
+      drop: 1/25
+      amount: 1-1
     catalyst=0:
       drop: 1/225
       amount: 1-1
@@ -126,11 +132,15 @@ drenched3:
 drenched4:
   name: Drenched
   type: DROWNED
-  health: 400
+  health: 440
   damage: 65
-  speed: 0.8
-  kbresist: 0
-  perk: waterway_drenched
+  speed: 0.9
+  kbresist: 0.3
+  level: 4
+  abilities:
+    regen:
+      regen: 5
+      cooldown: 20
   equipment:
     main: sword_water
     helmet: armour_water_helmet
@@ -142,8 +152,11 @@ drenched4:
       drop: 1/1
       amount: 4-6
     water_fragment:
-      drop: 1/6
-      amount: 1-4
+      drop: 1/5
+      amount: 2-3
+    ocean_fragment:
+      drop: 1/24
+      amount: 1-1
     catalyst=0:
       drop: 1/200
       amount: 1-1

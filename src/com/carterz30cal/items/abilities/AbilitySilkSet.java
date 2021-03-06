@@ -13,7 +13,7 @@ public class AbilitySilkSet extends AbsAbility
 	@Override
 	public ArrayList<String> description() {
 		ArrayList<String> des = new ArrayList<String>();
-		des.add(prefix + "Silky");
+		des.add(prefix + "SPEEEEEEED");
 		des.add("Gives you Speed 2!");
 		return des;
 	}

@@ -5,17 +5,16 @@ import java.util.HashMap;
 
 import org.bukkit.GameMode;
 import org.bukkit.Material;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffectType;
 
-import com.carterz30cal.dungeons.Dungeons;
 import com.carterz30cal.enchants.AbsEnchant;
 import com.carterz30cal.enchants.EnchantManager;
 import com.carterz30cal.items.Item;
+import com.carterz30cal.items.ItemAppliable;
 import com.carterz30cal.items.ItemBuilder;
 import com.carterz30cal.items.ItemSet;
 import com.carterz30cal.items.ItemSharpener;
@@ -25,6 +24,7 @@ import com.carterz30cal.items.abilities.AbsAbility;
 public class DungeonsPlayerStats
 {
 	public Player p;
+	public DungeonsPlayer o;
 	public ArrayList<AbsAbility> abilities;
 	
 	
@@ -40,14 +40,18 @@ public class DungeonsPlayerStats
 	public boolean synergy;
 	public double oreChance;
 	public double miningXp;
+	public double overkiller;
 	public DungeonsPlayerStats(Player player)
 	{
 		p = player;
+		//o = DungeonsPlayerManager.i.get(p);
 		abilities = new ArrayList<AbsAbility>();
 	}
 	public void refresh()
 	{
-		DungeonsPlayer dp = DungeonsPlayerManager.i.get(p);
+		if (o == null) o = DungeonsPlayerManager.i.get(p);
+		DungeonsPlayer dp = o;
+		if (dp.questcooldown > 0) dp.questcooldown--;
 		abilities = new ArrayList<AbsAbility>();
 		// check for set
 		ItemSet sett = null;
@@ -61,7 +65,7 @@ public class DungeonsPlayerStats
 			Item a = ItemBuilder.i.items.get(armour.getItemMeta().getPersistentDataContainer().get(ItemBuilder.kItem, PersistentDataType.STRING));
 			if (sett == null && a.set != null) sett = a.set;
 			else if (sett == null) break;
-			else if ((sett != null && a.set == null) || !sett.equals(a.set) || a.combatReq > dp.skills.getSkillLevel("combat"))
+			else if ((sett != null && a.set == null) || !sett.equals(a.set) || a.combatReq > dp.level.level())
 			{
 				sett = null;
 				break;
@@ -95,6 +99,7 @@ public class DungeonsPlayerStats
 		miningXp = 1;
 		bonuskillcoins = 0;
 		damagemod = 1;
+		overkiller = 1;
 		
 		DungeonsPlayerStatBank fbank = new DungeonsPlayerStatBank();
 		fbank.d = dp;
@@ -110,7 +115,7 @@ public class DungeonsPlayerStats
 			
 			Item i = ItemBuilder.i.items.get(meta.getPersistentDataContainer().get(ItemBuilder.kItem, PersistentDataType.STRING));
 			if (i == null) continue;
-			else if (i.combatReq > dp.skills.getSkillLevel("combat")) continue;
+			else if (i.combatReq > dp.level.level()) continue;
 			DungeonsPlayerStatBank bank = new DungeonsPlayerStatBank();
 			bank.d = dp;
 			bank.add(i.attributes);
@@ -123,6 +128,12 @@ public class DungeonsPlayerStats
 					if (sharpener == null) continue;
 					else bank.add(sharpener.attributes);
 				}
+			}
+			ArrayList<ItemAppliable> app = ItemBuilder.getAppliables(meta);
+			if (app != null) for (ItemAppliable a : app) bank.add(a.app_attributes);
+			if (meta.getPersistentDataContainer().has(ItemBuilder.kRunic, PersistentDataType.STRING))
+			{
+				abilities.add(AbilityManager.get(meta.getPersistentDataContainer().getOrDefault(ItemBuilder.kRunic, PersistentDataType.STRING, "")));
 			}
 			if (i.data.containsKey("ability")) abilities.add(AbilityManager.get((String) i.data.get("ability")));
 			ArrayList<AbsEnchant> enchants = EnchantManager.get(meta.getPersistentDataContainer());
@@ -153,16 +164,6 @@ public class DungeonsPlayerStats
 			add(fbank,bank);
 		}
 		
-		for (String perk : dp.perks.getPerks())
-		{
-			FileConfiguration per = Dungeons.instance.fPerksC;
-			int level = dp.perks.getLevel(perk);
-			armour += per.getInt(perk + ".effects.armour",0)*level;
-			health += per.getInt(perk + ".effects.health",0)*level;
-			regen += per.getInt(perk + ".effects.regen",0)*level;
-			damage += per.getDouble(perk + ".effects.damage",0)*level;
-		}
-		
 		for (AbsEnchant ench : allench) 
 		{
 			DungeonsPlayerStatBank sb = ench.onFinalBank(fbank);
@@ -172,24 +173,35 @@ public class DungeonsPlayerStats
 		
 		if (dp != null)
 		{
-			damagemod += DungeonsPlayerManager.i.get(p).skills.getSkillLevel("combat")*0.04;
-			oreChance += DungeonsPlayerManager.i.get(p).skills.getSkillLevel("mining")*0.01;
 			if (dp.area != null && dp.explorer.areas() > 0)
 			{
 				bonuskillcoins += dp.explorer.bonusCoins(dp.area.id);
 				miningXp += dp.explorer.bonusXp(dp.area.id);
 			}
+			
+			CharacterSkill s = dp.level;
+			health += 4 * s.get("health");
+			armour += 3 * s.get("armour");
+			damage += 1 * s.get("damage");
+			mana   += 4 * s.get("mana");
+			bonuskillcoins += s.get("bonuscoins");
 		}
+
+		for (AbsAbility a : abilities) a.stats(this);
+		
+		mana = Math.max(mana, 0);
 		armour = Math.max(0, armour);
-		damage = (int) Math.max(1 + DungeonsPlayerManager.i.get(p).skills.getSkillLevel("combat"), Math.round(damage * damagemod));
+		damage = (int) Math.max(1, Math.round(damage * damagemod));
 		if (p.hasPotionEffect(PotionEffectType.WITHER))
 		{
 			damage /= (p.getPotionEffect(PotionEffectType.WITHER).getAmplifier()+2);
 		}
+		if (p.getGameMode() == GameMode.CREATIVE) damage = Integer.MAX_VALUE;
 		damageSweep += Math.round(damage / 4d);
 		p.setSaturation(20);
 		p.setFoodLevel(20);
 		health = Math.max(10, health);
+		regen += Math.round(health * 0.01);
 		regen = Math.max(0, regen);
 	}
 	public double get (HashMap<String,Double> map,String value)

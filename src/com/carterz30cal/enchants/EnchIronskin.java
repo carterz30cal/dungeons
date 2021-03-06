@@ -1,17 +1,14 @@
 package com.carterz30cal.enchants;
 
-import org.bukkit.entity.ArmorStand;
-
 import com.carterz30cal.dungeons.DungeonMiningTable;
-import com.carterz30cal.mobs.DungeonMob;
-import com.carterz30cal.player.DungeonsPlayer;
+import com.carterz30cal.items.Rarity;
 import com.carterz30cal.player.DungeonsPlayerStatBank;
 
 public class EnchIronskin extends AbsEnchant {
 
 	@Override
 	public String description() {
-		return "Exchanges every " + (int)(6 - level) + " base health for 1 armour";
+		return "For every " + (60 - (level*5)) + " base health, grant 2 armour";
 	}
 
 	@Override
@@ -21,7 +18,7 @@ public class EnchIronskin extends AbsEnchant {
 
 	@Override
 	public int max() {
-		return 3;
+		return 8;
 	}
 
 	@Override
@@ -35,14 +32,14 @@ public class EnchIronskin extends AbsEnchant {
 	}
 	@Override
 	public int rarity() {
-		return (level/2)+2;
+		if (level >= 8) return Rarity.LEGENDARY.ordinal();
+		return Math.min(level - 1,4);
 	}
 
 	@Override
 	public DungeonsPlayerStatBank onBank(DungeonsPlayerStatBank bank) {
-		int pts = (bank.base.getOrDefault("health", 0d)).intValue() / (6-level);
-		bank.health -= (6 - level) * pts;
-		bank.armour += pts;
+		int pts = (int)Math.round(bank.base.getOrDefault("health",0d) / (60 - (level*5)));
+		bank.armour += pts*2;
 		return bank;
 	}
 

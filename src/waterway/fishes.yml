@@ -3,30 +3,33 @@ fish1:
   type: TROPICAL_FISH
   health: 1
   speed: 1
+  level: 0
   dmgresist: 1
   tags: spearfish
   equipment: {}
   drops: 
     fishing_fish:
-      drop: 3/4
+      drop: 1/1
       amount: 1-1
 fish2:
   name: Guardian
   type: GUARDIAN
   health: 5
   speed: 0.7
+  level: 0
   dmgresist: 1
-  tags: spearfish
+  tags: spearfish,fish2
   equipment: {}
   drops:
     fishing_fish:
       drop: 3/4
-      amount: 1-2
+      amount: 2-3
 fish3:
   name: Large Guardian
   type: GUARDIAN
   health: 23
   speed: 0.4
+  level: 0
   dmgresist: 1
   tags: spearfish
   equipment: {}
@@ -37,3 +40,23 @@ fish3:
     fishing_pearl:
       drop: 1/3
       amount: 1-1
+      
+      
+      
+      
+fishing_sandguardian:
+  name: Sand Guardian
+  type: GUARDIAN
+  health: 8
+  damage: 60
+  speed: 0.6
+  level: 0
+  dmgresist: 1
+  tags: spearfish
+  equipment: {}
+  drops: 
+    fishing_fish:
+      drop: 1/1
+      amount: 1-5
+      
+      

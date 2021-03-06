@@ -43,7 +43,7 @@ public class WaterwayRain extends AbsDungeonEvent
 	}
 	private void display()
 	{
-		display = ArmourstandFunctions.create(new Location(Dungeons.w,-69,99.3,20993.3));
+		display = ArmourstandFunctions.create(new Location(Dungeons.w,-69,100.3,20993.3));
 	}
 	@Override
 	public void tick()

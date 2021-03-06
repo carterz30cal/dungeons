@@ -9,10 +9,10 @@ waterway:
     killsperlevel: 225
   mining:
     boss:
-      mob: drenched_miniboss
+      mob: drenched_titan
       spawn: -66,103,21002
-      requirement: 125
-    xp: 15
+      requirement: 150
+    xp: 1
     ores:
       GREEN_TERRACOTTA:
         ore: leafmash
@@ -33,7 +33,6 @@ waterway:
     
     -33,107,20999: drenched2
     -19,117,21002: drenched2
-    -31,117,21007: drenched3
     
     -48,104,20968: drenched2
     -42,104,20961: drenched3
@@ -55,8 +54,6 @@ waterway:
     -20,91,21014: creepyspider2
     -25,91,21015: creepyspiderqueen
     
-    -22,106,20992: bonewraith1
-    
     # lava cave area #
     
     -38,85,20976: drenched4
@@ -69,6 +66,10 @@ waterway:
     -34,119,20964: drenched3
     -33,119,20971: drenched3
     -35,119,20974: drenched3
+    
+    # fishing content # 
+    -40,87,21048: fishing_sandguardian1
+    -36,89,21051: fishing_sandguardian1
 necropolis:
   name: Necropolis
   spawn: 0,103,22000
@@ -81,10 +82,10 @@ necropolis:
     killsperlevel: 250
   mining:
     boss: {}
-    xp: 21
+    xp: 3
     ores: 
       RED_WOOL:
-        ore: beating_mass
+        ore: tissue
         replacement: OBSIDIAN
   spawns:
     12,101,21990: skeleton1
@@ -117,6 +118,20 @@ necropolis:
     -19,110,22106: slime3
     -25,110,22121: slime3
     -31,110,22105: slime3
+    
+    27,89,22018: ghoul1
+    25,89,22021: ghoul1
+    26,88,22028: ghoul1
+    20,88,22020: ghoul1
+    18,88,22032: ghoul1
+    12,88,22022: ghoul1
+    
+    -19,93,22079: mushroom1
+    -20,93,22085: mushroom1
+    -13,93,22077: mushroom1
+    -10,93,22084: mushroom1
+    
+    
     
     
     

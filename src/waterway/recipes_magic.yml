@@ -33,7 +33,7 @@ leaftome_spell:
   xp: 50
   materials:
     C: waterway_core,1
-    B: leaf_ball,1
+    B: leafball,1
     D: magic_dust,1
   recipe:
     0: 0 C 0

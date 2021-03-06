@@ -3,7 +3,7 @@
 ##               TIER ONE  					##
 ##############################################
 mush:
-  product: mush,2
+  product: mush,3
   xp: 1
   materials:
     P: wetpaper,3
@@ -28,8 +28,20 @@ paperstick:
     0: 0 P 0
     1: 0 P 0
     2: 0 P 0
+corestick:
+  product: stick_waterway
+  xp: 11
+  materials:
+    P: stick_paper,2
+    C: waterway_core,4
+    L: stick_leaf,1
+  recipe:
+    0: 0 L 0
+    1: 0 C 0
+    2: 0 P 0
 ocean_fragment:
   product: ocean_fragment
+  amount: 2
   xp: 10
   materials:
     F: water_fragment,1
@@ -86,6 +98,18 @@ summonkey_waterway:
     0: 0 S 0
     1: S F S
     2: 0 S 0
+
+quest_cluckystew:
+  product: quest_clucky4
+  xp: 200
+  materials:
+    D: magic_dust,1
+    L: leafball,3
+    C: catalyst=0,1
+    B: bowl,1
+  recipe:
+    1: D C L
+    2: 0 B 0
 ##############################################
 ##          -- ARMOUR SETS --   		    ##
 ##              TIER ONE  					##
@@ -140,8 +164,8 @@ ocean_chestplate:
     F: ocean_fragment,1
     A: armour_water_chestplate,1
   recipe:
-    0: F A F
-    1: F F F
+    0: F F F
+    1: F A F
     2: F F F
 ocean_leggings:
   product: armour_ocean_leggings
@@ -349,7 +373,7 @@ mush_sword:
   product: sword_mush
   xp: 30
   materials:
-    M: mush,3
+    M: mush,2
     S: stick_paper,1
   recipe:
     0: 0 M 0 
@@ -359,7 +383,7 @@ water_sword:
   product: sword_water
   xp: 40
   materials:
-    F: water_fragment,2
+    F: water_fragment,1
     S: stick_paper,1
   recipe:
     0: 0 F 0 
@@ -458,17 +482,7 @@ fishingforkT3:
     0: 0 I 0
     1: I F I
     2: 0 I 0
-fishingforkT4:
-  product: sword_fishingforklegendary
-  xp: 50
-  materials:
-    F: sword_fishingforkincredible,1
-    I: fishing_fishbarrel,8
-    P: fishing_pearl,1
-  recipe:
-    0: P I P
-    1: I F I
-    2: P I P
+
     
     
     
@@ -594,6 +608,15 @@ paper_pickaxe:
 ##           -- ENCHANTS --   		        ##
 ##              TIER ONE  					##
 ##############################################
+shocking:
+  product: book
+  enchants: shocking,1
+  materials:
+    P: paper,1
+    C: storm_crystals,8
+  recipe:
+    1: 0 P P
+    2: 0 P C
 paper_enchantbook:
   product: book
   enchants: paper,1
@@ -642,10 +665,3 @@ sharp_flint:
 ##           -- SCRAPPING --   		        ##
 ##              TIER ONE  					##
 ##############################################
-hyperblade_scrap:
-  product: waterway_core
-  xp: 200
-  materials:
-    H: sword_hyperblade,1
-  recipe:
-    1: 0 H 0 

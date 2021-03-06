@@ -1,0 +1,85 @@
+crypts_miniboss_slime1:
+  name: Gelatinous Cube
+  type: SLIME
+  level: 9
+  data:
+    0: size:5
+  health: 8000
+  armour: 40
+  damage: 220
+  speed: 0
+  abilities:
+    boss:
+      range: 15
+      style: SOLID
+      colour: GREEN
+    summons:
+      summon: crypts_miniboss_slime1_summon
+      x: -102
+      y: 108
+      z: 21002
+      count: 2
+      respawn: 450
+  drops:
+    gel:
+      drop: 1/1
+      amount: 16-32
+    bow_slime:
+      drop: 1/10
+      amount: 1-1
+      rare: true
+crypts_miniboss_slime1_summon:
+  name: Baby Cube
+  type: SLIME
+  level: 6
+  data:
+    0: size:2
+  health: 450
+  armour: 40
+  damage: 80
+  speed: 1.6
+  
+crypts_miniboss_husk1:
+  name: Lunatic Husk
+  type: HUSK
+  level: 9
+  health: 5000
+  armour: 20
+  damage: 220
+  speed: 1.3
+  abilities:
+    boss:
+      range: 15
+      style: SOLID
+      colour: GREEN
+  drops:
+    decaying_flesh:
+      drop: 1/1
+      amount: 2-8
+    sword_huskscythe:
+      drop: 1/10
+      amount: 1-1
+      rare: true
+      
+crypts_miniboss_knight1:
+  name: Crypt Knight
+  type: ZOMBIE
+  level: 9
+  health: 4000
+  armour: 75
+  damage: 160
+  speed: 0.9
+  abilities:
+    boss:
+      range: 15
+      style: SOLID
+      colour: GREEN
+  drops:
+    decaying_flesh:
+      drop: 1/1
+      amount: 2-8
+    sword_huskscythe:
+      drop: 1/10
+      amount: 1-1
+      rare: true
+  

@@ -24,7 +24,7 @@ public class LootboxGUI extends GUI
 	public LootboxGUI(ItemLootbox lootbox, Player p) {
 		super(p);
 		
-		inventory = Bukkit.createInventory(null, 36, lootbox.name);
+		inventory = Bukkit.createInventory(null, 36, ChatColor.stripColor(lootbox.name));
 		ArrayList<Integer> loots = new ArrayList<Integer>();
 		for (int i = 0; i < lootbox.items.size();i++)
 		{
@@ -43,6 +43,7 @@ public class LootboxGUI extends GUI
 		for (int l = 0; l < loots.size(); l++)
 		{
 			int o = order[l];
+			if (loots.size() == 1) o = 22;
 			int f = loots.get(l);
 			ItemStack reward = ItemBuilder.i.build(lootbox.items.get(f), null,lootbox.enchants.get(f));
 			Integer[] amounts = lootbox.amounts.get(f);
@@ -74,9 +75,9 @@ public class LootboxGUI extends GUI
 	public static ItemStack pane (int rarity)
 	{
 		if (rarity == 1) return GUICreator.item(Material.LIGHT_BLUE_STAINED_GLASS_PANE, ChatColor.BLUE + "Guaranteed", null, 1);
-		else if (rarity <= 5) return GUICreator.item(Material.LIME_STAINED_GLASS_PANE, ChatColor.GREEN + "Common", null, 1);
-		else if (rarity <= 15) return GUICreator.item(Material.YELLOW_STAINED_GLASS_PANE, ChatColor.GOLD + "Uncommon", null, 1);
-		else if (rarity <= 50) return GUICreator.item(Material.ORANGE_STAINED_GLASS_PANE, ChatColor.RED + "Rare", null, 1);
+		else if (rarity <= 4) return GUICreator.item(Material.LIME_STAINED_GLASS_PANE, ChatColor.GREEN + "Common", null, 1);
+		else if (rarity <= 12) return GUICreator.item(Material.YELLOW_STAINED_GLASS_PANE, ChatColor.GOLD + "Uncommon", null, 1);
+		else if (rarity <= 35) return GUICreator.item(Material.ORANGE_STAINED_GLASS_PANE, ChatColor.RED + "Rare", null, 1);
 		else return GUICreator.item(Material.RED_STAINED_GLASS_PANE, ChatColor.BOLD + "" + ChatColor.RED + "Super Rare", null, 1);
 	}
 }
