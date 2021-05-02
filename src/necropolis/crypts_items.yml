@@ -51,6 +51,20 @@ crypt_dust:
   nodesc: true
   description: This slowly accumulates in Crypts. It has;many different uses, including improving;armours and weapons
   
+crypt_stone:
+  name: Crypt Stone
+  type: appliable
+  rarity: RARE
+  item: FIREWORK_STAR
+  colour: 40,40,40
+  modifier:
+    types: LEATHER_BOOTS,IRON_BOOTS,GOLDEN_BOOTS,DIAMOND_BOOTS,CHAINMAIL_BOOTS,NETHERITE_BOOTS
+    prefix: Dusty
+    attributes:
+      health: +9
+  description: An old, crumbling rock. Gives;a small damage bonus when;applied to boots.
+  
+  
 strange_tissue:
   name: Strange Tissue
   rarity: EPIC

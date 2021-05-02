@@ -48,8 +48,18 @@ public class MobSummons extends DMobAbility
 	public void tick(DMob mob)
 	{
 		if (respawn == -1) return;
+		if (!((LivingEntity)mob.entities.get(0)).hasAI()) return;
 		ArrayList<DMob> sum = summons.get(mob);
-		if (sum == null) return;
+		if (sum == null) 
+		{
+			sum = new ArrayList<>();
+			for (int c = 0; c < count; c++)
+			{
+				if (spawn != null) sum.add(DMobManager.spawn(summon, new SpawnPosition(spawn)));
+				else sum.add(DMobManager.spawn(summon, new SpawnPosition(((LivingEntity)mob.entities.get(0)).getEyeLocation())));
+			}
+			summons.put(mob, sum);
+		}
 		
 		boolean alive = false;
 		for (DMob m : sum)
@@ -58,28 +68,20 @@ public class MobSummons extends DMobAbility
 		}
 		if (alive) return;
 		
-		sum.clear();
-		summons.put(mob, null);
+		sum.add(mob);
 		Dungeons.instance.getServer().getScheduler().scheduleSyncDelayedTask(Dungeons.instance,
 				new Runnable()
 				{
 					@Override
 					public void run()
 					{
-						add(mob);
+						summons.put(mob, null);
 					}
 				},respawn);
 	}
 	@Override
 	public void add(DMob mob)
 	{
-		if (mob.health < 1) return;
-		ArrayList<DMob> sum = new ArrayList<DMob>();
-		for (int c = 0; c < count; c++)
-		{
-			if (spawn != null) sum.add(DMobManager.spawn(summon, new SpawnPosition(spawn)));
-			else sum.add(DMobManager.spawn(summon, new SpawnPosition(((LivingEntity)mob.entities.get(0)).getEyeLocation())));
-		}
-		summons.put(mob, sum);
+
 	}
 }

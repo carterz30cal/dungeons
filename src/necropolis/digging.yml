@@ -72,6 +72,7 @@ armour_precursorcrown_helmet:
   item: GOLDEN_HELMET
   rarity: EPIC
   ability: precursorcrown
+  req: 13
   attributes:
     health: -120
 armour_gemstone_helmet:
@@ -81,8 +82,38 @@ armour_gemstone_helmet:
   rarity: INCREDIBLE
   ability: gemstonecrown
   colour: 116,36,227
+  req: 15
   attributes:
-    mana: +400
+    mana: +300
+    
+armour_thornedgemstone_helmet:
+  name: Thorned Gemstone Crown
+  type: armour
+  item: LEATHER_HELMET
+  rarity: LEGENDARY
+  ability: gemstonecrown
+  colour: 116,36,227
+  req: 17
+  attributes:
+    mana: +375
+    damage: +12
+    
+armour-skin:
+  name: Skin
+  suffix: Helmet,Chestplate,Leggings,Shoes
+  rarity: EPIC
+  set: skin
+  item: LEATHER
+  colour: 253,241,203
+  req: 13
+  attributes:
+    health: 55,100,60,45
+    armour: 30,45,35,25
+    
+
+    
+    
+    
 sword_cursedboneblade:
   name: Cursed Blade
   type: weapon
@@ -100,8 +131,17 @@ sword_precursor:
   rarity: EPIC
   ability: prejudice
   attributes:
-    damage: +50
-    health: -75
+    damage: +52
+    health: -70
+    
+sword_cowmurderer:
+  name: Cow Murder-erererer
+  type: weapon
+  item: DIAMOND_AXE
+  rarity: EPIC
+  ability: cowdie
+  attributes:
+    damage: +40
 loot_digging2:
   name: Precursor Box
   type: lootbox
@@ -125,6 +165,9 @@ loot_digging2:
       amount: 1
       enchants: protection,2
       chance: 4
+    crypt_key4:
+      amount: 1-2
+      chance: 4
 sharpener_strangealloy:
   name: Strange Alloy
   type: sharpener
@@ -134,7 +177,8 @@ sharpener_strangealloy:
     id: strangealloy
     plus: AQUA
   attributes:
-    armour: +5
+    health: +4
+    armour: +10
 sharpener_cursedbinding:
   name: Cursed Binding
   type: sharpener
@@ -145,8 +189,8 @@ sharpener_cursedbinding:
     id: cursedbinding
     plus: DARK_RED
   attributes:
-    damage: +3
-    armour: +2
+    damagep: +0.06
+    armour: +7
     
 digging_defendermedal:
   name: Defender Medal
@@ -158,7 +202,7 @@ digging_defendermedal:
     types: LEATHER_CHESTPLATE,IRON_CHESTPLATE,GOLDEN_CHESTPLATE,DIAMOND_CHESTPLATE,CHAINMAIL_CHESTPLATE,NETHERITE_CHESTPLATE
     prefix: Defender's
     attributes:
-      armour: 15
+      armour: 10
   description: Awarded by the Precursors for extreme acts;of bravery. Provides a minor armour boost;when it is applied to chestplates.
 digging_royalmedal:
   name: Royal Medal
@@ -170,7 +214,7 @@ digging_royalmedal:
     types: LEATHER_CHESTPLATE,IRON_CHESTPLATE,GOLDEN_CHESTPLATE,DIAMOND_CHESTPLATE,CHAINMAIL_CHESTPLATE,NETHERITE_CHESTPLATE
     prefix: Royal
     attributes:
-      armour: 15
+      armour: 20
   description: These are reserved for the bravest of the brave. ;Defenders have dedicated their entire lives;to these. Provides an armour boost when applied;to a chestplate.
 
 armour-golem:

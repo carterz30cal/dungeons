@@ -12,6 +12,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.Event.Result;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
@@ -19,6 +20,7 @@ import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerSwapHandItemsEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -54,7 +56,19 @@ public class ListenerGUIEvents implements Listener
 		Player p = (Player)e.getWhoClicked();
 		DungeonsPlayer data = DungeonsPlayerManager.i.get(p);
 		
-		if (e.getCurrentItem() != null && e.getCurrentItem().isSimilar(ItemBuilder.menuItem)) 
+		if (e.getClick() == ClickType.NUMBER_KEY)
+		{
+			p.sendMessage(ChatColor.RED + "Please don't use hotkeys to move items.");
+			e.setCancelled(true);
+			return;
+		}
+		else if (e.getClick() == ClickType.SWAP_OFFHAND)
+		{
+			p.sendMessage(ChatColor.RED + "Offhand is currently disabled!");
+			e.setCancelled(true);
+			return;
+		}
+		if (e.getCurrentItem() != null && (e.getCurrentItem().isSimilar(ItemBuilder.menuItem)))
 		{
 			new GUI(MenuType.MAINMENU,p);
 			e.setCancelled(true);
@@ -74,6 +88,12 @@ public class ListenerGUIEvents implements Listener
 
 		if (data.gui == null) return;
 		else e.setCancelled(data.gui.handleDrag(e,p));
+	}
+	@EventHandler
+	public void onSwap(PlayerSwapHandItemsEvent e)
+	{
+		e.getPlayer().sendMessage(ChatColor.RED + "Offhand is currently disabled!");
+		e.setCancelled(true);
 	}
 	@EventHandler(priority=EventPriority.HIGHEST)
 	public void onDrop(PlayerDropItemEvent e)
@@ -120,14 +140,9 @@ public class ListenerGUIEvents implements Listener
 		else if (a != Action.PHYSICAL) // all right clicks
 		{
 			Item it = ItemBuilder.get(i);
-			String ity = ItemBuilder.getItem(i);
 			if (i.isSimilar(ItemBuilder.menuItem)) new GUI(MenuType.MAINMENU,e.getPlayer());
+			else if (it == null) return;
 			else if (it instanceof ItemWand) ((ItemWand)it).use(d,i);
-			else if (ity != null && ity.equals("summonkey_waterway"))
-			{
-				DMobManager.spawn("drenched_boss", new SpawnPosition(-102.5,100.5,21006.5));
-				i.setAmount(i.getAmount()-1);
-			}
 			else if (it instanceof ItemLootbox)
 			{
 				i.setAmount(i.getAmount()-1);

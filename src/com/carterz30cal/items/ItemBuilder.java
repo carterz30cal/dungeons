@@ -14,6 +14,7 @@ import java.util.Map.Entry;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
+import org.bukkit.FireworkEffect;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;
@@ -28,6 +29,7 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.FireworkEffectMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.inventory.meta.SkullMeta;
@@ -77,13 +79,15 @@ public class ItemBuilder
 	};
 	
 	public static final String[] files = {
-			"waterway/armour","waterway/ingredients","waterway/weapons","waterway/tools",
+			"waterway/armour","waterway/ingredients","waterway/weapons","waterway/mining",
 			"waterway/sharpeners","waterway/lootboxes","waterway/items_rainevent","waterway/items_spearfishing",
-			"waterway/magic","waterway/quest_rewards","waterway/items_titan",
+			"waterway/magic","waterway/quest_rewards","waterway/items_titan","waterway/items_fishing",
+			"waterway/items_sands",
 			"necropolis/ingredients","necropolis/armour","necropolis/weapons","necropolis/tools",
 			"necropolis/sharpeners","necropolis/specials","necropolis/cryptarmour","necropolis/magic",
-			"necropolis/runes","necropolis/digging","necropolis/crypts_items","necropolis/necropolis_quests",
-			"necropolis/mushroom_items"
+			"necropolis/runes","necropolis/digging","necropolis/crypts_items","necropolis/necropolis_quests","necropolis/crypts_items_ancient",
+			"necropolis/mushroom_items",
+			"unique/bestowed"
 			};
 	public static final String[] setFiles = {
 			"waterway/sets","necropolis/sets"
@@ -119,9 +123,15 @@ public class ItemBuilder
 		attributeColours.put("orechance", w + "Ore Chance: ");
 		attributeColours.put("bonusxp", ChatColor.AQUA + "Xp Boost: " + w);
 		
+		attributeColours.put("miningspeed", ChatColor.GRAY + "Speed: " + w);
+		attributeColours.put("fortune", ChatColor.GOLD + "Fortune: " + w);
+		
 		attributeColours.put("killcoins", ChatColor.GOLD + "Bonus Coins: " + w);
 		
 		attributeColours.put("mana", ChatColor.LIGHT_PURPLE + "Mana: " + w);
+		
+		attributeColours.put("luck", ChatColor.GREEN + "Luck: " + w);
+		attributeColours.put("fishingspeed",ChatColor.AQUA + "Fishing Speed: " + w);
 		
 		sharps = new HashMap<String,ItemSharpener>();
 		sharpeners = new HashMap<String,String>();
@@ -369,6 +379,12 @@ public class ItemBuilder
 				item.attributes.put(attr, data.getDouble(it + ".attributes." + attr));
 			}
 		}
+		if (item.material == Material.FIREWORK_STAR && data.contains(it + ".colour"))
+		{
+			item.data.put("colour", Color.fromRGB(Integer.parseInt(data.getString(it + ".colour").split(",")[0]),
+					Integer.parseInt(data.getString(it + ".colour").split(",")[1]),
+					Integer.parseInt(data.getString(it + ".colour").split(",")[2])));
+		}
 		if (data.contains(it + ".colour"))
 		{
 			item.data.put("r", Integer.parseInt(data.getString(it + ".colour").split(",")[0]));
@@ -419,6 +435,7 @@ public class ItemBuilder
 	{
 		if (s.equals("book")) return book(owner,enchants);
 		else if (s.equals("null")) return null;
+		else if (s.equals("uielement")) return null;
 		Item item = items.get(s);
 		if (item == null) return new ItemStack(Material.valueOf(s.toUpperCase()));
 		
@@ -436,6 +453,15 @@ public class ItemBuilder
 		meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 		meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 		meta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
+		meta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
+		meta.addItemFlags(ItemFlag.HIDE_PLACED_ON);
+		
+		if (item.material == Material.FIREWORK_STAR)
+		{
+			FireworkEffectMeta metaFw = (FireworkEffectMeta) meta;
+            FireworkEffect aa = FireworkEffect.builder().withColor((Color)item.data.get("colour")).build();
+            metaFw.setEffect(aa);
+		}
         
 		if (item.type.equals("armour") || item.type.equals("weapon") || item.type.equals("wand") || item.type.equals("spell")
 				|| item.type.equals("modifier") || item.type.equals("appliable")) 
@@ -586,11 +612,11 @@ public class ItemBuilder
 				}
 				else lore.add(ChatColor.DARK_GRAY + StringManipulator.capitalise(item.rarity.toString()) + " " + StringManipulator.capitalise(m[1]));
 			}
-			else if (!item.type.equals("wand")) lore.add(ChatColor.DARK_GRAY + StringManipulator.capitalise(item.rarity.toString()) +" " + StringManipulator.capitalise(item.type));
+			else if (!item.type.equals("wand") && !item.type.equals("spell")) lore.add(ChatColor.DARK_GRAY + StringManipulator.capitalise(item.rarity.toString()) +" " + StringManipulator.capitalise(item.type));
 		}
 		if (item.description != null)
 		{
-			for (String desc : item.description) lore.add(ChatColor.GRAY + "" + ChatColor.ITALIC + desc);
+			for (String desc : item.description) lore.add(ChatColor.GRAY + desc);
 		}
 		if (item.attributes.size() > 0)
 		{
@@ -631,8 +657,8 @@ public class ItemBuilder
 			if (get(meta,ItemWand.kSpell) != null)
 			{
 				lore.add(ChatColor.GRAY + "Spell: " + ((ItemSpell)get(meta,ItemWand.kSpell)).name);
+				lore.add("");
 			}
-			lore.add("");
 			lore.add(ChatColor.GRAY + "Mana cost: " + ChatColor.AQUA + wand.cost(meta));
 			if (get(meta,ItemWand.kModifier) != null)
 			{
@@ -640,17 +666,52 @@ public class ItemBuilder
 				lore.addAll(addAbility((String)mod.data.get("ability"),""));
 			}
 		}
+		else if (item instanceof ItemSpell)
+		{
+			ItemSpell spell = (ItemSpell)item;
+			
+			lore.add(ChatColor.GRAY + "Damage: " + ChatColor.RED + spell.damage);
+			if (spell.mana != 0) lore.add(ChatColor.GRAY + "Mana Cost: " + ChatColor.AQUA + spell.mana);
+			if (spell.pierces > 0) lore.add(ChatColor.GRAY + "Pierces: " + ChatColor.GREEN + spell.pierces);
+		}
 		if (!meta.getPersistentDataContainer().get(kEnchants, PersistentDataType.STRING).equals(""))
 		{
 			if (item.type != "armour") meta.addEnchant(Enchantment.DURABILITY, 1, true);
 			lore.add("");
 			ArrayList<AbsEnchant> enchants = EnchantManager.get(meta.getPersistentDataContainer());
-			for (AbsEnchant e : enchants)
+			if (enchants.size() > 8)
 			{
-				if (e.level < e.max()) lore.add(ChatColor.DARK_PURPLE + e.name());
-				else if (e.level == e.max()) lore.add(ChatColor.BLUE + e.name());
-				else lore.add(ChatColor.GOLD + e.name());
-				if (enchants.size() <= 4) lore.add(ChatColor.LIGHT_PURPLE + " " + e.description());
+				boolean next = false;
+				String lor = "";
+				for (AbsEnchant e : enchants)
+				{
+					if (!next)
+					{
+						if (e.level < e.max()) lor = ChatColor.DARK_PURPLE + e.name();
+						else if (e.level == e.max()) lor = ChatColor.BLUE + e.name();
+						else lor = ChatColor.GOLD + e.name();
+						next = true;
+					}
+					else
+					{
+						if (e.level < e.max()) lor = lor + ", " + ChatColor.DARK_PURPLE + e.name();
+						else if (e.level == e.max()) lor = lor + ", " + ChatColor.BLUE + e.name();
+						else lor = lor + ", " + ChatColor.GOLD + e.name();
+						lore.add(lor);
+						next = false;
+					}
+				}
+				if (next) lore.add(lor);
+			}
+			else
+			{
+				for (AbsEnchant e : enchants)
+				{
+					if (e.level < e.max()) lore.add(ChatColor.DARK_PURPLE + e.name());
+					else if (e.level == e.max()) lore.add(ChatColor.BLUE + e.name());
+					else lore.add(ChatColor.GOLD + e.name());
+					if (enchants.size() <= 4) lore.add(ChatColor.LIGHT_PURPLE + " " + e.description());
+				}
 			}
 		}
 		else 
@@ -872,6 +933,7 @@ public class ItemBuilder
 	 * 2 = item is a book!
 	 * 3 = catalyst is incorrect
 	 * 4 = item missing
+	 * 5 = max level
 	 */
 	public static int canEnchant(ItemStack item1,ItemStack item2,ItemStack catalyst)
 	{
@@ -883,6 +945,10 @@ public class ItemBuilder
 		if (item != null) type = item.type;
 		int c = Integer.parseInt(catalyst.getItemMeta().getPersistentDataContainer().get(kItem, PersistentDataType.STRING).split("=")[1]);
 		//if (type.equals("book")) return 2;
+		if (bothBooks(item1,item2))
+		{
+			for (AbsEnchant e : enchants) if (e.level == e.max()) return 5;
+		}
 		if (bothBooks(item1,item2) && EnchantManager.catalyst(item2) == c) return 0;
 		if (EnchantManager.catalyst(item2) != c) return 3;
 		for (AbsEnchant e : enchants) if (!e.type().equals(type)) return 1;
@@ -927,10 +993,12 @@ public class ItemBuilder
 	
 	public static String getItem(ItemStack item)
 	{
+		if (!item.hasItemMeta()) return null;
 		return item.getItemMeta().getPersistentDataContainer().get(kItem, PersistentDataType.STRING);
 	}
 	public static String getEnchants(ItemStack item)
 	{
+		if (!item.hasItemMeta()) return null;
 		return item.getItemMeta().getPersistentDataContainer().get(kEnchants, PersistentDataType.STRING);
 	}
 	public static Item get(ItemStack item)

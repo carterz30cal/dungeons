@@ -14,10 +14,10 @@ public class BoundingBox
 	public Location first;
 	public Location second;
 	
-	public BoundingBox(Location f,Location s)
+	public BoundingBox(Location location,Location location2)
 	{
-		first = f;
-		second = s;
+		first = location;
+		second = location2;
 	}
 	
 	public boolean isInside(Location i)

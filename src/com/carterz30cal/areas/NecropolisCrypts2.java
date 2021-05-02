@@ -22,6 +22,7 @@ import com.carterz30cal.items.ItemBuilder;
 import com.carterz30cal.player.DungeonsPlayer;
 import com.carterz30cal.player.DungeonsPlayerManager;
 import com.carterz30cal.utility.ArmourstandFunctions;
+import com.carterz30cal.utility.Stats;
 
 import net.md_5.bungee.api.ChatColor;
 
@@ -59,33 +60,45 @@ public class NecropolisCrypts2 extends AbsDungeonEvent
 	private final String[] mobs_tough2 = {"crypts_zombie2","crypts_hulk","crypts_mage2","crypts_skeletoncaptain","crypts_skeletoncommander"};
 	private final String[] mobs_wet2 = {"crypts_hulk"};
 	
+	
+	
+	private CryptMobs mobs_ancient;
+	private CryptLootTable loot_ancient;
+	private CryptBlocks blocks_ancient;
+	private final String[] ancient_regular = {"cryptsa_ghoul"};
+	private final String[] ancient_loot = {"cryptsa_ghoul","cryptsa_mage","cryptsa_assassin"};
+	
+	
+	
+	
 	public NecropolisCrypts2()
 	{
 		super();
 		
 		loot = new CryptLootTable();
-		loot.loot.add(new CryptLoot("bone",600));
-		loot.loot.add(new CryptLoot("tissue",315));
-		loot.loot.add(new CryptLoot("gel",105));
+		loot.loot.add(new CryptLoot("bone",650));
+		loot.loot.add(new CryptLoot("tissue",415));
+		loot.loot.add(new CryptLoot("gel",150));
 		loot.loot.add(new CryptLoot("stick_bone",15));
 		loot.loot.add(new CryptLoot("stick_gel",4));
 		loot.loot.add(new CryptLoot("decaying_flesh",16));
 		loot.loot.add(new CryptLoot("crypt_dust",21));
 		loot.loot.add(new CryptLoot("catalyst=0",3));
-		loot.loot.add(new CryptLoot("book","polished,1",9));
+		loot.loot.add(new CryptLoot("book","polished,1",8));
 		loot.loot.add(new CryptLoot("book","polished,2",1));
-		loot.loot.add(new CryptLoot("book","strength,1",3));
+		loot.loot.add(new CryptLoot("book","strength,1",4));
 		loot.loot.add(new CryptLoot("armour_crypt_helmet",2));
 		loot.loot.add(new CryptLoot("armour_crypt_chestplate",1));
 		loot.loot.add(new CryptLoot("armour_crypt_leggings",1));
 		loot.loot.add(new CryptLoot("armour_crypt_boots",2));
 		loot.loot.add(new CryptLoot("sword_cryptknight",1));
+		loot.loot.add(new CryptLoot("crypt_stone",3));
 		loot.itemsPerChest = new int[] {5,12};
 		loot.init();
 		
 		loot2 = new CryptLootTable();
-		loot2.loot.add(new CryptLoot("bone",2000));
-		loot2.loot.add(new CryptLoot("gel",350));
+		loot2.loot.add(new CryptLoot("bone",2500));
+		loot2.loot.add(new CryptLoot("gel",500));
 		loot2.loot.add(new CryptLoot("crypt_dust",60));
 		loot2.loot.add(new CryptLoot("decaying_flesh",45));
 		loot2.loot.add(new CryptLoot("strange_tissue",10));
@@ -100,7 +113,8 @@ public class NecropolisCrypts2 extends AbsDungeonEvent
 		loot2.loot.add(new CryptLoot("armour_crypt2_chestplate",1));
 		loot2.loot.add(new CryptLoot("armour_crypt2_leggings",2));
 		loot2.loot.add(new CryptLoot("armour_crypt2_boots",4));
-		loot2.loot.add(new CryptLoot("sword_cryptknight",3));
+		loot2.loot.add(new CryptLoot("sword_cryptknight",2));
+		loot.loot.add(new CryptLoot("crypt_stone",4));
 		loot2.itemsPerChest = new int[] {3,14};
 		loot2.init();
 		
@@ -127,6 +141,33 @@ public class NecropolisCrypts2 extends AbsDungeonEvent
 		mobs2.mobs.put(CryptRoomType.RUNE, mobs_rune);
 		mobs2.mobs.put(CryptRoomType.WET, mobs_wet2);
 		mobs2.mobs.put(CryptRoomType.MINIBOSS,mobs_miniboss);
+		
+		
+		blocks_ancient = new CryptBlocks();
+		blocks_ancient.floor = new Material[] {Material.GRANITE,Material.POLISHED_GRANITE,Material.NETHERRACK};
+		blocks_ancient.walls = new Material[] {Material.GRANITE,Material.POLISHED_GRANITE,Material.NETHERRACK};
+		blocks_ancient.roof = new Material[] {Material.GRANITE,Material.POLISHED_GRANITE,Material.NETHERRACK};
+		blocks_ancient.roomroof = new Material[] {Material.GRANITE,Material.POLISHED_GRANITE,Material.NETHERRACK,Material.GLOWSTONE};
+		blocks_ancient.path = Material.NETHER_BRICKS;
+		blocks_ancient.support = Material.NETHER_BRICK_FENCE;
+		
+		mobs_ancient = new CryptMobs();
+		mobs_ancient.mobs.put(CryptRoomType.NORMAL  ,ancient_regular);
+		mobs_ancient.mobs.put(CryptRoomType.LOOT    ,ancient_loot);
+		mobs_ancient.mobs.put(CryptRoomType.NEST	,ancient_regular);
+		mobs_ancient.mobs.put(CryptRoomType.RUNE	,mobs_rune);
+		mobs_ancient.mobs.put(CryptRoomType.WET	  	,ancient_regular);
+		mobs_ancient.mobs.put(CryptRoomType.MINIBOSS,mobs_miniboss);
+		
+		loot_ancient = new CryptLootTable();
+		loot_ancient.itemsPerChest = new int[] {10,21};
+		loot_ancient.add("digging_stone", 2000);
+		loot_ancient.add("digging_ancientstone", 50);
+		loot_ancient.add("book", 5,"cryptwarrior,1");
+		loot_ancient.add("book", 2,"shredding,1");
+		loot_ancient.add("bow_stinger", 1);
+		loot_ancient.init();
+		
 	}
 	@Override
 	public void tick()
@@ -219,6 +260,7 @@ public class NecropolisCrypts2 extends AbsDungeonEvent
 		int x = 107 + (80 * crypts.size());
 		if (difficulty == 1) starting = new CryptGenerator(x, 40, 22002,65,65,5,8,11,4,loot,mobs,blocks,30);
 		else if (difficulty == 2) starting = new CryptGenerator(x, 40, 22002,65,65,6,9,11,3,loot2,mobs2,blocks,30);
+		else if (difficulty == 4) starting = new CryptGenerator(x,40,22002,65,65,6,9,11,3,loot_ancient,mobs_ancient,blocks_ancient,10);
 		else starting = null;
 		
 		player.inCrypt = true;
@@ -251,10 +293,10 @@ public class NecropolisCrypts2 extends AbsDungeonEvent
 	@Override
 	public boolean eventInteract(PlayerInteractEvent e)
 	{
-		if (!e.hasItem() || e.getItem() == null) return false;
+		if (!e.hasItem() || e.getItem() == null || !e.getItem().hasItemMeta()) return false;
 		
 		String it = e.getItem().getItemMeta().getPersistentDataContainer().getOrDefault(ItemBuilder.kItem, PersistentDataType.STRING,"");
-		boolean key = it.equals("crypt_key1") || it.equals("crypt_key2");
+		boolean key = it.equals("crypt_key1") || it.equals("crypt_key2") || it.equals("crypt_key4");
 		if (key && DungeonManager.i.hash(e.getPlayer().getLocation().getBlockZ()) == 2
 				&& e.getClickedBlock() != null && e.getClickedBlock().getType() == Material.LODESTONE
 				&& !crypts.containsKey(DungeonsPlayerManager.i.get(e.getPlayer())))
@@ -264,6 +306,7 @@ public class NecropolisCrypts2 extends AbsDungeonEvent
 			e.getPlayer().teleport(new Location(Dungeons.w,32,101,22019,-90,0));
 			
 			e.getItem().setAmount(e.getItem().getAmount() - 1);
+			Stats.cryptsopened++;
 			return true;
 		}
 		return false;

@@ -25,6 +25,12 @@ cryptraider:
       regen: +3
     ability: cryptraider
     
+    
+sewer:
+  set:
+    lore: Where did this come from?
+    attributes:
+      mana: 150
 undeadsoldier:
   set: 
     lore: Once a brave soldier, now very dead
@@ -38,7 +44,12 @@ tissue:
     attributes:
       armour: +15
       regen: +4
-
+skin:
+  set: 
+    lore: Ok this is just wrong
+    attributes:
+      armour: +25
+      damagep: +0.1
 golem:
   set:
     lore: While hard to move, you do feel very safe

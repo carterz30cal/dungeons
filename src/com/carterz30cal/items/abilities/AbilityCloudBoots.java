@@ -57,7 +57,7 @@ public class AbilityCloudBoots extends AbsAbility
 		if (mana == 20) 
 		{
 			int mn = (int) (d.stats.mana * 0.05);
-			mn = Math.max(1, mn);
+			mn = Math.max(2, mn);
 			d.useMana(mn);
 			manas.put(d, 0);
 		}

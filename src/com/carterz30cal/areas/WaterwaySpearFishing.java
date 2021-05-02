@@ -74,7 +74,7 @@ public class WaterwaySpearFishing extends AbsDungeonEvent
 			if (boss.mob == null)
 			{
 				new DMob(DMobManager.types.get("fish3"),boss,boss.position,false);
-				for (DungeonsPlayer d : area.getWithin()) d.player.sendMessage(ChatColor.GOLD + "Fishin: " + ChatColor.GRAY + "A guardian has appeared!");
+				//for (DungeonsPlayer d : area.getWithin()) d.player.sendMessage(ChatColor.GOLD + "Fishin: " + ChatColor.GRAY + "A guardian has appeared!");
 			}
 			killsToBoss = 0;
 		}

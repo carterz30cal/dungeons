@@ -1,13 +1,14 @@
 package com.carterz30cal.enchants;
 
 import com.carterz30cal.dungeons.DungeonMiningTable;
+import com.carterz30cal.player.DungeonsPlayer;
 import com.carterz30cal.player.DungeonsPlayerStatBank;
 
 public class EnchLucky extends AbsEnchant {
 
 	@Override
 	public String description() {
-		return "Increases ore chance by " + (5*level) + "%";
+		return "Make rare ores " + (1*level) + "% more likely to appear";
 	}
 
 	@Override
@@ -34,14 +35,19 @@ public class EnchLucky extends AbsEnchant {
 		return level/3;
 	}
 
-	@Override
-	public DungeonsPlayerStatBank onBank(DungeonsPlayerStatBank bank) {
-		bank.orechance += 0.05*level;
-		return bank;
+	public double setRareOreMultiplier(DungeonsPlayer player,double chance)
+	{
+		return chance + (level*0.01);
 	}
 
 	@Override
 	public DungeonMiningTable onMine(DungeonMiningTable mine) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public DungeonsPlayerStatBank onBank(DungeonsPlayerStatBank bank) {
 		// TODO Auto-generated method stub
 		return null;
 	}

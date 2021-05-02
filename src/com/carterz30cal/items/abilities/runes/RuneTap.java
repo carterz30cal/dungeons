@@ -20,7 +20,7 @@ public class RuneTap extends AbsAbility
 	public ArrayList<String> description() {
 		ArrayList<String> d = new ArrayList<String>();
 		d.add(rune + "Tap");
-		d.add("Regain 8 mana every hit");
+		d.add("Regain 4% of your mana every hit");
 		return d;
 	}
 
@@ -36,7 +36,7 @@ public class RuneTap extends AbsAbility
 			laser.add(dx, dy, dz);
 			Dungeons.w.spawnParticle(Particle.REDSTONE, laser, 2, 0d, 0d, 0d, new DustOptions(Color.AQUA,0.5f));
 		}
-		d.gainMana(8);
+		d.gainMana((int) (d.stats.mana * 0.04));
 		return damage;
 	} 
 }

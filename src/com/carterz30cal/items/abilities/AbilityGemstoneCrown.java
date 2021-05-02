@@ -9,17 +9,14 @@ import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.Particle.DustOptions;
-import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 
 import com.carterz30cal.dungeons.Dungeons;
-import com.carterz30cal.dungeons.IndicatorTask;
 import com.carterz30cal.mobs.DMob;
 import com.carterz30cal.mobs.DMobManager;
+import com.carterz30cal.mobs.DamageType;
 import com.carterz30cal.player.DungeonsPlayer;
-import com.carterz30cal.player.ListenerEntityDamage;
-import com.carterz30cal.utility.RandomFunctions;
 
 public class AbilityGemstoneCrown extends AbsAbility
 {
@@ -68,13 +65,8 @@ public class AbilityGemstoneCrown extends AbsAbility
 		
 		int damage = (int) (d.getMana() * 0.2);
 		d.useMana(damage);
-		closest.damage(damage * 3, d.player);
-		Location hitloc = RandomFunctions.offset(closest.entities.get(0).getLocation(), 0.6).add(0,1,0);
-		ArmorStand h = DMobManager.hit(closest.entities.get(0), damage * 3,ChatColor.AQUA);
 		
-		IndicatorTask t = new IndicatorTask(h,hitloc);
-		t.runTaskTimer(Dungeons.instance, 1,15);
-		ListenerEntityDamage.indicators.add(t);
+		closest.damage((int) (damage * 2.5), d, DamageType.MAGIC);
 		
 		Location laser = d.player.getEyeLocation();
 		Location l = ((LivingEntity)closest.entities.get(0)).getEyeLocation();

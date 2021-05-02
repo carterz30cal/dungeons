@@ -8,7 +8,7 @@ public class EnchSpirit extends AbsEnchant {
 	@Override
 	public String description() {
 		// TODO Auto-generated method stub
-		return "+" + (level*3) + " mana per damage, -" + level + " mana per armour";
+		return "+" + (10*level) + "% mana";
 	}
 
 	@Override
@@ -20,7 +20,7 @@ public class EnchSpirit extends AbsEnchant {
 	@Override
 	public int max() {
 		// TODO Auto-generated method stub
-		return 5;
+		return 3;
 	}
 
 	@Override
@@ -44,8 +44,7 @@ public class EnchSpirit extends AbsEnchant {
 	@Override
 	public DungeonsPlayerStatBank onBank(DungeonsPlayerStatBank bank)
 	{
-		bank.mana += level * bank.base.getOrDefault("damage", 0d) * 3;
-		bank.mana -= level * bank.base.getOrDefault("armour", 0d);
+		bank.mana += bank.base.getOrDefault("mana", 0d) * (0.1*level);
 		return bank;
 	}
 

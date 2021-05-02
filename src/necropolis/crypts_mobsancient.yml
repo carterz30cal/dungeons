@@ -1,0 +1,71 @@
+cryptsa_ghoul:
+  name: Ancient Crypt Ghoul
+  type: HUSK
+  health: 3300
+  armour: 15
+  damage: 150
+  speed: 0.7
+  level: 8
+  kbresist: 1
+  tags: ghoul,ancient,crypt
+  equipment: 
+    helmet: CHAINMAIL_HELMET
+    chestplate: CHAINMAIL_CHESTPLATE
+    boots: CHAINMAIL_BOOTS
+    main: NETHERITE_SWORD
+    
+    
+cryptsa_assassin:
+  name: Ancient Assassin
+  type: SKELETON
+  health: 700
+  damage: 280
+  speed: 1.25
+  level: 10
+  equipment:
+    main: BOW
+    helmet: armour_ancientassassin_helmet
+    chestplate: CHAINMAIL_CHESTPLATE
+    leggings: CHAINMAIL_LEGGINGS
+    boots: CHAINMAIL_BOOTS
+  abilities:
+    swap:
+      distance: 2
+      swap: IRON_SWORD
+  drops:
+    sword_ancientassassin:
+      drop: 1/500
+      amount: 1-1
+      rare: true
+    armour_ancientassassin_helmet:
+      drop: 1/300
+      amount: 1-1
+      rare: true
+cryptsa_mage:
+  name: Ancient Crypt Mage
+  type: SKELETON
+  health: 6000
+  damage: 90
+  speed: 0.1
+  level: 8
+  equipment: 
+    main: STICK
+    helmet: armour_ancientsewer_helmet
+    chestplate: armour_cultist_chestplate
+    leggings: armour_cultist_leggings
+    boots: armour_cultist_boots
+  drops:
+    spell_sewerscroll:
+      drop: 1/80
+      amount: 1-1
+    decaying_flesh:
+      drop: 1/5
+      amount: 1-1
+  abilities:
+    caster:
+      projectiles: -1
+      speed: 7
+      range: 14
+      damage: 68
+      cooldown: 30
+      colour: 61,168,214

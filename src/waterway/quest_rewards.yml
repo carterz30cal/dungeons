@@ -5,7 +5,7 @@ sword_zombiejim:
   item: FLINT
   ability: handsomereward
   attributes:
-    damage: +6
+    damage: +11
     
 armour_zombiejim_chestplate:
   name: Enchanted Chestplate
@@ -15,8 +15,8 @@ armour_zombiejim_chestplate:
   colour: 227,193,191
   glow: true
   attributes:
-    bonusxp: +0.3
-    damagep: -0.6
+    bonusxp: +0.25
+    damagep: -0.5
 armour_zombiejim_boots:
   name: Jim's Favourite Slippers
   type: armour
@@ -25,6 +25,6 @@ armour_zombiejim_boots:
   colour: 255,173,171
   req: 6
   attributes:
-    health: +250
-    armour: +20
+    health: +225
+    armour: +15
     regen: -100

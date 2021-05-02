@@ -46,12 +46,20 @@ public class Quest
 	{
 		questgiver = npc;
 		questgiver.quests.add(this);
+		
+		id = questgiver.name + "_" + questgiver.quests.size();
 	}
 	public void setText(String[] st,String[] mid,String[] e)
 	{
 		start = st;
 		repeat = mid;
 		end = e;
+	}
+	public void setText(String st,String mid,String e)
+	{
+		start = st.split(";");
+		repeat = mid.split(";");
+		end = e.split(";");
 	}
 	public void setItem(String i,int a)
 	{
@@ -72,6 +80,13 @@ public class Quest
 		coins = c;
 		xp = 0;
 	}
+	public void setReward(String item,int a,int c,int x)
+	{
+		if (item == null) reward = null;
+		else reward = ItemBuilder.i.build(item, a);
+		coins = c;
+		xp = x;
+	}
 	public void setReward(String item,String enchants,int a,int c)
 	{
 		if (item == null) reward = null;
@@ -82,6 +97,11 @@ public class Quest
 	public void setReward(int x)
 	{
 		xp = x;
+	}
+	public void setReward(int x,int c)
+	{
+		xp = x;
+		coins = c;
 	}
 	public void interact(Player p)
 	{
@@ -101,7 +121,7 @@ public class Quest
 			if (i != null && i.hasItemMeta() && i.getAmount() >= amount)
 			{
 				String type = i.getItemMeta().getPersistentDataContainer().get(ItemBuilder.kItem, PersistentDataType.STRING);
-				if (type.equals(item))
+				if (type != null && type.equals(item))
 				{
 					if (consumes) i.setAmount(Math.max(0, i.getAmount()-amount));
 					dia = end;
@@ -182,19 +202,73 @@ public class Quest
 						,"This one feels more powerful","Maybe I'll find some material for my new book while out exploring!"});
 		Quest zombiejim_6 = new Quest(zombiejim);
 		zombiejim_6.id = "zombiejim_6";
-		zombiejim_6.item = "crypt_key";
-		zombiejim_6.amount = 5;
+		zombiejim_6.item = "crypt_key1";
+		zombiejim_6.amount = 4;
 		zombiejim_6.consumes = true;
 		zombiejim_6.setReward("armour_zombiejim_boots", 1, 0);
 		zombiejim_6.setText(new String[] {"Hi friend","I think I am going to retire to the Crypts soon",
-				"I have one last job for you","To get back to the Crypts, I'll need enough Crypt Keys, 5 should cut it"
+				"I have one last job for you","To get back to the Crypts, I'll need enough Crypt Keys, 4 should cut it"
 				,"I don't think you'll find any here, you'll need to look elsewhere"},
 				new String[] {"Apparently a merchant in Necropolis sells them"},
 				new String[] {"You are a true friend","I'll leave you with my favourite slippers"
 						,"I fashioned them out of those water boots you gave me","They're pretty nice, if I say so myself"});
 		
-		QuestNpc clucky = new QuestNpc(new Location(Dungeons.w,-42,118.9,21005,77.5f,-16),EntityType.CHICKEN,"Clucky",Sound.ENTITY_CHICKEN_HURT);
+		QuestNpc clucky = new QuestNpc(new Location(Dungeons.w,-60.5,100,21021.5,177,0),EntityType.CHICKEN,"Clucky",Sound.ENTITY_CHICKEN_HURT);
 		
+		/*
+		 * CLUCKYS QUESTS
+		 * #1 = fetch him 6 water fragments D
+		 * #2 = fetch him 10 fish D
+		 * #3 = an ocean blade D
+		 * #4 = 3 royal leaf D
+		 * #5 = ocean chestplate D
+		 * #5.1 = 4 storm crystals. D
+		 * #6 = hyperspear D
+		 * #7 = titan plate
+		 * #8 = titan helm
+		 * #9 = 1 venomous eye
+		 * #10 = 2 holy water fragments
+		 * 
+		 * 
+		 */
+		
+		Quest cluckyn_1 = new Quest(clucky);
+		cluckyn_1.setItem("water_fragment", 6);
+		cluckyn_1.setText("I'm brewing something really cool.;Can you fetch me 6 water fragments?", "I need 6 water fragments.", "Thanks!;Have 100 coins!");
+		cluckyn_1.setReward(50, 100);
+		
+		Quest cluckyn_2 = new Quest(clucky);
+		cluckyn_2.setItem("fishing_fish", 10);
+		cluckyn_2.setText("Can you get me 10 fish please?;They're essential for my potion!", "I need 10 fish for my potion.", "Have 200 coins!");
+		cluckyn_2.setReward(75, 200);
+		
+		Quest cluckyn_3 = new Quest(clucky);
+		cluckyn_3.setItem("sword_ocean", 1,true);
+		cluckyn_3.setText("I need a sword.;Can you get an ocean blade?", "I want an ocean blade.", "Yay!;I can fight monsters now.;Have 275 coins!");
+		cluckyn_3.setReward(100,275);
+		
+		Quest cluckyn_4 = new Quest(clucky);
+		cluckyn_4.setItem("royalleaf", 3);
+		cluckyn_4.setText("This next one is a little more tricky.;I need 3 royal leaves, which spawns rarely while mining.;You up for it?", "3 royal leaves please.",
+				"You're pretty good at this.;Have my old pickaxe!");
+		cluckyn_4.setReward("pickaxe_clucky", 1, 0);
+		
+		Quest cluckyn_5 = new Quest(clucky);
+		cluckyn_5.setItem("armour_ocean_chestplate", 1);
+		cluckyn_5.setText("Waterway isn't very warm.;You reckon you can get me an ocean chestplate?", "An ocean chestplate, please!", "Thanks for your help!;Have 500 coins.");
+		cluckyn_5.setReward(150, 500);
+		
+		Quest cluckyn_6 = new Quest(clucky);
+		cluckyn_6.setItem("storm_crystals", 4);
+		cluckyn_6.setText("4 storm crystals please!", "You'll find them on Soaked during the rain event.", "Wow thanks!");
+		cluckyn_6.setReward(200);
+		
+		Quest cluckyn_7 = new Quest(clucky);
+		cluckyn_7.setItem("sword_hyperspear", 1);
+		cluckyn_7.setText("Turns out the ocean blade isn't for me.;Can you fetch me a hyperspear?", "I want a hyperspear.", "You're amazing!;Have this midas flint!");
+		cluckyn_7.setReward("sharpener_midas", 1, 0,700);
+		
+		/*
 		Quest clucky_1 = new Quest(clucky);
 		clucky_1.id = "clucky_1";
 		clucky_1.setItem("fishing_fish", 1);
@@ -229,7 +303,7 @@ public class Quest
 				new String[] {"The Fisherman sells handcrafted bowls"},
 				new String[] {"Perfectly crafted!","This may take some time to brew.",
 						"Have this midas flint."});
-		
+		*/
 		QuestNpc john = new QuestNpc(new Location(Dungeons.w,-22.5,88,22063.5,-90,0),EntityType.ZOMBIE,"John",Sound.ENTITY_ZOMBIE_HURT);
 		Quest john_1 = new Quest(john);
 		john_1.id = "john_1";
@@ -238,6 +312,16 @@ public class Quest
 		john_1.setText(new String[] {"I need an enchanted mushroom. This guy called the Shroom King has one, but he's kinda scary."
 				,"Do you think you could get it from him?"
 		}, new String[] {"The Shroom King lives just in this tunnel."}, new String[] {"Oh thank you ever so much!"});
+		
+		QuestNpc letty = new QuestNpc(new Location(Dungeons.w,-108.5,104,20979.5,-52,-2),EntityType.SKELETON,"Letty",Sound.ENTITY_SKELETON_STEP);
+		Quest letty_1 = new Quest(letty);
+		letty_1.id = "letty_1";
+		letty_1.setItem("armour_waterway_boots",1);
+		letty_1.consumes = false;
+		letty_1.setReward(400,2000);
+		letty_1.setText(new String[] {"I've heard the boss has these real fancy boots.","According to others, they're pretty hard to get.",
+		"Show me some and i'll reward you with a heap of coins."},new String[] {"I want to see the rare boots the boss drops."}, new String[] {"So they do exist!?","Thank youu!"});
+		
 	}
 	public static void remove()
 	{

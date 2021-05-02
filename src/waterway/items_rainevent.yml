@@ -20,9 +20,10 @@ sword_stormbreaker:
   rarity: UNUSUAL
   item: DIAMOND_AXE
   ability: stormbreaker
+  req: 6
   attributes:
-    damage: +30
-    regen: +5
+    damage: +34
+    regen: +6
 
 sword_stormfork:
   name: Stormfork
@@ -30,6 +31,7 @@ sword_stormfork:
   rarity: UNUSUAL
   item: TRIDENT
   ability: stormfork
+  req: 7
   attributes:
     damage: +40
     regen: +5
@@ -40,7 +42,7 @@ armour-storm:
   rarity: UNUSUAL
   item: DIAMOND
   set: storm
+  req: 5
   attributes:
-    damagep: 0.05,0.05,0.05,0.05
-    regen: 2,2,2,2
+    regen: 5,8,5,6
   

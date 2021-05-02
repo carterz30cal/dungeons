@@ -45,6 +45,8 @@ fishing_pearl:
   rarity: RARE
   item: HEART_OF_THE_SEA
   
+
+  
 bow_pond:
   name: Bow of the Pond
   type: weapon

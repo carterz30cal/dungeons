@@ -6,7 +6,7 @@ armour-bone:
   colour: 200,200,200
   req: 8
   attributes:
-    armour: 50,60,55,45
+    armour: 50,60,55,50
 armour-tissue:
   name: Tissue
   suffix: Helmet,Chestplate,Leggings,Shoes

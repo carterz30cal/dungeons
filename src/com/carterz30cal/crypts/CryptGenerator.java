@@ -104,12 +104,12 @@ public class CryptGenerator
 				else
 				{
 					CryptRoom r;
-					if (room != 2 && RandomFunctions.random(0, 9) == 0 && !hasRune) 
+					if (room > 3 && RandomFunctions.random(0, 9) == 4 && !hasRune) 
 					{
 						r = new RuneRoom(room,lx,lz,new int[] {rx,rz},new int[] {rx+rsx-1,rz+rsz-1},ly+1,table);
 						hasRune = true;
 					}
-					if (room == 3)
+					else if (room == 3)
 					{
 						r = new MinibossRoom(room,lx,lz,new int[] {rx,rz},new int[] {rx+rsx-1,rz+rsz-1},ly+1,table);
 						hasMini = true;

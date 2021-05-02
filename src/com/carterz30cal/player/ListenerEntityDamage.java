@@ -14,7 +14,6 @@ import org.bukkit.craftbukkit.v1_16_R3.inventory.CraftItemStack;
 import org.bukkit.entity.AbstractArrow;
 import org.bukkit.entity.AbstractArrow.PickupStatus;
 import org.bukkit.entity.ArmorStand;
-import org.bukkit.entity.Damageable;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
@@ -31,33 +30,38 @@ import org.bukkit.event.entity.EntityRegainHealthEvent;
 import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.event.entity.EntityTameEvent;
+import org.bukkit.event.entity.EntityTargetEvent;
 import org.bukkit.event.entity.ExplosionPrimeEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.event.entity.SlimeSplitEvent;
 import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.event.player.PlayerFishEvent.State;
+import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.projectiles.ProjectileSource;
+import org.bukkit.util.Vector;
 
 import com.carterz30cal.dungeons.Dungeons;
 import com.carterz30cal.dungeons.IndicatorTask;
 import com.carterz30cal.dungeons.SoundTask;
 import com.carterz30cal.enchants.AbsEnchant;
-import com.carterz30cal.enchants.EnchantManager;
 import com.carterz30cal.items.Item;
 import com.carterz30cal.items.ItemBuilder;
 import com.carterz30cal.items.abilities.AbilityManager;
 import com.carterz30cal.items.abilities.AbsAbility;
 import com.carterz30cal.mobs.DMob;
 import com.carterz30cal.mobs.DMobManager;
-import com.carterz30cal.mobs.abilities.DMobAbility;
+import com.carterz30cal.mobs.DamageType;
+import com.carterz30cal.mobs.SpawnPosition;
 import com.carterz30cal.tasks.TaskDamageKnockback;
 import com.carterz30cal.tasks.TaskRemoveProjectile;
+import com.carterz30cal.utility.RandomFunctions;
 import com.carterz30cal.utility.StringManipulator;
 
 import net.minecraft.server.v1_16_R3.EntityThrownTrident;
@@ -153,7 +157,6 @@ public class ListenerEntityDamage implements Listener
 			Player damager;
 			int damage;
 			ArrayList<AbsAbility> abilities = new ArrayList<AbsAbility>();
-			ChatColor hit = ChatColor.WHITE;
 			
 			if (e.getDamager() instanceof AbstractArrow)
 			{
@@ -167,16 +170,16 @@ public class ListenerEntityDamage implements Listener
 				damage = arrow.getPersistentDataContainer().getOrDefault(DMobManager.arrowDamage, PersistentDataType.INTEGER,1);
 				if (e.getDamager() instanceof Trident || arrow.isCritical()) 
 				{
-					hit = ChatColor.RED;
 					new SoundTask(shooter.getLocation(),(Player)shooter,Sound.ENTITY_ARROW_HIT_PLAYER,0.7f,0.4f).runTaskLater(Dungeons.instance, 1);
 				}
 				else 
 				{
-					damage /= 2;
+					damage /= 4;
 					new SoundTask(shooter.getLocation(),(Player)shooter,Sound.ENTITY_ARROW_HIT_PLAYER,1.2f,1.1f).runTaskLater(Dungeons.instance, 1);
 				}
 				damager = (Player)shooter;
 				
+				for (AbsAbility a : DungeonsPlayerManager.i.get(damager).stats.abilities) damage = a.onArrowLand(DungeonsPlayerManager.i.get(damager), mob, damage);
 				if (e.getDamager().getType() == EntityType.TRIDENT)
 				{
 					EntityThrownTrident t = ((CraftTrident) e.getDamager()).getHandle();
@@ -185,6 +188,7 @@ public class ListenerEntityDamage implements Listener
 					
 					if (item.data.containsKey("ability")) abilities.add(AbilityManager.get((String)item.data.get("ability")));
 				}
+				else e.getDamager().remove();
 			}
 			else if (e.getDamager() instanceof Player)
 			{
@@ -208,41 +212,76 @@ public class ListenerEntityDamage implements Listener
 			abilities.addAll(dp.stats.abilities);
 			//for (AbsAbility a : abilities) damage = a.onAttack(dp, mob,damage);
 			
-			for (DMobAbility mab : mob.type.abilities) damage = mab.damaged(mob, dp,damage);
+			
+			for (AbsEnchant a : dp.stats.ench) damage += a.onHit(dp, mob);
 			damage = Math.max(0, damage);
-			mob.damage(damage, damager,abilities);
 			
+			mob.damage(damage, dp, DamageType.PHYSICAL);
+			e.setCancelled(true);
 			
-			Location hitLocation = e.getEntity().getLocation().subtract(e.getEntity().getLocation().subtract(damager.getLocation()).multiply(0.3))
-					.add(0,1.25,0);
-			ArmorStand h = DMobManager.hit(e.getEntity(), mob.lastDamage,hit);
-			
-			IndicatorTask t = new IndicatorTask(h,hitLocation);
-			t.runTaskTimer(Dungeons.instance, 1,15);
-			indicators.add(t);
+			if (damager.getAttackCooldown() > 0.9)
+			{
+				List<DMob> hitted = new ArrayList<>();
+				for (Entity en : Dungeons.w.getNearbyEntities(mob.entities.get(0).getLocation(), 1, 1, 1))
+				{
+					DMob enm = DMobManager.get(en);
+					if (enm == null || enm == mob) continue;
+					if (!hitted.contains(enm))
+					{
+						hitted.add(enm);
+						enm.damage(dp.stats.damageSweep, dp, DamageType.PHYSICAL);
+					}
+				}
+			}
 
-			((LivingEntity)e.getEntity()).setNoDamageTicks(0);
+			//((LivingEntity)e.getEntity()).setNoDamageTicks(0);
 			if (mob.type.kbresist*(1/damager.getAttackCooldown()) > Math.random() || (mob.modifier != null && mob.modifier.dmgresist > 0.45))
 			{
-				if (e.getEntity() instanceof Damageable) new TaskDamageKnockback(e.getEntity(),0).runTaskLater(Dungeons.instance, 1);
+				//if (e.getEntity() instanceof Damageable) new TaskDamageKnockback(e.getEntity(),0).runTaskLater(Dungeons.instance, 1);
 			}
-			if (damager.getInventory().getItemInMainHand().hasItemMeta()) for (AbsEnchant en : EnchantManager.get(damager.getInventory().getItemInMainHand().getItemMeta().getPersistentDataContainer())) if (en != null) en.onHitAfter(dp, mob,h);
-
+			else
+			{
+				Vector kb = dp.player.getLocation().getDirection().normalize();
+				kb.multiply(0.45);
+				kb.setY(0.3);
+				mob.entities.get(0).setVelocity(kb);
+			}
+			//if (damager.getInventory().getItemInMainHand().hasItemMeta()) for (AbsEnchant en : EnchantManager.get(damager.getInventory().getItemInMainHand().getItemMeta().getPersistentDataContainer())) if (en != null) en.onHitAfter(dp, mob,h);
+			for (AbsEnchant ench : dp.stats.ench) ench.afterHit(dp, mob);
 		}
 	}
 	
 	@EventHandler
 	public void onFish(PlayerFishEvent e)
 	{
+		DungeonsPlayer d = DungeonsPlayerManager.i.get(e.getPlayer());
 		if (e.getState() == State.CAUGHT_ENTITY && e.getCaught() instanceof LivingEntity)
 		{
 			if (e.getCaught() instanceof Player) e.setCancelled(true);
 			else ((LivingEntity)e.getCaught()).damage(0, e.getPlayer());
 		}
-		if (e.getState() == State.CAUGHT_FISH || e.getState() == State.BITE) e.setCancelled(true);
+		if (e.getState() == State.FISHING) 
+		{
+			e.getHook().setMinWaitTime(20);
+			e.getHook().setMaxWaitTime(Math.max(20, 100 - (d.stats.fishingspeed-100)));
+			e.getHook().setApplyLure(false);
+		}
+		else if (e.getState() == State.CAUGHT_FISH) 
+		{
+			if (d.stats.heldtype.equals("rod") && e.getState() == State.CAUGHT_FISH)
+			{
+				String f = RandomFunctions.get(d.area.fishingmobs);
+				if (RandomFunctions.random(1, 100) > d.stats.luck) f = null;
+				for (AbsAbility a : d.stats.abilities) f = a.onFishIn(d, f);
+				if (f != null && !f.equals("none")) DMobManager.spawn(f, new SpawnPosition(e.getHook().getLocation()));
+				else if (f == null) d.player.sendMessage(ChatColor.RED + "You reeled in nothing.");
+			}
+			e.getCaught().remove();
+			e.setExpToDrop(0);
+		}
 	}
 	
-	
+	// 0,100,-1000
 	
 	
 	@EventHandler(priority=EventPriority.LOWEST)
@@ -299,6 +338,12 @@ public class ListenerEntityDamage implements Listener
 		}
 	}
 	
+	@EventHandler
+	public void onMove(PlayerMoveEvent e)
+	{
+		if (e instanceof PlayerTeleportEvent) return;
+		DungeonsPlayerManager.i.get(e.getPlayer()).afk = 0;
+	}
 	@EventHandler(priority=EventPriority.LOWEST)
 	public void onEntityDamage(EntityDamageEvent e)
 	{
@@ -420,6 +465,20 @@ public class ListenerEntityDamage implements Listener
 			}
 		}
 	}
+	
+	@EventHandler
+	public void onEntityTarget(EntityTargetEvent e)
+	{
+		DMob m = DMobManager.get(e.getEntity());
+		if (e.getTarget() instanceof Player && m != null)
+		{
+			DungeonsPlayer target = DungeonsPlayerManager.i.get((Player) e.getTarget());
+			if (target == null) return;
+			for (AbsAbility a : target.stats.abilities) if (!a.allowTarget(target, m)) e.setCancelled(true);
+		}
+		
+	}
+	
 	@EventHandler
     public void onPlayerRegainHealth(EntityRegainHealthEvent event)
 	{
@@ -432,5 +491,6 @@ public class ListenerEntityDamage implements Listener
 	{
 		if (e.getEntity() instanceof LivingEntity) ((LivingEntity)e.getEntity()).getEquipment().clear();
 	}
+	
 	
 }

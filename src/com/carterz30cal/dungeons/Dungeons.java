@@ -8,6 +8,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.inventory.Inventory;
 import java.io.File;
 import java.io.IOException;
@@ -17,31 +18,49 @@ import java.util.Random;
 
 import com.carterz30cal.areas.EventTicker;
 import com.carterz30cal.areas.NecropolisCrypts2;
+import com.carterz30cal.areas.WaterwayBoss;
 import com.carterz30cal.areas.WaterwayRain;
 import com.carterz30cal.areas.WaterwaySpearFishing;
 import com.carterz30cal.bosses.BossManager;
 import com.carterz30cal.commands.CommandDungeons;
 import com.carterz30cal.commands.CommandHub;
 import com.carterz30cal.commands.CommandLeaderboard;
+import com.carterz30cal.commands.CommandMarket;
+import com.carterz30cal.commands.CommandPlaytime;
+import com.carterz30cal.commands.CommandStats;
 import com.carterz30cal.commands.CommandTrade;
 import com.carterz30cal.crafting.RecipeManager;
 import com.carterz30cal.enchants.EnchantManager;
 import com.carterz30cal.gui.ListenerGUIEvents;
+import com.carterz30cal.gui.MarketGUI;
 import com.carterz30cal.items.ItemBuilder;
 import com.carterz30cal.items.ShopManager;
 import com.carterz30cal.items.abilities.AbilityManager;
+import com.carterz30cal.items.abilities.AbsAbility;
+import com.carterz30cal.mining.TaskMining;
 import com.carterz30cal.mobs.DMobManager;
 import com.carterz30cal.mobs.ListenerChunkUnload;
 import com.carterz30cal.mobs.ListenerDismountEvent;
 import com.carterz30cal.npcs.NPCManager;
 import com.carterz30cal.packets.Packetz;
+import com.carterz30cal.player.DungeonsPlayer;
 import com.carterz30cal.player.DungeonsPlayerManager;
 import com.carterz30cal.player.ListenerBlockEvents;
 import com.carterz30cal.player.ListenerEntityDamage;
 import com.carterz30cal.quests.Quest;
+import com.carterz30cal.quests.TutorialManager;
 import com.carterz30cal.tasks.TaskBlockReplace;
 import com.carterz30cal.tasks.TaskSpawn;
 import com.carterz30cal.utility.RandomFunctions;
+import com.comphenix.protocol.PacketType;
+import com.comphenix.protocol.ProtocolLibrary;
+import com.comphenix.protocol.events.ListenerPriority;
+import com.comphenix.protocol.events.PacketAdapter;
+import com.comphenix.protocol.events.PacketContainer;
+import com.comphenix.protocol.events.PacketEvent;
+import com.comphenix.protocol.wrappers.EnumWrappers;
+
+import net.md_5.bungee.api.ChatColor;
 public class Dungeons extends JavaPlugin 
 {
 	public static Dungeons instance;
@@ -100,6 +119,7 @@ public class Dungeons extends JavaPlugin
 		new EventTicker();
 		new WaterwayRain();
 		new WaterwaySpearFishing();
+		new WaterwayBoss();
 		//new NecropolisCrypts();
 		new NecropolisCrypts2();
 		
@@ -111,7 +131,7 @@ public class Dungeons extends JavaPlugin
 		
 		display.runTaskTimer(this, 0, 5);
 		regen.runTaskTimer(this, 0, 40);
-		new TaskSpawn().runTaskTimer(Dungeons.instance, 0, 325);
+		new TaskSpawn().runTaskTimer(Dungeons.instance, 0, 260);
 		
 		PluginManager pm = getServer().getPluginManager();
 		
@@ -126,12 +146,57 @@ public class Dungeons extends JavaPlugin
 		getCommand("warp").setExecutor(new CommandHub());
 		getCommand("leaderboard").setExecutor(new CommandLeaderboard());
 		getCommand("trade").setExecutor(new CommandTrade());
+		getCommand("market").setExecutor(new CommandMarket());
+		getCommand("stats").setExecutor(new CommandStats());
+		getCommand("playtime").setExecutor(new CommandPlaytime());
 		
 		NPCManager.sendall();
 		
 		Quest.init();
 		Packetz.init();
+		MarketGUI.init();
+		TutorialManager.init();
 		
+		new BukkitRunnable()
+		{
+
+			@Override
+			public void run() {
+				for (Player p : Bukkit.getOnlinePlayers()) p.sendMessage(ChatColor.GOLD + "Consider joining the discord! https://discord.gg/U4WsVRG");
+			}
+			
+		}.runTaskTimer(this, 20*60*30, 20*60*30);
+		
+		
+		
+		ProtocolLibrary.getProtocolManager().addPacketListener(new PacketAdapter(this, ListenerPriority.NORMAL, PacketType.Play.Client.BLOCK_DIG) {
+            @Override
+            public void onPacketReceiving(PacketEvent event){
+                PacketContainer packet = event.getPacket();
+                
+                EnumWrappers.PlayerDigType digType = packet.getPlayerDigTypes().getValues().get(0);
+                DungeonsPlayer d = DungeonsPlayerManager.i.get(event.getPlayer());
+                
+                if (digType == EnumWrappers.PlayerDigType.START_DESTROY_BLOCK && d.mining == null)
+                {
+                	new BukkitRunnable()
+                	{
+                		public void run()
+                		{
+                			Block target = d.player.getTargetBlockExact(5);
+                        	if (target == null) return;
+                    		if (d.area.mining.blocks.containsKey(target.getType())) new TaskMining(d,target);
+                		}
+                	}.runTaskLater(Dungeons.instance, 2);
+                }
+                else if (digType == EnumWrappers.PlayerDigType.ABORT_DESTROY_BLOCK && d.mining != null)
+                {
+                	d.mining.end();
+            		d.mining = null;
+                }
+                
+            }
+        });
 		
 	}
 	
@@ -187,6 +252,12 @@ public class Dungeons extends JavaPlugin
 	@Override
 	public void onDisable()
 	{
+		for (Player p : Bukkit.getOnlinePlayers()) 
+		{
+			DungeonsPlayer d = DungeonsPlayerManager.i.get(p);
+			for (AbsAbility a : d.stats.abilities) a.onEnd(d);
+			p.closeInventory();
+		}
 		DungeonsPlayerManager.i.saveAll();
 		try 
 		{

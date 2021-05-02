@@ -5,13 +5,16 @@ package com.carterz30cal.player;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 import org.bukkit.potion.PotionEffect;
@@ -25,6 +28,11 @@ import com.carterz30cal.dungeons.DungeonManager;
 import com.carterz30cal.dungeons.Dungeons;
 import com.carterz30cal.dungeons.SoundTask;
 import com.carterz30cal.gui.GUI;
+import com.carterz30cal.mining.TaskMining;
+import com.carterz30cal.packets.Packetz;
+import com.carterz30cal.utility.Square;
+
+import net.minecraft.server.v1_16_R3.PacketPlayOutEntityStatus;
 
 public class DungeonsPlayer
 {
@@ -47,6 +55,7 @@ public class DungeonsPlayer
 	public ArrayList<BackpackItem[]> backpackb;
 	
 	public HashMap<String,String> questProgress;
+	public List<String> tutorials = new ArrayList<>();
 	
 	public boolean inCrypt;
 	public CryptGenerator crypt;
@@ -54,11 +63,24 @@ public class DungeonsPlayer
 	public boolean canOpen;
 	// data for rewards
 	public Date lastLogin; // if null then this is the first login and the beginners stuff should be given.
+	public int afk;
+	
+	public Square restriction; // creative only.
 	
 	public int questcooldown;
 	
 	private int manacooldown;
+	
+	public int playtime;
+	public boolean newaccount; // only True the first login.
+	public PlayerRank rank;
+	
+	
+	public static ChatColor[] rankColours = {ChatColor.WHITE,ChatColor.GREEN,ChatColor.RED,ChatColor.LIGHT_PURPLE};
+	
+	public TaskMining mining;
 
+	@SuppressWarnings("unchecked")
 	public DungeonsPlayer(Player p)
 	{
 		FileConfiguration i = Dungeons.instance.getPlayerConfig();
@@ -87,6 +109,8 @@ public class DungeonsPlayer
 				questProgress.put(slo, i.getString(u + ".quests." + slo));
 			}
 		}
+		tutorials = (List<String>) i.getList(u + ".tutorials",new ArrayList<>());
+		playtime = i.getInt(u + ".playtime", 0);
 		
 		backpackb = new ArrayList<BackpackItem[]>();
 		if (i.contains(u + ".backpack"))
@@ -105,11 +129,24 @@ public class DungeonsPlayer
 		if (backpackb.size() == 0) backpackb.add(new BackpackItem[45]);
 		coins = Dungeons.instance.getPlayerConfig().getInt(p.getUniqueId() + ".coins", 10);
 		
+		rank = PlayerRank.values()[i.getInt(u + ".rank",0)];
+		updateRank();
 		//skills.d = this;
 		
 		crypt = null;
 	}
-
+	
+	public void updateRank()
+	{
+		player.setDisplayName(rankColours[rank.ordinal()] + player.getName() + ChatColor.RESET);
+	}
+	
+	public void setHealth(double amount)
+	{
+		amount = Math.min(1,Math.max(0, amount));
+		health = amount;
+		player.setHealth(Math.max(1, health*20));
+	}
 	public void damage(int amount,boolean penetrating)
 	{
 		int damage = amount;
@@ -120,7 +157,7 @@ public class DungeonsPlayer
 			damage = (int)Math.round((double)damage * dr);
 		}
 		
-		health -= (double)damage/stats.health;
+		health -= (double)damage/(double)stats.health;
 		player.setHealth(Math.max(1, health*20));
 		if (health <= 0)
 		{
@@ -157,6 +194,24 @@ public class DungeonsPlayer
 			*/
 		}
 	}
+	
+	public void lightning(int damage)
+	{
+		damage(damage,true);
+		Packetz.lightningAllows.put(this, Packetz.lightningAllows.getOrDefault(this, 0)+1);
+		Dungeons.w.strikeLightningEffect(player.getLocation());
+		
+		CraftPlayer c = (CraftPlayer)player;
+		PacketPlayOutEntityStatus packet = new PacketPlayOutEntityStatus (c.getHandle(),(byte)2);
+		for (Player k : Bukkit.getOnlinePlayers())
+		{
+			c = (CraftPlayer)k;
+			c.getHandle().playerConnection.sendPacket(packet);
+		}
+	}
+	
+	
+	
 	public void heal(int amount)
 	{
 		health += (double)amount/(double)stats.health;
@@ -206,7 +261,7 @@ public class DungeonsPlayer
 	}
 	public void gainMana(int amount)
 	{
-		mana = Math.max(0, Math.min(1, mana + (amount/stats.mana)));
+		mana = Math.max(0, Math.min(1, mana + ((double)amount/(double)stats.mana)));
 		showManaLevel();
 	}
 	public int getMana() {return (int)(stats.mana*mana);}

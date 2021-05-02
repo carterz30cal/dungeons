@@ -28,10 +28,11 @@ public class BackpackItem
 	
 	public void save(String path)
 	{
-		// path should be <playeruuid>.backpack
-		
-		FileConfiguration players = Dungeons.instance.getPlayerConfig();
-		
+		save(Dungeons.instance.getPlayerConfig(),path);
+	}
+	public void save(FileConfiguration players, String path)
+	{
+		if (itemType.equals("uielement")) return;
 		String slotPath = path + "." + slot;
 		if (!players.contains(slotPath))
 		{
@@ -58,6 +59,7 @@ public class BackpackItem
 	
 	public ItemStack create()
 	{
+		if (itemType.equals("uielement")) return null;
 		ItemStack base = ItemBuilder.i.build(itemType, null,enchants,sharp);
 		base = ItemBuilder.addExtras(base,extras);
 		if (!rune.equals("")) base = ItemBuilder.i.addRune(base, rune);
@@ -83,6 +85,7 @@ public class BackpackItem
 		slot = Slot;
 		
 		itemType = players.getString(path + ".itemType");
+		
 		//customName = players.getString(path + ".name","");
 		enchants = players.getString(path + ".enchants","");
 		sharp = players.getString(path + ".sharp","");

@@ -159,33 +159,7 @@ crypts_skeleton:
     armour_undeadsoldier_boots:
       drop: 1/100
       amount: 1-1
-crypts_skeleton2:
-  name: Undead Soldier
-  type: SKELETON
-  health: 900
-  armour: 10
-  damage: 145
-  kbresist: 0.6
-  level: 7
-  equipment:
-    main: IRON_SWORD
-    helmet: armour_undeadsoldier_helmet
-    chestplate: armour_undeadsoldier_chestplate
-    leggings: armour_undeadsoldier_leggings
-    boots: armour_undeadsoldier_boots
-  drops:
-    armour_undeadsoldier_helmet:
-      drop: 1/100
-      amount: 1-1
-    armour_undeadsoldier_chestplate:
-      drop: 1/100
-      amount: 1-1
-    armour_undeadsoldier_leggings:
-      drop: 1/100
-      amount: 1-1
-    armour_undeadsoldier_boots:
-      drop: 1/100
-      amount: 1-1
+
 crypts_skeletoncaptain:
   name: Undead Captain
   type: SKELETON
@@ -215,38 +189,7 @@ crypts_skeletoncaptain:
       drop: 1/90
       amount: 1-1
       
-crypts_skeletoncommander:
-  name: Undead Commander
-  type: SKELETON
-  health: 5000
-  armour: 35
-  damage: 210
-  kbresist: 1
-  speed: 1
-  level: 10
-  abilities:
-    swap:
-      distance: 3
-      swap: DIAMOND_SWORD
-  equipment:
-    main: BOW
-    helmet: armour_undeadcaptain_helmet
-    chestplate: armour_sewer_chestplate
-    leggings: armour_undeadcaptain_leggings
-    boots: DIAMOND_BOOTS
-  drops:
-    armour_undeadcaptain_helmet:
-      drop: 1/90
-      amount: 1-1
-    armour_undeadcaptain_chestplate:
-      drop: 1/90
-      amount: 1-1
-    armour_undeadcaptain_leggings:
-      drop: 1/90
-      amount: 1-1
-    armour_undeadcaptain_boots:
-      drop: 1/90
-      amount: 1-1
+
 
 crypts_reaper:
   name: Crypt Reaper

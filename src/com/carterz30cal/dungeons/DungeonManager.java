@@ -13,6 +13,7 @@ import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
+import com.carterz30cal.items.ItemBuilder;
 import com.carterz30cal.mobs.DMobManager;
 import com.carterz30cal.mobs.SpawnPosition;
 
@@ -38,22 +39,26 @@ public class DungeonManager
 		hub.spawn = new Location(Bukkit.getWorld("hub"),-10000,24,10004);
 		hub.killsperlevel = 100000;
 		warps.put("hub", hub);
-		File dataFile = new File(Dungeons.instance.getDataFolder(), "dungeons.yml");
-		if (!dataFile.exists())
-		{
-			dataFile.getParentFile().mkdirs();
-			Dungeons.instance.saveResource("dungeons.yml",false);
-		}
 		
+		File dataFile = null;
+		try
+		{
+			dataFile = File.createTempFile("dungeons", null);
+		} catch (IOException e1)
+		{
+			e1.printStackTrace();
+		}
+		if (dataFile == null) return;
+		ItemBuilder.copyToFile(Dungeons.instance.getResource("dungeons.yml"),dataFile);
 		FileConfiguration data = new YamlConfiguration();
 		try 
 		{
 			data.load(dataFile);
-        } 
+	    } 
 		catch (IOException | InvalidConfigurationException e) 
 		{
-            e.printStackTrace();
-        }
+	        e.printStackTrace();
+		}
 		
 		for (String d : data.getKeys(false))
 		{
@@ -78,6 +83,7 @@ public class DungeonManager
 				Material block = Material.valueOf(o);
 				dungeon.mining.blocks.put(block, Material.valueOf(data.getString(d + ".mining.ores." + o + ".replacement", "BEDROCK")));
 				dungeon.mining.ores.put(block, data.getString(d + ".mining.ores." + o + ".ore", "bad_item"));
+				dungeon.mining.hardness.put(block, data.getInt(d + ".mining.ores." + o + ".hardness",1000));
 			}
 			dungeon.mining.requirement = data.getInt(d + ".mining.boss.requirement", 500);
 			dungeon.mining.boss = data.getString(d + ".mining.boss.mob", "drenched0");
@@ -91,7 +97,16 @@ public class DungeonManager
 			dungeon.expl_lore = data.getString(d + ".explorer.lore",ChatColor.RED + "PLACEHOLDER");
 			dungeon.killsperlevel = data.getInt(d + ".explorer.killsperlevel",1);
 			
+			
+			String[] chance = data.getString(d + ".mining.rare.chance","0/1").split("/");
+			dungeon.mining.chance = Integer.parseInt(chance[0]);
+			dungeon.mining.outof = Integer.parseInt(chance[1]);
+			dungeon.mining.rareore = Material.valueOf(data.getString(d + ".mining.rare.material","BEDROCK"));
+			
 			dungeon.unfinished = data.getBoolean(d + ".unfinished", false);
+			
+			dungeon.fishingmobs = data.getString(d + ".fishingmobs","").split(",");
+			
 			warps.put(d, dungeon);
 			dungeons.put(hash, dungeon);
 			ordered.add(dungeon);

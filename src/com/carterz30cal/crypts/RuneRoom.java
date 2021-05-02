@@ -19,7 +19,7 @@ import com.carterz30cal.utility.RandomFunctions;
 public class RuneRoom extends CryptRoom
 {
 	public static final String[] runes = {"rune_blood","rune_snake","rune_square","rune_hunt","rune_tap"
-			,"rune_sweat"};
+			,"rune_sweat","rune_snow"};
 	public static final String[] runes_rare = {"rune_rich","rune_acid","rune_slayer"};
 	public ItemStack rune;
 	public ArmorStand display;

@@ -118,7 +118,8 @@ public class TradeGUI extends GUI
 		
 		if (in && inventory.getItem(position) != null)
 		{
-			if (ItemBuilder.get(inventory.getItem(position)) == null) 
+			if (ItemBuilder.get(inventory.getItem(position)) == null
+					&& !ItemBuilder.getItem(inventory.getItem(position)).equals("book"))
 			{
 				DungeonsPlayerManager.i.get(owner).coins += getCoins(true);
 				items.removeIf((ItemStack i) -> i == null);
@@ -150,7 +151,7 @@ public class TradeGUI extends GUI
 		}
 		else if (position > 26)
 		{
-			if (ItemBuilder.get(e.getCurrentItem()) == null) return true;
+			if (ItemBuilder.get(e.getCurrentItem()) == null && !ItemBuilder.getItem(e.getCurrentItem()).equals("book")) return true;
 			addItem(e.getCurrentItem().clone());
 			e.getCurrentItem().setAmount(0);
 		}

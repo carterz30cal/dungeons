@@ -43,6 +43,29 @@ venomhelm:
     0: E E E
     1: E H E
     2: F 0 F
+    
+healingwand1:
+  product: healing_wand1
+  materials:
+    E: venomous_eye,2
+    H: holywater_fragment,7
+    S: stick_stormhilt,1
+  recipe:
+    0: 0 E 0
+    1: 0 H 0
+    2: 0 S 0
+    
+waterstone:
+  product: water_stone
+  materials:
+    H: holywater_fragment,10
+    O: ocean_fragment,3
+    W: water_fragment,4
+  recipe:
+    0: W O W
+    1: W H W
+    2: W O W
+    
 titanlootbox:
   product: loot_titan
   xp: 0

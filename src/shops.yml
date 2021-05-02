@@ -7,60 +7,64 @@ shopkeepsteve:
       price: 50
     pickaxe_flimsy:
       price: 50
+    flimsy_rod:
+      price: 80
     book;blade: 
-      price: 350
+      price: 245
       enchants: blade,1
     book;lucky: 
-      price: 275
+      price: 200
       enchants: lucky,1
     armour_adventurers_helmet:
-      price: 600
+      price: 425
     sword_adventurers:
-      price: 525
+      price: 450
       enchants: sweeping,2
     catalyst=0:
-      price: 600
+      price: 520
     sharpener_crude:
-      price: 250
+      price: 160
 midasfollower:
   name: Ancient Stuff Ltd.
   items: 
     sharpener_midas:
-      price: 1200
+      price: 1450
     armour_cultist_helmet:
       price: 2500
     armour_cultist_chestplate:
-      price: 2500
+      price: 3000
     armour_cultist_leggings:
       price: 2500
     armour_cultist_boots:
-      price: 2500  
+      price: 2000  
     sword_goldknife:
       price: 2000
     book;midastouch: 
-      price: 700
+      price: 800
       enchants: midastouch,1
     waterway_keyshard:
-      price: 250
+      price: 200
+    armour_flex_boots:
+      price: 50000
 fisherman:
   name: Fishin'
   items:
     sword_fishingforkcommon:
-      price: 1000
+      price: 800
     bowl:
       price: 150
 skeletonmerchant:
   name: Merchant
   items:
     crypt_key1:
-      price: 1350
+      price: 1500
     crypt_key2:
-      price: 4500
+      price: 4750
     crypt_key3:
-      price: 20000
+      price: 22500
 digsite:
   name: Don't Ask Questions Ltd.
   items:
     digging_shovelT1:
-      price: 4000
+      price: 2750
       

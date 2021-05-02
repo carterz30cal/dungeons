@@ -15,7 +15,7 @@ public class ModSpellConcentration extends AbsAbility
 	{
 		ArrayList<String> d = new ArrayList<String>();
 		d.add(modifier + "Spell Concentration");
-		d.add("Your spells deal 25% more damage");
+		d.add("Your spells deal 10 more damage");
 		d.add("but cost an extra 6 mana and");
 		d.add("move 10% slower");
 		return d;
@@ -23,7 +23,7 @@ public class ModSpellConcentration extends AbsAbility
 	@Override
 	public void onMagic(DungeonsPlayer d,ProjectileParticle p) 
 	{
-		p.damage = (int) (p.damage * 1.25);
+		p.damage = p.damage + 10;
 		p.speed = p.speed / 1.1;
 	}
 	@Override

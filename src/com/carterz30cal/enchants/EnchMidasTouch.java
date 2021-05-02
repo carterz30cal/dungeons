@@ -1,10 +1,7 @@
 package com.carterz30cal.enchants;
 
-import org.bukkit.entity.ArmorStand;
 
 import com.carterz30cal.dungeons.DungeonMiningTable;
-import com.carterz30cal.mobs.DungeonMob;
-import com.carterz30cal.player.DungeonsPlayer;
 import com.carterz30cal.player.DungeonsPlayerStatBank;
 
 public class EnchMidasTouch extends AbsEnchant

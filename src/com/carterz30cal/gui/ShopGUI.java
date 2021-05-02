@@ -17,6 +17,9 @@ import com.carterz30cal.items.Shop;
 import com.carterz30cal.items.ShopItem;
 import com.carterz30cal.player.DungeonsPlayer;
 import com.carterz30cal.player.DungeonsPlayerManager;
+import com.carterz30cal.quests.TutorialManager;
+import com.carterz30cal.quests.TutorialTrigger;
+import com.carterz30cal.utility.Stats;
 
 public class ShopGUI extends GUI
 {
@@ -90,8 +93,10 @@ public class ShopGUI extends GUI
 					else item = ItemBuilder.i.build(items[position], null);
 					
 					d.coins -= costs[position];
+					Stats.coinsspent += costs[position];
 					p.getInventory().addItem(item);
 					
+					TutorialManager.fireEvent(d, TutorialTrigger.BUY_ITEM, ItemBuilder.getItem(item));
 					p.playSound(p.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 1);
 				}
 				else 

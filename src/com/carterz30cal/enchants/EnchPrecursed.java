@@ -1,10 +1,8 @@
 package com.carterz30cal.enchants;
 
-import org.bukkit.entity.ArmorStand;
-
 import com.carterz30cal.dungeons.DungeonMiningTable;
 import com.carterz30cal.mobs.DMob;
-import com.carterz30cal.mobs.abilities.DMobAbility;
+import com.carterz30cal.mobs.DamageType;
 import com.carterz30cal.player.DungeonsPlayer;
 import com.carterz30cal.player.DungeonsPlayerStatBank;
 
@@ -13,7 +11,7 @@ public class EnchPrecursed extends AbsEnchant {
 	@Override
 	public String description()
 	{
-		return "Deal " + (2*level) + " true damage to ancient creatures";
+		return "Deal " + (5*level) + " true damage to ancient creatures";
 	}
 
 	@Override
@@ -42,13 +40,13 @@ public class EnchPrecursed extends AbsEnchant {
 	public String type() {
 		return "weapon";
 	}
-	public void onHitAfter(DungeonsPlayer player,DMob hit,ArmorStand ind) 
+	public int onHit(DungeonsPlayer player,DMob hit) 
 	{
 		if (hit.type.tags.contains("ancient")) 
 		{
-			for (DMobAbility mab : hit.type.abilities) mab.damaged(hit, player,2*level);
-			hit.damage(2*level, player.player, true);
+			hit.damage(5*level,player,DamageType.TRUE,false);
 		}
+		return 0;
 	}
 	@Override
 	public DungeonsPlayerStatBank onBank(DungeonsPlayerStatBank bank) {

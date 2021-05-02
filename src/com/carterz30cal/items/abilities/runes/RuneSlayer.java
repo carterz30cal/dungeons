@@ -13,12 +13,12 @@ public class RuneSlayer extends AbsAbility
 	{
 		ArrayList<String> d = new ArrayList<String>();
 		d.add(rune + "Slayer");
-		d.add("Overkill is 12% easier to activate");
+		d.add("Overkill is 15% easier to activate");
 		return d;
 	}
 
 	public void onTick  (DungeonsPlayer d)
 	{
-		d.stats.overkiller += 0.12;
+		d.stats.overkiller += 0.15;
 	}
 }

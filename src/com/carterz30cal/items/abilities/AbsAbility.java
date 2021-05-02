@@ -23,6 +23,7 @@ public abstract class AbsAbility
 	// HOOKS
 	public void onTick  (DungeonsPlayer d) {} // every tick
 	public int onAttack(DungeonsPlayer d,DMob dMob,int damage) {return damage;} // when the player attacks returns new damage
+	public int onArrowLand(DungeonsPlayer d,DMob mob,int damage) { return damage;} // exclusively when an arrow hits a mob (or trident ig). onAttack() is still fired
 	public void onKill (DungeonsPlayer d,DMobType mob) {}
 	public double onDamage(DungeonsPlayer d,double dealt, DamageCause c,DMobType mob) { return 1; } // when the player is hit
 	public boolean onInteract(DungeonsPlayer d, PlayerInteractEvent e) {return false;}
@@ -31,6 +32,11 @@ public abstract class AbsAbility
 	public void onMagicHit(DungeonsPlayer d,DMob hit) {}
 	public void stats(DungeonsPlayerStats s) {}
 	public int magicCost(ItemMeta wand) {return 0;} //when testing cost
+	public String onFishIn(DungeonsPlayer d,String current) { return current;}
+	public void onEnd(DungeonsPlayer d) {}; // when server is closed.
+	public void onLogOut(DungeonsPlayer d) {}; // run just before dungeonsplayer is saved.
+	public boolean allowTarget(DungeonsPlayer d, DMob m) {return true;} // run when a mob decides to target this player
+	
 	
 	public boolean isUnique() {return false;}
 }

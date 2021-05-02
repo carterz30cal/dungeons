@@ -11,7 +11,8 @@ public class StringManipulator
 	public static int[] progressLengths =  {50,15,15,15,15};
 	public static ChatColor[] rainbowOrder = {ChatColor.RED,ChatColor.LIGHT_PURPLE,ChatColor.DARK_PURPLE,ChatColor.DARK_BLUE,
 			ChatColor.BLUE,ChatColor.AQUA,ChatColor.GREEN,ChatColor.YELLOW,ChatColor.GOLD};
-    public static String[] romanNumerals = {"I","II","III","IV","V","VI","VII","VIII","IX","X"};
+    public static String[] romanNumerals = {"I","II","III","IV","V","VI","VII","VIII","IX","X"
+    		,"XI","XII","XIII","XIV","XV","XVI","XVII","XVIII","XIX","XX"};
     private static String[] times = {"d","h","m","s"};
     private static int[] timesn = {1728000,72000,1200,20};
 	public static String capitalise(String inp)
@@ -93,7 +94,20 @@ public class StringManipulator
 		return bar;
 	}
 
-	
+	public static String time(int ticks)
+	{
+		String ret = "";
+		int rem = ticks;
+		for (int i = 0; i < times.length;i++)
+		{
+			if (Math.floorDiv(ticks, timesn[i]) > 0) 
+			{
+				ret = ret + Math.floorDiv(rem, timesn[i]) + times[i] + " ";
+				rem -= (timesn[i] * Math.floorDiv(rem, timesn[i]));
+			}
+		}
+		return ret;
+	}
 	public static String time(int ticks,int period)
 	{
 		if (ticks < 20) return "Now!";

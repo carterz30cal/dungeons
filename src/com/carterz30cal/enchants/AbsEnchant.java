@@ -22,7 +22,27 @@ public abstract class AbsEnchant
 	// hooks that enchantments can use
 	public abstract DungeonsPlayerStatBank onBank(DungeonsPlayerStatBank bank);
 	public abstract DungeonMiningTable onMine(DungeonMiningTable mine);
+	public double setRareOreMultiplier(DungeonsPlayer player,double chance)
+	{
+		return chance;
+	}
+	public boolean hide()
+	{
+		return false;
+	}
+	public int onHit(DungeonsPlayer player,DMob hit)
+	{
+		return 0;
+	}
+	public void afterHit(DungeonsPlayer player,DMob hit)
+	{
+		
+	}
 	public void onHitAfter(DungeonsPlayer player,DMob hit,ArmorStand ind) {}
+	public void onKill(DungeonsPlayer player,DMob kill)
+	{
+		
+	}
 	public DungeonsPlayerStatBank onFinalBank(DungeonsPlayerStatBank bank)
 	{
 		return null;

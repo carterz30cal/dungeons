@@ -9,6 +9,8 @@ import org.bukkit.inventory.ItemStack;
 import com.carterz30cal.items.ItemBuilder;
 import com.carterz30cal.mobs.DMob;
 import com.carterz30cal.player.DungeonsPlayer;
+import com.carterz30cal.quests.TutorialManager;
+import com.carterz30cal.quests.TutorialTrigger;
 import com.carterz30cal.utility.InventoryHandler;
 
 import net.md_5.bungee.api.ChatColor;
@@ -56,6 +58,7 @@ public class MobDamageRewarder extends DMobAbility
 						" damage to " + mob.type.name + " and received a " + 
 						itemReward.getItemMeta().getDisplayName() + ChatColor.RESET + "" + ChatColor.AQUA + "!");
 				InventoryHandler.addItem(reci, itemReward.clone());
+				TutorialManager.fireEvent(reci, TutorialTrigger.KILL_ENEMY, mob.type.id);
 			}
 		}
 		damages.remove(mob);

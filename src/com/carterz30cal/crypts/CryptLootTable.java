@@ -30,4 +30,13 @@ public class CryptLootTable
 		}
 		return null;
 	}
+	
+	public void add(String item,int weight)
+	{
+		loot.add(new CryptLoot(item,weight));
+	}
+	public void add(String item,int weight,String enchants)
+	{
+		loot.add(new CryptLoot(item,enchants,weight));
+	}
 }

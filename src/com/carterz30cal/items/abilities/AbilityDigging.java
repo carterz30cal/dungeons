@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import org.bukkit.Color;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.Particle.DustOptions;
@@ -43,7 +44,10 @@ public class AbilityDigging extends AbsAbility
 					"digging_wolf1","digging_slime1","digging_bug1","digging_axe1","digging_defender1"});
 			mobs.put("digging_shovelT2", new String[] {"digging_zombie2","digging_ghoul2","digging_wolf2",
 					"digging_skeleton2","digging_slime2","digging_wolftamer2","digging_bug2","digging_axe2"
-					,"digging_gremlin2,3","digging_defender2","digging_cow2"});
+					,"digging_gremlin2,3","digging_defender2","digging_cow2","digging_berserker2"});
+			mobs.put("digging_shovelT3", new String[] {"digging_ghoul3","digging_wolf3",
+					"digging_skeleton3,2","digging_slime3","digging_wolftamer3","digging_axe3"
+					,"digging_defender3","digging_cow3","digging_berserker3"});
 			
 			items = new HashMap<String,ArrayList<String>>();
 			ArrayList<String> t1 = new ArrayList<String>();
@@ -54,12 +58,17 @@ public class AbilityDigging extends AbsAbility
 			
 			ArrayList<String> t2 = new ArrayList<String>();
 			addWeighted("digging_ancientstone",100,t2);
-			addWeighted("digging_leather",75,t2);
-			addWeighted("digging_crystal",5,t2);
 			addWeighted("coins;210",25,t2);
 			addWeighted("coins;300",25,t2);
 			addWeighted("coins;1000",5,t2);
 			items.put("digging_shovelT2", t2);
+			
+			ArrayList<String> t3 = new ArrayList<>();
+			addWeighted("digging_ancientstone",100,t3);
+			addWeighted("coins;450",25,t2);
+			addWeighted("coins;700",25,t2);
+			addWeighted("coins;1500",5,t2);
+			items.put("digging_shovelT3", t3);
 		}
 	}
 	public void addWeighted(String item,int weight,ArrayList<String> list)
@@ -104,12 +113,13 @@ public class AbilityDigging extends AbsAbility
 				new Square(3  ,22064 ,7  ,22069 ,91),
 				new Square(6  ,22058 ,3  ,22059 ,93),
 				new Square(-2 ,22062 ,-6 ,22059 ,83),
-				new Square(5  ,22073 ,0  ,22078 ,77),
+				new Square(4  ,22073 ,0  ,22078 ,77),
 				new Square(-23,22070 ,-20,22075 ,87),
 				new Square(-32,22066 ,-31,22073 ,88)
 		};
-		
-		return RandomFunctions.get(sites).getRandom();
+		Location l = RandomFunctions.get(sites).getRandom();
+		if (Dungeons.w.getBlockAt(l.clone().add(0,1,0)).getType() != Material.AIR) return site();
+		else return l;
 	}
 	public static Location s(Location b)
 	{
@@ -134,7 +144,7 @@ public class AbilityDigging extends AbsAbility
 		if (!e.hasItem()) return false;
 		// here is where we check the block
 		
-		if (!b.equals(e.getClickedBlock().getLocation())) return false;
+		if (b == null || !b.equals(e.getClickedBlock().getLocation())) return false;
 		
 		String tier = ItemBuilder.getItem(e.getItem());
 		// temporary single loot table

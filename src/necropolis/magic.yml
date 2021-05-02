@@ -4,7 +4,7 @@ spell_sewerscroll:
   rarity: RARE
   item: WRITABLE_BOOK
   spell:
-    mana: 12
+    mana: 6
     damage: 95
     colour: 0,168,100
     pierces: 1
@@ -15,7 +15,7 @@ wand_sewer:
   item: BLAZE_ROD
   rarity: EPIC
   wand:
-    mana: 23
+    mana: 28
 crypt_grimoire:
   name: Crypt Mage's Grimoire
   type: modifier

@@ -2,6 +2,7 @@ package com.carterz30cal.player;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.bukkit.GameMode;
 import org.bukkit.Material;
@@ -38,9 +39,22 @@ public class DungeonsPlayerStats
 	public int bonuskillcoins;
 	public boolean set;
 	public boolean synergy;
-	public double oreChance;
+	public int fortune;
 	public double miningXp;
 	public double overkiller;
+	
+	public int miningspeed;
+	
+	public int luck;
+	public int fishingspeed;
+	
+	public List<AbsEnchant> ench;
+	
+	public List<String> persistentdata = new ArrayList<>();
+	
+	public String heldtype;
+	
+	
 	public DungeonsPlayerStats(Player player)
 	{
 		p = player;
@@ -95,18 +109,28 @@ public class DungeonsPlayerStats
 		regen = 1;
 		damage = 0;
 		damageSweep = 0;
-		oreChance = 0;
+		fortune = 0;
 		miningXp = 1;
 		bonuskillcoins = 0;
 		damagemod = 1;
 		overkiller = 1;
 		
+		miningspeed = 0;
+		
+		luck = 25;
+		fishingspeed = 100;
+		
+		heldtype = "none";
 		DungeonsPlayerStatBank fbank = new DungeonsPlayerStatBank();
 		fbank.d = dp;
-		ArrayList<AbsEnchant> allench = new ArrayList<AbsEnchant>();
+		ench = new ArrayList<>();
 		ArrayList<ItemStack> items = new ArrayList<ItemStack>();
 		for (ItemStack item : p.getInventory().getArmorContents()) if (item != null && item.getType() != Material.AIR) items.add(item);
-		if (h != null && (h.type.equals("weapon") || h.type.equals("tool"))) items.add(held);
+		if (h != null && (h.type.equals("weapon") || h.type.equals("tool") || h.type.equals("artifact") || h.type.equals("rod"))) 
+		{
+			items.add(held);
+			heldtype = h.type;
+		}
 		
 		for (ItemStack item : items)
 		{
@@ -137,7 +161,7 @@ public class DungeonsPlayerStats
 			}
 			if (i.data.containsKey("ability")) abilities.add(AbilityManager.get((String) i.data.get("ability")));
 			ArrayList<AbsEnchant> enchants = EnchantManager.get(meta.getPersistentDataContainer());
-			allench.addAll(enchants);
+			ench.addAll(enchants);
 			if (enchants != null && !enchants.isEmpty()) for (AbsEnchant e : enchants) {
 				DungeonsPlayerStatBank b = e.onBank(bank);
 				if (b != null) bank = b;
@@ -164,7 +188,7 @@ public class DungeonsPlayerStats
 			add(fbank,bank);
 		}
 		
-		for (AbsEnchant ench : allench) 
+		for (AbsEnchant ench : ench) 
 		{
 			DungeonsPlayerStatBank sb = ench.onFinalBank(fbank);
 			if (sb != null) fbank = sb;
@@ -185,6 +209,7 @@ public class DungeonsPlayerStats
 			damage += 1 * s.get("damage");
 			mana   += 4 * s.get("mana");
 			bonuskillcoins += s.get("bonuscoins");
+			luck += s.get("luck");
 		}
 
 		for (AbsAbility a : abilities) a.stats(this);
@@ -219,8 +244,12 @@ public class DungeonsPlayerStats
 		bank.damagemod += addition.damagemod;
 		bank.sweep     += addition.sweep;
 		bank.xpbonus   += addition.xpbonus;
-		bank.orechance += addition.orechance;
+		bank.fortune += addition.fortune;
 		bank.killcoins += addition.killcoins;
+		bank.miningspeed += addition.miningspeed;
+		
+		bank.luck += addition.luck;
+		bank.fishingspeed += addition.fishingspeed;
 	}
 	public void add(DungeonsPlayerStatBank bank)
 	{
@@ -234,7 +263,12 @@ public class DungeonsPlayerStats
 		damageSweep    += bank.sweep;
 		bonuskillcoins += bank.killcoins;
 		
-		oreChance      += bank.orechance;
+		fortune      += bank.fortune;
 		miningXp       += bank.xpbonus;
+		
+		miningspeed += bank.miningspeed;
+		
+		luck += bank.luck;
+		fishingspeed += bank.fishingspeed;
 	}
 }

@@ -13,14 +13,14 @@ public class AbilityTitanPlate extends AbsAbility {
 	public ArrayList<String> description() {
 		ArrayList<String> desc = new ArrayList<String>();
 		desc.add(prefix + "Titan");
-		desc.add("Upon being hit, regain 5 health");
+		desc.add("Upon taking damage, regain 10 health");
 		return desc;
 	}
 
 	@Override
 	public double onDamage(DungeonsPlayer d,double dealt, DamageCause c,DMobType mob)
 	{
-		if (c == DamageCause.ENTITY_ATTACK || c == DamageCause.PROJECTILE) d.heal(5);
+		d.heal(10);
 		return 1;
 	}
 }

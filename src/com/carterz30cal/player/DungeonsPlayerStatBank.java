@@ -18,8 +18,13 @@ public class DungeonsPlayerStatBank
 	
 	public int killcoins;
 	
-	public double orechance;
+	public int fortune;
 	public double xpbonus;
+	
+	public int miningspeed;
+	
+	public int luck;
+	public int fishingspeed;
 	
 	public HashMap<String,Double> base;
 	
@@ -37,8 +42,13 @@ public class DungeonsPlayerStatBank
 		sweep     += attr.getOrDefault("sweep", 0d).intValue();
 		damagemod += attr.getOrDefault("damagep", 0d);
 		killcoins += attr.getOrDefault("killcoins", 0d).intValue();
-		orechance += attr.getOrDefault("orechance", 0d);
+		fortune += attr.getOrDefault("fortune", 0d).intValue();
 		xpbonus   += attr.getOrDefault("bonusxp", 0d);
+		
+		miningspeed += attr.getOrDefault("miningspeed", 0d).intValue();
+		
+		luck += attr.getOrDefault("luck", 0d).intValue();
+		fishingspeed += attr.getOrDefault("fishingspeed", 0d).intValue();
 		
 		for (Entry<String,Double> a : attr.entrySet())
 		{

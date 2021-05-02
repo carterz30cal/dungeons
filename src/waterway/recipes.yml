@@ -349,22 +349,27 @@ titan_chestplate:
     0: C 0 C
     1: C C C
     2: C C C
-storm_helm:
+    
+storm_helmet:
   product: armour_storm_helmet
-  xp: 100
   materials:
-    C: storm_crystals,6
-  recipe:
-    0: C C C
-    1: C 0 C
+    X: storm_crystals,2
+  pattern: helmet
+storm_chestplate:
+  product: armour_storm_chestplate
+  materials:
+    X: storm_crystals,2
+  pattern: chestplate
+storm_leggings:
+  product: armour_storm_leggings
+  materials:
+    X: storm_crystals,2
+  pattern: leggings
 storm_boots:
   product: armour_storm_boots
-  xp: 90
   materials:
-    C: storm_crystals,6
-  recipe:
-    1: C 0 C
-    2: C 0 C
+    X: storm_crystals,2
+  pattern: boots
 ##############################################
 ##            -- SWORDS --   		        ##
 ##              TIER ONE  					##
@@ -502,8 +507,8 @@ stormfork:
   product: sword_stormfork
   xp: 400
   materials:
-    H: stick_stormhilt,3
-    C: storm_crystals,32
+    H: stick_stormhilt,2
+    C: storm_crystals,10
   recipe:
     0: C 0 C
     1: C 0 C
@@ -574,36 +579,7 @@ holywater_bow:
 ##           -- PICKAXES --   		        ##
 ##              TIER ONE  					##
 ##############################################
-mush_pickaxe:
-  product: pickaxe_mush
-  xp: 30
-  materials:
-    M: mush,2
-    S: stick_paper,1
-  recipe:
-    0: M M M
-    1: 0 S 0
-    2: 0 S 0
-water_pickaxe:
-  product: pickaxe_water
-  xp: 30
-  materials:
-    F: water_fragment,1
-    S: stick_paper,1
-  recipe:
-    0: F F F
-    1: 0 S 0
-    2: 0 S 0
-paper_pickaxe:
-  product: pickaxe_paper
-  xp: 120
-  materials:
-    P: paper,2
-    S: stick_paper,1
-  recipe:
-    0: P P P
-    1: 0 S 0
-    2: 0 S 0
+
 ##############################################
 ##           -- ENCHANTS --   		        ##
 ##              TIER ONE  					##
@@ -613,7 +589,7 @@ shocking:
   enchants: shocking,1
   materials:
     P: paper,1
-    C: storm_crystals,8
+    C: storm_crystals,6
   recipe:
     1: 0 P P
     2: 0 P C
@@ -625,15 +601,14 @@ paper_enchantbook:
     P: paper,1
     S: stick_paper,2
   recipe:
-    1: 0 P P
+    1: 0 0 P
     2: 0 P S
 execution_enchantbook:
   product: book
   enchants: execution,1
-  xp: 175
   materials:
     P: paper,1
-    S: sharpener_crude,2
+    S: sharpener_crude,1
   recipe:
     1: 0 0 P
     2: 0 P S

@@ -1,0 +1,67 @@
+pickaxe_flimsy:
+  name: Flimsy Pickaxe
+  type: tool
+  rarity: COMMON
+  item: WOODEN_PICKAXE
+  attributes:
+    miningspeed: 11
+    fortune: 40
+    
+pickaxe_water:
+  name: Water Pickaxe
+  type: tool
+  rarity: RARE
+  item: DIAMOND_PICKAXE
+  attributes:
+    miningspeed: 21
+    fortune: 44
+    
+pickaxe_paper:
+  name: Paper Pickaxe
+  type: tool
+  rarity: RARE
+  item: STONE_PICKAXE
+  attributes:
+    miningspeed: 8
+    fortune: 15
+    bonusxp: 0.85
+    
+pickaxe_mush:
+  name: Mush Pick
+  type: tool
+  item: STONE_PICKAXE
+  rarity: RARE
+  glow: true
+  attributes:
+    miningspeed: 16
+    fortune: 38
+    bonusxp: +0.25
+    
+pickaxe_royal:
+  name: Royal Pickaxe
+  type: tool
+  item: GOLDEN_PICKAXE
+  rarity: EPIC
+  attributes:
+    miningspeed: 13
+    fortune: 78
+    
+pickaxe_clucky:
+  name: Chick Pick
+  type: tool
+  item: GOLDEN_PICKAXE
+  rarity: RARE
+  attributes:
+    miningspeed: 48
+    fortune: 9
+armour_royalleaf_helmet:
+  name: Royal Leaf Crown
+  type: armour
+  rarity: EPIC
+  item: GOLDEN_HELMET
+  set: leaf
+  attributes:
+    health: 150
+    fortune: 12
+    damagep: -0.05
+    

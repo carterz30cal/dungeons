@@ -30,9 +30,9 @@ public class DMobManager
 	
 	private static final String[] files = {
 			"waterway/drenched"   ,"waterway/bossmobs","waterway/uniquemobs","waterway/soaked","waterway/fishes",
-			"waterway/titan_mobs",
+			"waterway/titan_mobs","waterway/mobs_fishing","waterway/mobs_sands",
 			"necropolis/skeletons","necropolis/ghouls","necropolis/slimes","necropolis/crypts_mobs1","necropolis/crypts_mobs2",
-			"necropolis/crypts_miniboss","necropolis/diggingmobs",
+			"necropolis/crypts_miniboss","necropolis/diggingmobs","necropolis/digging_mobs3","necropolis/crypts_mobsancient",
 			"necropolis/mushroom_mobs"
 	};
 	

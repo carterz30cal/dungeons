@@ -71,7 +71,9 @@ public class SkillsGUI extends GUI
 		level = d.level.get("bonuscoins");
 		contents[33] = GUICreator.item(Material.GOLD_INGOT     , ChatColor.GOLD + "Wealth " + level          ,"+" + level + " coins per kill",glow && level < 20);
 		
-		contents[38] = GUICreator.item(Material.BARRIER, ChatColor.RED + "Coming soon!", ChatColor.DARK_RED + "This skill will release soon!");
+		level = d.level.get("luck");
+		contents[38] = GUICreator.item(Material.FISHING_ROD   , ChatColor.AQUA + "Fisherman " + level,"+" + (level*2) + " Luck",glow);
+		
 		contents[39] = GUICreator.item(Material.BARRIER, ChatColor.RED + "Coming soon!", ChatColor.DARK_RED + "This skill will release soon!");
 		contents[40] = GUICreator.item(Material.BARRIER, ChatColor.RED + "Coming soon!", ChatColor.DARK_RED + "This skill will release soon!");
 		contents[41] = GUICreator.item(Material.BARRIER, ChatColor.RED + "Coming soon!", ChatColor.DARK_RED + "This skill will release soon!");
@@ -102,6 +104,7 @@ public class SkillsGUI extends GUI
 		else if (position == 31) add = "damage";
 		else if (position == 32) add = "mana";
 		else if (position == 33 && d.level.get("bonuscoins") < 20) add = "bonuscoins";
+		else if (position == 38) add = "luck";
 		
 		if (add != null && d.level.points > 0)
 		{

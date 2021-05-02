@@ -1,0 +1,266 @@
+digging_defender3:
+  name: True Defender
+  type: SKINNED
+  health: 10000
+  damage: 135
+  armour: 40
+  speed: 0.6
+  level: 9
+  tags: ancient,defender,trueancient
+  skin:
+    data: ewogICJ0aW1lc3RhbXAiIDogMTYxNDQ0MTU4NjMyOCwKICAicHJvZmlsZUlkIiA6ICIzOWEzOTMzZWE4MjU0OGU3ODQwNzQ1YzBjNGY3MjU2ZCIsCiAgInByb2ZpbGVOYW1lIiA6ICJkZW1pbmVjcmFmdGVybG9sIiwKICAic2lnbmF0dXJlUmVxdWlyZWQiIDogdHJ1ZSwKICAidGV4dHVyZXMiIDogewogICAgIlNLSU4iIDogewogICAgICAidXJsIiA6ICJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlL2VkODE4NTZjNGJiY2Y2MTI3OTk4YmJkODM0ZTM3ZDM1NTAyMmVjNTFhMDg2ZjQ5ODEzYmNhZjExMWUwY2U2NTYiCiAgICB9CiAgfQp9
+    sig: LncNt3giKfPeDXXfg3UgeglZ+Xt4WH05FeW3XSlI99cOy4Ngecal9mXpUsnSaj1nNF++X+Si/H2MjXTabOdT9pZYsWOuUWWybTakWwpnBU/rMKJmUl/uaYuF7dBho0ToNTQKpUChqORt16SS322FfequVyWEpMGmQrYHBruQv5Cz3nWAZ/vmk8/1HIpQ5P2lYWWMBs7n8b1GddVO34+K+pgl0haM9Y5ozKRgskbOKh6cye5UhKEtdGESWOHX4WC3WrgemYBIJko/7r6jNzW8jgPDIITlar5e6jNZhB63XBXJv3sN2GNMukCn35RSxrFjJz7DzkVs4tokDJ1RmVNfcJfqH5FksRANBgkqwG+Wajhzvt9N4FXHbznTxc1bV7zwDBkS9eFWuINAqmAtqQuvE0dL2SDNp8ALnmgqEDjS/fQ4Ymk5H+e+7WKkslS96nu3GpOqoYb6JchwIFXOLjtGeYJilJbxLhaiBC/zS9IxjBpQqm0o3TWceaMkUbX/903vm791t9wmntwh326K91FoEmThfCAWKbkzDA9gC0cPX/7oRPutDJ3p2RSRjY6YlHNUoTUmJkvNijJKqymQZroSByHH6ihbVo3cawsgbkLU/PnzBn87+m/AhYyi0ZsQ0jr6O++l1y6iB+Rxo46TrFsPla/N2u2rlGeflD+teY7fFQk=
+  equipment:
+    main: IRON_SWORD
+    offhand: IRON_SWORD
+  drops:
+    digging_stone:
+      drop: 1/1
+      amount: 1-3
+    digging_leather:
+      drop: 1/6
+      amount: 2-3
+      rare: true
+    digging_metal:
+      drop: 1/8
+      amount: 1-4
+      rare: true
+    digging_defendermedal:
+      drop: 1/30
+      amount: 1-1
+      rare: true
+      
+### NEW THEME OF 'TRUE' PRECURSORS
+### cutting zombie, rabid wolf, gremlin, ancient bug
+### replaced with mutant wolf, true infestor
+
+digging_slime3:
+  name: Mother Gel
+  type: SLIME
+  data:
+    0: size:4
+  health: 8000
+  damage: 300
+  tags: ancient
+  level: 9
+  speed: 0.7
+  abilities:
+    summons:
+      summon: digging_slime3_summon
+      count: 3
+      respawn: -1
+  drops:
+    digging_stone:
+      drop: 1/1
+      amount: 3-8
+    digging_leather:
+      drop: 1/6
+      amount: 1-1
+      rare: true
+    book:
+      drop: 1/16
+      enchants: cubism,1
+      amount: 1-1
+      rare: true
+digging_slime3_summon:
+  name: Gel
+  type: SLIME
+  data: 
+    0: size:2
+  health: 1000
+  damage: 150
+  tags: ancient
+  level: 6
+  speed: 1.1
+  
+  
+digging_ghoul3:
+  name: Master Ghoul
+  type: ZOMBIE
+  health: 4400
+  level: 9
+  damage: 230
+  speed: 1.2
+  tags: ghoul,ancient
+  equipment: 
+    helmet: CHAINMAIL_HELMET
+    chestplate: DIAMOND_CHESTPLATE
+    boots: CHAINMAIL_BOOTS
+    main: NETHERITE_SWORD
+  drops:
+    digging_stone:
+      drop: 1/1
+      amount: 3-8
+    digging_leather:
+      drop: 1/6
+      amount: 2-2
+      rare: true
+    decaying_flesh:
+      drop: 1/6
+      amount: 1-1
+    sword_ghoul:
+      drop: 1/225
+      amount: 1-1
+digging_berserker3:
+  name: Enraged Berserker
+  type: SKELETON
+  health: 1100
+  damage: 310
+  tags: ancient
+  level: 9
+  speed: 1.6
+  equipment:
+    main: sword_berserkersaxe
+    offhand: sword_berserkersaxe
+    helmet: GOLDEN_HELMET
+    chestplate: GOLDEN_CHESTPLATE
+    leggings: CHAINMAIL_LEGGINGS
+    boots: LEATHER_BOOTS
+  drops:
+    sword_berserkersaxe:
+      drop: 1/200
+      amount: 1-1
+    digging_stone:
+      drop: 1/1
+      amount: 3-8
+    digging_leather:
+      drop: 1/6
+      amount: 2-2
+      rare: true
+digging_wolf3:
+  name: Mutant Wolf
+  type: WOLF
+  health: 3200
+  damage: 240
+  tags: ancient
+  level: 9
+  abilities:
+    targeter:
+      range: 10
+  drops:
+    digging_stone:
+      drop: 1/1
+      amount: 3-8
+    digging_leather:
+      drop: 1/6
+      amount: 2-2
+      rare: true
+      
+digging_wolftamer3:
+  name: Houndtamer
+  type: SKELETON
+  level: 9
+  health: 4750
+  damage: 140
+  speed: 0.6
+  armour: 15
+  tags: ancient
+  abilities:
+    summons:
+      summon: digging_wolftamer3_wolf
+      count: 3
+      respawn: 300
+  equipment:
+    main: LEAD
+    helmet: IRON_HELMET
+    chestplate: LEATHER_CHESTPLATE
+    leggings: LEATHER_LEGGINGS
+    boots: LEATHER_BOOTS
+  drops:
+    digging_stone:
+      drop: 1/1
+      amount: 3-8
+    digging_leather:
+      drop: 1/6
+      amount: 2-2
+      rare: true
+digging_wolftamer3_wolf:
+  name: Angry Hound
+  type: WOLF
+  health: 8000
+  damage: 160
+  armour: 5
+  tags: ancient
+  level: 7
+  abilities:
+    targeter:
+      range: 15
+
+digging_skeleton3:
+  name: High Raider
+  type: SKELETON
+  health: 2300
+  damage: 185
+  speed: 0.4
+  tags: ancient
+  level: 9
+  equipment:
+    main: BOW
+    chestplate: DIAMOND_CHESTPLATE
+  drops:
+    digging_stone:
+      drop: 1/1
+      amount: 3-8
+    digging_leather:
+      drop: 1/6
+      amount: 2-2
+      rare: true
+      
+digging_cow3:
+  name: Crystal Cow
+  type: COW
+  health: 3700
+  damage: 0
+  speed: 1.35
+  tags: ancient,crystalcow
+  level: 6
+  drops:
+    digging_crystal:
+      drop: 1/2
+      amount: 1-1
+      rare: true
+digging_axe3:
+  name: Cursed Axe
+  type: ZOMBIE
+  health: 1400
+  damage: 190
+  speed: 1.4
+  tags: ancient
+  level: 9
+  invisible: true
+  silent: true
+  equipment:
+    main: NETHERITE_AXE
+  drops:
+    digging_stone:
+      drop: 1/1
+      amount: 3-8
+    digging_leather:
+      drop: 1/6
+      amount: 2-2
+      rare: true 
+digging_boss3:
+  name: True Guardian
+  type: IRON_GOLEM
+  health: 30000
+  damage: 240
+  speed: 0.5
+  dmgresist: 0
+  tags: ancient
+  level: 12
+  abilities:
+    boss:
+      range: 15
+      style: SOLID
+      colour: RED
+    laser:
+      damage: 23
+      range: 20
+      cooldown: 18
+    rewarder:
+      reward: loot_digging3
+      threshold: 1000
+    targeter:
+      range: 20
+    overkill:
+      threshold: 500

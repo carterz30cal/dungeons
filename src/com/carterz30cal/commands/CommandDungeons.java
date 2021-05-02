@@ -29,6 +29,8 @@ import com.carterz30cal.player.DungeonsPlayer;
 import com.carterz30cal.player.DungeonsPlayerManager;
 import com.carterz30cal.player.ListenerBlockEvents;
 import com.carterz30cal.player.ListenerEntityDamage;
+import com.carterz30cal.player.PlayerRank;
+import com.carterz30cal.utility.Square;
 
 public class CommandDungeons implements CommandExecutor
 {
@@ -39,11 +41,23 @@ public class CommandDungeons implements CommandExecutor
 		if (sender instanceof Player && !sender.isOp()) return true;
 		switch (args[0].toLowerCase()) {
 			case "version":
-				sender.sendMessage("currently running v1.0.0");
+				sender.sendMessage("currently running " + Dungeons.instance.getDescription().getVersion());
+				break;
+			case "tutorialreset":
+				DungeonsPlayer rest = DungeonsPlayerManager.i.get((Player)sender);
+				rest.tutorials.clear();
 				break;
 			case "boss":
 				if (args.length == 1) return false;
 				BossManager.summon(args[1]);
+				break;
+			case "archive":
+				DungeonsPlayerManager.i.archive((Player)sender);
+				break;
+			case "restrict":
+				Square sq = new Square(Integer.parseInt(args[2]),Integer.parseInt(args[3]),Integer.parseInt(args[4]),Integer.parseInt(args[5]),0);
+				DungeonsPlayer restricted = DungeonsPlayerManager.i.get(Bukkit.getPlayer(args[1]));
+				restricted.restriction = sq;
 				break;
 			case "updates":
 				if (sender.isOp()) ListenerBlockEvents.allowBlockPhysics = !ListenerBlockEvents.allowBlockPhysics;
@@ -120,6 +134,13 @@ public class CommandDungeons implements CommandExecutor
 				ItemBuilder.i.updateMeta(wme, du);
 				wand.setItemMeta(wme);
 				du.player.getInventory().addItem(wand);
+				break;
+			case "rank":
+				Player target = (Player)sender;
+				if (args.length == 3) target = Bukkit.getPlayer(args[1]);
+				PlayerRank rank = PlayerRank.valueOf(args[args.length-1]);
+				DungeonsPlayerManager.i.get(target).rank = rank;
+				DungeonsPlayerManager.i.get(target).updateRank();
 				break;
 			case "item":
 				if (args.length == 1) return false;

@@ -14,7 +14,7 @@ wand_crude:
   item: BLAZE_ROD
   rarity: RARE
   wand:
-    mana: 30
+    mana: 32
 spell_mudball:
   name: Mud Ball
   type: spell
@@ -22,7 +22,7 @@ spell_mudball:
   item: BROWN_DYE
   glow: true
   spell:
-    damage: 70
+    damage: 60
     colour: 85,63,35
     pierces: 0
     speed: 0.5
@@ -32,10 +32,10 @@ spell_leaftome:
   rarity: RARE
   item: OAK_LEAVES
   spell:
-    damage: 35
-    mana: -12
+    damage: 32
+    mana: -13
     colour: 0,170,25
-    pierces: 10
+    pierces: 8
     speed: 1
 spell_waterbolt:
   name: Water Bolt
@@ -44,11 +44,11 @@ spell_waterbolt:
   item: BOOK
   glow: true
   spell:
-    damage: 45
-    mana: -8
+    damage: 43
+    mana: -7
     colour: 0,80,165
-    pierces: 4
-    speed: 0.75
+    pierces: 3
+    speed: 0.45
 
 modifier_spellconcentration:
   name: Spell Concentration
@@ -79,8 +79,8 @@ armour-mud:
   item: LEATHER
   colour: 85,63,35
   attributes:
-    health: 25,25,25,25
-    mana: 50,50,50,50
+    health: 40,40,40,40
+    mana: 50,70,50,35
 armour-manacultist:
   name: Mana Cultist
   suffix: Hood,Robe,Leggings,Shoes

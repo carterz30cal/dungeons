@@ -3,6 +3,7 @@ package com.carterz30cal.dungeons;
 import java.util.HashMap;
 
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
 import com.carterz30cal.mobs.DMob;
@@ -16,6 +17,7 @@ public class DungeonMining
 	public Dungeon dungeon;
 	
 	public HashMap<Material,Material> blocks;
+	public HashMap<Material,Integer> hardness;
 	public HashMap<Material,String> ores;
 	public int xp;
 	
@@ -24,10 +26,16 @@ public class DungeonMining
 	public int requirement;
 	public int progress;
 	
+	public HashMap<Block,Material> raresreplace = new HashMap<>();
+	public Material rareore;
+	public int chance;
+	public int outof;
+	
 	public DungeonMining()
 	{
 		blocks = new HashMap<Material,Material>();
 		ores = new HashMap<Material,String>();
+		hardness = new HashMap<>();
 		
 		xp = 0;
 		boss = null;

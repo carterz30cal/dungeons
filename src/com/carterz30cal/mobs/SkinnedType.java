@@ -14,6 +14,7 @@ public class SkinnedType extends DMobType
 {
 	public SkinnedType(FileConfiguration data, String path)
 	{
+		id = path;
 		entities = new ArrayList<EntityType>();
 		entities.add(EntityType.UNKNOWN);
 		

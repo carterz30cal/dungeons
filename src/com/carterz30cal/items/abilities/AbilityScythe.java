@@ -5,11 +5,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.LivingEntity;
 
 import com.carterz30cal.dungeons.Dungeons;
 import com.carterz30cal.mobs.DMob;
 import com.carterz30cal.mobs.DMobManager;
+import com.carterz30cal.mobs.DamageType;
 import com.carterz30cal.player.DungeonsPlayer;
 
 public class AbilityScythe extends AbsAbility
@@ -32,7 +32,7 @@ public class AbilityScythe extends AbsAbility
 			DMob m = DMobManager.get(e);
 			if (m != null && dMob != m) mobs.add(m);
 		}
-		for (DMob mob : mobs) ((LivingEntity)mob.entities.get(0)).damage(0, d.player);
+		for (DMob mob : mobs) mob.damage(d.stats.damage, d, DamageType.PHYSICAL);
 		return damage;
 	}
 }

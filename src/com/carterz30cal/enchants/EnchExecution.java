@@ -1,7 +1,5 @@
 package com.carterz30cal.enchants;
 
-import org.bukkit.entity.ArmorStand;
-
 import com.carterz30cal.dungeons.DungeonMiningTable;
 import com.carterz30cal.mobs.DMob;
 import com.carterz30cal.player.DungeonsPlayer;
@@ -51,15 +49,13 @@ public class EnchExecution extends AbsEnchant {
 	public DungeonMiningTable onMine(DungeonMiningTable mine) {
 		return null;
 	}
-
-	@Override
-	public void onHitAfter(DungeonsPlayer player, DMob hit,ArmorStand ind)
+	
+	public void afterHit(DungeonsPlayer player,DMob hit)
 	{
 		if (hit.health < 20*level && hit.health > 0 && !hit.type.boss)
 		{
-			hit.health = 0;
 			hit.destroy(player.player);
-			ind.setCustomName(ChatColor.RED + "EXEC" + ChatColor.GOLD + "UTED");
+			hit.spawnIndicator(player, ChatColor.RED + "EXEC" + ChatColor.GOLD + "UTED");
 		}
 	}
 

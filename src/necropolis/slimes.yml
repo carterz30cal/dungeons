@@ -1,14 +1,17 @@
 slime3:
   name: Slime
   type: SLIME
-  health: 350
-  damage: 50
-  level: 8
+  health: 400
+  damage: 60
+  level: 7
   tags: slime
   data:
     0: size:4,splitcount:2,splitmob:slime2
   equipment: {}
-  drops: {}
+  drops:
+    gel:
+      drop: 2/3
+      amount: 1-2
 slime2:
   name: Slime
   type: SLIME

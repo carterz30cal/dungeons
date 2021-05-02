@@ -26,6 +26,7 @@ public class RuneBlood extends AbsAbility
 		d.add(rune + "Blood");
 		d.add("Deals an extra 2 damage for every");
 		d.add("hit on an enemy");
+		d.add("Max of +24 damage");
 		return d;
 	}
 	
@@ -39,7 +40,7 @@ public class RuneBlood extends AbsAbility
 					,new Particle.DustOptions(Color.RED,1));
 			p--;
 		}
-		hits.put(dMob, hits.getOrDefault(dMob, 0)+1);
+		hits.put(dMob, Math.min(13,hits.getOrDefault(dMob, 0)+1));
 		return damage + (2 * (hits.get(dMob)-1));
 	} 
 

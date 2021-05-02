@@ -12,6 +12,12 @@ tissue:
   name: Tissue
   item: RED_DYE
   rarity: COMMON
+compressed_tissue:
+  name: Compressed Tissue
+  item: RED_DYE
+  rarity: RARE
+  glow: true
+  
 gel:
   name: Gel
   item: SLIME_BALL

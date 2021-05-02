@@ -57,19 +57,17 @@ public class DungeonExplorerGUI extends GUI
 						if (arealevel == 0)
 						{
 							lore.add(" " + ChatColor.GREEN + "Kill another " + dp.explorer.getKillsForNext(cd.id) + " mobs");
-							lore.add("  " + ChatColor.GREEN + "to unlock area specific bonuses!");
+							lore.add(" " + ChatColor.GREEN + "to unlock area specific bonuses!");
 						}
 						else
 						{
 							lore.add(ChatColor.BOLD + "" +  ChatColor.GREEN + "Area Bonus " + StringManipulator.romanNumerals[arealevel-1]);
 							
-							int bcoins = dp.explorer.bonusCoins(cd.id);
-							if (bcoins == 1) lore.add(" " + ChatColor.GOLD + "+1 bonus coin");
-							else lore.add(" " + ChatColor.GOLD + "+" + bcoins + " bonus coins");
+							lore.add(" " + ChatColor.BLUE + "+" + (int)(dp.explorer.bonusXp(cd.id)*100) + "% xp boost");
 							
-							lore.add(" " + ChatColor.BLUE + "+" + (int)(dp.explorer.bonusXp(cd.id)*100) + "% bonus skill xp");
-							
-							lore.add(ChatColor.GREEN + "" + dp.explorer.getKillsForNext(cd.id) + " kills to level up");
+							int req = dp.explorer.getKillsForNext(cd.id);
+							if (req == -1) lore.add(ChatColor.GOLD + "" + ChatColor.BOLD + "MAXED");
+							else lore.add(ChatColor.GREEN + "" + req + " kills to level up");
 						}
 						lore.add("");
 						lore.add(ChatColor.GOLD + "Right Click to Warp");

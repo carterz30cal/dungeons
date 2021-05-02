@@ -39,6 +39,11 @@ public class EnchantManager
 		enchantments.put("spirit", EnchSpirit.class);
 		enchantments.put("vitals", EnchVitals.class);
 		enchantments.put("armourpolish", EnchArmourPolish.class);
+		enchantments.put("shredding", EnchShredding.class);
+		enchantments.put("cryptwarrior", EnchCryptWarrior.class);
+		enchantments.put("cubism", EnchCubism.class);
+		enchantments.put("efficiency", EnchEfficiency.class);
+		enchantments.put("coarse", EnchCoarse.class);
 	}
 	@Deprecated
 	public static int catalyst(ItemStack item, ItemStack book)
@@ -88,5 +93,22 @@ public class EnchantManager
 		}
 		
 		return enchantL;
+	}
+	
+	public static AbsEnchant get(String ench)
+	{
+		
+		AbsEnchant enchant = null;
+		try 
+		{
+			enchant = enchantments.get(ench).newInstance();
+		} 
+		catch (InstantiationException | IllegalAccessException e1) 
+		{
+			e1.printStackTrace();
+		}
+		
+		enchant.level = enchant.max();
+		return enchant;
 	}
 }

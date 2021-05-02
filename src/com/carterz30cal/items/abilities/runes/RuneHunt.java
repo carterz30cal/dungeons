@@ -23,8 +23,8 @@ public class RuneHunt extends AbsAbility {
 	{
 		ArrayList<String> d = new ArrayList<>();
 		d.add(rune + "Hunt");
-		d.add("Deals 35% more damage");
-		d.add("5% less for every enemy within 8 blocks");
+		d.add("Deals 30% more damage");
+		d.add("7% less for every enemy within 6 blocks");
 		return d;
 	}
 
@@ -40,7 +40,7 @@ public class RuneHunt extends AbsAbility {
 			p--;
 		}
 		
-		Collection<Entity> near = Dungeons.w.getNearbyEntities(d.player.getLocation(), 8, 8, 8);
+		Collection<Entity> near = Dungeons.w.getNearbyEntities(d.player.getLocation(), 6, 6, 6);
 		
 		Set<DMob> mobs = new HashSet<>();
 
@@ -50,6 +50,6 @@ public class RuneHunt extends AbsAbility {
 			if (!mobs.contains(m) && m != dMob) mobs.add(dMob);
 		}
 		
-		return (int) (damage * (1.35 - (0.05 * mobs.size())));
+		return (int) (damage * (1.30 - (0.07 * mobs.size())));
 	} 
 }

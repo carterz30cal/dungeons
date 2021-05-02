@@ -8,9 +8,12 @@ import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 
 import com.carterz30cal.dungeons.DungeonManager;
 import com.carterz30cal.dungeons.Dungeons;
+import com.carterz30cal.mobs.DMob;
 import com.carterz30cal.mobs.DMobManager;
 import com.carterz30cal.mobs.DMobType;
+import com.carterz30cal.mobs.DamageType;
 import com.carterz30cal.player.DungeonsPlayer;
+
 
 
 
@@ -21,9 +24,9 @@ public class AbilityStormSet extends AbsAbility {
 		ArrayList<String> des = new ArrayList<String>();
 		des.add(prefix + "Zeus Apprentice");
 		des.add("During rain, you deal");
-		des.add(" 11 damage to every enemy");
-		des.add(" within 8 blocks every time");
-		des.add(" you are hit");
+		des.add("19 magical damage to each");
+		des.add("enemy within 7 blocks every");
+		des.add("time you are hit");
 		return des;
 	}
 
@@ -33,8 +36,12 @@ public class AbilityStormSet extends AbsAbility {
 		if (!(DungeonManager.i.hash(d.player.getLocation().getBlockZ()) == 1 && Dungeons.w.hasStorm())) return 1;
 		if (c == DamageCause.ENTITY_ATTACK || c == DamageCause.PROJECTILE)
 		{
-			Collection<Entity> entities = d.player.getWorld().getNearbyEntities(d.player.getLocation(), 8, 8, 8);
-			for (Entity e : entities) if (DMobManager.mobs.containsKey(e.getUniqueId())) DMobManager.mobs.get(e.getUniqueId()).damage(11,d.player);
+			Collection<Entity> entities = d.player.getWorld().getNearbyEntities(d.player.getLocation(), 7, 7, 7);
+			for (Entity e : entities) 
+			{
+				DMob em = DMobManager.get(e);
+				if (em != null) em.damage(19, d, DamageType.MAGIC);
+			}
 		}
 		return 1;
 	}

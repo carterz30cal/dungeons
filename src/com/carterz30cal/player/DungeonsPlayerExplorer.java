@@ -30,7 +30,7 @@ public class DungeonsPlayerExplorer
 	public int getAreaLevel(String area)
 	{
 		int points = areaPoints.getOrDefault(area,0);
-		return Math.min(10, points / DungeonManager.i.warps.getOrDefault(area,DungeonManager.i.hub).killsperlevel);
+		return Math.min(20, points / DungeonManager.i.warps.getOrDefault(area,DungeonManager.i.hub).killsperlevel);
 	}
 	public void add(String area, int amount)
 	{
@@ -47,12 +47,13 @@ public class DungeonsPlayerExplorer
 	
 	public int bonusCoins(String area)
 	{
-		int al = getAreaLevel(area);
-		return (int)Math.round(0.5 + al/2);
+		//int al = getAreaLevel(area);
+		//return (int)Math.round(0.5 + al/2);
+		return 0;
 	}
 	public double bonusXp(String area)
 	{
 		int al = getAreaLevel(area);
-		return 0.02*al;
+		return 0.01*al;
 	}
 }

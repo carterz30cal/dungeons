@@ -72,7 +72,7 @@ public class NPC
 		slime.setAI(false);
 		slime.setGravity(false);
 		slime.setSize(4);
-		slime.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY,100000,0));
+		slime.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY,1000000,0));
 		slime.setInvulnerable(true);
 		slime.getPersistentDataContainer().set(ItemBuilder.kItem, PersistentDataType.STRING, shopId);
 	}

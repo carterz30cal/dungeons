@@ -15,15 +15,14 @@ public class ModManaEfficient extends AbsAbility
 	{
 		ArrayList<String> d = new ArrayList<String>();
 		d.add(modifier + "Mana-Efficient");
-		d.add("Your spells cost 45% less mana");
+		d.add("Your spells cost 12 less mana");
 		return d;
 	}
 
 	@Override
 	public int magicCost(ItemMeta wand) 
 	{
-		int cost = ((ItemWand)ItemBuilder.get(wand)).costNoAbs(wand);
-		return -(int)(cost * 0.45);
+		return -12;
 	} 
 
 }

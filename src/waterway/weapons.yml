@@ -12,16 +12,16 @@ sword_water:
   set: water
   item: DIAMOND_SWORD
   attributes:
-    damage: +18
-    health: +15
+    damage: +17
+    health: +20
     
 sword_mush:
   name: Mushy Dagger
   type: weapon
   item: STONE_SWORD
   attributes:
-    damage: +18
-    armour: +5
+    damage: +19
+    armour: +10
     
 sword_adventurers:
   name: Adventurer's Cutlass
@@ -29,7 +29,7 @@ sword_adventurers:
   rarity: COMMON
   item: GOLDEN_SWORD
   attributes:
-    damage: +19
+    damage: +18
     killcoins: +3
     
 sword_leaf:
@@ -39,8 +39,8 @@ sword_leaf:
   set: leaf
   item: STICK
   attributes:
-    damage: +23
-    health: +85
+    damage: +21
+    health: +80
     
 sword_ocean:
   name: Ocean Blade
@@ -49,8 +49,8 @@ sword_ocean:
   set: water
   item: DIAMOND_SWORD
   attributes:
-    damage: +26
-    health: +40
+    damage: +24
+    health: +35
     
 sword_paper:
   name: Paper Sword
@@ -58,9 +58,9 @@ sword_paper:
   rarity: RARE
   set: paper
   item: STONE_SWORD
-  req: 5
+  req: 4
   attributes:
-    damage: +40
+    damage: +44
     health: -50
     
     
@@ -72,10 +72,11 @@ sword_hyperspear:
   item: STICK
   glow: true
   set: leaf
+  req: 5
   attributes:
-    damage: +25
-    health: +60
-    regen: +8
+    damage: +29
+    health: +65
+    regen: +5
 sword_holywater:
   name: Holy Water Blade
   type: weapon
@@ -83,10 +84,22 @@ sword_holywater:
   set: water
   item: DIAMOND_SWORD
   glow: true
+  req: 5
   attributes:
-    damage: +29
-    health: +60
-    regen: +3
+    damage: +33
+    health: +56
+    regen: +4
+    
+sword_rustygolem:
+  name: Rusty Golem Sword
+  type: weapon
+  rarity: RARE
+  item: NETHERITE_SWORD
+  req: 6
+  attributes:
+    damage: +20
+    armour: +22
+    
     
 sword_holyhyperblade:
   name: Holy Hyperblade
@@ -94,8 +107,9 @@ sword_holyhyperblade:
   rarity: INCREDIBLE
   item: GOLDEN_SWORD
   glow: true
+  req: 5
   attributes:
-    damage: +28
+    damage: +30
     regen: +12
     
 sword_protector:
@@ -105,8 +119,9 @@ sword_protector:
   item: IRON_AXE
   req: 6
   attributes:
+    damage: +8
     damagep: +0.8
-    armour: +60
+    armour: +40
     
 sword_goldknife:
   name: Gold Knife

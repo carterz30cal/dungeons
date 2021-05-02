@@ -4,11 +4,13 @@ mass_harvester:
   type: tool
   rarity: RARE
   attributes:
-    orechance: 0.6
+    miningspeed: 200
+    fortune: 75
 pickaxe_miners:
   name: Miner's Masterwork Pickaxe
   item: GOLDEN_PICKAXE
   type: tool
   rarity: EPIC
   attributes:
-    orechance: 0.9
+    miningspeed: 120
+    fortune: 105

@@ -29,6 +29,14 @@ public class TaskSendMsg extends BukkitRunnable {
 		
 		runTaskLater(Dungeons.instance,seconds*20);
 	}
+	public TaskSendMsg (int ticks,Player r, String m)
+	{
+		receivers = new ArrayList<DungeonsPlayer>();
+		receivers.add(DungeonsPlayerManager.i.get(r));
+		msg = m;
+		
+		runTaskLater(Dungeons.instance,ticks);
+	}
 	
 	@Override
 	public void run()

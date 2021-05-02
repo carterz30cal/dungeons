@@ -1,0 +1,71 @@
+sands_guardian:
+  name: Sand Guardian
+  type: ZOMBIE,GUARDIAN
+  health: 8
+  damage: 20
+  dmgresist: 1
+  kbresist: 1
+  speed: 0.5
+  tags: spearfish
+  level: 3
+  silent: true
+  data:
+    0: baby,invisible
+  drops:
+    fishing_fish:
+      drop: 1/1
+      amount: 1-5
+    sand_catalyst:
+      drop: 1/5
+      amount: 1-1  
+    
+    
+sands_husk:
+  name: Dune Revenant
+  type: HUSK
+  health: 10
+  damage: 40
+  dmgresist: 1
+  speed: 0.7
+  tags: spearfish
+  level: 4
+  drops:
+    fishing_fish:
+      drop: 1/1
+      amount: 2-4
+    sand_catalyst:
+      drop: 1/5
+      amount: 1-1  
+  
+sands_hydra:
+  name: Guardian Hydra
+  type: ZOMBIE,GUARDIAN,GUARDIAN,GUARDIAN
+  health: 24
+  damage: 18
+  dmgresist: 1
+  speed: 0.4
+  tags: spearfish
+  level: 4
+  silent: true
+  drops:
+    fishing_fish:
+      drop: 1/1
+      amount: 2-7
+    sand_catalyst:
+      drop: 1/5
+      amount: 1-1  
+      
+boss_hydrahead:
+  name: Hydra Head
+  type: GUARDIAN
+  health: 60
+  damage: 50
+  dmgresist: 1
+  speed: 0
+  tags: spearfish
+  level: 5
+  boss: true
+  silent: true
+  
+      
+      

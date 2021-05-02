@@ -7,7 +7,7 @@ public class EnchFortune extends AbsEnchant {
 
 	@Override
 	public String description() {
-		return "While mining, 10% chance to " + (level+1) + "x drops";
+		return "Improves Fortune by " + (5*level);
 	}
 
 	@Override
@@ -17,7 +17,7 @@ public class EnchFortune extends AbsEnchant {
 
 	@Override
 	public int max() {
-		return 3;
+		return 4;
 	}
 
 	@Override
@@ -36,16 +36,13 @@ public class EnchFortune extends AbsEnchant {
 
 	@Override
 	public DungeonsPlayerStatBank onBank(DungeonsPlayerStatBank bank) {
-		return null;
+		bank.fortune += 5*level;
+		return bank;
 	}
 
 	@Override
 	public DungeonMiningTable onMine(DungeonMiningTable mine) {
-		if (Math.random() <= 0.1)
-		{
-			for (String loot : mine.loot.keySet()) mine.loot.put(loot, mine.loot.get(loot) * (level+1));
-		}
-		return mine;
+		return null;
 	}
 
 

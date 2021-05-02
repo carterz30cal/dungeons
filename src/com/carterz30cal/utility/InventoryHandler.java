@@ -131,7 +131,7 @@ public class InventoryHandler
 					page[i] = new BackpackItem(item,i);
 					return;
 				}
-				else if (page[i].itemType.equals(it) && (page[i].amount+item.getAmount()) < item.getMaxStackSize()) 
+				else if (page[i].itemType.equals(it) && (page[i].amount+item.getAmount()) <= item.getMaxStackSize()) 
 				{
 					page[i].amount += item.getAmount();
 					return;

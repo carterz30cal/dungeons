@@ -44,7 +44,7 @@ public class TaskSpawn extends BukkitRunnable
 				for (Location l : players)
 				{
 					
-					if (spawn.getKey().position.distance(l) < 15 && Math.abs(spawn.getKey().position.getBlockY()-l.getBlockY()) <= 4)
+					if (spawn.getKey().position.distance(l) < 16 && Math.abs(spawn.getKey().position.getBlockY()-l.getBlockY()) <= 4)
 					{
 						spa = true;
 						break;

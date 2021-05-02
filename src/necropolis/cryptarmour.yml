@@ -30,9 +30,9 @@ armour-crypt2:
   set: cryptraider
   item: CHAINMAIL
   glow: true
-  req: 18
+  req: 20
   attributes:
-    regen: 8,9,8,7
+    regen: 6,8,7,5
     damage: 3,3,3,3
     armour: 50,65,60,40
 armour-sewer:
@@ -42,12 +42,13 @@ armour-sewer:
   item: LEATHER
   colour: 61,168,214
   req: 11
+  set: sewer
   skull:
     data: ewogICJ0aW1lc3RhbXAiIDogMTYxMDIwNjQwNzgyOCwKICAicHJvZmlsZUlkIiA6ICJhMjk1ODZmYmU1ZDk0Nzk2OWZjOGQ4ZGE0NzlhNDNlZSIsCiAgInByb2ZpbGVOYW1lIiA6ICJWaWVydGVsdG9hc3RpaWUiLAogICJzaWduYXR1cmVSZXF1aXJlZCIgOiB0cnVlLAogICJ0ZXh0dXJlcyIgOiB7CiAgICAiU0tJTiIgOiB7CiAgICAgICJ1cmwiIDogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWEwZjc3ZTE2ZTc1ZmQ3OTNhMDk4ZTQzYWIxOTYyMDcyNTU4ZTNhZWQ4Y2M2ZWRjNTNkOWI2YTdiZjk0NjI3OCIKICAgIH0KICB9Cn0=
     sig: ik8DSiQqEL960ePXyWgjTnuhQesKnSpHC6+oi4XGzAqExy/BnE0YpuNWuBsVsLEhTIzVCyKllQk3+KkQYhXkg+ffjQyz8Uo5tWZV/SFtwfUnR9WrLWOT3NehdPXJtp9Q1T15uZG27BkzwZuc2opk9iaytoc4xi35CTs4nnqVQEn2/OjF0xpY+sLFUDGPc64+haOxjn/zOVdhaxXBAt095cQEo1HEMFPqyFPcZufnlbcBiWYfNZsjQjwQhjR3gjC6xaEo8ZwX8ScFzDHzSsb76lEF4S9HQJXjFqc3Kb5xjvtDvuFOEa+rihufeHRnhyMMHq7h/9oEmhngcjAn0op8zAz1C890vJ+IaPP/dq4Pl3v5xLkLqjQB3hJc9TDc7oI5jLj21qLraW7LTDPIiWdnz72Y3ZyWBLmVkuwNP59dB3eo1ulTsEU5jzGI65LsrQdM524OysJTGUSBHgSwbIOhnAPF4wQBvEa1v7pLNJFDROoX0LkOhwimo1CKK+J6gHRI2mcEc957aKAkCmc/8YYSkQZt0GYecncnsQx7tEQFbyAuJ2aNgNpWTWNcFl5Gqi1FdAqwg4eqJA2CFA27SSf6uphq81KD4xvaYuYt5EMckchylaX8zHRH6xPeAowj7i1WTETPA22w5hkHFGzaKq+AYK5cuMxulpn5xrRZkD0hiCg=
   attributes:
     armour: 10,10,10,10
-    mana: 100,300,125,125
+    mana: 125,300,150,100
     
 armour-undeadsoldier:
   name: Undead Soldier

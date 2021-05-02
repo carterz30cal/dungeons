@@ -18,6 +18,10 @@ mush:
 leafmash:
   name: Leaf Mash
   item: GREEN_DYE
+royalleaf:
+  name: Royal Leaf
+  item: YELLOW_DYE
+  rarity: RARE
 leafball:
   name: Leaf Ball
   rarity: RARE

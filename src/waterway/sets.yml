@@ -16,58 +16,58 @@ water:
     attributes:
       health: +35
   synergy:
-    lore: Natural power surges through your weapon
+    lore: There is tidal force behind the blade
     attributes:
       damage: +5
       health: +40
       
 mud:
   set:
-    lore: You really are stuck in the mud
+    lore: Bit stuck.. aren't you?
     attributes:
       mana: +100
       
 pond:
   set:
-    lore: Don't quack
+    lore: Fisherman's friend!
     attributes:
-      damagep: +0.05
+      luck: 10
       
 mush:
   set:
-    lore: Are you sure you should wear this?
+    lore: Feelin' crusty?
     attributes:
-      health: +20
-      orechance: +0.05
+      miningspeed: +8
       
 leaf:
   set:
     lore: Leaves are quite difficult to wear
     attributes:
-      health: +600
-      damagep: -0.3
+      health: +500
+      damagep: -0.35
+    ability: leafset
   synergy:
     lore: The weapon combines with your suit
     attributes:
-      damagep: +0.65
+      damagep: +0.7
 
 storm:
   set:
     lore: It shocks you occasionally
     attributes:
-      health: -20
+      damage: +7
     ability: stormset
 ancientcultist:
   set:
     lore: This doesn't smell too great
     attributes:
-      damagep: +0.2
-      killcoins: +4
+      damagep: +0.15
+      killcoins: +2
 manacultist:
   set:
     lore: The robe contains ancient power
     attributes:
-      mana: +500
+      mana: +400
 silk:
   set:
     lore: Silk is slippery

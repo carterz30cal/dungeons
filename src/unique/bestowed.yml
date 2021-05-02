@@ -1,0 +1,37 @@
+armour_hydrasup_boots:
+  name: Midas Socks
+  type: armour
+  rarity: LEGENDARY
+  item: GOLDEN_BOOTS
+  description: ;Bestowed to HydrasUp!;*Sunglasses*
+  ability: midasboots
+  
+armour_carterz30cal_boots:
+  name: Midas Socks
+  type: armour
+  rarity: LEGENDARY
+  item: GOLDEN_BOOTS
+  description: ;Admin time.
+  ability: midasboots
+  
+armour_flex_boots:
+  name: Midas Boots
+  type: armour
+  rarity: LEGENDARY
+  item: GOLDEN_BOOTS
+  description: ;Bit of a ripoff
+  ability: midasboots
+  
+
+armour_carterz30calench_boots:
+  name: Enchanted Midas Socks
+  type: armour
+  rarity: LEGENDARY
+  item: GOLDEN_BOOTS
+  glow: true
+  description: ;Admin time.
+  ability: midasboots
+  attributes:
+    health: +1000000
+    armour: +1000000
+    damage: +1000000

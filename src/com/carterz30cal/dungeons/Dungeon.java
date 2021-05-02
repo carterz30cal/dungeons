@@ -30,6 +30,9 @@ public class Dungeon
 	public String expl_lore;
 	public int killsperlevel;
 	public boolean unfinished;
+	
+	public String[] fishingmobs;
+	
 	public Dungeon()
 	{
 		spawns = new HashMap<SpawnPosition,String>();

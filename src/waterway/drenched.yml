@@ -16,28 +16,32 @@ drenched1:
   drops:
     wetpaper:
       drop: 1/1
-      amount: 1-2
+      amount: 1-3
     water_fragment:
       drop: 1/5
       amount: 1-1
     catalyst=0:
-      drop: 1/225
+      drop: 1/200
       amount: 1-1
     magic_dust:
-      drop: 1/100
+      drop: 1/125
       amount: 1-1
     armour_water_helmet:
-      drop: 1/200
+      drop: 1/85
       amount: 1-1
+      rare: true
     armour_water_chestplate:
-      drop: 1/200
+      drop: 1/85
       amount: 1-1
+      rare: true
     armour_water_leggings:
-      drop: 1/200
+      drop: 1/85
       amount: 1-1
+      rare: true
     armour_water_boots:
-      drop: 1/200
+      drop: 1/85
       amount: 1-1
+      rare: true
 drenched2:
   name: Drenched
   type: DROWNED
@@ -61,7 +65,7 @@ drenched2:
       drop: 1/5
       amount: 1-2
     catalyst=0:
-      drop: 1/225
+      drop: 1/200
       amount: 1-1
     magic_dust:
       drop: 1/100
@@ -108,7 +112,7 @@ drenched3:
       drop: 1/25
       amount: 1-1
     catalyst=0:
-      drop: 1/225
+      drop: 1/200
       amount: 1-1
     magic_dust:
       drop: 1/100
@@ -139,8 +143,8 @@ drenched4:
   level: 4
   abilities:
     regen:
-      regen: 5
-      cooldown: 20
+      regen: 6
+      cooldown: 25
   equipment:
     main: sword_water
     helmet: armour_water_helmet
@@ -155,10 +159,10 @@ drenched4:
       drop: 1/5
       amount: 2-3
     ocean_fragment:
-      drop: 1/24
+      drop: 1/20
       amount: 1-1
     catalyst=0:
-      drop: 1/200
+      drop: 1/185
       amount: 1-1
     magic_dust:
       drop: 1/100

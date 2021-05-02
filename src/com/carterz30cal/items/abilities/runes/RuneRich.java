@@ -18,14 +18,15 @@ public class RuneRich extends AbsAbility
 	public ArrayList<String> description() {
 		ArrayList<String> d = new ArrayList<String>();
 		d.add(rune + "Rich");
-		d.add("Deals 3x damage.");
-		d.add("Costs 1 coin for every 5 health the mob has remaining");
+		d.add("Deals 3.3x damage");
+		d.add("Costs 1 coin for every 12 health");
+		d.add("the mob has remaining");
 		return d;
 	}
 	
 	public int onAttack(DungeonsPlayer d,DMob dMob,int damage) 
 	{
-		int cost = dMob.health / 5;
+		int cost = dMob.health / 12;
 		if (d.coins >= cost)
 		{
 			int p = 6;
@@ -37,7 +38,7 @@ public class RuneRich extends AbsAbility
 			}
 			
 			d.coins -= cost;
-			return damage * 3;
+			return (int) (damage * 3.3);
 		}
 		else return damage;
 	} 

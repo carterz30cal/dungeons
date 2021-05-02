@@ -20,7 +20,7 @@ public class RuneSweat extends AbsAbility
 	public ArrayList<String> description() {
 		ArrayList<String> d = new ArrayList<String>();
 		d.add(rune + "Sweat");
-		d.add("Deal 30 extra damage");
+		d.add("Deal 39 extra damage");
 		d.add("Deal 3 less for every hit");
 		return d;
 	}
@@ -36,7 +36,7 @@ public class RuneSweat extends AbsAbility
 			p--;
 		}
 		hits.put(dMob, hits.getOrDefault(dMob, 0)+1);
-		return damage + 30 - (3 * (hits.get(dMob)-1));
+		return damage + 39 - (3 * (hits.get(dMob)-1));
 	} 
 
 }

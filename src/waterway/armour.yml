@@ -7,16 +7,7 @@ armour-water:
   attributes:
     health: 15,35,20,10
     
-armour-pond:
-  name: Pond
-  suffix: Hat,Shirt,Leggings,Shoes
-  rarity: RARE
-  item: LEATHER
-  colour: 0,255,255
-  set: pond
-  attributes:
-    damage: 3,5,4,2
-    health: 15,50,35,10
+
     
 armour-ocean:
   name: Ocean
@@ -50,8 +41,22 @@ armour-mush:
     data: ewogICJ0aW1lc3RhbXAiIDogMTYwMTcyMTY3NjY5NSwKICAicHJvZmlsZUlkIiA6ICI3ZGEyYWIzYTkzY2E0OGVlODMwNDhhZmMzYjgwZTY4ZSIsCiAgInByb2ZpbGVOYW1lIiA6ICJHb2xkYXBmZWwiLAogICJzaWduYXR1cmVSZXF1aXJlZCIgOiB0cnVlLAogICJ0ZXh0dXJlcyIgOiB7CiAgICAiU0tJTiIgOiB7CiAgICAgICJ1cmwiIDogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWY4OTZkOTVkMDBkMmQwZGE2ZDkyMDFmNTllZWY1NjI4NDY0YzEzMDdkNDU1MjZlMzI2MWI2MzdkODFiNThkYiIKICAgIH0KICB9Cn0=
     sig: Ks136Q9f/omsE7r1IrLzDyt0jK3bBhaLY7iiF1ATW9vzWBBZzIPnhmhQdOhGLrbuij8JuTpYBqrEfo0u0toyNE0uDSivjiKPNCDzwwms8PnCh+G08nOLufKqM6BYTHYf7ivnul5OArSDruTnItO3WgnqIMIBRfPyoj75trQxe5699qIb+q6PxWQRzOuEbGcZcfPRjf88qFpl43n2X0mluPZubcjXACBmkKenLCeAckejsw7Sq7jMrd2RkOiI74E7BszurGtK0IhkDTMMy7VtW1qXdIFupThisGfxZ5r70IWtfXh5F3y4pRgPqoIy2wJEW7Nb2q+NoQ1oYu4dSLqet0Kzk00U8lbTq9Ei85xHQvzbgKFCXgLCf9bIRhteOkqUzQgHTA1mxlfVaIcWfDciWBtRleMkNPYOhnTRXmzuFz9pyKQ6/qte1WU0s44UNZU4ZVuhGYtF0gzkZ1TtcNaUr9So5906r+T5IwYwpcNk9M63C52IF8o1GAkQ2r+wNY+qCRg7BgkiXOudOiodaKdQ0ugWRldIQnxlbTRpzEBw9O/X5Ash+YMrnx7F/nxox5qcVy5arkMfGgOkUExwasWE7x7488jhcPjv75PL46XFu3yDa+ZYWwFfwEXA7jmUSgLxV3JViNJUI4tGqAhtjPIIBWKbQQtmM6Ht9cjM41J2UTA=
   attributes:
-    armour: 5,10,10,5
-    orechance: 0.05,0.05,0.05,0.05
+    miningspeed: 3,7,4,2
+    
+armour_waterway_boots:
+  name: Waterway Sandals
+  type: armour
+  set: water
+  rarity: EPIC
+  item: DIAMOND_BOOTS
+  glow: true
+  attributes:
+    health: +100
+    armour: +10
+    mana: +33
+    
+    
+    
     
 armour-paper:
   name: Paper
@@ -61,8 +66,8 @@ armour-paper:
   colour: 255,255,255
   set: paper
   attributes:
-    armour: 10,15,10,5
-    damagep: 0.05,0.1,0.1,0.05
+    armour: 10,20,10,5
+    damagep: 0.05,0.1,0.07,0.05
     
 armour-silk:
   name: Silk
@@ -84,16 +89,7 @@ armour-leaf:
   attributes:
     health: 75,125,100,50
     damagep: -0.05,-0.15,-0.1,-0.05
-armour_holyleaf_helmet:
-  name: Holy Leaf Crown
-  type: armour
-  rarity: EPIC
-  item: GOLDEN_HELMET
-  set: leaf
-  attributes:
-    health: 175
-    regen: +4
-    damagep: -0.05
+
     
 armour-cultist:
   name: Cultist
@@ -106,8 +102,8 @@ armour-cultist:
     data: ewogICJ0aW1lc3RhbXAiIDogMTYwMDYxMzE1ODQwNywKICAicHJvZmlsZUlkIiA6ICJkOWQ2YTNjZDQ0ZWI0MjBlYWM2MTA2ZmQyMTNmZGRiYSIsCiAgInByb2ZpbGVOYW1lIiA6ICI5VDkiLAogICJzaWduYXR1cmVSZXF1aXJlZCIgOiB0cnVlLAogICJ0ZXh0dXJlcyIgOiB7CiAgICAiU0tJTiIgOiB7CiAgICAgICJ1cmwiIDogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDQyY2Y2MGU5YjBlYWFkNjcxOTU4NDY4MzMwN2NjZGQwNDAwNGVhZjZkNTZiNjBjYzRhMjQ4ZTFiZmRmN2VjMyIKICAgIH0KICB9Cn0=
     sig: K4BnLYwfcxmhQSuhI+OhzhM5Hyon+xWp7ReN5rigVJgEmUvCOjpYCYCO1ouCkVrjVkdlrljPUbGAx7g/C6P60k0J2zWyu4dD7MIfzYRnpEL/0ll0OmNEwSRP9ab7PptJ79bmKRLxxkuwG5AeFSqJqRjBcu5bjr961r0PoAXFeHgyIxfGQ1bTYm0MeSfwBPha6NugWvF6/h/FTYuYdjJhT2fyWmIaV8ux8xOAr+6m5sH7tU1bX52nB6XAZDGt+saCtLfEDKhgqVJ8LbRK1XXZisFBhqwSN27tVx7Z0f/83+mxMb+1WVoUJBCpOuNHai7GBMOhAK/i+9kbjcSP7z+lZErIZ6OlUVXXtlWbgizpMF9MAD+7JHRg590VsYg+JVRu1AyGEteZxVA+GGDxcjVMVfNQH54+64dLR/N6sQM0J4rc8w6YtR/rmlAto8PX3pfry4phVKsDDLUmZihn3hAGKLu4ZYeOVEwVPuXzjfv87D7RxuhNegZ75ebVOtH4UiaKH3oaFiPV5u/pZMc0TZgChqJgtl+oziR1fA2K4boWSbi44LZYEquNaMhoyxwK3XwI/afIwqs9k1Y8lq7/wi+SlBP7KjkLbJsSjJLgRQJloz/OzDbdDOioQsAGVlghMeiPuEzd0AjcuXBT1pZBZpA0PoChvqToAjAf/xPPHDBtnDM=
   attributes:
-    killcoins: 5,5,5,5
-    damage: 5,15,10,5
+    killcoins: 4,6,5,3
+    damage: 5,12,8,4
    
 
     
@@ -135,5 +131,5 @@ armour_adventurers_helmet:
   item: LEATHER_HELMET
   colour: 0,180,0
   attributes:
-    damage: +6
-    killcoins: +1
+    damage: +7
+    killcoins: +2

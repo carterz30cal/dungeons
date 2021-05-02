@@ -1,5 +1,7 @@
 package com.carterz30cal.mobs.packet;
 
+import java.io.IOException;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -40,9 +42,11 @@ import net.minecraft.server.v1_16_R3.DataWatcher;
 import net.minecraft.server.v1_16_R3.DataWatcherObject;
 import net.minecraft.server.v1_16_R3.DataWatcherRegistry;
 import net.minecraft.server.v1_16_R3.EntityPlayer;
+import net.minecraft.server.v1_16_R3.EnumGamemode;
 import net.minecraft.server.v1_16_R3.EnumItemSlot;
 import net.minecraft.server.v1_16_R3.EnumProtocolDirection;
 import net.minecraft.server.v1_16_R3.MinecraftServer;
+import net.minecraft.server.v1_16_R3.NetworkManager;
 import net.minecraft.server.v1_16_R3.PacketPlayOutAnimation;
 import net.minecraft.server.v1_16_R3.PacketPlayOutEntity.PacketPlayOutRelEntityMoveLook;
 import net.minecraft.server.v1_16_R3.PacketPlayOutEntityDestroy;
@@ -80,6 +84,9 @@ public class EntitySkinned extends EntityPlayer
 	    
 	    //teleportAndSync(navigator.getLocation().getX(), navigator.getLocation().getY(), navigator.getLocation().getZ());
 	    entityBaseTick();
+	    
+	    Bukkit.getServer().getPluginManager().unsubscribeFromPermission("bukkit.broadcast.user", getBukkitEntity());
+	    
 	    if (navigator != null)
 	    {
 	    	Location l = navigator.getLocation();
@@ -220,6 +227,7 @@ public class EntitySkinned extends EntityPlayer
 	    profile.getProperties().put("textures", new Property("textures", t.skin, t.sig));
 	    
 	    PlayerInteractManager interactManager = new PlayerInteractManager(nmsWorld);
+	    //interactManager.setGameMode(EnumGamemode.SURVIVAL);
 	    EntitySkinned entityPlayer = new EntitySkinned(nmsServer, nmsWorld, profile, interactManager);
 	    entityPlayer.playerConnection = new PlayerConnection(nmsServer, new DummyManager(EnumProtocolDirection.CLIENTBOUND), entityPlayer);
 
@@ -227,6 +235,28 @@ public class EntitySkinned extends EntityPlayer
 	        location.getPitch());
 	    
 	    //
+	    Socket socket = new Socket();
+        NetworkManager conn = null;
+        try {
+            conn = new DummyManager(EnumProtocolDirection.CLIENTBOUND);
+            entityPlayer.playerConnection = new PlayerConnection(nmsServer, conn, entityPlayer);
+            conn.setPacketListener(entityPlayer.playerConnection);
+            socket.close();
+        } catch (IOException e) {
+            // swallow
+        }
+        
+        nmsWorld.addEntity(entityPlayer);
+		DataWatcher watcher = new DataWatcher(null);
+
+        watcher.register(new DataWatcherObject<>(16, DataWatcherRegistry.a), (byte)127);
+        for (Player player : Bukkit.getOnlinePlayers())
+	    {
+	        PlayerConnection connection = ((CraftPlayer) player).getHandle().playerConnection;
+	        connection.sendPacket(new PacketPlayOutEntityMetadata(entityPlayer.getId(), watcher, true));
+	    }
+        
+        /*
 	    new BukkitRunnable()
 	    {
 
@@ -244,6 +274,7 @@ public class EntitySkinned extends EntityPlayer
 			}
 	    	
 	    }.runTaskLater(Dungeons.instance, RandomFunctions.random(1, 20));
+	    */
 	    //nmsWorld.addAllEntitiesSafely(entityPlayer, SpawnReason.CUSTOM);
 	    
 
@@ -296,7 +327,7 @@ public class EntitySkinned extends EntityPlayer
 			    }
 			}
 	    	
-	    }.runTaskLater(Dungeons.instance, 20); 
+	    }.runTaskLater(Dungeons.instance, 15); 
 	    
 	    
 	    

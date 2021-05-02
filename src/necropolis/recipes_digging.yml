@@ -1,31 +1,28 @@
 ancient_stone:
   product: digging_ancientstone
-  xp: 8
   materials:
-    X: digging_stone,3
+    X: digging_stone,2
   pattern: block
 
 
     
 tier2shovel:
   product: digging_shovelT2
-  xp: 40
   materials:
     S: digging_shovelT1,1
     X: digging_leather,5
-    J: digging_ancientstone,10
+    J: digging_ancientstone,8
   recipe:
     0: 0 X 0
     1: 0 S 0
     2: 0 J 0
 tier3shovel:
   product: digging_shovelT3
-  xp: 400
   materials:
     S: digging_shovelT2,1
-    X: digging_leather,12
-    J: digging_ancientstone,32
-    C: digging_core,1
+    X: digging_leather,14
+    J: digging_ancientstone,20
+    C: digging_core,2
   recipe:
     0: 0 C 0
     1: X S X
@@ -40,7 +37,7 @@ precursor_sword:
 precursor_crown:
   product: armour_precursorcrown_helmet
   materials:
-    S: digging_ancientstone,20
+    S: digging_ancientstone,12
     C: digging_crystal,1
     L: digging_leather,8
   recipe:
@@ -51,22 +48,42 @@ gemstone_crown:
   materials:
     X: digging_crystal,1
   pattern: helmet
+  
+thorned_gemstone_crown:
+  product: armour_thornedgemstone_helmet
+  materials:
+    U: armour_gemstone_helmet,1
+    C: digging_crystal,5
+    B: bone,64
+  recipe:
+    0: B C B
+    1: B U B
 
+cowkiller:
+  product: sword_cowmurderer
+  materials:
+    C: digging_crystal,2
+    X: digging_ancientstone,4
+    M: digging_metal,2
+    S: stick_bone,3
+  recipe:
+    0: C M 0
+    1: X S 0
+    2: 0 S 0
 cursed_blade:
   product: sword_cursedboneblade
   materials:
     S: sword_boneshard,1
     C: digging_crystal,1
-    T: digging_ancientstone,8
+    T: digging_ancientstone,6
   recipe:
     0: 0 C 0
     1: T S T
     2: 0 T 0
 totem2:
   product: digging_totem2
-  xp: 100
   materials:
-    S: digging_ancientstone,20
+    S: digging_ancientstone,10
     C: digging_crystal,1
   recipe:
     1: 0 S 0
@@ -93,10 +110,36 @@ golem_boots:
     X: digging_metal,1
   pattern: boots
 
+skin_helmet:
+  product: armour_skin_helmet
+  materials:
+    X: digging_leather,2
+    U: armour_tissue_helmet,1
+  pattern: upgrade
+skin_chestplate:
+  product: armour_skin_chestplate
+  materials:
+    X: digging_leather,2
+    U: armour_tissue_chestplate,1
+  pattern: upgrade
+skin_leggings:
+  product: armour_skin_leggings
+  materials:
+    X: digging_leather,2
+    U: armour_tissue_leggings,1
+  pattern: upgrade
+skin_boots:
+  product: armour_skin_boots
+  materials:
+    X: digging_leather,2
+    U: armour_tissue_boots,1
+  pattern: upgrade
+  
+  
 royal_medal:
   product: digging_royalmedal
   materials:
-    X: digging_metal,4
+    X: digging_metal,3
     M: digging_defendermedal,1
     C: digging_crystal,1
   recipe:
@@ -109,7 +152,7 @@ precursed_book:
   enchants: precursed,1
   materials:
     S: digging_leather,1
-    X: digging_ancientstone,3
+    X: digging_ancientstone,2
   recipe:
     1: 0 S S
     2: 0 S X

@@ -23,4 +23,13 @@ public class SpawnPosition
 	{
 		position = new Location(Dungeons.w,x,y,z);
 	}
+
+	public SpawnPosition(double d, double e, double f, int i, int j)
+	{
+		position = new Location(Dungeons.w,d,e,f,i,j);
+	}
+	public SpawnPosition(double d, double e, double f, double i, double j)
+	{
+		position = new Location(Dungeons.w,d,e,f,(int)i,(int)j);
+	}
 }

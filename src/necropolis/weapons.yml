@@ -5,8 +5,8 @@ sword_bone:
   set: bone
   req: 8
   attributes:
-    damage: +33
-    armour: +50
+    damage: +36
+    armour: +48
 sword_tissue:
   name: Tendon Whip
   type: weapon
@@ -15,7 +15,7 @@ sword_tissue:
   req: 11
   attributes:
     damage: +38
-    regen: +8
+    regen: +7
 sword_dustwhip:
   name: Dust Whip
   type: weapon
@@ -34,7 +34,8 @@ sword_ghoul:
   req: 10
   ability: ghoulbone
   attributes:
-    damage: +40
+    damage: +39
+    regen: -2
 sword_soul:
   name: Soulstealer Sword
   type: weapon
@@ -81,10 +82,10 @@ sword_huskscythe:
   type: weapon
   rarity: EPIC
   item: IRON_HOE
-  req: 12
+  req: 14
   ability: scythe
   attributes:
-    damage: +33
+    damage: +35
     health: -15
 bow_crypthunter:
   name: Crypt Hunter Longbow
@@ -99,7 +100,7 @@ bow_slime:
   type: weapon
   rarity: EPIC
   item: BOW
-  req: 9
+  req: 11
   ability: slimebow
   attributes:
     damage: +40

@@ -77,7 +77,7 @@ public class GUI
 			contents[11] = GUICreator.item(Material.STONE_SWORD, "Skills", null, 1);
 			contents[12] = GUICreator.item(Material.COMPASS, ChatColor.GREEN + "Dungeon Explorer", null, 1);
 			contents[13] = GUICreator.item(Material.PLAYER_HEAD, "Friends", null, 1);
-			contents[14] = GUICreator.item(Material.BOOK, "Calendar", null, 1);
+			contents[14] = GUICreator.item(Material.ENCHANTING_TABLE, "Enchantment Guide", null, 1);
 			contents[15] = GUICreator.item(Material.GOLD_INGOT, ChatColor.GOLD + "Rewards", null, 1);
 			contents[16] = GUICreator.pane(Material.WHITE_STAINED_GLASS_PANE);
 			
@@ -255,7 +255,7 @@ public class GUI
 				//new GUI(MenuType.FRIENDS,p);
 				break;
 			case 14:
-				//new GUI(MenuType.CRAFTING,p);
+				new EnchantGuideGUI(p);
 				break;
 			case 15:
 				//new RewardsGUI(p);

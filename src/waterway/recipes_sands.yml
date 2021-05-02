@@ -1,0 +1,41 @@
+wave_sword:
+  product: sword_wave
+  materials:
+    S: sword_water,1
+    F: sword_fishingforkcommon,1
+    X: fishing_fish,32
+  recipe:
+    0: 0 F 0
+    1: 0 S 0
+    2: 0 X 0
+
+sand_eye:
+  product: sand_eye
+  materials:
+    C: sand_catalyst,1
+    S: royalleaf,10
+    P: wetpaper,8
+  recipe:
+    0: P C P
+    1: C S C
+    2: P C P
+
+coarse_book:
+  product: book
+  enchants: coarse,1
+  materials:
+    S: sand_eye,1
+    C: sand_catalyst,3
+    P: paper,1
+  recipe:
+    1: 0 P P
+    2: 0 C S
+sand_essence:
+  product: essence_of_sand
+  materials:
+    S: sand_eye,1
+    X: fishing_fish,5
+  recipe:
+    0: X X X
+    1: X S X
+    2: X X X

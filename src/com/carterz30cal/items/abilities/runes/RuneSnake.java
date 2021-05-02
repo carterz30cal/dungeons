@@ -20,8 +20,8 @@ public class RuneSnake extends AbsAbility {
 	public ArrayList<String> description() {
 		ArrayList<String> d = new ArrayList<String>();
 		d.add(rune + "Snake");
-		d.add("Deals 3 extra damage for every enemy");
-		d.add("within 9 blocks");
+		d.add("Deals 2 extra damage for every enemy");
+		d.add("within 12 blocks");
 		return d;
 	}
 	
@@ -36,10 +36,10 @@ public class RuneSnake extends AbsAbility {
 			p--;
 		}
 		
-		Collection<Entity> near = Dungeons.w.getNearbyEntities(d.player.getLocation(), 9, 9, 9);
+		Collection<Entity> near = Dungeons.w.getNearbyEntities(d.player.getLocation(), 12, 12, 12);
 		int e = 0;
 		for (Entity i : near) if (i != dMob.entities.get(0) && DMobManager.get(i) != null) e++;
 		
-		return damage + (3*e);
+		return damage + (2*e);
 	} 
 }

@@ -1,0 +1,43 @@
+sand_catalyst:
+  name: Sand Catalyst
+  item: PLAYER_HEAD
+  rarity: RARE
+  skull:
+    data: ewogICJ0aW1lc3RhbXAiIDogMTYxNTYzMzA1MTY2NywKICAicHJvZmlsZUlkIiA6ICJkODAwZDI4MDlmNTE0ZjkxODk4YTU4MWYzODE0Yzc5OSIsCiAgInByb2ZpbGVOYW1lIiA6ICJ0aGVCTFJ4eCIsCiAgInNpZ25hdHVyZVJlcXVpcmVkIiA6IHRydWUsCiAgInRleHR1cmVzIiA6IHsKICAgICJTS0lOIiA6IHsKICAgICAgInVybCIgOiAiaHR0cDovL3RleHR1cmVzLm1pbmVjcmFmdC5uZXQvdGV4dHVyZS9lNzBlZGFlNDIyNDgwNDQ1ODI0ZDljZTUzOGZjMmMyODlhMjYwNGMzOWIyMjMyMDhmYWE1ZmUzZmZhMzI4MDIyIiwKICAgICAgIm1ldGFkYXRhIiA6IHsKICAgICAgICAibW9kZWwiIDogInNsaW0iCiAgICAgIH0KICAgIH0KICB9Cn0=
+    sig: gmvmqhpklXOEDTE8kAuZd5BBWJB0yOUCZGozyzcXMICyV2ZBACxAfGpaS5DMOHrNpRf/mXix/A5JA0bRi7G3lAG6hcHuw1MqUirh0pWfoA0DFHwnwtbJ/YwoMAXvNCnHpF72Vu8hUKgFDGOiPSVFHRCThUDyi6ZmezpQf4j1VV9HXAQSHEDQzkrmhoLJOGmLb8i/wfnoCBhzpu6vGxJd6i5thzRls84jjn0RvYSJQQUwmd0fcozCrlCLooNv25EayXBOBgia+zQn5t423tB6T4fwnFaae6IdKwD07XvvfQlp09prMP/hNK828nJf0MWikWTi0gfB7MuXgGVQt4mmzjC9PC6zgg9/LRMo2Apyw0WDbyqZnLIusEy6Rzc172j3wwsmVnhvmMH7k+h0HXhLBnJdiiZqIshzcuW3cFV/CP3Mj74oBmPFKnBA2szyYv4dsCHJutQ43tU/HLhbnlGTbMkJp8wU1FXJWGx4pNznpXi9l/9PEMm6yiYv3mj6qPuaqC2bNKu2NYl2OqskF4SKqtf224nEXp5n4G78v7t3hJPQWLU61Zblq49sV26LrhaTo5D4OdyH6BDCVYr89QSyFxFVMuq0UxdjlPeiVfrKWo+LY0UAGmBWj3UtgFjuNkzOYnDfT/gNOgKohkwb3ov/H5rBpqPsh3LlupTNkE6PGok=
+  
+sword_wave:
+  name: Wave Sword
+  type: weapon
+  rarity: RARE
+  item: DIAMOND_SWORD
+  ability: wave
+  req: 5
+  attributes:
+    damage: +21
+    health: +30
+sword_wave2:
+  name: Wavebreaker
+  type: weapon
+  rarity: EPIC
+  item: GOLDEN_AXE
+  ability: wave
+  req: 5
+  attributes:
+    damage: +26
+    health: +44
+    
+sand_eye:
+  name: Sand Eye
+  type: artifact
+  rarity: EPIC
+  item: ENDER_EYE
+  glow: true
+  
+essence_of_sand:
+  name: Essence of Sand
+  type: artifact
+  rarity: INCREDIBLE
+  item: YELLOW_DYE
+  nodesc: true
+  description: When inserted into the sand altar, spawns;the almighty Hydra, a three headed beast;that regrows very quickly. Summon wisely.

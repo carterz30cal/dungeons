@@ -15,7 +15,7 @@ public class EnchShocking extends AbsEnchant {
 
 	@Override
 	public String description() {
-		return "Strikes boss mobs for an additional " + (10*level) + "% damage!";
+		return "Strikes boss mobs for an additional " + (5*level) + " damage!";
 	}
 
 	@Override
@@ -27,7 +27,7 @@ public class EnchShocking extends AbsEnchant {
 	@Override
 	public int max() {
 		// TODO Auto-generated method stub
-		return 4;
+		return 5;
 	}
 
 	@Override
@@ -59,13 +59,19 @@ public class EnchShocking extends AbsEnchant {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	@Override
+	public int onHit(DungeonsPlayer player, DMob hit)
+	{
+		if (!hit.type.boss) return 0;
+		Dungeons.w.strikeLightningEffect(hit.entities.get(0).getLocation());
+		return level*5;
+	}
 	@Override
 	public void onHitAfter(DungeonsPlayer player, DMob hit, ArmorStand ind) {
 		// TODO Auto-generated method stub
 		if (!hit.type.boss) return;
 		
-		int damage = (int) (player.stats.damage * (0.1*level));
+		int damage = (int) (player.stats.damage * (0.06*level));
 		Dungeons.w.strikeLightningEffect(hit.entities.get(0).getLocation());
 		ind.setCustomName(ChatColor.BLUE + Integer.toString(damage + hit.lastDamage));
 		for (DMobAbility mab : hit.type.abilities) damage = mab.damaged(hit, player,damage);

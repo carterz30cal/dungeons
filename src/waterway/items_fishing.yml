@@ -1,0 +1,77 @@
+flimsy_rod:
+  name: Flimsy Rod
+  type: rod
+  rarity: COMMON
+  item: FISHING_ROD
+  attributes:
+    fishingspeed: +5
+    
+drenched_rod:
+  name: Drenched Rod
+  type: rod
+  rarity: RARE
+  item: FISHING_ROD
+  attributes:
+    fishingspeed: +15
+    
+armour_dweller_helmet:
+  name: Dweller Cap
+  type: armour
+  rarity: COMMON
+  item: LEATHER_HELMET
+  colour: 80,80,80
+  attributes:
+    health: +40
+    
+soul_saber:
+  name: Soul Saber
+  type: weapon
+  rarity: RARE
+  item: STONE_SWORD
+  glow: true
+  req: 6
+  ability: soulsaber
+  attributes:
+    damage: +23
+    health: -18
+    
+    
+armour_fisherman_helmet:
+  name: Fisherman's Hat
+  type: armour
+  rarity: COMMON
+  item: LEATHER_HELMET
+  colour: 255,255,0
+  attributes:
+    fishingspeed: +15
+    
+armour_ghostsquid_boots:
+  name: Ghostly Squid Boots
+  type: armour
+  rarity: RARE
+  item: LEATHER_BOOTS
+  colour: 60,60,60
+  ability: ghostboots
+  attributes:
+    health: -10
+    
+armour-pond:
+  name: Pond
+  suffix: Hat,Shirt,Leggings,Shoes
+  rarity: RARE
+  item: LEATHER
+  colour: 0,255,255
+  set: pond
+  attributes:
+    health: 15,50,35,10
+    fishingspeed: 6,6,6,6
+    
+undead_rod:
+  name: Undead Rod
+  type: rod
+  rarity: RARE
+  item: FISHING_ROD
+  ability: undeadrod
+  attributes:
+    luck: +10
+    fishingspeed: -5

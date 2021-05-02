@@ -41,22 +41,8 @@ fish3:
       drop: 1/3
       amount: 1-1
       
+
       
-      
-      
-fishing_sandguardian:
-  name: Sand Guardian
-  type: GUARDIAN
-  health: 8
-  damage: 60
-  speed: 0.6
-  level: 0
-  dmgresist: 1
-  tags: spearfish
-  equipment: {}
-  drops: 
-    fishing_fish:
-      drop: 1/1
-      amount: 1-5
+
       
       

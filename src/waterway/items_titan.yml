@@ -3,25 +3,27 @@ armour_titan_helmet:
   rarity: EPIC
   type: armour
   item: PLAYER_HEAD
+  req: 6
   skull:
     data: ewogICJ0aW1lc3RhbXAiIDogMTYxMjQ0ODkwMDM3MSwKICAicHJvZmlsZUlkIiA6ICIwZjczMDA3NjEyNGU0NGM3YWYxMTE1NDY5YzQ5OTY3OSIsCiAgInByb2ZpbGVOYW1lIiA6ICJPcmVfTWluZXIxMjMiLAogICJzaWduYXR1cmVSZXF1aXJlZCIgOiB0cnVlLAogICJ0ZXh0dXJlcyIgOiB7CiAgICAiU0tJTiIgOiB7CiAgICAgICJ1cmwiIDogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTE4MDNhNTk5MWU3ZDRjNjE0NWFhNGQ5NTBmZjE0OTI0ODYxNWRjZTlhMTVjOTI5MWU2Mjg4ODZkYjgyNjdhNCIsCiAgICAgICJtZXRhZGF0YSIgOiB7CiAgICAgICAgIm1vZGVsIiA6ICJzbGltIgogICAgICB9CiAgICB9CiAgfQp9
     sig: hJ+i/ceaJKw59CybXWwM+Vn9/7vJi/iXbFpacmd1EWTW0T21iLB+C4F41oBLJEw+oY8tYH/JIBA4Rio0Ar83ppu21EoauHlc8FhtOvoM/M6jLQV8sPJ5YEvYxY6WWKC5rPcnp9LzmhgayvVlr/Xyk5zgEt009Td3TRnXXqh5mF/ZpES/vRkM8dyytTygu1PLcju72UQeaZuld959IlmBLhlolcZwaviX7+9ZOKX+bpQci8K0yafslLoeh3aBiTk4yqZPgYeM+Dp7i85NgxHm5IFGqk055NtO9a610exQDhseXVc6I/rB4kqefgx+NFMpo9lZKP58e6TkNLFQySTQd4GSf9wMHcUp1+ysI61FnaY8HB/6Q4yZZ5fj24PlWjIBEQAqhZcwKavr2J+hoUP5bPelqrhDVTGRTCUV5TDV3hBtVuqTc4QA5upFNR5T20BLsa0stoVw7o2LneXN9ILDYwVsHFPYNUokh46RyYvXm/nwjYEIvZz4j+qsfQ7pRHIB7aERqEuub9QVHsAuiRCH8BE/A2sUEJi+BhXvKh3qaeJAk1e0RC0oHEZekwVoN8xxvUNUszZsoBIui1VEheSXHc/dl6SsMOwxEVPViLsO3CGCHHe84Q35RaGlEcMSOZYBS4PtT/SNnO77VfmpuezqW/lFON3/zY99nujGTVWg1uw=
   attributes:
-    armour: +85
-    health: -65
+    armour: +100
+    health: -90
 armour_venomtitan_helmet:
   name: Venom Titan Helm
   rarity: INCREDIBLE
   type: armour
   item: PLAYER_HEAD
   ability: venomhelm
+  req: 6
   skull:
     data: ewogICJ0aW1lc3RhbXAiIDogMTYxMjQ3MTE1MTEzMCwKICAicHJvZmlsZUlkIiA6ICIwNWQ0NTNiZWE0N2Y0MThiOWI2ZDUzODg0MWQxMDY2MCIsCiAgInByb2ZpbGVOYW1lIiA6ICJFY2hvcnJhIiwKICAic2lnbmF0dXJlUmVxdWlyZWQiIDogdHJ1ZSwKICAidGV4dHVyZXMiIDogewogICAgIlNLSU4iIDogewogICAgICAidXJsIiA6ICJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlLzM5NDFhMzNkYmJkYTEzZjdjMTY5N2RkZDM0YTE5ZTE4OGMzOTBiZTY5MDczOWI3MjQyMTdiNWM1ODAxN2YxZjAiLAogICAgICAibWV0YWRhdGEiIDogewogICAgICAgICJtb2RlbCIgOiAic2xpbSIKICAgICAgfQogICAgfQogIH0KfQ==
     sig: E69L7ygAj4znOFOANi7D9r1VcaSsqxNiZLYWic9aDuNJVg3YCPLDnwNgNjH/q10oWnMKXl4ff7RBTTxULXK+a4BSdnsgnOM8KMBy0h35gPyNKSHpfHh0KUDFLHuwypA5SS7n5sK0MCMxjKZpNV/NT3k1Yr1wCP8JtsTMViixuryOs/LftgnS8tdY6QEk4WBebG3kokCCk6N/cx6lO8F0cbHwzAK7GGrfctHoQLcCQsOwgdxwAs6HMKJcWqiRhiULfqkTLT+fuA3QVCGkZHsJBcozXgJ7Vt6R6lzWP7Y3cicyQrHd6HyPD66Ocbxw999jztzMJQvQDrGpoDb93CxEBxCNDUor5E79aGsWIRvXOtV8yMGm06uTJBSPO5btUTxhNIS5NeVL7ygCez1U9BeZjBdaKsuDAEWxbL0kyls0hDctrZny1m2s6xfQaIkzzlyvf99GvlocTpWzTh+MUTu1I/o0B0cvHVhftRicxqNx7ap7UP4BDCpm7MfSHMxHe9XWdpWywDycHdsM8QtrnqSIBDRp3js0Quqkxe9Uvh5us+AW3hb6NXrXuI1lSlK9M+IDTsPTMZ9nuh6kv0AUo+p7M+Ip/JLcOl85vrXqnWB3W4T8PLvhUXC8sIzIruwVzNxpkEdixUSCdFMWWJ9LkXupabiPbF5nqZKtqjV8boBZ4iI=
   attributes:
     armour: +80
-    health: -30
-    regen: -5
+    health: -45
+    regen: -6
 sword_venomfang:
   name: Venom Fang
   rarity: EPIC
@@ -29,7 +31,7 @@ sword_venomfang:
   item: GHAST_TEAR
   ability: venomfang
   attributes:
-    damage: +29
+    damage: +30
     regen: -1
 venomous_eye:
   name: Venomous Eye
@@ -43,7 +45,31 @@ sword_hyperblade:
   glow: true
   attributes:
     damage: +27
-    regen: +10
+    regen: +8
+    
+healing_wand1:
+  name: Healing Wand
+  type: tool
+  rarity: RARE
+  item: STICK
+  glow: true
+  ability: healingwand1
+  attributes:
+    mana: +40
+    
+water_stone:
+  name: Water Stone
+  type: appliable
+  rarity: RARE
+  item: FIREWORK_STAR
+  colour: 0,80,185
+  modifier:
+    types: LEATHER_BOOTS,IRON_BOOTS,GOLDEN_BOOTS,DIAMOND_BOOTS,CHAINMAIL_BOOTS,NETHERITE_BOOTS
+    prefix: Purified
+    attributes:
+      health: +9
+  description: A small, cold rock. Provides;a small health boost when;applied to boots.
+    
 loot_titan:
   name: Drenched Lootbox
   type: lootbox
@@ -52,27 +78,30 @@ loot_titan:
   glow: true
   loot:
     waterway_core:
-      amount: 1-7
+      amount: 2-7
       chance: 1
     catalyst=0:
-      amount: 1
-      chance: 2
+      amount: 1-2
+      chance: 4
     sword_hyperblade:
       amount: 1
       chance: 6
     venomous_eye:
-      amount: 1-2
-      chance: 9
+      amount: 1-4
+      chance: 7
+    water_bolt:
+      amount: 1
+      chance: 20
     book;protection:
       amount: 1
       chance: 5
       enchants: protection,1
     waterway_keyshard:
-      amount: 1-2
-      chance: 2
+      amount: 1-3
+      chance: 3
     book;ironskin:
       amount: 1
-      chance: 5
+      chance: 6
       enchants: ironskin,1
     armour_cloud_boots:
       amount: 1

@@ -1,0 +1,44 @@
+
+    
+drenched_rod:
+  product: drenched_rod
+  materials:
+    R: flimsy_rod,1
+    F: water_fragment,10
+    O: ocean_fragment,1
+  recipe:
+    0: F 0 0
+    1: 0 R 0
+    2: 0 0 O 
+    
+    
+pond_helmet:
+  product: armour_pond_helmet
+  materials:
+    F: fishing_fish,5
+  recipe:
+    0: F F F
+    1: F 0 F
+pond_chestplate:
+  product: armour_pond_chestplate
+  materials:
+    F: fishing_fish,5
+  recipe:
+    0: F 0 F
+    1: F F F
+    2: F F F
+pond_leggings:
+  product: armour_pond_leggings
+  materials:
+    F: fishing_fish,5
+  recipe:
+    0: F F F
+    1: F 0 F
+    2: F 0 F
+pond_boots:
+  product: armour_pond_boots
+  materials:
+    F: fishing_fish,5
+  recipe:
+    1: F 0 F
+    2: F 0 F

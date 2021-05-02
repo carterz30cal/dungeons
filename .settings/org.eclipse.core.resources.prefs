@@ -1,5 +1,6 @@
 eclipse.preferences.version=1
 encoding//src/com/carterz30cal/items/ItemBuilder.java=UTF-8
+encoding//src/com/carterz30cal/items/abilities/AbilityPrejudice.java=UTF-8
 encoding//src/com/carterz30cal/mobs/DMob.java=UTF-8
 encoding//src/com/carterz30cal/mobs/packet/EntitySkinned.java=UTF-8
 encoding//src/com/carterz30cal/player/CharacterSkill.java=UTF-8

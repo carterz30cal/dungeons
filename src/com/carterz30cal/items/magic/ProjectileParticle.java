@@ -15,6 +15,7 @@ import com.carterz30cal.dungeons.Dungeons;
 import com.carterz30cal.items.abilities.AbsAbility;
 import com.carterz30cal.mobs.DMob;
 import com.carterz30cal.mobs.DMobManager;
+import com.carterz30cal.mobs.DamageType;
 import com.carterz30cal.player.DungeonsPlayer;
 
 public class ProjectileParticle extends BukkitRunnable
@@ -73,9 +74,7 @@ public class ProjectileParticle extends BukkitRunnable
 			DMob m = DMobManager.get(e);
 			if (m != null && !hit.contains(m))
 			{
-				owner.stats.damage = damage;
-				owner.stats.damagemod = 1;
-				((LivingEntity)m.entities.get(0)).damage(0,owner.player);
+				m.damage(damage,owner,DamageType.MAGIC);
 				pierces--;
 				for (AbsAbility a : owner.stats.abilities) a.onMagicHit(owner,m);
 				if (mod != null) mod.onMagicHit(owner,m);

@@ -14,6 +14,7 @@ import com.carterz30cal.dungeons.Dungeons;
 import com.carterz30cal.dungeons.IndicatorTask;
 import com.carterz30cal.mobs.DMob;
 import com.carterz30cal.mobs.DMobManager;
+import com.carterz30cal.mobs.DamageType;
 import com.carterz30cal.player.DungeonsPlayer;
 import com.carterz30cal.player.ListenerEntityDamage;
 import com.carterz30cal.utility.RandomFunctions;
@@ -29,7 +30,7 @@ public class AbilitySpores extends AbsAbility
 		d.add(prefix + "Spores");
 		d.add("Adds 1 spore around you (stacks)");
 		d.add("These spores will attack nearby enemies");
-		d.add("for you, dealing 8% of your damage.");
+		d.add("for you, dealing 9% of your damage.");
 		d.add(ChatColor.RED + "You don't get XP for spore kills");
 		return d;
 	}
@@ -57,15 +58,9 @@ public class AbilitySpores extends AbsAbility
 				Dungeons.w.spawnParticle(Particle.CRIMSON_SPORE,ml, 5,0.2,0.2,0.2,0.0);
 				double bonusxp = d.stats.miningXp;
 				d.stats.miningXp = 0;
-				m.damage((int) (d.stats.damage * 0.08), d.player);
+				m.damage((int)(d.stats.damage * 0.09), d, DamageType.MAGIC);
 				d.stats.miningXp = bonusxp;
-				
-				Location hitloc = RandomFunctions.offset(ml, 0.5).add(0,1,0);
-				ArmorStand h = DMobManager.hit(m.entities.get(0), (int) (d.stats.damage * 0.08),ChatColor.LIGHT_PURPLE);
-				
-				IndicatorTask t = new IndicatorTask(h,hitloc);
-				t.runTaskTimer(Dungeons.instance, 1,15);
-				ListenerEntityDamage.indicators.add(t);
+
 				maxSpores--;
 			}
 		}

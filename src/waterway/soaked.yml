@@ -6,7 +6,6 @@ soaked1:
   damage: 15
   speed: 0.6
   kbresist: 0
-  perk: waterway_drenched
   equipment:
     main: WOODEN_SHOVEL
     helmet: armour_ocean_helmet
@@ -24,7 +23,8 @@ soaked1:
       drop: 1/110
       amount: 1-1
     book:
-      drop: 1/80
+      drop: 1/75
+      rare: true
       amount: 1-1
       enchants: shocking,1
 soaked2:
@@ -35,7 +35,6 @@ soaked2:
   level: 3
   speed: 0.6
   kbresist: 0
-  perk: waterway_drenched
   equipment:
     main: STONE_SHOVEL
     helmet: armour_ocean_helmet
@@ -53,18 +52,18 @@ soaked2:
       drop: 1/110
       amount: 1-1
     book:
-      drop: 1/80
+      drop: 1/72
+      rare: true
       amount: 1-1
       enchants: shocking,1
 soaked3:
   name: Soaked
   type: DROWNED
   health: 290
-  damage: 45
+  damage: 60
   level: 4
-  speed: 0.6
+  speed: 0.625
   kbresist: 0
-  perk: waterway_drenched
   equipment:
     main: IRON_SHOVEL
     helmet: armour_ocean_helmet
@@ -77,12 +76,13 @@ soaked3:
       amount: 1-1
     storm_crystals:
       drop: 1/2
-      amount: 1-1
+      amount: 1-2
     catalyst=0:
       drop: 1/100
       amount: 1-1
     book:
-      drop: 1/78
+      drop: 1/60
+      rare: true
       amount: 1-1
       enchants: shocking,1
 

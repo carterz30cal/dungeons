@@ -24,6 +24,7 @@ public class AbilityManager
 		abilities.put("ghoulbone",AbilityGhoulBone.class);
 		abilities.put("ghoulset",AbilityGhoulSet.class);
 		abilities.put("boneset", AbilityBoneSet.class);
+		abilities.put("leafset", AbilityLeafSet.class);
 		abilities.put("stormbreaker", AbilityStormbreaker.class);
 		abilities.put("stormfork", AbilityStormfork.class);
 		abilities.put("stormset", AbilityStormSet.class);
@@ -53,11 +54,21 @@ public class AbilityManager
 		abilities.put("gemstonecrown", AbilityGemstoneCrown.class);
 		abilities.put("soulfire", AbilitySoulfire.class);
 		abilities.put("scythe", AbilityScythe.class);
-		
+		abilities.put("stinger", AbilityStinger.class);
+		abilities.put("wave", AbilityWave.class);
+		abilities.put("cowdie", AbilityCowDie.class);
+		abilities.put("undeadrod", AbilityUndeadFishRod.class);
+		abilities.put("ghostboots", AbilityGhostBoots.class);
+		abilities.put("spirittrousers", AbilitySpiritTrousers.class);
 		abilities.put("spellconcentration", ModSpellConcentration.class);
 		abilities.put("manaefficient", ModManaEfficient.class);
 		abilities.put("frozen", ModFrozen.class);
 		abilities.put("cryptgrimoire", ModCryptGrimoire.class);
+		abilities.put("soulsaber", AbilitySoulSaber.class);
+		abilities.put("healingwand1", AbilityHealingWand1.class);
+		
+		abilities.put("midasboots", AbilityMidasBoots.class);
+		
 		
 		
 		abilities.put("rune_blood",RuneBlood.class);
@@ -69,6 +80,7 @@ public class AbilityManager
 		abilities.put("rune_hunt",RuneHunt.class);
 		abilities.put("rune_tap",RuneTap.class);
 		abilities.put("rune_sweat",RuneSweat.class);
+		abilities.put("rune_snow", RuneSnow.class);
 	}
 	
 	public static AbsAbility get(String code)

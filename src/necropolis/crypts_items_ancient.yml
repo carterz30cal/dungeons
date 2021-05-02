@@ -1,0 +1,45 @@
+armour_ancientsewer_helmet:
+  name: Ancient Sewer Mask
+  type: armour
+  item: PLAYER_HEAD
+  rarity: EPIC
+  req: 17
+  skull:
+    data: ewogICJ0aW1lc3RhbXAiIDogMTYxNTQwMDY5MDAxNCwKICAicHJvZmlsZUlkIiA6ICJjMGYzYjI3YTUwMDE0YzVhYjIxZDc5ZGRlMTAxZGZlMiIsCiAgInByb2ZpbGVOYW1lIiA6ICJDVUNGTDEzIiwKICAic2lnbmF0dXJlUmVxdWlyZWQiIDogdHJ1ZSwKICAidGV4dHVyZXMiIDogewogICAgIlNLSU4iIDogewogICAgICAidXJsIiA6ICJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlLzk5ZTliNDZkMDEyN2U4ZjEwOTJjNDU4MDcwODAxOTM2NzQ2ODEwNGY1N2QzM2U2Njg3NDBjODdmNGFkOGI3NTIiLAogICAgICAibWV0YWRhdGEiIDogewogICAgICAgICJtb2RlbCIgOiAic2xpbSIKICAgICAgfQogICAgfQogIH0KfQ==
+    sig: U2wiNGhuK7XpNYbTI7uEJBrzdzRYsmrduNy2J5nn+XyW7t76cA7PgpLr0givtF366bRsOM5pph7/5fDOdwhZVNviQuHBEro8Cd7mX4CozQj7iNXweLOh+ItiI9hB5B7NqJGNn7INvZTGUyjOjRENmgG8L12ySB5sd3idKUcucr2h0Z8ZhCXc4nCa+1WsVRkf+bERkk6AV5MW3Uzsp/q7Gu2gvJRHi5FyZN/pzh3njYlo8sOLg4AqaB4yLtTkJ2TCpqTI426hfIpgTZKCncx3YHdFD2H3nc7A0rWw+QnfVUKuH90qlBr+RRhA9xUPNu8C+D+k+mCyLSChJej2nTTu80Xt3PQtVJXGtXedqWzNfiugQuEPQBUpS4ZhdD1eysCiQ36p9A+5aUhji+5Y6R7JrdJTXYqmBVM9W9EgNbpZryRHfZZeI6PG0QtDZtQz9jcbX9gXsO+1RcP1+CeRXr0Y9KdAM6C/+fnzKm/qnPtmxnOeMHH/CyMuKPkCM04vF1luo/ItohCByx5ZXYCP4QYyqcmoJEzSiJkncHVXyhpKwKt83KXGJenWt5YAS3IXiQjM6nzbgL2LZClCb1QqAjxzVjVYVcTbRIpe4yzEFFkqw0X7G8abtRmPHko/Uph4GdqVuBC6YF34yNfPl5UiKuvTmJV1MvY3FtEMqFBK+S2pO5s=
+  attributes:
+    mana: 200
+    damage: 10
+    
+bow_stinger:
+  name: Stinger
+  type: weapon
+  item: BOW
+  rarity: INCREDIBLE
+  req: 18
+  ability: stinger
+  attributes:
+    damage: +70
+    health: -20
+    
+sword_ancientassassin:
+  name: Assassin Dagger
+  type: weapon
+  item: IRON_SWORD
+  rarity: INCREDIBLE
+  req: 19
+  attributes:
+    damage: +90
+    health: -125
+    armour: -10
+armour_ancientassassin_helmet:
+  name: Assassin Hood
+  type: armour
+  item: LEATHER_HELMET
+  rarity: INCREDIBLE
+  colour: 0,0,0
+  req: 19
+  attributes:
+    damage: +40
+    health: -100
+    armour: -20

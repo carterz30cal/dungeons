@@ -73,3 +73,32 @@ mud_boots:
   materials:
     X: mud,1
   pattern: boots
+  
+manacultist_helmet:
+  product: armour_manacultist_helmet
+  materials:
+    X: magic_dust,1
+    U: armour_cultist_helmet,1
+  pattern: upgrade
+  
+manacultist_chestplate:
+  product: armour_manacultist_chestplate
+  materials:
+    X: magic_dust,1
+    U: armour_cultist_chestplate,1
+  pattern: upgrade
+manacultist_leggings:
+  product: armour_manacultist_leggings
+  materials:
+    X: magic_dust,1
+    U: armour_cultist_leggings,1
+  pattern: upgrade
+manacultist_boots:
+  product: armour_manacultist_boots
+  materials:
+    X: magic_dust,1
+    U: armour_cultist_boots,1
+  pattern: upgrade
+  
+  
+  

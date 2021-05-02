@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -18,6 +19,9 @@ import com.carterz30cal.dungeons.Dungeons;
 import com.carterz30cal.enchants.EnchantManager;
 import com.carterz30cal.items.Item;
 import com.carterz30cal.items.ItemBuilder;
+import com.carterz30cal.player.DungeonsPlayerManager;
+import com.carterz30cal.quests.TutorialManager;
+import com.carterz30cal.quests.TutorialTrigger;
 
 import org.bukkit.ChatColor;
 public class AnvilGUI extends GUI
@@ -139,12 +143,14 @@ public class AnvilGUI extends GUI
 				p.getInventory().addItem(click.clone());
 				inventory.getItem(position).setAmount(0);
 				
+				
 				for (int i = 36; i < 45; i++) inventory.setItem(i, GUICreator.pane(Material.RED_STAINED_GLASS_PANE));
 				return true;
 			}
 			else if (position == 40)
 			{
 				p.getInventory().addItem(click.clone());
+				p.playSound(p.getLocation(), Sound.BLOCK_ENCHANTMENT_TABLE_USE, 1, 1);
 				click.setAmount(0);
 				inventory.setItem(19, null);
 				inventory.getItem(22).setAmount(inventory.getItem(22).getAmount()-1);
@@ -195,6 +201,9 @@ public class AnvilGUI extends GUI
 						break;
 					case 3:
 						error = "Requires a " + ItemBuilder.i.items.get("catalyst=" + EnchantManager.catalyst(book)).name;
+						break;
+					case 5:
+						error = "Max level book!";
 						break;
 					default:
 						break;
@@ -315,7 +324,7 @@ public class AnvilGUI extends GUI
 			ItemMeta meta = displayItem.getItemMeta();
 			List<String> lore = meta.getLore();
 			lore.add("");
-			lore.add(ChatColor.RED + "RECIPE PRODUCT");
+			lore.add(ChatColor.RED + "You're crafting this");
 			meta.setLore(lore);
 			displayItem.setItemMeta(meta);
 			inventory.setItem(34, displayItem);
@@ -335,6 +344,7 @@ public class AnvilGUI extends GUI
 				}
 				break;
 			}
+			TutorialManager.fireEvent(DungeonsPlayerManager.i.get(p), TutorialTrigger.CRAFT_ITEM, ItemBuilder.getItem(recipe.product));
 			Bukkit.getScheduler().runTaskLater(Dungeons.instance, new Runnable() {
 	            
 	            @Override

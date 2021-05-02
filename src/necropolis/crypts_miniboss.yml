@@ -15,11 +15,8 @@ crypts_miniboss_slime1:
       colour: GREEN
     summons:
       summon: crypts_miniboss_slime1_summon
-      x: -102
-      y: 108
-      z: 21002
-      count: 2
-      respawn: 450
+      count: 4
+      respawn: 40
   drops:
     gel:
       drop: 1/1
@@ -66,20 +63,76 @@ crypts_miniboss_knight1:
   type: ZOMBIE
   level: 9
   health: 4000
-  armour: 75
+  armour: 85
   damage: 160
   speed: 0.9
+  dmgresist: 0.1
   abilities:
     boss:
       range: 15
       style: SOLID
       colour: GREEN
+  equipment:
+    main: GOLDEN_SWORD
+    helmet: GOLDEN_HELMET
+    chestplate: GOLDEN_CHESTPLATE
+    leggings: CHAINMAIL_LEGGINGS
+    boots: GOLDEN_BOOTS
   drops:
-    decaying_flesh:
+    bone:
       drop: 1/1
-      amount: 2-8
-    sword_huskscythe:
+      amount: 16-32
+    sword_cryptknight:
       drop: 1/10
       amount: 1-1
       rare: true
+      
+crypts_miniboss_hunter1:
+  name: Crypt Hunter
+  type: SKELETON
+  level: 9
+  health: 3000
+  armour: 15
+  damage: 240
+  speed: 0.8
+  abilities:
+    boss:
+      range: 15
+      style: SOLID
+      colour: GREEN
+    summons:
+      summon: crypts_miniboss_hunter1_summon
+      count: 2
+      respawn: -1
+    swap:
+      distance: 2
+      swap: IRON_SWORD
+  equipment:
+    main: BOW
+    offhand: IRON_SWORD
+    helmet: DIAMOND_HELMET
+    chestplate: CHAINMAIL_CHESTPLATE
+    leggings: CHAINMAIL_LEGGINGS
+    boots: CHAINMAIL_BOOTS
+  drops:
+    crypt_dust:
+      drop: 1/1
+      amount: 1-4
+    bow_crypthunter:
+      drop: 1/10
+      amount: 1-1
+      rare: true
+      
+crypts_miniboss_hunter1_summon:
+  name: Hunter Wolf
+  type: WOLF
+  level: 6
+  health: 600
+  armour: 5
+  damage: 105
+  speed: 0.9
+  abilities:
+    targeter:
+      range: 10
+      
   

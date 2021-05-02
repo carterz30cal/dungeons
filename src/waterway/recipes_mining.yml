@@ -1,0 +1,51 @@
+royal_pickaxe:
+  product: pickaxe_royal
+  materials:
+    W: pickaxe_water,1
+    B: leafball,2
+    R: royalleaf,32
+  recipe:
+    1: B W R
+    
+efficiency:
+  product: book
+  enchants: efficiency,1
+  materials:
+    P: paper,1
+    R: royalleaf,18
+  recipe:
+    0: P R 0
+royal_crown:
+  product: armour_royalleaf_helmet
+  materials:
+    U: armour_leaf_helmet,1
+    X: royalleaf,8
+  pattern: upgrade
+  
+mush_pickaxe:
+  product: pickaxe_mush
+  materials:
+    M: mush,2
+    S: stick_paper,1
+  recipe:
+    0: M M M
+    1: 0 S 0
+    2: 0 S 0
+water_pickaxe:
+  product: pickaxe_water
+  materials:
+    F: water_fragment,2
+    S: stick_paper,1
+  recipe:
+    0: F F F
+    1: 0 S 0
+    2: 0 S 0
+paper_pickaxe:
+  product: pickaxe_paper
+  materials:
+    P: paper,2
+    S: stick_paper,1
+  recipe:
+    0: P P P
+    1: 0 S 0
+    2: 0 S 0

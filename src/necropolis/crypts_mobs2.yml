@@ -19,7 +19,7 @@ crypts_hulk:
   type: ZOMBIE
   health: 800
   damage: 240
-  armour: 140
+  armour: 130
   kbresist: 1
   speed: 0.5
   level: 9
@@ -37,7 +37,7 @@ crypts_hulk:
 crypts_mage2:
   name: Crypt Mage
   type: SKELETON
-  health: 3000
+  health: 2700
   damage: 90
   speed: 0
   level: 9
@@ -62,3 +62,73 @@ crypts_mage2:
       damage: 100
       cooldown: 65
       colour: 61,168,214
+      
+crypts_skeleton2:
+  name: Undead Soldier
+  type: SKELETON
+  health: 950
+  armour: 10
+  damage: 145
+  kbresist: 0.6
+  level: 7
+  equipment:
+    main: IRON_SWORD
+    helmet: armour_undeadsoldier_helmet
+    chestplate: armour_undeadsoldier_chestplate
+    leggings: armour_undeadsoldier_leggings
+    boots: armour_undeadsoldier_boots
+  drops:
+    armour_undeadsoldier_helmet:
+      drop: 1/100
+      amount: 1-1
+    armour_undeadsoldier_chestplate:
+      drop: 1/100
+      amount: 1-1
+    armour_undeadsoldier_leggings:
+      drop: 1/100
+      amount: 1-1
+    armour_undeadsoldier_boots:
+      drop: 1/100
+      amount: 1-1
+      
+      
+      
+crypts_skeletoncommander:
+  name: Undead Commander
+  type: SKELETON
+  health: 4000
+  armour: 30
+  damage: 205
+  kbresist: 1
+  speed: 0.9
+  level: 10
+  abilities:
+    swap:
+      distance: 3
+      swap: DIAMOND_SWORD
+  equipment:
+    main: BOW
+    helmet: armour_undeadcaptain_helmet
+    chestplate: armour_sewer_chestplate
+    leggings: armour_undeadcaptain_leggings
+    boots: DIAMOND_BOOTS
+  drops:
+    armour_undeadcaptain_helmet:
+      drop: 1/90
+      amount: 1-1
+    armour_undeadcaptain_chestplate:
+      drop: 1/90
+      amount: 1-1
+    armour_undeadcaptain_leggings:
+      drop: 1/90
+      amount: 1-1
+    armour_undeadcaptain_boots:
+      drop: 1/90
+      amount: 1-1
+      
+      
+      
+      
+      
+      
+      

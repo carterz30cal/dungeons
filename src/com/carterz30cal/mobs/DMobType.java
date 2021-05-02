@@ -40,6 +40,8 @@ public class DMobType
 	public boolean invisible;
 	public boolean silent;
 	
+	public String id;
+	
 	public DMobType()
 	{
 		entities = new ArrayList<EntityType>();
@@ -52,6 +54,7 @@ public class DMobType
 	}
 	public DMobType (FileConfiguration data,String path)
 	{
+		id = path;
 		entities = new ArrayList<EntityType>();
 		for (String e : data.getString(path + ".type").split(",")) entities.add(EntityType.valueOf(e.toUpperCase()));
 		

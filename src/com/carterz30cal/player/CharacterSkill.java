@@ -1,6 +1,7 @@
 package com.carterz30cal.player;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 
 import com.carterz30cal.dungeons.Dungeons;
@@ -161,6 +162,8 @@ public class CharacterSkill
 	}
 	public double progress()
 	{
+		if (level == 0) return (double)experience / 100;
+		
 		int current = level(experience);
 		return ((double)(experience - requirement(current))) / (requirement(current+1) - requirement(current));
 	}
@@ -198,8 +201,9 @@ public class CharacterSkill
 	}
 	public void give(long amount)
 	{
+		DungeonsPlayer d = DungeonsPlayerManager.i.get(owner);
 		int current = level(experience);
-		long am = (long)(amount * DungeonsPlayerManager.i.get(owner).stats.miningXp);
+		long am = (long)(amount * d.stats.miningXp);
 		experience += am;
 		int lvl = level(experience);
 
@@ -210,11 +214,12 @@ public class CharacterSkill
 		{
 			int npoints = lvl - current;
 			for (int i = current; i < lvl;i++) npoints += bonus(i);
+			owner.playSound(owner.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1,1);
 			owner.sendMessage(ChatColor.GOLD + "" + ChatColor.BOLD + "LEVEL " + lvl + "!");
-			owner.sendMessage(ChatColor.GOLD + " + " + npoints + " skill points!");
+			owner.sendMessage(ChatColor.AQUA + " + " + npoints + " skill points!");
 			points += npoints;
 			
-			owner.setPlayerListName(prettyText(level()) + " " + owner.getName());
+			owner.setPlayerListName(prettyText(level()) + " " +DungeonsPlayer.rankColours[d.rank.ordinal()] + owner.getName());
 		}
 		updateBoard(this);
 	}

@@ -32,6 +32,18 @@ tendon_whip:
     0: 0 0 X
     1: 0 X T
     2: X 0 T
+    
+sewer_wand:
+  product: wand_sewer
+  materials:
+    W: wand_crude,1
+    M: magic_dust,2
+    G: gel,64
+  recipe:
+    0: 0 W 0
+    1: 0 M 0
+    2: 0 G 0
+    
 bone_helmet:
   product: armour_bone_helmet
   xp: 66

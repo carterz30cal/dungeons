@@ -1,65 +1,13 @@
-drenched_boss:
+
+waterwayboss_boss:
   name: Dried Drench
   type: HUSK
-  health: 3500
-  damage: 125
-  level: 8
-  speed: 0.9
-  kbresist: 1
-  armour: 35
-  boss: true
-  abilities:
-    boss:
-      range: 15
-      style: SOLID
-      colour: RED
-    rewarder:
-      reward: loot_waterway
-      threshold: 225
-    overkill:
-      threshold: 250
-      reward: 4
-    summons:
-      summon: drenchedboss_protector
-      x: -102
-      y: 108
-      z: 21002
-      count: 2
-      respawn: 450
-  equipment:
-    main: NETHERITE_AXE
-    helmet: NETHERITE_HELMET
-    chestplate: NETHERITE_CHESTPLATE
-    leggings: GOLDEN_LEGGINGS
-    boots: GOLDEN_BOOTS
-  drops: {}
-
-drenchedboss_protector:
-  name: Drench Protector
-  type: IRON_GOLEM
-  health: 800
-  damage: 65
-  level: 7
-  speed: 0.9
-  kbresist: 1
-  armour: 15
-  boss: true
-  abilities:
-    targeter:
-      range: 25
-  drops: 
-    sword_protector:
-      drop: 1/100
-      amount: 1-1
-
-
-drenched5:
-  name: Drenched
-  type: DROWNED
-  health: 230
+  health: 7500
   damage: 75
+  level: 9
+  speed: 0.8
   kbresist: 1
-  perk: waterway_drenched
+  armour: 14
   boss: true
   equipment:
     main: GOLDEN_SWORD
@@ -67,45 +15,88 @@ drenched5:
     chestplate: armour_water_chestplate
     leggings: GOLDEN_LEGGINGS
     boots: GOLDEN_BOOTS
-  drops:
-    wetpaper:
-      drop: 1/1
-      amount: 1-5
-    water_fragment:
-      drop: 1/3
-      amount: 1-2
-    catalyst=0:
-      drop: 1/115
-      amount: 1-1
-    book:
-      drop: 1/125
-      amount: 1-1
-      enchants: trunk,1
-driedguardian:
-  name: Boss Guardian
-  type: WITHER_SKELETON
-  health: 400
-  damage: 120
-  kbresist: 0
-  boss: true
+  abilities:
+    rewarder:
+      reward: loot_waterway
+      threshold: 210
+    overkill:
+      threshold: 160
+      reward: 3
+waterwayboss_drenched1:
+  name: Servant
+  type: DROWNED
+  health: 230
+  damage: 30
+  level: 4
+  speed: 0.8
+  kbresist: 0.75
+  armour: 7
   equipment:
-    main: IRON_AXE
-    offhand: IRON_AXE
-    helmet: NETHERITE_HELMET
-    chestplate: NETHERITE_CHESTPLATE
-    leggings: GOLDEN_BOOTS
-    boots: GOLDEN_BOOTS
-  drops:
-    sword_guardian:
-      drop: 1/115
+    main: WOODEN_SWORD
+    helmet: armour_water_helmet
+    chestplate: armour_water_chestplate
+    leggings: LEATHER_LEGGINGS
+    boots: LEATHER_BOOTS
+  boss: true
+  drops: 
+    sword_protector:
+      drop: 1/625
       amount: 1-1
-sniperskeleton:
+waterwayboss_drenched2:
+  name: Elder Servant
+  type: DROWNED
+  health: 330
+  damage: 35
+  level: 4
+  speed: 0.7
+  kbresist: 0.7
+  armour: 10
+  equipment:
+    main: WOODEN_SWORD
+    helmet: armour_water_helmet
+    chestplate: armour_water_chestplate
+    leggings: LEATHER_LEGGINGS
+    boots: LEATHER_BOOTS
+  boss: true
+  drops: 
+    sword_protector:
+      drop: 1/600
+      amount: 1-1
+waterwayboss_sniper:
   name: Sniper
   type: SKELETON
-  health: 190
-  damage: 55
+  health: 210
+  damage: 40
   kbresist: 1
   boss: true
+  level: 2
   equipment:
     main: BOW
   drops: {}
+waterwayboss_golem:
+  name: Golem
+  type: IRON_GOLEM
+  health: 1400
+  damage: 40
+  level: 5
+  speed: 0.65
+  kbresist: 1
+  armour: 22
+  boss: true
+  abilities:
+    targeter:
+      range: 14
+waterwayboss_golem2:
+  name: Enraged Golem
+  type: IRON_GOLEM
+  health: 300
+  damage: 58
+  level: 5
+  speed: 1.25
+  kbresist: 1
+  armour: 25
+  boss: true
+  abilities:
+    targeter:
+      range: 20
+
