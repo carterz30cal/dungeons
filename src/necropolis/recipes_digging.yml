@@ -10,8 +10,8 @@ tier2shovel:
   product: digging_shovelT2
   materials:
     S: digging_shovelT1,1
-    X: digging_leather,5
-    J: digging_ancientstone,8
+    X: digging_leather,4
+    J: digging_ancientstone,6
   recipe:
     0: 0 X 0
     1: 0 S 0
@@ -43,6 +43,16 @@ precursor_crown:
   recipe:
     0: C S C
     1: L 0 L
+    
+precursor_chestplate:
+  product: armour_precursor_chestplate
+  materials:
+    C: digging_core,2
+    L: digging_leather,2
+  recipe:
+    0: L 0 L
+    1: L C L
+    2: L L L
 gemstone_crown:
   product: armour_gemstone_helmet
   materials:
@@ -53,7 +63,7 @@ thorned_gemstone_crown:
   product: armour_thornedgemstone_helmet
   materials:
     U: armour_gemstone_helmet,1
-    C: digging_crystal,5
+    C: digging_core,1
     B: bone,64
   recipe:
     0: B C B
@@ -70,6 +80,16 @@ cowkiller:
     0: C M 0
     1: X S 0
     2: 0 S 0
+    
+strange_alloy:
+  product: sharpener_strangealloy
+  materials:
+    S: digging_ancientstone,2
+    M: digging_metal,1
+  recipe:
+    0: M 0 0
+    1: 0 S M
+    2: 0 M M
 cursed_blade:
   product: sword_cursedboneblade
   materials:
@@ -162,7 +182,7 @@ precursed_book6:
   materials:
     S: digging_leather,16
     X: digging_ancientstone,48
-    L: catalyst=0,32
+    L: catalyst=0,16
     C: digging_core,1
   recipe:
     0: S S L

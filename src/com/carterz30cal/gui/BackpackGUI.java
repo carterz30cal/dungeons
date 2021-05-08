@@ -18,7 +18,7 @@ import net.md_5.bungee.api.ChatColor;
 
 public class BackpackGUI extends GUI
 {
-	public int sorting = 0; // sorting method index
+	public int sorting = 1; // sorting method index
 	
 	public BackpackGUI(Player p) {
 		super(p);

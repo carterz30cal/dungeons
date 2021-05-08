@@ -6,12 +6,20 @@ armour_hydrasup_boots:
   description: ;Bestowed to HydrasUp!;*Sunglasses*
   ability: midasboots
   
+armour_killwatch04_boots:
+  name: Midas Socks
+  type: armour
+  rarity: LEGENDARY
+  item: GOLDEN_BOOTS
+  description: ;Ya like jazz?
+  ability: midasboots
+  
 armour_carterz30cal_boots:
   name: Midas Socks
   type: armour
   rarity: LEGENDARY
   item: GOLDEN_BOOTS
-  description: ;Admin time.
+  description: ;- Insert bee movie script here.
   ability: midasboots
   
 armour_flex_boots:

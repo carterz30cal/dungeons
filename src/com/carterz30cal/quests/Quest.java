@@ -127,7 +127,7 @@ public class Quest
 					dia = end;
 					dun.questProgress.put(id,"finished");
 					dun.coins += coins;
-					dun.level.give(xp);
+					if (xp != 0) dun.level.give(xp,false);
 					if (reward != null) InventoryHandler.addItem(dun, reward);
 				}
 			}
@@ -165,7 +165,7 @@ public class Quest
 		zombiejim_2.consumes = true;
 		zombiejim_2.setReward("magic_dust", 1, 0);
 		zombiejim_2.setText(new String[] {"Hey friend!","My feet are cold. You reckon you can find me some water boots?","I promise it will be worth it"},
-				new String[] {"Hurry up, my feet might fall off"}, new String[] {"Phew.... thank you, friend",
+				new String[] {"Arhhhh, water boots please."}, new String[] {"Phew.... thank you, friend",
 						"Have this magic dust i found lying around","Come back if you want something else to do, friend"});
 		Quest zombiejim_3 = new Quest(zombiejim);
 		zombiejim_3.id = "zombiejim_3";
@@ -174,8 +174,8 @@ public class Quest
 		zombiejim_3.consumes = false;
 		zombiejim_3.setReward("armour_zombiejim_chestplate", 1, 0);
 		zombiejim_3.setText(new String[] {"Hey again friend!","I need to look at some Cloud Boots for my next book","Do you think you can find me some?"
-				,"Don't worry, I'm not keeping them, i just need a look"},
-				new String[] {"Get on with it, my publisher is pestering me"}, new String[] {"You really are a good friend",
+				,"The titan sometimes has them.","Don't worry, I'm not keeping them, i just need a look"},
+				new String[] {"Find me cloud boots! The titan has them!"}, new String[] {"You really are a good friend",
 						"For your reward.. i came across this enchanted chestplate on my travels","You might like it.","Speak to you soon!"});
 		Quest zombiejim_4 = new Quest(zombiejim);
 		zombiejim_4.id = "zombiejim_4";
@@ -197,19 +197,19 @@ public class Quest
 		zombiejim_5.setText(new String[] {"Nice to see you my friend","My last book was a huge success thanks to you",
 				"I want to explore","I've been told the Hyperblade is a good sword"
 				,"Could you get one for me? I'll pay handsomely!"},
-				new String[] {"I heard humours the Titan sometimes carries one"},
+				new String[] {"I heard humours the Titan sometimes carries a hyperblade.."},
 				new String[] {"Oh thank you!","Here, have 3000 coins and another weird book i found"
 						,"This one feels more powerful","Maybe I'll find some material for my new book while out exploring!"});
 		Quest zombiejim_6 = new Quest(zombiejim);
 		zombiejim_6.id = "zombiejim_6";
 		zombiejim_6.item = "crypt_key1";
-		zombiejim_6.amount = 4;
+		zombiejim_6.amount = 3;
 		zombiejim_6.consumes = true;
 		zombiejim_6.setReward("armour_zombiejim_boots", 1, 0);
 		zombiejim_6.setText(new String[] {"Hi friend","I think I am going to retire to the Crypts soon",
-				"I have one last job for you","To get back to the Crypts, I'll need enough Crypt Keys, 4 should cut it"
+				"I have one last job for you","To get back to the Crypts, I'll need enough Crypt Keys, 3 should cut it"
 				,"I don't think you'll find any here, you'll need to look elsewhere"},
-				new String[] {"Apparently a merchant in Necropolis sells them"},
+				new String[] {"3 crypt keys from the necropolis merchant, thanks."},
 				new String[] {"You are a true friend","I'll leave you with my favourite slippers"
 						,"I fashioned them out of those water boots you gave me","They're pretty nice, if I say so myself"});
 		
@@ -268,6 +268,26 @@ public class Quest
 		cluckyn_7.setText("Turns out the ocean blade isn't for me.;Can you fetch me a hyperspear?", "I want a hyperspear.", "You're amazing!;Have this midas flint!");
 		cluckyn_7.setReward("sharpener_midas", 1, 0,700);
 		
+		QuestNpc taylor = new QuestNpc(new Location(Dungeons.w,-35.5,93,21054.5,105,-3),EntityType.CREEPER,"Taylor",Sound.ENTITY_CREEPER_HURT);
+		
+		Quest taylor_1 = new Quest(taylor);
+		taylor_1.setItem("sand_catalyst", 4);
+		taylor_1.setText("Can you get me 4 sand catalysts, please?", "4 sand catalysts, please.", "Thanks.");
+		taylor_1.setReward(100, 400);
+		Quest taylor_2 = new Quest(taylor);
+		taylor_2.setItem("regeneration_stone", 4);
+		taylor_2.setText("I want one of those yellow rocks that grow.", "A yellow, growing rock, thanks.", "Thank you.");
+		taylor_2.setReward(300, 800);
+		Quest taylor_3 = new Quest(taylor);
+		taylor_3.setItem("spell_tsunami", 4);
+		taylor_3.setText("I would like the tsunami spell.;I've heard the hydra sometimes drops it.", "I want the tsunami spell from the hydra.", "Yay!");
+		taylor_3.setReward(300, 800);
+		Quest taylor_4 = new Quest(taylor);
+		taylor_4.setItem("armour_hydra_boots", 4);
+		taylor_4.setText("Everyone's feet are cold here.;Mine are no exception.;Can you get me a pair of hydra boots?",
+				"I would like some hydra boots.;The hydra drops them.", "Awesome, thanks.");
+		taylor_4.setReward(1000, 2000);
+		
 		/*
 		Quest clucky_1 = new Quest(clucky);
 		clucky_1.id = "clucky_1";
@@ -304,6 +324,36 @@ public class Quest
 				new String[] {"Perfectly crafted!","This may take some time to brew.",
 						"Have this midas flint."});
 		*/
+		
+		QuestNpc harris = new QuestNpc(new Location(Dungeons.w,-13.5, 105, 20973.5, 5, 1),EntityType.BLAZE,"Harris",Sound.ENTITY_BLAZE_HURT);
+		Quest harris_1 = new Quest(harris);
+		harris_1.setText("I have some really cool books;Bring me 10 leaf mash and i'll show you one.","I need 10 leaf mush.","Alright, here you go.");
+		harris_1.setItem("leafmash", 10);
+		harris_1.setReward("book", "spirit,1", 1, 0);
+		
+		Quest harris_2 = new Quest(harris);
+		harris_2.setText("You want another cool book?;Bring me a waterway core piece and you can have it.","One waterway core piece, please.","Ok! Here you are.");
+		harris_2.setItem("waterway_core", 1);
+		harris_2.setReward("book", "trunk,3", 1, 0);
+		
+		Quest harris_3 = new Quest(harris);
+		harris_3.setText("Hungry for more?;Bring me any enchanted book and i'll exchange it for one of my own.", "Give me any book.", "Sweet!;There you go.");
+		harris_3.setItem("book", 1);
+		harris_3.setReward("book","execution,4;blade,2;shocking,1",1,0);
+		
+		Quest harris_4 = new Quest(harris);
+		harris_4.setText("Still need more books?;Bring me a stack of water fragments and i'll give you..;I dunno.. something for your armour",
+				"I require a stack of water fragments.","You actually did it!");
+		harris_4.setItem("water_fragment", 64);
+		harris_4.setReward("book", "vitals,1;protection,2;armourpolish,1", 1, 0);
+		
+		Quest harris_5 = new Quest(harris);
+		harris_5.setText("Another?!;Alright.. fetch me 2 compressed tissue",
+				"I need 2 compressed tissue","Huh.;You actually got that.;Wow.");
+		harris_5.setItem("compressed_tissue", 2);
+		harris_5.setReward("book", "vitals,3;growth,3", 1, 0);
+		
+		
 		QuestNpc john = new QuestNpc(new Location(Dungeons.w,-22.5,88,22063.5,-90,0),EntityType.ZOMBIE,"John",Sound.ENTITY_ZOMBIE_HURT);
 		Quest john_1 = new Quest(john);
 		john_1.id = "john_1";

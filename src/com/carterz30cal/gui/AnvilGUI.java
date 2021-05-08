@@ -19,6 +19,7 @@ import com.carterz30cal.dungeons.Dungeons;
 import com.carterz30cal.enchants.EnchantManager;
 import com.carterz30cal.items.Item;
 import com.carterz30cal.items.ItemBuilder;
+import com.carterz30cal.player.BackpackItem;
 import com.carterz30cal.player.DungeonsPlayerManager;
 import com.carterz30cal.quests.TutorialManager;
 import com.carterz30cal.quests.TutorialTrigger;
@@ -186,7 +187,8 @@ public class AnvilGUI extends GUI
 					ItemStack product = inventory.getItem(19).clone();
 					product = ItemBuilder.i.enchantItem(product, inventory.getItem(25));
 					for (int i = 36; i < 45; i++) inventory.setItem(i, GUICreator.pane(Material.BLUE_STAINED_GLASS_PANE));
-					inventory.setItem(40, product);
+					BackpackItem conv = new BackpackItem(product,-1);
+					inventory.setItem(40, conv.create());
 				}
 				else
 				{

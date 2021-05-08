@@ -13,6 +13,38 @@ bone_sword:
     X: bone,16
     S: stick_bone,1
   pattern: sword
+  
+bone_plating:
+  product: bone_plating
+  materials:
+    A: armour_bone_helmet,1
+    B: bone,64
+    S: stick_bone,4
+  recipe:
+    0: B A B
+    1: S 0 S
+    
+mushroomkingtotem:
+  product: totem_mushroom
+  materials:
+    M: mushroom,64
+    T: tissue,64
+    C: compressed_tissue,1
+    W: web,6
+  recipe:
+    0: 0 W 0
+    1: T M C
+    2: W W W
+    
+webber:
+  product: sword_web
+  materials:
+    S: sword_sand,1
+    W: web,64
+  recipe:
+    0: W W W
+    1: W S W
+    
 boneshard_sword:
   product: sword_boneshard
   materials:
@@ -79,6 +111,14 @@ mass_harvester:
     1: X 0 X
     2: X 0 X
     
+compressed_tissue:
+  product: compressed_tissue
+  materials:
+    T: tissue,32
+  recipe:
+    0: T T T
+    1: T T T
+    2: T T T
 tissue_helmet:
   product: armour_tissue_helmet
   materials:
@@ -143,8 +183,8 @@ armourpolish:
   product: book
   enchants: armourpolish,1
   materials:
-    C: crypt_dust,5
-    G: gel,18
+    C: crypt_dust,3
+    G: gel,9
     P: paper,1
   recipe:
     1: 0 P G
@@ -165,15 +205,26 @@ shroom_dagger:
     0: 0 B 0
     1: 0 T 0
     2: 0 S 0
+    
 fungal_eruption:
   product: fungal_eruption
   materials:
     S: shroom_dagger,1
     H: holywater_fragment,5
     F: fishing_fish,8
-    E: enchanted_mushroom,1
+    E: enchanted_mushroom,3
   recipe:
     0: F H F
+    1: 0 S 0
+    2: 0 E 0
+unholy_shroom:
+  product: sword_unholyshroom
+  materials:
+    S: shroom_dagger,1
+    D: decaying_flesh,20
+    E: enchanted_mushroom,5
+  recipe:
+    0: 0 D 0
     1: 0 S 0
     2: 0 E 0
 

@@ -32,7 +32,120 @@ public class InventoryHandler
 		if (!bypass && p.player.getInventory().firstEmpty() != -1) p.player.getInventory().addItem(item);
 		else insertBackpack(p,item);
 	}
-	
+	private static void sort_valuables_cluster(DungeonsPlayer p)
+	{
+		Map<Integer,List<BackpackItem>> priorities = new HashMap<>();
+		/*
+		 * PRIORITIES
+		 * 0 = weapons, armour,tools
+		 * 1 = books, runes, sharpeners, appliables
+		 * 2 = everything else
+		 */
+		for (int i = 0; i < 3; i++) priorities.put(i, new ArrayList<>());
+		
+		for (BackpackItem[] page : p.backpackb)
+		{
+			for (int i = 0; i < page.length;i++)
+			{
+				if (page[i] == null) continue;
+				if (page[i].itemType.equals("book")) 
+				{
+					priorities.get(1).add(page[i]);
+					continue;
+				}
+				
+				Item item = ItemBuilder.i.items.get(page[i].itemType);
+				if (item == null) 
+				{
+					priorities.get(2).add(page[i]);
+					continue;
+				}
+				switch (item.type)
+				{
+				case "weapon":
+				case "armour":
+				case "tool":
+				case "wand":
+					priorities.get(0).add(page[i]);
+					break;
+				case "rune":
+				case "sharpener":
+				case "appliable":
+				case "modifier":
+				case "spell":
+					priorities.get(1).add(page[i]);
+					break;
+				default:
+					priorities.get(2).add(page[i]);
+				}
+			}
+		}
+		for (List<BackpackItem> l : priorities.values()) l.sort((a,b) -> a.itemType.hashCode() <= b.itemType.hashCode() ? -1 : 1);
+		// add stuff in each priority tier first
+		p.backpackb = new ArrayList<>();
+		p.backpackb.add(new BackpackItem[45]);
+		for (int i = 0; i < priorities.size();i++)
+		{
+			for (BackpackItem it : priorities.get(i)) insertBackpack(p,it);
+		}
+	}
+	private static void sort_ingredients(DungeonsPlayer p)
+	{
+		Map<Integer,List<BackpackItem>> priorities = new HashMap<>();
+		/*
+		 * PRIORITIES
+		 * 0 = weapons, armour,tools
+		 * 1 = books, runes, sharpeners, appliables
+		 * 2 = everything else
+		 */
+		for (int i = 0; i < 3; i++) priorities.put(i, new ArrayList<>());
+		
+		for (BackpackItem[] page : p.backpackb)
+		{
+			for (int i = 0; i < page.length;i++)
+			{
+				if (page[i] == null) continue;
+				if (page[i].itemType.equals("book")) 
+				{
+					priorities.get(1).add(page[i]);
+					continue;
+				}
+				
+				Item item = ItemBuilder.i.items.get(page[i].itemType);
+				if (item == null) 
+				{
+					priorities.get(2).add(page[i]);
+					continue;
+				}
+				switch (item.type)
+				{
+				case "weapon":
+				case "armour":
+				case "tool":
+				case "wand":
+					priorities.get(0).add(page[i]);
+					break;
+				case "rune":
+				case "sharpener":
+				case "appliable":
+				case "modifier":
+				case "spell":
+					priorities.get(1).add(page[i]);
+					break;
+				default:
+					priorities.get(2).add(page[i]);
+				}
+			}
+		}
+		for (List<BackpackItem> l : priorities.values()) l.sort((a,b) -> a.itemType.hashCode() < b.itemType.hashCode() ? -1 : 1);
+		// add stuff in each priority tier first
+		p.backpackb = new ArrayList<>();
+		p.backpackb.add(new BackpackItem[45]);
+		for (int i = priorities.size()-1; i > -1;i--)
+		{
+			for (BackpackItem it : priorities.get(i)) insertBackpack(p,it);
+		}
+	}
 	private static void sort_valuables(DungeonsPlayer p)
 	{
 		Map<Integer,List<BackpackItem>> priorities = new HashMap<>();
@@ -93,6 +206,8 @@ public class InventoryHandler
 	public static void sortBackpack(DungeonsPlayer p,BackpackSort method)
 	{
 		if (method == BackpackSort.VALUABLES_FIRST) sort_valuables(p);
+		else if (method == BackpackSort.VALUABLES_CLUSTER) sort_valuables_cluster(p);
+		else if (method == BackpackSort.INGREDIENTS_FIRST) sort_ingredients(p);
 	}
 	
 	public static void insertBackpack (DungeonsPlayer p, BackpackItem item)

@@ -51,15 +51,6 @@ holywater_fragment:
   name: Holy Water Fragment
   rarity: EPIC
   item: LIGHT_BLUE_DYE
-
-bowl:
-  name: Handcrafted Bowl
-  item: BOWL
-quest_clucky4:
-  name: Clucky's Mysterious Stew
-  type: quest item
-  rarity: UNUSUAL
-  item: MUSHROOM_STEW
   
 waterway_keyshard:
   name: Waterway Key Shard

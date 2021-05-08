@@ -19,16 +19,16 @@ public class AbilityLeafSet extends AbsAbility {
 		ArrayList<String> d = new ArrayList<>();
 		d.add(prefix + "Natural Power");
 		d.add("Gain 25 health for every nearby " + ChatColor.GREEN + "player");
-		d.add("Gain 1 damage for every nearby " + ChatColor.RED + "enemy");
-		d.add("Radius of 10 blocks");
+		d.add("Gain 2 damage for every nearby " + ChatColor.RED + "enemy");
+		d.add("Radius of 11 blocks");
 		return d;
 	}
 
 	public void stats(DungeonsPlayerStats s) 
 	{
-		for (Entity e : Dungeons.w.getNearbyEntities(s.p.getLocation(), 10, 10, 10))
+		for (Entity e : Dungeons.w.getNearbyEntities(s.p.getLocation(), 11, 11, 11))
 		{
-			if (DMobManager.get(e) != null) s.damage += 1;
+			if (DMobManager.get(e) != null) s.damage += 2;
 			else if (e instanceof Player && e != s.p) s.health += 25;
 		}
 	}

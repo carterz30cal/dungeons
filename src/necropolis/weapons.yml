@@ -87,14 +87,26 @@ sword_huskscythe:
   attributes:
     damage: +35
     health: -15
+    
+sword_sirgrindalot:
+  name: Sir Grindalot
+  type: weapon
+  item: STONE_SWORD
+  rarity: LEGENDARY
+  req: 25
+  description: ;One with the grind.
+  attributes:
+    damage: +75
+    bonusxp: +0.65
+    
 bow_crypthunter:
   name: Crypt Hunter Longbow
   type: weapon
   item: BOW
   rarity: EPIC
-  req: 12
+  req: 14
   attributes:
-    damage: +60
+    damage: +75
 bow_slime:
   name: Slime Bow
   type: weapon

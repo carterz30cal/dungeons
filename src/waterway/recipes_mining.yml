@@ -12,7 +12,7 @@ efficiency:
   enchants: efficiency,1
   materials:
     P: paper,1
-    R: royalleaf,18
+    R: royalleaf,12
   recipe:
     0: P R 0
 royal_crown:
@@ -21,6 +21,16 @@ royal_crown:
     U: armour_leaf_helmet,1
     X: royalleaf,8
   pattern: upgrade
+  
+vines:
+  product: sharpener_vines
+  materials:
+    R: royalleaf,24
+    L: leafball,1
+  recipe:
+    0: L 0 L
+    1: 0 R 0
+    2: L 0 L
   
 mush_pickaxe:
   product: pickaxe_mush

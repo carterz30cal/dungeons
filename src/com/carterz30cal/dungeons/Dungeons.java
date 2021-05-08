@@ -14,21 +14,17 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 import com.carterz30cal.areas.EventTicker;
 import com.carterz30cal.areas.NecropolisCrypts2;
 import com.carterz30cal.areas.WaterwayBoss;
 import com.carterz30cal.areas.WaterwayRain;
+import com.carterz30cal.areas.WaterwaySandMiniboss;
 import com.carterz30cal.areas.WaterwaySpearFishing;
 import com.carterz30cal.bosses.BossManager;
-import com.carterz30cal.commands.CommandDungeons;
-import com.carterz30cal.commands.CommandHub;
-import com.carterz30cal.commands.CommandLeaderboard;
-import com.carterz30cal.commands.CommandMarket;
-import com.carterz30cal.commands.CommandPlaytime;
-import com.carterz30cal.commands.CommandStats;
-import com.carterz30cal.commands.CommandTrade;
+import com.carterz30cal.commands.*;
 import com.carterz30cal.crafting.RecipeManager;
 import com.carterz30cal.enchants.EnchantManager;
 import com.carterz30cal.gui.ListenerGUIEvents;
@@ -82,6 +78,8 @@ public class Dungeons extends JavaPlugin
 	private File fPerks;
 	public FileConfiguration fPerksC;
 	
+	private Map<Player,Integer> discordprompts = new HashMap<>();
+	
 	public HashMap<Block,TaskBlockReplace> blocks;
 	@Override
 	public void onEnable()
@@ -120,6 +118,7 @@ public class Dungeons extends JavaPlugin
 		new WaterwayRain();
 		new WaterwaySpearFishing();
 		new WaterwayBoss();
+		new WaterwaySandMiniboss();
 		//new NecropolisCrypts();
 		new NecropolisCrypts2();
 		
@@ -149,6 +148,8 @@ public class Dungeons extends JavaPlugin
 		getCommand("market").setExecutor(new CommandMarket());
 		getCommand("stats").setExecutor(new CommandStats());
 		getCommand("playtime").setExecutor(new CommandPlaytime());
+		getCommand("discord").setExecutor(new CommandDiscord());
+		getCommand("maxitem").setExecutor(new CommandMaxItem());
 		
 		NPCManager.sendall();
 		
@@ -162,7 +163,12 @@ public class Dungeons extends JavaPlugin
 
 			@Override
 			public void run() {
-				for (Player p : Bukkit.getOnlinePlayers()) p.sendMessage(ChatColor.GOLD + "Consider joining the discord! https://discord.gg/U4WsVRG");
+				for (Player p : Bukkit.getOnlinePlayers()) 
+				{
+					if (discordprompts.getOrDefault(p, 0) > 1) continue;
+					p.sendMessage(ChatColor.GOLD + "Consider joining the discord! https://discord.gg/U4WsVRG");
+					discordprompts.put(p, discordprompts.getOrDefault(p, 0) + 1);
+				}
 			}
 			
 		}.runTaskTimer(this, 20*60*30, 20*60*30);

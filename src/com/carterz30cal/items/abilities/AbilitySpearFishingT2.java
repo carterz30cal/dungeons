@@ -3,6 +3,7 @@ package com.carterz30cal.items.abilities;
 import java.util.ArrayList;
 
 import com.carterz30cal.mobs.DMob;
+import com.carterz30cal.mobs.DamageType;
 import com.carterz30cal.player.DungeonsPlayer;
 
 import net.md_5.bungee.api.ChatColor;
@@ -25,9 +26,9 @@ public class AbilitySpearFishingT2 extends AbsAbility {
 	}
 
 	@Override
-	public int onAttack(DungeonsPlayer d,DMob mob,int damage)
+	public int onArrowLand(DungeonsPlayer d,DMob mob,int damage)
 	{
-		if (mob.type.tags.contains("spearfish")) return 2;
-		else return damage;
+		if (mob.type.tags.contains("spearfish")) mob.damage(2, d, DamageType.TRUE,false);
+		return damage;
 	}
 }

@@ -66,6 +66,16 @@ public class AbilityManager
 		abilities.put("cryptgrimoire", ModCryptGrimoire.class);
 		abilities.put("soulsaber", AbilitySoulSaber.class);
 		abilities.put("healingwand1", AbilityHealingWand1.class);
+		abilities.put("healingwand2", AbilityHealingWand2.class);
+		abilities.put("cspirit", AbilityCryptSpirit.class);
+		abilities.put("watertotem", AbilityWaterTotem.class);
+		abilities.put("sand", AbilitySandSword.class);
+		abilities.put("hydraset", AbilityHydraSet.class);
+		abilities.put("hydrastar", AbilityHydraStar.class);
+		abilities.put("mushroomtotem", AbilityMushroomTotem.class);
+		abilities.put("unholyshroom", AbilityUnholyShroom.class);
+		abilities.put("diggingsight", AbilityDiggingSight.class);
+		abilities.put("dagger", AbilityDagger.class);
 		
 		abilities.put("midasboots", AbilityMidasBoots.class);
 		

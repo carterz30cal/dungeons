@@ -6,8 +6,7 @@ sword_cryptknight:
   req: 13
   ability: cryptknight
   attributes:
-    damage: +50
-    regen: +5
+    damage: +55
 
 sword_corruptknight:
   name: Corrupt Knight Sword
@@ -18,8 +17,20 @@ sword_corruptknight:
   ability: cryptknight
   glow: true
   attributes:
-    damage: +70
+    damage: +60
     armour: -15
+    
+sword_web:
+  name: Webber
+  type: weapon
+  item: WOODEN_SWORD
+  rarity: EPIC
+  req: 16
+  ability: sand
+  attributes:
+    damage: +64
+    health: -20
+    
     
 sword_soulfire:
   name: Soulfire Grimoire
@@ -41,7 +52,7 @@ sword_holyknight:
   ability: cryptknight
   glow: true
   attributes:
-    damage: +45
+    damage: +42
     regen: +18
     
 crypt_dust:
@@ -61,9 +72,23 @@ crypt_stone:
     types: LEATHER_BOOTS,IRON_BOOTS,GOLDEN_BOOTS,DIAMOND_BOOTS,CHAINMAIL_BOOTS,NETHERITE_BOOTS
     prefix: Dusty
     attributes:
-      health: +9
+      damage: +6
   description: An old, crumbling rock. Gives;a small damage bonus when;applied to boots.
   
+web:
+  name: Web
+  rarity: COMMON
+  item: COBWEB
+  
+bow_cryptspirit:
+  name: Bow of Crypt Spirits
+  type: weapon
+  rarity: EPIC
+  item: BOW
+  ability: cspirit
+  attributes:
+    damage: +55
+    mana: +150
   
 strange_tissue:
   name: Strange Tissue
@@ -71,7 +96,7 @@ strange_tissue:
   item: LIGHT_GRAY_DYE
   
 warmers:
-  name: Warmers
+  name: Leg Warmers
   type: appliable
   rarity: EPIC
   item: FIRE_CHARGE
@@ -79,5 +104,5 @@ warmers:
     types: LEATHER_LEGGINGS,IRON_LEGGINGS,GOLDEN_LEGGINGS,DIAMOND_LEGGINGS,CHAINMAIL_LEGGINGS,NETHERITE_LEGGINGS
     prefix: Warm
     attributes:
-      health: +20
+      health: +35
   description: It's chilly in these crypts. Provides a minor;health boost when applied to leggings.

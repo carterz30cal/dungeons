@@ -8,6 +8,16 @@ wave_sword:
     0: 0 F 0
     1: 0 S 0
     2: 0 X 0
+    
+sand_sword:
+  product: sword_sand
+  materials:
+    C: sand_catalyst,2
+    S: stick_paper,1
+  recipe:
+    0: 0 C 0
+    1: 0 C 0
+    2: 0 S 0
 
 sand_eye:
   product: sand_eye

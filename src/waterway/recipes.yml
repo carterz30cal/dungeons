@@ -99,17 +99,6 @@ summonkey_waterway:
     1: S F S
     2: 0 S 0
 
-quest_cluckystew:
-  product: quest_clucky4
-  xp: 200
-  materials:
-    D: magic_dust,1
-    L: leafball,3
-    C: catalyst=0,1
-    B: bowl,1
-  recipe:
-    1: D C L
-    2: 0 B 0
 ##############################################
 ##          -- ARMOUR SETS --   		    ##
 ##              TIER ONE  					##
@@ -640,3 +629,34 @@ sharp_flint:
 ##           -- SCRAPPING --   		        ##
 ##              TIER ONE  					##
 ##############################################
+
+wf_helmet:
+  product: water_fragment,3
+  materials:
+    A: armour_water_helmet,1
+  recipe:
+    0: A 0 0
+    
+wf_chestplate:
+  product: water_fragment,6
+  materials:
+    A: armour_water_chestplate,1
+  recipe:
+    0: A 0 0
+    
+wf_leggings:
+  product: water_fragment,5
+  materials:
+    A: armour_water_leggings,1
+  recipe:
+    0: A 0 0
+    
+wf_boots:
+  product: water_fragment,2
+  materials:
+    A: armour_water_boots,1
+  recipe:
+    0: A 0 0
+
+
+

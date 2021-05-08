@@ -8,7 +8,7 @@ public class EnchSpirit extends AbsEnchant {
 	@Override
 	public String description() {
 		// TODO Auto-generated method stub
-		return "+" + (10*level) + "% mana";
+		return "+" + (10*level) + "% mana for this piece";
 	}
 
 	@Override

@@ -1,7 +1,58 @@
+sands_hydrahead:
+  name: Head
+  type: GUARDIAN
+  health: 75
+  damage: 27
+  dmgresist: 1
+  kbresist: 1
+  boss: true
+  tags: spearfish
+  silent: true
+  level: 5
+  abilities:
+    regen:
+      regen: 4
+      cooldown: 60
+  
+sands_hydrasoul:
+  name: Soul
+  type: VEX
+  health: 7
+  damage: 35
+  speed: 0.7
+  dmgresist: 1
+  kbresist: 1
+  boss: true
+  tags: spearfish
+  silent: true
+  level: 3
+  abilities:
+    targeter:
+      range: 20
+  
+sands_hydraminion:
+  name: Minion
+  type: ZOMBIE
+  health: 22
+  damage: 18
+  speed: 1.2
+  dmgresist: 1
+  kbresist: 0
+  boss: true
+  tags: spearfish
+  silent: true
+  level: 3
+  abilities:
+    regen:
+      regen: 2
+      cooldown: 40
+
+
+
 sands_guardian:
   name: Sand Guardian
   type: ZOMBIE,GUARDIAN
-  health: 8
+  health: 11
   damage: 20
   dmgresist: 1
   kbresist: 1
@@ -23,7 +74,7 @@ sands_guardian:
 sands_husk:
   name: Dune Revenant
   type: HUSK
-  health: 10
+  health: 13
   damage: 40
   dmgresist: 1
   speed: 0.7
@@ -36,12 +87,32 @@ sands_husk:
     sand_catalyst:
       drop: 1/5
       amount: 1-1  
+      
+sands_pigman:
+  name: Sand Pigman
+  type: ZOMBIFIED_PIGLIN
+  health: 9
+  damage: 40
+  dmgresist: 1
+  speed: 1.3
+  tags: spearfish
+  level: 4
+  abilities:
+    targeter:
+      range: 15
+  drops:
+    fishing_fish:
+      drop: 1/1
+      amount: 2-7
+    sand_catalyst:
+      drop: 1/5
+      amount: 1-1  
   
 sands_hydra:
   name: Guardian Hydra
   type: ZOMBIE,GUARDIAN,GUARDIAN,GUARDIAN
-  health: 24
-  damage: 18
+  health: 21
+  damage: 13
   dmgresist: 1
   speed: 0.4
   tags: spearfish
@@ -55,17 +126,7 @@ sands_hydra:
       drop: 1/5
       amount: 1-1  
       
-boss_hydrahead:
-  name: Hydra Head
-  type: GUARDIAN
-  health: 60
-  damage: 50
-  dmgresist: 1
-  speed: 0
-  tags: spearfish
-  level: 5
-  boss: true
-  silent: true
+
   
       
       

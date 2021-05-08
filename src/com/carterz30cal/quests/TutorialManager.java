@@ -42,6 +42,9 @@ public class TutorialManager
 		waterfragment.msg("You've obtained a Water Fragment! Use the");
 		waterfragment.msg("recipe browser in the Dungeons Menu to");
 		waterfragment.msg("see what you can make!");
+		waterfragment.msg("We suggest trying to make a water blade");
+		waterfragment.msg("which requires 2 water fragments and 1");
+		waterfragment.msg("flimsy paper stick.");
 		
 		Tutorial pickaxe = new Tutorial();
 		pickaxe.name = "Strike the Earth!";
@@ -53,7 +56,7 @@ public class TutorialManager
 		pickaxe.msg("from certain blocks in each dungeon");
 		pickaxe.msg("For example, in Waterway, you can mine");
 		pickaxe.msg("green terracotta and concrete to obtain");
-		pickaxe.msg("leaf mush, which makes several items");
+		pickaxe.msg("leaf mash, which makes several items");
 		
 		Tutorial titan = new Tutorial();
 		titan.name = "Titan Slayer";
@@ -63,11 +66,18 @@ public class TutorialManager
 		titan.msg("rare loot and enchanted books!");
 		
 		Tutorial waterwayboss = new Tutorial();
-		waterwayboss.name = "Waterway Champion";
+		waterwayboss.name = "A Risky Encounter";
 		waterwayboss.add(TutorialTrigger.CRAFT_ITEM, "summonkey_waterway");
 		waterwayboss.msg("You have crafted a waterway key, and now you may summon");
 		waterwayboss.msg("the mighty Dried Drench in the altar room at the end of");
 		waterwayboss.msg("waterway. Be careful, it's tough without friends!");
+		
+		Tutorial waterwayboss_beaten = new Tutorial();
+		waterwayboss_beaten.name = "King of Waterway";
+		waterwayboss_beaten.add(TutorialTrigger.KILL_ENEMY, "waterwayboss_boss");
+		waterwayboss_beaten.msg("You have defeated the mighty Dried Drench and");
+		waterwayboss_beaten.msg("can now advance to Necropolis. Be alert, for");
+		waterwayboss_beaten.msg("the skeletons there are not friendly!");
 		
 		Tutorial catalyst = new Tutorial();
 		catalyst.name = "Enchanting";
@@ -76,6 +86,22 @@ public class TutorialManager
 		catalyst.msg("You've gotten your first catalyst! These can");
 		catalyst.msg("be used to enchant items and combine books");
 		catalyst.msg("to make them more powerful!");
+		
+		Tutorial wands = new Tutorial();
+		wands.name = "Might and magic!";
+		wands.add(TutorialTrigger.CRAFT_ITEM, "wand_crude");
+		wands.add(TutorialTrigger.CRAFT_ITEM, "wand_sewer");
+		wands.msg("Wands are powerful weapons, but they need to contain");
+		wands.msg("a spell to work. Spells can be found all around the");
+		wands.msg("world, and many are dropped by powerful monsters");
+		
+		Tutorial sharpeners = new Tutorial();
+		sharpeners.name = "Sharpened!";
+		sharpeners.add(TutorialTrigger.BUY_ITEM, "sharpener_crude");
+		sharpeners.msg("Sharpeners are a great way of boosting your stats!");
+		sharpeners.msg("To apply one to a weapon, use the applying menu");
+		sharpeners.msg("located in the anvil. Remember, you can only use");
+		sharpeners.msg("4 of them, so choose wisely.");
 	}
 	
 	

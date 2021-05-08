@@ -7,7 +7,7 @@ public class EnchProtection extends AbsEnchant {
 
 	@Override
 	public String description() {
-		return "Increases base armour by " + (int)(12.5*level) + "%";
+		return "Increases base armour by " + (int)(12.5*level) + "% on this piece";
 	}
 
 	@Override

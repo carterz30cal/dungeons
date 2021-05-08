@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -95,13 +96,19 @@ public class DungeonManager
 			dungeon.icon_data = data.getString(d + ".explorer.icon.data");
 			dungeon.icon_sig = data.getString(d + ".explorer.icon.sig");
 			dungeon.expl_lore = data.getString(d + ".explorer.lore",ChatColor.RED + "PLACEHOLDER");
+			dungeon.expl_coins = data.getInt(d + ".explorer.extracoins",0);
 			dungeon.killsperlevel = data.getInt(d + ".explorer.killsperlevel",1);
 			
+			dungeon.requiredtutorial = data.getString(d + ".reqtutorial","none");
 			
 			String[] chance = data.getString(d + ".mining.rare.chance","0/1").split("/");
 			dungeon.mining.chance = Integer.parseInt(chance[0]);
 			dungeon.mining.outof = Integer.parseInt(chance[1]);
 			dungeon.mining.rareore = Material.valueOf(data.getString(d + ".mining.rare.material","BEDROCK"));
+			String[] cors = data.getString(d + ".mining.rare.correction","BEDROCK").split(",");
+			List<Material> ms = new ArrayList<>();
+			for (String c : cors) ms.add(Material.valueOf(c));
+			dungeon.mining.rarecorrection = ms;
 			
 			dungeon.unfinished = data.getBoolean(d + ".unfinished", false);
 			

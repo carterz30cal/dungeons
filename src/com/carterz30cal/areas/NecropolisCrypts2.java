@@ -65,8 +65,8 @@ public class NecropolisCrypts2 extends AbsDungeonEvent
 	private CryptMobs mobs_ancient;
 	private CryptLootTable loot_ancient;
 	private CryptBlocks blocks_ancient;
-	private final String[] ancient_regular = {"cryptsa_ghoul"};
-	private final String[] ancient_loot = {"cryptsa_ghoul","cryptsa_mage","cryptsa_assassin"};
+	private final String[] ancient_regular = {"cryptsa_ghoul","cryptsa_soldier"};
+	private final String[] ancient_loot = {"cryptsa_ghoul","cryptsa_soldier","cryptsa_mage","cryptsa_assassin"};
 	
 	
 	
@@ -83,7 +83,7 @@ public class NecropolisCrypts2 extends AbsDungeonEvent
 		loot.loot.add(new CryptLoot("stick_gel",4));
 		loot.loot.add(new CryptLoot("decaying_flesh",16));
 		loot.loot.add(new CryptLoot("crypt_dust",21));
-		loot.loot.add(new CryptLoot("catalyst=0",3));
+		loot.loot.add(new CryptLoot("catalyst=0",5));
 		loot.loot.add(new CryptLoot("book","polished,1",8));
 		loot.loot.add(new CryptLoot("book","polished,2",1));
 		loot.loot.add(new CryptLoot("book","strength,1",4));
@@ -92,7 +92,8 @@ public class NecropolisCrypts2 extends AbsDungeonEvent
 		loot.loot.add(new CryptLoot("armour_crypt_leggings",1));
 		loot.loot.add(new CryptLoot("armour_crypt_boots",2));
 		loot.loot.add(new CryptLoot("sword_cryptknight",1));
-		loot.loot.add(new CryptLoot("crypt_stone",3));
+		loot.loot.add(new CryptLoot("crypt_stone",5));
+		loot.add("bow_cryptspirit", 1);
 		loot.itemsPerChest = new int[] {5,12};
 		loot.init();
 		
@@ -101,8 +102,8 @@ public class NecropolisCrypts2 extends AbsDungeonEvent
 		loot2.loot.add(new CryptLoot("gel",500));
 		loot2.loot.add(new CryptLoot("crypt_dust",60));
 		loot2.loot.add(new CryptLoot("decaying_flesh",45));
-		loot2.loot.add(new CryptLoot("strange_tissue",10));
-		loot2.loot.add(new CryptLoot("catalyst=0",12));
+		loot2.loot.add(new CryptLoot("strange_tissue",11));
+		loot2.loot.add(new CryptLoot("catalyst=0",19));
 		loot2.loot.add(new CryptLoot("book","polished,1",20));
 		loot2.loot.add(new CryptLoot("book","polished,2",8));
 		loot2.loot.add(new CryptLoot("book","polished,3",2));
@@ -114,7 +115,9 @@ public class NecropolisCrypts2 extends AbsDungeonEvent
 		loot2.loot.add(new CryptLoot("armour_crypt2_leggings",2));
 		loot2.loot.add(new CryptLoot("armour_crypt2_boots",4));
 		loot2.loot.add(new CryptLoot("sword_cryptknight",2));
-		loot.loot.add(new CryptLoot("crypt_stone",4));
+		loot2.loot.add(new CryptLoot("crypt_stone",6));
+		loot2.add("bow_cryptspirit", 2);
+		loot2.add("book", 1,"cryptlord,1");
 		loot2.itemsPerChest = new int[] {3,14};
 		loot2.init();
 		
@@ -163,9 +166,11 @@ public class NecropolisCrypts2 extends AbsDungeonEvent
 		loot_ancient.itemsPerChest = new int[] {10,21};
 		loot_ancient.add("digging_stone", 2000);
 		loot_ancient.add("digging_ancientstone", 50);
-		loot_ancient.add("book", 5,"cryptwarrior,1");
-		loot_ancient.add("book", 2,"shredding,1");
-		loot_ancient.add("bow_stinger", 1);
+		loot_ancient.add("strange_tissue",10);
+		loot_ancient.add("book", 6,"cryptwarrior,1");
+		loot_ancient.add("book", 3,"shredding,1");
+		loot_ancient.add("bow_stinger", 2);
+		loot_ancient.add("book", 4,"cryptlord,1");
 		loot_ancient.init();
 		
 	}

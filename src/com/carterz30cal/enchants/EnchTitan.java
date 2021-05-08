@@ -9,7 +9,7 @@ public class EnchTitan extends AbsEnchant
 
 	@Override
 	public String description() {
-		return "If above 70% health, gain " + (4*level) + " armour";
+		return "If above 70% health, gain " + (5*level) + " armour";
 	}
 
 	@Override
@@ -47,7 +47,7 @@ public class EnchTitan extends AbsEnchant
 	@Override 
 	public DungeonsPlayerStatBank onFinalBank(DungeonsPlayerStatBank bank)
 	{
-		if (bank.d.getHealthPercent() >= 0.7) bank.armour += 4*level;
+		if (bank.d.getHealthPercent() >= 0.7) bank.armour += 5*level;
 		return bank;
 	}
 	@Override

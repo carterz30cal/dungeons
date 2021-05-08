@@ -1,8 +1,8 @@
 drenched_titan:
   name: Titan Drench
   type: DROWNED
-  health: 2000
-  damage: 120
+  health: 2250
+  damage: 105
   level: 6
   kbresist: 1
   dmgresist: 0.4
@@ -11,25 +11,25 @@ drenched_titan:
   abilities:
     caster:
       projectiles: -1
-      speed: 6
+      speed: 5
       range: 15
       damage: 5
-      cooldown: 7
+      cooldown: 11
     rewarder:
       reward: loot_titan
-      threshold: 125
+      threshold: 50
     arrowshield:
-      range: 7
+      range: 8
       healing: 20
       healdiff: 8
       cooldown: 5
     healcircle:
       radius: 5
-      healing: 16
-      selfheal: 8
-      cooldown: 35
+      healing: 24
+      selfheal: 9
+      cooldown: 40
     overkill:
-      threshold: 200
+      threshold: 75
       reward: 2
   equipment:
     main: sword_hyperblade

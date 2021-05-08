@@ -21,7 +21,19 @@ sharpener_sharp:
   attributes:
     damage: +4
     
-sharpener_vine:
+sharpener_gritty:
+  name: Grit
+  type: sharpener
+  rarity: RARE
+  item: GRAVEL
+  sharpener:
+    id: gritty
+    plus: BLACK
+  attributes:
+    damage: +6
+    health: -11
+    
+sharpener_vines:
   name: Vines
   type: sharpener
   rarity: RARE
@@ -31,7 +43,7 @@ sharpener_vine:
     id: vines
     plus: GREEN
   attributes:
-    regen: +1
+    regen: +2
     
 sharpener_midas:
   name: Midas Flint

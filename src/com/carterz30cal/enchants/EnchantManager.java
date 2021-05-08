@@ -44,6 +44,9 @@ public class EnchantManager
 		enchantments.put("cubism", EnchCubism.class);
 		enchantments.put("efficiency", EnchEfficiency.class);
 		enchantments.put("coarse", EnchCoarse.class);
+		enchantments.put("growth",EnchGrowth.class);
+		enchantments.put("lethal", EnchLethal.class);
+		enchantments.put("cryptlord", EnchCryptLord.class);
 	}
 	@Deprecated
 	public static int catalyst(ItemStack item, ItemStack book)

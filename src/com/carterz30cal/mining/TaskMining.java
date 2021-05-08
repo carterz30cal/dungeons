@@ -40,7 +40,7 @@ public class TaskMining extends BukkitRunnable
 		Block target = player.player.getTargetBlockExact(5);
 		if (mining == null || (!mining.equals(target) && target != null))
 		{
-			if (!player.area.mining.blocks.containsKey(target.getType()))
+			if (player.area == null || player.area.mining == null || player.area.mining.blocks == null || !player.area.mining.blocks.containsKey(target.getType()))
 			{
 				player.mining = null;
 				end();
@@ -65,7 +65,7 @@ public class TaskMining extends BukkitRunnable
 			Bukkit.getServer().getPluginManager().callEvent(new BlockBreakEvent(mining,player.player));
 			Location l = mining.getLocation();
 			BlockPosition pos = new BlockPosition(l.getBlockX(),l.getBlockY(),l.getBlockZ());
-			PacketPlayOutBlockBreakAnimation packet = new PacketPlayOutBlockBreakAnimation(UUID.randomUUID().hashCode(),pos,-1);
+			PacketPlayOutBlockBreakAnimation packet = new PacketPlayOutBlockBreakAnimation(l.hashCode(),pos,-1);
 			
 			((CraftPlayer)player.player).getHandle().playerConnection.sendPacket(packet);
 			mining = null;
@@ -75,7 +75,7 @@ public class TaskMining extends BukkitRunnable
 		{
 			Location l = mining.getLocation();
 			BlockPosition pos = new BlockPosition(l.getBlockX(),l.getBlockY(),l.getBlockZ());
-			PacketPlayOutBlockBreakAnimation packet = new PacketPlayOutBlockBreakAnimation(player.player.getEntityId() + remaining,pos,progress);
+			PacketPlayOutBlockBreakAnimation packet = new PacketPlayOutBlockBreakAnimation(l.hashCode(),pos,progress);
 			
 			((CraftPlayer)player.player).getHandle().playerConnection.sendPacket(packet);
 		}
@@ -90,7 +90,7 @@ public class TaskMining extends BukkitRunnable
 		{
 			Location l = mining.getLocation();
 			BlockPosition pos = new BlockPosition(l.getBlockX(),l.getBlockY(),l.getBlockZ());
-			PacketPlayOutBlockBreakAnimation packet = new PacketPlayOutBlockBreakAnimation(UUID.randomUUID().hashCode(),pos,-1);
+			PacketPlayOutBlockBreakAnimation packet = new PacketPlayOutBlockBreakAnimation(l.hashCode(),pos,-1);
 			
 			((CraftPlayer)player.player).getHandle().playerConnection.sendPacket(packet);
 		}

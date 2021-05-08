@@ -66,6 +66,28 @@ digging_totem2:
   ability: totem2
   
   
+armour_digging_helmet:
+  name: Archaeologist's Hat
+  type: armour
+  item: DIAMOND_HELMET
+  rarity: EPIC
+  ability: diggingsight
+  attributes:
+    damage: +17
+  
+armour_precursor_chestplate:
+  name: Precursor Lord Chestplate
+  type: armour
+  item: GOLDEN_CHESTPLATE
+  rarity: EPIC
+  req: 20
+  attributes:
+    health: +160
+    armour: +50
+    damagep: +0.04
+  
+  
+  
 armour_precursorcrown_helmet:
   name: Precursor Crown
   type: armour
@@ -122,14 +144,15 @@ sword_cursedboneblade:
   glow: true
   req: 16
   attributes:
-    damage: +65
-    armour: +40
+    damage: +64
+    armour: +45
 sword_precursor:
   name: Blade of Ancients
   type: weapon
   item: NETHERITE_SWORD
   rarity: EPIC
   ability: prejudice
+  req: 15
   attributes:
     damage: +52
     health: -70
@@ -140,6 +163,7 @@ sword_cowmurderer:
   item: DIAMOND_AXE
   rarity: EPIC
   ability: cowdie
+  req: 18
   attributes:
     damage: +40
 loot_digging2:
@@ -177,7 +201,7 @@ sharpener_strangealloy:
     id: strangealloy
     plus: AQUA
   attributes:
-    health: +4
+    health: +5
     armour: +10
 sharpener_cursedbinding:
   name: Cursed Binding

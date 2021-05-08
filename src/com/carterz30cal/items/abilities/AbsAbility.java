@@ -31,6 +31,7 @@ public abstract class AbsAbility
 	public void onMagic(DungeonsPlayer d,ProjectileParticle p) {} // on fire wand
 	public void onMagicHit(DungeonsPlayer d,DMob hit) {}
 	public void stats(DungeonsPlayerStats s) {}
+	public void finalStats(DungeonsPlayerStats s) {}
 	public int magicCost(ItemMeta wand) {return 0;} //when testing cost
 	public String onFishIn(DungeonsPlayer d,String current) { return current;}
 	public void onEnd(DungeonsPlayer d) {}; // when server is closed.

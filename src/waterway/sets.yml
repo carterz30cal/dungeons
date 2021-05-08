@@ -50,6 +50,13 @@ leaf:
     lore: The weapon combines with your suit
     attributes:
       damagep: +0.7
+      
+hydra:
+  set:
+    lore: An almighty beast!
+    attributes:
+      damage: +11
+    ability: hydraset
 
 storm:
   set:

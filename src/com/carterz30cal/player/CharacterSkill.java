@@ -3,6 +3,10 @@ package com.carterz30cal.player;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
+import org.bukkit.scoreboard.DisplaySlot;
+import org.bukkit.scoreboard.Objective;
+import org.bukkit.scoreboard.Scoreboard;
+import org.bukkit.scoreboard.Team;
 
 import com.carterz30cal.dungeons.Dungeons;
 import com.carterz30cal.utility.StringManipulator;
@@ -14,6 +18,7 @@ import net.md_5.bungee.api.chat.TextComponent;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
 
 public class CharacterSkill
 {
@@ -22,6 +27,9 @@ public class CharacterSkill
 	public static final HashMap<Integer,Long> levels = new HashMap<>();
 	
 	public static CharacterSkill[] leaderboard = new CharacterSkill[20];
+	
+	public static Map<Integer,Team> tablist = new HashMap<>();
+	public static Scoreboard board;
 	
 	public Player owner;
 	public long experience;
@@ -47,6 +55,21 @@ public class CharacterSkill
 		}
 		
 		level = level(experience);
+		
+		if (board == null)
+		{
+			board = Bukkit.getScoreboardManager().getNewScoreboard();
+			Objective ob = board.registerNewObjective("playerlist", "dummy","dummy");
+			ob.setDisplaySlot(DisplaySlot.PLAYER_LIST);
+		}
+		
+		if (!tablist.containsKey(level))
+		{
+			Team t = board.registerNewTeam(Integer.toString(levelcap-level));
+			tablist.put(level, t);
+		}
+		tablist.get(level).addEntry(owner.getName());
+		
 		owner.setPlayerListName(prettyText(level()) + " " + owner.getName());
 		
 		updateBoard(this);
@@ -127,6 +150,16 @@ public class CharacterSkill
 		return pointAllocation.getOrDefault(skill, 0);
 	}
 
+	public void updatePlayerList(int prevle)
+	{
+		if (tablist.get(prevle) != null) tablist.get(prevle).removeEntry(owner.getName());
+		if (!tablist.containsKey(level))
+		{
+			Team t = board.registerNewTeam(Integer.toString(levelcap-level));
+			tablist.put(level, t);
+		}
+		tablist.get(level).addEntry(owner.getName());
+	}
 	public static long requirement(int level)
 	{
 		long check = levels.getOrDefault(level, (long) -1);
@@ -196,14 +229,20 @@ public class CharacterSkill
 	{
 		if (level == 25) return 4;
 		if (level == 50) return 4;
+		if (level >= 59) return 1;
 		if (level % 5 == 0 && level != 0) return 1;
 		return 0;
 	}
 	public void give(long amount)
 	{
+		give(amount,true);
+	}
+	public void give(long amount,boolean multiply)
+	{
 		DungeonsPlayer d = DungeonsPlayerManager.i.get(owner);
 		int current = level(experience);
 		long am = (long)(amount * d.stats.miningXp);
+		if (!multiply) am = amount;
 		experience += am;
 		int lvl = level(experience);
 
@@ -220,6 +259,7 @@ public class CharacterSkill
 			points += npoints;
 			
 			owner.setPlayerListName(prettyText(level()) + " " +DungeonsPlayer.rankColours[d.rank.ordinal()] + owner.getName());
+			updatePlayerList(current);
 		}
 		updateBoard(this);
 	}

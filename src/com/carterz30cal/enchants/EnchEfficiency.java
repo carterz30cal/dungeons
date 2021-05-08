@@ -7,7 +7,7 @@ public class EnchEfficiency extends AbsEnchant {
 
 	@Override
 	public String description() {
-		return "Adds " + (3*level) + " Speed to this pick.";
+		return "Adds " + (3*level) + " speed to this pick.";
 	}
 
 	@Override

@@ -7,6 +7,22 @@ armour-bone:
   req: 8
   attributes:
     armour: 50,60,55,50
+    
+bone_plating:
+  name: Bone Plating
+  type: appliable
+  rarity: RARE
+  item: BONE_MEAL
+  glow: true
+  modifier:
+    types: LEATHER_HELMET,IRON_HELMET,GOLDEN_HELMET,DIAMOND_HELMET,CHAINMAIL_HELMET,NETHERITE_HELMET
+    prefix: Reinforced
+    attributes:
+      armour: +8
+      damage: +2
+  description: Hard! Grants a small armour;and damage boost when;applied to helmets.
+    
+    
 armour-tissue:
   name: Tissue
   suffix: Helmet,Chestplate,Leggings,Shoes

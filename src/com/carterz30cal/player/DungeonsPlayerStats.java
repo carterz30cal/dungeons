@@ -53,6 +53,7 @@ public class DungeonsPlayerStats
 	public List<String> persistentdata = new ArrayList<>();
 	
 	public String heldtype;
+	public ItemSet settype;
 	
 	
 	public DungeonsPlayerStats(Player player)
@@ -86,6 +87,7 @@ public class DungeonsPlayerStats
 			}
 			else continue;
 		}
+		settype = sett;
 		ItemStack held = p.getInventory().getItemInMainHand();
 		Item h = null;
 		if (held != null && held.getType() != Material.AIR) 
@@ -225,8 +227,13 @@ public class DungeonsPlayerStats
 		damageSweep += Math.round(damage / 4d);
 		p.setSaturation(20);
 		p.setFoodLevel(20);
+		
+		
+		
+		regen += Math.round(health * 0.0125);
+		
+		for (AbsAbility a : abilities) a.finalStats(this);
 		health = Math.max(10, health);
-		regen += Math.round(health * 0.01);
 		regen = Math.max(0, regen);
 	}
 	public double get (HashMap<String,Double> map,String value)

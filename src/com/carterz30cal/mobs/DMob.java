@@ -171,6 +171,14 @@ public class DMob
 		if (damager != null) 
 		{
 			DungeonsPlayer d = DungeonsPlayerManager.i.get(damager);
+			d.kills++;
+			if (d.kills >= 2500 && !d.questProgress.containsKey("kills_2500")) 
+			{
+				// give sir grindalot
+				InventoryHandler.addItem(d, ItemBuilder.i.build("sword_sirgrindalot", "midastouch,7", 1), false);
+				d.player.sendMessage(ChatColor.GOLD + "Kill milestone of 2500! " + ChatColor.WHITE + "Obtained Sir Grindalot!");
+				d.questProgress.put("kills_2500", "done");
+			}
 			TutorialManager.fireEvent(d, TutorialTrigger.KILL_ENEMY, type.id);
 			for (AbsEnchant e : d.stats.ench) e.onKill(d, this);
 			rewards(damager);
@@ -269,15 +277,19 @@ public class DMob
 		}
 		damageFinal = Math.max(0,damageFinal);
 		
-		Entity e = entities.get(0);
-		Location hitLocation = e.getLocation().subtract(e.getLocation().subtract(damager.player.getLocation()).multiply(0.3))
-				.add(0,1.25,0);
-		hitLocation = hitLocation.add(RandomFunctions.random(-0.5d, 0.5d),RandomFunctions.random(-0.75d, 0.25d),RandomFunctions.random(-0.5d, 0.5d));
-		ArmorStand h = DMobManager.hit(e, (int)damageFinal,indicatorColour);
+		if (damageFinal > 0)
+		{
+			Entity e = entities.get(0);
+			Location hitLocation = e.getLocation().subtract(e.getLocation().subtract(damager.player.getLocation()).multiply(0.3))
+					.add(0,1.25,0);
+			hitLocation = hitLocation.add(RandomFunctions.random(-0.5d, 0.5d),RandomFunctions.random(-0.75d, 0.25d),RandomFunctions.random(-0.5d, 0.5d));
+			ArmorStand h = DMobManager.hit(e, (int)damageFinal,indicatorColour);
+			
+			IndicatorTask t = new IndicatorTask(h,hitLocation);
+			t.runTaskTimer(Dungeons.instance, 1,20);
+			ListenerEntityDamage.indicators.add(t);
+		}
 		
-		IndicatorTask t = new IndicatorTask(h,hitLocation);
-		t.runTaskTimer(Dungeons.instance, 1,20);
-		ListenerEntityDamage.indicators.add(t);
 		
 		lastDamage = damageFinal;
 		health -= damageFinal;

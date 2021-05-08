@@ -3,6 +3,7 @@ package com.carterz30cal.items.abilities;
 import java.util.ArrayList;
 
 import com.carterz30cal.mobs.DMob;
+import com.carterz30cal.mobs.DamageType;
 import com.carterz30cal.player.DungeonsPlayer;
 
 public class AbilitySpearFishingStrange extends AbsAbility {
@@ -12,19 +13,15 @@ public class AbilitySpearFishingStrange extends AbsAbility {
 	{
 		ArrayList<String> d = new ArrayList<String>();
 		d.add(prefix + "Fishin'..?");
-		d.add("Deals 5 damage to guardians");
+		d.add("Deals 4 damage to guardians");
 		d.add("and no damage to everything else");
 		return d;
 	}
 
 	@Override
-	public int onAttack(DungeonsPlayer d,DMob mob,int damage)
+	public int onArrowLand(DungeonsPlayer d,DMob mob,int damage)
 	{
-		if (mob.type.tags.contains("spearfish"))
-		{
-			if (mob.type.tags.contains("fish2")) return 5;
-			else return 0;
-		}
-		else return damage;
+		if (mob.type.tags.contains("spearfish") && mob.type.tags.contains("fish2")) mob.damage(4, d, DamageType.TRUE,false);
+		return damage;
 	}
 }

@@ -52,7 +52,7 @@ public class EnchExecution extends AbsEnchant {
 	
 	public void afterHit(DungeonsPlayer player,DMob hit)
 	{
-		if (hit.health < 20*level && hit.health > 0 && !hit.type.boss)
+		if (hit.health < 20*level && hit.health > 0 && !hit.type.boss && hit.type.dmgresist < 1)
 		{
 			hit.destroy(player.player);
 			hit.spawnIndicator(player, ChatColor.RED + "EXEC" + ChatColor.GOLD + "UTED");

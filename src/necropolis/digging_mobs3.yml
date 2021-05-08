@@ -177,7 +177,7 @@ digging_wolftamer3:
 digging_wolftamer3_wolf:
   name: Angry Hound
   type: WOLF
-  health: 8000
+  health: 800
   damage: 160
   armour: 5
   tags: ancient

@@ -20,6 +20,17 @@ holysword:
     0: D D D
     1: H S H
     2: 0 G 0
+    
+cryptspiritbow:
+  product: bow_cryptspirit
+  materials:
+    W: web,64
+    S: stick_bone,2
+    T: strange_tissue,1
+  recipe:
+    0: 0 S W
+    1: T 0 W
+    2: 0 S W
 soulfire_book:
   product: sword_soulfire
   materials:
@@ -66,12 +77,23 @@ sewer_boots:
     U: armour_ocean_boots,1
   pattern: upgrade
   
+healingwand2:
+  product: healing_wand2
+  materials:
+    T: compressed_tissue,2
+    H: healing_wand1,1
+    D: decaying_flesh,10
+  recipe:
+    0: 0 T 0
+    1: 0 H 0
+    2: 0 D 0
+    
 vitals_3:
   product: book
   enchants: vitals,3
   materials:
     X: catalyst=0,4
-    S: strange_tissue,4
+    S: strange_tissue,2
     F: decaying_flesh,10
   recipe:
     0: X S F
@@ -81,7 +103,7 @@ warmers:
   product: warmers
   materials:
     X: armour_water_leggings,1
-    C: crypt_dust,20
+    C: crypt_dust,16
     H: stick_gel,1
   recipe:
     0: H X H

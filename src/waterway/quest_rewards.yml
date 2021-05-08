@@ -5,7 +5,7 @@ sword_zombiejim:
   item: FLINT
   ability: handsomereward
   attributes:
-    damage: +11
+    damage: +23
     
 armour_zombiejim_chestplate:
   name: Enchanted Chestplate

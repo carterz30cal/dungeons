@@ -2,6 +2,7 @@ package com.carterz30cal.commands;
 
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -15,6 +16,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import com.carterz30cal.bosses.BossManager;
 import com.carterz30cal.dungeons.Dungeons;
+import com.carterz30cal.dungeons.ListenerPlayerJoin;
 import com.carterz30cal.gui.GUI;
 import com.carterz30cal.gui.MenuType;
 import com.carterz30cal.gui.ShopGUI;
@@ -29,6 +31,7 @@ import com.carterz30cal.player.DungeonsPlayer;
 import com.carterz30cal.player.DungeonsPlayerManager;
 import com.carterz30cal.player.ListenerBlockEvents;
 import com.carterz30cal.player.ListenerEntityDamage;
+import com.carterz30cal.player.PlayerDelivery;
 import com.carterz30cal.player.PlayerRank;
 import com.carterz30cal.utility.Square;
 
@@ -118,12 +121,27 @@ public class CommandDungeons implements CommandExecutor
 			case "xp":
 				if (args.length < 2) return false;
 				DungeonsPlayer dn = DungeonsPlayerManager.i.get((Player)sender);
+				if (args.length == 3) dn = DungeonsPlayerManager.i.get(Bukkit.getPlayer(args[2]));
 				
 				int requests = Integer.parseInt(args[1]);
 				dn.level.experience = 0;
 				dn.level.pointAllocation.clear();
 				dn.level.points = 0;
 				if (requests > 0) dn.level.give(requests);
+				break;
+			case "deliver":
+				PlayerDelivery delivery = new PlayerDelivery();
+				@SuppressWarnings("deprecation") UUID recipient = Bukkit.getOfflinePlayer(args[1]).getUniqueId();
+				delivery.recipient = recipient;
+				delivery.xp = Long.parseLong(args[2]);
+				delivery.coins = Integer.parseInt(args[3]);
+				delivery.items = args[4];
+				
+				if (ListenerPlayerJoin.deliveries.containsKey(recipient))
+				{
+					ListenerPlayerJoin.deliveries.get(recipient).combine(delivery);
+				}
+				else ListenerPlayerJoin.deliveries.put(recipient, delivery);
 				break;
 			case "wand":
 				DungeonsPlayer du = DungeonsPlayerManager.i.get((Player)sender);
@@ -178,6 +196,16 @@ public class CommandDungeons implements CommandExecutor
 				if (args.length < 2) return false;
 				if (sender instanceof Player)
 				{
+					if (args[1].equals("list"))
+					{
+						String sendn = "";
+						for (String s : DMobManager.types.keySet())
+						{
+							sendn = sendn + " " + s;
+							if (sendn.length() > 40) sender.sendMessage(sendn);
+						}
+						break;
+					}
 					int amount = 1;
 					if (args.length == 3) amount = Integer.parseInt(args[2]);
 					while (amount > 0)

@@ -25,10 +25,12 @@ public class Dungeon
 	public ArrayList<NPC> npcs;
 	public boolean activated;
 	
+	public String requiredtutorial;
 	public String icon_data;
 	public String icon_sig;
 	public String expl_lore;
 	public int killsperlevel;
+	public int expl_coins;
 	public boolean unfinished;
 	
 	public String[] fishingmobs;

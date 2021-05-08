@@ -79,7 +79,8 @@ public class SkillsGUI extends GUI
 		contents[41] = GUICreator.item(Material.BARRIER, ChatColor.RED + "Coming soon!", ChatColor.DARK_RED + "This skill will release soon!");
 		contents[42] = GUICreator.item(Material.BARRIER, ChatColor.RED + "Coming soon!", ChatColor.DARK_RED + "This skill will release soon!");
 		
-		contents[49] = GUICreator.item(Material.PHANTOM_MEMBRANE, ChatColor.DARK_RED + "Scrub skills", ChatColor.DARK_RED + "Reset your skills and get all points back");
+		contents[49] = GUICreator.item(Material.PHANTOM_MEMBRANE, ChatColor.DARK_RED + "Scrub skills",
+				new String[] {ChatColor.DARK_RED + "Reset your skills and get all points back",ChatColor.GOLD + "Costs 1000 coins"},1);
 				
 		inventory.setContents(contents);
 		render(p);
@@ -89,12 +90,13 @@ public class SkillsGUI extends GUI
 	public boolean handleClick(InventoryClickEvent e, int position, Player p)
 	{
 		DungeonsPlayer d = DungeonsPlayerManager.i.get(p);
-		if (position == 49)
+		if (position == 49 && d.coins >= 1000)
 		{
 			int pts = 0;
 			for (int t : d.level.pointAllocation.values()) pts += t;
 			d.level.pointAllocation.clear();
 			d.level.points += pts;
+			d.coins -= 1000;
 			new SkillsGUI(p);
 			return true;
 		}

@@ -13,17 +13,17 @@ shopkeepsteve:
       price: 245
       enchants: blade,1
     book;lucky: 
-      price: 200
+      price: 180
       enchants: lucky,1
     armour_adventurers_helmet:
       price: 425
     sword_adventurers:
-      price: 450
+      price: 250
       enchants: sweeping,2
     catalyst=0:
-      price: 520
+      price: 475
     sharpener_crude:
-      price: 160
+      price: 140
 midasfollower:
   name: Ancient Stuff Ltd.
   items: 
@@ -46,13 +46,14 @@ midasfollower:
       price: 200
     armour_flex_boots:
       price: 50000
+    book;midastouch6:
+      price: 200000
+      enchants: midastouch,6
 fisherman:
   name: Fishin'
   items:
     sword_fishingforkcommon:
       price: 800
-    bowl:
-      price: 150
 skeletonmerchant:
   name: Merchant
   items:
@@ -61,10 +62,12 @@ skeletonmerchant:
     crypt_key2:
       price: 4750
     crypt_key3:
-      price: 22500
+      price: -1
 digsite:
   name: Don't Ask Questions Ltd.
   items:
     digging_shovelT1:
       price: 2750
+    armour_digging_helmet:
+      price: 9000
       

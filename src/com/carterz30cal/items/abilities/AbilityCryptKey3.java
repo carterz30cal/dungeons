@@ -13,8 +13,8 @@ public class AbilityCryptKey3 extends AbsAbility
 		d.add(prefix + "Crypt Key");
 		d.add("Allows you to open a crypt");
 		d.add("This key opens an incredibly tough crypt");
-		//d.add(ChatColor.RED + "Single use!");
-		d.add(ChatColor.DARK_RED + "" + ChatColor.BOLD + "Not yet implemented!");
+		d.add(ChatColor.RED + "Single use!");
+		//d.add(ChatColor.DARK_RED + "" + ChatColor.BOLD + "Not yet implemented!");
 		
 		return d;
 	}

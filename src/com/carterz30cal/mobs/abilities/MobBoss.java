@@ -43,7 +43,7 @@ public class MobBoss extends DMobAbility
 	{
 		if (alive.getOrDefault(mob.type, false) && unique)
 		{
-			mob.destroy(null);
+			mob.remove();
 			return;
 		}
 		alive.put(mob.type, true);
@@ -63,6 +63,7 @@ public class MobBoss extends DMobAbility
 	@Override
 	public void tick(DMob mob)
 	{
+		alive.put(mob.type, true);
 		BossBar bar = bars.get(mob);
 		if (bar == null) return;
 		bar.setProgress(mob.health / (double)mob.health());

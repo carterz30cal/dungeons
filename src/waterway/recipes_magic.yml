@@ -20,9 +20,8 @@ crude_wand:
 
 mudball_spell:
   product: spell_mudball
-  xp: 80
   materials:
-    C: waterway_core,3
+    C: waterway_core,2
     M: mud,4
   recipe:
     0: 0 M 0
@@ -30,7 +29,6 @@ mudball_spell:
     2: 0 M 0
 leaftome_spell:
   product: spell_leaftome
-  xp: 50
   materials:
     C: waterway_core,1
     B: leafball,1

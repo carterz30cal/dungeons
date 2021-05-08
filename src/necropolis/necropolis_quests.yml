@@ -1,7 +1,0 @@
-enchanted_mushroom:
-  name: Enchanted Mushroom
-  type: quest item
-  rarity: EPIC
-  item: RED_MUSHROOM
-  glow: true
-  nodesc: true

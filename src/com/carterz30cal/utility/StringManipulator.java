@@ -24,8 +24,12 @@ public class StringManipulator
 	{
 		switch (sort)
 		{
+		case VALUABLES_CLUSTER:
+			return "Valuables first, clump similar together";
 		case VALUABLES_FIRST:
 			return "Valuables first";
+		case INGREDIENTS_FIRST:
+			return "Ingredients first";
 		default:
 			return "null";
 		}

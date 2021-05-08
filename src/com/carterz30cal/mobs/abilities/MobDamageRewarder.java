@@ -49,6 +49,7 @@ public class MobDamageRewarder extends DMobAbility
 	public void killed(DMob mob)
 	{
 		ItemStack itemReward = ItemBuilder.i.build(reward, 1);
+		if (damages.get(mob) == null) return;
 		for (Entry<DungeonsPlayer,Integer> entry : damages.get(mob).entrySet())
 		{
 			if (entry.getValue() >= threshold)

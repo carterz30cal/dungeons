@@ -18,11 +18,10 @@ import com.carterz30cal.player.DungeonsPlayerManager;
 import com.carterz30cal.utility.StringManipulator;
 
 import org.bukkit.ChatColor;
-import org.bukkit.Location;
 
 public class DungeonExplorerGUI extends GUI
 {
-	public Location[] warps;
+	public String[] warps;
 	public DungeonExplorerGUI(Player p)
 	{
 		super(p);
@@ -31,7 +30,7 @@ public class DungeonExplorerGUI extends GUI
 		DungeonsPlayer dp = DungeonsPlayerManager.i.get(p);
 		inventory = Bukkit.createInventory(null, 27 + (dm.dungeons.size()/9)*9, "Dungeon Explorer");
 		ItemStack[] contents = new ItemStack[inventory.getSize()];
-		warps = new Location[inventory.getSize()];
+		warps = new String[inventory.getSize()];
 		int currentdungeon = 0;
 		for (int i = 0; i < inventory.getSize(); i++)
 		{
@@ -64,13 +63,15 @@ public class DungeonExplorerGUI extends GUI
 							lore.add(ChatColor.BOLD + "" +  ChatColor.GREEN + "Area Bonus " + StringManipulator.romanNumerals[arealevel-1]);
 							
 							lore.add(" " + ChatColor.BLUE + "+" + (int)(dp.explorer.bonusXp(cd.id)*100) + "% xp boost");
-							
+							int excoins = dp.explorer.bonusCoins(cd.id);
+							if (excoins > 0) lore.add(" " + ChatColor.GOLD + "+" + excoins + " coins per kill");
 							int req = dp.explorer.getKillsForNext(cd.id);
 							if (req == -1) lore.add(ChatColor.GOLD + "" + ChatColor.BOLD + "MAXED");
 							else lore.add(ChatColor.GREEN + "" + req + " kills to level up");
 						}
 						lore.add("");
-						lore.add(ChatColor.GOLD + "Right Click to Warp");
+						if (dp.canWarp(cd.id)) lore.add(ChatColor.GOLD + "Right click to warp");
+						else lore.add(ChatColor.RED + "✖ Cannot warp, beat previous area first");
 					}
 					meta.setLore(lore);
 					
@@ -79,7 +80,7 @@ public class DungeonExplorerGUI extends GUI
 					icon.setItemMeta(meta);
 					contents[i] = icon;
 					
-					warps[i] = cd.spawn;
+					warps[i] = cd.id;
 					currentdungeon++;
 				}
 				else contents[i] = GUICreator.pane(Material.BLACK_STAINED_GLASS_PANE);
@@ -96,7 +97,7 @@ public class DungeonExplorerGUI extends GUI
 		if (position / 9 == inventory.getSize()/9 - 1 && position % 9 == 4) new GUI(MenuType.MAINMENU,p);
 		if (e.getClick() == ClickType.RIGHT)
 		{
-			if (e.getCurrentItem().getType() == Material.PLAYER_HEAD) p.teleport(warps[position]);
+			if (e.getCurrentItem().getType() == Material.PLAYER_HEAD) DungeonsPlayerManager.i.get(p).warp(warps[position]);
 		}
 		return true;
 	}

@@ -14,6 +14,26 @@ crypts_zombie:
       amount: 1-1
 
 
+crypts1_defender:
+  name: Champion Guard
+  type: ZOMBIFIED_PIGLIN
+  health: 800
+  damage: 55
+  speed: 1
+  kbresist: 0.5
+  level: 7
+  abilities:
+    targeter:
+      range: 10
+  equipment:
+    main: GOLDEN_SWORD
+    helmet: IRON_HELMET
+    chestplate: CHAINMAIL_CHESTPLATE
+    leggings: CHAINMAIL_LEGGINGS
+    boots: CHAINMAIL_BOOTS
+    
+
+
 crypts_zombiebaby:
   name: Crypt Zombie
   type: ZOMBIE
@@ -65,7 +85,7 @@ crypts_runeghoul:
   health: 4000
   damage: 80
   level: 9
-  speed: 0.9
+  speed: 1.1
   tags: ghoul
   equipment: 
     main: GOLDEN_HOE

@@ -131,6 +131,7 @@ public class DungeonsPlayerManager
 		playerc.createSection(path + ".backpack");
 		playerc.set(path + ".tutorials", dp.tutorials);
 		playerc.set(path + ".playtime", dp.playtime);
+		playerc.set(path + ".kills", dp.kills);
 		for (int p = 0; p < dp.backpackb.size(); p++) for (BackpackItem item : dp.backpackb.get(p)) if (item != null) item.save(playerc,path + ".backpack." + p);
 		if (dp.explorer.areaPoints.size() > 0)
 		{

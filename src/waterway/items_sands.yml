@@ -22,10 +22,72 @@ sword_wave2:
   rarity: EPIC
   item: GOLDEN_AXE
   ability: wave
-  req: 5
+  req: 9
+  attributes:
+    damage: +27
+    health: +40
+    
+sword_sand:
+  name: Sand Sword
+  type: weapon
+  rarity: RARE
+  item: GOLDEN_SWORD
+  ability: sand
+  req: 7
+  attributes:
+    damage: +18
+    
+armour-hydra:
+  name: Hydra
+  suffix: Head,Body,Legs,Feet
+  set: hydra
+  rarity: EPIC
+  item: LEATHER
+  colour: 14,227,106
+  req: 6
+  skull:
+    data: ewogICJ0aW1lc3RhbXAiIDogMTYyMDI0NTkwMzUzMywKICAicHJvZmlsZUlkIiA6ICJiNWRkZTVmODJlYjM0OTkzYmMwN2Q0MGFiNWY2ODYyMyIsCiAgInByb2ZpbGVOYW1lIiA6ICJsdXhlbWFuIiwKICAic2lnbmF0dXJlUmVxdWlyZWQiIDogdHJ1ZSwKICAidGV4dHVyZXMiIDogewogICAgIlNLSU4iIDogewogICAgICAidXJsIiA6ICJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlLzkxOWRjMjQ3ZTEyYmQwYWEwNGExMGQxNTczZWZlZGNkYzk4ZjUxOWFmYTFkZTMwZjE4ZWM4ODVlNTIwOGFkODEiCiAgICB9CiAgfQp9
+    sig: wd2xgOVzCpfxdww+VHVDasbLwMkVTEemW3s6n2+CkhhzmXc6qm8NSCUH6Dp50tTOsVrrID1EtYgJAv3eBpIXuJQpQ2r2OTKJLbwtXY5j0YYBmUNewva6M4be0Z+CTc+f/nrLG7wezxg0Wqt9B0JHU9C5qL090rrju08yvALXB8nu8FKklz9RTLAT25i6vmwD3L9JOdzmKsddxs9dCafKknZxDLmNvnVNIWMvKA/dm625IjV118ik8k0eqBuPfHqDnzBZezUjR4Mcban1aPAxYL+p3WQgGC2F9w7nmw7TisADI1lXiKPaDzs0UkHsVwuHbFtQuEBrnplCV2ilR0vb6O1XWjsg52tbaE+if5gquT3Nxb9YrBGhOg+T9eSimEVZBKI67LMFCGqkjlHXMtJrlU6fGOFrzOLmn/XDFinwhsfkMmlj2Csb+XdflmeLApgKoJVfO5TJYoKIUA8b97RlYplBqtGQFT+ziKv+S/AQl1XwfIPsa+Efe3cThSxkKMfrJw4reB5hOty2UhqTkjZr4nRKHjyUAxCHCmv+e0H3LAqIfm3B09wa+21HNOshaA2DsKtgVyGEioENQDzJU22KfSYI4FYwCZF8qSPnzDdOdi75Kjv37wGBuCjODkU8tzugo2CbTq6SaSajVOUPqfXuDBrp72QXwGEP7C2AYJudmVU=
+  attributes:
+    health: +70,+65,+60,+55
+    regen: +16,0,0,0
+    mana: +30,+25,+20,+20
+    
+regeneration_stone:
+  name: Regeneration Stone
+  type: appliable
+  rarity: RARE
+  item: FIREWORK_STAR
+  colour: 255,255,0
+  modifier:
+    types: LEATHER_HELMET,IRON_HELMET,GOLDEN_HELMET,DIAMOND_HELMET,CHAINMAIL_HELMET,NETHERITE_HELMET,PLAYER_HEAD
+    prefix: Growing
+    attributes:
+      regen: +5
+      health: -22
+  description: A pulsating, warm rock. Grants a small;regen boost to helmets but at the;cost of some health.
+    
+spell_tsunami:
+  name: Tsunami
+  type: spell
+  item: WATER_BUCKET
+  rarity: EPIC
+  spell:
+    damage: 90
+    colour: 0,50,255
+    pierces: 2
+    manacost: +20
+    speed: 0.1
+sword_hydrastar:
+  name: Hydra Star
+  type: weapon
+  item: NETHER_STAR
+  rarity: EPIC
+  req: 9
+  ability: hydrastar
   attributes:
     damage: +26
-    health: +44
+    mana: +50
     
 sand_eye:
   name: Sand Eye
@@ -34,6 +96,17 @@ sand_eye:
   item: ENDER_EYE
   glow: true
   
+  
+sword_sandscythe:
+  name: Sand Scythe
+  type: weapon
+  rarity: EPIC
+  item: GOLDEN_HOE
+  ability: scythe
+  req: 8
+  attributes:
+    damage: +20
+    health: -15
 essence_of_sand:
   name: Essence of Sand
   type: artifact
@@ -41,3 +114,59 @@ essence_of_sand:
   item: YELLOW_DYE
   nodesc: true
   description: When inserted into the sand altar, spawns;the almighty Hydra, a three headed beast;that regrows very quickly. Summon wisely.
+  
+  
+loot_hydra:
+  name: Sand Hydra Lootbox
+  type: lootbox
+  rarity: RARE
+  item: BEACON
+  loot:
+    fishing_fish:
+      amount: 8-64
+      chance: 1
+    sand_catalyst:
+      amount: 2-6
+      chance: 1
+    essence_of_sand:
+      amount: 1
+      chance: 6
+    armour_hydra_helmet:
+      amount: 1
+      chance: 20
+    armour_hydra_chestplate:
+      amount: 1
+      chance: 10
+    armour_hydra_leggings:
+      amount: 1
+      chance: 10
+    armour_hydra_boots:
+      amount: 1
+      chance: 10
+    regeneration_stone:
+      amount: 1
+      chance: 35
+    spell_tsunami:
+      amount: 1
+      chance: 14
+    sword_sandscythe:
+      amount: 1
+      chance: 15
+    sharpener_gritty:
+      amount: 1-2
+      chance: 7
+    sword_wave2:
+      amount: 1
+      chance: 21
+    book;growth:
+      amount: 1
+      chance: 16
+      enchants: growth,1
+    book;coarse:
+      amount: 1
+      chance: 3
+      enchants: coarse,1
+    book;coarse2:
+      amount: 1
+      chance: 14
+      enchants: coarse,2

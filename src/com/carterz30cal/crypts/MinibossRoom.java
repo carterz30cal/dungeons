@@ -71,7 +71,7 @@ public class MinibossRoom extends CryptRoom
 		int mobc = 7;
 		while (mobc > 0)
 		{
-			DMob mob = DMobManager.spawn(RandomFunctions.get(m.mobs.get(CryptRoomType.LOOT)), new SpawnPosition(
+			DMob mob = DMobManager.spawn("crypts1_defender", new SpawnPosition(
 					ox+RandomFunctions.random(corner1[0]+1, corner2[0]-1), y, oz+RandomFunctions.random(corner1[1]+1, corner2[1]-1)));
 			mob.entities.get(0).setSilent(true);
 			((LivingEntity)mob.entities.get(0)).setAI(false);

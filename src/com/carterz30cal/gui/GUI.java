@@ -86,7 +86,7 @@ public class GUI
 			contents[21] = GUICreator.item(Material.LEATHER, "Backpack", null, 1);
 			contents[22] = GUICreator.item(Material.BARRIER, "Coming soon!", null, 1);
 			contents[23] = GUICreator.item(Material.APPLE, "Recipe Browser", null, 1);
-			contents[24] = GUICreator.item(Material.ANVIL, "Anvil", null, 1);
+			contents[24] = GUICreator.item(Material.ANVIL, "Anvil", new String[] {"Enchanting, Applying and Crafting"}, 1);
 			contents[25] = GUICreator.pane(Material.WHITE_STAINED_GLASS_PANE);
 			break;
 		case ADMIN:

@@ -19,6 +19,19 @@ waterfragment:
   recipe:
     0: F 0 0
   
+watertotem:
+  product: water_totem
+  materials:
+    C: waterway_core,7
+    L: leafball,1
+    R: royalleaf,4
+  recipe:
+    0: 0 C 0
+    1: 0 L 0
+    2: 0 R 0
+    
+  
+  
 venomfang:
   product: sword_venomfang
   xp: 66

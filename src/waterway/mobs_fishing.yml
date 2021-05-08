@@ -2,9 +2,9 @@ dweller:
   name: Dweller
   type: ZOMBIE
   level: 3
-  health: 130
+  health: 140
   damage: 20
-  speed: 0.6
+  speed: 0.7
   equipment:
     helmet: armour_dweller_helmet
     main: WOODEN_SWORD
@@ -22,7 +22,7 @@ undead_fisherman:
   name: Undead Fisherman
   type: ZOMBIE
   level: 3
-  health: 180
+  health: 190
   damage: 13
   equipment:
     helmet: armour_fisherman_helmet
@@ -47,8 +47,8 @@ water_soul:
   name: Water Soul
   type: VEX
   level: 3
-  health: 55
-  damage: 35
+  health: 70
+  damage: 40
   drops:
     fishing_fish:
       drop: 1/1
@@ -96,9 +96,9 @@ ghost_squid:
     caster:
       projectiles: 25
       speed: 3
-      range: 12
+      range: 9
       damage: 5
-      cooldown: 6
+      cooldown: 13
       colour: 61,168,214
   drops:
     fishing_fish:

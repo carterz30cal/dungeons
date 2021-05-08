@@ -157,7 +157,8 @@ public class ListenerEntityDamage implements Listener
 			Player damager;
 			int damage;
 			ArrayList<AbsAbility> abilities = new ArrayList<AbsAbility>();
-			
+			boolean arrowh = false;
+			AbsAbility projab = null;
 			if (e.getDamager() instanceof AbstractArrow)
 			{
 				AbstractArrow arrow = (AbstractArrow)e.getDamager();
@@ -178,17 +179,17 @@ public class ListenerEntityDamage implements Listener
 					new SoundTask(shooter.getLocation(),(Player)shooter,Sound.ENTITY_ARROW_HIT_PLAYER,1.2f,1.1f).runTaskLater(Dungeons.instance, 1);
 				}
 				damager = (Player)shooter;
-				
-				for (AbsAbility a : DungeonsPlayerManager.i.get(damager).stats.abilities) damage = a.onArrowLand(DungeonsPlayerManager.i.get(damager), mob, damage);
 				if (e.getDamager().getType() == EntityType.TRIDENT)
 				{
 					EntityThrownTrident t = ((CraftTrident) e.getDamager()).getHandle();
 					ItemStack thrownTrident = CraftItemStack.asBukkitCopy(t.trident);
 					Item item = ItemBuilder.get(thrownTrident);
 					
-					if (item.data.containsKey("ability")) abilities.add(AbilityManager.get((String)item.data.get("ability")));
+					if (item.data.containsKey("ability")) projab = AbilityManager.get((String)item.data.get("ability"));
 				}
 				else e.getDamager().remove();
+				
+				arrowh = true;
 			}
 			else if (e.getDamager() instanceof Player)
 			{
@@ -210,9 +211,10 @@ public class ListenerEntityDamage implements Listener
 			else return;
 			DungeonsPlayer dp = DungeonsPlayerManager.i.get(damager);
 			abilities.addAll(dp.stats.abilities);
+			if (projab != null) abilities.add(projab);
 			//for (AbsAbility a : abilities) damage = a.onAttack(dp, mob,damage);
 			
-			
+			if (arrowh) for (AbsAbility a : abilities) damage = a.onArrowLand(DungeonsPlayerManager.i.get(damager), mob, damage);
 			for (AbsEnchant a : dp.stats.ench) damage += a.onHit(dp, mob);
 			damage = Math.max(0, damage);
 			

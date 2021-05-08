@@ -42,30 +42,63 @@ mushroom2:
     mushroom:
       drop: 3/4
       amount: 1-3
+      
+mushroom_summon:
+  name: Baby Servant
+  type: ZOMBIE
+  level: 6
+  health: 600
+  armour: 10
+  damage: 60
+  speed: 0.7
+  data:
+    0: baby
+  tags: mushroom
+  boss: true
+  equipment:
+    main: RED_MUSHROOM
+    helmet: RED_MUSHROOM_BLOCK
+    chestplate: armour_mushroom_chestplate
+    leggings: armour_mushroom_leggings
+    boots: armour_mushroom_boots
+    
 mushroom_king:
   name: Shroom King
   type: SKELETON
-  level: 9
-  health: 8000
-  armour: 38
-  damage: 120
+  level: 12
+  health: 12000
+  armour: 30
+  damage: 160
   speed: 0.5
   tags: mushroom
-  abilities:
-    regen:
-      regen: 15
-      cooldown: 20
+  boss: true
   equipment:
     main: RED_MUSHROOM
     offhand: BROWN_MUSHROOM
     helmet: RED_MUSHROOM_BLOCK
-    chestplate: armour_tissue_chestplate
-    leggings: armour_tissue_leggings
-    boots: armour_tissue_boots
-  drops:
-    mushroom:
-      drop: 1/1
-      amount: 1-4
-    enchanted_mushroom:
-      drop: 1/2
-      amount: 1-1
+    chestplate: armour_mushroom_chestplate
+    leggings: armour_mushroom_leggings
+    boots: armour_mushroom_boots
+  abilities:
+    rewarder:
+      reward: loot_mushroomking
+      threshold: 250
+    summons:
+      summon: mushroom_summon
+      count: 8
+      respawn: 400
+    boss:
+      range: 20
+      style: SOLID
+      colour: RED
+    regen:
+      regen: 175
+      cooldown: 400
+    arrowshield:
+      range: 14
+      healing: 70
+      healdiff: 18
+      cooldown: 3
+    overkill:
+      threshold: 260
+      reward: 12

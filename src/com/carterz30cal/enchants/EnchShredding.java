@@ -6,6 +6,7 @@ import com.carterz30cal.mobs.DMob;
 import com.carterz30cal.player.DungeonsPlayer;
 import com.carterz30cal.player.DungeonsPlayerStatBank;
 import com.carterz30cal.utility.InventoryHandler;
+import com.carterz30cal.utility.RandomFunctions;
 
 public class EnchShredding extends AbsEnchant
 {
@@ -13,7 +14,7 @@ public class EnchShredding extends AbsEnchant
 	@Override
 	public String description() 
 	{
-		return "+" + (3*level) + " damage. Gain 1 tissue on kill.";
+		return "+" + (3*level) + " damage. Gain 1 tissue on kill sometimes.";
 	}
 
 	@Override
@@ -47,6 +48,7 @@ public class EnchShredding extends AbsEnchant
 	}
 	public void onKill(DungeonsPlayer player,DMob kill)
 	{
+		if (RandomFunctions.random(1, 5) != 1) return;
 		InventoryHandler.addItem(player, ItemBuilder.i.build("tissue", 1), true);
 	}
 	@Override

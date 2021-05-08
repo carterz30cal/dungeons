@@ -1,6 +1,7 @@
 package com.carterz30cal.dungeons;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -28,6 +29,7 @@ public class DungeonMining
 	
 	public HashMap<Block,Material> raresreplace = new HashMap<>();
 	public Material rareore;
+	public List<Material> rarecorrection;
 	public int chance;
 	public int outof;
 	

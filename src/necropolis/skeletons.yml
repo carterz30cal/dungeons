@@ -1,10 +1,10 @@
 skeleton1:
   name: Skeleton
   type: SKELETON
-  health: 500
+  health: 440
   speed: 0.7
   level: 6
-  damage: 65
+  damage: 70
   kbresist: 0
   tags: skeleton
   equipment: 
@@ -50,11 +50,11 @@ skeleton3:
 miner1:
   name: Miner Skeleton
   type: SKELETON
-  health: 300
-  damage: 90
+  health: 330
+  damage: 85
+  armour: 22
   level: 6
   speed: 0.7
-  dmgresist: 0.2
   tags: skeleton
   equipment:
     main: GOLDEN_PICKAXE

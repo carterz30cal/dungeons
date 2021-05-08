@@ -15,8 +15,8 @@ import org.bukkit.event.block.BlockFormEvent;
 import org.bukkit.event.block.BlockPhysicsEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.inventory.CraftItemEvent;
+import org.bukkit.event.player.PlayerBucketEmptyEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.scheduler.BukkitRunnable;
 
 import com.carterz30cal.dungeons.Dungeon;
 import com.carterz30cal.dungeons.DungeonMiningTable;
@@ -25,8 +25,8 @@ import com.carterz30cal.dungeons.SoundTask;
 import com.carterz30cal.enchants.AbsEnchant;
 import com.carterz30cal.enchants.EnchantManager;
 import com.carterz30cal.items.ItemBuilder;
-import com.carterz30cal.mining.TaskMining;
 import com.carterz30cal.tasks.TaskBlockReplace;
+import com.carterz30cal.utility.InventoryHandler;
 import com.carterz30cal.utility.RandomFunctions;
 
 public class ListenerBlockEvents implements Listener 
@@ -46,7 +46,11 @@ public class ListenerBlockEvents implements Listener
 		e.setCancelled(true);
 	}
 	
-	
+	@EventHandler
+	public void onPlayerBucketEmpty(PlayerBucketEmptyEvent event)
+	{
+		event.setCancelled(true);
+	}
 	@EventHandler
 	public void onBreak(BlockBreakEvent e)
 	{
@@ -77,8 +81,7 @@ public class ListenerBlockEvents implements Listener
 				ItemStack o = ItemBuilder.i.build(loot, null);
 				o.setAmount(mine.loot.get(loot));
 				
-				if (e.getPlayer().getInventory().firstEmpty() == -1) e.getBlock().getWorld().dropItemNaturally(e.getBlock().getLocation(), o);
-				else e.getPlayer().getInventory().addItem(o);
+				InventoryHandler.addItem(d, o, true);
 			}
 			if (mine.loot.size() > 0)
 			{
@@ -95,7 +98,15 @@ public class ListenerBlockEvents implements Listener
 			for (AbsEnchant en : d.stats.ench) mult = en.setRareOreMultiplier(d, mult);
 			double c = 1/(((double)chance*mult)/out);
 			
-			if (Dungeons.instance.blocks.containsKey(e.getBlock()))
+			if (d.inCrypt)
+			{
+				e.getBlock().setType(du.mining.blocks.get(m));
+			}
+			else if (m == du.mining.rareore)
+			{
+				e.getBlock().setType((Material) RandomFunctions.get(du.mining.rarecorrection.toArray()));
+			}
+			else if (Dungeons.instance.blocks.containsKey(e.getBlock()))
 			{
 				Dungeons.instance.blocks.get(e.getBlock()).run();
 			}

@@ -231,7 +231,7 @@ public class ItemBuilder
 	
 	public void generate(FileConfiguration data, String it)
 	{
-		System.out.println(it);
+		//System.out.println(it);
 		String[] sp = it.split("-");
 		if (sp.length == 1) generate_regular(data,it);
 		else if (sp[0].equals("armour")) generate_armour(data,it);
@@ -800,6 +800,8 @@ public class ItemBuilder
 	{
 		if (i.itemType.equals("book")) return 1;
 		Item item = ItemBuilder.i.items.get(i.itemType);
+		
+		if (item == null) return 64;
 		switch (item.type)
 		{
 		case "weapon":
@@ -867,8 +869,9 @@ public class ItemBuilder
 		if (!appliable.suitable.contains(item.getType())) return item;
 		ItemStack better = item.clone();
 		String extras = item.getItemMeta().getPersistentDataContainer().getOrDefault(kExtras,PersistentDataType.STRING,"");
-		if (extras.equals("")) extras = getItem(extra);
-		else extras = extras + "," + getItem(extra);
+		//if (extras.equals("")) extras = getItem(extra);
+		//else extras = extras + "," + getItem(extra);
+		extras = getItem(extra);
 		
 		ItemMeta meta = better.getItemMeta();
 		meta.getPersistentDataContainer().set(kExtras, PersistentDataType.STRING, extras);
@@ -881,8 +884,9 @@ public class ItemBuilder
 		if (extra.equals("")) return item;
 		ItemStack better = item.clone();
 		String extras = item.getItemMeta().getPersistentDataContainer().getOrDefault(kExtras,PersistentDataType.STRING,"");
-		if (extras.equals("")) extras = extra;
-		else extras = extras + "," + extra;
+		//if (extras.equals("")) extras = extra;
+		//else extras = extras + "," + extra;
+		extras = extra;
 		
 		ItemMeta meta = better.getItemMeta();
 		meta.getPersistentDataContainer().set(kExtras, PersistentDataType.STRING, extras);
@@ -940,9 +944,7 @@ public class ItemBuilder
 		if (item1 == null || item2 == null || catalyst == null) return 4;
 		ArrayList<AbsEnchant> enchants = EnchantManager.get(item1.getItemMeta().getPersistentDataContainer());
 		enchants.addAll(EnchantManager.get(item2.getItemMeta().getPersistentDataContainer()));
-		Item item = i.items.getOrDefault(item1.getItemMeta().getPersistentDataContainer().get(kItem, PersistentDataType.STRING),null);
-		String type = null;
-		if (item != null) type = item.type;
+		
 		int c = Integer.parseInt(catalyst.getItemMeta().getPersistentDataContainer().get(kItem, PersistentDataType.STRING).split("=")[1]);
 		//if (type.equals("book")) return 2;
 		if (bothBooks(item1,item2))
@@ -951,7 +953,7 @@ public class ItemBuilder
 		}
 		if (bothBooks(item1,item2) && EnchantManager.catalyst(item2) == c) return 0;
 		if (EnchantManager.catalyst(item2) != c) return 3;
-		for (AbsEnchant e : enchants) if (!e.type().equals(type)) return 1;
+		//for (AbsEnchant e : enchants) if (!e.type().equals(type)) return 1;
 		return 0;
 	}
 	public static boolean bothBooks(ItemStack item1,ItemStack item2)

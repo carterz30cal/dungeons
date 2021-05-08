@@ -5,8 +5,9 @@ waterway:
     icon:
       data: ewogICJ0aW1lc3RhbXAiIDogMTYwMjMzODM0OTcxNSwKICAicHJvZmlsZUlkIiA6ICJmNjE1NzFmMjY1NzY0YWI5YmUxODcyMjZjMTEyYWEwYSIsCiAgInByb2ZpbGVOYW1lIiA6ICJGZWxpeF9NYW5nZW5zZW4iLAogICJzaWduYXR1cmVSZXF1aXJlZCIgOiB0cnVlLAogICJ0ZXh0dXJlcyIgOiB7CiAgICAiU0tJTiIgOiB7CiAgICAgICJ1cmwiIDogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTg4YzNjMDg0NTI2MTZjMGE3YTc5ZjAwM2MyOTljYzYxMGE5NThjYzk2YWQ0ZmIyMTY4YzkzYmI2NWM5NjU1OCIKICAgIH0KICB9Cn0=
       sig: FkEDUjlFKNQFM1MhjLR7sKZOjiWLCSEyrg78HYUTP/3SzltLAZsPo+ztVk+pBVfoAFdHSNxN7FnXh4eqU1rddW3yRYkvj0NoLp9rFbCKIp5QbyU8vtJHi5tKhaIaYtDipjx6/5gTZNw/Fu0dx20iIrXNcIrRQ440rde/iDFp66RDPw/LAjOfv9gKglPD2lMlf2RyL3UWjVmt918B2o23Ng1n/fSNEEgS0lFB+pjLd+O/b95MYHMBCJpBSPOMH+J2sQS7bw5Yc5SCi+eh3ydt+hHyAKfb2tLsN9rkTYbZ11HnnIKi1VZODAr6vOKDcT4f1w8DhVY0xhUtey7nLq9OSSz0jJLePsFUyvAKJcuLOqkaaw/uMIbxWmNQqKiYbczh6Laxan8QLH+4rehVVXsvkwJB27eyeOG9BFvuVG7+M4i0wbE3mhQJUBtfRaRdJyZcxu9GL50wfqeFw5Wg4Nqb47ZZ8TXupYzC0bKhwRGaUC5vmA2sveZzFdf9qUxAP+pCw3/1bDkGnV9A9qPO57MSrNfNrWvBt+bUWOcVcFuY3Ba6zztqDbY3Pq1TzdUgTZyPU9uUOvrhWHexoW/JKx7GYfUL4WDTTsYQrL5jdNmQIqpzE3xLD3vl6LrhyKwducGLeGpejtoMeyvAGkdTcQ1cxe4vJyywutteeGljeSZvywc=
-    lore: This area contains many hungry drenched./Explore with caution!
+    lore: This area contains/many hungry drenched./Explore with caution!
     killsperlevel: 175
+    extracoins: 3
   fishingmobs: dweller,undead_fisherman,pond_slime,ghost_squid,water_soul,pond_golem
   mining:
     boss:
@@ -17,6 +18,7 @@ waterway:
     rare:
       chance: 1/20
       material: GOLD_BLOCK
+      correction: GREEN_TERRACOTTA,GREEN_CONCRETE
     ores:
       GREEN_TERRACOTTA:
         ore: leafmash
@@ -76,28 +78,30 @@ waterway:
     -34,119,20964: drenched3
     -33,119,20971: drenched3
     -35,119,20974: drenched3
-    
-    # fishing content # 
-    #-40,87,21048: fishing_sandguardian1
-    #-36,89,21051: fishing_sandguardian1
 necropolis:
   name: Necropolis
   spawn: 0,103,22000
   unfinished: false
+  reqtutorial: King of Waterway
   explorer:
     icon:
       data: ewogICJ0aW1lc3RhbXAiIDogMTYwMjM1ODI5OTI3OCwKICAicHJvZmlsZUlkIiA6ICI0ZWQ4MjMzNzFhMmU0YmI3YTVlYWJmY2ZmZGE4NDk1NyIsCiAgInByb2ZpbGVOYW1lIiA6ICJGaXJlYnlyZDg4IiwKICAic2lnbmF0dXJlUmVxdWlyZWQiIDogdHJ1ZSwKICAidGV4dHVyZXMiIDogewogICAgIlNLSU4iIDogewogICAgICAidXJsIiA6ICJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlL2IxMTZkMjhjZTc3ZjlmZWY3YTZmYjQwODIyNGUzYmU4NDUzMGE0MmMzYzYxZWFhN2U4NTNkNzYyZDRlZDgyNzEiCiAgICB9CiAgfQp9#
       sig: M55L1zW0Ci0lLXDiTJfKPu71k9tpsorao5ZRYH4/Fmr9JbTWrT6hRYt3ZlvNZj6uEgbxSseFYA+Xp+qGoqE1Z2BE0Z/oO2/IrzC12uhvVd7FTFzmjjcgRJjgTwhm8vxEsAXjE2TOsXdT6DGSm0sPc+iUSoJGMDSwC+yTYuATa1L8UUplAq17nw+vRAayS2iel0Wvkj/P0yYKLaZEM14GpC6UWV/NzRl/XBP/esS1OLqZe3zFg76bqf6WUVbcDLI4ZhHL+NkClDN2a62YncO4+pEtEEL6bRCA+alKjCCxoxHkLXdYoCXja8Wr1S5E64SBZYjptm/f/C9NfKQyyEf5YnxCwHn/0y5PKXkY7AmhLAc5Myv+OQv8lkbwRKOlnii7h0MrKp30HJ1a/NaSIz+xIEEaUlTg7NrKYV84oMh6xs58NodGLPn+6MQo1H3n4IvlbD0tY0lXX3ro8I3MPb8+FTQu6RsRPdtMFc89Nx1ssaVWBYDVfrK9rJXlzZCt7XdebM9RL7FQSaHVVZfwWnc3xOdFOj710lrj0NdGZtTydhg37gs4T9htwxp6PuoMBF3TUMvy5cJeKM0Z0sRJprsj/EKxBE2WN7167VMuwLPoWxUIAOPp36mhGRepz37FG8u1lpYtC0FFhf7NIUDvQfBjh0IZLbHeBaZEN8pENHcGE28=
-    lore: The skeletons of valiant warriors defend their resting place./Be careful who you disturb.
-    killsperlevel: 250
+    lore: The skeletons of valiant warriors/defend their resting place./Be careful who you disturb.
+    killsperlevel: 225
+    extracoins: 6
   mining:
     boss: {}
-    xp: 5
+    xp: 4
     ores: 
       RED_WOOL:
         ore: tissue
         replacement: OBSIDIAN
         hardness: 4000
+      COBWEB:
+        ore: web
+        replacement: AIR
+        hardness: 1600
   spawns:
     12,101,21990: skeleton1
     22,101,22005: skeleton1

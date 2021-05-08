@@ -32,7 +32,7 @@ public class AbilityScythe extends AbsAbility
 			DMob m = DMobManager.get(e);
 			if (m != null && dMob != m) mobs.add(m);
 		}
-		for (DMob mob : mobs) mob.damage(d.stats.damage, d, DamageType.PHYSICAL);
+		for (DMob mob : mobs) mob.damage(d.stats.damage, d, DamageType.PHYSICAL,false);
 		return damage;
 	}
 }

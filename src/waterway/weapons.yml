@@ -30,7 +30,7 @@ sword_adventurers:
   item: GOLDEN_SWORD
   attributes:
     damage: +18
-    killcoins: +3
+    killcoins: +2
     
 sword_leaf:
   name: Leaf Spear

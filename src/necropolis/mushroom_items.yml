@@ -7,15 +7,42 @@ mushroom_blade:
   name: Mushroom Blade
   item: MUSHROOM_STEM
   rarity: EPIC
+  
+enchanted_mushroom:
+  name: Enchanted Mushroom
+  rarity: EPIC
+  item: RED_MUSHROOM
+  glow: true
+  description: ;In ancient times, two mushroom tribes;would fight to the death;over these. Nowadays, the;Mushroom King has full control.
+  
+  
+sword_unholyshroom:
+  name: Unholy Shroom
+  type: weapon
+  rarity: INCREDIBLE
+  item: CRIMSON_FUNGUS
+  req: 21
+  ability: unholyshroom
+  attributes:
+    damage: +99
+  
+totem_mushroom:
+  name: Mushroom Totem
+  type: artifact
+  rarity: EPIC
+  item: TOTEM_OF_UNDYING
+  ability: mushroomtotem
+  
+  
 shroom_dagger:
   name: Shroom Dagger
   type: weapon
   rarity: EPIC
   item: STONE_SWORD
-  req: 10
+  req: 11
   attributes:
-    damage: +42
-    health: +90
+    damage: +45
+    health: +80
     
 fungal_eruption:
   name: Fungal Eruption
@@ -26,8 +53,41 @@ fungal_eruption:
   req: 15
   ability: spores
   attributes:
-    damage: +55
-    health: +160
+    damage: +52
+    health: +130
+    
+loot_mushroomking:
+  name: Mushroom King Lootbox
+  type: lootbox
+  rarity: EPIC
+  item: RED_MUSHROOM_BLOCK
+  glow: true
+  loot:
+    mushroom:
+      amount: 12-48
+      chance: 1
+    enchanted_mushroom:
+      amount: 1
+      chance: 1
+    book;growth2:
+      amount: 1
+      chance: 11
+      enchants: growth,2
+    book;lethal1:
+      amount: 1
+      chance: 8
+      enchants: lethal,1
+    book;cubism1:
+      amount: 1
+      chance: 12
+      enchants: cubism,1
+    catalyst=0:
+      amount: 1-2
+      chance: 4
+      
+      
+      
+      
     
 armour-mushroom:
   name: Mushroom
@@ -41,7 +101,7 @@ armour-mushroom:
     2: 200,200,200
     3: 210,210,210
   ability: spores
-  req: 14
+  req: 15
   attributes:
-    health: 105,140,125,95
-    damage: 3,5,4,2
+    health: 110,135,125,90
+    damage: 3,6,4,2

@@ -63,6 +63,7 @@ public class ShopGUI extends GUI
 					lore.add("");
 					if (it.price > 1) lore.add(ChatColor.GOLD + "Costs " + it.price + " coins");
 					else if (it.price == 1) lore.add(ChatColor.GOLD + "Costs 1 coin");
+					else if (it.price == -1) lore.add(ChatColor.RED + "Currently unavailable!");
 					else lore.add(ChatColor.GOLD + "FREE!");
 					u.setLore(lore);
 					item.setItemMeta(u);
@@ -83,7 +84,7 @@ public class ShopGUI extends GUI
 		if (e.getClick() != ClickType.LEFT) return true;
 		if (position < 54)
 		{
-			if (items[position] != null)
+			if (items[position] != null && costs[position] != -1)
 			{
 				DungeonsPlayer d = DungeonsPlayerManager.i.get(p);
 				if (d.coins-costs[position] >= 0 && p.getInventory().firstEmpty() > -1)

@@ -22,3 +22,14 @@ crypt_grimoire:
   rarity: INCREDIBLE
   item: BOOK
   ability: cryptgrimoire
+  
+  
+healing_wand2:
+  name: Restoring Wand
+  type: tool
+  rarity: EPIC
+  item: STICK
+  glow: true
+  ability: healingwand2
+  attributes:
+    mana: +65

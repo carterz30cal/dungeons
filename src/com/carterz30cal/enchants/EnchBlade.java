@@ -31,7 +31,7 @@ public class EnchBlade extends AbsEnchant {
 	}
 	@Override
 	public int rarity() {
-		return Math.max(0, level-2);
+		return level-1;
 	}
 
 	@Override

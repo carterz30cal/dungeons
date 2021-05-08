@@ -19,8 +19,8 @@ bow_stinger:
   req: 18
   ability: stinger
   attributes:
-    damage: +70
-    health: -20
+    damage: +64
+    health: -25
     
 sword_ancientassassin:
   name: Assassin Dagger
@@ -28,10 +28,10 @@ sword_ancientassassin:
   item: IRON_SWORD
   rarity: INCREDIBLE
   req: 19
+  ability: dagger
   attributes:
-    damage: +90
-    health: -125
-    armour: -10
+    damage: +94
+    health: -95
 armour_ancientassassin_helmet:
   name: Assassin Hood
   type: armour
@@ -40,6 +40,6 @@ armour_ancientassassin_helmet:
   colour: 0,0,0
   req: 19
   attributes:
-    damage: +40
+    damage: +42
     health: -100
     armour: -20

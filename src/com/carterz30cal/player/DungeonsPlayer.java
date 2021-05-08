@@ -75,6 +75,7 @@ public class DungeonsPlayer
 	public boolean newaccount; // only True the first login.
 	public PlayerRank rank;
 	
+	public int kills;
 	
 	public static ChatColor[] rankColours = {ChatColor.WHITE,ChatColor.GREEN,ChatColor.RED,ChatColor.LIGHT_PURPLE};
 	
@@ -101,6 +102,7 @@ public class DungeonsPlayer
 		display = new DungeonsPlayerDisplay(this);
 		gui = null;
 		
+		kills = i.getInt(u + ".kills", 0);
 		questProgress = new HashMap<String,String>();
 		if (i.contains(u + ".quests"))
 		{
@@ -129,12 +131,32 @@ public class DungeonsPlayer
 		if (backpackb.size() == 0) backpackb.add(new BackpackItem[45]);
 		coins = Dungeons.instance.getPlayerConfig().getInt(p.getUniqueId() + ".coins", 10);
 		
+		
 		rank = PlayerRank.values()[i.getInt(u + ".rank",0)];
 		updateRank();
 		//skills.d = this;
 		
 		crypt = null;
 	}
+	public boolean canWarp(String location)
+	{
+		Dungeon loc = DungeonManager.i.warps.getOrDefault(location, DungeonManager.i.hub);
+		
+		if (inCrypt) return false;
+		else if (loc.requiredtutorial.equals("none") || tutorials.contains(loc.requiredtutorial))
+		{
+			return true;
+		}
+		return false;
+	}
+	public void warp(String location)
+	{
+		Dungeon loc = DungeonManager.i.warps.getOrDefault(location, DungeonManager.i.hub);
+		
+		if (inCrypt) player.sendMessage(ChatColor.RED + "You cannot warp whilst in a crypt.");
+		else if (canWarp(location)) player.teleport(loc.spawn, TeleportCause.PLUGIN);
+	}
+	
 	
 	public void updateRank()
 	{

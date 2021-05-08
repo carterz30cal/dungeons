@@ -128,9 +128,10 @@ public class AbilityDigging extends AbsAbility
 	public boolean onInteract(DungeonsPlayer d, PlayerInteractEvent e) 
 	{
 		Location b = targets.get(d);
-		if (e.getAction() == Action.RIGHT_CLICK_AIR)
+		if (e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK)
 		{
 			Location p = d.player.getEyeLocation().subtract(0, 0.3, 0);
+			p.add(d.player.getLocation().getDirection().multiply(0.5));
 			if (p.distance(s(b)) > 80) return false;
 			if (b == null) return false;
 			Vector v = s(b).subtract(p).toVector().normalize();

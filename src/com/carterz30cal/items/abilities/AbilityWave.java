@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.carterz30cal.mobs.DMob;
 import com.carterz30cal.mobs.DMobManager;
+import com.carterz30cal.mobs.DamageType;
 import com.carterz30cal.mobs.SpawnPosition;
 import com.carterz30cal.player.DungeonsPlayer;
 import com.carterz30cal.utility.RandomFunctions;
@@ -22,14 +23,16 @@ public class AbilityWave extends AbsAbility
 			new SpawnPosition(-42, 94, 21049), new SpawnPosition(-40, 101, 21050),
 			new SpawnPosition(-47, 105, 21054)
 	};
-	public static String[] mobs = {"fishing_sandguardian","fishing_husk","fishing_hydra"};
+	public static String[] mobs = {"sands_sandguardian","sands_husk","sands_hydra","sands_pigman"};
 	
 	@Override
 	public ArrayList<String> description() {
 		ArrayList<String> desc = new ArrayList<String>();
 		desc.add(prefix + "Wave");
-		desc.add("Deals 1 + 5% of your damage to fish");
-		desc.add("The sands are reawakened while you hold this");
+		desc.add("Deals 2 + 10% of your damage");
+		desc.add("as true damage to fish");
+		desc.add("The sands are reawakened");
+		desc.add("while you hold this");
 		return desc;
 	}
 
@@ -44,7 +47,7 @@ public class AbilityWave extends AbsAbility
 			
 			for (SpawnPosition s : spawns)
 			{
-				if (s.mob != null || s.position.distance(d.player.getLocation()) > 8) continue;
+				if (s.mob != null || s.position.distance(d.player.getLocation()) > 11) continue;
 				DMobManager.spawn(RandomFunctions.get(mobs),s);
 			}
 		}
@@ -54,9 +57,9 @@ public class AbilityWave extends AbsAbility
 	{
 		if (mob.type.tags.contains("spearfish")) 
 		{
-			int extra = (int) Math.floor(damage*0.05);
-			return 1 + extra;
+			int extra = (int) Math.floor(damage*0.1);
+			mob.damage(2 + extra, d, DamageType.TRUE,false);
 		}
-		else return damage;
+		return damage;
 	}
 }

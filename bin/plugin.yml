@@ -1,7 +1,7 @@
 name: Dungeons
 author: carterz30cal
 main: com.carterz30cal.dungeons.Dungeons
-version: 0.1.2
+version: 0.1.8
 api-version: 1.13
 depend: [ProtocolLib]
 commands:
@@ -31,4 +31,10 @@ commands:
  playtime:
   description: "see how long you've played for"
   usage: "this will never appear"
+ discord:
+  description: "discord link"
+  usage: "huh."
+ maxitem:
+  description: "max held item"
+  usage: "This command is admin-only"
   
