@@ -21,14 +21,14 @@ public class AbilityStinger extends AbsAbility
 		d.add(prefix + "Stinger");
 		d.add("Your arrows have a 33%");
 		d.add("chance to poison enemies");
-		d.add(ChatColor.GREEN + "Poisoned enemies take 50%");
+		d.add(ChatColor.GREEN + "Poisoned enemies take 75%");
 		d.add(ChatColor.GREEN + "more damage from this bow");
 		return d;
 	}
 
 	public int onArrowLand(DungeonsPlayer d,DMob mob,int damage) 
 	{ 
-		if (mob.effects.contains("stinger")) return (int) (damage * 1.5);
+		if (mob.effects.contains("stinger")) return (int) (damage * 1.75);
 		else if (RandomFunctions.random(0, 2) != 2) return damage;
 		int p = 14;
 		while (p > 0)

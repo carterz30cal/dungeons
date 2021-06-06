@@ -2,13 +2,13 @@ package com.carterz30cal.player;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
-import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 
 import com.carterz30cal.dungeons.Dungeons;
+import com.carterz30cal.gui.MonsterHunterGUI;
 import com.carterz30cal.utility.StringManipulator;
 
 import net.md_5.bungee.api.ChatColor;
@@ -31,30 +31,27 @@ public class CharacterSkill
 	public static Map<Integer,Team> tablist = new HashMap<>();
 	public static Scoreboard board;
 	
-	public Player owner;
+	public DungeonsPlayer owner;
 	public long experience;
+	public long hunter;
 	public int points;
 	
 	private int level;
 	public HashMap<String,Integer> pointAllocation;
 	
-	public CharacterSkill(Player owner)
+	public CharacterSkill(DungeonsPlayer o)
 	{
-		this.owner = owner;
+		this.owner = o;
 		
-		experience = Dungeons.instance.getPlayerConfig().getLong(owner.getUniqueId() + ".experience", 0);
-		points = Dungeons.instance.getPlayerConfig().getInt(owner.getUniqueId() + ".points", 0);
-		pointAllocation = new HashMap<String,Integer>();
-		
-		if (Dungeons.instance.getPlayerConfig().contains(owner.getUniqueId() + ".skills"))
-		{
-			for (String l : Dungeons.instance.getPlayerConfig().getConfigurationSection(owner.getUniqueId() + ".skills").getKeys(false))
-			{
-				pointAllocation.put(l, Dungeons.instance.getPlayerConfig().getInt(owner.getUniqueId() + ".skills." + l, 0));
-			}
-		}
+		experience = Dungeons.instance.getPlayerConfig().getLong(o.player.getUniqueId() + ".experience", 0);
+		hunter = Dungeons.instance.getPlayerConfig().getLong(o.player.getUniqueId() + ".hunter", 0);
 		
 		level = level(experience);
+		points = points();
+		
+		pointAllocation = new HashMap<String,Integer>();
+		
+		
 		
 		if (board == null)
 		{
@@ -68,11 +65,27 @@ public class CharacterSkill
 			Team t = board.registerNewTeam(Integer.toString(levelcap-level));
 			tablist.put(level, t);
 		}
-		tablist.get(level).addEntry(owner.getName());
+		tablist.get(level).addEntry(o.player.getName());
 		
-		owner.setPlayerListName(prettyText(level()) + " " + owner.getName());
+		o.player.setPlayerListName(prettyText(level()) + " " + o.player.getName());
 		
 		updateBoard(this);
+	}
+	
+	public int points()
+	{
+		int pt = 0;
+		for (int i = 0; i < CharacterSkill.level(experience);i++) pt += 1 + CharacterSkill.bonus(i+1);
+		
+		pt += MonsterHunterGUI.level(hunter);
+		
+		int consumed = 0;
+		for (int co : owner.skills.values()) consumed += co;
+		pt -= consumed;
+		
+		
+		
+		return pt;
 	}
 	
 	
@@ -87,7 +100,7 @@ public class CharacterSkill
 		for (CharacterSkill t : old)
 		{
 			if (t == null) continue;
-			if (!Bukkit.getOnlinePlayers().contains(t.owner)) continue;
+			if (!Bukkit.getOnlinePlayers().contains(t.owner.player)) continue;
 			for (int i = 0; i < 20; i++)
 			{
 				if (leaderboard[i] == null)
@@ -117,7 +130,7 @@ public class CharacterSkill
 		for (CharacterSkill t : old)
 		{
 			if (t == null) continue;
-			if (!Bukkit.getOnlinePlayers().contains(t.owner)) continue;
+			if (!Bukkit.getOnlinePlayers().contains(t.owner.player)) continue;
 			for (int i = 0; i < 20; i++)
 			{
 				if (leaderboard[i] == null)
@@ -152,13 +165,13 @@ public class CharacterSkill
 
 	public void updatePlayerList(int prevle)
 	{
-		if (tablist.get(prevle) != null) tablist.get(prevle).removeEntry(owner.getName());
+		if (tablist.get(prevle) != null) tablist.get(prevle).removeEntry(owner.player.getName());
 		if (!tablist.containsKey(level))
 		{
 			Team t = board.registerNewTeam(Integer.toString(levelcap-level));
 			tablist.put(level, t);
 		}
-		tablist.get(level).addEntry(owner.getName());
+		tablist.get(level).addEntry(owner.player.getName());
 	}
 	public static long requirement(int level)
 	{
@@ -227,11 +240,13 @@ public class CharacterSkill
 	}
 	public static int bonus(int level)
 	{
-		if (level == 25) return 4;
-		if (level == 50) return 4;
-		if (level >= 59) return 1;
-		if (level % 5 == 0 && level != 0) return 1;
-		return 0;
+		if (level % 5 == 0 && level != 0) return 3;
+		else return 0;
+		//if (level == 25) return 4;
+		//if (level == 50) return 4;
+		//if (level >= 59) return 1;
+		//
+		//return 0;
 	}
 	public void give(long amount)
 	{
@@ -239,29 +254,34 @@ public class CharacterSkill
 	}
 	public void give(long amount,boolean multiply)
 	{
-		DungeonsPlayer d = DungeonsPlayerManager.i.get(owner);
 		int current = level(experience);
-		long am = (long)(amount * d.stats.miningXp);
+		long am = (long)(amount * owner.stats.miningXp);
 		if (!multiply) am = amount;
+		am += owner.stats.flatxp;
 		experience += am;
 		int lvl = level(experience);
 
-		owner.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.AQUA + "+" + StringManipulator.truncate(am) + " XP"
+		owner.player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.AQUA + "+" + StringManipulator.truncate(am) + " XP"
 				+ "    " + ChatColor.BLUE + prettyProgress() + "%"));
 		level = lvl;
 		if (lvl > current)
 		{
-			int npoints = lvl - current;
-			for (int i = current; i < lvl;i++) npoints += bonus(i);
-			owner.playSound(owner.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1,1);
-			owner.sendMessage(ChatColor.GOLD + "" + ChatColor.BOLD + "LEVEL " + lvl + "!");
-			owner.sendMessage(ChatColor.AQUA + " + " + npoints + " skill points!");
+			int npoints = 0;
+			for (int i = current; i < lvl;i++) npoints += 1 + bonus(i+1);
+			owner.player.playSound(owner.player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1,1);
+			owner.player.sendMessage(ChatColor.GOLD + "" + ChatColor.BOLD + "LEVEL " + lvl + "!");
+			owner.player.sendMessage(ChatColor.AQUA + " + " + npoints + " skill points!");
 			points += npoints;
 			
-			owner.setPlayerListName(prettyText(level()) + " " +DungeonsPlayer.rankColours[d.rank.ordinal()] + owner.getName());
+			owner.player.setPlayerListName(prettyText(level()) + " " + owner.player.getName());
 			updatePlayerList(current);
 		}
 		updateBoard(this);
+	}
+	
+	public void giveFlat(long amount)
+	{
+		give(amount - owner.stats.flatxp,false);
 	}
 	
 }

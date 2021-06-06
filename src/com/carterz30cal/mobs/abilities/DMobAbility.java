@@ -26,6 +26,7 @@ public class DMobAbility
 	{
 		
 	}
+	
 	public int damaged(DMob mob,DungeonsPlayer player,int damage)
 	{
 		return damage;

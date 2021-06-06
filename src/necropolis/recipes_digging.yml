@@ -1,190 +1,382 @@
-ancient_stone:
-  product: digging_ancientstone
-  materials:
-    X: digging_stone,2
-  pattern: block
-
-
-    
-tier2shovel:
+shovel2:
   product: digging_shovelT2
   materials:
     S: digging_shovelT1,1
-    X: digging_leather,4
-    J: digging_ancientstone,6
-  recipe:
-    0: 0 X 0
-    1: 0 S 0
-    2: 0 J 0
-tier3shovel:
-  product: digging_shovelT3
-  materials:
-    S: digging_shovelT2,1
-    X: digging_leather,14
-    J: digging_ancientstone,20
-    C: digging_core,2
+    C: digging_coal,10
+    L: digging_leather,5
   recipe:
     0: 0 C 0
-    1: X S X
-    2: 0 J 0
+    1: 0 S 0
+    2: 0 L 0
     
-precursor_sword:
-  product: sword_precursor
+infused_pick:
+  product: infused_pickaxe
   materials:
-    X: digging_ancientstone,8
-    S: stick_bone,2
-  pattern: sword
-precursor_crown:
-  product: armour_precursorcrown_helmet
-  materials:
-    S: digging_ancientstone,12
-    C: digging_crystal,1
-    L: digging_leather,8
-  recipe:
-    0: C S C
-    1: L 0 L
-    
-precursor_chestplate:
-  product: armour_precursor_chestplate
-  materials:
-    C: digging_core,2
-    L: digging_leather,2
-  recipe:
-    0: L 0 L
-    1: L C L
-    2: L L L
-gemstone_crown:
-  product: armour_gemstone_helmet
-  materials:
-    X: digging_crystal,1
-  pattern: helmet
+    U: pickaxe_miners,1
+    X: digging_coal,3
+  pattern: upgrade
   
-thorned_gemstone_crown:
-  product: armour_thornedgemstone_helmet
+hunter_helmet:
+  product: armour_hunter_helmet
   materials:
-    U: armour_gemstone_helmet,1
-    C: digging_core,1
-    B: bone,64
-  recipe:
-    0: B C B
-    1: B U B
+    U: armour_paper_helmet,1
+    X: digging_leather,1
+  pattern: upgrade
+  
+hunter_chestplate:
+  product: armour_hunter_chestplate
+  materials:
+    U: armour_paper_chestplate,1
+    X: digging_leather,1
+  pattern: upgrade
+  
+hunter_leggings:
+  product: armour_hunter_leggings
+  materials:
+    U: armour_paper_leggings,1
+    X: digging_leather,1
+  pattern: upgrade
+  
+hunter_boots:
+  product: armour_hunter_boots
+  materials:
+    U: armour_paper_boots,1
+    X: digging_leather,1
+  pattern: upgrade
+  
 
-cowkiller:
-  product: sword_cowmurderer
-  materials:
-    C: digging_crystal,2
-    X: digging_ancientstone,4
-    M: digging_metal,2
-    S: stick_bone,3
-  recipe:
-    0: C M 0
-    1: X S 0
-    2: 0 S 0
-    
-strange_alloy:
-  product: sharpener_strangealloy
-  materials:
-    S: digging_ancientstone,2
-    M: digging_metal,1
-  recipe:
-    0: M 0 0
-    1: 0 S M
-    2: 0 M M
+# TIER TWO
 cursed_blade:
   product: sword_cursedboneblade
   materials:
     S: sword_boneshard,1
-    C: digging_crystal,1
-    T: digging_ancientstone,6
+    X: digging_stone2,1
+    D: digging_diamond,1
   recipe:
-    0: 0 C 0
-    1: T S T
+    0: 0 D 0
+    1: X S X
+    2: X X X
+ancients_blade:
+  product: sword_precursor
+  materials:
+    S: digging_stone2,3
+    C: digging_coal,12
+    T: stick_bone,3
+  recipe:
+    0: 0 S 0
+    1: 0 C 0
     2: 0 T 0
-totem2:
-  product: digging_totem2
-  materials:
-    S: digging_ancientstone,10
-    C: digging_crystal,1
-  recipe:
-    1: 0 S 0
-    2: 0 C 0
     
-golem_helmet:
-  product: armour_golem_helmet
+elderhunter_helmet:
+  product: armour_elderhunter_helmet
   materials:
-    X: digging_metal,1
-  pattern: helmet
-golem_chestplate:
-  product: armour_golem_chestplate
+    U: armour_hunter_helmet,1
+    X: digging_stone2,1
+  pattern: upgrade
+  
+elderhunter_chestplate:
+  product: armour_elderhunter_chestplate
   materials:
-    X: digging_metal,1
-  pattern: chestplate
-golem_leggings:
-  product: armour_golem_leggings
+    U: armour_hunter_chestplate,1
+    X: digging_stone2,1
+  pattern: upgrade
+  
+elderhunter_leggings:
+  product: armour_elderhunter_leggings
   materials:
-    X: digging_metal,1
-  pattern: leggings
-golem_boots:
-  product: armour_golem_boots
+    U: armour_hunter_leggings,1
+    X: digging_stone2,1
+  pattern: upgrade
+  
+elderhunter_boots:
+  product: armour_elderhunter_boots
   materials:
-    X: digging_metal,1
-  pattern: boots
-
+    U: armour_hunter_boots,1
+    X: digging_stone2,1
+  pattern: upgrade
+  
 skin_helmet:
   product: armour_skin_helmet
   materials:
-    X: digging_leather,2
     U: armour_tissue_helmet,1
+    X: digging_leather,2
   pattern: upgrade
+  
 skin_chestplate:
   product: armour_skin_chestplate
   materials:
-    X: digging_leather,2
     U: armour_tissue_chestplate,1
+    X: digging_leather,2
   pattern: upgrade
+  
 skin_leggings:
   product: armour_skin_leggings
   materials:
-    X: digging_leather,2
     U: armour_tissue_leggings,1
+    X: digging_leather,2
   pattern: upgrade
+  
 skin_boots:
   product: armour_skin_boots
   materials:
-    X: digging_leather,2
     U: armour_tissue_boots,1
+    X: digging_leather,2
   pattern: upgrade
   
-  
-royal_medal:
-  product: digging_royalmedal
+archaeologists_helmet:
+  product: armour_archaeologist2_helmet
   materials:
-    X: digging_metal,3
-    M: digging_defendermedal,1
-    C: digging_crystal,1
+    U: armour_archaeologist_helmet,1
+    Y: digging_coal,3
+    X: digging_stone2,2
+  pattern: dualupgrade
+  
+gemstone_crown:
+  product: armour_gemstone_helmet
+  materials:
+    X: digging_diamond,1
+    S: digging_stone2,5
+    C: digging_coal,10
   recipe:
-    0: 0 C 0
-    1: X M X
-    2: 0 X 0
+    0: X S X
+    1: C 0 C
     
-precursed_book:
+tier3_shovel:
+  product: digging_shovelT3
+  materials:
+    S: digging_shovelT2,1
+    D: digging_dye,1
+    C: digging_coal,12
+    U: digging_diamond,1
+  recipe:
+    0: 0 D 0
+    1: C S C
+    2: U U U
+    
+totem2:
+  product: digging_totem_2
+  materials:
+    C: digging_coal,4
+    L: digging_leather,1
+    D: digging_diamond,1
+  recipe:
+    0: L C L
+    1: L D L
+    2: C L C
+    
+precursed:
   product: book
   enchants: precursed,1
   materials:
-    S: digging_leather,1
-    X: digging_ancientstone,2
+    D: digging_diamond,2
+    S: digging_stone2,1
+    C: digging_coal,6
   recipe:
-    1: 0 S S
-    2: 0 S X
-precursed_book6:
+    0: D S C
+    1: C C C
+    
+# TIER THREE
+    
+trueblade:
+  product: sword_trueprecursor
+  materials:
+    S: sword_precursor,1
+    D: digging_dye,3
+    B: stick_bone,6
+  recipe:
+    0: 0 D 0
+    1: 0 S 0
+    2: 0 B 0
+precursor_crown:
+  product: armour_precursorcrown_helmet
+  materials:
+    G: armour_gemstone_helmet,1
+    D: digging_dye,2
+    S: digging_stone2,3
+  recipe:
+    0: 0 D 0
+    1: S G S
+    
+precursor_helmet:
+  product: armour_precursor_helmet
+  materials:
+    U: armour_elderhunter_helmet,1
+    X: digging_dye,2
+  pattern: singleupgrade
+  
+precursor_chestplate:
+  product: armour_precursor_chestplate
+  materials:
+    U: armour_elderhunter_chestplate,1
+    X: digging_dye,2
+  pattern: singleupgrade
+  
+precursor_leggings:
+  product: armour_precursor_leggings
+  materials:
+    U: armour_elderhunter_leggings,1
+    X: digging_dye,2
+  pattern: singleupgrade
+  
+precursor_boots:
+  product: armour_precursor_boots
+  materials:
+    U: armour_elderhunter_boots,1
+    X: digging_dye,2
+  pattern: singleupgrade
+  
+healing3:
+  product: healing_wand3
+  materials:
+    U: healing_wand2,1
+    D: digging_dye,3
+    C: digging_coal,3
+    S: digging_stone2,6
+  recipe:
+    0: C D C
+    1: C U C
+    2: C S C
+    
+totem3:
+  product: digging_totem_3
+  materials:
+    C: digging_coal,8
+    L: digging_leather,1
+    D: digging_diamond,3
+    H: digging_dye,1
+  recipe:
+    0: L C L
+    1: H D H
+    2: C L C
+    
+digging_shovel4:
+  product: digging_shovelT4
+  materials:
+    D: digging_dye,2
+    T: digging_truthcrystal,1
+    C: digging_coal,16
+  recipe:
+    0: C T C
+    1: D 0 D
+    2: C C C
+    
+truth_crystal:
+  product: digging_truthcrystal
+  materials:
+    I: digging_trueingot,1
+  recipe:
+    0: I I I
+    1: I I 0
+    
+centuries_blade:
+  product: sword_centuries
+  materials:
+    U: sword_trueprecursor,1
+    I: digging_trueingot,2
+    D: digging_diamond,4
+  recipe:
+    0: 0 D 0
+    1: 0 U 0
+    2: 0 I 0
+reaper_blade:
+  product: reaper_blade
+  materials:
+    D: digging_diamond,3
+    T: digging_truthcrystal,1
+  recipe:
+    0: 0 D 0
+    1: 0 D 0
+    2: 0 T 0
+soul_helmet:
+  product: armour_soul_helmet
+  materials:
+    U: armour_golem_helmet,1
+    X: digging_stone2,3
+    Y: digging_trueingot,1
+  pattern: dualupgrade
+  
+soul_chestplate:
+  product: armour_soul_chestplate
+  materials:
+    U: armour_golem_chestplate,1
+    X: digging_stone2,3
+    Y: digging_trueingot,1
+  pattern: dualupgrade
+  
+soul_leggings:
+  product: armour_soul_leggings
+  materials:
+    U: armour_golem_leggings,1
+    X: digging_stone2,3
+    Y: digging_trueingot,1
+  pattern: dualupgrade
+  
+soul_boots:
+  product: armour_soul_boots
+  materials:
+    U: armour_golem_boots,1
+    X: digging_stone2,3
+    Y: digging_trueingot,1
+  pattern: dualupgrade
+  
+timeless:
+  product: timeless_blade
+  materials:
+    U: digging_stick,1
+    D: digging_diamond,6
+    T: digging_truthcrystal,2
+  recipe:
+    0: 0 T 0
+    1: 0 U 0
+    2: 0 D 0
+ 
+steel_book:
+  product: book
+  enchants: steel,1
+  materials:
+    P: paper,1
+    I: digging_trueingot,1
+  recipe:
+    1: 0 P P
+    2: 0 P I
+    
+precursed_6:
   product: book
   enchants: precursed,6
   materials:
-    S: digging_leather,16
-    X: digging_ancientstone,48
-    L: catalyst=0,16
-    C: digging_core,1
+    D: catalyst=0,16
+    S: digging_truthcrystal,1
+    C: digging_stone2,3
   recipe:
-    0: S S L
-    1: X X 0
-    2: 0 0 C
+    0: D S C
+    1: C C C
+  
+royalprecursor_helmet:
+  product: armour_royalprecursor_helmet
+  materials:
+    U: armour_precursor_helmet,1
+    X: digging_truthcrystal,1
+  pattern: singleupgrade
+  
+royalprecursor_chestplate:
+  product: armour_royalprecursor_chestplate
+  materials:
+    U: armour_precursor_chestplate,1
+    X: digging_truthcrystal,1
+  pattern: singleupgrade
+  
+royalprecursor_leggings:
+  product: armour_royalprecursor_leggings
+  materials:
+    U: armour_precursor_leggings,1
+    X: digging_truthcrystal,1
+  pattern: singleupgrade
+  
+royalprecursor_boots:
+  product: armour_royalprecursor_boots
+  materials:
+    U: armour_precursor_boots,1
+    X: digging_truthcrystal,1
+  pattern: singleupgrade
+    
+  

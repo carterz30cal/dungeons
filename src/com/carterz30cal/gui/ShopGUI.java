@@ -55,13 +55,20 @@ public class ShopGUI extends GUI
 					ItemStack item = ItemBuilder.i.build(it.item, null,it.enchants,it.sharps);
 
 					items[i] = it.item;
-					costs[i] = it.price;
+					int reg = (int) Math.round(it.price * (DungeonsPlayerManager.i.get(player).stats.shopDiscount));
+					costs[i] = reg;
+					if (it.sale != -1) costs[i] = it.sale;
 					enchants[i] = it.enchants;
 					
 					ItemMeta u = item.getItemMeta();
 					List<String> lore = u.getLore();
 					lore.add("");
-					if (it.price > 1) lore.add(ChatColor.GOLD + "Costs " + it.price + " coins");
+					if (it.sale != -1 && it.price > 1)
+					{
+						lore.add(ChatColor.GOLD + "Costs " +ChatColor.RED + "" + ChatColor.STRIKETHROUGH + reg + ChatColor.RESET + " " + ChatColor.GOLD +
+								it.sale + " coins");
+					}
+					else if (it.price > 1) lore.add(ChatColor.GOLD + "Costs " + costs[i] + " coins");
 					else if (it.price == 1) lore.add(ChatColor.GOLD + "Costs 1 coin");
 					else if (it.price == -1) lore.add(ChatColor.RED + "Currently unavailable!");
 					else lore.add(ChatColor.GOLD + "FREE!");

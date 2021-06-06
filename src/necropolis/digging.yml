@@ -80,11 +80,11 @@ armour_precursor_chestplate:
   type: armour
   item: GOLDEN_CHESTPLATE
   rarity: EPIC
-  req: 20
+  req: 19
   attributes:
-    health: +160
-    armour: +50
-    damagep: +0.04
+    health: +135
+    armour: +35
+    damagep: +0.05
   
   
   
@@ -145,7 +145,7 @@ sword_cursedboneblade:
   req: 16
   attributes:
     damage: +64
-    armour: +45
+    armour: +50
 sword_precursor:
   name: Blade of Ancients
   type: weapon
@@ -154,8 +154,18 @@ sword_precursor:
   ability: prejudice
   req: 15
   attributes:
-    damage: +52
-    health: -70
+    damage: +54
+    health: -80
+    
+healing_wand3:
+  name: Wand of Reimposition
+  type: tool
+  rarity: INCREDIBLE
+  item: STICK
+  glow: true
+  ability: healingwand3
+  attributes:
+    mana: +75
     
 sword_cowmurderer:
   name: Cow Murder-erererer
@@ -190,8 +200,8 @@ loot_digging2:
       enchants: protection,2
       chance: 4
     crypt_key4:
-      amount: 1-2
-      chance: 4
+      amount: 1-3
+      chance: 3
 sharpener_strangealloy:
   name: Strange Alloy
   type: sharpener
@@ -201,7 +211,7 @@ sharpener_strangealloy:
     id: strangealloy
     plus: AQUA
   attributes:
-    health: +5
+    health: +8
     armour: +10
 sharpener_cursedbinding:
   name: Cursed Binding
@@ -213,8 +223,8 @@ sharpener_cursedbinding:
     id: cursedbinding
     plus: DARK_RED
   attributes:
-    damagep: +0.06
-    armour: +7
+    damagep: +0.05
+    armour: +8
     
 digging_defendermedal:
   name: Defender Medal
@@ -246,11 +256,11 @@ armour-golem:
   suffix: Helmet,Chestplate,Leggings,Boots
   rarity: EPIC
   item: IRON
-  req: 14
+  req: 15
   set: golem
   attributes:
     armour: 60,80,70,55
-    mana: 25,25,25,25
+    mana: 40,90,65,35
     
   
   

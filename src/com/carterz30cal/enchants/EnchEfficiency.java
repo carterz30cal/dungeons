@@ -7,7 +7,7 @@ public class EnchEfficiency extends AbsEnchant {
 
 	@Override
 	public String description() {
-		return "Adds " + (3*level) + " speed to this pick.";
+		return "+" + (7*level) + " mining speed.";
 	}
 
 	@Override
@@ -41,7 +41,7 @@ public class EnchEfficiency extends AbsEnchant {
 	@Override
 	public DungeonsPlayerStatBank onBank(DungeonsPlayerStatBank bank) {
 		// TODO Auto-generated method stub
-		bank.miningspeed += 3*level;
+		bank.miningspeed += 7*level;
 		return bank;
 	}
 

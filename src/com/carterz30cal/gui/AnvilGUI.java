@@ -166,6 +166,7 @@ public class AnvilGUI extends GUI
 			{
 				if (inventory.getItem(25) == null) inventory.setItem(25, mov);
 				else if (inventory.getItem(19) == null) inventory.setItem(19, mov);
+				else return true;
 			}
 			else if (cli.type.equals("catalyst") && inventory.getItem(22) == null) inventory.setItem(22, mov);
 			else if (inventory.getItem(19) == null) inventory.setItem(19, mov);
@@ -207,6 +208,9 @@ public class AnvilGUI extends GUI
 					case 5:
 						error = "Max level book!";
 						break;
+					case 6:
+						error = "Item already has a special enchant!";
+						break;
 					default:
 						break;
 					}
@@ -243,7 +247,8 @@ public class AnvilGUI extends GUI
 			}
 			ItemStack pop = click.clone();
 			pop.setAmount(1);
-			if ((cli.type.equals("sharpener") || cli.type.equals("rune") || cli.type.equals("appliable")) && inventory.getItem(25) == null) inventory.setItem(25,pop);
+			if ((cli.type.equals("sharpener") || cli.type.equals("rune") || cli.type.equals("appliable") || ItemBuilder.getItem(pop).equals("magic_cactus")
+					|| ItemBuilder.getItem(pop).equals("rune_cloth")) && inventory.getItem(25) == null) inventory.setItem(25,pop);
 			else if (inventory.getItem(19) == null) inventory.setItem(19, pop);
 			else return true;
 			click.setAmount(click.getAmount()-1);
@@ -254,9 +259,27 @@ public class AnvilGUI extends GUI
 			{
 				for (int i = 36; i < 45; i++) inventory.setItem(i, GUICreator.pane(Material.BLUE_STAINED_GLASS_PANE));
 				Item k = ItemBuilder.get(sharp);
-				if (k.type.equals("rune")) inventory.setItem(22, ItemBuilder.i.addRune(weapon, 
+				if (ItemBuilder.getItem(sharp).equals("magic_cactus"))
+				{
+					ItemStack cleaned = weapon.clone();
+					ItemMeta cleanmeta = cleaned.getItemMeta();
+					cleanmeta.getPersistentDataContainer().set(ItemBuilder.kSharps, PersistentDataType.STRING, "");
+					cleaned.setItemMeta(ItemBuilder.i.updateMeta(cleanmeta, null));
+					
+					inventory.setItem(22, cleaned);
+				}
+				else if (ItemBuilder.getItem(sharp).equals("rune_cloth"))
+				{
+					ItemStack cleaned = weapon.clone();
+					ItemMeta cleanmeta = cleaned.getItemMeta();
+					cleanmeta.getPersistentDataContainer().remove(ItemBuilder.kRunic);
+					cleaned.setItemMeta(ItemBuilder.i.updateMeta(cleanmeta, null));
+					
+					inventory.setItem(22, cleaned);
+				}
+				else if (k.type.equals("rune") && ItemBuilder.get(weapon).type.equals("weapon")) inventory.setItem(22, ItemBuilder.i.addRune(weapon, 
 						sharp.getItemMeta().getPersistentDataContainer().get(ItemBuilder.kItem, PersistentDataType.STRING)));
-				else if (k.type.equals("appliable")) inventory.setItem(22, ItemBuilder.addExtra(weapon, sharp));
+				else if (k.type.equals("appliable") && ItemBuilder.get(weapon).type.equals("armour")) inventory.setItem(22, ItemBuilder.addExtra(weapon, sharp));
 				else if (ItemBuilder.i.canSharpen(weapon)) inventory.setItem(22, ItemBuilder.i.sharpenItem(weapon, sharp));
 			}
 			else

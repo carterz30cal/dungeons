@@ -3,6 +3,7 @@ mass_harvester:
   item: SHEARS
   type: tool
   rarity: RARE
+  areareq: necropolis
   attributes:
     miningspeed: 200
     fortune: 75
@@ -11,6 +12,7 @@ pickaxe_miners:
   item: GOLDEN_PICKAXE
   type: tool
   rarity: EPIC
+  areareq: necropolis
   attributes:
     miningspeed: 120
     fortune: 105

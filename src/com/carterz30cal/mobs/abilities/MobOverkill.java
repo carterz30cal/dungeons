@@ -33,7 +33,7 @@ public class MobOverkill extends DMobAbility
 		int modthres = (int) (threshold / player.stats.overkiller);
 		double dmod = (1-mob.type.dmgresist);
 		
-		damage = (int) (damage * dmod) + mob.type.armour;
+		damage = (int) (damage * dmod);
 		if (damage >= modthres && player.player.getGameMode() == GameMode.SURVIVAL)
 		{
 			if (reward > 0) 

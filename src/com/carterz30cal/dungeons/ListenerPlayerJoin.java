@@ -15,6 +15,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import com.carterz30cal.areas.AbsDungeonEvent;
 import com.carterz30cal.areas.EventTicker;
+import com.carterz30cal.areas.WaterwayTutorial;
 import com.carterz30cal.bosses.AliveBossHandler;
 import com.carterz30cal.bosses.BossManager;
 import com.carterz30cal.items.abilities.AbsAbility;
@@ -41,8 +42,16 @@ public class ListenerPlayerJoin implements Listener
 		DungeonsPlayerManager.i.create(e.getPlayer());
 		
 		DungeonsPlayer d = DungeonsPlayerManager.i.get(e.getPlayer());
-		if (d.newaccount) e.setJoinMessage(e.getPlayer().getDisplayName() + ChatColor.DARK_PURPLE + " has joined for the first time! Make sure to say hi!");
-		else e.setJoinMessage( e.getPlayer().getDisplayName() + ChatColor.AQUA + " has joined");
+		if (d.newaccount) 
+		{
+			e.setJoinMessage(e.getPlayer().getDisplayName() + ChatColor.DARK_PURPLE + " has joined for the first time! Make sure to say hi!");
+			e.getPlayer().teleport(WaterwayTutorial.spawn);
+		}
+		else
+		{
+			e.getPlayer().teleport(DungeonManager.i.dungeons.get(1).spawn);
+			e.setJoinMessage(ChatColor.AQUA + e.getPlayer().getName() + " has joined");
+		}
 		
 		for (NPC n : NPCManager.i.npcs)
 		{
@@ -52,7 +61,7 @@ public class ListenerPlayerJoin implements Listener
 		TutorialManager.fireEvent(d, TutorialTrigger.JOIN, "");
 	    PlayerConnection connection = ((CraftPlayer) e.getPlayer()).getHandle().playerConnection;
 	    e.getPlayer().removePotionEffect(PotionEffectType.SLOW_DIGGING);
-	    e.getPlayer().teleport(DungeonManager.i.dungeons.get(1).spawn);
+	    
 	    e.getPlayer().getInventory().setItemInOffHand(null);
 	    
 	    if (deliveries.containsKey(e.getPlayer().getUniqueId()))

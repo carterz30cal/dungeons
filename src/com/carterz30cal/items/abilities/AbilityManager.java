@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import com.carterz30cal.dungeons.Dungeons;
 import com.carterz30cal.items.abilities.runes.*;
+import com.carterz30cal.items.abilities.infested.*;
 import com.carterz30cal.tasks.TaskTickAbilities;
 
 public class AbilityManager
@@ -48,6 +49,7 @@ public class AbilityManager
 		abilities.put("precursorcrown", AbilityPrecursorCrown.class);
 		abilities.put("prejudice", AbilityPrejudice.class);
 		abilities.put("cryptknight", AbilityCryptKnight.class);
+		abilities.put("holyknight", AbilityCryptHolyKnight.class);
 		abilities.put("acidity", AbilityAcidity.class);
 		abilities.put("golem", AbilityGolemSet.class);
 		abilities.put("spores", AbilitySpores.class);
@@ -67,6 +69,7 @@ public class AbilityManager
 		abilities.put("soulsaber", AbilitySoulSaber.class);
 		abilities.put("healingwand1", AbilityHealingWand1.class);
 		abilities.put("healingwand2", AbilityHealingWand2.class);
+		abilities.put("healingwand3", AbilityHealingWand3.class);
 		abilities.put("cspirit", AbilityCryptSpirit.class);
 		abilities.put("watertotem", AbilityWaterTotem.class);
 		abilities.put("sand", AbilitySandSword.class);
@@ -76,6 +79,35 @@ public class AbilityManager
 		abilities.put("unholyshroom", AbilityUnholyShroom.class);
 		abilities.put("diggingsight", AbilityDiggingSight.class);
 		abilities.put("dagger", AbilityDagger.class);
+		abilities.put("cryptlord", AbilityCryptLordSet.class);
+		abilities.put("digginghunter", AbilityDiggingHunter.class);
+		abilities.put("digginglord", AbilityDiggingLord.class);
+		abilities.put("devastation", AbilityDevastation.class);
+		abilities.put("phantomboots", AbilityPhantom.class);
+		
+		abilities.put("healerblue", AbilityHealerBlue.class);
+		abilities.put("healergreen", AbilityHealerGreen.class);
+		abilities.put("healerred", AbilityHealerRed.class);
+		
+		abilities.put("reaperblade", AbilityReaperBlade.class);
+		abilities.put("reaperhelmet", AbilityReaperHelmet.class);
+		abilities.put("reaperchestplate", AbilityReaperChestplate.class);
+		abilities.put("reaperleggings", AbilityReaperLeggings.class);
+		abilities.put("reaperboots", AbilityReaperBoots.class);
+		abilities.put("reaperset",AbilityReaperSet.class);
+		
+		abilities.put("venombite", AbilityVenom.class);
+		abilities.put("tiki", AbilityTikiSet.class);
+		abilities.put("fangedaxe", AbilityFangedAxe.class);
+		abilities.put("webset", AbilityWebSet.class);
+		abilities.put("eggbuster", AbilityEggBuster.class);
+		abilities.put("egghat", AbilityEggHat.class);
+		abilities.put("sniperset", AbilitySniperSet.class);
+		abilities.put("hunter", AbilityHunter.class);
+		abilities.put("hunter2", AbilityHunter2.class);
+		abilities.put("hunter3", AbilityHunter3.class);
+		abilities.put("hunter4", AbilityHunter4.class);
+		abilities.put("tarantulahelmet", AbilityTarantulaHelmet.class);
 		
 		abilities.put("midasboots", AbilityMidasBoots.class);
 		
@@ -91,10 +123,15 @@ public class AbilityManager
 		abilities.put("rune_tap",RuneTap.class);
 		abilities.put("rune_sweat",RuneSweat.class);
 		abilities.put("rune_snow", RuneSnow.class);
+		abilities.put("rune_space", RuneSpace.class);
+		abilities.put("rune_holy", RuneHoly.class);
+		abilities.put("rune_steel", RuneSteel.class);
+		abilities.put("rune_void", RuneVoid.class);
 	}
 	
 	public static AbsAbility get(String code)
 	{
+		if (!abilities.containsKey(code)) return null;
 		try {
 			return abilities.get(code).newInstance();
 		} catch (InstantiationException | IllegalAccessException e) {

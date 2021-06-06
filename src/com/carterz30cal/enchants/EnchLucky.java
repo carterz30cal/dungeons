@@ -1,14 +1,16 @@
 package com.carterz30cal.enchants;
 
 import com.carterz30cal.dungeons.DungeonMiningTable;
-import com.carterz30cal.player.DungeonsPlayer;
 import com.carterz30cal.player.DungeonsPlayerStatBank;
+import com.carterz30cal.utility.RandomFunctions;
+
+import net.md_5.bungee.api.ChatColor;
 
 public class EnchLucky extends AbsEnchant {
 
 	@Override
 	public String description() {
-		return "Make rare ores " + (1*level) + "% more likely to appear";
+		return "1% chance to dig up " + (75*level) + " coins.";
 	}
 
 	@Override
@@ -32,17 +34,16 @@ public class EnchLucky extends AbsEnchant {
 	}
 	@Override
 	public int rarity() {
-		return level/3;
-	}
-
-	public double setRareOreMultiplier(DungeonsPlayer player,double chance)
-	{
-		return chance + (level*0.01);
+		return level - 1;
 	}
 
 	@Override
 	public DungeonMiningTable onMine(DungeonMiningTable mine) {
-		// TODO Auto-generated method stub
+		if (RandomFunctions.random(1, 100) == 50)
+		{
+			mine.owner.coins += 75*level;
+			mine.owner.player.sendMessage(ChatColor.GOLD + "You dug up " + (75*level) + " coins!");
+		}
 		return null;
 	}
 

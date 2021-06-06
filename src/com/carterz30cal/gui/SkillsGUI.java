@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.inventory.ItemStack;
@@ -108,8 +109,18 @@ public class SkillsGUI extends GUI
 		else if (position == 33 && d.level.get("bonuscoins") < 20) add = "bonuscoins";
 		else if (position == 38) add = "luck";
 		
-		if (add != null && d.level.points > 0)
+		if (add != null && d.level.points > 0 && e.getClick() == ClickType.RIGHT)
 		{
+			int lvl = d.level.get(add);
+			int ad = d.level.points;
+			d.level.points = 0;
+			d.level.pointAllocation.put(add, lvl + ad);
+			
+			new SkillsGUI(p);
+		}
+		else if (add != null && d.level.points > 0)
+		{
+			
 			int lvl = d.level.get(add);
 			d.level.points--;
 			d.level.pointAllocation.put(add, ++lvl);

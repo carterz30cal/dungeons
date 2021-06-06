@@ -34,7 +34,7 @@ public class TaskTickAbilities extends BukkitRunnable {
 			}
 			d.player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_DIGGING,5205,-1,true));
 			//d.player.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING,10000,0,true));
-			d.regainMana(0.00175);
+			d.regainMana(0.0035);
 			if (d.afk != -1 && !d.inCrypt) d.afk++;
 			d.playtime++;
 			if (d.afk == 20*60*10) 

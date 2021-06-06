@@ -38,6 +38,10 @@ public abstract class AbsEnchant
 	{
 		
 	}
+	public void onDamaged(DungeonsPlayer player,DMob damager)
+	{
+		
+	}
 	public void onHitAfter(DungeonsPlayer player,DMob hit,ArmorStand ind) {}
 	public void onKill(DungeonsPlayer player,DMob kill)
 	{

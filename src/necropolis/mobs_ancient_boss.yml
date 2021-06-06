@@ -1,0 +1,93 @@
+digging2_boss:
+  name: Precursor Golem
+  type: IRON_GOLEM
+  health: 22500
+  damage: 180
+  armour: 20
+  speed: 0
+  dmgresist: 0
+  kbresist: 1
+  tags: ancient
+  level: 15
+  abilities:
+    boss:
+      range: 20
+      style: SOLID
+      colour: RED
+    laser:
+      damage: 50
+      range: 20
+      cooldown: 30
+    summons:
+      summon: digging2_boss_minion
+      count: 2
+      respawn: 400
+    rewarder:
+      reward: loot_digging2
+      threshold: 500
+    overkill:
+      threshold: 600
+digging2_boss_minion:
+  name: Precursor Sage
+  type: ENDERMAN
+  health: 2250
+  damage: 125
+  armour: 15
+  speed: 0.8
+  dmgresist: 0.1
+  kbresist: 1
+  tags: ancient
+  level: 9
+  abilities:
+    targeter:
+      range: 15
+      
+digging3_boss:
+  name: Truth Golem
+  type: IRON_GOLEM
+  health: 30000
+  damage: 260
+  armour: 30
+  speed: 0
+  dmgresist: 0.1
+  kbresist: 1
+  tags: ancient
+  level: 17
+  abilities:
+    boss:
+      range: 20
+      style: SOLID
+      colour: RED
+    laser:
+      damage: 35
+      range: 18
+      cooldown: 10
+      colour: 0,255,50
+    summons:
+      summon: digging3_boss_minion
+      count: 4
+      respawn: 300
+    regen:
+      regen: 300
+      cooldown: 100
+    rewarder:
+      reward: loot_digging3
+      threshold: 800
+    overkill:
+      threshold: 1400
+      reward: 7
+digging3_boss_minion:
+  name: True Sage
+  type: ENDERMAN
+  health: 4000
+  damage: 140
+  armour: 15
+  speed: 0.7
+  dmgresist: 0.1
+  kbresist: 1
+  tags: ancient
+  level: 9
+  abilities:
+    targeter:
+      range: 15
+  

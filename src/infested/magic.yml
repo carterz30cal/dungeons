@@ -1,0 +1,7 @@
+wand_web:
+  name: Webbed Wand
+  type: wand
+  item: BLAZE_ROD
+  rarity: INCREDIBLE
+  wand:
+    mana: 23

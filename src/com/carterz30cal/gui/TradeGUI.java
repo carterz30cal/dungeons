@@ -1,7 +1,6 @@
 package com.carterz30cal.gui;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.bukkit.Bukkit;
@@ -27,6 +26,7 @@ public class TradeGUI extends GUI
 	public boolean accepted;
 	
 	public List<ItemStack> items;
+	public int coins;
 	public Player owner;
 	
 	private static final int[] ownSlots = {0,1,2,3,9,10,11,12};
@@ -48,7 +48,9 @@ public class TradeGUI extends GUI
 		}
 		
 		contents[18] = GUICreator.item(Material.RED_STAINED_GLASS, ChatColor.RED + "Click to accept!", null);
-		contents[19] = GUICreator.item(Material.GOLD_BLOCK, ChatColor.GOLD + "Add 50 coins", null);
+		contents[19] = GUICreator.item(Material.GOLD_NUGGET, ChatColor.GOLD + "Add 10 coins", null);
+		contents[20] = GUICreator.item(Material.GOLD_INGOT, ChatColor.GOLD + "Add 100 coins", null);
+		contents[21] = GUICreator.item(Material.GOLD_BLOCK, ChatColor.GOLD + "Add 1000 coins", null);
 		contents[26] = GUICreator.item(Material.YELLOW_STAINED_GLASS, ChatColor.GOLD + "Player hasn't accepted", null);
 		inventory.setContents(contents);
 		render(p);
@@ -63,9 +65,6 @@ public class TradeGUI extends GUI
 		if (linked.accepted) inventory.setItem(26, GUICreator.item(Material.LIME_CONCRETE, ChatColor.GREEN + "Accepted!", null));
 		
 		
-		
-		int coins = getCoins(true);
-		
 		int slot = 0;
 		if (coins > 0)
 		{
@@ -79,13 +78,12 @@ public class TradeGUI extends GUI
 			inventory.setItem(ownSlots[slot],i);
 			slot++;
 		}
-		coins = getCoins(false);
 		
 		slot = 0;
-		if (coins > 0)
+		if (linked.coins > 0)
 		{
 			slot++;
-			inventory.setItem(5,GUICreator.item(Material.GOLD_NUGGET, ChatColor.GOLD + "" + coins + " coins",null, true));
+			inventory.setItem(5,GUICreator.item(Material.GOLD_NUGGET, ChatColor.GOLD + "" + linked.coins + " coins",null, true));
 		}
 		
 		for (ItemStack i : linked.items)
@@ -122,7 +120,7 @@ public class TradeGUI extends GUI
 					&& !ItemBuilder.getItem(inventory.getItem(position)).equals("book"))
 			{
 				DungeonsPlayerManager.i.get(owner).coins += getCoins(true);
-				items.removeIf((ItemStack i) -> i == null);
+				coins = 0;
 			}
 			else
 			{
@@ -144,10 +142,24 @@ public class TradeGUI extends GUI
 		}
 		else if (position == 19)
 		{
+			if (DungeonsPlayerManager.i.get(owner).coins < 10) return true;
+			DungeonsPlayerManager.i.get(owner).coins -= 10;
+			coins += 10;
 			unaccept();
-			if (DungeonsPlayerManager.i.get(owner).coins < 50) return true;
-			DungeonsPlayerManager.i.get(owner).coins -= 50;
-			addItem(null);
+		}
+		else if (position == 20)
+		{
+			if (DungeonsPlayerManager.i.get(owner).coins < 100) return true;
+			DungeonsPlayerManager.i.get(owner).coins -= 100;
+			coins += 100;
+			unaccept();
+		}
+		else if (position == 21)
+		{
+			if (DungeonsPlayerManager.i.get(owner).coins < 1000) return true;
+			DungeonsPlayerManager.i.get(owner).coins -= 1000;
+			coins += 1000;
+			unaccept();
 		}
 		else if (position > 26)
 		{
@@ -200,35 +212,19 @@ public class TradeGUI extends GUI
 	
 	public int getCoins(boolean self)
 	{
-		int coins = 0;
-
-		List<ItemStack> checking;
-		if (self) checking = items;
-		else checking = linked.items;
-		
-		for (ItemStack i : checking)
-		{
-			if (i == null) coins += 50;
-		}
-		
-		return coins;
+		if (self) return coins;
+		else return linked.coins;
 	}
-	public boolean canAdd(boolean coins)
+	public boolean canAdd()
 	{
-		boolean hasCoins = false;
-		int itemcount = 0;
-		for (ItemStack i : items)
-		{
-			if (i == null) hasCoins = true;
-			else itemcount++;
-		}
-		
-		if (hasCoins) itemcount++;
+		int itemcount = items.size();
+		if (coins > 0) itemcount++;
+
 		return itemcount < 8;
 	}
 	public boolean addItem(ItemStack item)
 	{
-		if (!canAdd(item == null)) return false;
+		if (!canAdd()) return false;
 		accepted = false;
 		items.add(item);
 		unaccept();

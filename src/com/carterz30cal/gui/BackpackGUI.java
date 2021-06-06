@@ -7,6 +7,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.inventory.ItemStack;
 
+import com.carterz30cal.items.ItemBuilder;
 import com.carterz30cal.player.BackpackItem;
 import com.carterz30cal.player.DungeonsPlayer;
 import com.carterz30cal.player.DungeonsPlayerManager;
@@ -45,7 +46,28 @@ public class BackpackGUI extends GUI
 			{
 				BackpackItem[] p = d.backpackb.get(page-1);
 				BackpackItem item = p[i];
-				if (item != null) contents[i] = item.create();
+				if (item != null)
+				{
+					if (!ItemBuilder.i.items.containsKey(item.itemType) && !item.itemType.equals("book"))
+					{
+						int compensation = 5*item.amount;
+						
+						d.player.sendMessage(ChatColor.GREEN + "An item has been deleted so here is " + compensation + " coins as compensation.");
+						d.coins += compensation;
+						
+						if (!item.enchants.equals(""))
+						{
+							d.player.sendMessage(ChatColor.GREEN + "- Returned enchants");
+							InventoryHandler.addItem(d, ItemBuilder.i.build("book", item.enchants, 1), false);
+						}
+						if (!item.sharp.equals(""))
+						{
+							d.player.sendMessage(ChatColor.GREEN + "- Returned sharpeners");
+							for (String s : item.sharp.split(",")) InventoryHandler.addItem(d,ItemBuilder.i.build(ItemBuilder.i.sharps.get(s).id,1),false);
+						}
+					}
+					else contents[i] = item.create();
+				}
 			}
 		}
 		
@@ -104,7 +126,16 @@ public class BackpackGUI extends GUI
 			else if (e.isLeftClick()) 
 			{
 				save(d);
-				InventoryHandler.sortBackpack(d, BackpackSort.values()[sorting]);
+				try
+				{
+					InventoryHandler.sortBackpack(d, BackpackSort.values()[sorting]);
+				}
+				catch (IllegalArgumentException exc)
+				{
+					d.player.sendMessage(ChatColor.RED + "Your sorting failed.. weird!");
+					System.out.println(ChatColor.RED + "[SORTING ERROR] " + d.player.getName() + "'s sort failed.");
+				}
+				
 				createPage(d);
 				render(p);
 			}

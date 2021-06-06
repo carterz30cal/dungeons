@@ -18,11 +18,14 @@ import java.util.Map;
 import java.util.Random;
 
 import com.carterz30cal.areas.EventTicker;
+import com.carterz30cal.areas.InfestedHunter;
+import com.carterz30cal.areas.NecropolisBoss;
 import com.carterz30cal.areas.NecropolisCrypts2;
 import com.carterz30cal.areas.WaterwayBoss;
 import com.carterz30cal.areas.WaterwayRain;
 import com.carterz30cal.areas.WaterwaySandMiniboss;
 import com.carterz30cal.areas.WaterwaySpearFishing;
+import com.carterz30cal.areas.WaterwayTutorial;
 import com.carterz30cal.bosses.BossManager;
 import com.carterz30cal.commands.*;
 import com.carterz30cal.crafting.RecipeManager;
@@ -43,6 +46,8 @@ import com.carterz30cal.player.DungeonsPlayer;
 import com.carterz30cal.player.DungeonsPlayerManager;
 import com.carterz30cal.player.ListenerBlockEvents;
 import com.carterz30cal.player.ListenerEntityDamage;
+import com.carterz30cal.player.VoteListener;
+import com.carterz30cal.player.skilltree.AbsSkill;
 import com.carterz30cal.quests.Quest;
 import com.carterz30cal.quests.TutorialManager;
 import com.carterz30cal.tasks.TaskBlockReplace;
@@ -75,8 +80,6 @@ public class Dungeons extends JavaPlugin
 	private File players;
 	private FileConfiguration playersC;
 	
-	private File fPerks;
-	public FileConfiguration fPerksC;
 	
 	private Map<Player,Integer> discordprompts = new HashMap<>();
 	
@@ -119,8 +122,10 @@ public class Dungeons extends JavaPlugin
 		new WaterwaySpearFishing();
 		new WaterwayBoss();
 		new WaterwaySandMiniboss();
-		//new NecropolisCrypts();
+		new WaterwayTutorial();
 		new NecropolisCrypts2();
+		new InfestedHunter();
+		new NecropolisBoss();
 		
 		RandomFunctions.r = new Random();
 		//-69, 100, 20994
@@ -140,6 +145,7 @@ public class Dungeons extends JavaPlugin
 		pm.registerEvents(listenerChunk, this);
 		pm.registerEvents(listenerDismount, this);
 		pm.registerEvents(listenerBlock, this);
+		pm.registerEvents(new VoteListener(), this);
 		
 		getCommand("dungeons").setExecutor(new CommandDungeons());
 		getCommand("warp").setExecutor(new CommandHub());
@@ -150,6 +156,8 @@ public class Dungeons extends JavaPlugin
 		getCommand("playtime").setExecutor(new CommandPlaytime());
 		getCommand("discord").setExecutor(new CommandDiscord());
 		getCommand("maxitem").setExecutor(new CommandMaxItem());
+		getCommand("tutorial").setExecutor(new CommandTutorial());
+		getCommand("vote").setExecutor(new CommandVote());
 		
 		NPCManager.sendall();
 		
@@ -157,6 +165,7 @@ public class Dungeons extends JavaPlugin
 		Packetz.init();
 		MarketGUI.init();
 		TutorialManager.init();
+		AbsSkill.init();
 		
 		new BukkitRunnable()
 		{
@@ -173,6 +182,12 @@ public class Dungeons extends JavaPlugin
 			
 		}.runTaskTimer(this, 20*60*30, 20*60*30);
 		
+		/*
+		int[] randomTest = new int[6];
+		int tests = 1000000;
+		for (int i = 0; i < tests;i++) randomTest[RandomFunctions.random(0, 5)]++;
+		for (int r : randomTest) System.out.println(r  + " - " + ((double)r/tests) * 100 + "%");
+		*/
 		
 		
 		ProtocolLibrary.getProtocolManager().addPacketListener(new PacketAdapter(this, ListenerPriority.NORMAL, PacketType.Play.Client.BLOCK_DIG) {
@@ -220,22 +235,6 @@ public class Dungeons extends JavaPlugin
             playersC.load(players);
         } 
 		catch (IOException | InvalidConfigurationException e) 
-		{
-            e.printStackTrace();
-        }
-
-		fPerks = new File(getDataFolder(),"perks.yml");
-		if (!fPerks.exists())
-		{
-			fPerks.getParentFile().mkdirs();
-			saveResource("perks.yml",false);
-		}
-		fPerksC = new YamlConfiguration();
-		try 
-		{
-			fPerksC.load(fPerks);
-		} 
-		catch (IOException | InvalidConfigurationException e)
 		{
             e.printStackTrace();
         }

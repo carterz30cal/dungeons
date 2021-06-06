@@ -2,6 +2,7 @@ package com.carterz30cal.player;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.UUID;
@@ -99,11 +100,10 @@ public class DungeonsPlayerManager
 		if (!playerc.contains(path))
 		{
 			playerc.createSection(path);
-			playerc.createSection(path + ".skills");
-			//playerc.createSection(path + ".perks");
-			//playerc.createSection(path + ".settings");
+			playerc.createSection(path + ".skilltree");
 			playerc.createSection(path + ".explorer");
 			playerc.createSection(path + ".quests");
+			playerc.createSection(path + ".sack");
 		}
 	}
 	public void save(DungeonsPlayer dp)
@@ -115,20 +115,16 @@ public class DungeonsPlayerManager
 		String path = dp.player.getUniqueId().toString();
 		if (!playerc.contains(path)) createData(dp.player.getUniqueId());
 		
-		playerc.set(path + ".skills",null);
-		for (String skill : dp.level.pointAllocation.keySet())
+		playerc.set(path + ".skilltree", null);
+		for (String sk : dp.skills.keySet())
 		{
-			playerc.set(path + ".skills." + skill, dp.level.pointAllocation.get(skill));
+			playerc.set(path + ".skilltree." + sk,dp.skills.get(sk));
 		}
-		/*
-		for (String perk : dp.perks.getPerks())
-		{
-			playerc.set(path + ".perks." + perk, dp.perks.getKills(perk));
-		}
-		*/
 
 		playerc.set(path + ".backpack", null);
 		playerc.createSection(path + ".backpack");
+		playerc.set(path + ".sack", null);
+		playerc.createSection(path + ".sack");
 		playerc.set(path + ".tutorials", dp.tutorials);
 		playerc.set(path + ".playtime", dp.playtime);
 		playerc.set(path + ".kills", dp.kills);
@@ -144,17 +140,16 @@ public class DungeonsPlayerManager
 		{
 			playerc.set(path + ".quests." + quest.getKey(), quest.getValue());
 		}
+		for (Entry<String,Integer> ingredient : dp.sack.entrySet())
+		{
+			playerc.set(path + ".sack." + ingredient.getKey(), ingredient.getValue());
+		}
 		playerc.set(path + ".coins", dp.coins);
 		playerc.set(path + ".rank",dp.rank.ordinal());
 		
-		/*
-		playerc.set(path + ".settings.progressbar", dp.settingSkillsDisplay);
-		playerc.set(path + ".settings.perkbackground", dp.perkBackground);
-		playerc.set(path + ".settings.colourblind", dp.colourblindMode);
-		playerc.set(path + ".settings.highlightrenamed", dp.highlightRenamed);
-		*/
 		playerc.set(path + ".experience", dp.level.experience);
-		playerc.set(path + ".points", dp.level.points);
-		
+		playerc.set(path + ".hunter", dp.level.hunter);
+		if (dp.voteBoost == null || dp.voteBoost.isBefore(Instant.now())) playerc.set(path + ".voteboost", null);
+		else playerc.set(path + ".voteboost", dp.voteBoost.toEpochMilli());
 	}
 }

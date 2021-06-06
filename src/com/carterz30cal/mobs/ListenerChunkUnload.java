@@ -14,8 +14,8 @@ public class ListenerChunkUnload implements Listener
 		for (Entity entity : e.getChunk().getEntities())
 		{
 			DMob mob = DMobManager.get(entity);
-			if (mob != null) mob.destroy(null);
-			else if (entity.getType() != EntityType.PLAYER) entity.remove();
+			if (mob == null && entity.getType() != EntityType.PLAYER) entity.remove();
+			else if (mob != null && !mob.entities.get(0).isInvulnerable()) mob.remove();
 		}
 	}
 }

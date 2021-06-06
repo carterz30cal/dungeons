@@ -30,6 +30,10 @@ public class InventoryHandler
 	{
 		boolean bypass = commonItem;
 		if (!bypass && p.player.getInventory().firstEmpty() != -1) p.player.getInventory().addItem(item);
+		else if (ItemBuilder.get(item) != null && ItemBuilder.get(item).type.equals("ingredient"))
+		{
+			p.sack.put(ItemBuilder.getItem(item), p.sack.getOrDefault(ItemBuilder.getItem(item), 0) + item.getAmount());
+		}
 		else insertBackpack(p,item);
 	}
 	private static void sort_valuables_cluster(DungeonsPlayer p)
@@ -222,10 +226,19 @@ public class InventoryHandler
 					page[i] = item;
 					return;
 				}
-				else if (page[i].itemType.equals(it) && (page[i].amount+item.amount) <= ItemBuilder.stack(item)) 
+				else if (page[i].itemType.equals(it) && (page[i].amount) < ItemBuilder.stack(item)) 
 				{
-					page[i].amount += item.amount;
-					return;
+					int diff = ItemBuilder.stack(item) - page[i].amount;
+					if (diff >= item.amount) 
+					{
+						page[i].amount += item.amount;
+						return;
+					}
+					else
+					{
+						item.amount -= diff;
+						page[i].amount += diff;
+					}
 				}
 			}
 		}

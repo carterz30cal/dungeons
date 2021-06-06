@@ -11,7 +11,7 @@ public class EnchPrecursed extends AbsEnchant {
 	@Override
 	public String description()
 	{
-		return "Deal " + (5*level) + " true damage to ancient creatures";
+		return "Deal " + (6*level) + " true damage to ancient creatures";
 	}
 
 	@Override
@@ -44,7 +44,7 @@ public class EnchPrecursed extends AbsEnchant {
 	{
 		if (hit.type.tags.contains("ancient")) 
 		{
-			hit.damage(5*level,player,DamageType.TRUE,false);
+			hit.damage(6*level,player,DamageType.TRUE,false);
 		}
 		return 0;
 	}

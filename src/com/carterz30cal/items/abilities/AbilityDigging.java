@@ -40,35 +40,41 @@ public class AbilityDigging extends AbsAbility
 		if (mobs == null)
 		{
 			mobs = new HashMap<String,String[]>();
-			mobs.put("digging_shovelT1", new String[] {"digging_zombie1","digging_ghoul1",
-					"digging_wolf1","digging_slime1","digging_bug1","digging_axe1","digging_defender1"});
-			mobs.put("digging_shovelT2", new String[] {"digging_zombie2","digging_ghoul2","digging_wolf2",
-					"digging_skeleton2","digging_slime2","digging_wolftamer2","digging_bug2","digging_axe2"
-					,"digging_gremlin2,3","digging_defender2","digging_cow2","digging_berserker2"});
-			mobs.put("digging_shovelT3", new String[] {"digging_ghoul3","digging_wolf3",
-					"digging_skeleton3,2","digging_slime3","digging_wolftamer3","digging_axe3"
-					,"digging_defender3","digging_cow3","digging_berserker3"});
+			mobs.put("digging_shovelT1", new String[] {"digging1_zombie","digging1_raider",
+					"digging1_wolf","digging1_slime","digging1_silverfish","digging1_axe","digging1_defender"});
+			mobs.put("digging_shovelT2", new String[] {"digging2_zombie","digging2_raider",
+					"digging2_wolf","digging2_slime","digging2_silverfish","digging2_axe","digging2_defender","digging2_cow"});
+			mobs.put("digging_shovelT3", new String[] {"digging3_zombie","digging3_raider",
+					"digging3_wolf","digging3_slime","digging3_silverfish,3","digging3_axe","digging3_defender",
+					"digging3_cow","digging3_key","digging3_golem"});
+			mobs.put("digging_shovelT4", new String[] {"digging4_zombie","digging4_raider",
+					"digging4_wolf","digging4_slime","digging4_silverfish,4","digging4_axe","digging4_defender",
+					"digging4_cow","digging4_key","digging4_golem","digging4_statue","digging4_phantom"});
 			
 			items = new HashMap<String,ArrayList<String>>();
 			ArrayList<String> t1 = new ArrayList<String>();
-			addWeighted("digging_ancientstone",50,t1);
-			addWeighted("digging_leather",35,t1);
-			addWeighted("coins;125",15,t1);
+			addWeighted("digging_coal",50,t1);
+			addWeighted("digging_leather",25,t1);
+			addWeighted("coins;400",25,t1);
 			items.put("digging_shovelT1", t1);
 			
 			ArrayList<String> t2 = new ArrayList<String>();
-			addWeighted("digging_ancientstone",100,t2);
-			addWeighted("coins;210",25,t2);
-			addWeighted("coins;300",25,t2);
-			addWeighted("coins;1000",5,t2);
+			addWeighted("digging_stone2",50,t2);
+			addWeighted("digging_leather",25,t2);
+			addWeighted("coins;750",25,t2);
 			items.put("digging_shovelT2", t2);
 			
 			ArrayList<String> t3 = new ArrayList<>();
-			addWeighted("digging_ancientstone",100,t3);
-			addWeighted("coins;450",25,t2);
-			addWeighted("coins;700",25,t2);
-			addWeighted("coins;1500",5,t2);
+			addWeighted("digging_stone2",50,t3);
+			addWeighted("coins;900",40,t3);
+			addWeighted("coins;1750",10,t3);
 			items.put("digging_shovelT3", t3);
+			
+			ArrayList<String> t4 = new ArrayList<>();
+			addWeighted("digging_stone2",50,t4);
+			addWeighted("coins;1200",35,t4);
+			addWeighted("coins;1900",15,t4);
+			items.put("digging_shovelT4", t4);
 		}
 	}
 	public void addWeighted(String item,int weight,ArrayList<String> list)
@@ -86,6 +92,7 @@ public class AbilityDigging extends AbsAbility
 		d.add(prefix + "Digger");
 		d.add("You can dig up treasures and tough mobs");
 		d.add("Better shovels have better rewards");
+		d.add("Right click to see where to dig!");
 		return d;
 	}
 	public void onTick  (DungeonsPlayer d) 

@@ -2,12 +2,13 @@ package com.carterz30cal.enchants;
 
 import com.carterz30cal.dungeons.DungeonMiningTable;
 import com.carterz30cal.player.DungeonsPlayerStatBank;
+import com.carterz30cal.utility.RandomFunctions;
 
 public class EnchPaper extends AbsEnchant {
 
 	@Override
 	public String description() {
-		return "Gives a " + 20*level + "% chance to mine wet paper";
+		return "You also mine 1-" + (level+1) + " wet paper.";
 	}
 
 	@Override
@@ -31,7 +32,7 @@ public class EnchPaper extends AbsEnchant {
 	}
 	@Override
 	public int rarity() {
-		return Math.max(0,level-1);
+		return level - 1;
 	}
 
 	@Override
@@ -41,7 +42,7 @@ public class EnchPaper extends AbsEnchant {
 
 	@Override
 	public DungeonMiningTable onMine(DungeonMiningTable mine) {
-		if (Math.random() < 0.2*level) mine.loot.put("wetpaper", 1);
+		mine.loot.put("wetpaper", RandomFunctions.random(1, level+1));
 		return mine;
 	}
 

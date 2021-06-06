@@ -1,0 +1,472 @@
+digging_shovelT1:
+  name: Digging Shovel
+  item: GOLDEN_SHOVEL
+  type: tool
+  rarity: RARE
+  ability: diggingshovel
+digging_shovelT2:
+  name: Digging Shovel
+  item: GOLDEN_SHOVEL
+  type: tool
+  rarity: EPIC
+  ability: diggingshovel
+digging_shovelT3:
+  name: Digging Shovel
+  item: GOLDEN_SHOVEL
+  type: tool
+  rarity: INCREDIBLE
+  ability: diggingshovel
+digging_shovelT4:
+  name: Digging Shovel
+  item: GOLDEN_SHOVEL
+  type: tool
+  rarity: LEGENDARY
+  ability: diggingshovel
+  
+# TIER ONE
+digging_coal:
+  name: Ancient Coal
+  item: COAL
+  rarity: RARE
+  description: ;Burns for an incredibly;long amount of time.
+digging_leather:
+  name: Precursor Skin
+  item: LEATHER
+  rarity: RARE
+  description: ;The skin of a dead precursor;is highly sought after for;it's immense durability.
+  
+  
+infused_pickaxe:
+  name: Infused Pickaxe
+  type: tool
+  rarity: INCREDIBLE
+  item: STONE_PICKAXE
+  areareq: necropolis
+  req: 14
+  attributes:
+    miningspeed: 160
+    fortune: 125
+armour-hunter:
+  name: Hunter
+  suffix: Hat,Shirt,Trousers,Boots
+  rarity: RARE
+  item: LEATHER
+  colour: 186,110,60
+  req: 12
+  set: hunter
+  attributes:
+    damagep: 0.1,0.2,0.15,0.05
+    health: 60,100,70,50
+    
+armour_archaeologist_helmet:
+  name: Archaeologist's Cap
+  type: armour
+  item: DIAMOND_HELMET
+  rarity: RARE
+  ability: diggingsight
+  set: precursor
+  req: 10
+  attributes:
+    damage: +9
+  
+# TIER TWO
+digging_stone2:
+  name: Ancient Stone
+  item: GRANITE
+  rarity: EPIC
+  description: ;Building blocks of an old empire.
+digging_diamond:
+  name: Mythical Crystal
+  item: DIAMOND
+  rarity: EPIC
+  glow: true
+  description: ;This crystal is both sharp;and incredibly beautiful.
+  
+sword_cursedboneblade:
+  name: Cursed Blade
+  type: weapon
+  item: IRON_SWORD
+  rarity: INCREDIBLE
+  glow: true
+  req: 17
+  attributes:
+    damage: +65
+    armour: +46
+    
+
+sword_precursor:
+  name: Blade of Ancients
+  type: weapon
+  item: NETHERITE_SWORD
+  rarity: EPIC
+  ability: prejudice
+  req: 14
+  set: precursor
+  attributes:
+    damage: +50
+    health: -60
+    
+armour-elderhunter:
+  name: Elder Hunter
+  suffix: Hat,Shirt,Trousers,Boots
+  rarity: EPIC
+  item: LEATHER
+  colour: 186,110,60
+  req: 15
+  set: hunter
+  attributes:
+    damagep: 0.1,0.25,0.2,0.1
+    damage: 3,5,4,2
+    health: 80,120,75,70
+    
+armour-skin:
+  name: Skin
+  suffix: Helmet,Chestplate,Leggings,Shoes
+  rarity: EPIC
+  set: skin
+  item: LEATHER
+  colour: 253,241,203
+  req: 14
+  attributes:
+    health: 60,100,70,50
+    armour: 30,40,35,20
+    
+armour_archaeologist2_helmet:
+  name: Archaeologist's Helmet
+  type: armour
+  item: DIAMOND_HELMET
+  rarity: EPIC
+  ability: diggingsight
+  set: precursor
+  req: 14
+  attributes:
+    damage: +14
+    
+armour_gemstone_helmet:
+  name: Gemstone Crown
+  type: armour
+  item: LEATHER_HELMET
+  rarity: EPIC
+  ability: gemstonecrown
+  colour: 116,36,227
+  req: 16
+  set: precursor
+  attributes:
+    mana: +250
+    
+spell_sage:
+  name: Sage Spell
+  type: spell
+  rarity: EPIC
+  item: PAPER
+  spell:
+    mana: 20
+    damage: 180
+    colour: 0,0,0
+    pierces: 1
+    speed: 0.8
+    
+digging_totem_2:
+  name: Precursor Totem
+  type: artifact
+  item: TOTEM_OF_UNDYING
+  rarity: EPIC
+  ability: totem2
+loot_digging2:
+  name: Precursor Box
+  type: lootbox
+  item: LOOM
+  rarity: EPIC
+  loot:
+    digging_dye:
+      amount: 1
+      chance: 1
+    book;spirit:
+      amount: 1
+      enchants: spirit,1
+      chance: 2
+    book;spirit2:
+      amount: 1
+      enchants: spirit,2
+      chance: 6
+    book;spirit3:
+      amount: 1
+      enchants: spirit,3
+      chance: 19
+    book;protection:
+      amount: 1
+      enchants: protection,2
+      chance: 3
+    spell_sage:
+      amount: 1
+      chance: 14
+    crypt_key4:
+      amount: 1-3
+      chance: 3
+# TIER THREE
+digging_dye:
+  name: Precursor Core
+  item: ORANGE_DYE
+  rarity: INCREDIBLE
+  glow: true
+  description: ;A major component of most;large machines constructed;by the precursors.
+
+digging_stick:
+  name: Stick of Eons
+  item: STICK
+  type: weapon
+  rarity: INCREDIBLE
+  description: ;Forged eons ago in the powerful;factories of the precursors, this;stick can take immense weight.
+  attributes:
+    damage: +12
+    health: +275
+    armour: +100
+
+sword_trueprecursor:
+  name: True Blade of Ancients
+  type: weapon
+  item: NETHERITE_SWORD
+  rarity: INCREDIBLE
+  ability: prejudice
+  req: 17
+  set: precursor
+  attributes:
+    damage: +65
+    health: -70
+    
+sharpener_archiacalloy:
+  name: Archaic Alloy
+  type: sharpener
+  rarity: INCREDIBLE
+  item: NETHERITE_SCRAP
+  sharpener:
+    id: archaicalloy
+    plus: AQUA
+  attributes:
+    health: +20
+    armour: +10
+    
+healing_wand3:
+  name: Wand of Reimposition
+  type: tool
+  rarity: INCREDIBLE
+  item: STICK
+  glow: true
+  ability: healingwand3
+  attributes:
+    mana: +75
+    
+devastating_battleaxe:
+  name: Devastating Battleaxe
+  type: weapon
+  item: NETHERITE_AXE
+  rarity: INCREDIBLE
+  ability: devastation
+  req: 20
+  attributes:
+    damage: +95
+    
+sword_berserkersaxe:
+  name: Berserker's Axe
+  type: weapon
+  rarity: EPIC
+  item: GOLDEN_AXE
+  req: 16
+  ability: silkbonus
+  attributes:
+    damage: +68
+    
+armour_precursorcrown_helmet:
+  name: Precursor Crown
+  type: armour
+  item: GOLDEN_HELMET
+  glow: true
+  rarity: INCREDIBLE
+  set: precursor
+  ability: precursorcrown
+  req: 15
+  attributes:
+    damage: +10
+    health: -90
+    
+armour-golem:
+  name: Golem
+  suffix: Helmet,Chestplate,Leggings,Boots
+  rarity: INCREDIBLE
+  item: IRON
+  req: 16
+  set: golem
+  attributes:
+    armour: 60,80,70,55
+    mana: 75,125,100,50
+    
+armour-precursor:
+  name: Precursor Lord
+  suffix: Helmet,Chestplate,Leggings,Boots
+  type: armour
+  item: GOLDEN
+  rarity: INCREDIBLE
+  req: 19
+  set: precursor
+  attributes:
+    health: 40,65,50,30
+    armour: 20,35,30,10
+    damage: 6,10,8,4
+    
+digging_totem_3:
+  name: Precursor Totem
+  type: artifact
+  item: TOTEM_OF_UNDYING
+  rarity: INCREDIBLE
+  ability: totem2
+loot_digging3:
+  name: Precursor Box
+  type: lootbox
+  item: LOOM
+  rarity: EPIC
+  loot:
+    digging_truthcrystal:
+      amount: 1
+      chance: 1
+    book;spirit2:
+      amount: 1
+      enchants: spirit,2
+      chance: 4
+    book;spirit3:
+      amount: 1
+      enchants: spirit,3
+      chance: 11
+    book;steel:
+      amount: 1
+      enchants: steel,1
+      chance: 4
+    sword_berserkersaxe:
+      amount: 1
+      chance: 16
+    spell_sage:
+      amount: 1
+      chance: 12
+    
+# TIER FOUR
+digging_truthcrystal:
+  name: Truth Crystal
+  item: EMERALD
+  glow: true
+  rarity: LEGENDARY
+  description: ;This rare crystal was manufactured;centuries ago and the process has;been lost to time. Anyone who gazes;into the core of the crystal will;reveal their inner secrets willingly.
+digging_trueingot:
+  name: Ingot of Truth
+  item: IRON_INGOT
+  glow: true
+  rarity: LEGENDARY
+  description: ;A bar made of pure truth. While you;hold this, you feel your inner;evils be dispelled.
+sword_centuries:
+  name: Blade of Centuries
+  type: weapon
+  item: NETHERITE_SWORD
+  rarity: LEGENDARY
+  ability: prejudice
+  req: 21
+  set: precursor
+  description: ;This blade has withstood the power of time.
+  glow: true
+  attributes:
+    damage: +80
+    health: -50
+    
+timeless_blade:
+  name: Timeless
+  type: weapon
+  item: IRON_SWORD
+  rarity: LEGENDARY
+  req: 23
+  description: ;Age is nothing to this blade. While;you hold it, you feel like the king;of the entire world.
+  attributes:
+    damage: +32
+    health: +350
+    armour: +125
+    
+digging_defendermedal:
+  name: Medal of Truth
+  type: appliable
+  rarity: LEGENDARY
+  item: SCUTE
+  modifier:
+    types: LEATHER_CHESTPLATE,IRON_CHESTPLATE,GOLDEN_CHESTPLATE,DIAMOND_CHESTPLATE,CHAINMAIL_CHESTPLATE,NETHERITE_CHESTPLATE
+    prefix: True
+    attributes:
+      armour: 12
+      damagep: +0.02
+  description: ;The highest honour the Precursors could give. It grants;a small armour and damage bonus;when applied to a chestplate.
+    
+true_battleaxe:
+  name: True Battleaxe
+  type: weapon
+  item: DIAMOND_AXE
+  rarity: LEGENDARY
+  ability: devastation
+  glow: true
+  req: 22
+  attributes:
+    damage: +102
+    armour: +10
+    
+    
+armour_phantom_boots:
+  name: Phantom Boots
+  type: armour
+  item: CHAINMAIL_BOOTS
+  rarity: LEGENDARY
+  ability: phantomboots
+  req: 23
+  attributes:
+    damage: +13
+    health: +80
+armour-royalprecursor:
+  name: Royal Precursor
+  suffix: Helmet,Chestplate,Leggings,Boots
+  type: armour
+  item: GOLDEN
+  rarity: LEGENDARY
+  glow: true
+  req: 23
+  set: precursor
+  attributes:
+    health: 50,75,60,40
+    armour: 30,45,40,25
+    damage: 8,14,10,6
+    
+    
+armour-soul:
+  name: Soul Reaper
+  suffix: Mask,Chestplate,Leggings,Boots
+  rarity: LEGENDARY
+  set: soul
+  item: LEATHER
+  colour: 106,49,212
+  req: 20
+  ability: reaperhelmet,reaperchestplate,reaperleggings,reaperboots
+  skull:
+    data: ewogICJ0aW1lc3RhbXAiIDogMTYwNTU1NzQ0OTM0OSwKICAicHJvZmlsZUlkIiA6ICJiYzRlZGZiNWYzNmM0OGE3YWM5ZjFhMzlkYzIzZjRmOCIsCiAgInByb2ZpbGVOYW1lIiA6ICI4YWNhNjgwYjIyNDYxMzQwIiwKICAic2lnbmF0dXJlUmVxdWlyZWQiIDogdHJ1ZSwKICAidGV4dHVyZXMiIDogewogICAgIlNLSU4iIDogewogICAgICAidXJsIiA6ICJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlLzc1MTIyZDMyNzYzYjI3ZmExMWIxODY1MTFiZDYxNzI2ZGFhZWEzZTE2MGVjNjdlMzU2OWUwOGFjYmFlM2VkMGMiCiAgICB9CiAgfQp9
+    sig: lTOXhNIUAWCdueehbI8B1Laa3zEaXpb+Os9QQRtDuV07jMNkHaMFeZ7exXoowRuIVwhZq2X+aSsFT907hWLO/p9fWc6bylS49Zb/ZnXbld2xYmrU2VI65NikSyMRybb2fdh+k+5UkyPaX9oo2F566MXDEKXfJfbBILnp9qPXlety72kIqSeUZmB/NG7a/VqHqBM0+0NhrpoJUjjmJfPFlBmkwyUj7I0TrfBhT1fE928B3eI1cKadyt9TgOphq128QLMx0e5tWqwQGE/xX/G/Q3ngX5lovu3GzwwU8+UwXbJ/qktP1lSXJgcIRhS6wmWf/2p+Bk2uWCHmsyVHkaVA8PQ+3C0M8vu4srL3FXpM7aVZNnMKlVICUOKT6tIxGC7ZLkXfEjN/s5Xph8Z+pgr7eUZbqUqIj6LXxs9ELBq2PMFbn8jKWnxJ9xmm3SNLqOJo+EZOnYalxV7xrHAxpk19KT8A8N7oT6++DLircgbC8fNZAH8PQRWYwtEhdovUg5LtBfoNfvS2SMIvLqtPVs6toYh3DK/OxkA1kUuvmRiraAycgXQcg89HBtxlOV8yUoo0qeWyeLayb5WzqrzA31QV8s/QyzPpwJwvWB1vW4Q4dM/XqG8D47A6stgt4NPKi5RBo9i2qijkONoaC6S/IhbpeBo1xvKavSQCgovq3nbZKXc=
+  attributes:
+    health: 60,80,65,50
+    armour: 20,45,30,15
+    mana: 35,50,40,30
+    
+reaper_blade:
+  name: Reaper Blade
+  type: weapon
+  item: DIAMOND_SWORD
+  rarity: LEGENDARY
+  req: 20
+  ability: reaperblade
+  attributes:
+    damage: +61
+    mana: +200
+  
+  
+    
+    
+    
+  

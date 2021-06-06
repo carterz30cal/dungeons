@@ -1,7 +1,5 @@
 package com.carterz30cal.mining;
 
-import java.util.UUID;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
@@ -38,9 +36,15 @@ public class TaskMining extends BukkitRunnable
 	public void run() 
 	{
 		Block target = player.player.getTargetBlockExact(5);
+		
+		if (!player.stats.heldtype.equals("tool")) 
+		{
+			end();
+			return;
+		}
 		if (mining == null || (!mining.equals(target) && target != null))
 		{
-			if (player.area == null || player.area.mining == null || player.area.mining.blocks == null || !player.area.mining.blocks.containsKey(target.getType()))
+			if (player == null || player.area == null || player.area.mining == null || player.area.mining.blocks == null || !player.area.mining.blocks.containsKey(target.getType()))
 			{
 				player.mining = null;
 				end();

@@ -1,0 +1,30 @@
+biomass_bow:
+  name: Biomass Bow
+  type: weapon
+  rarity: COMMON
+  item: BOW
+  req: 18
+  attributes:
+    damage: +55
+    health: +60
+    
+venomous_bow:
+  name: Venomous Bow
+  type: weapon
+  rarity: RARE
+  item: BOW
+  req: 23
+  ability: venombite
+  attributes:
+    damage: +62
+    health: +50
+    
+quality_bow:
+  name: Quality Bow
+  type: weapon
+  rarity: RARE
+  item: BOW
+  req: 24
+  attributes:
+    damage: +80
+    damagep: +0.10

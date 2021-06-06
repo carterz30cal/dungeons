@@ -10,10 +10,10 @@ bone:
       damage: +7
 soul:
   set: 
-    lore: You see into the soul realm
+    lore: The souls are everywhere, watching..
     attributes:
       regen: +5
-    ability: soulreap
+    ability: reaperset
   synergy:
     lore: You feel connected to past spirits
     attributes:
@@ -37,24 +37,31 @@ undeadsoldier:
     attributes:
       health: -25
       damage: 12
+      
+undeadlord:
+  set: 
+    lore: Lord of the Crypt
+    ability: cryptlord
+    attributes:
+      health: -40
+      armour: +40
     
 tissue:
   set: 
     lore: You're slightly creeped out by the smell
     attributes:
-      armour: +15
-      regen: +4
+      armour: +20
+      regen: +3
 skin:
   set: 
-    lore: Ok this is just wrong
+    lore: This feels... wrong.
     attributes:
-      armour: +25
       damagep: +0.1
 golem:
   set:
-    lore: While hard to move, you do feel very safe
+    lore: Your magic feels strong.
     attributes:
-      health: +25
+      mana: +50
     ability: golem
 slime:
   set:
@@ -63,11 +70,34 @@ slime:
       health: +150
       damagep: -0.1
     ability: slimeset
+    
+hunter:
+  set:
+    lore: You are attuned to your surroundings.
+    attributes:
+      armour: +30
+      damage: +5
+    ability: digginghunter
+    
+precursor:
+  set:
+    lore: Ancient screams haunt you.
+    attributes:
+      damage: +7
+    ability: digginglord
+  synergy:
+    lore: The screams power your blade.
+    attributes:
+      damage: +6
+      damagep: +0.05
 
 ghoul:
   set:
-    lore: You are now a husk of a being
+    lore: You're a ghoul!
     attributes:
-      health: -20
-      damagep: +0.1
-    ability: ghoulset
+      damagep: +0.15
+      regen: +10
+  synergy:
+    lore: Oh.. Ok.
+    attributes:
+      damage: +15

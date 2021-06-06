@@ -10,7 +10,7 @@ public class EnchLethal extends AbsEnchant {
 
 	@Override
 	public String description() {
-		return "Deal " + level + " true damage";
+		return "Deal " + Math.round(level*2.25d) + " true damage";
 	}
 
 	@Override
@@ -43,7 +43,7 @@ public class EnchLethal extends AbsEnchant {
 	@Override
 	public int onHit(DungeonsPlayer player,DMob hit) 
 	{
-		hit.damage(level,player,DamageType.TRUE,false);
+		hit.damage((int) Math.round(level*2.25d),player,DamageType.TRUE,false);
 		return 0;
 	}
 	@Override

@@ -20,7 +20,7 @@ public class CommandLeaderboard implements CommandExecutor
 		{
 			CharacterSkill s = CharacterSkill.leaderboard[i];
 			if (s == null) break;
-			sender.sendMessage(ChatColor.GOLD + "" + (i+1) + ". " + s.owner.getDisplayName() + ChatColor.AQUA + " - " + StringManipulator.truncateLess(s.experience) + " XP");
+			sender.sendMessage(ChatColor.GOLD + "" + (i+1) + ". " + s.owner.player.getDisplayName() + ChatColor.AQUA + " - " + StringManipulator.truncateLess(s.experience) + " XP");
 		}
 		return true;
 	}

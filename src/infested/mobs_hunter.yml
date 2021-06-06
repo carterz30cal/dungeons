@@ -1,0 +1,378 @@
+hunter_tarantula1:
+  name: Hatchling Tarantula
+  type: TARANTULA
+  loadcustom: true
+  health: 12000
+  damage: 245
+  armour: 45
+  level: 15
+  speed: 1.4
+  kbresist: 1
+  coinm: 0
+  boss: true
+  tags: hunter,spider,infested
+  abilities:
+    regen:
+      regen: 40
+      cooldown: 20
+    owned:
+      cost: 500
+      bounty: 2000
+      xp: 25
+    overkill:
+      threshold: 1500
+      reward: 15
+  drops:
+    book;squash:
+      drop: 1/4
+      amount: 1-1
+      enchants: squash,2
+      rare: true
+    tarantula_fang:
+      drop: 1/20
+      amount: 1-1
+      rare: true
+      
+hunter_tarantula2:
+  name: Irked Tarantula
+  type: TARANTULA
+  loadcustom: true
+  health: 20000
+  damage: 300
+  armour: 70
+  level: 16
+  speed: 1.5
+  kbresist: 1
+  coinm: 0
+  boss: true
+  tags: hunter,spider,infested
+  abilities:
+    regen:
+      regen: 40
+      cooldown: 20
+    owned:
+      cost: 1000
+      bounty: 4000
+      xp: 50
+    overkill:
+      threshold: 2000
+      reward: 20
+  drops:
+    book;squash:
+      drop: 1/4
+      amount: 1-1
+      enchants: squash,3
+      rare: true
+    tarantula_fang:
+      drop: 1/20
+      amount: 1-2
+      rare: true
+    book;blade4:
+      drop: 1/50
+      amount: 1-1
+      rare: true
+      
+hunter_tarantula3:
+  name: Angry Tarantula
+  type: TARANTULA
+  loadcustom: true
+  health: 45000
+  damage: 450
+  armour: 80
+  level: 17
+  speed: 1.6
+  kbresist: 1
+  coinm: 0
+  boss: true
+  tags: hunter,spider,infested
+  abilities:
+    regen:
+      regen: 40
+      cooldown: 20
+    owned:
+      cost: 2000
+      bounty: 8000
+      xp: 100
+    overkill:
+      threshold: 3500
+      reward: 25
+  drops:
+    book;squash:
+      drop: 1/7
+      amount: 1-1
+      enchants: squash,4
+      rare: true
+    tarantula_fang:
+      drop: 1/20
+      amount: 2-3
+      rare: true
+    book;blade4:
+      drop: 1/40
+      amount: 1-1
+      rare: true
+    tarantula_blood:
+      drop: 1/50
+      amount: 1-1
+      rare: true
+      
+hunter_tarantula4:
+  name: Enraged Tarantula
+  type: TARANTULA
+  loadcustom: true
+  health: 60000
+  damage: 525
+  armour: 85
+  level: 18
+  speed: 1.65
+  kbresist: 1
+  coinm: 0
+  boss: true
+  tags: hunter,spider,infested
+  abilities:
+    regen:
+      regen: 50
+      cooldown: 20
+    owned:
+      cost: 4000
+      bounty: 10000
+      xp: 250
+    overkill:
+      threshold: 4000
+      reward: 30
+    laser:
+      damage: 70
+      range: 15
+      cooldown: 40
+      targetonly: true
+  drops:
+    book;squash:
+      drop: 1/7
+      amount: 1-1
+      enchants: squash,4
+      rare: true
+    tarantula_fang:
+      drop: 1/20
+      amount: 2-4
+      rare: true
+    book;blade4:
+      drop: 1/35
+      amount: 1-1
+      rare: true
+    tarantula_blood:
+      drop: 1/45
+      amount: 1-1
+      rare: true
+      
+hunter_tarantula5:
+  name: Young Broodmother
+  type: TARANTULA
+  loadcustom: true
+  health: 100000
+  damage: 600
+  armour: 90
+  level: 19
+  speed: 1.7
+  kbresist: 1
+  coinm: 0
+  boss: true
+  tags: hunter,spider,infested
+  abilities:
+    regen:
+      regen: 50
+      cooldown: 20
+    owned:
+      cost: 8000
+      bounty: 20000
+      xp: 500
+    overkill:
+      threshold: 5000
+      reward: 35
+    laser:
+      damage: 95
+      range: 20
+      cooldown: 50
+      targetonly: true
+    summons:
+      summon: tarantula5_brood
+      count: 7
+      respawn: 100
+  drops:
+    book;squash:
+      drop: 1/7
+      amount: 1-1
+      enchants: squash,4
+      rare: true
+    tarantula_fang:
+      drop: 1/15
+      amount: 2-4
+      rare: true
+    book;blade4:
+      drop: 1/35
+      amount: 1-1
+      rare: true
+    tarantula_blood:
+      drop: 1/40
+      amount: 1-1
+      rare: true
+      
+tarantula5_brood:
+  name: Tarantula Brood
+  type: CAVE_SPIDER
+  health: 3000
+  damage: 140
+  armour: 30
+  level: 7
+  speed: 1.4
+  coinm: 0
+  tags: spider,infested,hunter
+  
+hunter_tarantula6:
+  name: Elder Broodmother
+  type: TARANTULA
+  loadcustom: true
+  health: 200000
+  damage: 750
+  armour: 100
+  level: 20
+  speed: 1.8
+  kbresist: 1
+  coinm: 0
+  boss: true
+  tags: hunter,spider,infested
+  abilities:
+    regen:
+      regen: 40
+      cooldown: 10
+    owned:
+      cost: 16000
+      bounty: 40000
+      xp: 750
+    overkill:
+      threshold: 7000
+      reward: 50
+    laser:
+      damage: 100
+      range: 20
+      cooldown: 30
+      targetonly: true
+    summons:
+      summon: tarantula6_brood
+      count: 9
+      respawn: 100
+    caster:
+      projectiles: -1
+      speed: 3
+      range: 20
+      damage: 300
+      cooldown: 200
+  drops:
+    book;squash5:
+      drop: 1/12
+      amount: 1-1
+      enchants: squash,5
+      rare: true
+    tarantula_fang:
+      drop: 1/10
+      amount: 2-5
+      rare: true
+    book;blade4:
+      drop: 1/30
+      amount: 1-1
+      rare: true
+    tarantula_blood:
+      drop: 1/30
+      amount: 1-1
+      rare: true
+    tarantula_jewel:
+      drop: 1/200
+      amount: 1-1
+      rare: true
+    book;squash6:
+      drop: 1/150
+      amount: 1-1
+      enchants: squash,6
+      rare: true
+      
+tarantula6_brood:
+  name: Tarantula Brood
+  type: CAVE_SPIDER
+  health: 4500
+  damage: 180
+  armour: 40
+  level: 8
+  speed: 1.5
+  coinm: 0
+  tags: spider,infested,hunter
+  
+hunter_tarantula7:
+  name: Ancient Broodmother
+  type: TARANTULA
+  loadcustom: true
+  health: 1000000
+  damage: 1100
+  armour: 120
+  level: 22
+  speed: 1.9
+  kbresist: 1
+  coinm: 0
+  boss: true
+  tags: hunter,spider,infested,ancient
+  abilities:
+    regen:
+      regen: 80
+      cooldown: 10
+    owned:
+      cost: 50000
+      bounty: 125000
+      xp: 2000
+    overkill:
+      threshold: 25000
+      reward: 110
+    laser:
+      damage: 300
+      range: 20
+      cooldown: 20
+      targetonly: true
+    summons:
+      summon: tarantula7_brood
+      count: 11
+      respawn: 150
+    caster:
+      projectiles: -1
+      speed: 3
+      range: 20
+      damage: 450
+      cooldown: 100
+  drops:
+    tarantula_fang:
+      drop: 1/10
+      amount: 3-7
+      rare: true
+    book;blade4:
+      drop: 1/20
+      amount: 1-1
+      rare: true
+    tarantula_blood:
+      drop: 1/20
+      amount: 1-1
+      rare: true
+    tarantula_jewel:
+      drop: 1/125
+      amount: 1-1
+      rare: true
+    book;squash6:
+      drop: 1/50
+      amount: 1-1
+      enchants: squash,6
+      rare: true
+      
+tarantula7_brood:
+  name: Tarantula Brood
+  type: CAVE_SPIDER
+  health: 7000
+  damage: 220
+  armour: 50
+  level: 9
+  speed: 1.6
+  coinm: 0
+  tags: spider,infested,hunter

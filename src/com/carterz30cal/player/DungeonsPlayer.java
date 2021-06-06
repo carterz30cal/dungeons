@@ -2,10 +2,11 @@ package com.carterz30cal.player;
 
 
 
+import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
@@ -18,6 +19,7 @@ import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 import org.bukkit.potion.PotionEffect;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
 import com.carterz30cal.areas.AbsDungeonEvent;
@@ -53,8 +55,10 @@ public class DungeonsPlayer
 	public GUI gui;
 
 	public ArrayList<BackpackItem[]> backpackb;
+	public Map<String,Integer> sack;
 	
 	public HashMap<String,String> questProgress;
+	public Map<String,Integer> skills;
 	public List<String> tutorials = new ArrayList<>();
 	
 	public boolean inCrypt;
@@ -62,8 +66,12 @@ public class DungeonsPlayer
 	
 	public boolean canOpen;
 	// data for rewards
-	public Date lastLogin; // if null then this is the first login and the beginners stuff should be given.
+	
+	
+	
 	public int afk;
+	
+	public Instant voteBoost;
 	
 	public Square restriction; // creative only.
 	
@@ -88,7 +96,15 @@ public class DungeonsPlayer
 		UUID u = p.getUniqueId();
 		player = p;
 		
-		level = new CharacterSkill(p);
+		skills = new HashMap<>();
+		if (i.contains(u + ".skilltree"))
+		{
+			for (String slo : i.getConfigurationSection(u + ".skilltree").getKeys(false))
+			{
+				skills.put(slo, i.getInt(u + ".skilltree." + slo));
+			}
+		}
+		level = new CharacterSkill(this);
 		
 		//skills = new DungeonsPlayerSkills(p);
 		stats = new DungeonsPlayerStats(p);
@@ -103,7 +119,7 @@ public class DungeonsPlayer
 		gui = null;
 		
 		kills = i.getInt(u + ".kills", 0);
-		questProgress = new HashMap<String,String>();
+		questProgress = new HashMap<>();
 		if (i.contains(u + ".quests"))
 		{
 			for (String slo : i.getConfigurationSection(u + ".quests").getKeys(false))
@@ -111,7 +127,35 @@ public class DungeonsPlayer
 				questProgress.put(slo, i.getString(u + ".quests." + slo));
 			}
 		}
+		sack = new HashMap<>();
+		if (i.contains(u + ".sack"))
+		{
+			for (String slo : i.getConfigurationSection(u + ".sack").getKeys(false))
+			{
+				sack.put(slo, i.getInt(u + ".sack." + slo));
+			}
+		}
+		
+		voteBoost = Instant.ofEpochMilli(i.getLong(u + ".voteboost",0));
+		if (voteBoost.isBefore(Instant.now())) 
+		{
+			voteBoost = null;
+			DungeonsPlayer ins = this;
+			new BukkitRunnable()
+			{
+				
+				@Override
+				public void run() {
+					if (ins.newaccount) return;
+					ins.player.sendMessage(ChatColor.AQUA + "You can get a 35% xp boost for 6 hours per /vote");
+					ins.player.sendMessage(ChatColor.AQUA + "and it really helps the server out :)");
+				}
+				
+			}.runTaskLater(Dungeons.instance, 200);
+		}
+		
 		tutorials = (List<String>) i.getList(u + ".tutorials",new ArrayList<>());
+		if (!tutorials.contains("none")) tutorials.add("none");
 		playtime = i.getInt(u + ".playtime", 0);
 		
 		backpackb = new ArrayList<BackpackItem[]>();

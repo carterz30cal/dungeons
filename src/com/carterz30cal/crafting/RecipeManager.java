@@ -25,7 +25,8 @@ public class RecipeManager
 	public static String[] files = {
 			"waterway/recipes","waterway/recipes_magic","waterway/recipes_titan","waterway/recipes_fishing",
 			"waterway/recipes_mining","waterway/recipes_sands",
-			"necropolis/recipes","necropolis/recipes_digging","necropolis/crypts_recipes"
+			"necropolis/recipes","necropolis/crypts_recipes","necropolis/recipes_digging",
+			"infested/recipes_swords","infested/recipes_bows","infested/recipes_armours"
 			};
 	public static HashMap<String,String[]> patterns;
 	
@@ -50,6 +51,8 @@ public class RecipeManager
 		
 		patterns.put("block", new String[] {"X X X","X X X","X X X"});
 		patterns.put("upgrade", new String[] {"X X X","X U X","X X X"});
+		patterns.put("dualupgrade", new String[] {"X Y X","Y U Y","X Y X"});
+		patterns.put("singleupgrade", new String[] {"0 0 0","0 U 0","0 X 0"});
 		
 		for (String f : files)
 		{
@@ -129,6 +132,7 @@ public class RecipeManager
 				
 			}
 			Recipe fin = new Recipe(product,xp,amounts,types);
+			fin.reqtutorial = recipeConfig.getString(p + ".req", "none");
 			recipes.put(create(recipe,materials),fin);
 			
 			for (String m : materials.values()) 

@@ -10,6 +10,8 @@ public class ItemSharpener
 	
 	public HashMap<String,Double> attributes;
 	
+	public String id;
+	
 	public ItemSharpener()
 	{
 		attributes = new HashMap<String,Double>();

@@ -1,0 +1,80 @@
+summonkey_necropolis:
+  name: Necropolis Key
+  type: key
+  rarity: LEGENDARY
+  item: TRIPWIRE_HOOK
+  glow: true
+  description: ;Click once in the boss room.;Take friends..
+  
+ghoul_flesh:
+  name: Ghoul Flesh
+  item: ROTTEN_FLESH
+  rarity: EPIC
+  glow: true
+  description: ;This smells rank.
+  
+armour-ghoul:
+  name: Ghoul
+  suffix: Head,Chestplate,Trousers,Shoes
+  rarity: INCREDIBLE
+  set: ghoul
+  item: ZOMBIE_HEAD,LEATHER
+  colour: 9,148,16
+  req: 19
+  ability: ghoulset
+  attributes:
+    health: 60,100,75,50
+    armour: 20,35,30,10
+    regen: 2,3,3,2
+    
+    
+ghoul_whacker:
+  name: Ghoul Whacker
+  type: weapon
+  rarity: EPIC
+  glow: true
+  req: 16
+  item: BONE
+  ability: ghoulbone
+  attributes:
+    damage: +60
+    regen: -5
+  
+loot_necropolis:
+  name: Grave Lord Lootbox
+  type: lootbox
+  rarity: INCREDIBLE
+  item: CHEST
+  glow: true
+  loot:
+    ghoul_flesh:
+      chance: 1
+      amount: 4-7
+    armour_ghoul_helmet:
+      chance: 5
+      amount: 1
+    armour_ghoul_chestplate:
+      chance: 7
+      amount: 1
+    armour_ghoul_leggings:
+      chance: 6
+      amount: 1
+    armour_ghoul_boots:
+      chance: 5
+      amount: 1
+    book;sweeping:
+      chance: 5
+      amount: 1
+      enchants: sweeping,1
+    book;sweeping6:
+      chance: 50
+      amount: 1
+      enchants: sweeping,6
+    book;lethal:
+      chance: 7
+      amount: 1
+      enchants: lethal,1
+    sharpener_steeledge:
+      chance: 8
+      amount: 1-3
+      

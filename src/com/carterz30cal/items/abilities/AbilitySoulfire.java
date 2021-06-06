@@ -118,7 +118,7 @@ class Soulfire
 			
 			if (target.entities.get(0).getLocation().distance(location) <= 1) 
 			{
-				int damage = owner.stats.damage * Math.max(1,owner.stats.mana / 665);
+				int damage = owner.stats.damage * Math.max(1,owner.stats.mana / 400);
 				
 				target.damage(damage, owner, DamageType.MAGIC);
 				

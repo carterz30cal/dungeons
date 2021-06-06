@@ -59,8 +59,21 @@ crypt_dust:
   name: Crypt Dust
   rarity: RARE
   item: GRAY_DYE
-  nodesc: true
-  description: This slowly accumulates in Crypts. It has;many different uses, including improving;armours and weapons
+  description: ;This slowly accumulates in Crypts. It has;many different uses, including improving;armours and weapons
+
+magic_cactus:
+  name: Magic Cactus
+  rarity: RARE
+  item: CACTUS
+  glow: true
+  description: ;Apply to any weapon to;remove all sharpeners.
+  
+rune_cloth:
+  name: Rune Cloth
+  rarity: RARE
+  item: PHANTOM_MEMBRANE
+  glow: true
+  description: ;Apply to any weapon to;remove the rune.
   
 crypt_stone:
   name: Crypt Stone
@@ -76,7 +89,7 @@ crypt_stone:
   description: An old, crumbling rock. Gives;a small damage bonus when;applied to boots.
   
 web:
-  name: Web
+  name: Crypt Web
   rarity: COMMON
   item: COBWEB
   

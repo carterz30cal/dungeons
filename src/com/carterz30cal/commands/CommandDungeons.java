@@ -19,7 +19,9 @@ import com.carterz30cal.dungeons.Dungeons;
 import com.carterz30cal.dungeons.ListenerPlayerJoin;
 import com.carterz30cal.gui.GUI;
 import com.carterz30cal.gui.MenuType;
+import com.carterz30cal.gui.MonsterHunterGUI;
 import com.carterz30cal.gui.ShopGUI;
+import com.carterz30cal.gui.TradeGUI;
 import com.carterz30cal.items.ItemBuilder;
 import com.carterz30cal.items.ShopManager;
 import com.carterz30cal.items.magic.ItemWand;
@@ -34,6 +36,7 @@ import com.carterz30cal.player.ListenerEntityDamage;
 import com.carterz30cal.player.PlayerDelivery;
 import com.carterz30cal.player.PlayerRank;
 import com.carterz30cal.utility.Square;
+import com.carterz30cal.utility.StringManipulator;
 
 public class CommandDungeons implements CommandExecutor
 {
@@ -49,6 +52,16 @@ public class CommandDungeons implements CommandExecutor
 			case "tutorialreset":
 				DungeonsPlayer rest = DungeonsPlayerManager.i.get((Player)sender);
 				rest.tutorials.clear();
+				break;
+			case "gui":
+				if (args.length == 1) return true;
+				if (args[1].equals("monsterhunter")) new MonsterHunterGUI((Player)sender);
+				else if (args[1].equals("trade")) new TradeGUI((Player)sender);
+				break;
+			case "removevote":
+				if (args.length == 1) return true;
+				Player targ = Bukkit.getPlayerExact(args[1]);
+				DungeonsPlayerManager.i.get(targ).voteBoost = null;
 				break;
 			case "boss":
 				if (args.length == 1) return false;
@@ -107,6 +120,11 @@ public class CommandDungeons implements CommandExecutor
 					d.coins += Integer.parseInt(args[1]);
 				}
 				break;
+			case "levelreq":
+				if (args.length == 1) return false;
+				int req = Integer.parseInt(args[1]);
+				sender.sendMessage(CharacterSkill.prettyText(req) + " requires " + StringManipulator.truncateLess(CharacterSkill.requirement(req)) + " xp.");
+				break;
 			case "level":
 				if (args.length == 1) return false;
 				DungeonsPlayer d = DungeonsPlayerManager.i.get((Player)sender);
@@ -116,7 +134,8 @@ public class CommandDungeons implements CommandExecutor
 				d.level.experience = 0;
 				d.level.pointAllocation.clear();
 				d.level.points = 0;
-				if (request > 0) d.level.give(CharacterSkill.requirement(request)+1);
+				d.skills.clear();
+				if (request > 0) d.level.giveFlat(CharacterSkill.requirement(request)+1);
 				break;
 			case "xp":
 				if (args.length < 2) return false;
@@ -127,7 +146,8 @@ public class CommandDungeons implements CommandExecutor
 				dn.level.experience = 0;
 				dn.level.pointAllocation.clear();
 				dn.level.points = 0;
-				if (requests > 0) dn.level.give(requests);
+				dn.skills.clear();
+				if (requests > 0) dn.level.giveFlat(requests);
 				break;
 			case "deliver":
 				PlayerDelivery delivery = new PlayerDelivery();

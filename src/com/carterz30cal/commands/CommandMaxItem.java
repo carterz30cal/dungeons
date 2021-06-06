@@ -26,7 +26,7 @@ public class CommandMaxItem implements CommandExecutor {
 			for (String et : EnchantManager.enchantments.keySet())
 			{
 				AbsEnchant enchant = EnchantManager.get(et);
-				if (enchant.type().equals(dung_item.type))
+				if (enchant.type().equals(dung_item.type) && enchant.max() > 0)
 				{
 					finished_enchants += et + "," + enchant.level + ";";
 				}

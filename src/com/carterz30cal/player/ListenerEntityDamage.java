@@ -2,7 +2,7 @@ package com.carterz30cal.player;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.UUID;
 
 import com.carterz30cal.mobs.packet.EntitySkinned;
 import org.bukkit.ChatColor;
@@ -54,6 +54,7 @@ import com.carterz30cal.enchants.AbsEnchant;
 import com.carterz30cal.items.Item;
 import com.carterz30cal.items.ItemBuilder;
 import com.carterz30cal.items.abilities.AbilityManager;
+import com.carterz30cal.items.abilities.AbilityReaperLeggings;
 import com.carterz30cal.items.abilities.AbsAbility;
 import com.carterz30cal.mobs.DMob;
 import com.carterz30cal.mobs.DMobManager;
@@ -122,7 +123,7 @@ public class ListenerEntityDamage implements Listener
 					{
 						damage = d.stats.damageSweep;
 					}
-					else if (damager.getAttackCooldown() < 0.95) damage = damage / 5;
+					else if (damager.getAttackCooldown() < 0.95) damage = damage / 12;
 					
 				}
 				else show = false;
@@ -140,6 +141,7 @@ public class ListenerEntityDamage implements Listener
 			}
 			else damage = mob.type.damage;
 			DungeonsPlayer d = DungeonsPlayerManager.i.get((Player)e.getEntity());
+			for (AbsEnchant en : d.stats.ench) en.onDamaged(d, mob);
 			if (d.stats.abilities != null) for (AbsAbility a : d.stats.abilities) if (a != null && mob != null) damage *= a.onDamage(d,damage,e.getCause(),mob.type);
 			d.damage((int)damage, false);
 		}
@@ -207,6 +209,18 @@ public class ListenerEntityDamage implements Listener
 					damage = d.stats.damageSweep;
 				}
 				else if (damager.getAttackCooldown() < 0.95 && damager.getLocation().distance(e.getEntity().getLocation()) < 4) damage = damage / 5;
+			}
+			// SOULS
+			else if (e.getDamager().getPersistentDataContainer().has(DMobManager.arrowDamage, PersistentDataType.STRING))
+			{
+				String[] data = e.getDamager().getPersistentDataContainer().get(DMobManager.arrowDamage, PersistentDataType.STRING).split(",");
+				DungeonsPlayer owner = DungeonsPlayerManager.i.players.get(
+						UUID.fromString(data[0]));
+				int dmg = (int)(Integer.parseInt(data[1]) * 11.5d);
+				for (AbsAbility a : owner.stats.abilities) if (a instanceof AbilityReaperLeggings) dmg *= 1.2;
+				mob.damage(dmg, owner, DamageType.PHYSICAL,false);
+				e.setCancelled(true);
+				return;
 			}
 			else return;
 			DungeonsPlayer dp = DungeonsPlayerManager.i.get(damager);

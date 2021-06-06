@@ -12,7 +12,7 @@ public class AbilityUnholyShroom extends AbsAbility {
 	{
 		ArrayList<String> d = new ArrayList<>();
 		d.add(prefix + "Cursed");
-		d.add("Also strikes you for 33% of the damage");
+		d.add("Also strikes you for 6% of the damage");
 		d.add("Deals 33% more damage to mushroom enemies");
 		return d;
 	}
@@ -20,7 +20,7 @@ public class AbilityUnholyShroom extends AbsAbility {
 	public int onAttack(DungeonsPlayer d,DMob dMob,int damage)
 	{
 		if (dMob.type.tags.contains("mushroom")) damage = (int) (damage * 1.33d);
-		d.damage((int)(damage / 3d), false);
+		d.damage((int)(damage * 0.06d), false);
 		d.player.damage(1);
 		return damage;
 	}

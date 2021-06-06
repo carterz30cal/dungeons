@@ -1,8 +1,8 @@
 sword_flimsy:
-  name: Cheap 'Sword'
+  name: Cheap Sword
   type: weapon
   rarity: COMMON
-  item: STICK
+  item: WOODEN_SWORD
   attributes:
     damage: +10
     
@@ -12,7 +12,7 @@ sword_water:
   set: water
   item: DIAMOND_SWORD
   attributes:
-    damage: +17
+    damage: +15
     health: +20
     
 sword_mush:
@@ -29,7 +29,7 @@ sword_adventurers:
   rarity: COMMON
   item: GOLDEN_SWORD
   attributes:
-    damage: +18
+    damage: +17
     killcoins: +2
     
 sword_leaf:

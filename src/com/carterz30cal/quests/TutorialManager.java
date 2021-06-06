@@ -21,8 +21,7 @@ public class TutorialManager
 		join.add(TutorialTrigger.JOIN, "");
 		join.msg("Welcome to mcExperiment! This is an RPG server with");
 		join.msg("levelling, custom items, mobs and more!");
-		join.msg("To begin, walk down the path, turn right, go up the ladder");
-		join.msg("and buy a cheap sword from" + ChatColor.GOLD + " Shopkeep Steve");
+		join.msg("To begin, walk through the tutorial!");
 		
 		Tutorial killfirstdrenched = new Tutorial();
 		killfirstdrenched.name = "First Blood";
@@ -79,6 +78,12 @@ public class TutorialManager
 		waterwayboss_beaten.msg("can now advance to Necropolis. Be alert, for");
 		waterwayboss_beaten.msg("the skeletons there are not friendly!");
 		
+		Tutorial necropolis_beaten = new Tutorial();
+		necropolis_beaten.name = "Necropolis Lord";
+		necropolis_beaten.add(TutorialTrigger.KILL_ENEMY, "necropolis_boss");
+		necropolis_beaten.msg("You've defeated The Grave Lord and may now pass through");
+		necropolis_beaten.msg("to the Infested Caverns. Good luck!");
+		
 		Tutorial catalyst = new Tutorial();
 		catalyst.name = "Enchanting";
 		catalyst.add(TutorialTrigger.BUY_ITEM, "catalyst=0");
@@ -102,6 +107,8 @@ public class TutorialManager
 		sharpeners.msg("To apply one to a weapon, use the applying menu");
 		sharpeners.msg("located in the anvil. Remember, you can only use");
 		sharpeners.msg("4 of them, so choose wisely.");
+		
+		
 	}
 	
 	

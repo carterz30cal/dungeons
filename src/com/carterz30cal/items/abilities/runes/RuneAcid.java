@@ -17,7 +17,7 @@ public class RuneAcid extends AbsAbility
 	public ArrayList<String> description() {
 		ArrayList<String> d = new ArrayList<String>();
 		d.add(rune + "Acid");
-		d.add("This weapon ignores 40% of armour");
+		d.add("This weapon ignores 55% of armour");
 		return d;
 	}
 	
@@ -30,7 +30,7 @@ public class RuneAcid extends AbsAbility
 					,new Particle.DustOptions(Color.GREEN,0.8f));
 			p--;
 		}
-		int arm = (int) (dMob.type.armour * 0.4);
+		int arm = (int) (dMob.type.armour * 0.55);
 		return damage + arm;
 	} 
 }

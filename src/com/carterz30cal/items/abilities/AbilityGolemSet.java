@@ -2,10 +2,7 @@ package com.carterz30cal.items.abilities;
 
 import java.util.ArrayList;
 
-import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
-
-import com.carterz30cal.mobs.DMobType;
-import com.carterz30cal.player.DungeonsPlayer;
+import com.carterz30cal.player.DungeonsPlayerStats;
 
 public class AbilityGolemSet extends AbsAbility
 {
@@ -15,17 +12,14 @@ public class AbilityGolemSet extends AbsAbility
 	{
 
 		ArrayList<String> d = new ArrayList<>();
-		d.add(prefix + "Hunk");
-		d.add("Reduce damage taken by 5%");
-		d.add("Reduce it by another 10% if");
-		d.add("the attacker was a Defender");
+		d.add(prefix + "Magical Construct");
+		d.add("Increase your maximum mana by");
+		d.add("15% of your armour stat.");
 		return d;
 	}
 
-	public double onDamage(DungeonsPlayer d,double dealt, DamageCause c,DMobType mob) 
+	public void finalStats(DungeonsPlayerStats s) 
 	{
-		if (mob == null) return 1;
-		if (mob.tags.contains("defender")) return 0.85;
-		else return 0.95; 
-	} 
+		s.mana += s.armour * 0.15d;
+	}
 }

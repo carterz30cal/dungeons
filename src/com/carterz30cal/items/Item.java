@@ -20,6 +20,7 @@ public class Item
 	public HashMap<String,Double> attributes; // this stores item stats
 	public HashMap<String,Object> data; // stores type specific data (e.g. leather armour colour)
 	public int combatReq;
+	public String areaReq; // area requirement
 	
 	public boolean nolore;
 	

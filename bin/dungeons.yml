@@ -92,16 +92,16 @@ necropolis:
     extracoins: 6
   mining:
     boss: {}
-    xp: 4
+    xp: 3
     ores: 
       RED_WOOL:
         ore: tissue
         replacement: OBSIDIAN
-        hardness: 4000
+        hardness: 2750
       COBWEB:
         ore: web
         replacement: AIR
-        hardness: 1600
+        hardness: 1400
   spawns:
     12,101,21990: skeleton1
     22,101,22005: skeleton1
@@ -145,6 +145,45 @@ necropolis:
     -20,93,22085: mushroom1
     -13,93,22077: mushroom1
     -10,93,22084: mushroom1
+    
+infestedcaverns:
+  name: Infested Caverns
+  spawn: 0,103,23000
+  unfinished: false
+  reqtutorial: Necropolis Lord
+  explorer:
+    icon:
+      data: ewogICJ0aW1lc3RhbXAiIDogMTYyMDU2NzQ4OTAzNiwKICAicHJvZmlsZUlkIiA6ICJlZDUzZGQ4MTRmOWQ0YTNjYjRlYjY1MWRjYmE3N2U2NiIsCiAgInByb2ZpbGVOYW1lIiA6ICI0MTQxNDE0MWgiLAogICJzaWduYXR1cmVSZXF1aXJlZCIgOiB0cnVlLAogICJ0ZXh0dXJlcyIgOiB7CiAgICAiU0tJTiIgOiB7CiAgICAgICJ1cmwiIDogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjliYjAyMDM4OGU2NmUzODMxNjg5YmI5MzZjMWU1MWM0Y2JiZTUwYTZjZWE3MWUyOWRjZjA1NGUxMmI1ZWE1NSIsCiAgICAgICJtZXRhZGF0YSIgOiB7CiAgICAgICAgIm1vZGVsIiA6ICJzbGltIgogICAgICB9CiAgICB9CiAgfQp9
+      sig: ZqA0lo0a9Ayocd4Z930j+YhhBiylY5jEREnogcsLxd+qJ4CoCitBxWCTM+9AK7kWa57lh21ptfEqS+WwcwgYApNx1ptwiD0Lu0cS/x+qTuQlWjpYgTp+NUbLLdFFiAoYMT67UuEHMyEuw9JlbnqUYVuoKORJDI8/v9EChHxTXTEd5tJ6zdT2X2FXmhBnTyQRwRoe4e7VKrB9amvdPgoo4cACpG8Pu7joFuQdFw4GbN1BFhcBltfugZHX3NvU9ZpopIc+nBgKNe6SknwAP41WiS8bMdLY+VQMc1BSv4iXOK8in2e3DzaNxWQ0JEtLwiFtBvqet+m8VLtXkBMDiDdkl3Yx+VZZ9q0wBhd7hHyp/RDfbIOvCbWdN5XEzYy6oGmfIY/S4b6xHUvj3rlvyl9RTpCL1/AzMyy56vjYGtdCBEDYfMnJvjFECMacsvcSEzYzvvuSNg44koQWTProQ8t/ldkFxUKUdxYA1jzzXy/ZA9UyPlA0DwQUbCMpnW+5JzQFZI9alQz+uRaWiqF+/sX8J93kLReSwC/dT/JwIqfn03E0FJtlmB6vRF4aTFHRaa6O2IDdZJFSo3LdJOMOpraPio0qPtUWi9Fw70LWAFXZnbIuoPawb6GE4rd9Pgqc9uyhIY/he7KebmVMNE6sGQ3KG+g1/DuHJMtMc7OHL32QM/k=
+    lore: Once the home to rich explorers, now/covered in thick webbing and hideous/mutant creatures empowered by the growth.
+    killsperlevel: 300
+    extracoins: 12
+  mining:
+    boss: {}
+    xp: 5
+    ores: 
+      LIME_WOOL:
+        ore: biomass
+        replacement: BLACK_CONCRETE
+        hardness: 1400
+      LIME_CONCRETE:
+        ore: biomass
+        replacement: BLACK_CONCRETE
+        hardness: 1400
+  spawns:
+     34,98,23007: spider_egg
+     27,98,23009: spider_egg
+     40,98,23005: spider_egg
+     42,98,22999: spider_egg
+     40,99,22992: spider_egg
+     
+     19,100,23020: infested_spider1
+     23,103,23008: infested_spider1
+     21,106,22999: infested_spider1
+     12,99,23013: infested_spider1
+     20,98,23004: infested_spider1
+     32,98,23004: infested_spider1
+     39,98,23001: infested_spider1
     
     
     

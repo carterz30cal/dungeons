@@ -13,9 +13,15 @@ public class CryptLootTable
 		itemsPerChest = new int[] {4,9};
 		loot = new ArrayList<CryptLoot>();
 	}
-	
+	@SuppressWarnings("unchecked")
+	public CryptLootTable(CryptLootTable copy)
+	{
+		itemsPerChest = copy.itemsPerChest;
+		loot = (ArrayList<CryptLoot>) copy.loot.clone();
+	}
 	public void init()
 	{
+		randomizer = 0;
 		for (CryptLoot l : loot) randomizer += l.rarity;
 	}
 	

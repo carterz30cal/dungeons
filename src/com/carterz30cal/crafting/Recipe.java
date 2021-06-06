@@ -16,6 +16,8 @@ public class Recipe
 	public int amount;
 	public int xp;
 	
+	public String reqtutorial; // so you can't craft stuff from higher areas
+	
 	public int upgrade = 4;
 	public Recipe (ItemStack p,int x,int[] a,String[] m)
 	{
@@ -32,7 +34,7 @@ public class Recipe
 		ItemStack u = ingredients[upgrade];
 		ItemMeta upm = up.getItemMeta();
 		Item i = ItemBuilder.get(u);
-		if (i == null || !(i.type.equals("weapon") || i.type.equals("armour")) || u == null || !u.hasItemMeta()) return up;
+		if (i == null || !(i.type.equals("weapon") || i.type.equals("armour") || i.type.equals("wand")) || u == null || !u.hasItemMeta()) return up;
 		for (NamespacedKey k : u.getItemMeta().getPersistentDataContainer().getKeys())
 		{
 			if (k.equals(ItemBuilder.kItem) || k.equals(ItemBuilder.kCustomName)) continue;

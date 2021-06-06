@@ -18,11 +18,77 @@ bone_plating:
   product: bone_plating
   materials:
     A: armour_bone_helmet,1
-    B: bone,64
-    S: stick_bone,4
+    B: bone,32
+    S: stick_bone,2
   recipe:
     0: B A B
     1: S 0 S
+    
+rune_cloth:
+  product: rune_cloth
+  materials:
+    R: rune_square,1
+    M: magic_cactus,1
+  recipe:
+    1: 0 0 R
+    2: 0 0 M
+thorns:
+  product: book
+  enchants: thorns,1
+  materials:
+    M: magic_cactus,1
+    B: bone,32
+  recipe:
+    1: 0 B B
+    2: 0 B M
+    
+explicious:
+  product: book
+  enchants: explicious,1
+  materials:
+    M: magic_cactus,3
+    D: crypt_dust,10
+    U: magic_dust,5
+  recipe:
+    1: 0 0 D
+    2: 0 U M
+    
+healerhelmet_green:
+  product: armour_healergreen_helmet
+  req: King of Waterway
+  materials:
+    M: magic_cactus,2
+    D: decaying_flesh,8
+    T: armour_titan_helmet,1
+    V: venomous_eye,2
+  recipe:
+    0: D M D
+    1: V T V
+healerhelmet_blue:
+  product: armour_healerblue_helmet
+  req: King of Waterway
+  materials:
+    M: magic_cactus,2
+    D: magic_dust,2
+    T: armour_titan_helmet,1
+    V: venomous_eye,2
+  recipe:
+    0: D M D
+    1: V T V
+healerhelmet_red:
+  product: armour_healerred_helmet
+  req: King of Waterway
+  materials:
+    M: magic_cactus,2
+    D: digging_ancientstone,4
+    T: armour_titan_helmet,1
+    V: venomous_eye,2
+  recipe:
+    0: D M D
+    1: V T V
+  
+    
+    
     
 mushroomkingtotem:
   product: totem_mushroom
@@ -35,6 +101,17 @@ mushroomkingtotem:
     0: 0 W 0
     1: T M C
     2: W W W
+    
+    
+gel_stick:
+  product: stick_gel
+  materials:
+    S: stick_bone,2
+    G: gel,16
+  recipe:
+    0: 0 G 0
+    1: 0 S 0
+    2: 0 G 0
     
 webber:
   product: sword_web
@@ -101,6 +178,35 @@ bone_boots:
     X: bone,8
   pattern: boots
   
+ghoul_helmet:
+  product: armour_ghoul_helmet
+  materials:
+    X: ghoul_flesh,1
+  pattern: helmet
+ghoul_chestplate:
+  product: armour_ghoul_chestplate
+  materials:
+    X: ghoul_flesh,1
+  pattern: chestplate
+ghoul_leggings:
+  product: armour_ghoul_leggings
+  materials:
+    X: ghoul_flesh,1
+  pattern: leggings
+ghoul_boots:
+  product: armour_ghoul_boots
+  materials:
+    X: ghoul_flesh,1
+  pattern: boots
+  
+ghoul_whacker:
+  product: ghoul_whacker
+  req: Necropolis Lord
+  materials:
+    U: sword_ghoul,1
+    X: ghoul_flesh,1
+  pattern: upgrade
+  
 mass_harvester:
   product: mass_harvester
   materials:
@@ -114,7 +220,7 @@ mass_harvester:
 compressed_tissue:
   product: compressed_tissue
   materials:
-    T: tissue,32
+    T: tissue,18
   recipe:
     0: T T T
     1: T T T

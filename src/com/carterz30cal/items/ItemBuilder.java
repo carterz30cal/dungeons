@@ -36,6 +36,7 @@ import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
+import com.carterz30cal.dungeons.DungeonManager;
 import com.carterz30cal.dungeons.Dungeons;
 import com.carterz30cal.enchants.AbsEnchant;
 import com.carterz30cal.enchants.EnchantManager;
@@ -85,17 +86,18 @@ public class ItemBuilder
 			"waterway/items_sands",
 			"necropolis/ingredients","necropolis/armour","necropolis/weapons","necropolis/tools",
 			"necropolis/sharpeners","necropolis/specials","necropolis/cryptarmour","necropolis/magic",
-			"necropolis/runes","necropolis/digging","necropolis/crypts_items","necropolis/necropolis_quests","necropolis/crypts_items_ancient",
-			"necropolis/mushroom_items",
-			"unique/bestowed"
+			"necropolis/runes","necropolis/items_crypts","necropolis/crypts_items_ancient",
+			"necropolis/mushroom_items","necropolis/items_boss","necropolis/items_digging",
+			"unique/bestowed",
+			"infested/ingredients","infested/swords","infested/bows","infested/pickaxes","infested/armours",
+			"infested/magic"
 			};
 	public static final String[] setFiles = {
-			"waterway/sets","necropolis/sets"
+			"waterway/sets","necropolis/sets","infested/sets"
 	};
 	
 	
 	public static void copyToFile(InputStream inputStream, File file) {
-		System.out.println(file.toString());
 	    try(OutputStream outputStream = new FileOutputStream(file)) {
 	        IOUtils.copy(inputStream, outputStream);
 	    }
@@ -120,7 +122,6 @@ public class ItemBuilder
 		attributeColours.put("armour", ChatColor.BLUE + "Armour: " + w);
 		attributeColours.put("regen", ChatColor.YELLOW + "Regen: " + w);
 		
-		attributeColours.put("orechance", w + "Ore Chance: ");
 		attributeColours.put("bonusxp", ChatColor.AQUA + "Xp Boost: " + w);
 		
 		attributeColours.put("miningspeed", ChatColor.GRAY + "Speed: " + w);
@@ -259,7 +260,7 @@ public class ItemBuilder
 			item.attributes = new HashMap<String,Double>();
 			item.glow = data.getBoolean(it + ".glow", false);
 			item.combatReq = data.getInt(it + ".req", 0);
-			
+			item.areaReq = data.getString(it + ".areareq",null);
 			
 			
 			if (i == 0 && data.contains(it + ".skull"))
@@ -291,7 +292,12 @@ public class ItemBuilder
 				item.data.put("b", Integer.parseInt(data.getString(it + ".colours." + i).split(",")[2]));
 			}
 			if (data.contains(it + ".set")) item.set = itemsets.get(data.getString(it + ".set"));
-			if (data.contains(it + ".ability")) item.data.put("ability", data.getString(it + ".ability"));
+			if (data.contains(it + ".ability"))
+			{
+				String ability = data.getString(it + ".ability");
+				if (ability.split(",").length > 1) item.data.put("ability", ability.split(",")[i]);
+				else item.data.put("ability", ability);
+			}
 			
 			items.put("armour_" + it.split("-")[1] + armour_pieces[i].toLowerCase(), item);
 			itemCount++;
@@ -318,6 +324,7 @@ public class ItemBuilder
 		item.id = itemCount;
 		
 		item.combatReq = data.getInt(it + ".req", 0);
+		item.areaReq = data.getString(it + ".areareq",null);
 		item.nolore = data.getBoolean(item + ".nolore",false);
 		item.noDesc = data.getBoolean(it + ".nodesc", false);
 		if (type.equals("lootbox"))
@@ -361,7 +368,7 @@ public class ItemBuilder
 		{
 			ItemAppliable appliable = (ItemAppliable)item;
 			
-			appliable.noDesc = true;
+			//appliable.noDesc = true;
 			appliable.prefix = data.getString(it + ".modifier.prefix");
 			appliable.order = data.getInt(it + ".modifier.order", 0);
 			for (String material : data.getString(it + ".modifier.types").split(",")) appliable.suitable.add(Material.valueOf(material));
@@ -404,6 +411,7 @@ public class ItemBuilder
 			ItemSharpener sha = new ItemSharpener();
 			sha.plusColour = ChatColor.valueOf(data.getString(it + ".sharpener.plus").toUpperCase());
 			sha.attributes = item.attributes;
+			sha.id = it;
 			
 			sharps.put(data.getString(it + ".sharpener.id"), sha);
 			sharpeners.put(it, data.getString(it + ".sharpener.id"));
@@ -553,9 +561,13 @@ public class ItemBuilder
 		{
 			if (t == "book") 
 			{
-				lore.add("");
+				boolean hasSpecial = false;
 				ArrayList<AbsEnchant> enchants = EnchantManager.get(meta.getPersistentDataContainer());
+				for (AbsEnchant e : enchants) if (e.max() == 0) hasSpecial = true;
+				if (hasSpecial) lore.add(ChatColor.DARK_GRAY + "An item can only have 1 special enchant!");
+				
 				int rarity = 0;
+				lore.add("");
 				for (AbsEnchant e : enchants)
 				{
 					rarity = Math.max(rarity, e.rarity());
@@ -565,6 +577,7 @@ public class ItemBuilder
 					{
 						if (e.level < e.max()) lore.add(ChatColor.DARK_PURPLE + e.name());
 						else if (e.level == e.max()) lore.add(ChatColor.BLUE + e.name());
+						else if (e.max() == 0) lore.add(ChatColor.RED + e.name());
 						else lore.add(ChatColor.GOLD + e.name());
 						lore.add(ChatColor.LIGHT_PURPLE + " " + e.description());
 					}
@@ -592,7 +605,7 @@ public class ItemBuilder
 		String colours = ChatColor.getLastColors(c);
 		if (app != null && app.size() > 0)
 		{
-			cs = colours + app.get(app.size()-1).prefix + " " + cs;
+			cs = colours + StringManipulator.capitalise(app.get(app.size()-1).prefix) + " " + cs;
 		}
 		if (meta.getPersistentDataContainer().has(kRunic, PersistentDataType.STRING)) cs = colours + "Runic " + cs;
 		meta.setDisplayName(cs);
@@ -616,6 +629,7 @@ public class ItemBuilder
 		}
 		if (item.description != null)
 		{
+			if (item.description[0].length() > 0 && item.description[0].charAt(0) != ';') lore.add("");
 			for (String desc : item.description) lore.add(ChatColor.GRAY + desc);
 		}
 		if (item.attributes.size() > 0)
@@ -676,7 +690,7 @@ public class ItemBuilder
 		}
 		if (!meta.getPersistentDataContainer().get(kEnchants, PersistentDataType.STRING).equals(""))
 		{
-			if (item.type != "armour") meta.addEnchant(Enchantment.DURABILITY, 1, true);
+			if (item.type != "armour" || item.glow) meta.addEnchant(Enchantment.DURABILITY, 1, true);
 			lore.add("");
 			ArrayList<AbsEnchant> enchants = EnchantManager.get(meta.getPersistentDataContainer());
 			if (enchants.size() > 8)
@@ -689,6 +703,7 @@ public class ItemBuilder
 					{
 						if (e.level < e.max()) lor = ChatColor.DARK_PURPLE + e.name();
 						else if (e.level == e.max()) lor = ChatColor.BLUE + e.name();
+						else if (e.max() == 0) lor = ChatColor.RED + e.name();
 						else lor = ChatColor.GOLD + e.name();
 						next = true;
 					}
@@ -696,6 +711,7 @@ public class ItemBuilder
 					{
 						if (e.level < e.max()) lor = lor + ", " + ChatColor.DARK_PURPLE + e.name();
 						else if (e.level == e.max()) lor = lor + ", " + ChatColor.BLUE + e.name();
+						else if (e.max() == 0) lor = lor + ", " + ChatColor.RED + e.name();
 						else lor = lor + ", " + ChatColor.GOLD + e.name();
 						lore.add(lor);
 						next = false;
@@ -709,6 +725,7 @@ public class ItemBuilder
 				{
 					if (e.level < e.max()) lore.add(ChatColor.DARK_PURPLE + e.name());
 					else if (e.level == e.max()) lore.add(ChatColor.BLUE + e.name());
+					else if (e.max() == 0) lore.add(ChatColor.RED + e.name());
 					else lore.add(ChatColor.GOLD + e.name());
 					if (enchants.size() <= 4) lore.add(ChatColor.LIGHT_PURPLE + " " + e.description());
 				}
@@ -773,6 +790,13 @@ public class ItemBuilder
 		{
 			lore.add(ChatColor.RED + "✖ Requires Level " + item.combatReq);
 		}
+		if (item.areaReq != null)
+		{
+			if (owner == null || !item.areaReq.equals(owner.area.id))
+			{
+				lore.add(ChatColor.RED + "✦ Only works in " + DungeonManager.i.warps.get(item.areaReq).name);
+			}
+		}
 		if (item.type.equals("lootbox"))
 		{
 			lore.add("");
@@ -787,7 +811,11 @@ public class ItemBuilder
 	{
 		ArrayList<String> n = new ArrayList<String>();
 		AbsAbility abs = AbilityManager.get(ab);
-		
+		if (abs == null)
+		{
+			n.add(ChatColor.RED + "Ability not found!");
+			return n;
+		}
 		for (int i = 0; i < abs.description().size(); i++)
 		{
 			if (i == 0) n.add(prefix + abs.description().get(i));
@@ -938,7 +966,9 @@ public class ItemBuilder
 	 * 3 = catalyst is incorrect
 	 * 4 = item missing
 	 * 5 = max level
+	 * 6 = already has special enchantment
 	 */
+	@SuppressWarnings("unchecked")
 	public static int canEnchant(ItemStack item1,ItemStack item2,ItemStack catalyst)
 	{
 		if (item1 == null || item2 == null || catalyst == null) return 4;
@@ -946,23 +976,26 @@ public class ItemBuilder
 		enchants.addAll(EnchantManager.get(item2.getItemMeta().getPersistentDataContainer()));
 		
 		int c = Integer.parseInt(catalyst.getItemMeta().getPersistentDataContainer().get(kItem, PersistentDataType.STRING).split("=")[1]);
+		String type = "book";
+		if (ItemBuilder.get(item1) != null) type = ItemBuilder.get(item1).type;
+		
+		ArrayList<AbsEnchant> specialcheck = (ArrayList<AbsEnchant>)enchants.clone();
+		specialcheck.removeIf((AbsEnchant e) -> e.max() != 0);
+		if (specialcheck.size() > 1) return 6;
 		//if (type.equals("book")) return 2;
 		if (bothBooks(item1,item2))
 		{
 			for (AbsEnchant e : enchants) if (e.level == e.max()) return 5;
+			if (EnchantManager.catalyst(item2) == c) return 0;
+			else return 3;
 		}
-		if (bothBooks(item1,item2) && EnchantManager.catalyst(item2) == c) return 0;
 		if (EnchantManager.catalyst(item2) != c) return 3;
-		//for (AbsEnchant e : enchants) if (!e.type().equals(type)) return 1;
+		for (AbsEnchant e : enchants) if (!e.type().equals(type)) return 1;
 		return 0;
 	}
 	public static boolean bothBooks(ItemStack item1,ItemStack item2)
 	{
-		if (getItem(item1).equals("book") && getItem(item2).equals("book"))
-		{
-			if (getEnchants(item1).equals(getEnchants(item2))) return true;
-			else return false;
-		}
+		if (getItem(item1).equals("book") && getItem(item2).equals("book")) return true;
 		else return false;
 	}
 	

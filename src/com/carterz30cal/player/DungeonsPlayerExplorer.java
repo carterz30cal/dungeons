@@ -45,7 +45,7 @@ public class DungeonsPlayerExplorer
 		{
 			player.sendMessage(ChatColor.GOLD + "" + ChatColor.BOLD + "EXPLORER LEVEL UP");
 			player.sendMessage(ChatColor.AQUA + Integer.toString(DungeonManager.i.warps.get(area).killsperlevel*getAreaLevel(area)) + " kills obtained in "
-					+ StringManipulator.capitalise(area) + "!");
+					+ StringManipulator.capitalise(DungeonManager.i.warps.get(area).name) + "!");
 		}
 	}
 	public int getKillsForNext(String area)

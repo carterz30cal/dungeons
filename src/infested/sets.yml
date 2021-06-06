@@ -1,0 +1,31 @@
+tiki:
+  set: 
+    lore: An ancient force watches.
+    attributes:
+      health: +350
+    ability: tiki
+  synergy:
+    lore: UNFINISHED
+    attributes:
+      damage: +1
+      
+web:
+  set: 
+    lore: Coated in thick webs.
+    attributes:
+      damage: +8
+      armour: +10
+    ability: webset
+    
+sniper:
+  set:
+    lore: Attuned to the arrows you hold.
+    attributes:
+      health: +20
+    ability: sniperset
+    
+biomass:
+  set:
+    lore: You feel alive!
+    attributes:
+      miningspeed: +15

@@ -1,0 +1,87 @@
+armour-tiki:
+  name: Tiki
+  suffix: Mask,Top,Leggings,Shoes
+  set: tiki
+  rarity: RARE
+  item: LEATHER
+  req: 22
+  colour: 193,154,107
+  skull:
+    data: ewogICJ0aW1lc3RhbXAiIDogMTYyMDU4NTAxMjM2MiwKICAicHJvZmlsZUlkIiA6ICJmNThkZWJkNTlmNTA0MjIyOGY2MDIyMjExZDRjMTQwYyIsCiAgInByb2ZpbGVOYW1lIiA6ICJ1bnZlbnRpdmV0YWxlbnQiLAogICJzaWduYXR1cmVSZXF1aXJlZCIgOiB0cnVlLAogICJ0ZXh0dXJlcyIgOiB7CiAgICAiU0tJTiIgOiB7CiAgICAgICJ1cmwiIDogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNGRmYjM0MzVhNjg5MGJmNDc0ZWYyZDVkZjQxM2Y5YTk4MThlNTIyYTJkNGRmZDY5MGRmY2RjZWNjMDMyYTcyMiIsCiAgICAgICJtZXRhZGF0YSIgOiB7CiAgICAgICAgIm1vZGVsIiA6ICJzbGltIgogICAgICB9CiAgICB9CiAgfQp9
+    sig: IF+fvJrqd54SY/97ckdpK/eFBnboNLjDovlvhiiRTHfwFHeDvdM0hOB3dHmW24aC2uHQ77G0bZgW85W2TF8xtDU3uqFpEcyBF5oBfkzZ2znD/v6tQNL5f1dSdlE+C1eVCVcnsxxZCQ2ZN320W2/AwjfzzOMXtOYAVFRBk8tV6Q7Kj9Q9dnzCG6WX9BhS9Yv7++9oHNVlxyOXBeGnfB47ncT/62aEelEJ5eFA5ovCRgtNNHYFMKnFNiFzpTvPM4g5hjawiTpL3Qyqk7pFBMnA8Cgh4+lARkhyhA9LAS50qZ89pJYrfbHXFJ49v8Rw2XGjYf2HVkq8V1fD1fK7tiYXnpDp5DSdxDn3A43jU79vlVbuyEivckPgfumom/zew2ZxVhZvqOkjpEhfxxNdUPDi2ak3HKaAIAhgi/MQIsbd5968k/nzJUegIdGqys26vqMzl6j9NXxamIptvJY2aVtflB4GANCm/faVX+9lXvl4ZxPGf/1JE3OO7371LAabjD0hP4cN449uwp+ldyaHM7iv7BQYK4mP8fO7lHqbEP+GrZALMAc8ds8+zCYSAkIjrVuqc2N1GPwr7g3G7/bddzr8UUpcQIXawxeyuVheF2lkz7IdwEnDHu4tFaKUsV2U5SYHDsvScaZfTZ5cLWh1IAFE2KxQVwtLW5p8+CKNYWygwes=
+  attributes:
+    health: 190,230,170,150
+    mana: 105,90,80,45
+    
+armour-biomass:
+  name: Biomass
+  suffix: Helmet,Chestplate,Leggings,Boots
+  set: biomass
+  rarity: RARE
+  item: LEATHER
+  req: 20
+  colour: 0,200,20
+  areareq: infestedcaverns
+  attributes:
+    miningspeed: 8,12,10,6
+    fortune: 2,4,3,1
+    
+armour-web:
+  name: Web
+  suffix: Helmet,Chestplate,Leggings,Boots
+  set: web
+  rarity: RARE
+  item: LEATHER
+  colour: 240,240,240
+  req: 22
+  attributes:
+    health: 20,30,25,15
+    armour: 60,90,70,50
+    damagep: 0.12,0.25,0.15,0.08
+    
+armour_egg_helmet:
+  name: Egg Hat
+  set: web
+  type: armour
+  rarity: EPIC
+  req: 26
+  item: PLAYER_HEAD
+  skull:
+    data: ewogICJ0aW1lc3RhbXAiIDogMTYyMDgzNDcwNDA2MSwKICAicHJvZmlsZUlkIiA6ICJmOTJiZDcxNGE0NmE0MmQ0OTQ1ZjdiMGNmNzExMDllNiIsCiAgInByb2ZpbGVOYW1lIiA6ICJzaGlrb2xpbmsiLAogICJzaWduYXR1cmVSZXF1aXJlZCIgOiB0cnVlLAogICJ0ZXh0dXJlcyIgOiB7CiAgICAiU0tJTiIgOiB7CiAgICAgICJ1cmwiIDogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2UwMjRiNjY5MzNjMTZjYTY4Yzk5MDYxZDEzMDU2YjU0MTM4MjBmNmQ0YWI2YjUzYjljZDEwNmRiZDY4ZTY4IiwKICAgICAgIm1ldGFkYXRhIiA6IHsKICAgICAgICAibW9kZWwiIDogInNsaW0iCiAgICAgIH0KICAgIH0KICB9Cn0=
+    sig: q49URP5jc2loAfC7vLJgZgPclesTRmbzeUjqR3+4Rm8GXl5beHUaczlgGDIWPCMJlJF3RW93iAAdqbiWUJHmLFU67t5/UGrA2zZ69i2VVziy6K4lsrDkRf1npwOCjs+cdOhb+t6wky/8sbnQNxYKuzSoRlQSdEF3kKwoRByQ2Ac8dz6GjcQijCgYAOI0oFRdyzI1vTIWh8PPP3HKueaeZp8XpHBK4F5qNV00NDgbzjTf0LD3qByc7dIHKo2C0uTCZsnpEDm1pXs3foiA+DL7/lSFaWwXmjuwGWhfG/muFLTiFZ9DHoVLRzs8UZqwaLaWpdvBeI60isLwtTUifq2eONwBBcrWVMoYrGsvDvd3usiJz5IuULeFESrw1+k+c3fDCCCGEjNH3XSH4K0iQ2fqWQF/+NA9Txb/VRxAdWQSUVIfN1inxxamYyQ5XqhzELBcl4+lXYOHhd8wUjAv7qd8UL7U2AB3q3d3MVPD0aghijtc9nkjL4xawmqbrf/IITZptX7p56fbY3CUjyA8+OUOQ5LM5ySx0MnmQu+mBc/KXoLj7n8cY4af4ot6MQFUbzIENVbRPGHBaWGhminwtlSVHa9z861/jQHs2EvdJKgeTcYYNuP9vnZ7bfO9717GtlBj1vB3AuqVtlB4juEnYicQqtDhOmSEcNi26wvEkhaf4uI=
+  ability: egghat
+  attributes:
+    health: +200
+    damage: +10
+    
+armour_tarantula_helmet:
+  name: Tarantula Crown
+  set: web
+  type: armour
+  rarity: EPIC
+  req: 25
+  item: LEATHER_HELMET
+  colour: 40,40,40
+  ability: tarantulahelmet
+  attributes:
+    health: 40
+    armour: 55
+    damage: 18
+    
+armour-sniper:
+  name: Sniper
+  suffix: Helmet,Chestplate,Leggings,Shoes
+  rarity: RARE
+  req: 25
+  item: LEATHER
+  colour: 168,122,214
+  set: sniper
+  attributes:
+    damage: 11,16,13,9
+    armour: 20,30,25,15
+  
+    
+    
+    
+    
+    

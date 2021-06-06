@@ -59,18 +59,19 @@ crypts_mage2:
       projectiles: -1
       speed: 7
       range: 10
-      damage: 100
+      damage: 110
       cooldown: 65
       colour: 61,168,214
       
 crypts_skeleton2:
   name: Undead Soldier
   type: SKELETON
-  health: 950
+  health: 1100
   armour: 10
   damage: 145
   kbresist: 0.6
-  level: 7
+  speed: 0.9
+  level: 8
   equipment:
     main: IRON_SWORD
     helmet: armour_undeadsoldier_helmet
@@ -91,16 +92,49 @@ crypts_skeleton2:
       drop: 1/100
       amount: 1-1
       
+crypts_lord:
+  name: Undead Lord
+  type: ZOMBIE
+  health: 5000
+  armour: 50
+  damage: 400
+  kbresist: 1
+  speed: 0.8
+  level: 10
+  equipment:
+    main: GOLDEN_SWORD
+    helmet: armour_undeadlord_helmet
+    chestplate: armour_undeadlord_chestplate
+    leggings: armour_undeadlord_leggings
+    boots: armour_undeadlord_boots
+  drops:
+    armour_undeadlord_helmet:
+      drop: 1/80
+      amount: 1-1
+    armour_undeadlord_chestplate:
+      drop: 1/80
+      amount: 1-1
+    armour_undeadlord_leggings:
+      drop: 1/80
+      amount: 1-1
+    armour_undeadlord_boots:
+      drop: 1/80
+      amount: 1-1
+    book;cryptlord:
+      drop: 1/40
+      amount: 1-1
+      enchants: cryptlord,1
+      rare: true
       
       
 crypts_skeletoncommander:
   name: Undead Commander
   type: SKELETON
-  health: 4000
-  armour: 30
-  damage: 205
+  health: 3500
+  armour: 25
+  damage: 190
   kbresist: 1
-  speed: 0.9
+  speed: 0.8
   level: 10
   abilities:
     swap:

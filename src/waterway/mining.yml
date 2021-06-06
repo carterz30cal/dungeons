@@ -3,6 +3,7 @@ pickaxe_flimsy:
   type: tool
   rarity: COMMON
   item: WOODEN_PICKAXE
+  areareq: waterway
   attributes:
     miningspeed: 11
     fortune: 40
@@ -12,6 +13,7 @@ pickaxe_water:
   type: tool
   rarity: RARE
   item: DIAMOND_PICKAXE
+  areareq: waterway
   attributes:
     miningspeed: 21
     fortune: 44
@@ -21,6 +23,7 @@ pickaxe_paper:
   type: tool
   rarity: RARE
   item: STONE_PICKAXE
+  areareq: waterway
   attributes:
     miningspeed: 8
     fortune: 15
@@ -32,6 +35,7 @@ pickaxe_mush:
   item: STONE_PICKAXE
   rarity: RARE
   glow: true
+  areareq: waterway
   attributes:
     miningspeed: 16
     fortune: 38
@@ -42,8 +46,9 @@ pickaxe_royal:
   type: tool
   item: GOLDEN_PICKAXE
   rarity: EPIC
+  areareq: waterway
   attributes:
-    miningspeed: 13
+    miningspeed: 22
     fortune: 78
     
 pickaxe_clucky:
@@ -51,9 +56,10 @@ pickaxe_clucky:
   type: tool
   item: GOLDEN_PICKAXE
   rarity: RARE
+  areareq: waterway
   attributes:
-    miningspeed: 48
-    fortune: 9
+    miningspeed: 80
+    fortune: 11
 armour_royalleaf_helmet:
   name: Royal Leaf Crown
   type: armour
@@ -62,6 +68,6 @@ armour_royalleaf_helmet:
   set: leaf
   attributes:
     health: 150
-    fortune: 12
+    fortune: 16
     damagep: -0.05
     

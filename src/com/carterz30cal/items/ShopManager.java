@@ -55,6 +55,7 @@ public class ShopManager
 				item.price = shop.getInt(s + ".items." + i + ".price", 10);
 				item.enchants = shop.getString(s + ".items." + i + ".enchants", "");
 				item.sharps = shop.getString(s + ".items." + i + ".sharps", "");
+				item.sale = shop.getInt(s + ".items." + i + ".saleprice",-1);
 				sh.items.add(item);
 			}
 			shops.put(s,sh);

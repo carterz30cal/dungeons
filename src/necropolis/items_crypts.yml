@@ -1,0 +1,139 @@
+sword_cryptknight:
+  name: Crypt Knight Sword
+  type: weapon
+  item: GOLDEN_SWORD
+  rarity: EPIC
+  req: 14
+  ability: cryptknight
+  attributes:
+    damage: +52
+
+sword_corruptknight:
+  name: Death Knight Sword
+  type: weapon
+  item: GOLDEN_SWORD
+  rarity: INCREDIBLE
+  req: 16
+  ability: cryptknight
+  glow: true
+  attributes:
+    damage: +64
+    armour: -20
+    
+sword_holyknight:
+  name: Holy Knight Sword
+  type: weapon
+  item: GOLDEN_SWORD
+  rarity: INCREDIBLE
+  req: 16
+  ability: holyknight
+  glow: true
+  attributes:
+    damage: +50
+    regen: +15
+    
+sword_web:
+  name: Webber
+  type: weapon
+  item: WOODEN_SWORD
+  rarity: EPIC
+  req: 16
+  ability: sand
+  attributes:
+    damage: +58
+    health: -30
+    
+    
+sword_soulfire:
+  name: Soulfire Grimoire
+  type: weapon
+  item: BOOK
+  rarity: EPIC
+  req: 15
+  glow: true
+  ability: soulfire
+  attributes:
+    damage: +45
+    mana: +250
+
+armour-corrupt:
+  name: Corrupted
+  suffix: Helmet,Chestplate,Leggings,Boots
+  rarity: EPIC
+  req: 17
+  colour: 0,0,0
+  item: LEATHER
+  attributes:
+    damage: +20,+40,+30,+10
+    health: -60,-120,-90,-30
+    
+crypt_dust:
+  name: Crypt Dust
+  rarity: RARE
+  item: GRAY_DYE
+  description: ;This slowly accumulates in Crypts. It has;many different uses, including improving;armours and weapons
+corrupt_goo:
+  name: Corrupt Goo
+  rarity: UNUSUAL
+  item: PURPLE_DYE
+  glow: true
+  description: ;It hisses and spits.
+magic_cactus:
+  name: Magic Cactus
+  rarity: RARE
+  item: CACTUS
+  glow: true
+  description: ;Apply to any weapon to;remove all sharpeners.
+  
+rune_cloth:
+  name: Rune Cloth
+  rarity: RARE
+  item: PHANTOM_MEMBRANE
+  glow: true
+  description: ;Apply to any weapon to;remove the rune.
+  
+crypt_stone:
+  name: Crypt Stone
+  type: appliable
+  rarity: RARE
+  item: FIREWORK_STAR
+  colour: 40,40,40
+  modifier:
+    types: LEATHER_BOOTS,IRON_BOOTS,GOLDEN_BOOTS,DIAMOND_BOOTS,CHAINMAIL_BOOTS,NETHERITE_BOOTS
+    prefix: Dusty
+    attributes:
+      damage: +6
+  description: An old, crumbling rock. Gives;a small damage bonus when;applied to boots.
+  
+web:
+  name: Crypt Web
+  rarity: COMMON
+  item: COBWEB
+  
+bow_cryptspirit:
+  name: Crypt Spirit Bow
+  type: weapon
+  rarity: EPIC
+  item: BOW
+  ability: cspirit
+  attributes:
+    damage: +55
+    mana: +175
+  
+strange_tissue:
+  name: Pulsating Matter
+  rarity: EPIC
+  item: LIGHT_GRAY_DYE
+  description: ;Smells revolting.
+  
+warmers:
+  name: Legging Padding
+  type: appliable
+  rarity: EPIC
+  item: FIRE_CHARGE
+  modifier:
+    types: LEATHER_LEGGINGS,IRON_LEGGINGS,GOLDEN_LEGGINGS,DIAMOND_LEGGINGS,CHAINMAIL_LEGGINGS,NETHERITE_LEGGINGS
+    prefix: Padded
+    attributes:
+      health: +35
+  description: It's chilly in these crypts. Provides a minor;health boost when applied to leggings.

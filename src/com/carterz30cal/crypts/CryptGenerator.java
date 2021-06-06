@@ -1,12 +1,16 @@
 package com.carterz30cal.crypts;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map.Entry;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.Barrel;
 import org.bukkit.block.Block;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import com.carterz30cal.dungeons.Dungeons;
 import com.carterz30cal.player.DungeonsPlayer;
@@ -56,6 +60,11 @@ public class CryptGenerator
 	private int lfreq;
 	private int deadends;
 	private boolean[] valid;
+	
+	public CryptSettings settings;
+	public CryptVariant variant;
+	public int difficulty;
+	
 	public void step()
 	{
 		switch (step)
@@ -104,9 +113,9 @@ public class CryptGenerator
 				else
 				{
 					CryptRoom r;
-					if (room > 3 && RandomFunctions.random(0, 9) == 4 && !hasRune) 
+					if (room > 3 && RandomFunctions.random(0, 9) == 4 && !hasRune && settings.canHaveRune) 
 					{
-						r = new RuneRoom(room,lx,lz,new int[] {rx,rz},new int[] {rx+rsx-1,rz+rsz-1},ly+1,table);
+						r = new RuneRoom(room,lx,lz,new int[] {rx,rz},new int[] {rx+rsx-1,rz+rsz-1},ly+1,table,this);
 						hasRune = true;
 					}
 					else if (room == 3)
@@ -230,12 +239,14 @@ public class CryptGenerator
 			}
 			break;
 		case 7:
+			generate();
+			break;
+		case 8:
 			System.out.println("[CRYPT] Finished Generating!");
 			System.out.println("[CRYPT] Rooms: " + (room-2));
+			System.out.println("[CRYPT] Total Blocks: " + removal.size());
+			if (variant != null) System.out.println("[CRYPT] Variant: " + variant.toString());
 			for (CryptRoom r : rooms.values()) r.report();
-			break;
-		default:
-			generate();
 			ready = true;
 			return;
 		}
@@ -245,30 +256,60 @@ public class CryptGenerator
 	
 	
 	
-	public CryptGenerator(int x,int y,int z,int sx,int sz,int roomlb,int roomub,int roomcount,int lootfrequency,CryptLootTable loot
-			,CryptMobs m,CryptBlocks bl, int deadendremoval)
+	public CryptGenerator(int x,int difficulty,CryptSettings settings)
 	{
-		mobs = m;
-		table = loot;
-		blocks = bl;
+		mobs = settings.mobs;
+		table = settings.loot;
+		blocks = settings.blocks;
 		rooms = new HashMap<Integer,CryptRoom>();
 		lx = x;
-		ly = y;
-		lz = z;
-		sizex = sx;
-		sizez = sz;
-		crypt = new int[sx][sz];
-		centerx = sx / 2;
-		centerz = sz / 2;
+		ly = settings.y;
+		lz = settings.z;
+		sizex = settings.sizex;
+		sizez = settings.sizez;
+		crypt = new int[sizex][sizez];
+		centerx = sizex / 2;
+		centerz = sizez / 2;
 		
-		roomamount = roomcount;
+		roomamount = settings.room_amount;
 
-		lowerb = roomlb;
-		upperb = roomub;
-		lfreq = lootfrequency;
-		deadends = deadendremoval;
+		lowerb = settings.room_lb;
+		upperb = settings.room_ub;
+		lfreq = settings.room_lootfreq;
+		deadends = settings.deadends;
 		
 		removal = new ArrayList<>();
+		this.difficulty = difficulty;
+		this.settings = settings;
+		
+		if (RandomFunctions.random(1, 1) == 1) variant = RandomFunctions.get(CryptVariant.values());
+		
+		switch (variant)
+		{
+		case CORRUPT:
+			CryptBlocks updated = new CryptBlocks(blocks);
+			Material[] walls = new Material[updated.walls.length+3];
+			for (int i = 0; i < updated.walls.length;i++) walls[i] = updated.walls[i];
+			walls[walls.length-1] = Material.MAGENTA_TERRACOTTA;
+			walls[walls.length-2] = Material.PURPLE_TERRACOTTA;
+			walls[walls.length-3] = Material.CYAN_TERRACOTTA;
+
+			updated.walls = walls;
+			blocks = updated;
+			
+			CryptMobs nmobs = new CryptMobs(mobs);
+			nmobs.mobs.put(CryptRoomType.NORMAL, new String[] {"crypt_corrupt_regular" + difficulty,"crypt_corrupt_soldier" + difficulty});
+			nmobs.mobs.put(CryptRoomType.RUNE, new String[] {"crypt_corrupt_rune" + difficulty});
+			
+			mobs = nmobs;
+			CryptLootTable inject = new CryptLootTable(table);
+			inject.add("corrupt_goo", 100);
+			inject.add("book", 1,"corrupt,1");
+			inject.itemsPerChest = new int[] {8,17};
+			inject.init();
+			table = inject;
+			break;
+		}
 	}
 	private String getCardinalConnection(int x,int z)
 	{
@@ -482,6 +523,16 @@ public class CryptGenerator
 		b.setType(mat);
 		removal.add(b);
 	}
+	public void endremove()
+	{
+		for (CryptRoom room : rooms.values()) 
+		{
+			room.check();
+			room.removeMobs();
+			room.destroy();
+		}
+		for (Block r : removal) r.setType(Material.AIR);
+	}
 	public void remove()
 	{
 		for (CryptRoom room : rooms.values()) 
@@ -490,11 +541,23 @@ public class CryptGenerator
 			room.removeMobs();
 			room.destroy();
 		}
-
-		for (Block r : removal) 
+		new BukkitRunnable()
 		{
-			r.setType(Material.AIR);
-		}
-		removal = new ArrayList<Block>();
+			int at = 0;
+
+			@Override
+			public void run() {
+				int i;
+				for (i = 0;i < 750 && i+at < removal.size()-1;i++)
+				{
+					Block r = removal.get(at+i);
+					if (r.getType() == Material.BARREL) ((Barrel)r.getState()).getInventory().clear();
+					r.setType(Material.AIR);
+				}
+				at += i;
+				if (at + 1 == removal.size()) cancel();
+			}
+			
+		}.runTaskTimer(Dungeons.instance, 1, 1);
 	}
 }

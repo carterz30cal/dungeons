@@ -13,20 +13,16 @@ public class AbilityPrejudice extends AbsAbility
 	{
 		ArrayList<String> d = new ArrayList<String>();
 		d.add(prefix + "Prejudice");
-		d.add("Deals +33% damage to ancients");
-		d.add("Heal 12❤ every hit");
+		d.add("Deals +70% damage to ancients");
+		d.add("Heal 24❤ every hit");
 		return d;
 	}
 	
 	public int onAttack(DungeonsPlayer d,DMob dMob,int damage)
 	{
-		if (dMob.type.tags.contains("ancient"))
-		{
-			d.heal(12);
-			return (int) (damage * 1.33);
-			
-		}
-		return damage;
+		d.heal(24);
+		if (dMob.type.tags.contains("ancient")) return (int) (damage * 1.7);
+		else return damage;
 	}
 
 }

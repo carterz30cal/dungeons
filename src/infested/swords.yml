@@ -1,0 +1,100 @@
+biomass_blade:
+  name: Biomass Blade
+  type: weapon
+  rarity: COMMON
+  item: WOODEN_SWORD
+  req: 18
+  attributes:
+    damage: +60
+    health: +50
+    
+venom_bite:
+  name: Venom Bite
+  type: weapon
+  rarity: RARE
+  item: WOODEN_SWORD
+  glow: true
+  req: 21
+  ability: venombite
+  attributes:
+    damage: +72
+    health: +35
+    
+fanged_axe:
+  name: Fanged Axe
+  type: weapon
+  rarity: RARE
+  item: IRON_AXE
+  req: 22
+  ability: fangedaxe
+  attributes:
+    damage: +84
+    health: -50
+    
+egg_buster:
+  name: Egg Buster
+  type: weapon
+  rarity: RARE
+  item: STONE_AXE
+  req: 24
+  ability: eggbuster
+  attributes:
+    damage: +69
+    damagep: +0.05
+    
+hunters_knife:
+  name: Hunter's Knife
+  type: weapon
+  rarity: RARE
+  item: IRON_SWORD
+  req: 25
+  ability: hunter
+  attributes:
+    damage: +85
+    health: -30
+    
+hunters_knife2:
+  name: Hunter's Knife
+  type: weapon
+  rarity: EPIC
+  item: IRON_SWORD
+  req: 26
+  ability: hunter2
+  attributes:
+    damage: +90
+    health: -30
+    
+hunters_knife3:
+  name: Hunter's Knife
+  type: weapon
+  rarity: INCREDIBLE
+  item: IRON_SWORD
+  req: 28
+  ability: hunter3
+  attributes:
+    damage: +102
+    health: -30
+
+hunters_knife4:
+  name: Bejeweled Knife
+  type: weapon
+  rarity: LEGENDARY
+  item: IRON_SWORD
+  req: 35
+  ability: hunter4
+  attributes:
+    damage: +120
+    health: -50
+    
+sharpener_bleedingedge:
+  name: Bleeding Edge
+  type: sharpener
+  rarity: INCREDIBLE
+  item: REDSTONE
+  sharpener:
+    id: bleeding
+    plus: RED
+  attributes:
+    damagep: 0.1
+    health: -5
+    

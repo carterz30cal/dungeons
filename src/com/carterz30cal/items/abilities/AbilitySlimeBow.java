@@ -24,7 +24,7 @@ public class AbilitySlimeBow extends AbsAbility {
 		if (mob.type.tags.contains("slime")) 
 		{
 			Slime slime = (Slime)mob.entities.get(0);
-			return (int)(damage * (1+Math.log10(slime.getSize())));
+			return (int)(damage * slime.getSize());
 		}
 		else return damage;
 	}

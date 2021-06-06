@@ -1,0 +1,75 @@
+infested_spider1:
+  name: Cavern Crawly
+  type: SPIDER
+  health: 1000
+  damage: 240
+  armour: 40
+  level: 9
+  speed: 1
+  tags: spider,infested
+  abilities:
+    regen:
+      regen: 18
+      cooldown: 20
+  drops:
+    biomass:
+      drop: 1/1
+      amount: 1-2
+    book;squash:
+      drop: 1/200
+      amount: 1-1
+      enchants: squash,1
+    spider_fang:
+      drop: 1/100
+      amount: 1-1
+      rare: true
+      
+      
+infested_spider2:
+  name: Cavern Crawly
+  type: SPIDER
+  health: 1900
+  damage: 280
+  armour: 50
+  level: 10
+  speed: 1.1
+  tags: spider,infested
+  abilities:
+    regen:
+      regen: 24
+      cooldown: 20
+  drops:
+    biomass:
+      drop: 1/1
+      amount: 2-4
+    book;squash:
+      drop: 1/200
+      amount: 1-1
+      enchants: squash,1
+    spider_fang:
+      drop: 1/90
+      amount: 1-1
+      rare: true
+      
+spider_egg:
+  name: Spider Egg
+  type: ARMOR_STAND
+  health: 1000
+  armour: 50
+  level: 5
+  kbresist: 1
+  coinm: 2
+  tags: spider,infested,spideregg
+  data:
+    0: invisible,offset
+  equipment:
+    helmet: spider_egg
+  drops:
+    web_fiber:
+      drop: 1/2
+      amount: 1-5
+    spider_egg:
+      drop: 1/20
+      amount: 1-1
+      rare: true
+    

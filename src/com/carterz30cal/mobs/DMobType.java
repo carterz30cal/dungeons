@@ -23,6 +23,7 @@ public class DMobType
 	public double speed;
 	public double kbresist;
 	public double dmgresist;
+	public double coinmulti;
 	public String perk;
 	
 	public ItemStack main;
@@ -68,6 +69,7 @@ public class DMobType
 		speed     = data.getDouble(path + ".speed",1);
 		kbresist  = data.getDouble(path + ".kbresist",0);
 		dmgresist = data.getDouble(path + ".dmgresist",0);
+		coinmulti = data.getDouble(path + ".coinm",1);
 		perk = data.getString(path + ".perk", "none");
 		name = data.getString(path + ".name");
 		
@@ -162,6 +164,9 @@ public class DMobType
 			break;
 		case "laser":
 			ability = new MobLaser(data,path);
+			break;
+		case "owned":
+			ability = new MobOwned(data,path);
 			break;
 		default: return;
 		}

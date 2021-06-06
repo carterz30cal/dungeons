@@ -63,6 +63,7 @@ public class DungeonManager
 		
 		for (String d : data.getKeys(false))
 		{
+			System.out.println(d);
 			Dungeon dungeon = new Dungeon();
 			dungeon.id = d;
 			dungeon.name = data.getString(d + ".name");

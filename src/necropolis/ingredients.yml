@@ -26,3 +26,4 @@ stick_gel:
   name: Gel Hilt
   item: SLIME_BLOCK
   rarity: RARE
+  description: ;A stick coated in viscous slime.

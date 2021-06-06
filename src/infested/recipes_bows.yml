@@ -1,0 +1,33 @@
+biomass_bow:
+  product: biomass_bow
+  req: Necropolis Lord
+  materials:
+    B: biomass,16
+    W: web,32
+  recipe:
+    0: 0 B B
+    1: B 0 W
+    2: 0 B B
+
+venomous_bow:
+  product: venomous_bow
+  req: Necropolis Lord
+  materials:
+    B: biomass_bow,1
+    J: biomass,32
+    F: spider_fang,1
+  recipe:
+    0: 0 F 0
+    1: J B J
+    2: 0 F 0
+    
+quality_bow:
+  product: quality_bow
+  req: Necropolis Lord
+  materials:
+    H: handle,1
+    W: web_fiber,10
+  recipe:
+    0: 0 H W
+    1: H 0 W
+    2: 0 H W

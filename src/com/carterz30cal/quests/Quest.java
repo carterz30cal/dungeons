@@ -275,55 +275,19 @@ public class Quest
 		taylor_1.setText("Can you get me 4 sand catalysts, please?", "4 sand catalysts, please.", "Thanks.");
 		taylor_1.setReward(100, 400);
 		Quest taylor_2 = new Quest(taylor);
-		taylor_2.setItem("regeneration_stone", 4);
+		taylor_2.setItem("regeneration_stone", 1);
 		taylor_2.setText("I want one of those yellow rocks that grow.", "A yellow, growing rock, thanks.", "Thank you.");
 		taylor_2.setReward(300, 800);
 		Quest taylor_3 = new Quest(taylor);
-		taylor_3.setItem("spell_tsunami", 4);
+		taylor_3.setItem("spell_tsunami", 1);
 		taylor_3.setText("I would like the tsunami spell.;I've heard the hydra sometimes drops it.", "I want the tsunami spell from the hydra.", "Yay!");
 		taylor_3.setReward(300, 800);
 		Quest taylor_4 = new Quest(taylor);
-		taylor_4.setItem("armour_hydra_boots", 4);
+		taylor_4.setItem("armour_hydra_boots", 1);
 		taylor_4.setText("Everyone's feet are cold here.;Mine are no exception.;Can you get me a pair of hydra boots?",
 				"I would like some hydra boots.;The hydra drops them.", "Awesome, thanks.");
 		taylor_4.setReward(1000, 2000);
 		
-		/*
-		Quest clucky_1 = new Quest(clucky);
-		clucky_1.id = "clucky_1";
-		clucky_1.setItem("fishing_fish", 1);
-		clucky_1.setReward(null, 0, 100);
-		clucky_1.setText(new String[] {"I wish I could climb ladders.","I could leave this pit... Explore the world.",
-				"Maybe you could help me?","I know of a potion.","But first, can you fetch me a fish?"},
-				new String[] {"Just one fish, please."},
-				new String[] {"Thanks.","Have 100 coins for your effort."});
-		
-		Quest clucky_2 = new Quest(clucky);
-		clucky_2.id = "clucky_2";
-		clucky_2.setItem("water_fragment", 22);
-		clucky_2.setReward("sword_fishingforkstrange", 1, 0);
-		clucky_2.setText(new String[] {"Right. To make this potion I need many ingredients.","But to start, I need the base.",
-				"For this I will need 22 water fragments"},
-				new String[] {"The 22 water fragments will make the water required for the potion."},
-				new String[] {"These are of excellent quality, thank you. Have this fishing spear I found years ago."});
-		Quest clucky_3 = new Quest(clucky);
-		clucky_3.id = "clucky_3";
-		clucky_3.setItem("ocean_fragment", 6);
-		clucky_3.setReward(null, 0, 300);
-		clucky_3.setText(new String[] {"Let's continue.","To purify the water, I need 6 ocean fragments."},
-				new String[] {"6 ocean fragments should do it."},
-				new String[] {"The water looks crystal clear.","The next few ingredients may be harder to acquire.",
-						"Here is 300 coins for your help."});
-		Quest clucky_4 = new Quest(clucky);
-		clucky_4.id = "clucky_4";
-		clucky_4.setItem("quest_clucky4", 1);
-		clucky_4.setReward("sharpener_midas", 1,0);
-		clucky_4.setText(new String[] {"Time to start brewing.","I invented a stew years ago which is useful in many potions."
-				,"It is made from magic dust, a catalyst and some leaf material"},
-				new String[] {"The Fisherman sells handcrafted bowls"},
-				new String[] {"Perfectly crafted!","This may take some time to brew.",
-						"Have this midas flint."});
-		*/
 		
 		QuestNpc harris = new QuestNpc(new Location(Dungeons.w,-13.5, 105, 20973.5, 5, 1),EntityType.BLAZE,"Harris",Sound.ENTITY_BLAZE_HURT);
 		Quest harris_1 = new Quest(harris);
@@ -353,6 +317,25 @@ public class Quest
 		harris_5.setItem("compressed_tissue", 2);
 		harris_5.setReward("book", "vitals,3;growth,3", 1, 0);
 		
+		QuestNpc cliff = new QuestNpc(new Location(Dungeons.w,28.5,101,22023.5,147,0),EntityType.ENDERMAN,"Cliff",Sound.ENTITY_ENDERMAN_AMBIENT);
+		Quest cliff_1 = new Quest(cliff);
+		cliff_1.setText("Hi.;I'm Cliff.;These crypts can be incredibly rewarding, but i can't fit.;Will you collect 1 crypt dust for me?",
+				"I would like 1 crypt dust, which can be found in the crypts.", "Awesome!;Come back for more later!");
+		cliff_1.setItem("crypt_dust", 1);
+		cliff_1.setReward("book", "polished,4", 1, 0);
+		Quest cliff_2 = new Quest(cliff);
+		cliff_2.setText("I could really use some gel.;You reckon you can get 64?;You can?;Excellent!","You're getting me 64 gel from the crypts.",
+				"I can craft sewer armour finally!;Have 1200 coins for your time.");
+		cliff_2.setItem("gel", 64);
+		cliff_2.setReward(1500, 1200);
+		Quest cliff_3 = new Quest(cliff);
+		cliff_3.setText("Right.;This one's a toughie.;I need 4 magic cacti.", "Can you fetch me 4 magic cacti?", "Wow. I didn't think you could do it.;"
+				+ "Have this book and 2500 coins."
+				);
+		cliff_3.setItem("magic_cactus", 4);
+		cliff_3.setReward("book", "polished,6", 1, 2500);
+		cliff_3.setReward(2250);
+		
 		
 		QuestNpc john = new QuestNpc(new Location(Dungeons.w,-22.5,88,22063.5,-90,0),EntityType.ZOMBIE,"John",Sound.ENTITY_ZOMBIE_HURT);
 		Quest john_1 = new Quest(john);
@@ -367,8 +350,7 @@ public class Quest
 		Quest letty_1 = new Quest(letty);
 		letty_1.id = "letty_1";
 		letty_1.setItem("armour_waterway_boots",1);
-		letty_1.consumes = false;
-		letty_1.setReward(400,2000);
+		letty_1.setReward(5000,10000);
 		letty_1.setText(new String[] {"I've heard the boss has these real fancy boots.","According to others, they're pretty hard to get.",
 		"Show me some and i'll reward you with a heap of coins."},new String[] {"I want to see the rare boots the boss drops."}, new String[] {"So they do exist!?","Thank youu!"});
 		

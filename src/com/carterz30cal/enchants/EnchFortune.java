@@ -7,7 +7,7 @@ public class EnchFortune extends AbsEnchant {
 
 	@Override
 	public String description() {
-		return "Improves Fortune by " + (5*level);
+		return "+" + (10*level) + " mining fortune.";
 	}
 
 	@Override
@@ -17,7 +17,7 @@ public class EnchFortune extends AbsEnchant {
 
 	@Override
 	public int max() {
-		return 4;
+		return 5;
 	}
 
 	@Override
@@ -36,7 +36,7 @@ public class EnchFortune extends AbsEnchant {
 
 	@Override
 	public DungeonsPlayerStatBank onBank(DungeonsPlayerStatBank bank) {
-		bank.fortune += 5*level;
+		bank.fortune += 10*level;
 		return bank;
 	}
 

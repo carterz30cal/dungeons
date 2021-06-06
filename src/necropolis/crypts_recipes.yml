@@ -34,10 +34,10 @@ cryptspiritbow:
 soulfire_book:
   product: sword_soulfire
   materials:
-    D: magic_dust,2
-    T: strange_tissue,1
-    H: stick_gel,2
-    L: digging_crystal,1
+    D: magic_dust,3
+    T: strange_tissue,3
+    H: stick_gel,1
+    L: digging_diamond,3
   recipe:
     1: 0 D T
     2: 0 H L

@@ -30,6 +30,7 @@ public abstract class AbsAbility
 	public void onSneak (DungeonsPlayer d) {} // on sneaking
 	public void onMagic(DungeonsPlayer d,ProjectileParticle p) {} // on fire wand
 	public void onMagicHit(DungeonsPlayer d,DMob hit) {}
+	public void onMove(DungeonsPlayer d) {}
 	public void stats(DungeonsPlayerStats s) {}
 	public void finalStats(DungeonsPlayerStats s) {}
 	public int magicCost(ItemMeta wand) {return 0;} //when testing cost

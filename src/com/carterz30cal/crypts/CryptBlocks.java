@@ -11,4 +11,18 @@ public class CryptBlocks
 	
 	public Material path;
 	public Material support;
+	
+	public CryptBlocks()
+	{
+		
+	}
+	public CryptBlocks(CryptBlocks copy)
+	{
+		this.floor = copy.floor;
+		this.roof = copy.roof;
+		this.roomroof = copy.roomroof;
+		this.walls = copy.walls;
+		this.path = copy.path;
+		this.support = copy.support;
+	}
 }

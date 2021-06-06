@@ -6,18 +6,15 @@ import java.util.Map.Entry;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.persistence.PersistentDataType;
 
-import com.carterz30cal.crypts.CryptBlocks;
-import com.carterz30cal.crypts.CryptGenerator;
-import com.carterz30cal.crypts.CryptLoot;
-import com.carterz30cal.crypts.CryptLootTable;
-import com.carterz30cal.crypts.CryptMobs;
-import com.carterz30cal.crypts.CryptRoomType;
+import com.carterz30cal.crypts.*;
 import com.carterz30cal.dungeons.DungeonManager;
 import com.carterz30cal.dungeons.Dungeons;
+import com.carterz30cal.dungeons.SoundTask;
 import com.carterz30cal.items.ItemBuilder;
 import com.carterz30cal.player.DungeonsPlayer;
 import com.carterz30cal.player.DungeonsPlayerManager;
@@ -57,7 +54,7 @@ public class NecropolisCrypts2 extends AbsDungeonEvent
 	private final String[] mobs_miniboss = {"crypts_miniboss_slime1","crypts_miniboss_husk1","crypts_miniboss_knight1","crypts_miniboss_hunter1"};
 	
 	private final String[] mobs_regular2 = {"crypts_zombie2","crypts_zombie2","crypts_skeleton2","crypts_skeleton2","crypts_skeletoncaptain"};
-	private final String[] mobs_tough2 = {"crypts_zombie2","crypts_hulk","crypts_mage2","crypts_skeletoncaptain","crypts_skeletoncommander"};
+	private final String[] mobs_tough2 = {"crypts_zombie2","crypts_hulk","crypts_mage2","crypts_skeletoncaptain","crypts_skeletoncommander","crypts_lord"};
 	private final String[] mobs_wet2 = {"crypts_hulk"};
 	
 	
@@ -68,7 +65,10 @@ public class NecropolisCrypts2 extends AbsDungeonEvent
 	private final String[] ancient_regular = {"cryptsa_ghoul","cryptsa_soldier"};
 	private final String[] ancient_loot = {"cryptsa_ghoul","cryptsa_soldier","cryptsa_mage","cryptsa_assassin"};
 	
+	private int shift = 0;
 	
+	private CryptSettings[] difficulties = new CryptSettings[4];
+
 	
 	
 	public NecropolisCrypts2()
@@ -76,50 +76,50 @@ public class NecropolisCrypts2 extends AbsDungeonEvent
 		super();
 		
 		loot = new CryptLootTable();
-		loot.loot.add(new CryptLoot("bone",650));
-		loot.loot.add(new CryptLoot("tissue",415));
-		loot.loot.add(new CryptLoot("gel",150));
-		loot.loot.add(new CryptLoot("stick_bone",15));
-		loot.loot.add(new CryptLoot("stick_gel",4));
-		loot.loot.add(new CryptLoot("decaying_flesh",16));
-		loot.loot.add(new CryptLoot("crypt_dust",21));
-		loot.loot.add(new CryptLoot("catalyst=0",5));
-		loot.loot.add(new CryptLoot("book","polished,1",8));
-		loot.loot.add(new CryptLoot("book","polished,2",1));
-		loot.loot.add(new CryptLoot("book","strength,1",4));
-		loot.loot.add(new CryptLoot("armour_crypt_helmet",2));
-		loot.loot.add(new CryptLoot("armour_crypt_chestplate",1));
-		loot.loot.add(new CryptLoot("armour_crypt_leggings",1));
-		loot.loot.add(new CryptLoot("armour_crypt_boots",2));
-		loot.loot.add(new CryptLoot("sword_cryptknight",1));
-		loot.loot.add(new CryptLoot("crypt_stone",5));
+		loot.add("bone",650);
+		loot.add("tissue",415);
+		loot.add("gel",175);
+		loot.add("stick_bone",15);
+		loot.add("decaying_flesh",16);
+		loot.add("crypt_dust",21);
+		loot.add("catalyst=0",5);
+		loot.add("book",8,"polished,1");
+		loot.add("book",1,"polished,2");
+		loot.add("book",4,"strength,1");
+		loot.add("armour_crypt_helmet",2);
+		loot.add("armour_crypt_chestplate",1);
+		loot.add("armour_crypt_leggings",1);
+		loot.add("armour_crypt_boots",2);
+		loot.add("sword_cryptknight",1);
+		loot.add("crypt_stone",5);
 		loot.add("bow_cryptspirit", 1);
-		loot.itemsPerChest = new int[] {5,12};
-		loot.init();
+		loot.add("magic_cactus", 5);
+		loot.itemsPerChest = new int[] {6,12};
 		
 		loot2 = new CryptLootTable();
-		loot2.loot.add(new CryptLoot("bone",2500));
-		loot2.loot.add(new CryptLoot("gel",500));
-		loot2.loot.add(new CryptLoot("crypt_dust",60));
-		loot2.loot.add(new CryptLoot("decaying_flesh",45));
-		loot2.loot.add(new CryptLoot("strange_tissue",11));
-		loot2.loot.add(new CryptLoot("catalyst=0",19));
-		loot2.loot.add(new CryptLoot("book","polished,1",20));
-		loot2.loot.add(new CryptLoot("book","polished,2",8));
-		loot2.loot.add(new CryptLoot("book","polished,3",2));
-		loot2.loot.add(new CryptLoot("book","strength,1",16));
-		loot2.loot.add(new CryptLoot("book","strength,2",6));
-		loot2.loot.add(new CryptLoot("book","sweeping,1",2));
-		loot2.loot.add(new CryptLoot("armour_crypt2_helmet",3));
-		loot2.loot.add(new CryptLoot("armour_crypt2_chestplate",1));
-		loot2.loot.add(new CryptLoot("armour_crypt2_leggings",2));
-		loot2.loot.add(new CryptLoot("armour_crypt2_boots",4));
-		loot2.loot.add(new CryptLoot("sword_cryptknight",2));
-		loot2.loot.add(new CryptLoot("crypt_stone",6));
+		loot2.add("bone",2350);
+		loot2.add("gel",550);
+		loot2.add("crypt_dust",60);
+		loot2.add("decaying_flesh",45);
+		loot2.add("strange_tissue",11);
+		loot2.add("catalyst=0",19);
+		loot2.add("book",20,"polished,1");
+		loot2.add("book",8,"polished,2");
+		loot2.add("book",2,"polished,3");
+		loot2.add("book",16,"strength,1");
+		loot2.add("book",6,"strength,2");
+		loot2.add("book",4,"sweeping,1");
+		loot2.add("armour_crypt2_helmet",3);
+		loot2.add("armour_crypt2_chestplate",1);
+		loot2.add("armour_crypt2_leggings",2);
+		loot2.add("armour_crypt2_boots",4);
+		loot2.add("sword_cryptknight",2);
+		loot2.add("crypt_stone",6);
 		loot2.add("bow_cryptspirit", 2);
-		loot2.add("book", 1,"cryptlord,1");
+		loot2.add("book", 14,"cryptlord,1");
+		loot2.add("magic_cactus", 11);
+		loot2.add("tissue",110);
 		loot2.itemsPerChest = new int[] {3,14};
-		loot2.init();
 		
 		blocks = new CryptBlocks();
 		blocks.floor = new Material[]{Material.STONE,Material.COBBLESTONE};
@@ -151,7 +151,7 @@ public class NecropolisCrypts2 extends AbsDungeonEvent
 		blocks_ancient.walls = new Material[] {Material.GRANITE,Material.POLISHED_GRANITE,Material.NETHERRACK};
 		blocks_ancient.roof = new Material[] {Material.GRANITE,Material.POLISHED_GRANITE,Material.NETHERRACK};
 		blocks_ancient.roomroof = new Material[] {Material.GRANITE,Material.POLISHED_GRANITE,Material.NETHERRACK,Material.GLOWSTONE};
-		blocks_ancient.path = Material.NETHER_BRICKS;
+		blocks_ancient.path = Material.RED_NETHER_BRICKS;
 		blocks_ancient.support = Material.NETHER_BRICK_FENCE;
 		
 		mobs_ancient = new CryptMobs();
@@ -163,15 +163,57 @@ public class NecropolisCrypts2 extends AbsDungeonEvent
 		mobs_ancient.mobs.put(CryptRoomType.MINIBOSS,mobs_miniboss);
 		
 		loot_ancient = new CryptLootTable();
-		loot_ancient.itemsPerChest = new int[] {10,21};
-		loot_ancient.add("digging_stone", 2000);
-		loot_ancient.add("digging_ancientstone", 50);
-		loot_ancient.add("strange_tissue",10);
+		loot_ancient.itemsPerChest = new int[] {5,16};
+		loot_ancient.add("digging_coal", 1000);
+		loot_ancient.add("digging_stone2", 50);
+		loot_ancient.add("digging_diamond", 8);
+		loot_ancient.add("catalyst=0", 25);
 		loot_ancient.add("book", 6,"cryptwarrior,1");
 		loot_ancient.add("book", 3,"shredding,1");
+		loot_ancient.add("book", 4,"sweeping,1");
 		loot_ancient.add("bow_stinger", 2);
-		loot_ancient.add("book", 4,"cryptlord,1");
-		loot_ancient.init();
+		loot_ancient.add("book", 5,"cryptlord,1");
+		
+		CryptSettings difficulty1 = new CryptSettings();
+		difficulty1.init(loot, mobs, blocks);
+		difficulty1.size(65,65);
+		difficulty1.position(22002, 40);
+		difficulty1.room(11, 5, 8, 4);
+		difficulty1.deadends = 40;
+		difficulties[0] = difficulty1;
+		
+		// ornate key
+		CryptSettings difficulty2 = new CryptSettings();
+		difficulty2.init(loot2, mobs2, blocks);
+		difficulty2.size(70,70);
+		difficulty2.position(22002, 40);
+		difficulty2.room(13, 5, 7, 3);
+		difficulty2.deadends = 40;
+		difficulties[1] = difficulty2;
+		
+		// exalted key
+		CryptSettings difficulty3 = new CryptSettings();
+		difficulty3.init(loot, mobs, blocks);
+		difficulty3.size(65,65);
+		difficulty3.position(22002, 40);
+		difficulty3.room(11, 5, 8, 4);
+		difficulty3.deadends = 40;
+		difficulties[2] = difficulty3;
+		
+		// ancient key, actually less difficult than difficulty 3 but shush
+		CryptSettings difficulty4 = new CryptSettings();
+		difficulty4.init(loot_ancient, mobs_ancient, blocks_ancient);
+		difficulty4.size(40,40);
+		difficulty4.position(22002, 40);
+		difficulty4.room(6, 5, 7, 4);
+		difficulty4.deadends = 15;
+		difficulty4.canHaveRune = false;
+		difficulties[3] = difficulty4;
+		
+		
+		
+		
+		
 		
 	}
 	@Override
@@ -180,10 +222,16 @@ public class NecropolisCrypts2 extends AbsDungeonEvent
 		for (Entry<DungeonsPlayer,CryptGenerator> e : crypts.entrySet())
 		{
 			CryptGenerator cry = e.getValue();
-			if (cry.started) cry.spawnNearby(e.getKey());
+			DungeonsPlayer player = e.getKey();
+			if (cry.started) cry.spawnNearby(player);
 			else if (cry.ready)
 			{
-				e.getKey().player.teleport(cry.spawn.add(0,3,0));
+				player.player.teleport(cry.spawn.add(0,3,0));
+				if (cry.variant != null) 
+				{
+					player.player.sendMessage(cry.variant.getMessage());
+					new SoundTask(player.player.getLocation(), player.player, Sound.ENTITY_ENDER_DRAGON_GROWL, 1, 1).runTaskLater(Dungeons.instance, 10);
+				}
 				cry.started = true;
 			}
 			else cry.step();
@@ -197,76 +245,21 @@ public class NecropolisCrypts2 extends AbsDungeonEvent
 		}
 		display_name.setCustomName(ChatColor.GOLD + "" +  ChatColor.BOLD + "CRYPTS");
 		display_description.setCustomName(ChatColor.GOLD + "Insert a key to begin!");
-		display_warning.setCustomName(ChatColor.RED + "Difficult!");
+		display_warning.setCustomName(ChatColor.RED + "Beware!");
 		
-		/*
-		if (crypt != null && crypt.complete && started)
-		{
-			crypt.spawnNearby(cryptOwner);
-			if (openticks == 0)
-			{
-				cryptOwner.player.sendMessage(ChatColor.GOLD + "You cleared every room!");
-				cryptOwner.player.sendMessage(ChatColor.GOLD + "Crypt will end in 20 seconds.");
-			}
-			else if (openticks == 20*20)
-			{
-				cryptOwner.player.sendMessage(ChatColor.GOLD + "Warping..");
-				cryptOwner.player.teleport(new Location(Dungeons.w,27,101,22019));
-				removeCrypt();
-			}
-			openticks++;
-		}
-		else if (cryptOwner == null || !cryptOwner.player.isValid() || !Bukkit.getOnlinePlayers().contains(cryptOwner.player))
-		{
-			
-			if (openticks > 0) resetDoor();
-			removeCrypt();
-			if (display_name == null || !display_name.isValid()) 
-			{
-				display_name = ArmourstandFunctions.create(new Location(Dungeons.w,29.7, 102.4, 22019.5));
-				display_description = ArmourstandFunctions.create(new Location(Dungeons.w,29.7, 102, 22019.5));
-				display_warning = ArmourstandFunctions.create(new Location(Dungeons.w,29.7, 101.6, 22019.5));
-			}
-			display_name.setCustomName(ChatColor.GOLD + "" +  ChatColor.BOLD + "CRYPTS");
-			display_description.setCustomName(ChatColor.GOLD + "Insert a key to begin!");
-			display_warning.setCustomName(ChatColor.RED + "Difficult!");
-			
-			started = false;
-			openticks = 0;
-		}
-		else
-		{
-			cryptOwner.canOpen = true;
-			if (DungeonManager.i.hash(cryptOwner.player.getLocation().getBlockZ()) != 2) 
-			{
-				removeCrypt();
-			}
-			//30,104,22018 is top corner // door is +z -y from there.
-			// we will start from 30,101,22018
-			if (started && crypt != null) crypt.spawnNearby(cryptOwner);
-			if (openticks % 20 == 0 && openticks < 80 && !started) moveDoorDown();
-			
-			if (display_name.isValid())
-			{
-				display_name.remove();
-				display_description.remove();
-				display_warning.remove();
-			}
-			if (!started) openticks++;
-			else openticks = 0;
-		}
-		*/
 	}
 	
 	public void startCrypt(DungeonsPlayer player,int difficulty)
 	{
 		CryptGenerator starting;
 		
-		int x = 107 + (80 * crypts.size());
-		if (difficulty == 1) starting = new CryptGenerator(x, 40, 22002,65,65,5,8,11,4,loot,mobs,blocks,30);
-		else if (difficulty == 2) starting = new CryptGenerator(x, 40, 22002,65,65,6,9,11,3,loot2,mobs2,blocks,30);
-		else if (difficulty == 4) starting = new CryptGenerator(x,40,22002,65,65,6,9,11,3,loot_ancient,mobs_ancient,blocks_ancient,10);
-		else starting = null;
+		
+		int x = 107 + (80 * shift);
+		shift++;
+		if (shift >= 10) shift = 0;
+		
+		CryptSettings settings = difficulties[difficulty-1];
+		starting = new CryptGenerator(x,difficulty,settings);
 		
 		player.inCrypt = true;
 		player.crypt = starting;
@@ -278,6 +271,17 @@ public class NecropolisCrypts2 extends AbsDungeonEvent
 	{
 		CryptGenerator c = crypts.get(player);
 		c.remove();
+		
+		player.inCrypt = false;
+		player.canOpen = true;
+		player.crypt = null;
+		
+		crypts.remove(player);
+	}
+	public void endCryptNow(DungeonsPlayer player)
+	{
+		CryptGenerator c = crypts.get(player);
+		c.endremove();
 		
 		player.inCrypt = false;
 		player.canOpen = true;
@@ -323,6 +327,6 @@ public class NecropolisCrypts2 extends AbsDungeonEvent
 		display_description.remove();
 		display_warning.remove();
 		
-		for (DungeonsPlayer p : crypts.keySet()) endCrypt(p);
+		for (DungeonsPlayer p : crypts.keySet()) endCryptNow(p);
 	}
 }

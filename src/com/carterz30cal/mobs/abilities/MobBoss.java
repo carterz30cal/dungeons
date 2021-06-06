@@ -41,11 +41,13 @@ public class MobBoss extends DMobAbility
 	@Override
 	public void add(DMob mob)
 	{
+		/*
 		if (alive.getOrDefault(mob.type, false) && unique)
 		{
 			mob.remove();
 			return;
 		}
+		*/
 		alive.put(mob.type, true);
 		BossBar bar = Bukkit.createBossBar(ChatColor.GOLD + mob.type.name, colour, style, new BarFlag[0]);
 		bar.setProgress(1);

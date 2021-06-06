@@ -1,5 +1,6 @@
 package com.carterz30cal.player;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,6 +22,7 @@ import com.carterz30cal.items.ItemSet;
 import com.carterz30cal.items.ItemSharpener;
 import com.carterz30cal.items.abilities.AbilityManager;
 import com.carterz30cal.items.abilities.AbsAbility;
+import com.carterz30cal.player.skilltree.AbsSkill;
 
 public class DungeonsPlayerStats
 {
@@ -41,12 +43,17 @@ public class DungeonsPlayerStats
 	public boolean synergy;
 	public int fortune;
 	public double miningXp;
+	public int flatxp;
 	public double overkiller;
+	
+	public double shopDiscount;
 	
 	public int miningspeed;
 	
 	public int luck;
 	public int fishingspeed;
+	
+	public int maxsouls;
 	
 	public List<AbsEnchant> ench;
 	
@@ -116,6 +123,9 @@ public class DungeonsPlayerStats
 		bonuskillcoins = 0;
 		damagemod = 1;
 		overkiller = 1;
+		flatxp = 0;
+		shopDiscount = 1;
+		maxsouls = 5;
 		
 		miningspeed = 0;
 		
@@ -142,6 +152,7 @@ public class DungeonsPlayerStats
 			Item i = ItemBuilder.i.items.get(meta.getPersistentDataContainer().get(ItemBuilder.kItem, PersistentDataType.STRING));
 			if (i == null) continue;
 			else if (i.combatReq > dp.level.level()) continue;
+			else if (i.areaReq != null && !i.areaReq.equals(dp.area.id)) continue;
 			DungeonsPlayerStatBank bank = new DungeonsPlayerStatBank();
 			bank.d = dp;
 			bank.add(i.attributes);
@@ -214,7 +225,15 @@ public class DungeonsPlayerStats
 			luck += s.get("luck");
 		}
 
+		for (String sk : o.skills.keySet())
+		{
+			AbsSkill skill = AbsSkill.skills.get(sk);
+			skill.stats(o.skills.get(sk), this);
+		}
 		for (AbsAbility a : abilities) a.stats(this);
+		
+		if (dp.voteBoost != null && dp.voteBoost.isAfter(Instant.now())) miningXp += 0.35;
+		
 		
 		mana = Math.max(mana, 0);
 		armour = Math.max(0, armour);

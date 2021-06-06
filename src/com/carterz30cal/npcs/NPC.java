@@ -51,11 +51,10 @@ public class NPC
         prof.getProperties().put("textures", new Property("textures", skinData, skinSignature));
 
         loc = location.clone();
-        location.setYaw(location.getYaw()+45);
         
         npc = new NPCp(server,world,prof,m);
         
-        npc.setLocation(location.getX(), location.getY(), location.getZ(), location.getYaw(), location.getPitch());
+        npc.setLocation(location.getX(), location.getY(), location.getZ(),loc.getYaw(), location.getPitch());
         
         //npc.setHeadRotation(((location.getYaw() * 256f) / 360f));
         

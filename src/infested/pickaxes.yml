@@ -1,0 +1,19 @@
+biomass_pickaxe:
+  name: Biomass Breaker
+  type: tool
+  rarity: COMMON
+  item: WOODEN_PICKAXE
+  areareq: infestedcaverns
+  attributes:
+    miningspeed: 100
+    fortune: 50
+    
+reinforced_pickaxe:
+  name: Reinforced Pickaxe
+  type: tool
+  rarity: RARE
+  item: GOLDEN_PICKAXE
+  areareq: infestedcaverns
+  attributes:
+    miningspeed: 125
+    fortune: 60

@@ -51,6 +51,8 @@ public class GUI
 		{
 		case MAINMENU:
 			String[] lo = null;
+			
+			int xpboosttotal = (int) Math.round((player.stats.miningXp-1)*100);
 			if (p.isOp())
 			{
 				lo = new String[] {
@@ -58,8 +60,9 @@ public class GUI
 						ChatColor.BLUE + " Armour: " + ChatColor.WHITE + player.stats.armour,
 						ChatColor.YELLOW + " Regen: " + ChatColor.WHITE + player.stats.regen,
 						ChatColor.GRAY + " Damage: " + ChatColor.WHITE + player.stats.damage,
+						ChatColor.AQUA + "Total Xp Boost: " + ChatColor.WHITE + "+" + player.stats.flatxp + " & +" + xpboosttotal + "%",
 						"",
-						ChatColor.BOLD + "" + ChatColor.GOLD + "Click for the Admin Menu"
+						ChatColor.GOLD + "" + ChatColor.BOLD + "ADMIN MENU"
 						};
 			}
 			else
@@ -68,21 +71,22 @@ public class GUI
 						ChatColor.RED + " Max Health: " + ChatColor.WHITE + Math.round(player.stats.health),
 						ChatColor.BLUE + " Armour: " + ChatColor.WHITE + player.stats.armour,
 						ChatColor.YELLOW + " Regen: " + ChatColor.WHITE + player.stats.regen,
-						ChatColor.GRAY + " Damage: " + ChatColor.WHITE + player.stats.damage
+						ChatColor.GRAY + " Damage: " + ChatColor.WHITE + player.stats.damage,
+						ChatColor.AQUA + "Total Xp Boost: " + ChatColor.WHITE + "+" + player.stats.flatxp + " & +" + xpboosttotal + "%"
 						};
 			}
 			contents[GUICreator.top()] = GUICreator.item(Material.PAPER, p.getDisplayName(), lo, 1);
 			
 			contents[10] = GUICreator.pane(Material.WHITE_STAINED_GLASS_PANE);
-			contents[11] = GUICreator.item(Material.STONE_SWORD, "Skills", null, 1);
+			contents[11] = GUICreator.item(Material.STONE_SWORD, "Skill Tree", null, 1);
 			contents[12] = GUICreator.item(Material.COMPASS, ChatColor.GREEN + "Dungeon Explorer", null, 1);
-			contents[13] = GUICreator.item(Material.PLAYER_HEAD, "Friends", null, 1);
+			contents[13] = GUICreator.item(Material.BARRIER, "Coming soon!", null, 1);
 			contents[14] = GUICreator.item(Material.ENCHANTING_TABLE, "Enchantment Guide", null, 1);
-			contents[15] = GUICreator.item(Material.GOLD_INGOT, ChatColor.GOLD + "Rewards", null, 1);
+			contents[15] = GUICreator.item(Material.BARRIER, "Coming soon!", null, 1);
 			contents[16] = GUICreator.pane(Material.WHITE_STAINED_GLASS_PANE);
 			
 			contents[19] = GUICreator.pane(Material.WHITE_STAINED_GLASS_PANE);
-			contents[20] = GUICreator.item(Material.BARRIER, "Coming soon!", null, 1);
+			contents[20] = GUICreator.item(Material.BROWN_SHULKER_BOX, "Ingredient Sack", null, 1);
 			contents[21] = GUICreator.item(Material.LEATHER, "Backpack", null, 1);
 			contents[22] = GUICreator.item(Material.BARRIER, "Coming soon!", null, 1);
 			contents[23] = GUICreator.item(Material.APPLE, "Recipe Browser", null, 1);
@@ -198,7 +202,7 @@ public class GUI
 				page++;
 				new TaskAGUIBrowser(this,p).runTaskLater(Dungeons.instance, 1);
 			}
-			else if (!ItemBuilder.isUIElement(e.getCurrentItem()))
+			else if (!ItemBuilder.isUIElement(e.getCurrentItem()) && e.getCurrentItem() != null)
 			{
 				ItemStack add = e.getCurrentItem().clone();
 				add = ItemBuilder.i.maxStack(add);
@@ -215,12 +219,12 @@ public class GUI
 				if (ItemBuilder.isUIElement(c))
 				{
 					if (e.getView().getCursor().getType() == Material.AIR) return true;
-					new TaskGUIRecipeBrowser(this,e.getView().getCursor()).runTaskLater(Dungeons.instance, 1);
+					new TaskGUIRecipeBrowser(this,e.getView().getCursor(),p).runTaskLater(Dungeons.instance, 1);
 					e.getView().setCursor(null);
 				}
 				else
 				{
-					new TaskGUIRecipeBrowser(this,GUICreator.pane()).runTaskLater(Dungeons.instance, 1);
+					new TaskGUIRecipeBrowser(this,GUICreator.pane(),p).runTaskLater(Dungeons.instance, 1);
 					
 					if (p.getInventory().firstEmpty() == -1) p.getWorld().dropItem(p.getLocation(),c);
 					else p.getInventory().addItem(c);
@@ -235,7 +239,7 @@ public class GUI
 					if (position == 30) page -= 1;
 					else page += 1;
 				}
-				new TaskGUIRecipeBrowser(this,null).runTaskLater(Dungeons.instance, 1);
+				new TaskGUIRecipeBrowser(this,null,p).runTaskLater(Dungeons.instance, 1);
 			}
 		}
 		if (type == MenuType.MAINMENU)
@@ -246,7 +250,7 @@ public class GUI
 				if (p.isOp()) new GUI(MenuType.ADMIN,p);
 				break;
 			case 11:
-				new SkillsGUI(p);
+				new SkillTreeGUI(p);
 				break;
 			case 12:
 				new DungeonExplorerGUI(p);
@@ -261,7 +265,7 @@ public class GUI
 				//new RewardsGUI(p);
 				break;
 			case 20:
-				//new GUI(MenuType.PERKS,p);
+				new SackGUI(p);
 				break;
 			case 21:
 				new BackpackGUI(p);

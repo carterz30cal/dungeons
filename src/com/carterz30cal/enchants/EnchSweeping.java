@@ -8,7 +8,7 @@ public class EnchSweeping extends AbsEnchant
 
 	@Override
 	public String description() {
-		return "Adds an additional " + (int)Math.floor(level * 1.5) + " damage to sweep attacks";
+		return "Adds " + (int)Math.floor(level * 2.2) + " damage to sweep attacks";
 	}
 
 	@Override
@@ -38,7 +38,7 @@ public class EnchSweeping extends AbsEnchant
 
 	@Override
 	public DungeonsPlayerStatBank onBank(DungeonsPlayerStatBank bank) {
-		bank.sweep += (int)Math.floor(level * 1.5);
+		bank.sweep += (int)Math.floor(level * 2.2);
 		return bank;
 	}
 

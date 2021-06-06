@@ -33,7 +33,21 @@ digging_defender3:
 ### NEW THEME OF 'TRUE' PRECURSORS
 ### cutting zombie, rabid wolf, gremlin, ancient bug
 ### replaced with mutant wolf, true infestor
-
+digging_key3:
+  name: Key Carrier
+  type: SKELETON
+  health: 7000
+  damage: 100
+  speed: 2
+  tags: ancient
+  level: 9
+  equipment:
+    helmet: LEATHER_HELMET
+  drops:
+    crypt_key4:
+      drop: 1/5
+      amount: 1-2
+      rare: true
 digging_slime3:
   name: Mother Gel
   type: SLIME
@@ -47,8 +61,8 @@ digging_slime3:
   abilities:
     summons:
       summon: digging_slime3_summon
-      count: 3
-      respawn: -1
+      count: 6
+      respawn: 600
   drops:
     digging_stone:
       drop: 1/1
@@ -67,10 +81,10 @@ digging_slime3_summon:
   type: SLIME
   data: 
     0: size:2
-  health: 1000
-  damage: 150
+  health: 700
+  damage: 125
   tags: ancient
-  level: 6
+  level: 5
   speed: 1.1
   
   

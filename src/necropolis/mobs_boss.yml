@@ -1,0 +1,129 @@
+necropolis_boss:
+  name: The Grave Lord
+  type: WITHER_SKELETON
+  level: 20
+  health: 80000
+  damage: 500
+  speed: 0.8
+  armour: 20
+  kbresist: 1
+  boss: true
+  silent: true
+  coinm: 0
+  tags: ghoul
+  equipment:
+    main: NETHERITE_SWORD
+    offhand: NETHERITE_SWORD
+    helmet: NETHERITE_HELMET
+    chestplate: NETHERITE_CHESTPLATE
+    leggings: NETHERITE_LEGGINGS
+    boots: NETHERITE_BOOTS
+  abilities:
+    overkill:
+      threshold: 1500
+      reward: 20
+    targeter:
+      range: 30
+      
+necropolis_defender:
+  name: Defender
+  type: IRON_GOLEM
+  level: 15
+  health: 1000000
+  damage: 300
+  speed: 0
+  kbresist: 1
+  dmgresist: 0.9
+  boss: true
+  coinm: 0
+  abilities:
+    targeter:
+      range: 25
+    laser:
+      damage: 50
+      range: 12
+      cooldown: 50
+      targetonly: true
+necropolis_minion1:
+  name: Lord's Ghoul
+  type: ZOMBIE
+  level: 7
+  health: 2700
+  damage: 135
+  speed: 1.2
+  kbresist: 1
+  boss: true
+  coinm: 0
+  tags: ghoul
+  abilities:
+    targeter:
+      range: 10
+  equipment:
+    main: GOLDEN_SWORD
+    helmet: LEATHER_HELMET
+    chestplate: CHAINMAIL_CHESTPLATE
+    leggings: CHAINMAIL_LEGGINGS
+    boots: CHAINMAIL_BOOTS
+    
+necropolis_minion2:
+  name: Lord's Ghoul
+  type: ZOMBIE
+  level: 7
+  health: 3800
+  damage: 145
+  speed: 1.3
+  kbresist: 1
+  boss: true
+  coinm: 0
+  tags: ghoul
+  abilities:
+    targeter:
+      range: 10
+  equipment:
+    main: GOLDEN_SWORD
+    helmet: IRON_HELMET
+    chestplate: IRON_CHESTPLATE
+    leggings: CHAINMAIL_LEGGINGS
+    boots: CHAINMAIL_BOOTS
+    
+necropolis_minion3:
+  name: Lord's Ghoul
+  type: ZOMBIE
+  level: 7
+  health: 5250
+  damage: 160
+  speed: 1.3
+  kbresist: 1
+  boss: true
+  coinm: 0
+  tags: ghoul
+  abilities:
+    targeter:
+      range: 10
+  equipment:
+    main: GOLDEN_SWORD
+    helmet: GOLDEN_HELMET
+    chestplate: IRON_CHESTPLATE
+    leggings: CHAINMAIL_LEGGINGS
+    boots: CHAINMAIL_BOOTS
+    
+necropolis_minion4:
+  name: Lord's Ghoul
+  type: ZOMBIE
+  level: 7
+  health: 7000
+  damage: 170
+  speed: 1.2
+  kbresist: 1
+  boss: true
+  coinm: 0
+  tags: ghoul
+  abilities:
+    targeter:
+      range: 10
+  equipment:
+    main: GOLDEN_SWORD
+    helmet: GOLDEN_HELMET
+    chestplate: DIAMOND_CHESTPLATE
+    leggings: CHAINMAIL_LEGGINGS
+    boots: CHAINMAIL_BOOTS

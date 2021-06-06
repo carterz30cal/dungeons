@@ -41,11 +41,23 @@ shroom_dagger:
   item: STONE_SWORD
   req: 11
   attributes:
-    damage: +45
-    health: +80
+    damage: +46
+    health: +75
     
 fungal_eruption:
   name: Fungal Eruption
+  type: weapon
+  rarity: INCREDIBLE
+  item: STONE_SWORD
+  glow: true
+  req: 16
+  ability: spores
+  attributes:
+    damage: +55
+    health: +135
+
+amelioration:
+  name: Amelioration
   type: weapon
   rarity: INCREDIBLE
   item: STONE_SWORD
@@ -64,25 +76,25 @@ loot_mushroomking:
   glow: true
   loot:
     mushroom:
-      amount: 12-48
+      amount: 16-32
       chance: 1
     enchanted_mushroom:
       amount: 1
       chance: 1
     book;growth2:
       amount: 1
-      chance: 11
+      chance: 8
       enchants: growth,2
     book;lethal1:
       amount: 1
-      chance: 8
+      chance: 6
       enchants: lethal,1
     book;cubism1:
       amount: 1
-      chance: 12
+      chance: 3
       enchants: cubism,1
     catalyst=0:
-      amount: 1-2
+      amount: 1-3
       chance: 4
       
       
@@ -101,7 +113,7 @@ armour-mushroom:
     2: 200,200,200
     3: 210,210,210
   ability: spores
-  req: 15
+  req: 16
   attributes:
-    health: 110,135,125,90
+    health: 130,150,140,100
     damage: 3,6,4,2

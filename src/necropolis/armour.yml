@@ -15,7 +15,7 @@ bone_plating:
   item: BONE_MEAL
   glow: true
   modifier:
-    types: LEATHER_HELMET,IRON_HELMET,GOLDEN_HELMET,DIAMOND_HELMET,CHAINMAIL_HELMET,NETHERITE_HELMET
+    types: LEATHER_HELMET,IRON_HELMET,GOLDEN_HELMET,DIAMOND_HELMET,CHAINMAIL_HELMET,NETHERITE_HELMET,PLAYER_HEAD
     prefix: Reinforced
     attributes:
       armour: +8
@@ -50,14 +50,46 @@ armour-slime:
     armour: 10,10,10,5
     damage: -2,-5,-2,-1
     
-armour-ghoul:
-  name: Ghoul
-  suffix: Head,Chestplate,Trousers,Shoes
-  rarity: UNUSUAL
-  set: ghoul
-  item: ZOMBIE_HEAD,LEATHER
-  colour: 9,148,16
-  req: 8
+armour_healerblue_helmet:
+  name: Blue Healer Helmet
+  type: armour
+  rarity: EPIC
+  item: PLAYER_HEAD
+  req: 20
+  ability: healerblue
+  skull:
+    data: ewogICJ0aW1lc3RhbXAiIDogMTYyMTE3OTA0NzkxNywKICAicHJvZmlsZUlkIiA6ICI5MThhMDI5NTU5ZGQ0Y2U2YjE2ZjdhNWQ1M2VmYjQxMiIsCiAgInByb2ZpbGVOYW1lIiA6ICJCZWV2ZWxvcGVyIiwKICAic2lnbmF0dXJlUmVxdWlyZWQiIDogdHJ1ZSwKICAidGV4dHVyZXMiIDogewogICAgIlNLSU4iIDogewogICAgICAidXJsIiA6ICJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlLzE4YWY2MGFhMWNmYWJiOWU4ZjAzZmIwNTQ1MGU5YWExYjNhMWRmYzFhNWZjNzQ4ODg1MjY4MDBlNjE0ODQyMGUiCiAgICB9CiAgfQp9
+    sig: k258cQZjGDYOlV4ZZgBtf1RoMW/1LimXkuAgHr8BkPkl3s6+1ftjarsfHkj33fKUwFiIhoSrueHmOggO9QU0lMfpizTYRIf1TQb0R0iFZPqtruNEK4jjVVmMWcurhHLEQYNW3HPAT+I1Ca82T06OJQqoa1Q1NpwpiiSHv7+R1ZAGrIx7DUAGRf7xtR+Nim55yl+MBByae/QI9xXdqiv0zXgQx1N8IaZWtgwarFV79CRNCIalGCIz1eFjyhSjA1bKzka/R4pGu8VblvXQvIkC1NzcAqjVh8oEvOKsnz8E1eZaG/Js1Jn03A/KLDS0LK9gZnK51/a3ZhGDRwi66ic3H/iCX22iqAb8cQ02AQ02B5JxLz7fPx5ZmwWGW7S+F2BunLUuDk9o5enO5MGK7nZkAdC9d1Act0OgPbQnAkr/hbgkLBXvVDo5LklLoiDcsGQpt5S22wtiHBTOu1EeOo+x0POhnVISe2Qo2vmqDXjgeYyE50m5rsBdlFSKbuQ+j8aoSG4jB6PYI7/yU7pcF1ZNaEGbutpgVsDH0qyKPrxDdGf0A0mqhS83fxz6xg29MPJawY8Qs+nFkYCR4+UxHP28ScvXQFq+F6DaoKSgsnQm4oKi0wALiIPN5RrArtOQ3Phrd6qYtJ5NRrN/LyP+HaYEBLWjYFhbkbOpLYO+GK71Dko=
   attributes:
-    health: 30,50,35,20
-    armour: 10,25,20,15
+    health: +300
+    mana: +110
+  
+armour_healergreen_helmet:
+  name: Green Healer Helmet
+  type: armour
+  rarity: EPIC
+  item: PLAYER_HEAD
+  req: 20
+  ability: healergreen
+  skull:
+    data: ewogICJ0aW1lc3RhbXAiIDogMTYyMTE4MDc4MDI3MiwKICAicHJvZmlsZUlkIiA6ICI5MThhMDI5NTU5ZGQ0Y2U2YjE2ZjdhNWQ1M2VmYjQxMiIsCiAgInByb2ZpbGVOYW1lIiA6ICJCZWV2ZWxvcGVyIiwKICAic2lnbmF0dXJlUmVxdWlyZWQiIDogdHJ1ZSwKICAidGV4dHVyZXMiIDogewogICAgIlNLSU4iIDogewogICAgICAidXJsIiA6ICJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlLzJiYjkwY2QyNGRmN2Q3MDZkNjQ0YWQwZmYzZTA2ZTM4OGFiNzZhNTQ4MjQ2MDViZjVlNmU5ZTUzMzFiNjFhMGMiCiAgICB9CiAgfQp9
+    sig: E/z3r1jNO8WqpbJp5a/hWOy0D6lezGSnGOS2m3/2rVoL2pi3RMO0gj3EJI8fNLtOVEWUphYu9kXm4uP+T7IGliRXOkS+c1APi3Tpr68ymr0RM6fTblTOZmq+C69EFylnP8RfMszliiiNgx5x4KvSk9Fnm8z9fKX16bwwjK3NeGOScffaxT2DOyrUuNdvSR+IzTlRovEFAFPZzbYfzJg5aM4gfoMcg48W2FNABYIhG8zf7Vvl8LaHQua3pjxkcSqi4JshBq3MI01yhZ3FFujLWjp4mwbsrjd4sxIki+9LexGq9MICZoszKt1p/6qIF7CvGYLevIuiuaNl3ytNF3Dkc9SAZuRwPEbebHfEKmqZfrK9GLjW7jJpfe4dBe3vQdQIhpP6kIP8s3/Fcv9dRLgMcXgGVc+7ZsC6lsGc1tfn+LviHTzFBaxgYp1XwDfoJEinuF5k11kSiGPipxkjRPYKu3qIYxWd3aCmS8/UHJ9v9rUs0MuNKmOm9DTqby5CYqWl/CZ98wvJpb4h2e4TYj1kpHD2H/nhUC96ESIjKLmWXtAfVI1Coh+4A9cn5lj1wZdZOT9BV3TTGhCZWiKcGme0e3ZPosUMVi10+MNa3empp4dF8yJHdmwOwa24hZHd1IQ10u0y82IYWq2bSkaHCslsNEuQW/fUgyrjb8xH9MnEZz8=
+  attributes:
+    health: +350
+    regen: +8
+    
+armour_healerred_helmet:
+  name: Red Healer Helmet
+  type: armour
+  rarity: EPIC
+  item: PLAYER_HEAD
+  req: 20
+  ability: healerred
+  skull:
+    data: ewogICJ0aW1lc3RhbXAiIDogMTYyMTE4MjQ3MDMxNywKICAicHJvZmlsZUlkIiA6ICJmYzUwMjkzYTVkMGI0NzViYWYwNDJhNzIwMWJhMzBkMiIsCiAgInByb2ZpbGVOYW1lIiA6ICJDVUNGTDE3IiwKICAic2lnbmF0dXJlUmVxdWlyZWQiIDogdHJ1ZSwKICAidGV4dHVyZXMiIDogewogICAgIlNLSU4iIDogewogICAgICAidXJsIiA6ICJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlLzdhYzUwYjg1M2E0N2MyMDdmZTdkZDdkOWNhZGM4YjhmZjZmYzI1ZGZiZWYzYzE4YjIwNzE2OGQxYTEzYzA0Y2QiCiAgICB9CiAgfQp9
+    sig: JpIZDu35FiX8Kqup85EwcO1F/Dj3/Qh2N34re/ZzCV0sxpwu/f02fuwJPQ8hOwdNf7/hAXARXZNJqu8Mx6z0qO625MscbXWdWDBUeBSXtmuLECcPGmO4FJVVLMy2+PtznP7mAL8MReB/o5ybeP8k4MKMNgqZUS0Ce9a+5hz98grBsTu2Zb8CxAPRyvPy9w9XDBeqnaeYIpI3/QvHiL6WeBiCaAs0T4ppHvFxdsqSxTo0XrAWvwp201gVwSEit60WDydCuviUx6sUAu3n9rHDoUwyP57TaDOH5PN/SvW7eHPNOzWWgmc9TphHHahUOJ++f9nbNx6NTVyeF30sQzROnxG1CkYgs7KH4YmlQg2QZRewvLqiGIoB0It9fBBQdjz23ccf9p0WBmc4K2e3tizQCjm+uOTSlFUJr3iJ0mxmnsP3PhM2/U/xufmpHMgRLPNfrg9DFboVPOOMadiL8OwQR56m+IpmaG/xpFVAgcfAT7QIxBXLMgnrn7frHLXDvekRfPgivt9Ivx5rU+qNYjvckk5oRiqAgrqFGlAOL89kG0JNOM1RaKhRcJ2wTzuArF3MTptjMfCE5TnPnqilRiU0/NpU/JHZ6RI4+YpWKLurzhYeed1bQ8YFFEuOgIP0JzeqwaZu9f+cRJ4zDEzbBIGU4t+xuIv5OjnUNT2qpNzkcVI=
+  attributes:
+    health: +250
+    damagep: +0.1
+    
+    

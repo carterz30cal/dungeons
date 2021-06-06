@@ -74,11 +74,10 @@ public class CryptRoom
 		{
 			int r = RandomFunctions.random(0, loot.randomizer);
 			CryptLoot pick = loot.get(r);
-			int quantity = RandomFunctions.random(pick.quantity[0], pick.quantity[1]);
+			if (pick == null) continue;
 			ItemStack item;
-			if (pick.enchants == null) item = ItemBuilder.i.build(pick.item, quantity);
-			else item = ItemBuilder.i.build(pick.item,pick.enchants, quantity);
-			//item = ItemBuilder.noLore(item);
+			if (pick.enchants == null) item = ItemBuilder.i.build(pick.item, 1);
+			else item = ItemBuilder.i.build(pick.item,pick.enchants, 1);
 			
 			inv.setItem(RandomFunctions.random(0, 26), item);
 			itemsRemaining--;

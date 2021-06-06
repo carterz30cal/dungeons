@@ -8,6 +8,7 @@ import org.bukkit.Particle;
 import org.bukkit.Particle.DustOptions;
 import org.bukkit.util.Vector;
 
+import com.carterz30cal.mobs.DMob;
 import com.carterz30cal.player.DungeonsPlayer;
 import com.carterz30cal.utility.RandomFunctions;
 
@@ -19,9 +20,14 @@ public class AbilityDiggingSight extends AbsAbility {
 		ArrayList<String> d = new ArrayList<>();
 		d.add(prefix + "Detector");
 		d.add("Shows the way to the next digging spot");
+		d.add("+25% damage to ancient mobs");
 		return d;
 	}
-
+	public int onAttack(DungeonsPlayer d,DMob dMob,int damage)
+	{
+		if (dMob.type.tags.contains("ancient")) return (int) (damage * 1.25);
+		return damage;
+	} 
 	public void onTick  (DungeonsPlayer d) 
 	{
 		Location b = AbilityDigging.targets.get(d);

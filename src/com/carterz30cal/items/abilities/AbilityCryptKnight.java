@@ -2,7 +2,6 @@ package com.carterz30cal.items.abilities;
 
 import java.util.ArrayList;
 
-import com.carterz30cal.player.CharacterSkill;
 import com.carterz30cal.player.DungeonsPlayerStats;
 
 public class AbilityCryptKnight extends AbsAbility
@@ -13,7 +12,7 @@ public class AbilityCryptKnight extends AbsAbility
 	{
 		ArrayList<String> d = new ArrayList<String>();
 		d.add(prefix + "Crypt Knight");
-		d.add("While in a crypt, double your Knight skill");
+		d.add("While in a crypt, gain 55% damage.");
 		return d;
 	}
 	
@@ -21,8 +20,6 @@ public class AbilityCryptKnight extends AbsAbility
 	public void stats(DungeonsPlayerStats s)
 	{
 		if (!s.o.inCrypt) return;
-		CharacterSkill l = s.o.level;
-		
-		s.damage += l.get("damage");
+		s.damagemod += 0.55;
 	}
 }

@@ -24,6 +24,25 @@ shopkeepsteve:
       price: 475
     sharpener_crude:
       price: 140
+      
+tutorialsteve:
+  name: Steve's Adventuring Goods
+  items:
+    sword_flimsy:
+      price: 10
+    bow_flimsy:
+      price: 50
+    pickaxe_flimsy:
+      price: 50
+    flimsy_rod:
+      price: 80
+    book;blade: 
+      price: 245
+      enchants: blade,1
+    catalyst=0:
+      price: 475
+    sharpener_crude:
+      price: 140
 midasfollower:
   name: Ancient Stuff Ltd.
   items: 
@@ -42,6 +61,8 @@ midasfollower:
     book;midastouch: 
       price: 800
       enchants: midastouch,1
+    magic_dust:
+      price: 1000
     waterway_keyshard:
       price: 200
     armour_flex_boots:
@@ -63,11 +84,22 @@ skeletonmerchant:
       price: 4750
     crypt_key3:
       price: -1
+    summonkey_necropolis:
+      price: 7500
+      saleprice: 2500
 digsite:
   name: Don't Ask Questions Ltd.
   items:
     digging_shovelT1:
       price: 2750
-    armour_digging_helmet:
-      price: 9000
+    armour_archaeologist_helmet:
+      price: 4250
+      
+infestedexplorer:
+  name: Explorer's Exotic Wares
+  items:
+    biomass_pickaxe:
+      price: 2500
+    handle:
+      price: 1000
       

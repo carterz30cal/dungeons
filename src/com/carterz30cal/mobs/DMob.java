@@ -42,6 +42,7 @@ import com.carterz30cal.player.CharacterSkill;
 import com.carterz30cal.player.DungeonsPlayer;
 import com.carterz30cal.player.DungeonsPlayerManager;
 import com.carterz30cal.player.ListenerEntityDamage;
+import com.carterz30cal.player.skilltree.AbsSkill;
 import com.carterz30cal.quests.TutorialManager;
 import com.carterz30cal.quests.TutorialTrigger;
 import com.carterz30cal.tasks.TaskArmourstand;
@@ -132,7 +133,7 @@ public class DMob
 	
 	public void remove()
 	{
-		health = 0;
+		health = -1;
 		for (Entity e : entities) 
 		{
 			if (e instanceof Player) ((EntitySkinned)((CraftPlayer)((Player)e)).getHandle()).remove();
@@ -171,13 +172,20 @@ public class DMob
 		if (damager != null) 
 		{
 			DungeonsPlayer d = DungeonsPlayerManager.i.get(damager);
-			d.kills++;
+			if (!type.id.equals("tutorial_dummy")) d.kills++;
 			if (d.kills >= 2500 && !d.questProgress.containsKey("kills_2500")) 
 			{
 				// give sir grindalot
 				InventoryHandler.addItem(d, ItemBuilder.i.build("sword_sirgrindalot", "midastouch,7", 1), false);
 				d.player.sendMessage(ChatColor.GOLD + "Kill milestone of 2500! " + ChatColor.WHITE + "Obtained Sir Grindalot!");
 				d.questProgress.put("kills_2500", "done");
+			}
+			else if (d.kills >= 10000 && !d.questProgress.containsKey("kills_10000")) 
+			{
+				// give sir grindalot
+				InventoryHandler.addItem(d, ItemBuilder.i.build("armour_grindalot_boots", 1), false);
+				d.player.sendMessage(ChatColor.GOLD + "Kill milestone of 10000! " + ChatColor.WHITE + "Obtained Grindalot's Boots!");
+				d.questProgress.put("kills_10000", "done");
 			}
 			TutorialManager.fireEvent(d, TutorialTrigger.KILL_ENEMY, type.id);
 			for (AbsEnchant e : d.stats.ench) e.onKill(d, this);
@@ -189,12 +197,12 @@ public class DMob
 	{
 		DungeonsPlayer d = DungeonsPlayerManager.i.get(damager);
 
-		d.level.give(xp());
+		if (type.level != 0) d.level.give(xp());
 		
 		for (AbsAbility a : d.stats.abilities) a.onKill(d,type);
 		int coinreward = coins() + d.stats.bonuskillcoins;
 		if (modifier != null) coinreward += 5;
-		d.coins += coinreward;
+		d.coins += (int)((double)coinreward*type.coinmulti);
 		d.explorer.add(d.area.id,1);
 		if (type.drops == null) return;
 		for (MobDrop drop : type.drops)
@@ -245,25 +253,25 @@ public class DMob
 	}
 	public void damage(int damage,DungeonsPlayer damager,DamageType dtype,boolean activateabs)
 	{
+		if (entities.get(0).isInvulnerable()) return;
 		int damageFinal = 0;
 		ChatColor indicatorColour = ChatColor.WHITE;
 		if (damager.stats.abilities != null && damager != null && activateabs) for (AbsAbility a : damager.stats.abilities) damage = a.onAttack(damager, this, damage);
+		if (damager != null && activateabs) for (String s : damager.skills.keySet()) damage = AbsSkill.skills.get(s).onAttack(damager.skills.get(s), damager, damage);
 		for (DMobAbility mab : type.abilities) damage = mab.damaged(this, damager,damage);
+		damageFinal = damage;
 		if (dtype == DamageType.TRUE) 
 		{
-			damageFinal = damage;
 			indicatorColour = ChatColor.GOLD;
 		}
 		else if (dtype == DamageType.PERCENT) damageFinal = (int) (((double)damage/100) * health);
 		else if (dtype == DamageType.MAGIC)
 		{
-			damageFinal = damage;
 			damageFinal *= 1-type.dmgresist;
 			indicatorColour = ChatColor.AQUA;
 		}
 		else
 		{
-			damageFinal = damage;
 			damageFinal -= type.armour;
 			damageFinal *= 1-type.dmgresist;
 		}
@@ -378,6 +386,10 @@ public class DMob
 			
 			LivingEntity entity;
 			if (type instanceof SkinnedType) entity = EntitySkinned.createNPC(Dungeons.w, position,this).getBukkitEntity().getPlayer();
+			else if (type instanceof CustomType)
+			{
+				entity = (LivingEntity) ((CustomType) type).customTypes.get(j).spawnEntity(position);
+			}
 			else entity = (LivingEntity)position.getWorld().spawnEntity(position, t);
 			
 			if (j == 0) ident = entity.getUniqueId();
@@ -392,6 +404,16 @@ public class DMob
 				{
 					if (StringManipulator.contains(type.entityData.get(j),"baby")) ((Ageable)entity).setBaby();
 					else ((Ageable)entity).setAdult();
+				}
+				if (entity instanceof ArmorStand)
+				{
+					if (StringManipulator.contains(type.entityData.get(j),"small")) ((ArmorStand)entity).setSmall(true);
+					if (StringManipulator.contains(type.entityData.get(j),"invisible")) ((ArmorStand)entity).setVisible(false);
+					if (StringManipulator.contains(type.entityData.get(j),"offset"))
+					{
+						entity.setGravity(false);
+						entity.teleport(entity.getLocation().subtract(0, entity.getHeight() - 0.3, 0));
+					}
 				}
 				
 				if (entity instanceof Slime)

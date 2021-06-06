@@ -73,11 +73,11 @@ spell_tsunami:
   item: WATER_BUCKET
   rarity: EPIC
   spell:
-    damage: 90
+    damage: 85
     colour: 0,50,255
-    pierces: 2
-    manacost: +20
-    speed: 0.1
+    pierces: 3
+    manacost: +24
+    speed: 0.35
 sword_hydrastar:
   name: Hydra Star
   type: weapon
@@ -112,7 +112,6 @@ essence_of_sand:
   type: artifact
   rarity: INCREDIBLE
   item: YELLOW_DYE
-  nodesc: true
   description: When inserted into the sand altar, spawns;the almighty Hydra, a three headed beast;that regrows very quickly. Summon wisely.
   
   

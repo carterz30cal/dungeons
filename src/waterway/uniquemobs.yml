@@ -46,6 +46,22 @@ creepyspiderqueen:
     spidersilk:
       drop: 1/1
       amount: 6-16
+      
+tutorial_dummy:
+  name: Dummy
+  type: ARMOR_STAND
+  health: 10
+  damage: 0
+  level: 0
+  kbresist: 1
+  equipment:
+    main: WOODEN_SWORD
+    helmet: IRON_HELMET
+    chestplate: IRON_CHESTPLATE
+  drops:
+    useful_stuff:
+      drop: 1/1
+      amount: 1-1
 jackdoom:
   name: Creeper, Aw Man!
   type: CREEPER,CREEPER,CREEPER,CREEPER

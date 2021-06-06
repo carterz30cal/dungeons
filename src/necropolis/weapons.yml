@@ -6,7 +6,7 @@ sword_bone:
   req: 8
   attributes:
     damage: +36
-    armour: +48
+    armour: +50
 sword_tissue:
   name: Tendon Whip
   type: weapon
@@ -14,17 +14,17 @@ sword_tissue:
   item: FISHING_ROD
   req: 11
   attributes:
-    damage: +38
+    damage: +42
     regen: +7
 sword_dustwhip:
   name: Dust Whip
   type: weapon
   rarity: INCREDIBLE
   item: FISHING_ROD
-  req: 13
+  req: 15
   attributes:
-    damage: +64
-    armour: -15
+    damage: +65
+    armour: -10
 sword_ghoul:
   name: Ghoul Bone
   type: weapon
@@ -57,22 +57,14 @@ sword_boneshard:
   attributes:
     damage: +60
     armour: +30
-sword_berserkersaxe:
-  name: Berserker's Axe
-  type: weapon
-  rarity: EPIC
-  item: GOLDEN_AXE
-  req: 15
-  ability: silkbonus
-  attributes:
-    damage: +70
+
 sword_slime:
   name: Corrosive Gel
   type: weapon
   rarity: EPIC
   item: SLIME_BALL
   glow: true
-  req: 11
+  req: 16
   ability: acidity
   attributes:
     damage: +55
@@ -82,10 +74,10 @@ sword_huskscythe:
   type: weapon
   rarity: EPIC
   item: IRON_HOE
-  req: 14
+  req: 15
   ability: scythe
   attributes:
-    damage: +35
+    damage: +45
     health: -15
     
 sword_sirgrindalot:
@@ -93,11 +85,11 @@ sword_sirgrindalot:
   type: weapon
   item: STONE_SWORD
   rarity: LEGENDARY
-  req: 25
+  req: 20
   description: ;One with the grind.
   attributes:
-    damage: +75
-    bonusxp: +0.65
+    damage: +70
+    bonusxp: +0.1
     
 bow_crypthunter:
   name: Crypt Hunter Longbow
@@ -115,5 +107,5 @@ bow_slime:
   req: 11
   ability: slimebow
   attributes:
-    damage: +40
+    damage: +50
     health: +100

@@ -33,7 +33,9 @@ public class DMobManager
 			"waterway/titan_mobs","waterway/mobs_fishing","waterway/mobs_sands",
 			"necropolis/skeletons","necropolis/ghouls","necropolis/slimes","necropolis/crypts_mobs1","necropolis/crypts_mobs2",
 			"necropolis/crypts_miniboss","necropolis/diggingmobs","necropolis/digging_mobs3","necropolis/crypts_mobsancient",
-			"necropolis/mushroom_mobs"
+			"necropolis/mushroom_mobs","necropolis/mobs_boss","necropolis/mobs_ancient","necropolis/mobs_ancient_boss",
+			"unique/unique_mobs","necropolis/mobs_crypts",
+			"infested/mobs_spiders","infested/mobs_hunter"
 	};
 	
 	public static DMob get(Entity e)
@@ -72,7 +74,7 @@ public class DMobManager
 	}
 	public static DMob spawn(String mob,SpawnPosition pos)
 	{
-		if (mob == null) return null;
+		if (mob == null || pos == null || pos.position == null) return null;
 		return new DMob(types.get(mob),pos,pos.position,true);
 	}
 	public static DMob spawn(String mob,SpawnPosition pos,boolean modifiers)
@@ -113,6 +115,7 @@ public class DMobManager
 			for (String mob : data.getKeys(false)) 
 			{
 				if (data.getString(mob + ".type").equals("SKINNED")) types.put(mob, new SkinnedType(data,mob));
+				else if (data.getBoolean(mob + ".loadcustom",false)) types.put(mob, new CustomType(data,mob));
 				else types.put(mob,new DMobType(data,mob));
 			}
 		}

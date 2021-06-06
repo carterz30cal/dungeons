@@ -7,6 +7,11 @@ paper:
   item: PAPER
   glow: true
   
+useful_stuff:
+  name: Useful Stuff
+  item: SNOWBALL
+  rarity: LEGENDARY
+  
 spidersilk:
   name: Spider Silk
   item: STRING

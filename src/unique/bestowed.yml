@@ -30,6 +30,16 @@ armour_flex_boots:
   description: ;Bit of a ripoff
   ability: midasboots
   
+armour_grindalot_boots:
+  name: Grindalot's Boots
+  type: armour
+  rarity: LEGENDARY
+  item: GOLDEN_BOOTS
+  description: ;Padded!
+  attributes:
+    bonusxp: +0.02
+    killcoins: +1
+  
 
 armour_carterz30calench_boots:
   name: Enchanted Midas Socks

@@ -47,6 +47,12 @@ public class EnchantManager
 		enchantments.put("growth",EnchGrowth.class);
 		enchantments.put("lethal", EnchLethal.class);
 		enchantments.put("cryptlord", EnchCryptLord.class);
+		enchantments.put("squash", EnchSquash.class);
+		enchantments.put("thorns", EnchThorns.class);
+		enchantments.put("explicious", EnchExplicious.class);
+		enchantments.put("orbs", EnchOrbs.class);
+		enchantments.put("steel", EnchSteel.class);
+		enchantments.put("corrupt",EnchCorrupt.class);
 	}
 	@Deprecated
 	public static int catalyst(ItemStack item, ItemStack book)

@@ -14,6 +14,7 @@ import org.bukkit.event.block.BlockDamageEvent;
 import org.bukkit.event.block.BlockFormEvent;
 import org.bukkit.event.block.BlockPhysicsEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.entity.EntityChangeBlockEvent;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
 import org.bukkit.inventory.ItemStack;
@@ -47,6 +48,12 @@ public class ListenerBlockEvents implements Listener
 	}
 	
 	@EventHandler
+	public void onEntityChangeBlock(EntityChangeBlockEvent e)
+	{
+		e.setCancelled(true);
+	}
+	
+	@EventHandler
 	public void onPlayerBucketEmpty(PlayerBucketEmptyEvent event)
 	{
 		event.setCancelled(true);
@@ -64,12 +71,13 @@ public class ListenerBlockEvents implements Listener
 		if (du.mining.blocks.containsKey(m))
 		{
 			DungeonMiningTable mine = new DungeonMiningTable();
+			mine.owner = d;
 			mine.xp = (int)Math.ceil(du.mining.xp);
 			
 			
 			int ores = (int) Math.floor((double)d.stats.fortune / 100);
 			if (RandomFunctions.random(1, 100) <= d.stats.fortune - (ores*100)) ores++;
-			if (ores > 0) mine.loot.put(du.mining.ores.get(m), ores * RandomFunctions.random(2, 4));
+			if (ores > 0) mine.loot.put(du.mining.ores.get(m), ores * RandomFunctions.random(3, 6));
 			for (AbsEnchant enchant : EnchantManager.get(e.getPlayer().getInventory().getItemInMainHand().getItemMeta().getPersistentDataContainer()))
 			{
 				if (enchant == null) continue;
@@ -86,7 +94,7 @@ public class ListenerBlockEvents implements Listener
 			if (mine.loot.size() > 0)
 			{
 				new SoundTask(e.getPlayer().getLocation(),e.getPlayer(),Sound.ENTITY_ITEM_PICKUP,1f,0.5f).runTask(Dungeons.instance);
-				d.level.give(mine.xp);
+				d.level.giveFlat(mine.xp);
 			}
 			else d.player.playSound(d.player.getLocation(), Sound.BLOCK_STONE_BREAK, 1, 1);
 			

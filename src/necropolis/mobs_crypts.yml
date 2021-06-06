@@ -1,0 +1,402 @@
+crypt_corrupt_regular1:
+  name: Corrupt Zombie
+  type: ZOMBIE
+  health: 500
+  damage: 120
+  speed: 1.2
+  kbresist: 1
+  level: 6
+  equipment: 
+    main: WOODEN_HOE
+    chestplate: armour_soul_chestplate
+  drops:
+    decaying_flesh:
+      drop: 1/3
+      amount: 1-2
+    armour_corrupt_helmet:
+      drop: 1/200
+      amount: 1-1
+      rare: true
+    armour_corrupt_chestplate:
+      drop: 1/200
+      amount: 1-1
+      rare: true
+    armour_corrupt_leggings:
+      drop: 1/200
+      amount: 1-1
+      rare: true
+    armour_corrupt_boots:
+      drop: 1/200
+      amount: 1-1
+      rare: true
+      
+crypt_corrupt_soldier1:
+  name: Corrupt Soldier
+  type: SKELETON
+  health: 700
+  armour: 8
+  damage: 110
+  kbresist: 0.5
+  speed: 0.8
+  level: 7
+  equipment:
+    main: IRON_SWORD
+    helmet: armour_corrupt_helmet
+    chestplate: armour_corrupt_chestplate
+    leggings: armour_undeadsoldier_leggings
+    boots: armour_undeadsoldier_boots
+  drops:
+    decaying_flesh:
+      drop: 1/3
+      amount: 1-2
+    armour_corrupt_helmet:
+      drop: 1/200
+      amount: 1-1
+      rare: true
+    armour_corrupt_chestplate:
+      drop: 1/200
+      amount: 1-1
+      rare: true
+    armour_corrupt_leggings:
+      drop: 1/200
+      amount: 1-1
+      rare: true
+    armour_corrupt_boots:
+      drop: 1/200
+      amount: 1-1
+      rare: true
+      
+crypt_corrupt_rune1:
+  name: Corrupt Rune Mage
+  type: WITHER_SKELETON
+  health: 1111
+  armour: 30
+  damage: 0
+  level: 9
+  speed: 0.05
+  equipment: 
+    main: NETHERITE_SHOVEL
+    helmet: NETHERITE_HELMET
+    chestplate: armour_soul_chestplate
+    leggings: armour_corrupt_leggings
+    boots: armour_corrupt_boots
+  drops:
+    decaying_flesh:
+      drop: 1/3
+      amount: 1-2
+    armour_corrupt_helmet:
+      drop: 1/200
+      amount: 1-1
+      rare: true
+    armour_corrupt_chestplate:
+      drop: 1/200
+      amount: 1-1
+      rare: true
+    armour_corrupt_leggings:
+      drop: 1/200
+      amount: 1-1
+      rare: true
+    armour_corrupt_boots:
+      drop: 1/200
+      amount: 1-1
+      rare: true
+  abilities:
+    caster:
+      projectiles: -1
+      speed: 4
+      range: 12
+      damage: 20
+      cooldown: 10
+      colour: 20,20,20
+      
+crypt_corrupt_regular2:
+  name: Corrupt Zombie
+  type: ZOMBIE
+  health: 1400
+  damage: 160
+  speed: 1.2
+  kbresist: 1
+  level: 7
+  equipment: 
+    main: WOODEN_HOE
+    chestplate: armour_soul_chestplate
+  drops:
+    decaying_flesh:
+      drop: 1/3
+      amount: 1-2
+    armour_corrupt_helmet:
+      drop: 1/200
+      amount: 1-1
+      rare: true
+    armour_corrupt_chestplate:
+      drop: 1/200
+      amount: 1-1
+      rare: true
+    armour_corrupt_leggings:
+      drop: 1/200
+      amount: 1-1
+      rare: true
+    armour_corrupt_boots:
+      drop: 1/200
+      amount: 1-1
+      rare: true
+      
+crypt_corrupt_soldier2:
+  name: Corrupt Soldier
+  type: SKELETON
+  health: 1300
+  armour: 16
+  damage: 125
+  kbresist: 0.5
+  speed: 0.8
+  level: 8
+  equipment:
+    main: IRON_SWORD
+    helmet: armour_corrupt_helmet
+    chestplate: armour_corrupt_chestplate
+    leggings: armour_undeadsoldier_leggings
+    boots: armour_undeadsoldier_boots
+  drops:
+    decaying_flesh:
+      drop: 1/3
+      amount: 1-2
+    armour_corrupt_helmet:
+      drop: 1/200
+      amount: 1-1
+      rare: true
+    armour_corrupt_chestplate:
+      drop: 1/200
+      amount: 1-1
+      rare: true
+    armour_corrupt_leggings:
+      drop: 1/200
+      amount: 1-1
+      rare: true
+    armour_corrupt_boots:
+      drop: 1/200
+      amount: 1-1
+      rare: true
+      
+crypt_corrupt_rune2:
+  name: Corrupt Rune Mage
+  type: WITHER_SKELETON
+  health: 1666
+  armour: 60
+  damage: 0
+  level: 9
+  speed: 0.05
+  equipment: 
+    main: NETHERITE_SHOVEL
+    helmet: NETHERITE_HELMET
+    chestplate: armour_soul_chestplate
+    leggings: armour_corrupt_leggings
+    boots: armour_corrupt_boots
+  drops:
+    decaying_flesh:
+      drop: 1/3
+      amount: 1-2
+    armour_corrupt_helmet:
+      drop: 1/200
+      amount: 1-1
+      rare: true
+    armour_corrupt_chestplate:
+      drop: 1/200
+      amount: 1-1
+      rare: true
+    armour_corrupt_leggings:
+      drop: 1/200
+      amount: 1-1
+      rare: true
+    armour_corrupt_boots:
+      drop: 1/200
+      amount: 1-1
+      rare: true
+  abilities:
+    caster:
+      projectiles: -1
+      speed: 4
+      range: 12
+      damage: 35
+      cooldown: 10
+      colour: 20,20,20
+      
+crypt_corrupt_regular3:
+  name: Corrupt Zombie
+  type: ZOMBIE
+  health: 1400
+  damage: 160
+  speed: 1.2
+  kbresist: 1
+  level: 7
+  equipment: 
+    main: WOODEN_HOE
+    chestplate: armour_corrupt_chestplate
+  drops:
+    decaying_flesh:
+      drop: 1/3
+      amount: 1-2
+    armour_corrupt_helmet:
+      drop: 1/200
+      amount: 1-1
+      rare: true
+    armour_corrupt_chestplate:
+      drop: 1/200
+      amount: 1-1
+      rare: true
+    armour_corrupt_leggings:
+      drop: 1/200
+      amount: 1-1
+      rare: true
+    armour_corrupt_boots:
+      drop: 1/200
+      amount: 1-1
+      rare: true
+      
+crypt_corrupt_soldier3:
+  name: Corrupt Soldier
+  type: SKELETON
+  health: 1300
+  armour: 16
+  damage: 125
+  kbresist: 0.5
+  speed: 0.8
+  level: 7
+  equipment:
+    main: IRON_SWORD
+    helmet: armour_undeadsoldier_helmet
+    chestplate: armour_undeadsoldier_chestplate
+    leggings: armour_undeadsoldier_leggings
+    boots: armour_undeadsoldier_boots
+  drops:
+    decaying_flesh:
+      drop: 1/3
+      amount: 1-2
+    armour_corrupt_helmet:
+      drop: 1/200
+      amount: 1-1
+      rare: true
+    armour_corrupt_chestplate:
+      drop: 1/200
+      amount: 1-1
+      rare: true
+    armour_corrupt_leggings:
+      drop: 1/200
+      amount: 1-1
+      rare: true
+    armour_corrupt_boots:
+      drop: 1/200
+      amount: 1-1
+      rare: true
+      
+crypt_corrupt_rune3:
+  name: Corrupt Rune Mage
+  type: WITHER_SKELETON
+  health: 3666
+  armour: 60
+  damage: 0
+  level: 9
+  speed: 0.05
+  equipment: 
+    main: NETHERITE_SHOVEL
+    helmet: NETHERITE_HELMET
+    chestplate: armour_soul_chestplate
+    leggings: armour_corrupt_leggings
+    boots: armour_corrupt_boots
+  drops:
+    decaying_flesh:
+      drop: 1/3
+      amount: 1-2
+    armour_corrupt_helmet:
+      drop: 1/200
+      amount: 1-1
+      rare: true
+    armour_corrupt_chestplate:
+      drop: 1/200
+      amount: 1-1
+      rare: true
+    armour_corrupt_leggings:
+      drop: 1/200
+      amount: 1-1
+      rare: true
+    armour_corrupt_boots:
+      drop: 1/200
+      amount: 1-1
+      rare: true
+  abilities:
+    caster:
+      projectiles: -1
+      speed: 4
+      range: 12
+      damage: 35
+      cooldown: 10
+      colour: 20,20,20
+      
+crypt_corrupt_regular4:
+  name: Ancient Corruptor
+  type: ZOMBIE
+  health: 2000
+  damage: 160
+  speed: 1.2
+  kbresist: 1
+  level: 8
+  tags: ancient
+  equipment: 
+    main: NETHERITE_HOE
+    helmet: NETHERITE_HELMET
+    chestplate: armour_soul_chestplate
+  drops:
+    decaying_flesh:
+      drop: 1/3
+      amount: 1-2
+    armour_corrupt_helmet:
+      drop: 1/200
+      amount: 1-1
+      rare: true
+    armour_corrupt_chestplate:
+      drop: 1/200
+      amount: 1-1
+      rare: true
+    armour_corrupt_leggings:
+      drop: 1/200
+      amount: 1-1
+      rare: true
+    armour_corrupt_boots:
+      drop: 1/200
+      amount: 1-1
+      rare: true
+      
+crypt_corrupt_soldier4:
+  name: Corrupted Precursor Servant
+  type: SKELETON
+  health: 7000
+  armour: 40
+  damage: 3000
+  kbresist: 1
+  speed: 0.6
+  level: 10
+  equipment:
+    main: IRON_SWORD
+    helmet: armour_corrupt_helmet
+    chestplate: armour_corrupt_chestplate
+    leggings: armour_undeadsoldier_leggings
+    boots: armour_undeadsoldier_boots
+  drops:
+    decaying_flesh:
+      drop: 1/3
+      amount: 1-2
+    armour_corrupt_helmet:
+      drop: 1/200
+      amount: 1-1
+      rare: true
+    armour_corrupt_chestplate:
+      drop: 1/200
+      amount: 1-1
+      rare: true
+    armour_corrupt_leggings:
+      drop: 1/200
+      amount: 1-1
+      rare: true
+    armour_corrupt_boots:
+      drop: 1/200
+      amount: 1-1
+      rare: true

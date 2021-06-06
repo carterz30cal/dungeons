@@ -18,8 +18,8 @@ public class AbilityHealingWand1 extends AbsAbility {
 		ArrayList<String> d = new ArrayList<>();
 		d.add(prefix + "Healer");
 		d.add("Right click to heal for");
-		d.add("30 + 28% of your maximum mana");
-		d.add(ChatColor.BLUE + "Consumes 70% of your mana");
+		d.add("40 + 28% of your maximum mana");
+		d.add(ChatColor.BLUE + "Consumes 60% of your mana");
 		return d;
 	}
 	
@@ -27,8 +27,8 @@ public class AbilityHealingWand1 extends AbsAbility {
 	{
 		if (e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK)
 		{
-			if (!d.useMana((int) (d.stats.mana * 0.7))) return false;
-			int healing = (int) (30 + (d.stats.mana * 0.28));
+			if (!d.useMana((int) (d.stats.mana * 0.6))) return false;
+			int healing = (int) (40 + (d.stats.mana * 0.28));
 			d.player.playSound(d.player.getLocation(),Sound.BLOCK_NOTE_BLOCK_PLING,0.65f,1.3f);
 			d.player.sendMessage(ChatColor.GREEN + "You healed for " + healing + " health!");
 			d.heal(healing);

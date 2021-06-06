@@ -20,6 +20,7 @@ public class TaskArmourstand extends BukkitRunnable {
 	public void run() {
 		if (entity.display == null || !entity.display.isValid())
 		{
+			if (entity.health > 0) entity.remove();
 			cancel();
 			return;
 		}

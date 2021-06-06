@@ -1,0 +1,109 @@
+biomass_blade:
+  product: biomass_blade
+  req: Necropolis Lord
+  materials:
+    X: biomass,32
+    S: handle,1
+  pattern: sword
+  
+venom_bite:
+  product: venom_bite
+  req: Necropolis Lord
+  materials:
+    S: biomass_blade,1
+    F: spider_fang,2
+    H: handle,1
+  recipe:
+    0: 0 F 0
+    1: 0 S 0
+    2: 0 H 0
+    
+fanged_axe:
+  product: fanged_axe
+  req: Necropolis Lord
+  materials:
+    F: spider_fang,1
+    H: handle,1
+  recipe:
+    0: 0 F F
+    1: 0 H F
+    2: 0 H 0
+    
+egg_buster:
+  product: egg_buster
+  req: Necropolis Lord
+  materials:
+    E: spider_egg,3
+    H: handle,1
+  recipe:
+    0: E H 0
+    1: 0 H 0
+    2: 0 H 0
+    
+wand_web:
+  product: wand_web
+  req: Necropolis Lord
+  materials:
+    E: spider_egg,1
+    W: wand_sewer,1
+    X: web_fiber,32
+  recipe:
+    0: 0 E 0
+    1: 0 W 0
+    2: 0 X 0
+    
+hunters_knife:
+  product: hunters_knife
+  req: Necropolis Lord
+  materials:
+    T: tarantula_fang,1
+    H: handle,1
+  recipe:
+    0: 0 T 0
+    1: 0 T 0
+    2: 0 H 0
+hunters_knife2:
+  product: hunters_knife2
+  req: Necropolis Lord
+  materials:
+    U: hunters_knife,1
+    X: tarantula_fang,1
+  pattern: upgrade
+  
+hunters_knife3:
+  product: hunters_knife3
+  req: Necropolis Lord
+  materials:
+    U: hunters_knife2,1
+    B: tarantula_blood,1
+    X: web_fiber,64
+    F: tarantula_fang,3
+  recipe:
+    0: F B F
+    1: X U X
+    2: 0 B 0
+    
+hunters_knife4:
+  product: hunters_knife4
+  req: Necropolis Lord
+  materials:
+    U: hunters_knife3,1
+    B: tarantula_blood,1
+    X: tarantula_jewel,1
+    F: tarantula_fang,16
+  recipe:
+    0: B X B
+    1: B U B
+    2: B F B
+    
+bleeding_edge:
+  product: sharpener_bleedingedge
+  req: Necropolis Lord
+  materials:
+    S: sharpener_steeledge,1
+    B: tarantula_blood,1
+  recipe:
+    0: 0 S 0
+    1: S B S
+    2: 0 S 0
+  

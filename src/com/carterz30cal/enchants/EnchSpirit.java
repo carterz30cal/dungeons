@@ -20,7 +20,7 @@ public class EnchSpirit extends AbsEnchant {
 	@Override
 	public int max() {
 		// TODO Auto-generated method stub
-		return 3;
+		return 4;
 	}
 
 	@Override

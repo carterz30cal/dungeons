@@ -1,0 +1,60 @@
+biomass:
+  name: Biomass
+  type: ingredient
+  rarity: COMMON
+  item: LIME_DYE
+  description: ;Somehow the caverns spark with life;despite the obvious lack of sunlight.
+  
+web_fiber:
+  name: Cavern Web Fiber
+  type: ingredient
+  rarity: COMMON
+  item: WHITE_DYE
+  description: ;Carefully extracted from nests, this;is one of the strongest materials;known to mankind.
+  
+spider_fang:
+  name: Spider Fang
+  type: ingredient
+  rarity: RARE
+  item: GHAST_TEAR
+  description: ;Whilst not as rare as a tarantula;fang, these are still highly sought;after for their potent venom.
+  
+tarantula_fang:
+  name: Tarantula Fang
+  type: ingredient
+  rarity: EPIC
+  item: GHAST_TEAR
+  glow: true
+  description: ;Highly prized and very rare, the;tarantula fang is known for it's;incredibly potent venom and;deadly beauty.
+  
+tarantula_blood:
+  name: Tarantula Blood
+  type: ingredient
+  rarity: INCREDIBLE
+  item: BEETROOT_SOUP
+  description: ;Technically not blood, but close;enough. It contains many;powerful magics that we barely;understand. Highly useful.
+  
+tarantula_jewel:
+  name: Broodmother Jewel
+  type: ingredient
+  rarity: LEGENDARY
+  item: DIAMOND
+  description: ;Incredibly rare and priceless, this;is used to make some seriously;powerful gear. Treat with respect.
+  
+  
+handle:
+  name: Weapon Handle
+  type: ingredient
+  rarity: RARE
+  item: STICK
+  description: ;Much better quality than those;sticks that you're used to.
+  
+spider_egg:
+  name: Spider Egg
+  type: ingredient
+  rarity: RARE
+  item: PLAYER_HEAD
+  skull:
+    data: ewogICJ0aW1lc3RhbXAiIDogMTYyMDgzNDcwNDA2MSwKICAicHJvZmlsZUlkIiA6ICJmOTJiZDcxNGE0NmE0MmQ0OTQ1ZjdiMGNmNzExMDllNiIsCiAgInByb2ZpbGVOYW1lIiA6ICJzaGlrb2xpbmsiLAogICJzaWduYXR1cmVSZXF1aXJlZCIgOiB0cnVlLAogICJ0ZXh0dXJlcyIgOiB7CiAgICAiU0tJTiIgOiB7CiAgICAgICJ1cmwiIDogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2UwMjRiNjY5MzNjMTZjYTY4Yzk5MDYxZDEzMDU2YjU0MTM4MjBmNmQ0YWI2YjUzYjljZDEwNmRiZDY4ZTY4IiwKICAgICAgIm1ldGFkYXRhIiA6IHsKICAgICAgICAibW9kZWwiIDogInNsaW0iCiAgICAgIH0KICAgIH0KICB9Cn0=
+    sig: q49URP5jc2loAfC7vLJgZgPclesTRmbzeUjqR3+4Rm8GXl5beHUaczlgGDIWPCMJlJF3RW93iAAdqbiWUJHmLFU67t5/UGrA2zZ69i2VVziy6K4lsrDkRf1npwOCjs+cdOhb+t6wky/8sbnQNxYKuzSoRlQSdEF3kKwoRByQ2Ac8dz6GjcQijCgYAOI0oFRdyzI1vTIWh8PPP3HKueaeZp8XpHBK4F5qNV00NDgbzjTf0LD3qByc7dIHKo2C0uTCZsnpEDm1pXs3foiA+DL7/lSFaWwXmjuwGWhfG/muFLTiFZ9DHoVLRzs8UZqwaLaWpdvBeI60isLwtTUifq2eONwBBcrWVMoYrGsvDvd3usiJz5IuULeFESrw1+k+c3fDCCCGEjNH3XSH4K0iQ2fqWQF/+NA9Txb/VRxAdWQSUVIfN1inxxamYyQ5XqhzELBcl4+lXYOHhd8wUjAv7qd8UL7U2AB3q3d3MVPD0aghijtc9nkjL4xawmqbrf/IITZptX7p56fbY3CUjyA8+OUOQ5LM5ySx0MnmQu+mBc/KXoLj7n8cY4af4ot6MQFUbzIENVbRPGHBaWGhminwtlSVHa9z861/jQHs2EvdJKgeTcYYNuP9vnZ7bfO9717GtlBj1vB3AuqVtlB4juEnYicQqtDhOmSEcNi26wvEkhaf4uI=
+  description: ;These are abundant in the caverns.

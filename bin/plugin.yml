@@ -1,9 +1,9 @@
 name: Dungeons
 author: carterz30cal
 main: com.carterz30cal.dungeons.Dungeons
-version: 0.1.8
+version: 0.1.15
 api-version: 1.13
-depend: [ProtocolLib]
+depend: [ProtocolLib,Votifier]
 commands:
  dungeons:
   description: "all command functionality for dungeons."
@@ -26,7 +26,7 @@ commands:
   usage: "/market"
   aliases: mk
  stats:
-  description: "admin stats stuff"
+  description: "see your stats!"
   usage: "you don't."
  playtime:
   description: "see how long you've played for"
@@ -37,4 +37,9 @@ commands:
  maxitem:
   description: "max held item"
   usage: "This command is admin-only"
+ tutorial:
+  description: "go through the tutorial again"
+  usage: "Players only"
+ vote:
+  description: "links to voting sites"
   

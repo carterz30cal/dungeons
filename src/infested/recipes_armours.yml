@@ -1,0 +1,82 @@
+tiki_helmet:
+  product: armour_tiki_helmet
+  req: Necropolis Lord
+  materials:
+    X: biomass,24
+    U: armour_leaf_helmet,1
+  pattern: upgrade
+  
+tiki_chestplate:
+  product: armour_tiki_chestplate
+  req: Necropolis Lord
+  materials:
+    X: biomass,24
+    U: armour_leaf_chestplate,1
+  pattern: upgrade
+  
+tiki_leggings:
+  product: armour_tiki_leggings
+  req: Necropolis Lord
+  materials:
+    X: biomass,24
+    U: armour_leaf_leggings,1
+  pattern: upgrade
+  
+tiki_boots:
+  product: armour_tiki_boots
+  req: Necropolis Lord
+  materials:
+    X: biomass,24
+    U: armour_leaf_boots,1
+  pattern: upgrade
+  
+biomass_helmet:
+  product: armour_biomass_helmet
+  req: Necropolis Lord
+  materials:
+    X: biomass,18
+    U: armour_mush_helmet,1
+  pattern: upgrade
+  
+biomass_chestplate:
+  product: armour_biomass_chestplate
+  req: Necropolis Lord
+  materials:
+    X: biomass,18
+    U: armour_mush_chestplate,1
+  pattern: upgrade
+  
+biomass_leggings:
+  product: armour_biomass_leggings
+  req: Necropolis Lord
+  materials:
+    X: biomass,18
+    U: armour_mush_leggings,1
+  pattern: upgrade
+  
+biomass_boots:
+  product: armour_biomass_boots
+  req: Necropolis Lord
+  materials:
+    X: biomass,18
+    U: armour_mush_boots,1
+  pattern: upgrade
+  
+egg_hat:
+  product: armour_egg_helmet
+  req: Necropolis Lord
+  materials:
+    X: spider_egg,1
+  pattern: helmet
+  
+tarantula_crown:
+  product: armour_tarantula_helmet
+  req: Necropolis Lord
+  materials:
+    A: armour_web_helmet,1
+    F: tarantula_fang,2
+    H: spider_fang,4
+  recipe:
+    0: 0 H 0
+    1: F A F
+  

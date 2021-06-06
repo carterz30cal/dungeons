@@ -74,7 +74,7 @@ manacultist:
   set:
     lore: The robe contains ancient power
     attributes:
-      mana: +400
+      mana: +1200
 silk:
   set:
     lore: Silk is slippery

@@ -13,7 +13,7 @@ public class CommandHub implements CommandExecutor
 	@Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
 	{
-		if (sender instanceof Player)
+		if (sender instanceof Player && args.length > 0)
 		{
 			Player send = (Player)sender;
 			DungeonsPlayer dp = DungeonsPlayerManager.i.get(send);

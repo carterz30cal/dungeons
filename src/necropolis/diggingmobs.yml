@@ -409,11 +409,12 @@ digging_axe2:
 digging_boss2:
   name: Precursor Golem
   type: IRON_GOLEM
-  health: 15000
-  damage: 170
-  armour: 30
+  health: 17500
+  damage: 180
+  armour: 35
   speed: 0.5
   dmgresist: 0
+  kbresist: 1
   tags: ancient
   level: 10
   abilities:
