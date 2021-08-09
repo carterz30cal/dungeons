@@ -143,7 +143,7 @@ public class DungeonsPlayerStats
 		
 		miningspeed = 0;
 		
-		luck = 25;
+		luck = 0;
 		fishingspeed = 100;
 		
 		engine = null;
