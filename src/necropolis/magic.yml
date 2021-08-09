@@ -4,11 +4,11 @@ spell_sewerscroll:
   rarity: RARE
   item: WRITABLE_BOOK
   spell:
-    mana: 7
-    damage: 90
+    mana: 3
+    damage: 170
     colour: 0,168,100
-    pierces: 2
-    speed: 0.55
+    pierces: 3
+    speed: 0.7
 wand_sewer:
   name: Sewer Wand
   type: wand

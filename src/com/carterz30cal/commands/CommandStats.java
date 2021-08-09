@@ -27,7 +27,8 @@ public class CommandStats implements CommandExecutor
 			sender.sendMessage(ChatColor.GOLD + "" + ChatColor.BOLD + "Server Stats");
 			sender.sendMessage(ChatColor.GRAY + "Coins spent in shops: " + Stats.coinsspent);
 			sender.sendMessage(ChatColor.GRAY + "Mobs killed: " + Stats.mobskilled);
-			sender.sendMessage(ChatColor.GRAY + "Crypts Opened: " + Stats.cryptsopened);
+			sender.sendMessage(ChatColor.GRAY + "Crypts opened: " + Stats.cryptsopened);
+			sender.sendMessage(ChatColor.GRAY + "Server votes: " + Stats.servervotes);
 		}
 		
 		return true;

@@ -106,4 +106,16 @@ bleeding_edge:
     0: 0 S 0
     1: S B S
     2: 0 S 0
+    
+enchanted_sword:
+  product: enchanted_sword
+  req: Necropolis Lord
+  materials:
+    A: sword_ancientassassin,1
+    J: tarantula_jewel,1
+    T: digging_truthcrystal,1
+  recipe:
+    0: 0 J 0
+    1: 0 A 0
+    2: 0 T 0
   

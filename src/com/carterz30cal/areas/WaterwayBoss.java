@@ -141,14 +141,14 @@ public class WaterwayBoss extends AbsDungeonEvent
 				players.sort((a,b) -> a.getHealth() > b.getHealth() ? -1 : 1);
 				DungeonsPlayer strongest = players.get(0);
 				
-				if (strongest.getHealth() < 90)
+				if (strongest.getHealth() < 120)
 				{
 					new TaskSendMsg(players,ChatColor.RED + "Dried Drench: " + ChatColor.WHITE + "You're all so weak!",1);
 				}
 				else
 				{
 					new TaskSendMsg(players,ChatColor.RED + "Dried Drench: " + ChatColor.WHITE + strongest.player.getDisplayName() + " is too strong! Let's zap them!",1);
-					strongest.lightning(85);
+					strongest.lightning(105);
 				}
 			}
 			else if (tick == 450)
@@ -167,18 +167,18 @@ public class WaterwayBoss extends AbsDungeonEvent
 			for (DMob m : phase1) if (m.health < 1) remove.add(m);
 			phase1.removeAll(remove);
 			
-			if (boss.health < 750 && !onLastStand)
+			if (boss.health < 1200 && !onLastStand)
 			{
 				onLastStand = true;
 				
 				for (DungeonsPlayer d : players)
 				{
 					d.player.sendMessage(ChatColor.RED + "Dried Drench: " + ChatColor.WHITE + "I will NOT be defeated by YOU!");
-					d.player.sendMessage(ChatColor.RED + "Dried Drench " + ChatColor.GRAY + "used "+ChatColor.DARK_RED + "Wrath " +ChatColor.GRAY + "on you and reduced your health by 40%!");
+					d.player.sendMessage(ChatColor.RED + "Dried Drench " + ChatColor.GRAY + "used "+ChatColor.DARK_RED + "Wrath " +ChatColor.GRAY + "on you and reduced your health by 55%!");
 					d.player.playSound(boss.entities.get(0).getLocation(), Sound.ENTITY_WITHER_DEATH, 0.4f, 1);
 					
 					d.lightning(0);
-					d.setHealth(d.getHealthPercent()-0.4);
+					d.setHealth(d.getHealthPercent()*0.45);
 				}
 				phase1.add(DMobManager.spawn("waterwayboss_sniper", new SpawnPosition(-96.3, 103, 21010.5),false));
 				phase1.add(DMobManager.spawn("waterwayboss_sniper", new SpawnPosition(-108.5, 103, 21010.5),false));
@@ -201,7 +201,7 @@ public class WaterwayBoss extends AbsDungeonEvent
 
 							@Override
 							public void run() {
-								d.lightning(14);
+								d.lightning(18);
 							}
 							
 						}.runTaskLater(Dungeons.instance, i*10);
@@ -228,7 +228,7 @@ public class WaterwayBoss extends AbsDungeonEvent
 						if (boss == null || times == 12 || boss.health < 1) cancel();
 						
 						for (int p = 0; p < 7;p++) ParticleFunctions.stationary(RandomFunctions.offset(boss.entities.get(0).getLocation().add(0,1,0), 0.8), Particle.VILLAGER_HAPPY, 1);
-						boss.heal(42);
+						boss.heal(44);
 					}
 					
 				}.runTaskTimer(Dungeons.instance, 25, 15);

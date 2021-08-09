@@ -3,6 +3,8 @@ package com.carterz30cal.items.abilities.runes;
 import java.util.ArrayList;
 
 import com.carterz30cal.items.abilities.AbsAbility;
+import com.carterz30cal.mobs.DMob;
+import com.carterz30cal.mobs.DamageType;
 import com.carterz30cal.player.DungeonsPlayer;
 
 public class RuneSlayer extends AbsAbility
@@ -13,12 +15,19 @@ public class RuneSlayer extends AbsAbility
 	{
 		ArrayList<String> d = new ArrayList<String>();
 		d.add(rune + "Slayer");
-		d.add("Overkill is 15% easier to activate");
+		d.add("Gain double coins from overkill");
+		d.add("and heal for 20❤ every time it procs.");
+		d.add("Also deal 5 true damage on every hit.");
 		return d;
 	}
-
-	public void onTick  (DungeonsPlayer d)
+	public int onAttack(DungeonsPlayer d,DMob dMob,int damage) 
 	{
-		d.stats.overkiller += 0.15;
-	}
+		dMob.damage(5, d, DamageType.TRUE);
+		return damage;
+	} 
+	public int onOverkill(DungeonsPlayer d,DMob mob,int overkillamount) 
+	{
+		d.heal(20);
+		return overkillamount;
+	};
 }

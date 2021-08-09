@@ -26,7 +26,7 @@ quality_bow:
   req: Necropolis Lord
   materials:
     H: handle,1
-    W: web_fiber,10
+    W: web_fiber,12
   recipe:
     0: 0 H W
     1: H 0 W

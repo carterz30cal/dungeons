@@ -41,7 +41,7 @@ public class SkillXpBoost extends AbsSkill {
 	@Override
 	public int max() {
 		// TODO Auto-generated method stub
-		return 4;
+		return 5;
 	}
 
 	@Override

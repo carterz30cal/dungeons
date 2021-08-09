@@ -7,7 +7,8 @@ import com.carterz30cal.utility.StringManipulator;
 
 public enum CryptVariant
 {
-	CORRUPT("The incessant plague has corrupted this crypt..");
+	CORRUPT("The incessant plague has corrupted this crypt.."),
+	LIVING("This crypt is home to the evils of nature.");
 	
 	private String message;
 	

@@ -1,0 +1,41 @@
+infested_slime1:
+  name: Aeroslime
+  type: SLIME
+  data: 
+    0: size:2
+  level: 10
+  health: 1800
+  damage: 330
+  armour: 110
+  speed: 0.8
+  drops:
+    slime_chunk:
+      drop: 1/1
+      amount: 1-3
+    aeroslime:
+      drop: 1/9
+      amount: 1-1
+    randomnote:
+      drop: 1/200
+      amount: 1-1
+      rare: true
+    slime_sword:
+      drop: 1/75
+      amount: 1-1
+      rare: true
+      
+infested_drenched:
+  name: Drenched
+  type: DROWNED
+  level: 10
+  health: 400
+  damage: 380
+  armour: 60
+  dmgresist: 0.8
+  speed: 0.9
+  equipment:
+    main: DIAMOND_SWORD
+    helmet: armour_water_helmet
+    chestplate: armour_water_chestplate
+    leggings: armour_water_leggings
+    boots: armour_water_boots

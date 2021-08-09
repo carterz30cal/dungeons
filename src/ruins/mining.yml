@@ -1,0 +1,78 @@
+rough_pickaxe:
+  name: Rough Pickaxe
+  type: tool
+  item: STONE_PICKAXE
+  rarity: COMMON
+  areareq: abyssalruins
+  req: 35
+  attributes:
+    miningspeed: 40
+    fortune: 100
+    
+shard_pickaxe:
+  name: Pickaxe of Shards
+  type: tool
+  item: IRON_PICKAXE
+  rarity: RARE
+  areareq: abyssalruins
+  req: 36
+  attributes:
+    miningspeed: 50
+    fortune: 110
+    
+fractal_pickaxe:
+  name: Fractal Pickaxe
+  type: tool
+  item: GOLDEN_PICKAXE
+  rarity: EPIC
+  areareq: abyssalruins
+  req: 37
+  attributes:
+    miningspeed: 65
+    fortune: 140
+   
+light_pickaxe:
+  name: Pickaxe of the Light
+  type: tool
+  item: IRON_PICKAXE
+  glow: true
+  rarity: INCREDIBLE
+  areareq: abyssalruins
+  req: 38
+  attributes:
+    miningspeed: 80
+    fortune: 155
+    
+renowned_pickaxe:
+  name: Renowned Light Pickaxe
+  type: tool
+  item: DIAMOND_PICKAXE
+  rarity: LEGENDARY
+  areareq: abyssalruins
+  req: 40
+  attributes:
+    miningspeed: 100
+    fortune: 170
+    
+abyss_pickaxe:
+  name: Pick of the Abyss
+  type: tool
+  item: IRON_PICKAXE
+  rarity: LEGENDARY
+  areareq: abyssalruins
+  req: 41
+  attributes:
+    miningspeed: 333
+    
+light_placer:
+  name: Rod of Infinite Light
+  type: artifact
+  item: BLAZE_ROD
+  rarity: RARE
+  areareq: abyssalruins
+  ability: lightplacer
+    
+    
+  
+  
+  

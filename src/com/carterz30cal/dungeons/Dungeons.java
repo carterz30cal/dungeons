@@ -17,14 +17,16 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+import com.carterz30cal.areas.AbyssArea;
 import com.carterz30cal.areas.EventTicker;
 import com.carterz30cal.areas.InfestedHunter;
+import com.carterz30cal.areas.InfestedTemple;
+import com.carterz30cal.areas.InfestedTimeShop;
 import com.carterz30cal.areas.NecropolisBoss;
 import com.carterz30cal.areas.NecropolisCrypts2;
 import com.carterz30cal.areas.WaterwayBoss;
 import com.carterz30cal.areas.WaterwayRain;
 import com.carterz30cal.areas.WaterwaySandMiniboss;
-import com.carterz30cal.areas.WaterwaySpearFishing;
 import com.carterz30cal.areas.WaterwayTutorial;
 import com.carterz30cal.bosses.BossManager;
 import com.carterz30cal.commands.*;
@@ -62,9 +64,14 @@ import com.comphenix.protocol.events.PacketEvent;
 import com.comphenix.protocol.wrappers.EnumWrappers;
 
 import net.md_5.bungee.api.ChatColor;
+
+
 public class Dungeons extends JavaPlugin 
 {
 	public static Dungeons instance;
+	
+	
+	
 	public static long scoreboardTick;
 	public static World w;
 	private ListenerEntityDamage damager;
@@ -84,6 +91,7 @@ public class Dungeons extends JavaPlugin
 	private Map<Player,Integer> discordprompts = new HashMap<>();
 	
 	public HashMap<Block,TaskBlockReplace> blocks;
+	public BukkitRunnable miningTask;
 	@Override
 	public void onEnable()
 	{
@@ -105,6 +113,7 @@ public class Dungeons extends JavaPlugin
 		regen = new RegenTask();
 		
 		initFiles();
+		RandomFunctions.r = new Random();
 		
 		new AbilityManager();
 		new EnchantManager();
@@ -119,15 +128,18 @@ public class Dungeons extends JavaPlugin
 		
 		new EventTicker();
 		new WaterwayRain();
-		new WaterwaySpearFishing();
+		//new WaterwaySpearFishing();
 		new WaterwayBoss();
 		new WaterwaySandMiniboss();
-		new WaterwayTutorial();
+		//new WaterwayTutorial();
 		new NecropolisCrypts2();
 		new InfestedHunter();
 		new NecropolisBoss();
+		new InfestedTimeShop();
+		new InfestedTemple();
+		//new AbyssArea();
 		
-		RandomFunctions.r = new Random();
+		
 		//-69, 100, 20994
 		
 		blocks = new HashMap<Block,TaskBlockReplace>();
@@ -135,7 +147,7 @@ public class Dungeons extends JavaPlugin
 		
 		display.runTaskTimer(this, 0, 5);
 		regen.runTaskTimer(this, 0, 40);
-		new TaskSpawn().runTaskTimer(Dungeons.instance, 0, 260);
+		new TaskSpawn().runTaskTimer(Dungeons.instance, 0, 180);
 		
 		PluginManager pm = getServer().getPluginManager();
 		
@@ -158,10 +170,11 @@ public class Dungeons extends JavaPlugin
 		getCommand("maxitem").setExecutor(new CommandMaxItem());
 		getCommand("tutorial").setExecutor(new CommandTutorial());
 		getCommand("vote").setExecutor(new CommandVote());
+		getCommand("effects").setExecutor(new CommandEffects());
 		
 		NPCManager.sendall();
 		
-		Quest.init();
+		//Quest.init();
 		Packetz.init();
 		MarketGUI.init();
 		TutorialManager.init();
@@ -175,7 +188,7 @@ public class Dungeons extends JavaPlugin
 				for (Player p : Bukkit.getOnlinePlayers()) 
 				{
 					if (discordprompts.getOrDefault(p, 0) > 1) continue;
-					p.sendMessage(ChatColor.GOLD + "Consider joining the discord! https://discord.gg/U4WsVRG");
+					p.sendMessage(ChatColor.GOLD + "Consider joining the discord to see the latest updates and leaks! https://discord.gg/U4WsVRG");
 					discordprompts.put(p, discordprompts.getOrDefault(p, 0) + 1);
 				}
 			}
@@ -200,7 +213,7 @@ public class Dungeons extends JavaPlugin
                 
                 if (digType == EnumWrappers.PlayerDigType.START_DESTROY_BLOCK && d.mining == null)
                 {
-                	new BukkitRunnable()
+                	miningTask = new BukkitRunnable()
                 	{
                 		public void run()
                 		{
@@ -208,12 +221,16 @@ public class Dungeons extends JavaPlugin
                         	if (target == null) return;
                     		if (d.area.mining.blocks.containsKey(target.getType())) new TaskMining(d,target);
                 		}
-                	}.runTaskLater(Dungeons.instance, 2);
+                	};
+                	miningTask.runTaskLater(instance, 1);
                 }
-                else if (digType == EnumWrappers.PlayerDigType.ABORT_DESTROY_BLOCK && d.mining != null)
+                else if (digType == EnumWrappers.PlayerDigType.ABORT_DESTROY_BLOCK)
                 {
-                	d.mining.end();
-            		d.mining = null;
+                	if (d.mining != null)
+                	{
+                		d.mining.end();
+                		d.mining = null;
+                	}
                 }
                 
             }

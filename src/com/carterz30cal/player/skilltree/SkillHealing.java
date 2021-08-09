@@ -42,7 +42,7 @@ public class SkillHealing extends AbsSkill {
 	@Override
 	public int max() {
 		// TODO Auto-generated method stub
-		return 3;
+		return 6;
 	}
 
 }

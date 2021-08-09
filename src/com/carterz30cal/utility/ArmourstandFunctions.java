@@ -15,6 +15,7 @@ public class ArmourstandFunctions
 		display.setVisible(false);
 		display.setInvulnerable(true);
 		display.setGravity(false);
+		display.setRemoveWhenFarAway(false);
 		display.setSmall(true);
 		return display;
 	}

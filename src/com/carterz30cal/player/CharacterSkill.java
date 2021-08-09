@@ -32,21 +32,38 @@ public class CharacterSkill
 	public static Scoreboard board;
 	
 	public DungeonsPlayer owner;
+	
+	//public int prestige; // 100 levels = 1 prestige.
 	public long experience;
 	public long hunter;
 	public int points;
 	
-	private int level;
+	public int level;
 	public HashMap<String,Integer> pointAllocation;
 	
 	public CharacterSkill(DungeonsPlayer o)
 	{
 		this.owner = o;
 		
-		experience = Dungeons.instance.getPlayerConfig().getLong(o.player.getUniqueId() + ".experience", 0);
+		if (o.versionSaved.equals("0.1.15"))
+		{
+			experience =  Dungeons.instance.getPlayerConfig().getLong(o.player.getUniqueId() + ".experience", 0);
+			while (experience >= tonextlevel(level))
+			{
+				experience -= tonextlevel(level);
+				level++;
+			}
+		}
+		else
+		{
+			level = Dungeons.instance.getPlayerConfig().getInt(o.player.getUniqueId() + ".level", 0);
+			experience = Dungeons.instance.getPlayerConfig().getLong(o.player.getUniqueId() + ".experience", 0);
+		}
+		
+		
+		
 		hunter = Dungeons.instance.getPlayerConfig().getLong(o.player.getUniqueId() + ".hunter", 0);
 		
-		level = level(experience);
 		points = points();
 		
 		pointAllocation = new HashMap<String,Integer>();
@@ -75,7 +92,7 @@ public class CharacterSkill
 	public int points()
 	{
 		int pt = 0;
-		for (int i = 0; i < CharacterSkill.level(experience);i++) pt += 1 + CharacterSkill.bonus(i+1);
+		for (int i = 1; i <= level;i++) pt += 1 + CharacterSkill.bonus(i);
 		
 		pt += MonsterHunterGUI.level(hunter);
 		
@@ -149,6 +166,34 @@ public class CharacterSkill
 		
 	}
 	
+	public static long tonextlevel(int current)
+	{
+		int prestige = current/100;
+		int l = current - (prestige*100);
+		
+		if (current % 100 == 99) return xpforlevel(current);
+		return (long) (100 * Math.pow(1.2,l) * Math.pow(1.15,prestige));
+	}
+	
+	public static int prestige(int level)
+	{
+		return level / 100;
+	}
+	
+	
+	public static long xpforlevel(int level)
+	{
+		int prestige = (level-1)/100;
+		int l = level - (prestige*100);
+		
+		long t = 0;
+		while (l > 0)
+		{
+			t += (long) (100 * Math.pow(1.2,l-1) * Math.pow(1.15,prestige));
+			l--;
+		}
+		return t;
+	}
 	
 	
 	
@@ -173,6 +218,8 @@ public class CharacterSkill
 		}
 		tablist.get(level).addEntry(owner.player.getName());
 	}
+	/*
+	@Deprecated
 	public static long requirement(int level)
 	{
 		long check = levels.getOrDefault(level, (long) -1);
@@ -195,23 +242,15 @@ public class CharacterSkill
 		levels.put(level, value);
 		return value;
 	}
-	
-	public static int level(long exp)
-	{
-		int c = 0;
-		while (requirement(c+1) < exp) c++;
-		return Math.min(levelcap, c);
-	}
+	*/
+	@Deprecated
 	public int level()
 	{
 		return level;
 	}
 	public double progress()
 	{
-		if (level == 0) return (double)experience / 100;
-		
-		int current = level(experience);
-		return ((double)(experience - requirement(current))) / (requirement(current+1) - requirement(current));
+		return (double)experience / tonextlevel(level);
 	}
 	public int prettyProgress()
 	{
@@ -240,18 +279,62 @@ public class CharacterSkill
 	}
 	public static int bonus(int level)
 	{
-		if (level % 5 == 0 && level != 0) return 3;
-		else return 0;
-		//if (level == 25) return 4;
-		//if (level == 50) return 4;
-		//if (level >= 59) return 1;
-		//
-		//return 0;
+		int b = 1 + prestige(level);
+		if (level % 5 == 0 && level != 0) b += 3;
+		return b;
 	}
 	public void give(long amount)
 	{
-		give(amount,true);
+		give(amount,0,true);
 	}
+	public void give(long amount,int coins)
+	{
+		give(amount,coins,true);
+	}
+	public void give(long amount,boolean multiply)
+	{
+		give(amount,0,true);
+	}
+	public void give(long amount,int coins,boolean multiply)
+	{
+		long total = (long) (multiply ? (amount+owner.stats.flatxp) * owner.stats.miningXp : amount+owner.stats.flatxp);
+		
+		
+		if (experience+total >= tonextlevel(level))
+		{
+			experience = 0;
+			level++;
+			
+			points = points();
+			
+			owner.player.playSound(owner.player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1,1);
+			owner.player.sendMessage(ChatColor.GOLD + "" + ChatColor.BOLD + "LEVEL " + level + "!");
+			owner.player.sendMessage(ChatColor.AQUA + " + " + (1+bonus(level)) + " skill points!");
+			
+			owner.player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.GOLD + "LEVEL UP!"));
+			
+			owner.player.setPlayerListName(prettyText(level) + " " + owner.player.getName());
+			updatePlayerList(level);
+		}
+		else
+		{
+			experience += total;
+			if (coins > 0)
+			{
+				owner.player.spigot().sendMessage(ChatMessageType.ACTION_BAR, 
+						TextComponent.fromLegacyText(ChatColor.GOLD + "+" + coins + " coins   " + ChatColor.AQUA + "+" + StringManipulator.truncate(total) + " XP"
+						+ " " + ChatColor.AQUA + "(" + prettyProgress() + "%)"));
+			}
+			else
+			{
+				owner.player.spigot().sendMessage(ChatMessageType.ACTION_BAR, 
+						TextComponent.fromLegacyText(ChatColor.AQUA + "+" + StringManipulator.truncate(total) + " XP"
+						+ "    " + ChatColor.BLUE + prettyProgress() + "%"));
+			}
+			
+		}
+	}
+	/*
 	public void give(long amount,boolean multiply)
 	{
 		int current = level(experience);
@@ -278,10 +361,11 @@ public class CharacterSkill
 		}
 		updateBoard(this);
 	}
+	*/
 	
 	public void giveFlat(long amount)
 	{
-		give(amount - owner.stats.flatxp,false);
+		give(amount - owner.stats.flatxp,0,false);
 	}
 	
 }

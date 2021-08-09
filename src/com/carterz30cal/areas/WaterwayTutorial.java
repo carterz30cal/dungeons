@@ -12,6 +12,7 @@ import com.carterz30cal.dungeons.Dungeons;
 import com.carterz30cal.mobs.DMob;
 import com.carterz30cal.mobs.DMobManager;
 import com.carterz30cal.mobs.SpawnPosition;
+import com.carterz30cal.player.DungeonsPlayer;
 import com.carterz30cal.player.DungeonsPlayerManager;
 import com.carterz30cal.utility.ArmourstandFunctions;
 
@@ -50,7 +51,7 @@ public class WaterwayTutorial extends AbsDungeonEvent
 		display(2,87.7,21034,"items that can craft items");
 		display(2,87.4,21034,"for use in your adventure!");
 		display(2,87.1,21034,"To find drops, open");
-		display(2,86.8,21034,"your backpack!");
+		display(2,86.8,21034,"your ingredient sack!");
 		
 		display(5,88.3,21023,"Crafting in mcExperiment");
 		display(5,88,21023,"is very easy. Open the");
@@ -78,6 +79,7 @@ public class WaterwayTutorial extends AbsDungeonEvent
 	}
 	private void setDummies()
 	{
+		System.out.println("AREGRGRGRGHRHRH");
 		dummies.add(DMobManager.spawn("tutorial_dummy", new SpawnPosition(9.5,87,21028.5)));
 
 		dummies.add(DMobManager.spawn("tutorial_dummy", new SpawnPosition(7.5,87,21028.5)));
@@ -90,18 +92,15 @@ public class WaterwayTutorial extends AbsDungeonEvent
 	@Override
 	public void tick()
 	{
-		boolean playersInWaterway = false;
+		boolean spawn = false;
 		for (Player p : Bukkit.getOnlinePlayers()) 
 		{
-			if (p.getLocation().distance(end) < 1.2) DungeonsPlayerManager.i.get(p).warp("waterway");
-			if (DungeonsPlayerManager.i.get(p).area.name.equals("Waterway")) playersInWaterway = true;
+			DungeonsPlayer d = DungeonsPlayerManager.i.get(p);
+			if (p.getLocation().distance(end) < 1.2) d.warp("waterway");
+			if (d.area.id != null && d.area.id.equals("waterway")) spawn = true;
 		}
-		if (playersInWaterway)
-		{
-			if (!displays.get(0).isValid()) set();
-			if (dummies.isEmpty()) setDummies();
-			dummies.removeIf( (DMob m) -> m == null || m.health < 1);
-		}
+		if (dummies.isEmpty() && spawn) setDummies();
+		dummies.removeIf( (DMob m) -> m == null || m.health < 1);
 	}
 	
 	private void display(double x,double y,double z,String display)

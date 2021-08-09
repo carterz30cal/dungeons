@@ -3,22 +3,23 @@ package com.carterz30cal.enchants;
 import com.carterz30cal.dungeons.DungeonMiningTable;
 import com.carterz30cal.player.DungeonsPlayerStatBank;
 
-public class EnchCorrupt extends AbsEnchant {
+public class EnchBiomagnetic extends AbsEnchant {
 
 	@Override
 	public String description() {
-		return "Remove 50 health, but gain 20 damage";
+		return "Doubles biomass drops.";
 	}
 
 	@Override
 	public String name() {
-		return "Corrupt";
+		// TODO Auto-generated method stub
+		return "Biomagnetic";
 	}
 
 	@Override
 	public int max() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 1;
 	}
 
 	@Override
@@ -30,26 +31,24 @@ public class EnchCorrupt extends AbsEnchant {
 	@Override
 	public int rarity() {
 		// TODO Auto-generated method stub
-		return 5;
+		return 3;
 	}
 
 	@Override
 	public String type() {
 		// TODO Auto-generated method stub
-		return "weapon";
+		return "tool";
 	}
 
 	@Override
-	public DungeonsPlayerStatBank onBank(DungeonsPlayerStatBank bank)
-	{
-		bank.health -= 50;
-		bank.damage += 20;
-		return bank;
+	public DungeonsPlayerStatBank onBank(DungeonsPlayerStatBank bank) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public DungeonMiningTable onMine(DungeonMiningTable mine) {
-		// TODO Auto-generated method stub
+		mine.loot.put("biomass", mine.loot.getOrDefault("biomass", 0)*2);
 		return null;
 	}
 

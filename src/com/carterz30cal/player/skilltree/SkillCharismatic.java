@@ -18,7 +18,7 @@ public class SkillCharismatic extends AbsSkill {
 	@Override
 	public String description(int level) {
 		
-		return "Shop items cost " + ((double)level/2) + "% less.";
+		return "Shop items cost " + ((double)level/4) + "% less.";
 	}
 	
 	
@@ -37,13 +37,13 @@ public class SkillCharismatic extends AbsSkill {
 
 	public void stats(int level,DungeonsPlayerStats bank) 
 	{
-		bank.shopDiscount *= 1 - (0.005*level);
+		bank.shopDiscount *= 1 - (0.0025*level);
 	}
 	
 	@Override
 	public int max() {
 		// TODO Auto-generated method stub
-		return 10;
+		return 20;
 	}
 
 	@Override

@@ -46,12 +46,16 @@ public class NecropolisCrypts2 extends AbsDungeonEvent
 	public CryptMobs mobs2;
 	public CryptLootTable loot2;
 	
+	public CryptMobs mobs3;
+	public CryptLootTable loot3;
+	public CryptBlocks blocks3;
+	
 	private final String[] mobs_regular = {"crypts_zombie","crypts_zombie","crypts_zombiebaby","crypts_skeleton","crypts_skeleton"};
 	private final String[] mobs_tough = {"crypts_zombie","crypts_zombie","crypts_zombie","crypts_zombie","crypts_skeleton","crypts_skeleton","crypts_mage","crypts_skeletoncaptain"};
 	private final String[] mobs_nest = {"crypts_spider","crypts_spider","crypts_smallspider"};
 	private final String[] mobs_rune = {"crypts_runemage","crypts_runeghoul"};
 	private final String[] mobs_wet = {"ghoul2"};
-	private final String[] mobs_miniboss = {"crypts_miniboss_slime1","crypts_miniboss_husk1","crypts_miniboss_knight1","crypts_miniboss_hunter1"};
+	private final String[] mobs_miniboss = {"crypts_boss_slime1","crypts_boss_husk1","crypts_boss_knight1","crypts_boss_hunter1"};
 	
 	private final String[] mobs_regular2 = {"crypts_zombie2","crypts_zombie2","crypts_skeleton2","crypts_skeleton2","crypts_skeletoncaptain"};
 	private final String[] mobs_tough2 = {"crypts_zombie2","crypts_hulk","crypts_mage2","crypts_skeletoncaptain","crypts_skeletoncommander","crypts_lord"};
@@ -109,17 +113,56 @@ public class NecropolisCrypts2 extends AbsDungeonEvent
 		loot2.add("book",16,"strength,1");
 		loot2.add("book",6,"strength,2");
 		loot2.add("book",4,"sweeping,1");
-		loot2.add("armour_crypt2_helmet",3);
-		loot2.add("armour_crypt2_chestplate",1);
-		loot2.add("armour_crypt2_leggings",2);
-		loot2.add("armour_crypt2_boots",4);
+		loot2.add("polish_jar", 5);
 		loot2.add("sword_cryptknight",2);
 		loot2.add("crypt_stone",6);
 		loot2.add("bow_cryptspirit", 2);
 		loot2.add("book", 14,"cryptlord,1");
-		loot2.add("magic_cactus", 11);
+		loot2.add("magic_cactus", 12);
 		loot2.add("tissue",110);
-		loot2.itemsPerChest = new int[] {3,14};
+		loot2.itemsPerChest = new int[] {4,15};
+		
+		
+		
+		loot3 = new CryptLootTable();
+		loot3.add("gel",900);
+		loot3.add("bone", 230);
+		loot3.add("crypt_dust",60);
+		loot3.add("decaying_flesh",160);
+		loot3.add("catalyst=0",16);
+		loot3.add("book",14,"polished,2");
+		loot3.add("book",5,"polished,3");
+		loot3.add("book",2,"polished,4");
+		loot3.add("book",9,"strength,2");
+		loot3.add("book",3,"strength,3");
+		loot3.add("book",6,"sweeping,1");
+		loot3.add("book",2,"sweeping,2");
+		loot3.add("book",6,"cryptlord,2");
+		loot3.add("book",1,"cryptlord,3");
+		loot3.add("alchemical_note4", 4);
+		loot3.add("potions_cryptroot", 15);
+		loot3.add("sacrifice",3);
+		loot3.add("magic_cactus", 9);
+
+		loot3.itemsPerChest = new int[] {8,21};
+		
+		blocks3 = new CryptBlocks();
+		blocks3.floor = new Material[]{Material.CYAN_TERRACOTTA,Material.LIGHT_BLUE_TERRACOTTA,Material.BLUE_TERRACOTTA};
+		blocks3.walls = new Material[]{Material.CYAN_TERRACOTTA,Material.LIGHT_BLUE_TERRACOTTA,Material.BLUE_TERRACOTTA};
+		blocks3.roof = new Material[] {Material.CYAN_TERRACOTTA,Material.LIGHT_BLUE_TERRACOTTA,Material.BLUE_TERRACOTTA};
+		blocks3.roomroof = new Material[] {Material.GLOWSTONE,Material.CYAN_TERRACOTTA,Material.LIGHT_BLUE_TERRACOTTA,Material.BLUE_TERRACOTTA};
+		blocks3.path = Material.SPRUCE_PLANKS;
+		blocks3.support = Material.SPRUCE_FENCE;
+		
+		mobs3 = new CryptMobs();
+		mobs3.mobs.put(CryptRoomType.NORMAL,new String[] {"crypt_zombie3","crypt_spirit3"});
+		mobs3.mobs.put(CryptRoomType.LOOT,new String[] {"crypt_zombie3","crypt_spirit3","crypt_invis3","crypt_archer3"});
+		mobs3.mobs.put(CryptRoomType.NEST,new String[] {"crypt_spider3"});
+		mobs3.mobs.put(CryptRoomType.RUNE, mobs_rune);
+		mobs3.mobs.put(CryptRoomType.WET, mobs_wet2);
+		mobs3.mobs.put(CryptRoomType.MINIBOSS,new String[] {"crypts_boss_king3"});
+		
+		
 		
 		blocks = new CryptBlocks();
 		blocks.floor = new Material[]{Material.STONE,Material.COBBLESTONE};
@@ -143,7 +186,9 @@ public class NecropolisCrypts2 extends AbsDungeonEvent
 		mobs2.mobs.put(CryptRoomType.NEST,mobs_nest);
 		mobs2.mobs.put(CryptRoomType.RUNE, mobs_rune);
 		mobs2.mobs.put(CryptRoomType.WET, mobs_wet2);
-		mobs2.mobs.put(CryptRoomType.MINIBOSS,mobs_miniboss);
+		mobs2.mobs.put(CryptRoomType.MINIBOSS,new String[]{"crypts_boss_slime2","crypts_boss_husk2","crypts_boss_hunter2"});
+		
+		
 		
 		
 		blocks_ancient = new CryptBlocks();
@@ -193,11 +238,11 @@ public class NecropolisCrypts2 extends AbsDungeonEvent
 		
 		// exalted key
 		CryptSettings difficulty3 = new CryptSettings();
-		difficulty3.init(loot, mobs, blocks);
-		difficulty3.size(65,65);
+		difficulty3.init(loot3, mobs3, blocks3);
+		difficulty3.size(75,75);
 		difficulty3.position(22002, 40);
-		difficulty3.room(11, 5, 8, 4);
-		difficulty3.deadends = 40;
+		difficulty3.room(17, 6, 8, 3);
+		difficulty3.deadends = 80;
 		difficulties[2] = difficulty3;
 		
 		// ancient key, actually less difficult than difficulty 3 but shush
@@ -212,8 +257,13 @@ public class NecropolisCrypts2 extends AbsDungeonEvent
 		
 		
 		
-		
-		
+		display_name = ArmourstandFunctions.create(new Location(Dungeons.w,29.7, 102.4, 22019.5));
+		display_description = ArmourstandFunctions.create(new Location(Dungeons.w,29.7, 102, 22019.5));
+		display_warning = ArmourstandFunctions.create(new Location(Dungeons.w,29.7, 101.6, 22019.5));
+
+		display_name.setCustomName(ChatColor.GOLD + "" +  ChatColor.BOLD + "CRYPTS");
+		display_description.setCustomName(ChatColor.GOLD + "Insert a key to begin!");
+		display_warning.setCustomName(ChatColor.RED + "Beware!");
 		
 	}
 	@Override
@@ -237,15 +287,7 @@ public class NecropolisCrypts2 extends AbsDungeonEvent
 			else cry.step();
 		}
 		
-		if (display_name == null || !display_name.isValid()) 
-		{
-			display_name = ArmourstandFunctions.create(new Location(Dungeons.w,29.7, 102.4, 22019.5));
-			display_description = ArmourstandFunctions.create(new Location(Dungeons.w,29.7, 102, 22019.5));
-			display_warning = ArmourstandFunctions.create(new Location(Dungeons.w,29.7, 101.6, 22019.5));
-		}
-		display_name.setCustomName(ChatColor.GOLD + "" +  ChatColor.BOLD + "CRYPTS");
-		display_description.setCustomName(ChatColor.GOLD + "Insert a key to begin!");
-		display_warning.setCustomName(ChatColor.RED + "Beware!");
+		
 		
 	}
 	
@@ -303,15 +345,15 @@ public class NecropolisCrypts2 extends AbsDungeonEvent
 	public boolean eventInteract(PlayerInteractEvent e)
 	{
 		if (!e.hasItem() || e.getItem() == null || !e.getItem().hasItemMeta()) return false;
-		
+		DungeonsPlayer d = DungeonsPlayerManager.i.get(e.getPlayer());
 		String it = e.getItem().getItemMeta().getPersistentDataContainer().getOrDefault(ItemBuilder.kItem, PersistentDataType.STRING,"");
-		boolean key = it.equals("crypt_key1") || it.equals("crypt_key2") || it.equals("crypt_key4");
+		boolean key = it.equals("crypt_key1") || it.equals("crypt_key2") || (it.equals("crypt_key3") && d.level.level() >= 20) ||it.equals("crypt_key4");
 		if (key && DungeonManager.i.hash(e.getPlayer().getLocation().getBlockZ()) == 2
 				&& e.getClickedBlock() != null && e.getClickedBlock().getType() == Material.LODESTONE
 				&& !crypts.containsKey(DungeonsPlayerManager.i.get(e.getPlayer())))
 		{
 			int dif = Integer.parseInt(it.substring(it.length()-1));
-			startCrypt(DungeonsPlayerManager.i.get(e.getPlayer()),dif);
+			startCrypt(d,dif);
 			e.getPlayer().teleport(new Location(Dungeons.w,32,101,22019,-90,0));
 			
 			e.getItem().setAmount(e.getItem().getAmount() - 1);

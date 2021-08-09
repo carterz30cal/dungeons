@@ -43,6 +43,11 @@ public class RuneRoom extends CryptRoom
 		incredible = !rare && RandomFunctions.random(0, 20) == 10;
 		
 		if (owner.variant == CryptVariant.CORRUPT) rune = ItemBuilder.i.build("rune_space", 1);
+		else if (owner.variant == CryptVariant.LIVING)
+		{
+			if (incredible) rune = ItemBuilder.i.build("rune_greaterhealing", 1);
+			else rune = ItemBuilder.i.build("rune_healing", 1);
+		}
 		else if (rare) rune = ItemBuilder.i.build(RandomFunctions.get(runes_rare), 1);
 		else if (incredible) rune = ItemBuilder.i.build(RandomFunctions.get(runes_incredible), 1);
 		else rune = ItemBuilder.i.build(RandomFunctions.get(runes), 1);
@@ -82,9 +87,6 @@ public class RuneRoom extends CryptRoom
 		{
 			if (activated && mobs.size() == 0) cleared = true;
 			Dungeons.w.dropItem(display.getEyeLocation(), rune);
-			
-			display.remove();
-			task.cancel();
 		}
 	}
 	@Override
@@ -99,7 +101,6 @@ public class RuneRoom extends CryptRoom
 		if (cleared) return;
 		if (mobs != null) for (DMob m : mobs) m.destroy(null);
 		
-		destroy();
 		activated = false;
 	}
 	

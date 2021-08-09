@@ -14,14 +14,14 @@ public class AbilityFangedAxe extends AbsAbility
 	public ArrayList<String> description() {
 		ArrayList<String> d = new ArrayList<>();
 		d.add(prefix + "Bloodlust");
-		d.add("Gain 1 damage for every 5 levels");
-		d.add("Regain 11 health every hit");
+		d.add("Gain 1 damage for every level");
+		d.add("over 20. Heal 11❤ every hit.");
 		return d;
 	}
 	
 	public void stats(DungeonsPlayerStats s) 
 	{
-		s.damage += s.o.level.level() / 5;
+		s.damage += s.o.level.level() - 20;
 	}
 	
 	public int onAttack(DungeonsPlayer d,DMob dMob,int damage) 

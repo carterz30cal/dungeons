@@ -18,7 +18,7 @@ public class SkillWarrior extends AbsSkill {
 	@Override
 	public String description(int level) {
 		
-		return "+" + level*2 + "% damage";
+		return "+" + level*2.5 + "% damage";
 	}
 	
 	@Override
@@ -35,7 +35,7 @@ public class SkillWarrior extends AbsSkill {
 
 	public void stats(int level,DungeonsPlayerStats bank) 
 	{
-		bank.damagemod += 0.02 * level;
+		bank.damagemod += 0.025 * level;
 	}
 	
 	@Override

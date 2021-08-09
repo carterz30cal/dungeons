@@ -22,12 +22,7 @@ public class RecipeManager
 	public HashMap<String,Recipe> recipes;
 	public HashMap<String,ArrayList<Recipe>> recipeBrowser_byIngredient;
 	
-	public static String[] files = {
-			"waterway/recipes","waterway/recipes_magic","waterway/recipes_titan","waterway/recipes_fishing",
-			"waterway/recipes_mining","waterway/recipes_sands",
-			"necropolis/recipes","necropolis/crypts_recipes","necropolis/recipes_digging",
-			"infested/recipes_swords","infested/recipes_bows","infested/recipes_armours"
-			};
+	public static String[] files = {};
 	public static HashMap<String,String[]> patterns;
 	
 	

@@ -7,6 +7,7 @@ import java.util.Map.Entry;
 import org.bukkit.GameMode;
 import org.bukkit.configuration.file.FileConfiguration;
 
+import com.carterz30cal.items.abilities.AbsAbility;
 import com.carterz30cal.mobs.DMob;
 import com.carterz30cal.player.DungeonsPlayer;
 
@@ -38,8 +39,10 @@ public class MobOverkill extends DMobAbility
 		{
 			if (reward > 0) 
 			{
+				int rew = reward;
+				for (AbsAbility a : player.stats.abilities) rew += a.onOverkill(player, mob, rew);
 				overkills.putIfAbsent(mob, new HashMap<>());
-				overkills.get(mob).put(player,overkills.get(mob).getOrDefault(player,0) + 1);
+				overkills.get(mob).put(player,overkills.get(mob).getOrDefault(player,0) + rew);
 			}
 			return (int) (modthres / dmod);
 		}
@@ -53,8 +56,8 @@ public class MobOverkill extends DMobAbility
 		{
 			for (Entry<DungeonsPlayer,Integer> d : overkills.get(mob).entrySet())
 			{
-				d.getKey().player.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "Overkill! x" + d.getValue() + ": " + ChatColor.RESET + "" + ChatColor.GOLD + "+" + reward*d.getValue() + " coins!");
-				d.getKey().coins += reward*d.getValue();
+				d.getKey().player.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "Overkill! " + ChatColor.RESET + "" + ChatColor.GOLD + "+" + d.getValue() + " coins!");
+				d.getKey().coins += d.getValue();
 			}
 		}
 	}

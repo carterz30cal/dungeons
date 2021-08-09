@@ -1,0 +1,162 @@
+empty_bottle:
+  name: Empty Bottle
+  type: ingredient
+  item: GLASS_BOTTLE
+  description: You can combine ingredients in these to create;powerful potions to temporarily buff your character!
+  
+  
+extraction_catalyst:
+  name: Extraction Catalyst
+  type: ingredient
+  rarity: RARE
+  item: NETHERITE_INGOT
+  glow: true
+  description: When added to a potion mixture, removes;the first and last elements.
+  
+conversion_catalyst:
+  name: Conversion Catalyst
+  type: ingredient
+  rarity: EPIC
+  item: IRON_NUGGET
+  glow: true
+  description: When added to a potion mixture, invert;the first two elements if possible.
+  
+elemental_shift:
+  name: Elemental Shift
+  type: ingredient
+  rarity: INCREDIBLE
+  item: BROWN_MUSHROOM
+  description: When added to a potion mixture, transform;all elements into the next type down, according;to the Universal Element.
+  
+extinguishing_element:
+  name: Extinguishing Element
+  type: ingredient
+  rarity: EPIC
+  item: WATER_BUCKET
+  nostack: true
+  glow: true
+  description: When added to a potion mixture, removes;all fire elements from the mixture.
+  
+reversal_element:
+  name: Reversal Element
+  type: ingredient
+  rarity: EPIC
+  item: CHORUS_FRUIT
+  description: When added to a potion mixture, reverse;the order of the elements.
+  
+alchemical_note1:
+  name: "Alchemical Note #1"
+  type: note
+  item: PAPER
+  note: WATER,WATER,AIR,WATER
+alchemical_note2:
+  name: "Alchemical Note #2"
+  type: note
+  item: PAPER
+  note: FIRE,FIRE,EARTH
+alchemical_note3:
+  name: "Alchemical Note #3"
+  type: note
+  item: PAPER
+  note: AIR,AIR,AIR,EARTH,AIR
+alchemical_note4:
+  name: "Alchemical Note #4"
+  type: note
+  item: PAPER
+  note: VENOM,WATER,WATER
+alchemical_note5:
+  name: "Alchemical Note #5"
+  type: note
+  item: PAPER
+  note: EARTH,VENOM
+alchemical_note6:
+  name: "Alchemical Note #6"
+  type: note
+  item: PAPER
+  note: EARTH,EARTH,EARTH,WATER
+alchemical_note7:
+  name: "Alchemical Note #7"
+  type: note
+  item: PAPER
+  note: MIDAS,MIDAS,WATER
+
+temple_note1: # for the rage potion
+  name: "Tattered Note #1"
+  type: note
+  rarity: MYTHICAL
+  item: PAPER
+  glow: true
+  included: false
+  note: MIDAS,FIRE,FIRE,MIDAS
+temple_note2: # for the raider potion
+  name: "Tattered Note #2"
+  type: note
+  rarity: MYTHICAL
+  item: PAPER
+  glow: true
+  included: false
+  note: FIRE,EARTH,EARTH,AIR,FIRE
+
+  
+  
+milk:
+  name: Milk
+  type: ingredient
+  item: MILK_BUCKET
+  rarity: RARE
+  description: Removes all potion effects.
+  nostack: true
+  
+  
+sludge:
+  name: Sludge
+  type: potionmat
+  rarity: COMMON
+  item: POTION
+  colour: 0,50,0
+  potion: void,1;void,1
+  description: Made when your mixture produces nothing useful.;Can be used as Seperation Fluid in a pinch.
+  
+seperation_fluid:
+  name: Seperation Fluid
+  type: potionmat
+  rarity: RARE
+  item: POTION
+  colour: 0,0,0
+  potion: void,1
+  
+water_bottle:
+  name: Water Bottle
+  type: potionmat
+  item: POTION
+  colour: 0,50,235
+  potion: water,1;water,1;water,1
+spider_spit:
+  name: Spider Spit
+  type: potionmat
+  item: STRING
+  glow: true
+  potion: venom,1;water,1
+  
+chaos_element:
+  name: Chaos Element
+  type: potionmat
+  rarity: RARE
+  item: BLAZE_POWDER
+  glow: true
+  potion: fire,1;earth,1;air,1
+  
+aeroslime:
+  name: Aeroslime
+  type: potionmat
+  rarity: RARE
+  item: SLIME_BLOCK
+  glow: true
+  potion: water,1;air,1;water,1
+  
+universal_element:
+  name: Universal Element
+  rarity: LEGENDARY
+  type: potionmat
+  item: CONDUIT
+  potion: fire,1;water,1;earth,1;air,1;venom,1;midas,1;void,1

@@ -31,9 +31,10 @@ public abstract class AbsSkill
 		new SkillEfficientMiner();
 		new SkillFortune();
 		new SkillBloodlust();
-		new SkillMonsterHunter();
+		new SkillFocus();
 		new SkillHealing();
 		new SkillWarrior();
+		new SkillBlessing();
 	}
 	
 	public List<String> template(DungeonsPlayer player,int level)
@@ -47,7 +48,7 @@ public abstract class AbsSkill
 			d.add("");
 			d.add(ChatColor.RED + "Unlock previous skill first!");
 		}
-		else if (player.level.level() < levelreq()) 
+		else if (player.level.level < levelreq()) 
 		{
 			d.add("");
 			d.add(ChatColor.RED + "Requires level " + levelreq());

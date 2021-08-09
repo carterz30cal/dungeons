@@ -12,6 +12,7 @@ public class MinibossRoom extends CryptRoom
 {
 	private DMob miniboss;
 	
+	private int difficulty;
 	public MinibossRoom(int id, int ox, int oz, int[] c1, int[] c2, int ylevel, CryptLootTable l)
 	{
 		super(id, ox, oz, c1, c2, ylevel, l);
@@ -24,12 +25,10 @@ public class MinibossRoom extends CryptRoom
 	{
 		int x = corner1[0] + ((corner2[0] - corner1[0]) / 2);
 		int z = corner1[1] + ((corner2[1] - corner1[1]) / 2);
-		miniboss = DMobManager.spawn(RandomFunctions.get(crypt.mobs.mobs.get(CryptRoomType.MINIBOSS)),new SpawnPosition(offset[0]+x,y,offset[1]+z),false);
-		if (miniboss == null) 
-		{
-			register(crypt);
-			return;
-		}
+		while (miniboss == null) miniboss = DMobManager.spawn(RandomFunctions.get(crypt.mobs.mobs.get(CryptRoomType.MINIBOSS)),new SpawnPosition(offset[0]+x,y,offset[1]+z),false);
+		difficulty = crypt.difficulty;
+
+
 		for (Entity e : miniboss.entities) 
 		{
 			LivingEntity mini = (LivingEntity)e;
@@ -71,7 +70,7 @@ public class MinibossRoom extends CryptRoom
 		int mobc = 7;
 		while (mobc > 0)
 		{
-			DMob mob = DMobManager.spawn("crypts1_defender", new SpawnPosition(
+			DMob mob = DMobManager.spawn("crypt_defender" + difficulty, new SpawnPosition(
 					ox+RandomFunctions.random(corner1[0]+1, corner2[0]-1), y, oz+RandomFunctions.random(corner1[1]+1, corner2[1]-1)));
 			mob.entities.get(0).setSilent(true);
 			((LivingEntity)mob.entities.get(0)).setAI(false);

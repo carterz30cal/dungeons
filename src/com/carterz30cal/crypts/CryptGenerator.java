@@ -1,9 +1,7 @@
 package com.carterz30cal.crypts;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map.Entry;
 
 import org.bukkit.Location;
@@ -42,6 +40,7 @@ public class CryptGenerator
 	public HashMap<Integer,CryptRoom> rooms;
 	
 	public boolean hasRune;
+	public boolean hasGrave;
 	public boolean hasMini;
 	public boolean ready;
 	public boolean started;
@@ -65,6 +64,10 @@ public class CryptGenerator
 	public CryptVariant variant;
 	public int difficulty;
 	
+	private int generation;
+	
+	public CryptRoom entrance;
+	
 	public void step()
 	{
 		switch (step)
@@ -76,6 +79,17 @@ public class CryptGenerator
 				{
 					if (c == 0 || c == sizex-1 || v == 0 || v == sizez-1) crypt[c][v] = -3;
 					else crypt[c][v] = 0;
+				}
+			}
+			// generate pillars
+			for (int p = 0; p < 8;p++)
+			{
+				int px = RandomFunctions.random(3, sizex - 3);
+				int pz = RandomFunctions.random(3, sizez - 3);
+				
+				if (crypt[px][pz] == 0 && allowedCardinal(px,pz,0))
+				{
+					for (int kx = px-1;kx <= px+1;kx++) for (int kz = pz-1;kz <= pz+1;kz++) crypt[kx][kz] = -3;
 				}
 			}
 			break;
@@ -118,6 +132,11 @@ public class CryptGenerator
 						r = new RuneRoom(room,lx,lz,new int[] {rx,rz},new int[] {rx+rsx-1,rz+rsz-1},ly+1,table,this);
 						hasRune = true;
 					}
+					else if (room > 3 && RandomFunctions.random(1, 12) == 6 && !hasGrave)
+					{
+						r = new GraveRoom(room,lx,lz,new int[] {rx,rz},new int[] {rx+rsx-1,rz+rsz-1},ly+1,table);
+						hasGrave = true;
+					}
 					else if (room == 3)
 					{
 						r = new MinibossRoom(room,lx,lz,new int[] {rx,rz},new int[] {rx+rsx-1,rz+rsz-1},ly+1,table);
@@ -130,10 +149,12 @@ public class CryptGenerator
 					{
 						spawn = new Location(Dungeons.w,lx + rx + (rsx/2),ly,lz + rz + (rsz/2));
 						r.type = CryptRoomType.ENTRANCE;
+						entrance = r;
 						r.cleared = true;
 					}
 					else if (r.type == CryptRoomType.RUNE
-							|| r.type == CryptRoomType.MINIBOSS) {}
+							|| r.type == CryptRoomType.MINIBOSS
+							|| r.type == CryptRoomType.GRAVESTONE) {}
 					else if ((room-2) % lfreq == 0) r.type = CryptRoomType.LOOT;
 					else
 					{
@@ -240,7 +261,9 @@ public class CryptGenerator
 			break;
 		case 7:
 			generate();
-			break;
+			
+			if (generation == sizex) break;
+			else return;
 		case 8:
 			System.out.println("[CRYPT] Finished Generating!");
 			System.out.println("[CRYPT] Rooms: " + (room-2));
@@ -282,13 +305,18 @@ public class CryptGenerator
 		this.difficulty = difficulty;
 		this.settings = settings;
 		
-		if (RandomFunctions.random(1, 1) == 1) variant = RandomFunctions.get(CryptVariant.values());
+		if (RandomFunctions.random(1, 5) == 3) variant = RandomFunctions.get(CryptVariant.values());
 		
+		CryptBlocks updated;
+		CryptMobs nmobs;
+		CryptLootTable inject;
+		Material[] walls;
+		if (variant == null) return;
 		switch (variant)
 		{
 		case CORRUPT:
-			CryptBlocks updated = new CryptBlocks(blocks);
-			Material[] walls = new Material[updated.walls.length+3];
+			updated = new CryptBlocks(blocks);
+			walls = new Material[updated.walls.length+3];
 			for (int i = 0; i < updated.walls.length;i++) walls[i] = updated.walls[i];
 			walls[walls.length-1] = Material.MAGENTA_TERRACOTTA;
 			walls[walls.length-2] = Material.PURPLE_TERRACOTTA;
@@ -297,17 +325,52 @@ public class CryptGenerator
 			updated.walls = walls;
 			blocks = updated;
 			
-			CryptMobs nmobs = new CryptMobs(mobs);
+			nmobs = new CryptMobs(mobs);
 			nmobs.mobs.put(CryptRoomType.NORMAL, new String[] {"crypt_corrupt_regular" + difficulty,"crypt_corrupt_soldier" + difficulty});
 			nmobs.mobs.put(CryptRoomType.RUNE, new String[] {"crypt_corrupt_rune" + difficulty});
 			
 			mobs = nmobs;
-			CryptLootTable inject = new CryptLootTable(table);
-			inject.add("corrupt_goo", 100);
-			inject.add("book", 1,"corrupt,1");
+			inject = new CryptLootTable(table);
+			inject.add("corrupt_goo", 160);
 			inject.itemsPerChest = new int[] {8,17};
 			inject.init();
 			table = inject;
+			break;
+		case LIVING:
+			updated = new CryptBlocks(blocks);
+			walls = new Material[updated.walls.length+3];
+			for (int i = 0; i < updated.walls.length;i++) walls[i] = updated.walls[i];
+			walls[walls.length-1] = Material.GREEN_TERRACOTTA;
+			walls[walls.length-2] = Material.DIRT;
+			walls[walls.length-3] = Material.COARSE_DIRT;
+			updated.path = Material.ACACIA_PLANKS;
+			updated.walls = walls;
+			blocks = updated;
+			
+			nmobs = new CryptMobs(mobs);
+			String[] addm = new String[nmobs.mobs.get(CryptRoomType.NORMAL).length+1];
+			for (int a = 0; a < nmobs.mobs.get(CryptRoomType.NORMAL).length;a++) addm[a] = nmobs.mobs.get(CryptRoomType.NORMAL)[a];
+			addm[addm.length-1] = "crypt_living_zombie" + difficulty;
+			nmobs.mobs.put(CryptRoomType.NORMAL, addm);
+			
+			addm = new String[nmobs.mobs.get(CryptRoomType.LOOT).length+1];
+			for (int a = 0; a < nmobs.mobs.get(CryptRoomType.LOOT).length;a++) addm[a] = nmobs.mobs.get(CryptRoomType.LOOT)[a];
+			addm[addm.length-1] = "crypt_living_zombie" + difficulty;
+			nmobs.mobs.put(CryptRoomType.LOOT, addm);
+			
+			roomamount += 2;
+			mobs = nmobs;
+			inject = new CryptLootTable(table);
+			inject.add("crypts_livingamulet", 2);
+			inject.add("book", 6,"growth,1");
+			inject.add("book", 3,"vitals,2");
+			inject.add("book", 1,"empowered,1");
+			inject.add("gel", 250);
+			inject.itemsPerChest = new int[] {11,24};
+			inject.init();
+			table = inject;
+			break;
+		default:
 			break;
 		}
 	}
@@ -392,8 +455,15 @@ public class CryptGenerator
 	
 	public void spawnNearby(DungeonsPlayer player)
 	{
+		if (entrance.box.isInside(player.player.getLocation().getBlockX(), player.player.getLocation().getBlockZ()))
+		{
+			player.canOpen = true;
+			complete = false;
+			return;
+		}
 		player.canOpen = false;
 		complete = true;
+		
 		for (CryptRoom r : rooms.values())
 		{
 			r.check();
@@ -463,64 +533,63 @@ public class CryptGenerator
 	}
 	public void generate()
 	{
-		for (int x = 0; x < sizex;x++)
+		int x = generation;
+		for (int z = 0; z < sizez;z++)
 		{
-			for (int z = 0; z < sizez;z++)
+			if (floorPlan)
 			{
-				if (floorPlan)
-				{
-					if (crypt[x][z] == 1) set(x,0,z,Material.OAK_PLANKS);
-					else if (crypt[x][z] > 1) set(x,0,z,Material.STONE);
-				}
-				else
-				{
-					set(x,11-ly,z,Material.BLACK_CONCRETE);
-					if (crypt[x][z] == 0) set(x,5,z,RandomFunctions.get(blocks.roof));
-					else if (crypt[x][z] == -4) 
-					{
-						set(x,0,z,blocks.path);
-						set(x,5,z,RandomFunctions.get(blocks.roof));
-					}
-					else if (crypt[x][z] == -3) for (int y = ly+5; y > 0; y--) set(x,y-ly,z,RandomFunctions.get(blocks.walls));
-					else if (crypt[x][z] == -2) for (int y = 0; y < 6; y++) set(x,y,z,RandomFunctions.get(blocks.walls));
-					else if (crypt[x][z] == -1)
-					{
-						set(x,0,z,RandomFunctions.get(blocks.floor));
-						for (int y = ly-1; y > 0; y--) set(x,y-ly,z,RandomFunctions.get(blocks.walls));
-						for (int y = 3; y < 6; y++) set(x,y,z,RandomFunctions.get(blocks.walls));
-					}
-					else if (crypt[x][z] == 1)
-					{
-						set(x,0,z,blocks.path);
-						for (int y = ly-1; y >= 12; y--) set(x,y-ly,z,blocks.support);
-						set(x,5,z,RandomFunctions.get(blocks.roof));
-					}
-					else 
-					{
-						CryptRoom r = rooms.get(crypt[x][z]);
-						set(x,0,z,RandomFunctions.get(blocks.floor));
-						if (r.type == CryptRoomType.WET && RandomFunctions.random(1, 6) == 1) set(x,0,z,Material.WATER);
-						
-						for (int chx = -1; chx <= 1;chx++) for (int chz = -1; chz <= 1;chz++) if (crypt[x+chx][z+chz] == 0) for (int y = ly+5; y > 0; y--) set(x+chx,y-ly,z+chz,RandomFunctions.get(blocks.walls));
-						
-						if (r.type == CryptRoomType.NEST)
-						{
-							for (int y = 1; y < 5;y++) if (RandomFunctions.random(1, 5) == 1
-								&& Dungeons.w.getBlockAt(lx+x, ly+y, lz+z).getType() == Material.AIR) set(x,y,z,Material.COBWEB);
-							set(x,3,z,RandomFunctions.get(blocks.roomroof));
-						}
-						else set(x,5,z,RandomFunctions.get(blocks.roomroof));
-						for (int y = ly-1; y > 0; y--) set(x,y-ly,z,RandomFunctions.get(blocks.walls));
-					}
-				}
-				
+				if (crypt[x][z] == 1) set(x,0,z,Material.OAK_PLANKS);
+				else if (crypt[x][z] > 1) set(x,0,z,Material.STONE);
 			}
+			else
+			{
+				set(x,11-ly,z,Material.BLACK_CONCRETE);
+				if (crypt[x][z] == 0) set(x,5,z,RandomFunctions.get(blocks.roof));
+				else if (crypt[x][z] == -4) 
+				{
+					set(x,0,z,blocks.path);
+					set(x,5,z,RandomFunctions.get(blocks.roof));
+				}
+				else if (crypt[x][z] == -3) for (int y = ly+5; y > 0; y--) set(x,y-ly,z,RandomFunctions.get(blocks.walls));
+				else if (crypt[x][z] == -2) for (int y = 0; y < 6; y++) set(x,y,z,RandomFunctions.get(blocks.walls));
+				else if (crypt[x][z] == -1)
+				{
+					set(x,0,z,RandomFunctions.get(blocks.floor));
+					for (int y = ly-1; y > 0; y--) set(x,y-ly,z,RandomFunctions.get(blocks.walls));
+					for (int y = 3; y < 6; y++) set(x,y,z,RandomFunctions.get(blocks.walls));
+				}
+				else if (crypt[x][z] == 1)
+				{
+					set(x,0,z,blocks.path);
+					for (int y = ly-1; y >= 12; y--) set(x,y-ly,z,blocks.support);
+					set(x,5,z,RandomFunctions.get(blocks.roof));
+				}
+				else 
+				{
+					CryptRoom r = rooms.get(crypt[x][z]);
+					set(x,0,z,RandomFunctions.get(blocks.floor));
+					if (r.type == CryptRoomType.WET && RandomFunctions.random(1, 6) == 1) set(x,0,z,Material.WATER);
+					
+					for (int chx = -1; chx <= 1;chx++) for (int chz = -1; chz <= 1;chz++) if (crypt[x+chx][z+chz] == 0) for (int y = ly+5; y > 0; y--) set(x+chx,y-ly,z+chz,RandomFunctions.get(blocks.walls));
+					
+					if (r.type == CryptRoomType.NEST)
+					{
+						for (int y = 1; y < 5;y++) if (RandomFunctions.random(1, 5) == 1
+							&& Dungeons.w.getBlockAt(lx+x, ly+y, lz+z).getType() == Material.AIR) set(x,y,z,Material.COBWEB);
+						set(x,3,z,RandomFunctions.get(blocks.roomroof));
+					}
+					else set(x,5,z,RandomFunctions.get(blocks.roomroof));
+					for (int y = ly-1; y > 0; y--) set(x,y-ly,z,RandomFunctions.get(blocks.walls));
+				}
+			}
+			
 		}
+		generation++;
 	}
 	private void set(int x,int y,int z,Material mat)
 	{
 		Block b = Dungeons.w.getBlockAt(lx+x,ly+y,lz+z);
-		b.setType(mat);
+		if (b.getType() == Material.AIR) b.setType(mat);
 		removal.add(b);
 	}
 	public void endremove()

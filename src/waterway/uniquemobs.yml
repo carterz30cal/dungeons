@@ -58,10 +58,14 @@ tutorial_dummy:
     main: WOODEN_SWORD
     helmet: IRON_HELMET
     chestplate: IRON_CHESTPLATE
-  drops:
-    useful_stuff:
-      drop: 1/1
-      amount: 1-1
+    
+dummy:
+  name: Sturdy Dummy
+  type: ARMOR_STAND
+  health: 100000000
+  level: 0
+  kbresist: 1
+    
 jackdoom:
   name: Creeper, Aw Man!
   type: CREEPER,CREEPER,CREEPER,CREEPER

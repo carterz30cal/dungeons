@@ -33,18 +33,17 @@ import com.carterz30cal.dungeons.Dungeons;
 import com.carterz30cal.dungeons.SoundTask;
 import com.carterz30cal.items.Item;
 import com.carterz30cal.items.ItemBuilder;
+import com.carterz30cal.items.ItemEngine;
 import com.carterz30cal.items.ItemLootbox;
 import com.carterz30cal.items.Shop;
 import com.carterz30cal.items.ShopManager;
 import com.carterz30cal.items.abilities.AbsAbility;
 import com.carterz30cal.items.magic.ItemWand;
-import com.carterz30cal.mobs.DMobManager;
-import com.carterz30cal.mobs.SpawnPosition;
 import com.carterz30cal.player.DungeonsPlayer;
 import com.carterz30cal.player.DungeonsPlayerManager;
 import com.carterz30cal.quests.Quest;
 import com.carterz30cal.quests.QuestNpc;
-import com.carterz30cal.tasks.TaskSendMsg;
+import com.carterz30cal.utility.BoundingBox;
 import com.carterz30cal.utility.InventoryHandler;
 
 public class ListenerGUIEvents implements Listener
@@ -56,6 +55,30 @@ public class ListenerGUIEvents implements Listener
 		Player p = (Player)e.getWhoClicked();
 		DungeonsPlayer data = DungeonsPlayerManager.i.get(p);
 		
+		if (e.getClick() == ClickType.LEFT)
+		{
+			String i = ItemBuilder.getItem(e.getCursor());
+			Item c = ItemBuilder.get(e.getCurrentItem());
+			if (i != null && i.equals("luxium") && c instanceof ItemEngine)
+			{
+				ItemEngine engine = (ItemEngine)c;
+				ItemMeta added = e.getCurrentItem().getItemMeta();
+				int d = 0;
+				while (e.getCursor().getAmount() > 0 && ItemBuilder.getFuel(added) < engine.capacity)
+				{
+					ItemBuilder.addFuel(added, 25);
+					e.getCursor().setAmount(e.getCursor().getAmount()-1);
+					d++;
+				}
+				if (d > 0) 
+				{
+					p.sendMessage(ChatColor.GOLD + "Added " + ChatColor.YELLOW + (d*25) + "✦" + ChatColor.GOLD + " to your Engine!");
+					p.playSound(p.getLocation(), Sound.ENTITY_ARROW_HIT_PLAYER, 0.6f, 1);
+				}
+				e.getCurrentItem().setItemMeta(ItemBuilder.i.updateMeta(added, data));
+				e.setCancelled(true);
+			}
+		}
 		if (e.getClick() == ClickType.NUMBER_KEY)
 		{
 			p.sendMessage(ChatColor.RED + "Please don't use hotkeys to move items.");
@@ -64,7 +87,7 @@ public class ListenerGUIEvents implements Listener
 		}
 		else if (e.getClick() == ClickType.SWAP_OFFHAND)
 		{
-			p.sendMessage(ChatColor.RED + "Offhand is currently disabled!");
+			p.sendMessage(ChatColor.RED + "Offhand swapping is currently disabled!");
 			e.setCancelled(true);
 			return;
 		}
@@ -113,10 +136,22 @@ public class ListenerGUIEvents implements Listener
 		Action a = e.getAction();
 		
 		// don't allow barrel opening in crypts
-		if (e.getClickedBlock() != null && e.getClickedBlock().getType() == Material.BARREL && !d.canOpen)
+		if (e.getClickedBlock() != null && e.getClickedBlock().getType() == Material.BARREL)
+		{
+			if (!d.canOpen)
+			{
+				e.setUseInteractedBlock(Result.DENY);
+				e.setCancelled(true);
+			}
+			return;
+		}
+		else if (e.getClickedBlock() != null && e.getClickedBlock().getType() == Material.CHEST && new BoundingBox(new Location(Dungeons.w,-200,0,23800),new Location(Dungeons.w,200,255,24200)).isInside(d.player.getLocation())) return;
+		else if (e.getClickedBlock() != null && e.getClickedBlock().getType() == Material.BREWING_STAND && e.getAction() == Action.RIGHT_CLICK_BLOCK)
 		{
 			e.setUseInteractedBlock(Result.DENY);
 			e.setCancelled(true);
+			
+			new BrewingGUI(p);
 			return;
 		}
 		
@@ -154,75 +189,20 @@ public class ListenerGUIEvents implements Listener
 				
 				new LootboxGUI((ItemLootbox)it,e.getPlayer());
 			}
+			else if (i.getType() != Material.BOW && it.material != Material.MILK_BUCKET) e.setCancelled(true);
 		}
 	}
 	
-	/*
-	@EventHandler(priority=EventPriority.HIGHEST)
-	public void onInteract(PlayerInteractEvent e)
-	{
-		//boolean cancel = e.getAction() != Action.RIGHT_CLICK_BLOCK && e.getPlayer().getGameMode() != GameMode.CREATIVE;
-		boolean cancel = false;
-		Player p = e.getPlayer();
-		for (AbsDungeonEvent ev : EventTicker.events) if (ev.eventInteract(e)) return;
-		if (e.getAction() == Action.LEFT_CLICK_AIR)
-		{
-			if (e.getItem() != null && ItemBuilder.get(e.getItem()) instanceof ItemWand) new WandGUI(p);
-		}
-		if (e.getAction() == Action.LEFT_CLICK_BLOCK || e.getAction() == Action.RIGHT_CLICK_BLOCK)
-		{
-			if (e.getItem() != null && e.getClickedBlock().getType() == Material.JUKEBOX)
-			{
-				String it = e.getItem().getItemMeta().getPersistentDataContainer().getOrDefault(ItemBuilder.kItem, PersistentDataType.STRING,null);
-
-				if (it != null && BossManager.bossTypes.containsKey(it)) if (BossManager.summon(it)) e.getItem().setAmount(e.getItem().getAmount()-1);
-			}
-		}
-		if (e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK)
-		{
-			if (e.getItem() != null && ItemBuilder.get(e.getItem()) instanceof ItemWand) ((ItemWand)ItemBuilder.get(e.getItem())).use(DungeonsPlayerManager.i.get(p),e.getItem());
-			if (e.getItem() != null && e.getItem().isSimilar(ItemBuilder.menuItem))
-			{
-				new GUI(MenuType.MAINMENU,e.getPlayer());
-			}
-			else if (e.getItem() != null && e.getItem().hasItemMeta())
-			{
-				Item item = ItemBuilder.i.items.get(e.getItem().getItemMeta().getPersistentDataContainer().getOrDefault(ItemBuilder.kItem, PersistentDataType.STRING,null));
-				if (item != null && item.type.equals("lootbox"))
-				{
-					e.getItem().setAmount(e.getItem().getAmount()-1);
-					new SoundTask(e.getPlayer().getLocation(),e.getPlayer(),Sound.BLOCK_NOTE_BLOCK_PLING,0.6f,0.6f).runTaskLater(Dungeons.instance, 1);
-					new SoundTask(e.getPlayer().getLocation(),e.getPlayer(),Sound.BLOCK_NOTE_BLOCK_PLING,0.6f,0.7f).runTaskLater(Dungeons.instance, 7);
-					new SoundTask(e.getPlayer().getLocation(),e.getPlayer(),Sound.BLOCK_NOTE_BLOCK_PLING,0.6f,0.8f).runTaskLater(Dungeons.instance, 14);
-					
-					new LootboxGUI((ItemLootbox)item,e.getPlayer());
-				}
-			}
-		}
-		if (e.getItem() != null && e.getItem().getType() == Material.MAP) cancel = false;
-		e.setCancelled(cancel);
-	}
-	*/
-	/*
-	@EventHandler
-	public void onMapOpen(MapInitializeEvent e)
-	{
-		e.getMap().getRenderers().clear();
-		e.getMap().addRenderer(new CryptMap());
-		e.getMap().setUnlimitedTracking(false);
-		
-	}
-	*/
 	@EventHandler
 	public void onEntityInteract(PlayerInteractEntityEvent e)
 	{
 		QuestNpc questn = Quest.quests.getOrDefault(e.getRightClicked().getPersistentDataContainer().get(QuestNpc.kQuest, PersistentDataType.STRING)
 				,null);
-		
+		DungeonsPlayer d = DungeonsPlayerManager.i.get(e.getPlayer());
 		if (questn != null)
 		{
 			ArrayList<Quest> questl = questn.quests;
-			DungeonsPlayer d = DungeonsPlayerManager.i.get(e.getPlayer());
+			
 			if (d.questcooldown > 0) return;
 			Quest quest = null;
 			for (Quest q : questl)
@@ -233,7 +213,6 @@ public class ListenerGUIEvents implements Listener
 			}
 			if (quest == null && !questl.isEmpty())
 			{
-				//new TaskSendMsg(e.getPlayer(),ChatColor.GOLD + "[QUEST] " + questn.name + ChatColor.RESET + ": Sorry, I haven't got any more quests for you",0);
 				d.questcooldown = 12;
 				return;
 			}
@@ -247,6 +226,11 @@ public class ListenerGUIEvents implements Listener
 			if (shop != null)
 			{
 				new ShopGUI(shop,e.getPlayer());
+			}
+			else 
+			{
+				PlayerInteractEvent ev = new PlayerInteractEvent(e.getPlayer(),Action.RIGHT_CLICK_AIR,e.getPlayer().getInventory().getItemInMainHand(),null,null);
+				for (AbsAbility a : d.stats.abilities) a.onInteract(d, ev);
 			}
 		}
 		

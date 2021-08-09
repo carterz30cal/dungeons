@@ -21,23 +21,28 @@ public class RuneSnow extends AbsAbility
 	public ArrayList<String> description() {
 		ArrayList<String> d = new ArrayList<>();
 		d.add(rune + "Snow");
-		d.add("Inflict Slowness I");
-		d.add("Deals +7 damage to slowed enemies");
+		d.add("Has a 40% chance to add or increase");
+		d.add("Slowness on struck enemies. For each");
+		d.add("level of Slowness, gain 5% damage.");
+		d.add("Capped at Slowness X.");
 		return d;
 	}
 
 	public int onAttack(DungeonsPlayer d,DMob dMob,int damage) 
 	{
-		int p = 8;
+		int p = 11;
 		while (p > 0)
 		{
 			Dungeons.w.spawnParticle(Particle.REDSTONE, dMob.entities.get(0).getLocation().add(RandomFunctions.random(-0.3, 0.3), RandomFunctions.random(0.6, 1.8), RandomFunctions.random(-0.3, 0.3)), 3
 					,new Particle.DustOptions(Color.WHITE,1));
 			p--;
 		}
-		if (((LivingEntity)dMob.entities.get(0)).hasPotionEffect(PotionEffectType.SLOW)) return damage + 7;
+		PotionEffect slow = ((LivingEntity)dMob.entities.get(0)).getPotionEffect(PotionEffectType.SLOW);
+		int slowl = 0;
+		if (slow != null) slowl = slow.getAmplifier()+1;
 		
-		((LivingEntity)dMob.entities.get(0)).addPotionEffect(new PotionEffect(PotionEffectType.SLOW,60,0,true));
-		return damage;
+		if (RandomFunctions.random(1, 10) <= 4 && slowl < 10) ((LivingEntity)dMob.entities.get(0)).addPotionEffect(new PotionEffect(PotionEffectType.SLOW,200,slowl,true));
+		
+		return (int) (damage * (1 + (slowl*0.05d)));
 	} 
 }

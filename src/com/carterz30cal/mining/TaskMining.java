@@ -44,7 +44,8 @@ public class TaskMining extends BukkitRunnable
 		}
 		if (mining == null || (!mining.equals(target) && target != null))
 		{
-			if (player == null || player.area == null || player.area.mining == null || player.area.mining.blocks == null || !player.area.mining.blocks.containsKey(target.getType()))
+			if (player == null) end();
+			else if (target == null || player.area == null || player.area.mining == null || player.area.mining.blocks == null || !player.area.mining.blocks.containsKey(target.getType()))
 			{
 				player.mining = null;
 				end();

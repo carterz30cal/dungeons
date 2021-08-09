@@ -8,5 +8,6 @@ public enum CryptRoomType
 	NEST,
 	RUNE,
 	WET,
+	GRAVESTONE,
 	MINIBOSS
 }

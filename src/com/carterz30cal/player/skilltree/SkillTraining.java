@@ -19,7 +19,7 @@ public class SkillTraining extends AbsSkill {
 	@Override
 	public String description(int level) {
 		
-		return "+" + level*5 + "% damage.";
+		return "+" + level + "% damage.";
 	}
 
 	@Override
@@ -42,13 +42,13 @@ public class SkillTraining extends AbsSkill {
 	
 	public void stats(int level,DungeonsPlayerStats bank) 
 	{
-		bank.damagemod += level*0.05;
+		bank.damagemod += level*0.01;
 	}
 	
 	@Override
 	public int max() {
 		// TODO Auto-generated method stub
-		return 1;
+		return 10;
 	}
 
 

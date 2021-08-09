@@ -6,8 +6,8 @@ import java.util.Collection;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Particle;
+import org.bukkit.Sound;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
@@ -32,18 +32,18 @@ public class ProjectileParticle extends BukkitRunnable
 	public AbsAbility mod;
 	
 	private ArrayList<DMob> hit;
-	public ProjectileParticle(DungeonsPlayer o,ItemSpell spell,AbsAbility wand)
+	public ProjectileParticle(DungeonsPlayer o,ItemWand wand,ItemSpell spell,AbsAbility mo)
 	{
 
 		owner = o;
 		current = owner.player.getEyeLocation();
 		direction = owner.player.getEyeLocation().getDirection().normalize();
 		
-		damage = spell.damage;
+		damage = spell.damage + wand.damage;
 		pierces = spell.pierces;
 		speed = spell.speed;
 		colour = spell.colour;
-		mod = wand;
+		mod = mo;
 		
 		for (AbsAbility a : owner.stats.abilities) a.onMagic(owner, this);
 		if (mod != null) mod.onMagic(owner, this);
@@ -68,13 +68,14 @@ public class ProjectileParticle extends BukkitRunnable
 	{
 		if (owner.player.getLocation().distance(current) > 30) cancel();
 		if (!Dungeons.w.getBlockAt(current).isPassable()) cancel();
-		Collection<Entity> entities = Dungeons.w.getNearbyEntities(current, 0.5, 0.5, 0.5);
+		Collection<Entity> entities = Dungeons.w.getNearbyEntities(current, 0.7, 0.7, 0.7);
 		for (Entity e : entities)
 		{
 			DMob m = DMobManager.get(e);
 			if (m != null && !hit.contains(m))
 			{
 				m.damage(damage,owner,DamageType.MAGIC);
+				owner.player.playSound(owner.player.getLocation(), Sound.ENTITY_GENERIC_HURT,0.6f, 1f);
 				pierces--;
 				for (AbsAbility a : owner.stats.abilities) a.onMagicHit(owner,m);
 				if (mod != null) mod.onMagicHit(owner,m);

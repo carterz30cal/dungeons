@@ -2,10 +2,10 @@ hunter_tarantula1:
   name: Hatchling Tarantula
   type: TARANTULA
   loadcustom: true
-  health: 12000
-  damage: 245
-  armour: 45
-  level: 15
+  health: 10000
+  damage: 230
+  armour: 50
+  level: 13
   speed: 1.4
   kbresist: 1
   coinm: 0
@@ -17,8 +17,8 @@ hunter_tarantula1:
       cooldown: 20
     owned:
       cost: 500
-      bounty: 2000
-      xp: 25
+      bounty: 1000
+      xp: 20
     overkill:
       threshold: 1500
       reward: 15
@@ -29,7 +29,7 @@ hunter_tarantula1:
       enchants: squash,2
       rare: true
     tarantula_fang:
-      drop: 1/20
+      drop: 1/10
       amount: 1-1
       rare: true
       
@@ -37,10 +37,10 @@ hunter_tarantula2:
   name: Irked Tarantula
   type: TARANTULA
   loadcustom: true
-  health: 20000
-  damage: 300
+  health: 17000
+  damage: 290
   armour: 70
-  level: 16
+  level: 14
   speed: 1.5
   kbresist: 1
   coinm: 0
@@ -52,7 +52,7 @@ hunter_tarantula2:
       cooldown: 20
     owned:
       cost: 1000
-      bounty: 4000
+      bounty: 2000
       xp: 50
     overkill:
       threshold: 2000
@@ -64,7 +64,7 @@ hunter_tarantula2:
       enchants: squash,3
       rare: true
     tarantula_fang:
-      drop: 1/20
+      drop: 1/10
       amount: 1-2
       rare: true
     book;blade4:
@@ -76,10 +76,10 @@ hunter_tarantula3:
   name: Angry Tarantula
   type: TARANTULA
   loadcustom: true
-  health: 45000
-  damage: 450
+  health: 32000
+  damage: 380
   armour: 80
-  level: 17
+  level: 15
   speed: 1.6
   kbresist: 1
   coinm: 0
@@ -91,7 +91,7 @@ hunter_tarantula3:
       cooldown: 20
     owned:
       cost: 2000
-      bounty: 8000
+      bounty: 4000
       xp: 100
     overkill:
       threshold: 3500
@@ -103,7 +103,7 @@ hunter_tarantula3:
       enchants: squash,4
       rare: true
     tarantula_fang:
-      drop: 1/20
+      drop: 1/10
       amount: 2-3
       rare: true
     book;blade4:
@@ -114,15 +114,19 @@ hunter_tarantula3:
       drop: 1/50
       amount: 1-1
       rare: true
+    acidic_compound:
+      drop: 1/75
+      amount: 1-1
+      rare: true
       
 hunter_tarantula4:
   name: Enraged Tarantula
   type: TARANTULA
   loadcustom: true
-  health: 60000
-  damage: 525
+  health: 50000
+  damage: 460
   armour: 85
-  level: 18
+  level: 16
   speed: 1.65
   kbresist: 1
   coinm: 0
@@ -133,9 +137,9 @@ hunter_tarantula4:
       regen: 50
       cooldown: 20
     owned:
-      cost: 4000
-      bounty: 10000
-      xp: 250
+      cost: 3000
+      bounty: 6000
+      xp: 225
     overkill:
       threshold: 4000
       reward: 30
@@ -151,7 +155,7 @@ hunter_tarantula4:
       enchants: squash,4
       rare: true
     tarantula_fang:
-      drop: 1/20
+      drop: 1/10
       amount: 2-4
       rare: true
     book;blade4:
@@ -162,15 +166,19 @@ hunter_tarantula4:
       drop: 1/45
       amount: 1-1
       rare: true
+    acidic_compound:
+      drop: 1/75
+      amount: 1-1
+      rare: true
       
 hunter_tarantula5:
   name: Young Broodmother
   type: TARANTULA
   loadcustom: true
-  health: 100000
-  damage: 600
+  health: 75000
+  damage: 565
   armour: 90
-  level: 19
+  level: 17
   speed: 1.7
   kbresist: 1
   coinm: 0
@@ -181,8 +189,8 @@ hunter_tarantula5:
       regen: 50
       cooldown: 20
     owned:
-      cost: 8000
-      bounty: 20000
+      cost: 4000
+      bounty: 8000
       xp: 500
     overkill:
       threshold: 5000
@@ -194,8 +202,9 @@ hunter_tarantula5:
       targetonly: true
     summons:
       summon: tarantula5_brood
-      count: 7
+      count: 6
       respawn: 100
+      attacktarget: true
   drops:
     book;squash:
       drop: 1/7
@@ -203,7 +212,7 @@ hunter_tarantula5:
       enchants: squash,4
       rare: true
     tarantula_fang:
-      drop: 1/15
+      drop: 1/8
       amount: 2-4
       rare: true
     book;blade4:
@@ -214,12 +223,19 @@ hunter_tarantula5:
       drop: 1/40
       amount: 1-1
       rare: true
-      
+    modifier_magicwell:
+      drop: 1/100
+      amount: 1-1
+      rare: true
+    acidic_compound:
+      drop: 1/75
+      amount: 1-1
+      rare: true
 tarantula5_brood:
   name: Tarantula Brood
   type: CAVE_SPIDER
-  health: 3000
-  damage: 140
+  health: 2500
+  damage: 160
   armour: 30
   level: 7
   speed: 1.4
@@ -230,10 +246,10 @@ hunter_tarantula6:
   name: Elder Broodmother
   type: TARANTULA
   loadcustom: true
-  health: 200000
-  damage: 750
+  health: 150000
+  damage: 700
   armour: 100
-  level: 20
+  level: 18
   speed: 1.8
   kbresist: 1
   coinm: 0
@@ -244,8 +260,8 @@ hunter_tarantula6:
       regen: 40
       cooldown: 10
     owned:
-      cost: 16000
-      bounty: 40000
+      cost: 5000
+      bounty: 10000
       xp: 750
     overkill:
       threshold: 7000
@@ -257,8 +273,9 @@ hunter_tarantula6:
       targetonly: true
     summons:
       summon: tarantula6_brood
-      count: 9
+      count: 8
       respawn: 100
+      attacktarget: true
     caster:
       projectiles: -1
       speed: 3
@@ -272,7 +289,7 @@ hunter_tarantula6:
       enchants: squash,5
       rare: true
     tarantula_fang:
-      drop: 1/10
+      drop: 1/7
       amount: 2-5
       rare: true
     book;blade4:
@@ -284,13 +301,21 @@ hunter_tarantula6:
       amount: 1-1
       rare: true
     tarantula_jewel:
-      drop: 1/200
+      drop: 1/90
       amount: 1-1
       rare: true
     book;squash6:
-      drop: 1/150
+      drop: 1/100
       amount: 1-1
       enchants: squash,6
+      rare: true
+    modifier_magicwell:
+      drop: 1/90
+      amount: 1-1
+      rare: true
+    acidic_compound:
+      drop: 1/75
+      amount: 1-1
       rare: true
       
 tarantula6_brood:
@@ -309,9 +334,9 @@ hunter_tarantula7:
   type: TARANTULA
   loadcustom: true
   health: 1000000
-  damage: 1100
+  damage: 1000
   armour: 120
-  level: 22
+  level: 20
   speed: 1.9
   kbresist: 1
   coinm: 0
@@ -322,9 +347,9 @@ hunter_tarantula7:
       regen: 80
       cooldown: 10
     owned:
-      cost: 50000
-      bounty: 125000
-      xp: 2000
+      cost: 8000
+      bounty: 16000
+      xp: 1500
     overkill:
       threshold: 25000
       reward: 110
@@ -335,21 +360,22 @@ hunter_tarantula7:
       targetonly: true
     summons:
       summon: tarantula7_brood
-      count: 11
+      count: 10
       respawn: 150
+      attacktarget: true
     caster:
       projectiles: -1
       speed: 3
       range: 20
       damage: 450
-      cooldown: 100
+      cooldown: 80
   drops:
     tarantula_fang:
-      drop: 1/10
+      drop: 1/5
       amount: 3-7
       rare: true
     book;blade4:
-      drop: 1/20
+      drop: 1/60
       amount: 1-1
       rare: true
     tarantula_blood:
@@ -357,13 +383,26 @@ hunter_tarantula7:
       amount: 1-1
       rare: true
     tarantula_jewel:
-      drop: 1/125
+      drop: 1/85
       amount: 1-1
       rare: true
     book;squash6:
       drop: 1/50
       amount: 1-1
-      enchants: squash,6
+      enchants: squash,7
+      rare: true
+    book;ultsquash:
+      drop: 1/150
+      amount: 1-1
+      enchants: ultimatesquash,1
+      rare: true
+    modifier_magicwell:
+      drop: 1/80
+      amount: 1-1
+      rare: true
+    acidic_compound:
+      drop: 1/75
+      amount: 1-1
       rare: true
       
 tarantula7_brood:

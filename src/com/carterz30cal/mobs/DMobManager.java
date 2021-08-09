@@ -2,7 +2,9 @@ package com.carterz30cal.mobs;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 import org.bukkit.ChatColor;
@@ -18,6 +20,7 @@ import org.bukkit.persistence.PersistentDataType;
 
 import com.carterz30cal.dungeons.Dungeons;
 import com.carterz30cal.items.ItemBuilder;
+import com.carterz30cal.mobs.packet.EntitySkinned;
 
 public class DMobManager 
 {
@@ -27,16 +30,24 @@ public class DMobManager
 	public static HashMap<String,DMobType> types;
 	public static HashMap<String,DMobModifier> modifiers;
 	
+	public static List<SpawnJob> queue = new ArrayList<>();
 	
 	private static final String[] files = {
-			"waterway/drenched"   ,"waterway/bossmobs","waterway/uniquemobs","waterway/soaked","waterway/fishes",
+			"waterway2/mobs_drenched"
+	};
+	/*
+	private static final String[] files = {
+			"waterway2/mobs_drenched",
+			"waterway/bossmobs","waterway/uniquemobs","waterway/soaked","waterway/fishes",
 			"waterway/titan_mobs","waterway/mobs_fishing","waterway/mobs_sands",
 			"necropolis/skeletons","necropolis/ghouls","necropolis/slimes","necropolis/crypts_mobs1","necropolis/crypts_mobs2",
 			"necropolis/crypts_miniboss","necropolis/diggingmobs","necropolis/digging_mobs3","necropolis/crypts_mobsancient",
 			"necropolis/mushroom_mobs","necropolis/mobs_boss","necropolis/mobs_ancient","necropolis/mobs_ancient_boss",
-			"unique/unique_mobs","necropolis/mobs_crypts",
-			"infested/mobs_spiders","infested/mobs_hunter"
+			"unique/unique_mobs","necropolis/mobs_crypts","necropolis/mobs_crypts_boss",
+			"infested/mobs_spiders","infested/mobs_hunter","infested/mobs_temple","infested/mobs_slimearea",
+			"ruins/mobs"
 	};
+	*/
 	
 	public static DMob get(Entity e)
 	{
@@ -74,13 +85,19 @@ public class DMobManager
 	}
 	public static DMob spawn(String mob,SpawnPosition pos)
 	{
-		if (mob == null || pos == null || pos.position == null) return null;
-		return new DMob(types.get(mob),pos,pos.position,true);
+		return spawn(mob,pos,true);
 	}
 	public static DMob spawn(String mob,SpawnPosition pos,boolean modifiers)
 	{
 		if (mob == null) return null;
-		return new DMob(types.get(mob),pos,pos.position,modifiers);
+		DMob sp = new DMob(types.get(mob),pos,pos.position,modifiers);
+
+		return sp;
+	}
+	
+	public static void addToQueue(EntitySkinned en)
+	{
+		queue.add(new SpawnJob(en));
 	}
 	public DMobManager()
 	{
@@ -120,4 +137,31 @@ public class DMobManager
 			}
 		}
 	}
+	
+	public static void execute()
+	{
+		if (queue.size() == 0) return;
+		queue.get(0).execute();
+	}
 }
+
+class SpawnJob
+{
+	public EntitySkinned entity;
+	
+	public SpawnJob(EntitySkinned e)
+	{
+		entity = e;
+	}
+	public SpawnJob(DMob mob)
+	{
+		entity = (EntitySkinned) mob.entities.get(0);
+	}
+	public void execute()
+	{
+		entity.spawn();
+		DMobManager.queue.remove(this);
+	}
+}
+
+

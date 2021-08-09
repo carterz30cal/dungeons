@@ -16,11 +16,11 @@ public class CommandVote implements CommandExecutor
 		if (arg0 instanceof Player) 
 		{
 			arg0.sendMessage(ChatColor.GOLD + "" + ChatColor.BOLD + "Voting Links");
-			arg0.sendMessage(ChatColor.GOLD + "Each vote grants 6 hours of 35% extra xp");
-			arg0.sendMessage(ChatColor.WHITE + "- minecraftservers.org/server/612995");
+			arg0.sendMessage(ChatColor.GOLD + "Each vote grants 24 hours of 35% extra xp");
+			//arg0.sendMessage(ChatColor.WHITE + "- minecraftservers.org/server/612995");
 			arg0.sendMessage(ChatColor.WHITE + "- minecraft-mp.com/server-s284523");
-			arg0.sendMessage(ChatColor.WHITE + "- minebrowse.com/server/2821");
-			arg0.sendMessage(ChatColor.WHITE + "- topg.org/minecraft-servers/server-628661");
+			//arg0.sendMessage(ChatColor.WHITE + "- minebrowse.com/server/2821");
+			//arg0.sendMessage(ChatColor.WHITE + "- topg.org/minecraft-servers/server-628661");
 		}
 		return true;
 	}

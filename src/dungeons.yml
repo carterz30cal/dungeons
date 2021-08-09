@@ -171,21 +171,106 @@ infestedcaverns:
         replacement: BLACK_CONCRETE
         hardness: 1400
   spawns:
-     34,98,23007: spider_egg
-     27,98,23009: spider_egg
-     40,98,23005: spider_egg
-     42,98,22999: spider_egg
-     40,99,22992: spider_egg
+    34,98,23007: spider_egg
+    27,98,23009: spider_egg
+    40,98,23005: spider_egg
+    42,98,22999: spider_egg
+    40,99,22992: spider_egg
      
-     19,100,23020: infested_spider1
-     23,103,23008: infested_spider1
-     21,106,22999: infested_spider1
-     12,99,23013: infested_spider1
-     20,98,23004: infested_spider1
-     32,98,23004: infested_spider1
-     39,98,23001: infested_spider1
+    19,100,23020: infested_spider1
+    23,103,23008: infested_spider1
+    21,106,22999: infested_spider1
+    12,99,23013: infested_spider1
+    20,98,23004: infested_spider1
+    32,98,23004: infested_spider1
+    39,98,23001: infested_spider1
     
+    60,5,22978: temple_guard
+    40,5,22991: temple_devout
+    42,5,22989: temple_devout
+    42,5,22993: temple_devout
+    38,5,22989: temple_devout
+    38,5,22993: temple_devout
     
+    101,25,22994: temple_chamberguard
+    
+    39,11,22981: temple_overseer
+    45,10,22977: temple_overseer
+    50,10,22982: temple_overseer
+    47,10,22966: temple_overseer
+    56,11,22966: temple_overseer
+    57,11,22972: temple_overseer
+    62,11,22990: temple_overseer
+    58,11,22994: temple_overseer
+    58,11,22983: temple_overseer
+    
+    53,103,23039: spider_egg
+    48,103,23039: infested_drenched
+    44,103,23040: infested_drenched
+    
+abyssalruins:
+  name: Abyssal Ruins
+  spawn: 0,103,24000
+  unfinished: true
+  reqtutorial: Spider Squasher
+  explorer:
+    icon:
+      data: ewogICJ0aW1lc3RhbXAiIDogMTYyNTc2MjY3Nzg1OSwKICAicHJvZmlsZUlkIiA6ICI5ZDQyNWFiOGFmZjg0MGU1OWM3NzUzZjc5Mjg5YjMyZSIsCiAgInByb2ZpbGVOYW1lIiA6ICJUb21wa2luNDIiLAogICJzaWduYXR1cmVSZXF1aXJlZCIgOiB0cnVlLAogICJ0ZXh0dXJlcyIgOiB7CiAgICAiU0tJTiIgOiB7CiAgICAgICJ1cmwiIDogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTI3M2FmNzY5MDczMzc0NGFmYTU0YzQzMDc3Yzk1ZjMxNTlhNjJmMDdiYjlkOWFiM2U1MTQwNDczNDBjM2JiNiIsCiAgICAgICJtZXRhZGF0YSIgOiB7CiAgICAgICAgIm1vZGVsIiA6ICJzbGltIgogICAgICB9CiAgICB9CiAgfQp9
+      sig: wxEZy7cWuJWKsZUVc9tlKxvPGHlxD5eVIa0B2xbVgQzFteLt0KPEwvKGUY9iOcIyBTXLgwsWs79EXoaf7LRfm5DwZi5bhw2jXgHtPuve2rL7la3fSqq+vFHGY2onjWlSQFdenD5yorqODeyGTFx2KAqfv+Yk1fVnyCSL5ot9dpFxcpitw1Ou/3pexcFcmP5aXRcdVr0LSvx9q75+m9UeItfnpXDDU9TYZB+QojcpZIS7yx78rWjM4xq9xrzIY/3swL5+ENPpWmeZUp5hjqLwQHTyGzGm4iRo9M1+PGfalIUNpgFMQFYTnBxS8cyZacuK7zLNCpr0jWFCVXA0dK/YkSHyZMzdENO+4GPeCcjgXHZVAyLzIyWjQCWe1n+5aocWwgh5OEIVqYlBRWx/GmJ4MihxdoymWKKRJAOzeDEiZW6LQcSmLS+4vriKwUblK/WyvOjgtTOJabBcDN1Ctv6uJw6iRJd5vVH+509w9irWRq6dQU6IAiwe9nEsBTPlJXSlsvZ0H7iJLDYjEzEtmClcY/graKgV6t53QwMdxRwzNE/tsn8wRvQ60CfWTX0mH0Xo60vPt++cIusCMUm1ggwosYUg+zvzaugTdSVDem5NW6XWGb6fbqwjNV7QUGjsOQ8jN9lFo28wl/eh9NOkI6C27jnkFski2PqSAt4BdH9GXCk=
+    lore: The everchanging ruins of an ancient race./Watch out for traps!
+    killsperlevel: 500
+    extracoins: 18
+  fishingmobs: dweller,undead_fisherman,pond_slime,ghost_squid,water_soul,pond_golem
+  mining:
+    replace: false
+    boss: {}
+    xp: 9
+    ores:
+      WHITE_WOOL:
+        ore: light_shard
+        replacement: AIR
+        hardness: 5000
+      WHITE_STAINED_GLASS:
+        ore: light_shard
+        replacement: AIR
+        hardness: 1750
+      GLOWSTONE:
+        ore: light_block
+        replacement: AIR
+        hardness: 10000
+      BLACK_WOOL:
+        ore: null
+        replacement: AIR
+        hardness: 750
+      GRAY_TERRACOTTA:
+        ore: null
+        replacement: AIR
+        hardness: 750
+      BLACK_CONCRETE:
+        ore: null
+        replacement: AIR
+        hardness: 750
+      GRAY_CONCRETE:
+        ore: null
+        replacement: AIR
+        hardness: 750
+      SEA_LANTERN:
+        ore: null
+        replacement: AIR
+        hardness: 1000
+      STONE_BRICKS:
+        ore: null
+        replacement: AIR
+        hardness: 1250
+      STONE:
+        ore: null
+        replacement: AIR
+        hardness: 1250
+      COBBLESTONE:
+        ore: null
+        replacement: AIR
+        hardness: 1250
+  spawns: {}
     
     
     

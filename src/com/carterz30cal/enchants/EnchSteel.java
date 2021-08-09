@@ -9,7 +9,7 @@ public class EnchSteel extends AbsEnchant
 	@Override
 	public String description() {
 		// TODO Auto-generated method stub
-		return "Adds " + (5*level) + " + " + (2*level) + "% armour to this piece.";
+		return "Adds " + (7*level) + " + " + (3*level) + "% armour to this piece.";
 	}
 
 	@Override
@@ -44,8 +44,8 @@ public class EnchSteel extends AbsEnchant
 
 	@Override
 	public DungeonsPlayerStatBank onBank(DungeonsPlayerStatBank bank) {
-		bank.armour += Math.round((bank.base.getOrDefault("armour",0d))*(0.02*level));
-		bank.armour += 5*level;
+		bank.armour += Math.round((bank.base.getOrDefault("armour",0d))*(0.03*level));
+		bank.armour += 7*level;
 		return bank;
 	}
 

@@ -52,7 +52,13 @@ public class EnchantManager
 		enchantments.put("explicious", EnchExplicious.class);
 		enchantments.put("orbs", EnchOrbs.class);
 		enchantments.put("steel", EnchSteel.class);
-		enchantments.put("corrupt",EnchCorrupt.class);
+		enchantments.put("corrupt",SpecialEnchCorrupt.class);
+		enchantments.put("livingwood", SpecialEnchLivingWood.class);
+		enchantments.put("empowered", SpecialEnchEmpowered.class);
+		enchantments.put("cryptking",SpecialEnchCryptKing.class);
+		enchantments.put("boost", EnchBoost.class);
+		enchantments.put("ultimatesquash", SpecialEnchUltimateSquash.class);
+		enchantments.put("biomagnetic", EnchBiomagnetic.class);
 	}
 	@Deprecated
 	public static int catalyst(ItemStack item, ItemStack book)
@@ -75,6 +81,7 @@ public class EnchantManager
 		return catalyst;
 	}
 	
+	@SuppressWarnings("deprecation")
 	public static ArrayList<AbsEnchant> get(PersistentDataContainer con)
 	{
 		if (con == null) return null;
@@ -104,6 +111,7 @@ public class EnchantManager
 		return enchantL;
 	}
 	
+	@SuppressWarnings("deprecation")
 	public static AbsEnchant get(String ench)
 	{
 		

@@ -26,4 +26,9 @@ public class AbilityPhantom extends AbsAbility {
 		d.heal(16);
 		return damage;
 	}
+	
+	public boolean allowTarget(DungeonsPlayer d, DMob m)
+	{
+		return !d.player.hasPotionEffect(PotionEffectType.INVISIBILITY);
+	}
 }

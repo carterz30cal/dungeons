@@ -1,0 +1,64 @@
+light_blade:
+  name: Light Blade
+  type: weapon
+  item: IRON_SWORD
+  rarity: RARE
+  glow: true
+  req: 40
+  attributes:
+    damage: +120
+    damagep: +0.25
+    
+abyssal_dagger:
+  name: Abyssal Dagger
+  type: weapon
+  item: LEVER
+  rarity: RARE
+  req: 40
+  ability: abyssal
+  attributes:
+    damage: +145
+    health: -100
+    
+abyssal_bow:
+  name: Abyssal Bow of Distortion
+  type: weapon
+  item: BOW
+  rarity: RARE
+  req: 40
+  ability: abyssalbow
+  attributes:
+    damage: +110
+    damagep: +0.4
+    mana: +100
+    
+abyssal_hopper:
+  name: Void of the Abyss
+  type: artifact
+  item: HOPPER
+  rarity: RARE
+  req: 35
+  ability: abyssalhopper
+  attributes:
+    regen: -20
+    
+night_hammer:
+  name: Warhammer of the Night
+  type: weapon
+  item: NETHERITE_AXE
+  rarity: LEGENDARY
+  req: 45
+  ability: warhammer
+  attributes:
+    damage: +245
+    
+light_bow:
+  name: Longbow of Light
+  type: weapon
+  item: BOW
+  rarity: RARE
+  glow: true
+  req: 40
+  attributes:
+    damage: +150
+    damagep: +0.2

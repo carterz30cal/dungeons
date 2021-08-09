@@ -19,7 +19,7 @@ public class SkillBloodlust extends AbsSkill {
 	@Override
 	public String description(int level) {
 		
-		return "If below 35% health, gain " + level*5 + " damage.";
+		return "If below 30% health, gain " + level*5 + " damage.";
 	}
 
 	@Override
@@ -42,7 +42,7 @@ public class SkillBloodlust extends AbsSkill {
 	
 	public void stats(int level,DungeonsPlayerStats bank) 
 	{
-		if (bank.o.getHealthPercent() < 0.35)
+		if (bank.o.getHealthPercent() < 0.3)
 		{
 			bank.damage += level*5;
 		}
@@ -52,7 +52,7 @@ public class SkillBloodlust extends AbsSkill {
 	@Override
 	public int max() {
 		// TODO Auto-generated method stub
-		return 5;
+		return 10;
 	}
 
 

@@ -1,0 +1,406 @@
+temple_guard:
+  name: Temple Guard
+  type: SKELETON
+  level: 12
+  health: 25000
+  damage: 400
+  armour: 120
+  speed: 0.5
+  tags: temple,infested
+  kbresist: 0.9
+  dmgresist: 0.1
+  abilities:
+    deathsummon:
+      type: temple_guard_death
+      count: 1
+    taunt:
+      taunts: You cannot go on.;Die.;Why prolong your suffering?;You can't beat me.;You will die.;The temple is too strong for you.
+    weapon:
+      item: GOLDEN_AXE
+      damage: 240
+  equipment:
+    main: GOLDEN_AXE
+    helmet: temple_skull
+    chestplate: GOLDEN_CHESTPLATE
+    leggings: IRON_LEGGINGS
+    boots: IRON_BOOTS
+    
+temple_guard_death:
+  name: Necrotic Guard
+  type: WITHER_SKELETON
+  level: 12
+  health: 12000
+  damage: 500
+  armour: 200
+  speed: 0.7
+  kbresist: 0.9
+  dmgresist: 0.2
+  tags: temple,infested
+  abilities:
+    taunt:
+      taunts: YOU CANNOT BEAT ME.;I WILL SECURE VICTORY.;DIE!;THE TEMPLE WON'T ACCEPT YOU.;YOU CANNOT BEAT HIM.;ACCEPT YOUR DEATH.;I AM STRONGER THAN YOU.;YOU WILL DIE TO MY FLAMING SCYTHE!
+    firewhip:
+      damage: 360
+      cooldown: 40
+      range: 17
+      minrange: 5
+  equipment:
+    main: GOLDEN_HOE
+    helmet: NETHERITE_HELMET
+  drops:
+    ritual_dagger:
+      drop: 1/100
+      amount: 1-1
+      rare: true
+    
+temple_devout:
+  name: Devout
+  type: SKELETON
+  level: 10
+  health: 2222
+  damage: 410
+  armour: 120
+  speed: 1.1
+  kbresist: 1
+  tags: temple,infested
+  vanish: true
+  abilities:
+    deatheffect: {}
+    effects:
+      type: FLAME
+      wobble: 0.7
+      radius: 0.6
+      step: 11
+  equipment:
+    main: GOLDEN_SWORD
+    offhand: GOLDEN_SWORD
+    helmet: armour_cultist_helmet
+    chestplate: armour_cultist_chestplate
+    leggings: armour_cultist_leggings
+    boots: armour_cultist_boots
+  drops:
+    ritual_dagger:
+      drop: 1/80
+      amount: 1-1
+      rare: true
+    randomnote:
+      drop: 1/130
+      amount: 1-1
+      rare: true
+    armour_cultist_helmet:
+      drop: 1/150
+      amount: 1-1
+      rare: true
+    armour_cultist_chestplate:
+      drop: 1/150
+      amount: 1-1
+      rare: true
+    armour_cultist_leggings:
+      drop: 1/150
+      amount: 1-1
+      rare: true
+    armour_cultist_boots:
+      drop: 1/150
+      amount: 1-1
+      rare: true
+    
+temple_overseer:
+  name: Overseer
+  type: SKELETON
+  health: 4500
+  damage: 360
+  armour: 170
+  speed: 0.5
+  tags: temple,infested
+  kbresist: 1
+  level: 11
+  abilities:
+    regen:
+      regen: 100
+      cooldown: 30
+    laser:
+      damage: 310
+      cooldown: 60
+      range: 4
+      colour: 0,60,200
+      targetonly: true
+  equipment:
+    helmet: overseer_eye
+    chestplate: armour_sewer_chestplate
+    leggings: GOLDEN_LEGGINGS
+    boots: GOLDEN_BOOTS
+  drops:
+    luxium:
+      drop: 1/12
+      amount: 1-3
+    ritual_dagger:
+      drop: 1/100
+      amount: 1-1
+      rare: true
+    armour_overseer_helmet:
+      drop: 1/125
+      amount: 1-1
+      rare: true
+    eyeball_squisher:
+      drop: 1/150
+      amount: 1-1
+      rare: true
+    
+temple_chamberguard:
+  name: Chamber Guardian
+  type: WITHER_SKELETON
+  health: 70000
+  damage: 800
+  armour: 275
+  kbresist: 1
+  dmgresist: 0.12
+  boss: true
+  level: 16
+  speed: 0.3
+  tags: temple,infested
+  abilities:
+    taunt:
+      taunts: I shall not let you in the chamber!;This area is strictly off-limits.;Say goodbye to your feeble lives!;You cannot win!
+    weapon:
+      item: IRON_AXE
+      damage: 300
+      cooldown: 40
+    weapon;2:
+      item: NETHERITE_AXE
+      damage: 800
+      cooldown: 120
+    rewarder:
+      reward: loot_templeguardian
+      threshold: 8000
+    caster:
+      projectiles: 55
+      speed: 9
+      range: 20
+      damage: 70
+      cooldown: 8
+      colour: 0,0,0
+  equipment:
+    main: IRON_AXE
+    offhand: NETHERITE_AXE
+    helmet: armour_guardians_helmet
+    chestplate: armour_paper_chestplate
+    leggings: armour_paper_leggings
+    boots: armour_paper_boots
+    
+temple_boss_eye:
+  name: Sathlar's Eye
+  type: ZOMBIE
+  health: 150000
+  invisible: true
+  silent: true
+  tags: temple,infested
+  kbresist: 1
+  speed: 0
+  dmgresist: 0.1
+  armour: 600
+  level: 19
+  boss: true
+      
+temple_boss_guts:
+  name: Guts
+  type: SILVERFISH
+  health: 6000
+  damage: 300
+  level: 9
+  silent: true
+  tags: temple,infested
+  speed: 1.5
+  kbresist: 0.6
+  dmgresist: 0.1
+
+temple_boss_construct:
+  name: Temple Construct
+  type: IRON_GOLEM
+  health: 200000
+  damage: 600
+  armour: 800
+  level: 20
+  tags: temple,infested
+  speed: 0.2
+  kbresist: 1
+  boss: true
+  abilities:
+    targeter:
+      range: 25
+    spawn:
+      mob: temple_boss_guts
+      cooldown: 30
+    
+  
+temple_boss_spirit:
+  name: Sathlar's Spirit
+  type: ENDERMAN
+  health: 250000
+  damage: 560
+  level: 21
+  speed: 0.7
+  kbresist: 0.2
+  boss: true
+  abilities:
+    targeter:
+      range: 6
+    regen:
+      regen: 2000
+      cooldown: 80
+    firewhip:
+      damage: 145
+      range: 15
+      minrange: 5
+      cooldown: 18
+      soul: true
+      
+      
+temple_boss_servant1:
+  name: Servant
+  type: SKELETON
+  level: 10
+  health: 7500
+  damage: 350
+  tags: temple,infested
+  kbresist: 0.5
+  armour: 620
+  speed: 0.5
+  abilities:
+    targeter:
+      range: 20
+  equipment:
+    main: GOLDEN_SWORD
+    helmet: temple_skull
+    
+temple_boss_servant2:
+  name: Servant
+  type: SKELETON
+  level: 9
+  health: 3000
+  damage: 300
+  tags: temple,infested
+  kbresist: 0.6
+  armour: 700
+  speed: 0.5
+  abilities:
+    targeter:
+      range: 20
+  equipment:
+    main: WOODEN_SWORD
+    helmet: temple_skull
+    
+temple_boss_servant3:
+  name: Elder Servant
+  type: SKELETON
+  level: 10
+  health: 9500
+  damage: 375
+  tags: temple,infested
+  kbresist: 0.8
+  dmgresist: 0.1
+  armour: 1000
+  speed: 0.55
+  abilities:
+    targeter:
+      range: 20
+  equipment:
+    main: IRON_SWORD
+    offhand: IRON_SWORD
+    helmet: temple_skull
+    chestplate: armour_bone_chestplate
+  
+temple_boss_archer:
+  name: Cultist Archer
+  type: ZOMBIE
+  silent: true
+  level: 11
+  health: 25000
+  armour: 800
+  damage: 140
+  tags: temple,infested
+  kbresist: 1
+  dmgresist: 0.2
+  speed: 0.7
+  abilities:
+    launcher:
+      volley: 9
+      cooldown: 160
+      spread: 18
+  equipment:
+    main: BOW
+    offhand: ARROW
+    helmet: GOLDEN_HELMET
+    chestplate: armour_cultist_chestplate
+    leggings: armour_cultist_leggings
+    boots: armour_cultist_boots
+  
+temple_boss_tentacle1:
+  name: Tentacle
+  type: ARMOR_STAND
+  data:
+    0: nogravity
+  invisible: true
+  silent: true
+  level: 14
+  health: 35000
+  tags: temple,infested
+  kbresist: 1
+  armour: 250
+  dmgresist: 0.1
+  boss: true
+  equipment:
+    helmet: armour_tentacle_helmet
+  drops:
+    armour_tentacle_helmet:
+      drop: 1/200
+      amount: 1-1
+      rare: true
+    
+temple_boss_tentacle2:
+  name: Tentacle
+  type: ARMOR_STAND
+  data:
+    0: nogravity
+  invisible: true
+  silent: true
+  level: 14
+  health: 55000
+  tags: temple,infested
+  kbresist: 1
+  armour: 500
+  dmgresist: 0.1
+  boss: true
+  equipment:
+    helmet: armour_tentacle_helmet
+  drops:
+    armour_tentacle_helmet:
+      drop: 1/200
+      amount: 1-1
+      rare: true
+
+temple_boss_tentacle3:
+  name: Tentacle
+  type: ARMOR_STAND
+  data:
+    0: nogravity
+  invisible: true
+  silent: true
+  level: 14
+  health: 87500
+  tags: temple,infested
+  kbresist: 1
+  armour: 750
+  dmgresist: 0.1
+  boss: true
+  equipment:
+    helmet: armour_tentacle_helmet
+  drops:
+    armour_tentacle_helmet:
+      drop: 1/200
+      amount: 1-1
+      rare: true
+  
+  
+    
+    
+    

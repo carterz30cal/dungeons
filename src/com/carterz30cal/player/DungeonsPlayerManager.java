@@ -128,6 +128,7 @@ public class DungeonsPlayerManager
 		playerc.set(path + ".tutorials", dp.tutorials);
 		playerc.set(path + ".playtime", dp.playtime);
 		playerc.set(path + ".kills", dp.kills);
+		playerc.set(path + ".version", Dungeons.instance.getDescription().getVersion());
 		for (int p = 0; p < dp.backpackb.size(); p++) for (BackpackItem item : dp.backpackb.get(p)) if (item != null) item.save(playerc,path + ".backpack." + p);
 		if (dp.explorer.areaPoints.size() > 0)
 		{
@@ -143,11 +144,13 @@ public class DungeonsPlayerManager
 		for (Entry<String,Integer> ingredient : dp.sack.entrySet())
 		{
 			playerc.set(path + ".sack." + ingredient.getKey(), ingredient.getValue());
-		}
+		} 
+		playerc.set(path +".location", dp.area.id);
 		playerc.set(path + ".coins", dp.coins);
 		playerc.set(path + ".rank",dp.rank.ordinal());
 		
 		playerc.set(path + ".experience", dp.level.experience);
+		playerc.set(path + ".level", dp.level.level);
 		playerc.set(path + ".hunter", dp.level.hunter);
 		if (dp.voteBoost == null || dp.voteBoost.isBefore(Instant.now())) playerc.set(path + ".voteboost", null);
 		else playerc.set(path + ".voteboost", dp.voteBoost.toEpochMilli());

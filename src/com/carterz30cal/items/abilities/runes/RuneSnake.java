@@ -1,7 +1,8 @@
 package com.carterz30cal.items.abilities.runes;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.bukkit.Color;
 import org.bukkit.Particle;
@@ -20,8 +21,8 @@ public class RuneSnake extends AbsAbility {
 	public ArrayList<String> description() {
 		ArrayList<String> d = new ArrayList<String>();
 		d.add(rune + "Snake");
-		d.add("Deals 2 extra damage for every enemy");
-		d.add("within 12 blocks");
+		d.add("Deals 5% more damage per enemy");
+		d.add("within 12 blocks. Capped at +175%.");
 		return d;
 	}
 	
@@ -36,10 +37,15 @@ public class RuneSnake extends AbsAbility {
 			p--;
 		}
 		
-		Collection<Entity> near = Dungeons.w.getNearbyEntities(d.player.getLocation(), 12, 12, 12);
-		int e = 0;
-		for (Entity i : near) if (i != dMob.entities.get(0) && DMobManager.get(i) != null) e++;
+		Set<DMob> nearby = new HashSet<>();
+		for (Entity i : Dungeons.w.getNearbyEntities(d.player.getLocation(), 12, 12, 12)) 
+		{
+			DMob m = DMobManager.get(i);
+			if (m != null && m != dMob && !nearby.contains(m)) nearby.add(m);
+		}
 		
-		return damage + (2*e);
+		double gain = nearby.size() * 0.05;
+		if (gain > 1.75) gain = 1.75;
+		return (int) (damage * (1+gain));
 	} 
 }

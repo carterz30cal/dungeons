@@ -40,6 +40,7 @@ public class WaterwayRain extends AbsDungeonEvent
 		eventmobs.put(DMobManager.types.get("drenched1"),DMobManager.types.get("soaked1"));
 		eventmobs.put(DMobManager.types.get("drenched2"),DMobManager.types.get("soaked2"));
 		eventmobs.put(DMobManager.types.get("drenched3"),DMobManager.types.get("soaked3"));
+		
 	}
 	private void display()
 	{
@@ -48,7 +49,6 @@ public class WaterwayRain extends AbsDungeonEvent
 	@Override
 	public void tick()
 	{
-		if (!display.isValid()) display();
 		// state switch
 		if (on && ticks == onperiod || !on && ticks == offperiod)
 		{

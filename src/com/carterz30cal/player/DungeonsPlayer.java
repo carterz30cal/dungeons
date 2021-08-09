@@ -18,6 +18,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
@@ -30,6 +31,8 @@ import com.carterz30cal.dungeons.DungeonManager;
 import com.carterz30cal.dungeons.Dungeons;
 import com.carterz30cal.dungeons.SoundTask;
 import com.carterz30cal.gui.GUI;
+import com.carterz30cal.items.ItemBuilder;
+import com.carterz30cal.items.abilities.AbsAbility;
 import com.carterz30cal.mining.TaskMining;
 import com.carterz30cal.packets.Packetz;
 import com.carterz30cal.utility.Square;
@@ -68,7 +71,7 @@ public class DungeonsPlayer
 	// data for rewards
 	
 	
-	
+	public String logoutloc;
 	public int afk;
 	
 	public Instant voteBoost;
@@ -79,7 +82,10 @@ public class DungeonsPlayer
 	
 	private int manacooldown;
 	
+	public int combatTicks;
+	public int attackTick;
 	public int playtime;
+	public String versionSaved;
 	public boolean newaccount; // only True the first login.
 	public PlayerRank rank;
 	
@@ -104,6 +110,7 @@ public class DungeonsPlayer
 				skills.put(slo, i.getInt(u + ".skilltree." + slo));
 			}
 		}
+		versionSaved = i.getString(u + ".version", "0.1.15");
 		level = new CharacterSkill(this);
 		
 		//skills = new DungeonsPlayerSkills(p);
@@ -117,6 +124,7 @@ public class DungeonsPlayer
 		manacooldown = 0;
 		display = new DungeonsPlayerDisplay(this);
 		gui = null;
+		logoutloc = i.getString(u + ".location", "waterway");
 		
 		kills = i.getInt(u + ".kills", 0);
 		questProgress = new HashMap<>();
@@ -147,8 +155,9 @@ public class DungeonsPlayer
 				@Override
 				public void run() {
 					if (ins.newaccount) return;
-					ins.player.sendMessage(ChatColor.AQUA + "You can get a 35% xp boost for 6 hours per /vote");
-					ins.player.sendMessage(ChatColor.AQUA + "and it really helps the server out :)");
+					ins.player.sendMessage(ChatColor.AQUA + "Voting for the server at /vote gives you");
+					ins.player.sendMessage(ChatColor.AQUA + "a 35% xp boost for a day and really");
+					ins.player.sendMessage(ChatColor.AQUA + "helps the server out :) TYVM");
 				}
 				
 			}.runTaskLater(Dungeons.instance, 200);
@@ -182,6 +191,10 @@ public class DungeonsPlayer
 		
 		crypt = null;
 	}
+	public boolean inTemple()
+	{
+		return area.id != null && area.id.equals("infestedcaverns") && player.getLocation().getBlockY() < 40;
+	}
 	public boolean canWarp(String location)
 	{
 		Dungeon loc = DungeonManager.i.warps.getOrDefault(location, DungeonManager.i.hub);
@@ -200,6 +213,25 @@ public class DungeonsPlayer
 		if (inCrypt) player.sendMessage(ChatColor.RED + "You cannot warp whilst in a crypt.");
 		else if (canWarp(location)) player.teleport(loc.spawn, TeleportCause.PLUGIN);
 	}
+	public boolean canUseLuxium(int amount)
+	{
+		if (stats.engine == null || ItemBuilder.getFuel(stats.engine.getItemMeta()) < amount) return false;
+		else return true;
+	}
+	public boolean useLuxium(int amount)
+	{
+		if (stats.engine == null || ItemBuilder.getFuel(stats.engine.getItemMeta()) < amount) return false;
+		int c = ItemBuilder.getFuel(stats.engine.getItemMeta());
+		ItemMeta m = stats.engine.getItemMeta();
+		ItemBuilder.addFuel(m, -amount);
+		stats.engine.setItemMeta(ItemBuilder.i.updateMeta(m,this));
+		int n = ItemBuilder.getFuel(stats.engine.getItemMeta());
+		if (n == 0) player.sendMessage(ChatColor.RED + "Your " + m.getDisplayName() + ChatColor.RED + " has run out of " + ChatColor.YELLOW + "Luxium!");
+		else if (c >= 10 && n < 10) player.sendMessage(ChatColor.RED + "Your " + m.getDisplayName() + ChatColor.RED + " is nearly empty!");
+		return true;
+	}
+	
+	
 	
 	
 	public void updateRank()
@@ -224,6 +256,7 @@ public class DungeonsPlayer
 		}
 		
 		health -= (double)damage/(double)stats.health;
+		health = Math.max(health, 0);
 		player.setHealth(Math.max(1, health*20));
 		if (health <= 0)
 		{
@@ -276,11 +309,16 @@ public class DungeonsPlayer
 		}
 	}
 	
-	
+	public int getAttackCooldown()
+	{
+		int ticks = (int)(10 / (1 + (Math.min(100, stats.attackspeed)/100d)));
+		return ticks;
+	}
 	
 	public void heal(int amount)
 	{
 		health += (double)amount/(double)stats.health;
+		for (AbsAbility a : stats.abilities) a.onHeal(this, amount);
 		if (health > 1) health = 1;
 
 		player.setHealth(Math.max(1, health*20));
@@ -288,6 +326,7 @@ public class DungeonsPlayer
 	public void heal(double amount)
 	{
 		health += amount;
+		for (AbsAbility a : stats.abilities) a.onHeal(this, (int)(amount * stats.health));
 		if (health > 1) health = 1;
 
 		player.setHealth(Math.max(1, health*20));
@@ -302,6 +341,10 @@ public class DungeonsPlayer
 		}
 		showManaLevel();
 		return m >= amount;
+	}
+	public boolean canUseMana(int amount)
+	{
+		return getMana() >= amount;
 	}
 	public boolean playerHasMana() 
 	{

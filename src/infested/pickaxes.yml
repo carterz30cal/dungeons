@@ -15,5 +15,16 @@ reinforced_pickaxe:
   item: GOLDEN_PICKAXE
   areareq: infestedcaverns
   attributes:
-    miningspeed: 125
-    fortune: 60
+    miningspeed: 130
+    fortune: 65
+    
+living_pickaxe:
+  name: Living Pickaxe
+  type: tool
+  rarity: EPIC
+  item: WOODEN_PICKAXE
+  glow: true
+  areareq: infestedcaverns
+  attributes:
+    miningspeed: 170
+    fortune: 90

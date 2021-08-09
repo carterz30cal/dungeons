@@ -87,6 +87,7 @@ public class DungeonManager
 				dungeon.mining.ores.put(block, data.getString(d + ".mining.ores." + o + ".ore", "bad_item"));
 				dungeon.mining.hardness.put(block, data.getInt(d + ".mining.ores." + o + ".hardness",1000));
 			}
+			dungeon.mining.replace = data.getBoolean(d + ".mining.replace",true);
 			dungeon.mining.requirement = data.getInt(d + ".mining.boss.requirement", 500);
 			dungeon.mining.boss = data.getString(d + ".mining.boss.mob", "drenched0");
 			String[] loc = data.getString(d + ".mining.boss.spawn","0,0,0").split(",");

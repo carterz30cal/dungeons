@@ -5,3 +5,25 @@ wand_web:
   rarity: INCREDIBLE
   wand:
     mana: 23
+    damage: 12
+    
+healing_wand4:
+  name: Wand of Asclepius
+  type: artifact
+  rarity: LEGENDARY
+  item: STICK
+  glow: true
+  ability: healingwand4
+  nostack: true
+  attributes:
+    mana: +100
+    
+modifier_magicwell:
+  name: Well of Magic
+  type: modifier
+  rarity: INCREDIBLE
+  item: HOPPER
+  glow: true
+  ability: magicwell
+  nostack: true
+  

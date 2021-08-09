@@ -1,0 +1,37 @@
+light_shard:
+  name: Light Shard
+  type: ingredient
+  item: SUGAR
+  glow: true
+  description: It's unknown why these are found in;only the darkest of places.
+light_block:
+  name: Cube of Light
+  type: ingredient
+  item: GLOWSTONE
+  glow: true
+  rarity: RARE
+  description: Shines brightest in the toughest of situations.
+  
+light_handle:
+  name: Handle of Light
+  type: ingredient
+  item: STICK
+  glow: true
+  rarity: RARE
+  description: Weapons and tools forged with this will follow;you through the most dire of situations.
+  
+abyssal_flesh:
+  name: Abyssal Flesh
+  type: ingredient
+  item: COOKED_BEEF
+  glow: true
+  rarity: RARE
+  description: The stench is unforgivable.
+  
+haunted_metal:
+  name: Haunted Metal
+  type: ingredient
+  item: NETHERITE_SCRAP
+  glow: true
+  rarity: RARE
+  description: It's unknown how this came to be.

@@ -1,0 +1,6 @@
+nightlord:
+  set:
+    lore: The night consumes all.
+    ability: nightlord
+    attributes:
+      damage: +20

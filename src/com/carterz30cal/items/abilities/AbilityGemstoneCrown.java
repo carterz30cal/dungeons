@@ -28,8 +28,8 @@ public class AbilityGemstoneCrown extends AbsAbility
 		ArrayList<String> d = new ArrayList<>();
 		d.add(prefix + "Gem Focus");
 		d.add("Fire a laser at the closest enemy consuming");
-		d.add("6% of your current mana");
-		d.add("Deal quadruple that as damage");
+		d.add("5% of your current mana");
+		d.add("Deal 6x that as damage");
 		d.add(ChatColor.RED + "Crouch to toggle");
 		d.add(ChatColor.RED + "Deactivates if out of mana");
 		return d;
@@ -63,10 +63,10 @@ public class AbilityGemstoneCrown extends AbsAbility
 		}
 		if (closest == null) return;
 		
-		int damage = (int) (d.getMana() * 0.06);
+		int damage = (int) (d.getMana() * 0.05);
 		d.useMana(damage);
 		
-		closest.damage((int) ((d.getMana() * 0.06) * 4), d, DamageType.MAGIC);
+		closest.damage(damage * 6, d, DamageType.MAGIC);
 		
 		Location laser = d.player.getEyeLocation();
 		Location l = ((LivingEntity)closest.entities.get(0)).getEyeLocation();

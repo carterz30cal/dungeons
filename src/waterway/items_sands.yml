@@ -49,9 +49,9 @@ armour-hydra:
     data: ewogICJ0aW1lc3RhbXAiIDogMTYyMDI0NTkwMzUzMywKICAicHJvZmlsZUlkIiA6ICJiNWRkZTVmODJlYjM0OTkzYmMwN2Q0MGFiNWY2ODYyMyIsCiAgInByb2ZpbGVOYW1lIiA6ICJsdXhlbWFuIiwKICAic2lnbmF0dXJlUmVxdWlyZWQiIDogdHJ1ZSwKICAidGV4dHVyZXMiIDogewogICAgIlNLSU4iIDogewogICAgICAidXJsIiA6ICJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlLzkxOWRjMjQ3ZTEyYmQwYWEwNGExMGQxNTczZWZlZGNkYzk4ZjUxOWFmYTFkZTMwZjE4ZWM4ODVlNTIwOGFkODEiCiAgICB9CiAgfQp9
     sig: wd2xgOVzCpfxdww+VHVDasbLwMkVTEemW3s6n2+CkhhzmXc6qm8NSCUH6Dp50tTOsVrrID1EtYgJAv3eBpIXuJQpQ2r2OTKJLbwtXY5j0YYBmUNewva6M4be0Z+CTc+f/nrLG7wezxg0Wqt9B0JHU9C5qL090rrju08yvALXB8nu8FKklz9RTLAT25i6vmwD3L9JOdzmKsddxs9dCafKknZxDLmNvnVNIWMvKA/dm625IjV118ik8k0eqBuPfHqDnzBZezUjR4Mcban1aPAxYL+p3WQgGC2F9w7nmw7TisADI1lXiKPaDzs0UkHsVwuHbFtQuEBrnplCV2ilR0vb6O1XWjsg52tbaE+if5gquT3Nxb9YrBGhOg+T9eSimEVZBKI67LMFCGqkjlHXMtJrlU6fGOFrzOLmn/XDFinwhsfkMmlj2Csb+XdflmeLApgKoJVfO5TJYoKIUA8b97RlYplBqtGQFT+ziKv+S/AQl1XwfIPsa+Efe3cThSxkKMfrJw4reB5hOty2UhqTkjZr4nRKHjyUAxCHCmv+e0H3LAqIfm3B09wa+21HNOshaA2DsKtgVyGEioENQDzJU22KfSYI4FYwCZF8qSPnzDdOdi75Kjv37wGBuCjODkU8tzugo2CbTq6SaSajVOUPqfXuDBrp72QXwGEP7C2AYJudmVU=
   attributes:
-    health: +70,+65,+60,+55
-    regen: +16,0,0,0
-    mana: +30,+25,+20,+20
+    health: +70,+70,+65,+60
+    regen: +17,0,0,0
+    mana: +30,+25,+25,+25
     
 regeneration_stone:
   name: Regeneration Stone
@@ -63,7 +63,7 @@ regeneration_stone:
     types: LEATHER_HELMET,IRON_HELMET,GOLDEN_HELMET,DIAMOND_HELMET,CHAINMAIL_HELMET,NETHERITE_HELMET,PLAYER_HEAD
     prefix: Growing
     attributes:
-      regen: +5
+      regen: +6
       health: -22
   description: A pulsating, warm rock. Grants a small;regen boost to helmets but at the;cost of some health.
     
@@ -105,7 +105,7 @@ sword_sandscythe:
   ability: scythe
   req: 8
   attributes:
-    damage: +20
+    damage: +22
     health: -15
 essence_of_sand:
   name: Essence of Sand

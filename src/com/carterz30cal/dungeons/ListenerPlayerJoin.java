@@ -49,7 +49,7 @@ public class ListenerPlayerJoin implements Listener
 		}
 		else
 		{
-			e.getPlayer().teleport(DungeonManager.i.dungeons.get(1).spawn);
+			e.getPlayer().teleport(DungeonManager.i.warps.get(d.logoutloc).spawn);
 			e.setJoinMessage(ChatColor.AQUA + e.getPlayer().getName() + " has joined");
 		}
 		

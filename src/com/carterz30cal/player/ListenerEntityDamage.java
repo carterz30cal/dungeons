@@ -5,9 +5,13 @@ import java.util.List;
 import java.util.UUID;
 
 import com.carterz30cal.mobs.packet.EntitySkinned;
+import com.carterz30cal.potions.ActivePotion;
+import com.carterz30cal.potions.PotionType;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.craftbukkit.v1_16_R3.entity.CraftTrident;
 import org.bukkit.craftbukkit.v1_16_R3.inventory.CraftItemStack;
@@ -37,6 +41,7 @@ import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.event.entity.SlimeSplitEvent;
 import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.event.player.PlayerFishEvent.State;
+import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.inventory.ItemStack;
@@ -45,6 +50,7 @@ import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.projectiles.ProjectileSource;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
 import com.carterz30cal.dungeons.Dungeons;
@@ -62,6 +68,7 @@ import com.carterz30cal.mobs.DamageType;
 import com.carterz30cal.mobs.SpawnPosition;
 import com.carterz30cal.tasks.TaskDamageKnockback;
 import com.carterz30cal.tasks.TaskRemoveProjectile;
+import com.carterz30cal.utility.ParticleFunctions;
 import com.carterz30cal.utility.RandomFunctions;
 import com.carterz30cal.utility.StringManipulator;
 
@@ -108,8 +115,8 @@ public class ListenerEntityDamage implements Listener
 					AbstractArrow arrow = ((AbstractArrow)e.getDamager());
 					if (arrow.getShooter() instanceof Player && pvp) damager = (Player)arrow.getShooter();
 					
-					e.setCancelled(!pvp);
-					
+					e.setCancelled(true);
+					if (!pvp) return;
 				}
 				else if (e.getDamager() instanceof Player)
 				{
@@ -139,7 +146,15 @@ public class ListenerEntityDamage implements Listener
 				}
 				
 			}
-			else damage = mob.type.damage;
+			else 
+			{
+				damage = mob.type.damage;
+				if (e.getDamager().getType() == EntityType.ARROW) 
+				{
+					e.getDamager().remove();
+					e.setCancelled(true);
+				}
+			}
 			DungeonsPlayer d = DungeonsPlayerManager.i.get((Player)e.getEntity());
 			for (AbsEnchant en : d.stats.ench) en.onDamaged(d, mob);
 			if (d.stats.abilities != null) for (AbsAbility a : d.stats.abilities) if (a != null && mob != null) damage *= a.onDamage(d,damage,e.getCause(),mob.type);
@@ -208,7 +223,6 @@ public class ListenerEntityDamage implements Listener
 					}
 					damage = d.stats.damageSweep;
 				}
-				else if (damager.getAttackCooldown() < 0.95 && damager.getLocation().distance(e.getEntity().getLocation()) < 4) damage = damage / 5;
 			}
 			// SOULS
 			else if (e.getDamager().getPersistentDataContainer().has(DMobManager.arrowDamage, PersistentDataType.STRING))
@@ -224,6 +238,10 @@ public class ListenerEntityDamage implements Listener
 			}
 			else return;
 			DungeonsPlayer dp = DungeonsPlayerManager.i.get(damager);
+			e.setCancelled(true);
+			if (dp.attackTick > 0) return;
+			dp.attackTick = dp.getAttackCooldown();
+			
 			abilities.addAll(dp.stats.abilities);
 			if (projab != null) abilities.add(projab);
 			//for (AbsAbility a : abilities) damage = a.onAttack(dp, mob,damage);
@@ -231,11 +249,33 @@ public class ListenerEntityDamage implements Listener
 			if (arrowh) for (AbsAbility a : abilities) damage = a.onArrowLand(DungeonsPlayerManager.i.get(damager), mob, damage);
 			for (AbsEnchant a : dp.stats.ench) damage += a.onHit(dp, mob);
 			damage = Math.max(0, damage);
-			
+			final int dmg = damage;
+			if (dp.stats.attackspeed > 100)
+			{
+				int as = Math.floorDiv(dp.stats.attackspeed-100,100);
+				if (dp.stats.attackspeed - 100 - as*100 >= RandomFunctions.random(1, 100)) as++;
+				while (as > 0)
+				{
+					new BukkitRunnable()
+					{
+
+						@Override
+						public void run() {
+							mob.damage(dmg, dp, DamageType.PHYSICAL);
+							Location pl = mob.entities.get(0).getLocation().add(dp.player.getEyeLocation().subtract(mob.entities.get(0).getLocation()).multiply(0.7));
+							ParticleFunctions.stationary(pl, Particle.SWEEP_ATTACK, 1);
+							dp.player.playSound(dp.player.getLocation(), Sound.ENTITY_PLAYER_ATTACK_SWEEP, 0.6f, 1f);
+						}
+						
+					}.runTaskLater(Dungeons.instance, as*3);
+					as--;
+				}
+				
+			}
 			mob.damage(damage, dp, DamageType.PHYSICAL);
-			e.setCancelled(true);
+			dp.player.playSound(dp.player.getLocation(), Sound.ENTITY_GENERIC_HURT,0.7f, 1f);
 			
-			if (damager.getAttackCooldown() > 0.9)
+			if (damager.getAttackCooldown() > 0.9 && dp.stats.damageSweep > 0)
 			{
 				List<DMob> hitted = new ArrayList<>();
 				for (Entity en : Dungeons.w.getNearbyEntities(mob.entities.get(0).getLocation(), 1, 1, 1))
@@ -258,8 +298,9 @@ public class ListenerEntityDamage implements Listener
 			else
 			{
 				Vector kb = dp.player.getLocation().getDirection().normalize();
-				kb.multiply(0.45);
-				kb.setY(0.3);
+				kb.multiply(0.3);
+				kb.multiply(1-mob.type.kbresist);
+				kb.setY(0.15);
 				mob.entities.get(0).setVelocity(kb);
 			}
 			//if (damager.getInventory().getItemInMainHand().hasItemMeta()) for (AbsEnchant en : EnchantManager.get(damager.getInventory().getItemInMainHand().getItemMeta().getPersistentDataContainer())) if (en != null) en.onHitAfter(dp, mob,h);
@@ -299,7 +340,36 @@ public class ListenerEntityDamage implements Listener
 	
 	// 0,100,-1000
 	
-	
+	@EventHandler
+	public void onPotionDrink(PlayerItemConsumeEvent e)
+	{
+		if (ItemBuilder.getItem(e.getItem()).equals("potion"))
+		{
+			if (DungeonsPlayerManager.i.get(e.getPlayer()).stats.potioneffects.size() >= 4)
+			{
+				e.getPlayer().sendMessage(ChatColor.RED + "You can only have 4 potion effects active at once!");
+				e.setCancelled(true);
+				return;
+			}
+			String potions = e.getItem().getItemMeta().getPersistentDataContainer().get(ItemBuilder.kEnchants, PersistentDataType.STRING);
+			for (String pot : potions.split(";"))
+			{
+				if (pot.equals("")) continue;
+				PotionType potion = PotionType.valueOf(pot.split(",")[0]);
+				int level = Integer.parseInt(pot.split(",")[1]);
+				DungeonsPlayerManager.i.get(e.getPlayer()).stats.potioneffects.put(new ActivePotion(potion,level),20*60*20);
+				e.getPlayer().sendMessage(ChatColor.GREEN + "Gained " + ChatColor.RED + StringManipulator.capitalise(potion.name()) 
+				+ " " + StringManipulator.romanNumerals[level-1] + ChatColor.GREEN + " for 20 minutes!");
+			}
+			e.setItem(null);
+		}
+		else if (ItemBuilder.getItem(e.getItem()).equals("milk"))
+		{
+			e.getPlayer().sendMessage(ChatColor.GREEN + "Removed all potion effects!");
+			DungeonsPlayerManager.i.get(e.getPlayer()).stats.potioneffects.clear();
+			e.setItem(null);
+		}
+	}
 	@EventHandler(priority=EventPriority.LOWEST)
 	public void onSlimeSplit(SlimeSplitEvent e)
 	{
@@ -310,6 +380,8 @@ public class ListenerEntityDamage implements Listener
 	{
 		if (e.getHitBlock() != null && e.getEntityType() != EntityType.TRIDENT)
 		{
+			DungeonsPlayer d = DungeonsPlayerManager.i.get((Player)e.getEntity().getShooter());
+			for (AbsAbility a : d.stats.abilities) a.arrowOnGround(d,e.getEntity());
 			new TaskRemoveProjectile(e.getEntity()).runTaskLater(Dungeons.instance, 15);
 		}
 	}
@@ -405,7 +477,7 @@ public class ListenerEntityDamage implements Listener
 				break;
 			case FALL:
 				dealt = Math.pow(p.getFallDistance()/2.25, 2.1);
-				if (Dungeons.w.getBlockAt(e.getEntity().getLocation().subtract(0, 1, 0)).getType() == Material.BLACK_CONCRETE) dealt = Integer.MAX_VALUE;
+				if (Dungeons.w.getBlockAt(e.getEntity().getLocation().subtract(0, 1, 0)).getType() == Material.BLACK_CONCRETE) dealt = 10000000;
 				break;
 			default:
 				break;
@@ -422,15 +494,14 @@ public class ListenerEntityDamage implements Listener
 			case SUFFOCATION:
 				if (mob != null)
 				{
-					mob.damage(5, null);
+					mob.damage(2, null);
 				}
+				e.setCancelled(true);
 				break;
 			case VOID:
 				if (mob != null) mob.destroy(null);
-				else
-				{
-					e.getEntity().remove();
-				}
+				else e.getEntity().remove();
+
 				break;
 			case ENTITY_EXPLOSION:
 			case BLOCK_EXPLOSION:

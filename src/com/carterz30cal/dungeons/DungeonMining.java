@@ -30,6 +30,7 @@ public class DungeonMining
 	public HashMap<Block,Material> raresreplace = new HashMap<>();
 	public Material rareore;
 	public List<Material> rarecorrection;
+	public boolean replace;
 	public int chance;
 	public int outof;
 	

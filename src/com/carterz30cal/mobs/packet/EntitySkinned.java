@@ -1,7 +1,5 @@
 package com.carterz30cal.mobs.packet;
 
-import java.io.IOException;
-import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -28,10 +26,10 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import com.carterz30cal.dungeons.Dungeons;
 import com.carterz30cal.mobs.DMob;
+import com.carterz30cal.mobs.DMobManager;
 import com.carterz30cal.mobs.SkinnedType;
 import com.carterz30cal.packets.Packetz;
 import com.carterz30cal.player.DungeonsPlayer;
-import com.carterz30cal.utility.RandomFunctions;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import com.mojang.datafixers.util.Pair;
@@ -42,7 +40,6 @@ import net.minecraft.server.v1_16_R3.DataWatcher;
 import net.minecraft.server.v1_16_R3.DataWatcherObject;
 import net.minecraft.server.v1_16_R3.DataWatcherRegistry;
 import net.minecraft.server.v1_16_R3.EntityPlayer;
-import net.minecraft.server.v1_16_R3.EnumGamemode;
 import net.minecraft.server.v1_16_R3.EnumItemSlot;
 import net.minecraft.server.v1_16_R3.EnumProtocolDirection;
 import net.minecraft.server.v1_16_R3.MinecraftServer;
@@ -105,8 +102,8 @@ public class EntitySkinned extends EntityPlayer
 		    }
 	    }
 	    
-	    if (navigator == null || !navigator.isValid()) kill();
-	    else navigator.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY,1,0,true));
+	    if (navigator != null && !navigator.isValid()) kill();
+	    else if (navigator != null) navigator.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY,1,0,true));
 	    if (noDamageTicks > 0) 
 	    {
 	        --noDamageTicks;
@@ -235,18 +232,13 @@ public class EntitySkinned extends EntityPlayer
 	        location.getPitch());
 	    
 	    //
-	    Socket socket = new Socket();
+	    //Socket socket = new Socket();
         NetworkManager conn = null;
-        try {
-            conn = new DummyManager(EnumProtocolDirection.CLIENTBOUND);
-            entityPlayer.playerConnection = new PlayerConnection(nmsServer, conn, entityPlayer);
-            conn.setPacketListener(entityPlayer.playerConnection);
-            socket.close();
-        } catch (IOException e) {
-            // swallow
-        }
+        conn = new DummyManager(EnumProtocolDirection.CLIENTBOUND);
+        entityPlayer.playerConnection = new PlayerConnection(nmsServer, conn, entityPlayer);
+        //conn.setPacketListener(entityPlayer.playerConnection);
         
-        nmsWorld.addEntity(entityPlayer);
+        
 		DataWatcher watcher = new DataWatcher(null);
 
         watcher.register(new DataWatcherObject<>(16, DataWatcherRegistry.a), (byte)127);
@@ -255,58 +247,54 @@ public class EntitySkinned extends EntityPlayer
 	        PlayerConnection connection = ((CraftPlayer) player).getHandle().playerConnection;
 	        connection.sendPacket(new PacketPlayOutEntityMetadata(entityPlayer.getId(), watcher, true));
 	    }
-        
-        /*
-	    new BukkitRunnable()
-	    {
-
-			@Override
-			public void run() {
-				nmsWorld.addEntity(entityPlayer);
-				DataWatcher watcher = new DataWatcher(null);
-
-		        watcher.register(new DataWatcherObject<>(16, DataWatcherRegistry.a), (byte)127);
-		        for (Player player : Bukkit.getOnlinePlayers())
-			    {
-			        PlayerConnection connection = ((CraftPlayer) player).getHandle().playerConnection;
-			        connection.sendPacket(new PacketPlayOutEntityMetadata(entityPlayer.getId(), watcher, true));
-			    }
-			}
-	    	
-	    }.runTaskLater(Dungeons.instance, RandomFunctions.random(1, 20));
-	    */
-	    //nmsWorld.addAllEntitiesSafely(entityPlayer, SpawnReason.CUSTOM);
+        entityPlayer.noDamageTicks = 5;
 	    
 
-	    PacketPlayOutPlayerInfo playerInfoAdd = new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.ADD_PLAYER, entityPlayer);
-	    PacketPlayOutNamedEntitySpawn namedEntitySpawn = new PacketPlayOutNamedEntitySpawn(entityPlayer);
-	    PacketPlayOutEntityHeadRotation headRotation = new PacketPlayOutEntityHeadRotation(entityPlayer, (byte) ((location.getYaw() * 256f) / 360f));
-	    PacketPlayOutPlayerInfo playerInfoRemove = new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.REMOVE_PLAYER, entityPlayer);
+	    
+	    DMobManager.addToQueue(entityPlayer);
 	    
 	    
-        
+	    alive.put(entityPlayer.getId(), entityPlayer);
+	    
+	    
+	    
+	    
+	    entityPlayer.mob = mob;
+	    return entityPlayer;
+	}
+	
+	public void spawn()
+	{
+		WorldServer nmsWorld = ((CraftWorld) Dungeons.w).getHandle();
+		nmsWorld.addEntity(this);
+		
+		PacketPlayOutPlayerInfo playerInfoAdd = new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.ADD_PLAYER, this);
+	    PacketPlayOutNamedEntitySpawn namedEntitySpawn = new PacketPlayOutNamedEntitySpawn(this);
+	    //PacketPlayOutEntityHeadRotation headRotation = new PacketPlayOutEntityHeadRotation(this, (byte) ((location.getYaw() * 256f) / 360f));
+	    PacketPlayOutPlayerInfo playerInfoRemove = new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.REMOVE_PLAYER, this);
 	    
 	    ArrayList<String> st = new ArrayList<String>();
-	    st.add(entityPlayer.getName());
+	    st.add(this.getName());
 	    
-	    entityPlayer.navigator = (Husk) Dungeons.w.spawnEntity(location, EntityType.HUSK);
-	    entityPlayer.navigator.setBaby();
-	    entityPlayer.navigator.getEquipment().clear();
-	    entityPlayer.navigator.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).addModifier(new AttributeModifier("walkspeed",0.75*mob.type.speed-1,Operation.MULTIPLY_SCALAR_1));
+	    this.navigator = (Husk) Dungeons.w.spawnEntity(mob.entities.get(0).getLocation(), EntityType.HUSK);
+	    this.navigator.setBaby();
+	    this.navigator.getEquipment().clear();
+	    this.navigator.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY,10000000,0,true));
+	    this.navigator.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).addModifier(new AttributeModifier("walkspeed",0.75*mob.type.speed-1,Operation.MULTIPLY_SCALAR_1));
 	    
-	    entityPlayer.navigator.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE,1000000,0,true));
-	    entityPlayer.navigator.setSilent(true);
-	    entityPlayer.navigator.setInvulnerable(true);
-	    entityPlayer.navigator.getPersistentDataContainer().set(DMob.identifier, PersistentDataType.STRING, "NAV_" + entityPlayer.getId());
+	    this.navigator.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE,1000000,0,true));
+	    this.navigator.setSilent(true);
+	    this.navigator.setInvulnerable(true);
+	    this.navigator.getPersistentDataContainer().set(DMob.identifier, PersistentDataType.STRING, "NAV_" + this.getId());
 	    
-	    PacketPlayOutEntityDestroy destroy = new PacketPlayOutEntityDestroy(entityPlayer.navigator.getEntityId());
+	    PacketPlayOutEntityDestroy destroy = new PacketPlayOutEntityDestroy(this.navigator.getEntityId());
 		
 	    for (Player player : Bukkit.getOnlinePlayers())
 	    {
 	        PlayerConnection connection = ((CraftPlayer) player).getHandle().playerConnection;
 	        connection.sendPacket(playerInfoAdd);
 	        connection.sendPacket(namedEntitySpawn);
-	        connection.sendPacket(headRotation);
+	        //connection.sendPacket(headRotation);
 	        //connection.sendPacket(playerInfoRemove);
 	        
 	        connection.sendPacket(new PacketPlayOutScoreboardTeam(Packetz.s,st,3));
@@ -328,16 +316,6 @@ public class EntitySkinned extends EntityPlayer
 			}
 	    	
 	    }.runTaskLater(Dungeons.instance, 15); 
-	    
-	    
-	    
-	    alive.put(entityPlayer.getId(), entityPlayer);
-	    
-	    
-	    
-	    
-	    entityPlayer.mob = mob;
-	    return entityPlayer;
 	}
 
 }

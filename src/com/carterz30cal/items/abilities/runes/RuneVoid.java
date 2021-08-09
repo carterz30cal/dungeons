@@ -18,7 +18,7 @@ public class RuneVoid extends AbsAbility {
 	public ArrayList<String> description() {
 		ArrayList<String> d = new ArrayList<>();
 		d.add(rune + "Void");
-		d.add("Deal 4x damage");
+		d.add("Deal 3.5x damage");
 		d.add("Your non-damage stats");
 		d.add("are heavily reduced.");
 		return d;
@@ -34,13 +34,13 @@ public class RuneVoid extends AbsAbility {
 			p--;
 		}
 			
-		return (int) (damage * 4);
+		return (int) (damage * 3.5);
 	} 
 	
 	public void finalStats(DungeonsPlayerStats s) 
 	{
-		s.health *= 0.15;
-		s.armour *= 0.15;
-		s.mana   *= 0.15;
+		s.health *= 0.2;
+		s.armour *= 0.2;
+		s.mana   *= 0.2;
 	}
 }

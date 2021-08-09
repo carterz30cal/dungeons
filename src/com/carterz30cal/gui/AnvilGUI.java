@@ -247,7 +247,7 @@ public class AnvilGUI extends GUI
 			}
 			ItemStack pop = click.clone();
 			pop.setAmount(1);
-			if ((cli.type.equals("sharpener") || cli.type.equals("rune") || cli.type.equals("appliable") || ItemBuilder.getItem(pop).equals("magic_cactus")
+			if ((cli.type.equals("sharpener") || cli.type.equals("rune") || cli.type.equals("ritual") || cli.type.equals("appliable") || ItemBuilder.getItem(pop).equals("magic_cactus")
 					|| ItemBuilder.getItem(pop).equals("rune_cloth")) && inventory.getItem(25) == null) inventory.setItem(25,pop);
 			else if (inventory.getItem(19) == null) inventory.setItem(19, pop);
 			else return true;
@@ -277,8 +277,13 @@ public class AnvilGUI extends GUI
 					
 					inventory.setItem(22, cleaned);
 				}
-				else if (k.type.equals("rune") && ItemBuilder.get(weapon).type.equals("weapon")) inventory.setItem(22, ItemBuilder.i.addRune(weapon, 
+				else if (k.type.equals("rune") && ItemBuilder.get(weapon).type.equals("weapon") && !ItemBuilder.get(weapon).noRunic) inventory.setItem(22, ItemBuilder.i.addRune(weapon, 
 						sharp.getItemMeta().getPersistentDataContainer().get(ItemBuilder.kItem, PersistentDataType.STRING)));
+				else if (k.type.equals("ritual") && ItemBuilder.get(weapon).type.equals("armour") && !ItemBuilder.get(weapon).noRunic)
+				{
+					inventory.setItem(22, ItemBuilder.i.addRune(weapon, 
+							sharp.getItemMeta().getPersistentDataContainer().get(ItemBuilder.kItem, PersistentDataType.STRING)));
+				}
 				else if (k.type.equals("appliable") && ItemBuilder.get(weapon).type.equals("armour")) inventory.setItem(22, ItemBuilder.addExtra(weapon, sharp));
 				else if (ItemBuilder.i.canSharpen(weapon)) inventory.setItem(22, ItemBuilder.i.sharpenItem(weapon, sharp));
 			}

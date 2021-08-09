@@ -6,6 +6,7 @@ import java.util.HashMap;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Mob;
 
 import com.carterz30cal.dungeons.Dungeons;
 import com.carterz30cal.mobs.DMob;
@@ -21,6 +22,9 @@ public class MobSummons extends DMobAbility
 	public int count;
 	
 	public int respawn;
+	
+	public boolean removeOnDeath = true;
+	public boolean onlyAttackTarget = false;
 	
 	public MobSummons(FileConfiguration data, String path)
 	{
@@ -42,8 +46,16 @@ public class MobSummons extends DMobAbility
 		}
 		else spawn = null;
 		
+		onlyAttackTarget = data.getBoolean(path + ".attacktarget", false);
+		
 	}
 	
+	@Override
+	public void killed(DMob mob)
+	{
+		if (summons.get(mob) != null && summons.get(mob).size() > 0) if (removeOnDeath) for (DMob m : summons.getOrDefault(mob, new ArrayList<>())) if (m != null && m != mob) m.remove();
+		
+	}
 	@Override
 	public void tick(DMob mob)
 	{
@@ -64,7 +76,11 @@ public class MobSummons extends DMobAbility
 		boolean alive = false;
 		for (DMob m : sum)
 		{
-			if (m.health > 0) alive = true;
+			if (m.health > 0) 
+			{
+				alive = true;
+				if (onlyAttackTarget) ((Mob)m.entities.get(0)).setTarget(((Mob)mob.entities.get(0)).getTarget());
+			}
 		}
 		if (alive) return;
 		

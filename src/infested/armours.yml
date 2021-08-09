@@ -54,6 +54,40 @@ armour_egg_helmet:
     health: +200
     damage: +10
     
+armour_horror_helmet:
+  name: Horror Head
+  type: armour
+  rarity: EPIC
+  req: 25
+  item: PLAYER_HEAD
+  skull:
+    data: ewogICJ0aW1lc3RhbXAiIDogMTYyMzE2Nzk0MTU4NywKICAicHJvZmlsZUlkIiA6ICIwYWFjMWRlZjUwZmI0N2RjODNmOGU2Njk3MTg1ODRkZSIsCiAgInByb2ZpbGVOYW1lIiA6ICJ0aGVhcGlpc2JhZCIsCiAgInNpZ25hdHVyZVJlcXVpcmVkIiA6IHRydWUsCiAgInRleHR1cmVzIiA6IHsKICAgICJTS0lOIiA6IHsKICAgICAgInVybCIgOiAiaHR0cDovL3RleHR1cmVzLm1pbmVjcmFmdC5uZXQvdGV4dHVyZS9jZGFiZWNiOGI1ZmQ4ZmY5ODcyOWE3MTYzZGUwZmQyMTlkN2YwNDU1YWY1Nzg5NTkyN2ZkYTUwZmNiOTI1YmRhIiwKICAgICAgIm1ldGFkYXRhIiA6IHsKICAgICAgICAibW9kZWwiIDogInNsaW0iCiAgICAgIH0KICAgIH0KICB9Cn0=
+    sig: gB9HCHAkh+EhJJBRFzM3Lef21gFFVoT94emB7+NPEwLnK+c9Vb7qUR2RtJUKBO5/Cc0W7CBh8wEp7xastTmhbqMaHM0nwRemYWBZIj7p6CHcsC6rXu6b7PTXkDjpszfOHwaf7s+pxQlAP3CY3X2aQYOq8N899uaLY0EOIU1IAzLlYpQJNnDyAD2wqegIgVTHjJc/pmOICs/maJrBAGisC32Fxk/0QgLnoNgePvUMqVUitgBZA82qM7fjkIvR+Hd03p4/9KUtPDc9cxmnwmyV+baT6qlfYiZ77xmGJrx2uLbgW58TJPQ8kKffE4VQfThjmfl3tAzJBmdhncwYD2zPk0SJWSlAfvcWys7O/Yu7DgcOmbPuSK2bviw3hcCEAfCfn5qNE7Yz1wOmwhy7inVYoDUDfHVHc/89xKqAoIYjLSCBIhV+9k6wXAQr58s0ICn9x9/nnJFoG5nQn0sZ9s4lr6eADi/zOoVi5ruRUQZOYyB/+TWVZWkSC4nhGL/DbW4vc9mnINT2fFg4uZli0UEOIkYFU+tiBGLf+Lz44RBTg8/gNJJYwBdoerHssZNYoigSWnDCNXbkVQMmSCG1kTQsJvGE/FOOmNsA1Bdcv5phD/y0AllYIilfy9BFTEYKm/dgpOgj6J0jqIu/ZrGGCq3slpaty8ZTGwE4/wqbyPeokP0=
+  attributes:
+    damage: +15
+    damagep: +0.1
+    armour: -20
+    
+armour_stone_boots:
+  name: Boots of Stone
+  type: armour
+  rarity: UNUSUAL
+  req: 24
+  item: LEATHER_BOOTS
+  colour: 50,50,50
+  attributes:
+    armour: +150
+    damage: -20
+    
+armour_deals_helmet:
+  name: Hat of Good Deals
+  type: armour
+  rarity: UNUSUAL
+  req: 30
+  item: GOLDEN_HELMET
+  description: ;He who wears the crown, gets oddly;low prices everywhere. Suspicious.
+  ability: deals
+    
 armour_tarantula_helmet:
   name: Tarantula Crown
   set: web

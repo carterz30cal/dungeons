@@ -6,6 +6,7 @@ import org.bukkit.ChatColor;
 
 public class ItemSharpener 
 {
+	public String plus;
 	public ChatColor plusColour;
 	
 	public HashMap<String,Double> attributes;
@@ -15,6 +16,7 @@ public class ItemSharpener
 	public ItemSharpener()
 	{
 		attributes = new HashMap<String,Double>();
+		plus = "+";
 		plusColour = ChatColor.MAGIC;
 	}
 }

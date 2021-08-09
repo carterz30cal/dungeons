@@ -9,8 +9,11 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
 import com.carterz30cal.dungeons.Dungeons;
+import com.carterz30cal.utility.Stats;
 import com.vexsoftware.votifier.model.Vote;
 import com.vexsoftware.votifier.model.VotifierEvent;
+
+import net.md_5.bungee.api.ChatColor;
 
 public class VoteListener implements Listener
 {
@@ -21,21 +24,23 @@ public class VoteListener implements Listener
     
         // right, so we get the username of the voter and then we get their UUID.
         // next, we attach the expiry date of the vote to the DungeonsPlayer data
-        // if you vote, you get a 35% xp boost for 6 hours. there are 4 sites, so voting for all gives a 24 hour xp boost period
+        // if you vote, you get a 35% xp boost for 24 hours. there are 1 SITES BECAUSE IM NOT OBNOXIOUS
         // and by then, you can vote again.
         UUID voter = Bukkit.getOfflinePlayer(vote.getUsername()).getUniqueId();
         DungeonsPlayer online = DungeonsPlayerManager.i.players.get(voter);
         if (online == null)
         {
         	FileConfiguration playerc = Dungeons.instance.getPlayerConfig();
-        	Instant time = Instant.ofEpochMilli(playerc.getLong(voter.toString() + ".voteboost", 0));
-        	if (time.isBefore(Instant.now())) playerc.set(voter.toString() + ".voteboost", Instant.now().plusSeconds(60*60*6).toEpochMilli());
-        	else playerc.set(voter.toString() + ".voteboost",time.plusSeconds(60*60*6).toEpochMilli());
+
+        	playerc.set(voter.toString() + ".voteboost", Instant.now().plusSeconds(60*60*24).toEpochMilli());
         }
         else
         {
-        	if (online.voteBoost == null || online.voteBoost.isBefore(Instant.now())) online.voteBoost = Instant.now().plusSeconds(60*60*6);
-        	else online.voteBoost.plusSeconds(60*60*6);
+        	online.voteBoost = Instant.now().plusSeconds(60*60*24);
+        	
+        	Bukkit.broadcastMessage(ChatColor.GOLD + online.player.getName() + " voted for the server! Everyone gets 1000 coins :)");
+        	for (DungeonsPlayer d : DungeonsPlayerManager.i.players.values()) d.coins += 1000;
+        	Stats.servervotes++;
         }
     }
 }

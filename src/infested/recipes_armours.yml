@@ -74,9 +74,41 @@ tarantula_crown:
   req: Necropolis Lord
   materials:
     A: armour_web_helmet,1
-    F: tarantula_fang,2
+    F: tarantula_fang,3
     H: spider_fang,4
   recipe:
     0: 0 H 0
     1: F A F
+    
+web_helmet:
+  product: armour_web_helmet
+  req: Necropolis Lord
+  materials:
+    X: web_fiber,8
+    U: armour_tissue_helmet,1
+  pattern: upgrade
+  
+web_chestplate:
+  product: armour_web_chestplate
+  req: Necropolis Lord
+  materials:
+    X: web_fiber,8
+    U: armour_tissue_chestplate,1
+  pattern: upgrade
+  
+web_leggings:
+  product: armour_web_leggings
+  req: Necropolis Lord
+  materials:
+    X: web_fiber,8
+    U: armour_tissue_leggings,1
+  pattern: upgrade
+  
+web_boots:
+  product: armour_web_boots
+  req: Necropolis Lord
+  materials:
+    X: web_fiber,8
+    U: armour_tissue_boots,1
+  pattern: upgrade
   

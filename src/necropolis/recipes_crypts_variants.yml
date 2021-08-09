@@ -1,0 +1,130 @@
+cryptmasterhelmet:
+  product: armour_crypt2_helmet
+  materials:
+    U: armour_crypt_helmet,1
+    X: polish_jar,1
+  pattern: singleupgrade
+cryptmasterchestplate:
+  product: armour_crypt2_chestplate
+  materials:
+    U: armour_crypt_chestplate,1
+    X: polish_jar,1
+  pattern: singleupgrade
+cryptmasterleggings:
+  product: armour_crypt2_leggings
+  materials:
+    U: armour_crypt_leggings,1
+    X: polish_jar,1
+  pattern: singleupgrade
+cryptmasterboots:
+  product: armour_crypt2_boots
+  materials:
+    U: armour_crypt_boots,1
+    X: polish_jar,1
+  pattern: singleupgrade
+  
+crypt2masterhelmet:
+  product: armour_plasmatic_helmet
+  materials:
+    U: armour_crypt2_helmet,1
+    X: crypts_plasma,2
+  pattern: upgrade
+crypt2masterchestplate:
+  product: armour_plasmatic_chestplate
+  materials:
+    U: armour_crypt2_chestplate,1
+    X: crypts_plasma,2
+  pattern: upgrade
+crypt2masterleggings:
+  product: armour_plasmatic_leggings
+  materials:
+    U: armour_crypt2_leggings,1
+    X: crypts_plasma,2
+  pattern: upgrade
+crypt2masterboots:
+  product: armour_plasmatic_boots
+  materials:
+    U: armour_crypt2_boots,1
+    X: crypts_plasma,2
+  pattern: upgrade
+  
+kingsword:
+  product: kings_sword
+  materials:
+    U: sword_corruptknight,1
+    X: kings_crest,1
+  pattern: singleupgrade
+queensword:
+  product: queens_sword
+  materials:
+    U: sword_holyknight,1
+    X: kings_crest,1
+  pattern: singleupgrade
+
+
+corrupt_helmet:
+  product: armour_corrupt_helmet
+  materials:
+    X: corrupt_goo,8
+  pattern: helmet
+corrupt_chestplate:
+  product: armour_corrupt_chestplate
+  materials:
+    X: corrupt_goo,8
+  pattern: chestplate
+corrupt_leggings:
+  product: armour_corrupt_leggings
+  materials:
+    X: corrupt_goo,8
+  pattern: leggings
+corrupt_boots:
+  product: armour_corrupt_boots
+  materials:
+    X: corrupt_goo,8
+  pattern: boots
+corruptbook:
+  product: book
+  enchants: corrupt,1
+  materials:
+    X: corrupt_goo,64
+    P: paper,2
+  recipe:
+    1: 0 P P
+    2: 0 P X
+    
+spiritalloy:
+  product: sharpener_spiritalloy
+  materials:
+    A: sharpener_archiacalloy,1
+    P: crypts_plasma,1
+  recipe:
+    0: 0 P 0
+    1: P A P
+    2: 0 P 0
+boost:
+  product: book
+  enchants: boost,1
+  materials:
+    P: crypts_plasma,2
+    C: digging_coal,4
+  recipe:
+    1: C C C
+    2: C C P
+crypt_king:
+  product: book
+  enchants: cryptking,1
+  materials:
+    K: kings_crest,2
+    P: paper,2
+  recipe:
+    1: 0 P P
+    2: 0 P K
+    
+twisted_sacrifice:
+  product: twisted_sacrifice
+  materials:
+    S: sacrifice,1
+    F: crypts_soul,3
+    E: crypts_exotic,2
+  recipe:
+    1: F S E

@@ -16,14 +16,14 @@ crypt_key2:
 crypt_key4:
   name: Ancient Crypt Key
   type: key
-  rarity: EPIC
+  rarity: INCREDIBLE
   item: TRIPWIRE_HOOK
   ability: cryptkey2
   
 crypt_key3:
   name: Exalted Crypt Key
   type: key
-  rarity: INCREDIBLE
+  rarity: LEGENDARY
   item: TRIPWIRE_HOOK
   ability: cryptkey3
   glow: true

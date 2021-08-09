@@ -1,0 +1,17 @@
+water:
+  set_attributes:
+    health: +25
+  synergy_attributes:
+    damage: +2
+    health: +25
+    
+paper:
+  set_attributes:
+    damagep: +0.1
+    health: -50
+  synergy_attributes:
+    damagep: +0.1
+    
+leaf:
+  set_attributes:
+    health: +50

@@ -1,0 +1,60 @@
+biomass_block:
+  product: biomass_block
+  materials:
+    X: biomass,64
+  pattern: block
+  
+compressed_biomass:
+  product: compressed_biomass
+  materials:
+    X: biomass_block,64
+  pattern: block
+  
+biomagnetic:
+  product: book
+  enchants: biomagnetic,1
+  materials:
+    B: biomass_block,1
+    P: paper,1
+  recipe:
+    1: 0 P P
+    2: 0 P B
+
+reinforced_pickaxe:
+  product: reinforced_pickaxe
+  materials:
+    B: biomass_pickaxe,1
+    H: handle,1
+    M: biomass,64
+  recipe:
+    0: M H M
+    1: 0 B 0
+    2: 0 H 0
+    
+living_pickaxe:
+  product: living_pickaxe
+  materials:
+    P: reinforced_pickaxe,1
+    H: handle,2
+    B: biomass_block,2
+    M: magic_dust,2
+  recipe:
+    0: B H B
+    1: 0 P 0
+    2: 0 M 0
+    
+asclepius_wand:
+  product: healing_wand4
+  materials:
+    H: healing_wand3,1
+    X: tarantula_blood,1
+    F: tarantula_fang,1
+  recipe:
+    1: F H F
+    2: 0 X 0
+    
+temple_token:
+  product: temple_token
+  materials:
+    C: digging_coal,64
+    D: digging_dye

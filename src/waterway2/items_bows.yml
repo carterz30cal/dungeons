@@ -1,0 +1,40 @@
+flimsy_bow:
+  name: Flimsy Bow
+  type: weapon
+  rarity: COMMON
+  item: BOW
+  req: 1
+  attributes:
+    damage: +20
+    
+water_bow:
+  name: Water Bow
+  type: weapon
+  rarity: RARE
+  item: BOW
+  set: water
+  req: 1
+  attributes:
+    damage: +35
+    health: +25
+    
+adventurers_bow: # quest reward
+  name: Adventurer's Bow
+  type: weapon
+  rarity: EPIC
+  item: BOW
+  req: 4
+  attributes:
+    damage: +40
+    killcoins: +3
+    
+paper_bow:
+  name: Paper Bow
+  type: weapon
+  rarity: EPIC
+  item: BOW
+  set: paper
+  req: 4
+  attributes:
+    damage: +60
+    health: -25

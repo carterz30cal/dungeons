@@ -5,10 +5,12 @@ import java.util.Map;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Zombie;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemStack;
 
 import com.carterz30cal.dungeons.Dungeons;
 import com.carterz30cal.gui.MonsterHunterGUI;
@@ -30,9 +32,45 @@ public class InfestedHunter extends AbsDungeonEvent
 	
 	public static final Square[] spawns = 
 		{
-				new Square(38,23003,46,23013,106)
+				new Square(50,23003,54,22999,106),
+				new Square(34,23010,38,23005,106),
+				new Square(40,23007,42,23005,107),
+				new Square(54,22991,62,22988,107)
 		};
 	
+	public InfestedHunter()
+	{
+		Location location = new Location(Dungeons.w,68.5,112,22985.5,82,0);
+		npc = (Zombie)location.getWorld().spawnEntity(location, EntityType.ZOMBIE);
+		npc.setAdult();
+		
+		Location l = new Location(Dungeons.w,location.getX(),npc.getEyeLocation().getY() + 0.4, location.getZ(),location.getYaw(),location.getPitch());
+		Location l2 = new Location(Dungeons.w,location.getX(),npc.getEyeLocation().getY() + 0.1, location.getZ(),location.getYaw(),location.getPitch());
+		display = (ArmorStand)l.getWorld().spawnEntity(l, EntityType.ARMOR_STAND);
+		display2 = (ArmorStand)l.getWorld().spawnEntity(l2, EntityType.ARMOR_STAND);
+		npc.setAI(false);
+		npc.setSilent(true);
+		npc.setInvulnerable(true);
+		npc.setRemoveWhenFarAway(false);
+		npc.getEquipment().clear();
+		npc.getEquipment().setHelmet(new ItemStack(Material.LEATHER_HELMET));
+		npc.getEquipment().setItemInMainHand(new ItemStack(Material.CROSSBOW));
+		
+		display.setInvulnerable(true);
+		display.setVisible(false);
+		display.setGravity(false);
+		display.setCustomName(ChatColor.GOLD + "Hunter Sophia");
+		display.setCustomNameVisible(true);
+		display.setRemoveWhenFarAway(false);
+		display.setMarker(true);
+		display2.setInvulnerable(true);
+		display2.setVisible(false);
+		display2.setGravity(false);
+		display2.setCustomName(ChatColor.BLUE + "" +  ChatColor.BOLD + "Hunting");
+		display2.setCustomNameVisible(true);
+		display2.setRemoveWhenFarAway(false);
+		display2.setMarker(true);
+	}
 	@Override
 	public void onPlayerDeath(DungeonsPlayer died)
 	{
@@ -55,41 +93,6 @@ public class InfestedHunter extends AbsDungeonEvent
 	public void tick()
 	{
 		//68.7,112,22987.7,133,0
-		if (npc == null || !npc.isValid())
-		{
-			if (npc != null) npc.remove();
-			if (display != null) display.remove();
-			if (display2 != null) display2.remove();
-			
-			Location location = new Location(Dungeons.w,68.5,112,22985.5,82,0);
-			npc = (Zombie)location.getWorld().spawnEntity(location, EntityType.ZOMBIE);
-			npc.setAdult();
-			
-			Location l = new Location(Dungeons.w,location.getX(),npc.getEyeLocation().getY() + 0.4, location.getZ(),location.getYaw(),location.getPitch());
-			Location l2 = new Location(Dungeons.w,location.getX(),npc.getEyeLocation().getY() + 0.1, location.getZ(),location.getYaw(),location.getPitch());
-			display = (ArmorStand)l.getWorld().spawnEntity(l, EntityType.ARMOR_STAND);
-			display2 = (ArmorStand)l.getWorld().spawnEntity(l2, EntityType.ARMOR_STAND);
-			npc.setAI(false);
-			npc.setSilent(true);
-			npc.setInvulnerable(true);
-			npc.setRemoveWhenFarAway(false);
-			npc.getEquipment().clear();
-			
-			display.setInvulnerable(true);
-			display.setVisible(false);
-			display.setGravity(false);
-			display.setCustomName(ChatColor.GOLD + "Hunter Sophia");
-			display.setCustomNameVisible(true);
-			display.setRemoveWhenFarAway(false);
-			display.setMarker(true);
-			display2.setInvulnerable(true);
-			display2.setVisible(false);
-			display2.setGravity(false);
-			display2.setCustomName(ChatColor.BLUE + "" +  ChatColor.BOLD + "Hunting");
-			display2.setCustomNameVisible(true);
-			display2.setRemoveWhenFarAway(false);
-			display2.setMarker(true);
-		}
 	}
 	
 	public boolean eventInteract(PlayerInteractEvent e)

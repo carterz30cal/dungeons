@@ -12,7 +12,7 @@ public class AbilityCryptKnight extends AbsAbility
 	{
 		ArrayList<String> d = new ArrayList<String>();
 		d.add(prefix + "Crypt Knight");
-		d.add("While in a crypt, gain 55% damage.");
+		d.add("While in a crypt, gain 65% damage.");
 		return d;
 	}
 	
@@ -20,6 +20,6 @@ public class AbilityCryptKnight extends AbsAbility
 	public void stats(DungeonsPlayerStats s)
 	{
 		if (!s.o.inCrypt) return;
-		s.damagemod += 0.55;
+		s.damagemod += 0.65;
 	}
 }

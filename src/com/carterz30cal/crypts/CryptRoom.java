@@ -133,8 +133,8 @@ public class CryptRoom
 	{
 		if (type == CryptRoomType.ENTRANCE) return;
 		int barrelCount = RandomFunctions.random(1,2);
-		if (type == CryptRoomType.LOOT) barrelCount = RandomFunctions.random(4,5);
-		else if (type == CryptRoomType.MINIBOSS) barrelCount = 6;
+		if (type == CryptRoomType.LOOT) barrelCount = RandomFunctions.random(3,5);
+		else if (type == CryptRoomType.MINIBOSS) barrelCount = RandomFunctions.random(5,6);
 		
 		while (barrelCount > 0)
 		{

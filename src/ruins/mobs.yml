@@ -1,0 +1,46 @@
+abyssal_horror:
+  name: Abyssal Horror
+  type: HUSK
+  level: 17
+  health: 14667
+  damage: 600
+  speed: 0.9
+  tags: ruins
+  kbresist: 0.5
+  equipment:
+    main: IRON_SWORD
+    helmet: IRON_HELMET
+    chestplate: armour_corrupt_chestplate
+    leggings: armour_corrupt_leggings
+    boots: armour_corrupt_boots
+  drops:
+    abyssal_flesh:
+      drop: 1/5
+      amount: 1-2
+      
+abyssal_construct:
+  name: Abyssal Construct
+  type: IRON_GOLEM
+  level: 17
+  health: 18000
+  damage: 650
+  speed: 0.8
+  tags: ruins
+  kbresist: 1
+  abilities:
+    targeter:
+      range: 15
+    laser:
+      damage: 500
+      range: 9
+      cooldown: 12
+      targetonly: true
+      colour: 200,0,0
+  drops:
+    abyssal_flesh:
+      drop: 1/5
+      amount: 1-2
+    haunted_metal:
+      drop: 1/10
+      amount: 3-7
+  

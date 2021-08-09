@@ -23,7 +23,7 @@ public class SkillTreeGUI extends GUI
 {
 	private Player owner;
 	private AbsSkill[] clickables;
-	
+	private int top;
 	
 	public SkillTreeGUI(Player p)
 	{
@@ -49,6 +49,7 @@ public class SkillTreeGUI extends GUI
 		
 		for (AbsSkill skill : AbsSkill.skills.values())
 		{
+			top = Math.max(top, skill.position().page);
 			if (skill.position().page != page) continue;
 			int pos = (skill.position().y * 9) + skill.position().x;
 			
@@ -59,7 +60,7 @@ public class SkillTreeGUI extends GUI
 				visual = Material.REDSTONE;
 				v = ChatColor.RED;
 			}
-			else if (skill.levelreq() > player.level.level())
+			else if (skill.levelreq() > player.level.level)
 			{
 				visual = Material.REDSTONE;
 				v = ChatColor.RED;
@@ -89,10 +90,10 @@ public class SkillTreeGUI extends GUI
 		
 		ItemStack head = new ItemStack(Material.PLAYER_HEAD);
 		ItemMeta meta = ItemBuilder.generateSkullMeta(head.getItemMeta(), player.player);
-		meta.setDisplayName(CharacterSkill.prettyText(player.level.level()) + " " + player.player.getDisplayName());
+		meta.setDisplayName(CharacterSkill.prettyText(player.level.level) + " " + player.player.getDisplayName());
 		ArrayList<String> lore = new ArrayList<String>();
 		lore.add(ChatColor.BLUE + "Experience: " + ChatColor.WHITE + StringManipulator.truncateLess(player.level.experience)
-				+ " / " + StringManipulator.truncateLess(CharacterSkill.requirement(player.level.level()+1))
+				+ " / " + StringManipulator.truncateLess(CharacterSkill.tonextlevel(player.level.level))
 				+ ChatColor.BLUE + " (" + player.level.prettyProgress() + "%)");
 		lore.add("");
 		lore.add("");
@@ -102,7 +103,7 @@ public class SkillTreeGUI extends GUI
 		contents[18] = head;
 		
 		
-		contents[0] = GUICreator.item(Material.ARROW, ChatColor.GREEN + "Page " + (page+1), null);
+		if (top != page) contents[0] = GUICreator.item(Material.ARROW, ChatColor.GREEN + "Page " + (page+1), null);
 		if (page > 1) contents[36] = GUICreator.item(Material.ARROW, ChatColor.GREEN + "Page " + (page-1), null);
 		
 		contents[44] = GUICreator.item(Material.PHANTOM_MEMBRANE, ChatColor.RED + "Wipe skills - 750 coins", null);
@@ -122,7 +123,7 @@ public class SkillTreeGUI extends GUI
 			
 			draw();
 		}
-		if (position == 0) 
+		if (position == 0 && page != top) 
 		{
 			page++;
 			draw();
@@ -137,9 +138,10 @@ public class SkillTreeGUI extends GUI
 			AbsSkill skill = clickables[position];
 			if (skill.max() == d.skills.getOrDefault(skill.id(),0)) return true;
 			else if (!skill.skillreq().equals("none") && !d.skills.containsKey(skill.skillreq())) return true;
-			else if (skill.levelreq() > d.level.level()) return true;
+			else if (skill.levelreq() > d.level.level) return true;
 			
-			d.skills.put(skill.id(), d.skills.getOrDefault(skill.id(), 0) + 1);
+			if (e.isRightClick()) while (skill.max() > d.skills.getOrDefault(skill.id(),0) && d.level.points() > 0) d.skills.put(skill.id(), d.skills.getOrDefault(skill.id(), 0) + 1);
+			else d.skills.put(skill.id(), d.skills.getOrDefault(skill.id(), 0) + 1);
 			draw();
 		}
 		

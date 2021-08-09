@@ -47,7 +47,7 @@ public class QuestNpc extends BukkitRunnable
 	}
 	@Override
 	public void run() {
-		if (!questgiver.isValid()) spawn();
+		//if (!questgiver.isValid()) spawn();
 		
 	}
 

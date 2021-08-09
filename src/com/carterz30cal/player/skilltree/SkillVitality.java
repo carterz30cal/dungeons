@@ -19,7 +19,7 @@ public class SkillVitality extends AbsSkill {
 	@Override
 	public String description(int level) {
 		
-		return "+" + level*4 + " health.";
+		return "+" + level*5 + " health.";
 	}
 
 	@Override
@@ -36,13 +36,13 @@ public class SkillVitality extends AbsSkill {
 
 	public void stats(int level,DungeonsPlayerStats bank) 
 	{
-		bank.health += level*4;
+		bank.health += level*5;
 	}
 	
 	@Override
 	public int max() {
 		// TODO Auto-generated method stub
-		return 10;
+		return 40;
 	}
 
 }

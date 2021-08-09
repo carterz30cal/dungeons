@@ -9,7 +9,7 @@ public class EnchSquash extends AbsEnchant
 	@Override
 	public String description()
 	{
-		return "Deal +" + (level*5) + "% damage to mobs in the infested caverns";
+		return "Deal +" + (level*3) + "% damage to mobs in the infested caverns";
 	}
 
 	@Override
@@ -20,7 +20,7 @@ public class EnchSquash extends AbsEnchant
 	@Override
 	public int max() {
 		// TODO Auto-generated method stub
-		return 5;
+		return 10;
 	}
 
 	@Override
@@ -46,7 +46,7 @@ public class EnchSquash extends AbsEnchant
 		if (bank.d == null || bank.d.area == null || bank.d.area.id == null) return bank;
 		if (bank.d.area.id.equals("infestedcaverns"))
 		{
-			bank.damagemod += 0.05*level;
+			bank.damagemod += 0.03*level;
 			return bank;
 		}
 		return null;

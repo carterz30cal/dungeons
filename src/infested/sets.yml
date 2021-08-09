@@ -29,3 +29,42 @@ biomass:
     lore: You feel alive!
     attributes:
       miningspeed: +15
+      
+guardians:
+  set:
+    lore: EXTREME PROTECTION!
+    ability: guardians
+    attributes:
+      armour: +60
+      
+temple:
+  set:
+    lore: What will you find?
+    ability: templelooter
+    attributes:
+      damage: +20
+      
+stargazer:
+  set:
+    lore: Luxium glows bright!
+    ability: stargazer
+    attributes:
+      mana: +100
+      
+pinkdrag:
+  set:
+    lore: Pink dragons are the weakest of all dragons.
+    attributes:
+      damagep: +0.2
+spiritharvester:
+  set:
+    lore: Thousands of years echo around you.
+    ability: spiritharvester
+    attributes:
+      mana: +75
+  synergy:
+    lore: The blade attunes to the spirits.
+    ability: spiritsword
+    attributes:
+      damage: +30
+    

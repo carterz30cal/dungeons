@@ -8,7 +8,7 @@ public class EnchIronskin extends AbsEnchant {
 
 	@Override
 	public String description() {
-		return "For every " + (60 - (level*5)) + " base health on this piece, grant 3 armour";
+		return "For every 50 base health on this piece, grant "+(level*2) +  " armour";
 	}
 
 	@Override
@@ -38,8 +38,8 @@ public class EnchIronskin extends AbsEnchant {
 
 	@Override
 	public DungeonsPlayerStatBank onBank(DungeonsPlayerStatBank bank) {
-		int pts = (int)Math.round(bank.base.getOrDefault("health",0d) / (60 - (level*5)));
-		bank.armour += pts*3;
+		int pts = (int)Math.round(bank.base.getOrDefault("health",0d) / 50);
+		bank.armour += pts*level*2;
 		return bank;
 	}
 

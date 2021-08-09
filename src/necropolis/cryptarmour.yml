@@ -7,20 +7,36 @@ armour-crypt:
   item: CHAINMAIL
   req: 12
   attributes:
-    regen: 5,7,5,4
-    armour: 45,60,50,35
+    regen: 2,4,3,1
+    damage: 2,4,3,1
 armour-crypt2:
   name: Crypt Master
   suffix: Helmet,Shirt,Leggings,Boots
   rarity: INCREDIBLE
-  set: cryptraider
+  set: cryptmaster
   item: CHAINMAIL
   glow: true
-  req: 20
+  req: 18
   attributes:
-    regen: 6,8,7,5
-    damage: 3,3,3,3
-    armour: 50,65,60,40
+    regen: 2,5,3,2
+    damage: 4,8,6,2
+    
+armour-plasmatic:
+  name: Plasmatic
+  suffix: Helmet,Chestplate,Leggings,Boots
+  rarity: LEGENDARY
+  set: plasmatic
+  item: LEATHER
+  req: 25
+  colours:
+    0: 52,174,235
+    1: 41,158,217
+    2: 25,127,179
+    3: 17,107,153
+  attributes:
+    mana: 70,70,70,70
+    damage: 5,9,7,4
+    regen: 4,6,5,3
 armour-sewer:
   name: Sewer
   suffix: Mask,Chestplate,Trousers,Shoes
@@ -69,7 +85,7 @@ armour-undeadlord:
   req: 15
   set: undeadlord
   attributes:
-    armour: 50,60,55,50
+    armour: 30,50,40,20
     damage: 6,12,9,4
     
     

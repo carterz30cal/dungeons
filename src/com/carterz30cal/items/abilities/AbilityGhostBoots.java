@@ -42,8 +42,6 @@ public class AbilityGhostBoots extends AbsAbility
 		d.add("for 12 seconds. While you are a ghost, you will");
 		d.add("deal 35 true damage to every mob around you and");
 		d.add("heal nearby players for 18 health every second.");
-		d.add("You are also tethered to your death spot, and ");
-		d.add("moving more than 20 blocks away will dispell you.");
 		d.add("As a ghost, your stats are heavily reduced.");
 		d.add("After 12 seconds, be revived at 60% health.");
 		d.add("This ability has a cooldown of 100 seconds.");
@@ -149,13 +147,6 @@ class GhostTask extends BukkitRunnable
 		else	
 		{
 			Dungeons.w.spawnParticle(Particle.REDSTONE, d.player.getLocation().add(0,1,0), 30, 0.2, 0.3, 0.2, 0, new Particle.DustOptions(Color.GRAY,0.6f));
-			
-			if (tether.distance(d.player.getLocation().add(0,1,0)) > 20) 
-			{
-				end();
-				d.damage(Integer.MAX_VALUE - 1, true);
-				return;
-			}
 			
 			if (ticks % 20 == 19)
 			{

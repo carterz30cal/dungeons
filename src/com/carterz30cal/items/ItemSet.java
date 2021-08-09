@@ -11,6 +11,7 @@ public class ItemSet
 	// synergy
 	public String syn_lore;
 	public HashMap<String,Double> syn_attributes;
+	public String syn_ability;
 	
 	public ItemSet()
 	{

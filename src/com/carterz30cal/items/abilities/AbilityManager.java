@@ -5,6 +5,7 @@ import java.util.HashMap;
 import com.carterz30cal.dungeons.Dungeons;
 import com.carterz30cal.items.abilities.runes.*;
 import com.carterz30cal.items.abilities.infested.*;
+import com.carterz30cal.items.abilities.ruins.*;
 import com.carterz30cal.tasks.TaskTickAbilities;
 
 public class AbilityManager
@@ -41,6 +42,8 @@ public class AbilityManager
 		abilities.put("cryptkey2", AbilityCryptKey2.class);
 		abilities.put("cryptkey3", AbilityCryptKey3.class);
 		abilities.put("cryptraider", AbilityCryptRaiderSet.class);
+		abilities.put("cryptmaster", AbilityCryptMasterSet.class);
+		abilities.put("plasmatic", AbilityCryptPlasmaticSet.class);
 		abilities.put("handsomereward", AbilityHandsomeReward.class);
 		abilities.put("venomfang", AbilityVenomFang.class);
 		abilities.put("venomhelm", AbilityVenomHelm.class);
@@ -84,6 +87,10 @@ public class AbilityManager
 		abilities.put("digginglord", AbilityDiggingLord.class);
 		abilities.put("devastation", AbilityDevastation.class);
 		abilities.put("phantomboots", AbilityPhantom.class);
+		abilities.put("corruptset", AbilityCorruption.class);
+		
+		abilities.put("kingsword",AbilityCryptKingSword.class);
+		abilities.put("queensword",AbilityCryptQueenSword.class);
 		
 		abilities.put("healerblue", AbilityHealerBlue.class);
 		abilities.put("healergreen", AbilityHealerGreen.class);
@@ -108,6 +115,32 @@ public class AbilityManager
 		abilities.put("hunter3", AbilityHunter3.class);
 		abilities.put("hunter4", AbilityHunter4.class);
 		abilities.put("tarantulahelmet", AbilityTarantulaHelmet.class);
+		abilities.put("enchantedsword",AbilityEnchantedSword.class);
+		abilities.put("deals", AbilityDeals.class);
+		abilities.put("healingwand4", AbilityHealingWand4.class);
+		abilities.put("lifedrain", AbilityLifeDrain.class);
+		abilities.put("saoref",AbilitySAORef.class);
+		abilities.put("guardians", AbilityGuardiansSet.class);
+		abilities.put("eyeballsquish",AbilityEyeballSquish.class);
+		abilities.put("magicwell", ModMagicWell.class);
+		abilities.put("templelooter",AbilityTempleLooter.class);
+		abilities.put("lightstaff",AbilityLightStaff.class);
+		abilities.put("stargazer", AbilityStargazer.class);
+		abilities.put("healingwand5",AbilityHealingWand5.class);
+		abilities.put("skullcrusher", AbilitySkullcrusher.class);
+		abilities.put("spiritcrusher", AbilitySpiritcrusher.class);
+		abilities.put("spiritharvester", AbilitySpiritHarvester.class);
+		abilities.put("spiritsword", AbilitySpiritSword.class);
+		abilities.put("goldrose", AbilityHealerGoldenRose.class);
+		abilities.put("rosesword", AbilityRoseSword.class);
+		abilities.put("hurricane",AbilityHurricane.class);
+		
+		abilities.put("lightplacer", AbilityLightPlacer.class);
+		abilities.put("abyssal", AbilityAbyssal.class);
+		abilities.put("abyssalbow", AbilityAbyssalBow.class);
+		abilities.put("abyssalhopper", AbilityAbyssalHopper.class);
+		abilities.put("warhammer", AbilityWarhammer.class);
+		abilities.put("nightlord", AbilityNightlord.class);
 		
 		abilities.put("midasboots", AbilityMidasBoots.class);
 		
@@ -127,8 +160,15 @@ public class AbilityManager
 		abilities.put("rune_holy", RuneHoly.class);
 		abilities.put("rune_steel", RuneSteel.class);
 		abilities.put("rune_void", RuneVoid.class);
+		abilities.put("rune_healing", RuneHealing.class);
+		abilities.put("rune_greaterhealing", RuneGreaterHealing.class);
+		
+		abilities.put("ritual_pain", RitualPain.class);
+		abilities.put("ritual_dyingpower", RitualDyingPower.class);
+		abilities.put("ritual_twistedvitality", RitualTwistedVitality.class);
 	}
 	
+	@SuppressWarnings("deprecation")
 	public static AbsAbility get(String code)
 	{
 		if (!abilities.containsKey(code)) return null;

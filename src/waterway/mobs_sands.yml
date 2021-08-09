@@ -1,8 +1,8 @@
 sands_hydrahead:
   name: Head
   type: GUARDIAN
-  health: 75
-  damage: 27
+  health: 80
+  damage: 24
   dmgresist: 1
   kbresist: 1
   boss: true
@@ -17,8 +17,8 @@ sands_hydrahead:
 sands_hydrasoul:
   name: Soul
   type: VEX
-  health: 7
-  damage: 35
+  health: 8
+  damage: 36
   speed: 0.7
   dmgresist: 1
   kbresist: 1
@@ -33,8 +33,8 @@ sands_hydrasoul:
 sands_hydraminion:
   name: Minion
   type: ZOMBIE
-  health: 22
-  damage: 18
+  health: 23
+  damage: 20
   speed: 1.2
   dmgresist: 1
   kbresist: 0
@@ -67,8 +67,8 @@ sands_guardian:
       drop: 1/1
       amount: 1-5
     sand_catalyst:
-      drop: 1/5
-      amount: 1-1  
+      drop: 1/3
+      amount: 1-2  
     
     
 sands_husk:
@@ -85,8 +85,8 @@ sands_husk:
       drop: 1/1
       amount: 2-4
     sand_catalyst:
-      drop: 1/5
-      amount: 1-1  
+      drop: 1/3
+      amount: 1-2  
       
 sands_pigman:
   name: Sand Pigman
@@ -105,8 +105,8 @@ sands_pigman:
       drop: 1/1
       amount: 2-7
     sand_catalyst:
-      drop: 1/5
-      amount: 1-1  
+      drop: 1/3
+      amount: 1-2  
   
 sands_hydra:
   name: Guardian Hydra
@@ -123,8 +123,8 @@ sands_hydra:
       drop: 1/1
       amount: 2-7
     sand_catalyst:
-      drop: 1/5
-      amount: 1-1  
+      drop: 1/3
+      amount: 1-2  
       
 
   

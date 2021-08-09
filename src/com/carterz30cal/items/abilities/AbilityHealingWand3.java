@@ -22,9 +22,9 @@ public class AbilityHealingWand3 extends AbsAbility {
 		ArrayList<String> d = new ArrayList<>();
 		d.add(prefix + "Healer");
 		d.add("Right click to heal for");
-		d.add("70 + 40% of your maximum mana");
+		d.add("70 + 52% of your maximum mana");
 		d.add("Also heals nearby players");
-		d.add("for 25% of that.");
+		d.add("for 33% of that.");
 		d.add(ChatColor.BLUE + "Consumes 50% of your mana");
 		return d;
 	}
@@ -34,7 +34,7 @@ public class AbilityHealingWand3 extends AbsAbility {
 		if (e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK)
 		{
 			if (!d.useMana((int) (d.stats.mana * 0.50))) return false;
-			int healing = (int) (70 + (d.stats.mana * 0.4));
+			int healing = (int) (70 + (d.stats.mana * 0.52));
 			d.player.playSound(d.player.getLocation(),Sound.BLOCK_NOTE_BLOCK_PLING,0.65f,1.3f);
 			d.player.sendMessage(ChatColor.GREEN + "You healed for " + healing + " health!");
 			d.heal(healing);
@@ -46,8 +46,8 @@ public class AbilityHealingWand3 extends AbsAbility {
 				DungeonsPlayer du = DungeonsPlayerManager.i.get((Player)en);
 				if (du != null && du != d) 
 				{
-					du.heal(healing/4);
-					totalheal += healing/4;
+					du.heal(healing/3);
+					totalheal += healing/3;
 				}
 			}
 			if (totalheal > 0) d.player.sendMessage(ChatColor.GREEN + "You healed players around you by " + totalheal + "!");

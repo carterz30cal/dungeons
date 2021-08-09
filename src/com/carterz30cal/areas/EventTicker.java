@@ -14,13 +14,18 @@ public class EventTicker extends BukkitRunnable
 	{
 		events = new ArrayList<AbsDungeonEvent>();
 		runTaskTimer(Dungeons.instance,0,1);
+		
+		
 	}
 	
 	
 	@Override
 	public void run()
 	{
-		for (AbsDungeonEvent e : events) e.tick();
+		for (AbsDungeonEvent e : events) 
+		{
+			e.tick();
+		}
 	}
 
 	public static void end()

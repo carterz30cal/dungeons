@@ -1,0 +1,134 @@
+spirit_helmet:
+  product: armour_spiritharvester_helmet
+  materials:
+    U: armour_soul_helmet,1
+    X: mythical_soulingredient,1
+  pattern: singleupgrade
+spirit_chestplate:
+  product: armour_spiritharvester_chestplate
+  materials:
+    U: armour_soul_chestplate,1
+    X: mythical_soulingredient,1
+  pattern: singleupgrade
+spirit_leggings:
+  product: armour_spiritharvester_leggings
+  materials:
+    U: armour_soul_leggings,1
+    X: mythical_soulingredient,1
+  pattern: singleupgrade
+spirit_boots:
+  product: armour_spiritharvester_boots
+  materials:
+    U: armour_soul_boots,1
+    X: mythical_soulingredient,1
+  pattern: singleupgrade
+spirit_sword:
+  product: mythical_spiritsword
+  materials:
+    U: reaper_blade,1
+    X: mythical_soulingredient,1
+  pattern: singleupgrade
+  
+healing_wand5:
+  product: healing_wand5
+  materials:
+    H: healing_wand4,1
+    L: luxium,64
+    I: mythical_ingot,1
+  recipe:
+    0: I L I
+    1: 0 H 0
+    2: 0 I 0
+  
+golden_rose_helmet:
+  product: armour_goldrose_helmet
+  materials:
+    R: armour_healerred_helmet,1
+    G: armour_healergreen_helmet,1
+    B: armour_healerblue_helmet,1
+    H: mythical_ingot,1
+  recipe:
+    0: 0 H 0
+    1: R G B
+    2: 0 H 0
+golden_rose_helmet2:
+  product: armour_goldrose_helmet
+  materials:
+    R: armour_healerred_helmet,1
+    G: armour_healergreen_helmet,1
+    B: armour_healerblue_helmet,1
+    H: mythical_ingot,1
+  recipe:
+    0: 0 H 0
+    1: G B R
+    2: 0 H 0
+golden_rose_helmet3:
+  product: armour_goldrose_helmet
+  materials:
+    R: armour_healerred_helmet,1
+    G: armour_healergreen_helmet,1
+    B: armour_healerblue_helmet,1
+    H: mythical_ingot,1
+  recipe:
+    0: 0 H 0
+    1: B R G
+    2: 0 H 0
+    
+rose_sword:
+  product: mythical_rosesword
+  materials:
+    H: mythical_ingot,1
+    S: handle,8
+  recipe:
+    0: 0 H 0
+    1: 0 S 0
+    2: 0 S 0
+    
+pinkdragon_helmet:
+  product: armour_pinkdrag_helmet
+  materials:
+    U: armour_undeadcaptain_helmet,1
+    X: mythical_scale,1
+  pattern: singleupgrade
+pinkdragon_chestplate:
+  product: armour_pinkdrag_chestplate
+  materials:
+    U: armour_undeadcaptain_chestplate,1
+    X: mythical_scale,1
+  pattern: singleupgrade
+pinkdragon_leggings:
+  product: armour_pinkdrag_leggings
+  materials:
+    U: armour_undeadcaptain_leggings,1
+    X: mythical_scale,1
+  pattern: singleupgrade
+pinkdragon_boots:
+  product: armour_pinkdrag_boots
+  materials:
+    U: armour_undeadcaptain_boots,1
+    X: mythical_scale,1
+  pattern: singleupgrade
+  
+stargazer_helmet:
+  product: armour_stargazer_helmet
+  materials:
+    X: luxium,8
+  pattern: helmet
+stargazer_chestplate:
+  product: armour_stargazer_chestplate
+  materials:
+    X: luxium,8
+  pattern: chestplate
+stargazer_leggings:
+  product: armour_stargazer_leggings
+  materials:
+    X: luxium,8
+  pattern: leggings
+stargazer_boots:
+  product: armour_stargazer_boots
+  materials:
+    X: luxium,8
+  pattern: boots
+  
+    
+    

@@ -70,8 +70,17 @@ public class DungeonsPlayerDisplay
 		obje.getScore(ChatColor.RESET + "" + ChatColor.RESET).setScore(3);
 		area.setPrefix(ChatColor.GOLD + "You are in:");
 		obje.getScore(ChatColor.WHITE + "").setScore(1);
-		area2.setPrefix(ChatColor.RED + dp.area.name);
-		obje.getScore(ChatColor.BLACK + "").setScore(0);
+		if (dp.inTemple())
+		{
+			area2.setPrefix(ChatColor.DARK_RED + "THE TEMPLE");
+			obje.getScore(ChatColor.BLACK + "").setScore(0);
+		}
+		else
+		{
+			area2.setPrefix(ChatColor.RED + dp.area.name);
+			obje.getScore(ChatColor.BLACK + "").setScore(0);
+		}
+		
 		
 		if (dp.voteBoost != null && dp.voteBoost.isAfter(Instant.now())) xpBoost.setPrefix(ChatColor.GREEN + "Vote boost active!");
 		else xpBoost.setPrefix(ChatColor.RED + "Vote boost inactive!");

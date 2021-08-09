@@ -102,4 +102,42 @@ infestedexplorer:
       price: 2500
     handle:
       price: 1000
+    luxium:
+      price: 250
+    empty_bottle:
+      price: 300
+    water_bottle:
+      price: 150
+    seperation_fluid:
+      price: 120
+    extraction_catalyst:
+      price: 300
+    conversion_catalyst:
+      price: 250
+    extinguishing_element:
+      price: 175
+    reversal_element:
+      price: 200
+    elemental_shift:
+      price: 1200
+    milk:
+      price: 500
+infrequent:
+  name: Infrequent Wares Inc.
+  items:
+    armour_stone_boots:
+      price: 10000
+    book;execution:
+      price: 12000
+      enchants: execution,5
+    book;lucky:
+      price: 10000
+      enchants: lucky,6
+    book;orbs:
+      price: 20000
+      enchants: orbs,1
+    armour_deals_helmet:
+      price: 100000
+    sharpener_steeledge:
+      price: 1200
       

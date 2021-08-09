@@ -1,0 +1,7 @@
+adventurer_upgrade:
+  name: Sword Derusting Kit
+  type: ingredient
+  description: Craft with an Adventurer's Rusty Cutlass;to make an improved version. 
+  rarity: EPIC
+  item: SHULKER_SHELL
+  

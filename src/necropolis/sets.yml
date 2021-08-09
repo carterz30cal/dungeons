@@ -25,6 +25,27 @@ cryptraider:
       regen: +3
     ability: cryptraider
     
+cryptmaster:
+  set: 
+    lore: The magic of the crypt empowers you
+    attributes:
+      regen: +4
+    ability: cryptmaster
+    
+plasmatic:
+  set: 
+    lore: Ghosts of the crypts invigorate you.
+    attributes:
+      regen: +5
+    ability: plasmatic
+    
+corrupt:
+  set:
+    lore: You feel disgusting.
+    ability: corruptset
+    attributes:
+      regen: -5
+    
     
 sewer:
   set:

@@ -25,6 +25,12 @@ public class TaskRuneRoom extends BukkitRunnable
 	@Override
 	public void run()
 	{
+		if (room.cleared) 
+		{
+			if (room.display != null) room.display.remove();
+			cancel();
+			return;
+		}
 		if (room.display == null || !room.display.isValid() || room.display.isDead())
 		{
 			room.display = (ArmorStand)Dungeons.w.spawnEntity(room.midpoint().subtract(-1, 0.3, -1), EntityType.ARMOR_STAND);

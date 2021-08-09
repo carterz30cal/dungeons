@@ -2,52 +2,52 @@ package com.carterz30cal.player.skilltree;
 
 import com.carterz30cal.player.DungeonsPlayerStats;
 
-public class SkillMonsterHunter extends AbsSkill {
+public class SkillFocus extends AbsSkill {
 
 	@Override
 	public String id() {
-		return "monsterhunterlvel";
+		return "focus";
 	}
 
 	@Override
 	public String name() {
 		// TODO Auto-generated method stub
-		return "Monster Hunter";
+		return "Focus";
 	}
 
 	@Override
 	public String description(int level) {
 		
-		return "Gain " + level + " extra xp per kill.";
+		return "+" + (level*4) + " mana.";
 	}
 	
 	@Override
 	public String skillreq() {
 		// TODO Auto-generated method stub
-		return "none";
+		return "warrior";
 	}
 
 	@Override
 	public Position position() {
 		// TODO Auto-generated method stub
-		return new Position(-1,4,4);
+		return new Position(2,3,4);
 	}
 
 	public void stats(int level,DungeonsPlayerStats bank) 
 	{
-		bank.flatxp += level;
+		bank.mana += 4*level;
 	}
 	
 	@Override
 	public int max() {
 		// TODO Auto-generated method stub
-		return 7;
+		return 25;
 	}
 
 	@Override
 	public int levelreq() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 20;
 	}
 
 }

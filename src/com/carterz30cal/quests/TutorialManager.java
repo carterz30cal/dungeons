@@ -108,6 +108,12 @@ public class TutorialManager
 		sharpeners.msg("located in the anvil. Remember, you can only use");
 		sharpeners.msg("4 of them, so choose wisely.");
 		
+		Tutorial chamberguardian = new Tutorial();
+		chamberguardian.name = "Chamber Access";
+		chamberguardian.add(TutorialTrigger.KILL_ENEMY, "temple_chamberguard");
+		chamberguardian.msg("You have slain the chamber guardian and may");
+		chamberguardian.msg("now access the chamber! Be careful, it's tough!");
+		
 		
 	}
 	

@@ -30,8 +30,8 @@ sword_ancientassassin:
   req: 19
   ability: dagger
   attributes:
-    damage: +94
-    health: -95
+    damage: +95
+    health: -110
 armour_ancientassassin_helmet:
   name: Assassin Hood
   type: armour
@@ -40,6 +40,6 @@ armour_ancientassassin_helmet:
   colour: 0,0,0
   req: 19
   attributes:
-    damage: +42
+    damage: +50
     health: -100
     armour: -20

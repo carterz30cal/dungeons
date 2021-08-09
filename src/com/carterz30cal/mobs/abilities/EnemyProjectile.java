@@ -53,14 +53,14 @@ public class EnemyProjectile extends BukkitRunnable
 		{
 			for (int i = 0; i < 10;i++)
 			{
-				Dungeons.w.spawnParticle(Particle.REDSTONE,current, 0, 1, 0, 0, 0,new Particle.DustOptions(colour, 1));
+				Dungeons.w.spawnParticle(Particle.REDSTONE,current, 0, 1, 0, 0, 0,new Particle.DustOptions(colour, 0.6f));
 				Vector d = target.getEyeLocation().subtract(current).toVector().normalize();
 				current = current.add(d.multiply(speed/100));
 			}
 		}
 		else
 		{
-			Dungeons.w.spawnParticle(Particle.REDSTONE,current, 0, 1, 0, 0, 0,new Particle.DustOptions(colour, 1));
+			Dungeons.w.spawnParticle(Particle.REDSTONE,current, 0, 1, 0, 0, 0,new Particle.DustOptions(colour, 0.8f));
 			Vector d = target.getEyeLocation().subtract(current).toVector().normalize();
 			current = current.add(d.multiply(speed/10));
 		}

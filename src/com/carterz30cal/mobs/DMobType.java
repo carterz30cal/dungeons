@@ -40,6 +40,7 @@ public class DMobType
 	public boolean boss;
 	public boolean invisible;
 	public boolean silent;
+	public boolean vanish;
 	
 	public String id;
 	
@@ -76,6 +77,7 @@ public class DMobType
 		boss = data.getBoolean(path + ".boss",false);
 		invisible = data.getBoolean(path + ".invisible",false);
 		silent = data.getBoolean(path + ".silent",false);
+		vanish = data.getBoolean(path + ".vanish",false);
 		entityData = new HashMap<Integer,String[]>();
 		if (data.contains(path + ".data"))
 		{
@@ -127,7 +129,7 @@ public class DMobType
 	{
 		DMobAbility ability = null;
 		
-		switch (a)
+		switch (a.split(";")[0])
 		{
 		case "regen":
 			ability = new MobRegen(data,path);
@@ -167,6 +169,33 @@ public class DMobType
 			break;
 		case "owned":
 			ability = new MobOwned(data,path);
+			break;
+		case "effects":
+			ability = new MobParticleEffects(data,path);
+			break;
+		case "damageaura":
+			ability = new MobDamageAura(data,path);
+			break;
+		case "deathsummon":
+			ability = new MobDeathSummon(data,path);
+			break;
+		case "taunt":
+			ability = new MobTaunt(data,path);
+			break;
+		case "weapon":
+			ability = new MobWeapon(data,path);
+			break;
+		case "firewhip":
+			ability = new MobFirewhip(data,path);
+			break;
+		case "deatheffect":
+			ability = new MobDeathEffect(data,path);
+			break;
+		case "spawn":
+			ability = new MobConstantSummon(data,path);
+			break;
+		case "launcher":
+			ability = new MobLauncher(data,path);
 			break;
 		default: return;
 		}

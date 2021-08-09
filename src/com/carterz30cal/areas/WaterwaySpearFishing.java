@@ -69,7 +69,7 @@ public class WaterwaySpearFishing extends AbsDungeonEvent
 			}
 			tick = 0;
 		}
-		if (killsToBoss >= 20) 
+		if (killsToBoss >= 20 && area.getWithin().size() > 0) 
 		{
 			if (boss.mob == null)
 			{

@@ -14,18 +14,18 @@ venom_bite:
   rarity: RARE
   item: WOODEN_SWORD
   glow: true
-  req: 21
+  req: 22
   ability: venombite
   attributes:
-    damage: +72
-    health: +35
+    damage: +76
+    health: +40
     
 fanged_axe:
   name: Fanged Axe
   type: weapon
   rarity: RARE
   item: IRON_AXE
-  req: 22
+  req: 20
   ability: fangedaxe
   attributes:
     damage: +84
@@ -86,6 +86,16 @@ hunters_knife4:
     damage: +120
     health: -50
     
+enchanted_sword:
+  name: Enchanted Sword
+  type: weapon
+  rarity: INCREDIBLE
+  item: DIAMOND_SWORD
+  req: 30
+  ability: enchantedsword
+  attributes:
+    damage: +105
+    
 sharpener_bleedingedge:
   name: Bleeding Edge
   type: sharpener
@@ -95,6 +105,17 @@ sharpener_bleedingedge:
     id: bleeding
     plus: RED
   attributes:
-    damagep: 0.1
-    health: -5
+    damagep: 0.15
+    health: -8
+    
+slime_sword:
+  name: Slime Sword
+  type: weapon
+  rarity: RARE
+  item: DIAMOND_SWORD
+  req: 25
+  attributes:
+    damage: +83
+    health: +70
+    regen: +5
     

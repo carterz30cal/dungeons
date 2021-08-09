@@ -20,7 +20,7 @@ public class SkillHeavy extends AbsSkill {
 	@Override
 	public String description(int level) {
 		
-		return "Gain a 5% chance to deal an extra " + level*30 + " damage.";
+		return "Gain a 5% chance to deal an extra " + level*25 + " damage.";
 	}
 
 	@Override
@@ -43,14 +43,14 @@ public class SkillHeavy extends AbsSkill {
 	@Override
 	public int onAttack(int level,DungeonsPlayer player,int damage) 
 	{
-		if (RandomFunctions.random(1, 20) == 5) return damage + (level*30);
+		if (RandomFunctions.random(1, 20) == 5) return damage + (level*25);
 		return damage;
 	}
 	
 	@Override
 	public int max() {
 		// TODO Auto-generated method stub
-		return 4;
+		return 8;
 	}
 
 }

@@ -1,0 +1,333 @@
+temple_token:
+  name: Temple Token
+  type: artifact
+  rarity: RARE
+  item: PINK_DYE
+  description: Enter the temple.. if you dare.
+  nostack: true
+temple_skull:
+  name: Temple Skull
+  type: ingredient
+  rarity: LEGENDARY
+  item: PLAYER_HEAD
+  description: Ominous screams can be;heard from far away..
+  skull:
+    data: ewogICJ0aW1lc3RhbXAiIDogMTYyNDI3ODg2MjQxMiwKICAicHJvZmlsZUlkIiA6ICJkNmY2MTBmNjc2NTk0MDA2OTg0MGY3OTM1ZGFhNDcwMiIsCiAgInByb2ZpbGVOYW1lIiA6ICJlcmlhbmlmIiwKICAic2lnbmF0dXJlUmVxdWlyZWQiIDogdHJ1ZSwKICAidGV4dHVyZXMiIDogewogICAgIlNLSU4iIDogewogICAgICAidXJsIiA6ICJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlL2M3MTEyZTU5YWQ2MWU0NzRlMmU5ZDMyZmJjYmVkYmY5ZmRhNjEzZjVhYTJhNWU2YmI0NTIwZGI0NGYwYTUzZTEiLAogICAgICAibWV0YWRhdGEiIDogewogICAgICAgICJtb2RlbCIgOiAic2xpbSIKICAgICAgfQogICAgfQogIH0KfQ==
+    sig: AA7qKmZeoK9lgOz8BD3pPsCTghXIf2CzRD3+0IpVy0UkTyv4e28rhnq392Q8jAtLj3iPldtBSg169hFy45WQxE8N9gZQY4NCqegBWKXM8T/JII7a/IRIoZJ+1rewxL8KMT5mfzYGt30HVPUA5hsGhd5OJzaCNDNyQ8068x+bjXc3F0ZFSfuT6yzfO5/pfsqdogB0zsBRP++SeZiOpgQUV2knAWeWYzu8zdETp+rRfahvKO8fIgYCmk+kuW09o9KP08QVT6JnoJjhOPgrtBDXAt3Awcxtm/KG1ukz/mmN83TqtO16ckMYn6rxmmq43ZWfX5aTsChSCjH/DTXaAiI4+AeQz+g6xE7EVSBRvd1/9F6YRZpvFL6vSlfUetX1L1DDEftSDQYoQowyPzZ38Mul0XgNQLrVbe7A64PqwvYiOCpxUWldfuCeoay3CXp3iL49ZZSJBiBNmRucjdPAQhiYbfmnPAdWGm4WlFiyN97mG/qdYQN76vqEXutmkZrmM1r1UaX2mU6uSW4gZGknxFX1goQiS9TCH+xzMZk9kB7uec3hWbERjkXfLMqlanFlkMks2lfVM2drtSkAJDnhyKh6UlvPVyIYB3poldEQABtBTvYwl0mTP+URX8JwxgGhKxaI/Z0Kb0G9CJxyVG/eN1r6dJt5PbYmZRnElJEhDhm9feY=
+
+armour-temple:
+  name: Temple Looter
+  suffix: Helmet,Chestplate,Leggings,Boots
+  rarity: LEGENDARY
+  item: LEATHER
+  colours: 
+    0: 220,220,140
+    1: 220,220,80
+    2: 240,240,50
+    3: 255,255,0
+  set: temple
+  attributes:
+    health: 40,60,50,30
+    armour: 45,65,55,35
+    regen: 5,8,5,5
+    
+
+
+ritual_dagger:
+  name: Ritual Dagger
+  type: weapon
+  rarity: EPIC
+  item: GOLDEN_SWORD
+  ability: lifedrain
+  norune: true
+  req: 25
+  attributes:
+    damage: +135
+    health: +50
+    
+overseer_eye:
+  name: Eye of the Overseer
+  type: armour
+  rarity: EPIC
+  item: PLAYER_HEAD
+  req: 30
+  skull:
+    data: ewogICJ0aW1lc3RhbXAiIDogMTYyNDM3NDEzMzk0MSwKICAicHJvZmlsZUlkIiA6ICI5ZDQyNWFiOGFmZjg0MGU1OWM3NzUzZjc5Mjg5YjMyZSIsCiAgInByb2ZpbGVOYW1lIiA6ICJUb21wa2luNDIiLAogICJzaWduYXR1cmVSZXF1aXJlZCIgOiB0cnVlLAogICJ0ZXh0dXJlcyIgOiB7CiAgICAiU0tJTiIgOiB7CiAgICAgICJ1cmwiIDogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTcxYWMzYTExZDgwYTM0Zjc1YmMwNmFmNTFhNzA0OGNiOGZhZWFjYTJiNjk2ZDczMGZiYmFhN2M2NzQ5YTI5ZSIsCiAgICAgICJtZXRhZGF0YSIgOiB7CiAgICAgICAgIm1vZGVsIiA6ICJzbGltIgogICAgICB9CiAgICB9CiAgfQp9
+    sig: Po9X9y8A6ruBc3WMPTHqdP1VlqSUIIc28iQc5jb1TjEjBsbVcml58nCQT1C12a/0EDX3d1dh1yq7YIHRtL8RZCS/Cf4+njhz7AkRNNlktmIHGiSTbBevs7LrE0xCBg9L0bARtxE1SryiFOIiXnmYjy1nqSnUblM2F2zqUSUEcwemdUWnXJGexYwLOQ5pWc/vtqW4qR1tnoED57CbWxx/Rafww5fO5XoFMVgFSII6sZymERFp33bc94YBxAfjzkEr+KBySGt7RLh/lFUNwqVyIXztC+sv277O1bpXnWgi1Pt8RMzBqeAx59BJEtHSmNGzizSWfDDGqa6qspnnMaM5zcAxOI3e+lKmaAKu9MXId4xJhSvZ9aiY+lmvYL6MnAM5GVsknJErwGHwEFwyfQwKEazfkjl4lC3uz1pcfSbSCu18sE+RwAyFLM8/+UfMH47b7kDTmWRxNUH5EZyoSCNYtUGF37p0TgRap/8hnh0uAUy1ak66jNvCF7fHL3zUxnSKRS3M4mtFsX+vZp2Nh3DdngPZFVv86zbqaz1N7ubNLXSGB6wWNOFkGCpniXEJLrJutB/Hy9fyRCZisBzkM8d31yFCEoDAdEgggKkqX3Issn1pHzRgfLBFd5DoeM+rHqWpYQYrmlFqyowlHLnme7ljlX7F15kRguPc5ubBU7tcd7c=
+  attributes:
+    bonusxp: +0.1
+    mana: +50
+    
+eyeball_squisher:
+  name: Eyeball Squisher
+  type: weapon
+  rarity: EPIC
+  item: BOW
+  req: 24
+  ability: eyeballsquish
+  attributes:
+    damage: +70
+    damagep: +0.1
+    
+skullcrusher:
+  name: Skullcrusher
+  type: weapon
+  rarity: RARE
+  item: IRON_AXE
+  req: 27
+  ability: skullcrusher
+  attributes:
+    damage: +80
+    damagep: +0.1
+    health: -60
+    
+spiritcrusher:
+  name: Spiritcrusher
+  type: weapon
+  rarity: INCREDIBLE
+  item: DIAMOND_AXE
+  req: 31
+  ability: spiritcrusher
+  attributes:
+    damage: +90
+    damagep: +0.1
+    
+    
+armour-guardians:
+  name: Guardian's
+  suffix: Helmet,Chestplate,Leggings,Boots
+  rarity: INCREDIBLE
+  item: LEATHER
+  req: 28
+  set: guardians
+  colours:
+    0: 0,0,0
+    1: 255,255,255
+    2: 230,230,230
+    3: 200,200,200
+  skull:
+    data: ewogICJ0aW1lc3RhbXAiIDogMTYyMzU2MjEwODU3MiwKICAicHJvZmlsZUlkIiA6ICI4OGU0YWNiYTQwOTc0YWZkYmE0ZDM1YjdlYzdmNmJmYSIsCiAgInByb2ZpbGVOYW1lIiA6ICJKb2FvMDkxNSIsCiAgInNpZ25hdHVyZVJlcXVpcmVkIiA6IHRydWUsCiAgInRleHR1cmVzIiA6IHsKICAgICJTS0lOIiA6IHsKICAgICAgInVybCIgOiAiaHR0cDovL3RleHR1cmVzLm1pbmVjcmFmdC5uZXQvdGV4dHVyZS84ZWM2MjEzZjVkYzg2Y2RiMzY5ZDk1MTI3ZDcyYjAwYjAzM2UwZjlhYjU5NzBhNDc2ZGFkN2JkZGM5ZmU4ZiIsCiAgICAgICJtZXRhZGF0YSIgOiB7CiAgICAgICAgIm1vZGVsIiA6ICJzbGltIgogICAgICB9CiAgICB9CiAgfQp9
+    sig: RHC2GQdD7UMfNC9cd/HcPJ2VIj0maQkRt0dt/6CX8/4itC7RtG2wJSwnVuY0QFwzb2ubBA7ClZIzYyt7XcqQWWRWgO6jVMPWRxw5P530bO/QnPYSCPwgRTeKF7PssdVFeXEgRtBN6/9b1KFMV8cjdFqhCBp+/7xi5W7f2QAqcEM5XRt8sfL+HBKKnwA3KuXH5l/cjZ8NXsFCzrPw7MMyIJIDcFvagP4JikdSWPGxkv598TMP1rO++bBgRx669AwMV6iVuDgpiDBedoS5jnqilf5uXvJqo/XqlL5ob9vFQ61sWp26WybQrTQvfSseXPjPjcSdTg+Zjfp/ewACi24R3xriLoEZn+WFYTRoqUE1c2rx72kTQT2JO3O5BySj7At6440LnTj82p1MZvpTDnBYV4rJuTLULr4WBlvJci9of4aMoPYB9cEpd72rB0RQy5hSpVBPuchieS0SWYRIg1RfZS+PV+w1SxPUhW8mLE4NLcengW7FaO7Av5cc3ayO5KFNf8aKi41CaWETrkBHB5ck4dtg6urvWSYs2EfehHi2oqiykOE3hfn+JGh8mHUqZFuhmF/yF90bCv53lCo46n8wdGhH5OD1QwCuomK61HN551gN3CKQaX6WOLIIrqeekDcT+jOlU5ZKk+8VY66YfBFkpxG75zXtKzBLP3hV6HV+BLc=
+  attributes:
+    armour: +190,+140,+130,+120
+    damagep: -0.1,-0.1,-0.1,-0.1
+
+loot_templeguardian:
+  name: Guardian Lootbox
+  type: lootbox
+  rarity: INCREDIBLE
+  item: IRON_BARS
+  loot:
+    book;lethal2:
+      amount: 1
+      chance: 5
+      enchants: lethal,2
+    book;lethal3:
+      amount: 1
+      chance: 11
+      enchants: lethal,3
+    book;trunk3:
+      amount: 1
+      chance: 13
+      enchants: trunk,3
+    catalyst=0:
+      amount: 1-6
+      chance: 1
+    armour_guardians_helmet:
+      amount: 1
+      chance: 16
+    armour_guardians_chestplate:
+      amount: 1
+      chance: 12
+    armour_guardians_leggings:
+      amount: 1
+      chance: 12
+    armour_guardians_boots:
+      amount: 1
+      chance: 12
+    
+    
+mythical_soulingredient:
+  name: Soul Infuser
+  type: ingredient
+  rarity: MYTHICAL
+  item: ENDER_PEARL
+  description: An incredibly rare and otherworldly substance;capable of fusing souls to items. Can be;used to upgrade Soul Reaper armour;into a mythical armour set.
+mythical_templesword:
+  name: Deadly Blessing
+  prefix: The
+  type: weapon
+  rarity: MYTHICAL
+  glow: true
+  item: NETHERITE_SWORD
+  req: 30
+  attributes:
+    damage: +160
+    regen: +14
+mythical_templebow:
+  name: Rupturer
+  prefix: The
+  type: weapon
+  rarity: MYTHICAL
+  glow: true
+  item: BOW
+  req: 30
+  attributes:
+    damage: +170
+    
+mythical_saoref:
+  name: Lambent Light
+  type: weapon
+  rarity: MYTHICAL
+  item: DIAMOND_SWORD
+  ability: saoref
+  req: 32
+  attributes:
+    damage: +82
+    regen: +11
+    
+mythical_ingot:
+  name: Holy Ingot
+  type: ingredient
+  rarity: MYTHICAL
+  item: GOLD_INGOT
+  description: Formed thousands of years ago beneath the roots;of the Golden Rose, this ingot is;constructed entirely from pure luxium.
+  
+mythical_scale:
+  name: Weak Dragon Scale
+  type: ingredient
+  rarity: MYTHICAL
+  item: COCOA_BEANS
+  glow: true
+  description: Scale of a weak dragon.;Can be used to upgrade some armours.
+  
+mythical_spell:
+  name: Cursed Feather
+  type: spell
+  rarity: MYTHICAL
+  item: FEATHER
+  spell:
+    mana: 26
+    damage: 410
+    colour: 128,0,128
+    pierces: 9
+    speed: 0.6
+  
+armour_mythicaltemple_chestplate:
+  name: Chestplate of Fortitude
+  type: armour
+  rarity: MYTHICAL
+  norune: true
+  item: GOLDEN_CHESTPLATE
+  glow: true
+  req: 30
+  attributes:
+    armour: +185
+    regen: +6
+    
+armour_tentacle_helmet:
+  name: Mask of the Tentacle
+  type: armour
+  rarity: EPIC
+  req: 30
+  item: PLAYER_HEAD
+  skull:
+    data: ewogICJ0aW1lc3RhbXAiIDogMTYyNDc5NDcyNDY0NiwKICAicHJvZmlsZUlkIiA6ICJkMGI4MjE1OThmMTE0NzI1ODBmNmNiZTliOGUxYmU3MCIsCiAgInByb2ZpbGVOYW1lIiA6ICJqYmFydHl5IiwKICAic2lnbmF0dXJlUmVxdWlyZWQiIDogdHJ1ZSwKICAidGV4dHVyZXMiIDogewogICAgIlNLSU4iIDogewogICAgICAidXJsIiA6ICJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlL2FlNWVjNjM1NTg1MDZkN2ZlZDJkNDEzZjkwZjNlNTU5YjExMmI4YTkzODQ0NDNjOWFkNDQ0YTg2YzBjYzBiMjMiLAogICAgICAibWV0YWRhdGEiIDogewogICAgICAgICJtb2RlbCIgOiAic2xpbSIKICAgICAgfQogICAgfQogIH0KfQ==
+    sig: tg+bl6UsQGu6nd/LY0lImX1KwtRSjusT9YU0q7x50+e1u4CFlTDCrvG34JTp3nK5Dn0Im7zeQfMWp/AKU3rwsix/6h9jy2npWEq7AyC5MgBA5QlhGbNxoTWmKDftFPAHMsJsM/c36Pvqwwa42pkZsR5n3BEKvU5Ua9s5iiKhm5bPkGkI7JAs/phVY5r6TlK1w8qwe0owlhEoXuQ2YmsSVPQgvRMeo/etMyXA3B35pIeQbAmo1/skir2x+8px7CrVXK62fJjsU6LRABzIRlPirQk1lReTCV1Fif5NB5XyhPtLuFaySfWpD7yrTiOhXx5WqNp2TF2cQkMwtmK3S/StAt5aTnHXjfWx6sm+5rRugxUwc18PL9yh3GHtFwE3I7rBcEp70b0duK3KX/TnLEyhy/4GqiuxqmYJz68ZKprfWXqov7uPXq9oTFocotYGjSgwN2btHQQF+EuhmNhTXHbNFRu6WSNX1Xh8Wg5CvXfjj9HVal6yy0LkhBIi/p+qg9TOpuVBijixvLqVGjiLaS5BtgwiyfJvM0N7791DumxR6HriNPVHPBuRi1SHFhFveRlDCPkcSqtuTMhlOqigbt+ZWbBlHXSNzuv/9rNXwRrg+H7QWd/TJMNB5f6QN39RD9r682SfLiWyD4yl3002ny8gtnpukm4ecYYn7NGCnMGJAHw=
+  attributes:
+    health: +100
+    regen: -3
+    damagep: +0.25
+    
+    
+mythical_hurricane:
+  name: Blade of the Everlasting Hurricane
+  type: weapon
+  rarity: MYTHICAL
+  item: DIAMOND_HOE
+  req: 36
+  ability: hurricane
+  attributes:
+    damage: +100
+    damagep: +0.1
+    mana: +500
+    
+    
+armour_goldrose_helmet:
+  name: Golden Rose Helmet
+  type: armour
+  rarity: MYTHICAL
+  item: PLAYER_HEAD
+  req: 33
+  ability: goldrose
+  skull:
+    data: ewogICJ0aW1lc3RhbXAiIDogMTYyNTg2MTc3NTIyNSwKICAicHJvZmlsZUlkIiA6ICJiYjdjY2E3MTA0MzQ0NDEyOGQzMDg5ZTEzYmRmYWI1OSIsCiAgInByb2ZpbGVOYW1lIiA6ICJsYXVyZW5jaW8zMDMiLAogICJzaWduYXR1cmVSZXF1aXJlZCIgOiB0cnVlLAogICJ0ZXh0dXJlcyIgOiB7CiAgICAiU0tJTiIgOiB7CiAgICAgICJ1cmwiIDogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTgwNGJmNTU1ZDRhMTE2OWQ1ODM4MzcxYmM0ZTQyYTg5ZTFlYjU1ZDI3YTI1YjQ5ZTIwYjg2NTY0YWU5OTJjOSIsCiAgICAgICJtZXRhZGF0YSIgOiB7CiAgICAgICAgIm1vZGVsIiA6ICJzbGltIgogICAgICB9CiAgICB9CiAgfQp9
+    sig: exxUJo3faYxaw4L7Rns/4DAfWCPo0xTpBskLIEnlcMLsQx/No2POxmaZ3bac0UcBFCO7fC6mlxcJrWOK/nnpaQXjIeePLbWwhyniNobNYeJ76neNSxis+p69HMzA9NsNkcpcNHupHefWswdzi6F4Sa9E7Pgvvj5g73A3FCcem0W8x9m2Jgki/zKAe0CeRCQsEZxAmqwclTw9CAmNvq4fuIFO5qYIgET1X1OYHJlLU2t6AHERHIvwTK34OM6jsUW9HxTOk/xuguKwY8R+Av7QQ8glFpJHHgiyenwnQNT55B4PQUpI/zCvPrYtMmtf6PGP7+xO1D6mmyhPzelQ3FNO2a0KnxZXbnu6oCxgQnPWYu5zeF8zNAW73ORrJ+ZJ3HlNjdZ0MQYC/N//NpOwZIyoN8uYqqChTM6lWHD30Puut8XqGVvxITTRgZg+s8kX/A9cDtPwTt/Aiswu8AoKhnEiynzyXciFGhDuClvhjbHDfZGHIm1pfCwW+UOLOlMGvtdb/Nk14XTsxuVXv/KKreeOtbtqf1MMlPlhPhKcgWOyuaqOtxD0Mm+8wEqvw7nYPbEsxhNOoacf4zKOP2CRgmBzNQvaV4xp9MpnVHeJnjcpjqdClpC+EC03IFZHaxBl2/H96o+cbAGbblpWYDm0qZFcrXtyaJ+HGfy3vj8NctMuUOs=
+  attributes:
+    health: +333
+    damage: +13
+    regen: +3
+    
+mythical_rosesword:
+  name: Golden Rose Sceptre
+  type: weapon
+  rarity: MYTHICAL
+  item: GOLDEN_SHOVEL
+  req: 33
+  ability: rosesword
+  attributes:
+    damage: +65
+    health: +500
+    
+    
+armour-spiritharvester:
+  name: Spirit Harvester
+  suffix: Helmet,Chestplate,Leggings,Boots
+  rarity: MYTHICAL
+  set: spiritharvester
+  item: LEATHER
+  colour: 180,180,255
+  req: 32
+  attributes:
+    armour: 70,85,80,60
+    damagep: 0.11,0.2,0.15,0.07
+    mana: 100,130,110,90
+    
+mythical_spiritsword:
+  name: Sword of the Spirits
+  type: weapon
+  item: IRON_SWORD
+  rarity: MYTHICAL
+  req: 32
+  glow: true
+  set: spiritharvester
+  attributes:
+    damage: +113
+    damagep: -0.1
+    mana: +300
+    
+armour-pinkdrag:
+  name: Pink Dragon
+  suffix: Helmet,Chestplate,Leggings,Boots
+  rarity: MYTHICAL
+  item: LEATHER
+  req: 31
+  set: pinkdrag
+  skull:
+    data: ewogICJ0aW1lc3RhbXAiIDogMTYyNTkyNDIzMTc0OCwKICAicHJvZmlsZUlkIiA6ICI5ZDIyZGRhOTVmZGI0MjFmOGZhNjAzNTI1YThkZmE4ZCIsCiAgInByb2ZpbGVOYW1lIiA6ICJTYWZlRHJpZnQ0OCIsCiAgInNpZ25hdHVyZVJlcXVpcmVkIiA6IHRydWUsCiAgInRleHR1cmVzIiA6IHsKICAgICJTS0lOIiA6IHsKICAgICAgInVybCIgOiAiaHR0cDovL3RleHR1cmVzLm1pbmVjcmFmdC5uZXQvdGV4dHVyZS81ZTY3ZGExZTU4ZTdhMjcyZDVlZjdhMTBlMjIxYTU5YzQ4NTc0YTc3MWY2ODIxOGE5NjU5NzBjNDczNTljMDE2IiwKICAgICAgIm1ldGFkYXRhIiA6IHsKICAgICAgICAibW9kZWwiIDogInNsaW0iCiAgICAgIH0KICAgIH0KICB9Cn0=
+    sig: MZxLOfQmNnhsvSCR6kmY04JkEEnLQWlgodA+EM8Rm22bc9KvS0AUmtijWYJpzFTEYJM0WRxCTmf+nVAVT56RWCOM55gFCLK9uB4JRbTXZ0YKP/4HbcLVWEO9GA017N99rKMXEi6gkJjj2rrfrptKmBkf0EDxkjPNOYdHh75ALni1Y1fQ8efytmFDYsB/wSzgLilK6vj7/m1SPHycDLMaFZWAA/oZ5gzQ3TjHMuz31RWix3gJ4f2JY4dMdRzWOtSa+NfqTEgRqBUFdpnSJnxPjCm7cWgw+T83hVT0c0bRI027VEmeS1ztI5+g+ZNC0Bl5QdejbBStrIO3GUkKnCM/3cZbax9FykiKbBua8QgxqrL8IPXtj0jt87bsBgjr3QJBomsCaNyxhvkZfyoMt6Yx5uDA4VuCFuziwJdDE+MF0sUOiOcjcrmT6ep9XhwdNoHnQW72y/j7eS3QeoOHY08RzSuVhb/WJBiHXO23oMhlaZiVCktmv5YDtWjTj6HrAauCtxLbtR7uHVVYcAu6MzwRd2vhxAw4XH7KGQwQSkjN6oIDb3PKRo3TmAbe/TBMssYgs128ZtKjRWBj0diLwwtZQbJN+ocrdDi8+A1awQWXWeHqybJcZkx4fRkAQrZ8Oig+dV8fR6hOiWvoCPdaHjXEeXtyrTLVdZ8lywgyWUw5w6k=
+  colours:
+    0: 236,65,205
+    1: 182,18,152
+    2: 159,16,133
+    3: 136,14,114
+  attributes:
+    health: 110,150,130,90
+    damage: 10,20,15,5
+    damagep: 0.05,0.15,0.1,0.05
+    mana: 20,40,30,10
+    
+    
+    
+    
+  

@@ -15,6 +15,7 @@ public class DungeonsPlayerStatBank
 	public int damage;
 	public int sweep;
 	public double damagemod;
+	public int attackspeed;
 	
 	public int killcoins;
 	
@@ -40,6 +41,7 @@ public class DungeonsPlayerStatBank
 		regen     += attr.getOrDefault("regen", 0d).intValue();
 		damage    += attr.getOrDefault("damage", 0d).intValue();
 		sweep     += attr.getOrDefault("sweep", 0d).intValue();
+		attackspeed += attr.getOrDefault("attackspeed", 0d).intValue();
 		damagemod += attr.getOrDefault("damagep", 0d);
 		killcoins += attr.getOrDefault("killcoins", 0d).intValue();
 		fortune += attr.getOrDefault("fortune", 0d).intValue();

@@ -26,7 +26,7 @@ public class AbilityHealerBlue extends AbsAbility
 		d.add(prefix + "Healing");
 		d.add("Heal all nearby players by 14% of your max health");
 		d.add("every 8 seconds. For every 450 healing this does");
-		d.add("attack all enemies within 10 blocks for 50 + 25%");
+		d.add("attack all enemies within 10 blocks for 60 + 40%");
 		d.add("of your maximum mana as magic damage.");
 		return d;
 	}
@@ -61,7 +61,7 @@ public class AbilityHealerBlue extends AbsAbility
 			for (Entity e : Dungeons.w.getNearbyEntities(d.player.getLocation(),10,10,10))
 			{
 				DMob mob = DMobManager.get(e);
-				if (mob != null) mob.damage(50 + (int)(d.stats.mana*0.25f), d, DamageType.MAGIC,false);
+				if (mob != null) mob.damage(60 + (int)(d.stats.mana*0.4f), d, DamageType.MAGIC,false);
 			}
 		}
 		

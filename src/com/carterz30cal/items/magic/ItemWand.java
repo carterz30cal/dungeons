@@ -19,7 +19,7 @@ public class ItemWand extends Item
 	public static final NamespacedKey kModifier = new NamespacedKey(Dungeons.instance,"modifier");
 	
 	public int mana;
-	
+	public int damage;
 	
 	public int cost(ItemStack wand)
 	{
@@ -57,7 +57,7 @@ public class ItemWand extends Item
 		if (spell == null) return;
 		if (player.useMana(cost(wand)))
 		{
-			new ProjectileParticle(player,(ItemSpell)ItemBuilder.get(wand,kSpell),getMod(wand.getItemMeta()));
+			new ProjectileParticle(player,this,(ItemSpell)ItemBuilder.get(wand,kSpell),getMod(wand.getItemMeta()));
 		}
 		else
 		{

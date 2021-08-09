@@ -1,7 +1,6 @@
 package com.carterz30cal.items.abilities.runes;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import org.bukkit.Color;
 import org.bukkit.Particle;
@@ -14,19 +13,12 @@ import com.carterz30cal.utility.RandomFunctions;
 
 public class RuneBlood extends AbsAbility
 {
-	public static HashMap<DMob,Integer> hits;
-	
-	public RuneBlood()
-	{
-		if (hits == null) hits = new HashMap<DMob,Integer>();
-	}
 	@Override
 	public ArrayList<String> description() {
 		ArrayList<String> d = new ArrayList<String>();
 		d.add(rune + "Blood");
-		d.add("Deals an extra 2 damage for every");
-		d.add("hit on an enemy");
-		d.add("Max of +24 damage");
+		d.add("Deals 6% more damage for every");
+		d.add("percent of health missing on the target.");
 		return d;
 	}
 	
@@ -40,8 +32,9 @@ public class RuneBlood extends AbsAbility
 					,new Particle.DustOptions(Color.RED,1));
 			p--;
 		}
-		hits.put(dMob, Math.min(13,hits.getOrDefault(dMob, 0)+1));
-		return damage + (2 * (hits.get(dMob)-1));
+		double missing = 1 - ((double)dMob.health / dMob.health());
+		missing *= 6;
+		return (int) (damage * (1 + missing));
 	} 
 
 }

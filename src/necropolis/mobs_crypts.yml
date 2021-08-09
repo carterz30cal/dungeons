@@ -30,6 +30,51 @@ crypt_corrupt_regular1:
       amount: 1-1
       rare: true
       
+crypt_defender1:
+  name: Champion Guard
+  type: ZOMBIFIED_PIGLIN
+  health: 600
+  damage: 55
+  speed: 1
+  kbresist: 0.5
+  level: 6
+  abilities:
+    targeter:
+      range: 10
+  equipment:
+    main: GOLDEN_SWORD
+    helmet: IRON_HELMET
+    chestplate: CHAINMAIL_CHESTPLATE
+    leggings: CHAINMAIL_LEGGINGS
+    boots: CHAINMAIL_BOOTS
+      
+crypt_living_zombie1:
+  name: Leaf Zombie
+  type: ZOMBIE
+  health: 1600
+  damage: 60
+  kbresist: 1
+  level: 6
+  equipment:
+    main: WOODEN_SWORD
+    helmet: OAK_LEAVES
+    chestplate: armour_leaf_chestplate
+    leggings: armour_leaf_leggings
+    boots: armour_leaf_boots
+  drops:
+    royalleaf:
+      drop: 1/2
+      amount: 1-1
+    crypt_livingamulet:
+      drop: 1/150
+      amount: 1-1
+      rare: true
+    book;living:
+      drop: 1/250
+      amount: 1-1
+      enchants: livingwood,1
+      rare: true
+      
 crypt_corrupt_soldier1:
   name: Corrupt Soldier
   type: SKELETON
@@ -109,6 +154,28 @@ crypt_corrupt_rune1:
       cooldown: 10
       colour: 20,20,20
       
+crypt_grave1:
+  name: Grave Ghost
+  type: SKELETON
+  invisible: true
+  health: 5000
+  damage: 115
+  speed: 0.7
+  kbresist: 1
+  level: 10
+  abilities:
+    caster:
+      projectiles: -1
+      speed: 6
+      range: 14
+      damage: 85
+      cooldown: 60
+      colour: 20,20,20
+  equipment:
+    main: IRON_HOE
+    chestplate: CHAINMAIL_CHESTPLATE
+    boots: IRON_BOOTS
+      
 crypt_corrupt_regular2:
   name: Corrupt Zombie
   type: ZOMBIE
@@ -139,6 +206,51 @@ crypt_corrupt_regular2:
     armour_corrupt_boots:
       drop: 1/200
       amount: 1-1
+      rare: true
+      
+crypt_defender2:
+  name: Champion Guard
+  type: ZOMBIFIED_PIGLIN
+  health: 900
+  damage: 70
+  speed: 0.9
+  kbresist: 0.5
+  level: 6
+  abilities:
+    targeter:
+      range: 10
+  equipment:
+    main: GOLDEN_SWORD
+    helmet: IRON_HELMET
+    chestplate: CHAINMAIL_CHESTPLATE
+    leggings: CHAINMAIL_LEGGINGS
+    boots: CHAINMAIL_BOOTS
+      
+crypt_living_zombie2:
+  name: Leaf Zombie
+  type: ZOMBIE
+  health: 2000
+  damage: 80
+  kbresist: 1
+  level: 7
+  equipment:
+    main: WOODEN_SWORD
+    helmet: OAK_LEAVES
+    chestplate: armour_leaf_chestplate
+    leggings: armour_leaf_leggings
+    boots: armour_leaf_boots
+  drops:
+    royalleaf:
+      drop: 1/2
+      amount: 1-1
+    crypt_livingamulet:
+      drop: 1/150
+      amount: 1-1
+      rare: true
+    book;living:
+      drop: 1/250
+      amount: 1-1
+      enchants: livingwood,1
       rare: true
       
 crypt_corrupt_soldier2:
@@ -220,6 +332,28 @@ crypt_corrupt_rune2:
       cooldown: 10
       colour: 20,20,20
       
+crypt_grave2:
+  name: Grave Ghost
+  type: SKELETON
+  invisible: true
+  health: 12000
+  damage: 140
+  speed: 0.7
+  kbresist: 1
+  level: 11
+  abilities:
+    caster:
+      projectiles: -1
+      speed: 6
+      range: 14
+      damage: 100
+      cooldown: 60
+      colour: 20,20,20
+  equipment:
+    main: IRON_HOE
+    chestplate: CHAINMAIL_CHESTPLATE
+    boots: GOLDEN_BOOTS
+      
 crypt_corrupt_regular3:
   name: Corrupt Zombie
   type: ZOMBIE
@@ -250,6 +384,52 @@ crypt_corrupt_regular3:
     armour_corrupt_boots:
       drop: 1/200
       amount: 1-1
+      rare: true
+      
+crypt_defender3:
+  name: Champion Defender
+  type: ZOMBIFIED_PIGLIN
+  health: 1700
+  armour: 20
+  damage: 240
+  speed: 0.9
+  kbresist: 0.5
+  level: 7
+  abilities:
+    targeter:
+      range: 10
+  equipment:
+    main: IRON_SWORD
+    helmet: IRON_HELMET
+    chestplate: IRON_CHESTPLATE
+    leggings: CHAINMAIL_LEGGINGS
+    boots: IRON_BOOTS
+      
+crypt_living_zombie3:
+  name: Leaf Zombie
+  type: ZOMBIE
+  health: 4000
+  damage: 100
+  kbresist: 1
+  level: 7
+  equipment:
+    main: WOODEN_SWORD
+    helmet: OAK_LEAVES
+    chestplate: armour_leaf_chestplate
+    leggings: armour_leaf_leggings
+    boots: armour_leaf_boots
+  drops:
+    royalleaf:
+      drop: 1/2
+      amount: 1-1
+    crypt_livingamulet:
+      drop: 1/100
+      amount: 1-1
+      rare: true
+    book;living:
+      drop: 1/250
+      amount: 1-1
+      enchants: livingwood,1
       rare: true
       
 crypt_corrupt_soldier3:
@@ -287,6 +467,41 @@ crypt_corrupt_soldier3:
       drop: 1/200
       amount: 1-1
       rare: true
+      
+      
+crypt_invis3:
+  name: Spirit Spider
+  type: SPIDER
+  invisible: true
+  health: 3000
+  speed: 1.6
+  damage: 400
+  level: 10
+  abilities:
+    damageaura:
+      damage: 270
+      cooldown: 40
+      range: 3
+crypt_spider3:
+  name: Widow
+  type: CAVE_SPIDER
+  health: 4000
+  armour: 40
+  dmgresist: 0.1
+  damage: 300
+  speed: 1.3
+  level: 10
+  abilities:
+    damageaura:
+      damage: 95
+      cooldown: 10
+      range: 5
+    effects:
+      type: SOUL
+      wobble: 0.1
+      radius: 0.5
+      inverted: true
+      step: 7
       
 crypt_corrupt_rune3:
   name: Corrupt Rune Mage
@@ -365,15 +580,206 @@ crypt_corrupt_regular4:
       amount: 1-1
       rare: true
       
+crypt_living_zombie4:
+  name: Gold Leaf Zombie
+  type: ZOMBIE
+  health: 3300
+  damage: 150
+  kbresist: 1
+  level: 8
+  tags: ancient
+  equipment:
+    main: WOODEN_SWORD
+    helmet: GOLD_BLOCK
+    chestplate: GOLDEN_CHESTPLATE
+    leggings: armour_leaf_leggings
+    boots: armour_leaf_boots
+  drops:
+    royalleaf:
+      drop: 1/1
+      amount: 1-3
+    crypt_livingamulet:
+      drop: 1/150
+      amount: 1-1
+      rare: true
+    book;living:
+      drop: 1/250
+      amount: 1-1
+      enchants: livingwood,1
+      rare: true
+      
+crypt_zombie3:
+  name: Crypt Revenant
+  type: ZOMBIE
+  health: 5000
+  damage: 280
+  armour: 75
+  kbresist: 1
+  level: 10
+  equipment:
+    main: STONE_SWORD
+    helmet: BLACK_STAINED_GLASS
+    chestplate: IRON_CHESTPLATE
+    leggings: armour_corrupt_leggings
+    boots: armour_corrupt_boots
+  drops:
+    tissue:
+      drop: 1/1
+      amount: 1-2
+    decaying_flesh:
+      drop: 1/2
+      amount: 1-2
+    
+crypt_archer3:
+  name: Crypt Archer
+  type: SKELETON
+  health: 3000
+  damage: 280
+  armour: 170
+  kbresist: 1
+  level: 10
+  speed: 0
+  abilities:
+    launcher:
+      volley: 5
+      cooldown: 40
+      spread: 9
+  equipment:
+    main: BOW
+    helmet: armour_undeadcaptain_helmet
+    chestplate: armour_undeadcaptain_chestplate
+    leggings: armour_undeadlord_leggings
+    boots: armour_undeadlord_boots
+crypt_spirit3:
+  name: Twisted Spirit
+  type: ENDERMAN
+  health: 6000
+  damage: 260
+  armour: 60
+  kbresist: 0.4
+  level: 10
+  speed: 0.7
+  abilities:
+    targeter:
+      range: 15
+    effects;fire:
+      type: FLAME
+      wobble: 1
+      radius: 0.9
+      offset: 0
+    effects;fire2:
+      type: FLAME
+      wobble: 0.8
+      radius: 0.9
+      offset: 180
+  drops:
+    crypt_soul:
+      drop: 1/50
+      amount: 1-2
+      rare: true
+      
+crypt_reaper3:
+  name: Crypt Reaper
+  type: SKINNED
+  health: 10000
+  armour: 50
+  damage: 360
+  kbresist: 1
+  speed: 0.6
+  level: 9
+  abilities:
+    effects:
+      type: SOUL
+      wobble: 0.5
+      radius: 0.5
+      offset: 0
+  skin:
+    data: ewogICJ0aW1lc3RhbXAiIDogMTYxNDA3OTY5NzczNSwKICAicHJvZmlsZUlkIiA6ICIzZjM4YmViZGYwMWQ0MjNkYWI4MjczZjUwNGFiNGEyNyIsCiAgInByb2ZpbGVOYW1lIiA6ICJjazM0Nzk0MjM1NzUzNzMxIiwKICAic2lnbmF0dXJlUmVxdWlyZWQiIDogdHJ1ZSwKICAidGV4dHVyZXMiIDogewogICAgIlNLSU4iIDogewogICAgICAidXJsIiA6ICJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlL2JhZDM2ZTM5ZDJiZGY4NWQ4YjdjMjg0ODJhNmZmNjFiNjZkNDU0YzhiMDk3ODZiMDk3YjVhZjA1MjgyNWQyYTEiCiAgICB9CiAgfQp9
+    sig: ijqAu4yyGlTRrva1YpPDfpiLc+joXvXKQGXgrwCoueirhm3dub53eEvZ0H0bjrUv9RcASyocatcLFSdP2zNb2CIprtk6OQDn9HCRT4U6txHthqxfpF/1EPHJCTKDGVZkxBoKRhYgN8+IdLQDQxC6iBplRj9iL2C8tkZVNDsTZkmyVonP9jQ0eqYWAOq4dCBnD31+OApfyuBXJAKsura01ZHROpqW6G4DXP5gRO+spHD9nw3sVoWFXoTEEU2QiZX0TcIsEpnElzF5IMedFjOZ6ycBWoy9PFhAjWId5JnTgPioysfqlxy6Y25NAL1XYJoNXi9gWmh1pT36I5CJYtcIou4KVEFjm82/zyMpXXVkCOU0ogDXgC4K5NMq2VqXbPG8qXewRbLg+DusCbl+p0lS/RT6r1pSSp3s53jk7STm+hXcypIhX3lKoy3zTJ+ERS1U2IhzDiOUK7OcS/vogRwJoRtV66+CXKIBVDCy6zD058eEDn8TokJABiB7yQHs6GGOwWcCKM+ukdL6I5PJdMHUue6YN8NRzaNtR/rsn5KvR0pylHLXUm9uzv5FebOrovcUcjbyRIwZWMQicgjnVKpQV8jCI9VeduqIzqQ1QcPERzURxMr3jWhHf9AX7Dsey7MQFigvh2kZJdBVvGyKk75pFrXri52tlm56i+2tK4ZQy4Q=
+  equipment:
+    main: IRON_HOE
+      
+crypt_grave3:
+  name: Alpha Spirit
+  type: SKELETON
+  invisible: true
+  health: 30000
+  damage: 380
+  speed: 0.6
+  kbresist: 1
+  level: 13
+  tags: ancient
+  abilities:
+    caster:
+      projectiles: -1
+      speed: 2
+      range: 9
+      damage: 120
+      cooldown: 15
+      colour: 20,20,20
+    regen: 
+      regen: 400
+      cooldown: 40
+  equipment:
+    main: GOLDEN_HOE
+    chestplate: CHAINMAIL_CHESTPLATE
+    leggings: CHAINMAIL_LEGGINGS
+    boots: CHAINMAIL_BOOTS
+      
+      
+crypt_grave4:
+  name: Ancient Ghost
+  type: SKELETON
+  invisible: true
+  health: 15000
+  damage: 250
+  speed: 0.6
+  kbresist: 1
+  level: 12
+  tags: ancient
+  abilities:
+    caster:
+      projectiles: -1
+      speed: 1
+      range: 8
+      damage: 90
+      cooldown: 15
+      colour: 20,20,20
+  equipment:
+    main: NETHERITE_HOE
+    chestplate: CHAINMAIL_CHESTPLATE
+    boots: NETHERITE_BOOTS
+    
+crypt_defender4:
+  name: Ancient Guard
+  type: ZOMBIFIED_PIGLIN
+  health: 1300
+  armour: 40
+  damage: 180
+  speed: 0.6
+  kbresist: 0.5
+  level: 6
+  tags: ancient
+  abilities:
+    targeter:
+      range: 10
+  equipment:
+    main: GOLDEN_SWORD
+    helmet: IRON_HELMET
+    chestplate: CHAINMAIL_CHESTPLATE
+    leggings: CHAINMAIL_LEGGINGS
+    boots: CHAINMAIL_BOOTS 
+   
 crypt_corrupt_soldier4:
   name: Corrupted Precursor Servant
   type: SKELETON
   health: 7000
   armour: 40
-  damage: 3000
+  damage: 300
   kbresist: 1
   speed: 0.6
   level: 10
+  tags: ancient
   equipment:
     main: IRON_SWORD
     helmet: armour_corrupt_helmet

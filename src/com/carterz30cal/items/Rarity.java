@@ -7,7 +7,8 @@ public enum Rarity
 	UNUSUAL,
 	EPIC,
 	INCREDIBLE,
-	LEGENDARY
+	LEGENDARY,
+	MYTHICAL
 	// future rarity: godly
 	// future rarity: mythical
 }

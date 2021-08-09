@@ -1,0 +1,110 @@
+flimsy_sword:
+  name: Flimsy Sword
+  type: weapon
+  rarity: COMMON
+  item: WOODEN_SWORD
+  attributes:
+    damage: +10
+    
+reinforced_sword:
+  name: Reinforced Sword
+  type: weapon
+  rarity: COMMON
+  item: STONE_SWORD
+  attributes:
+    damage: +15
+    
+water_sword:
+  name: Water Blade
+  type: weapon
+  rarity: RARE
+  item: DIAMOND_SWORD
+  set: water
+  req: 2
+  attributes:
+    damage: +17
+    health: +25
+    
+adventurers_sword:
+  name: Adventurer's Rusty Cutlass
+  type: weapon
+  rarity: RARE
+  item: GOLDEN_SWORD
+  req: 2
+  attributes:
+    damage: +17
+    killcoins: +2
+    
+ocean_sword:
+  name: Ocean Blade
+  type: weapon
+  rarity: EPIC
+  item: DIAMOND_SWORD
+  glow: true
+  set: water
+  slots: 2
+  req: 4
+  attributes:
+    damage: +25
+    health: +40
+    
+dust_sword:
+  name: Dust Sword
+  type: weapon
+  rarity: EPIC
+  item: GOLDEN_SWORD
+  glow: true
+  slots: 2
+  req: 4
+  attributes:
+    damage: +19
+    damagep: +0.05
+    attackspeed: +60
+    
+paper_sword:
+  name: Paper Sword
+  type: weapon
+  rarity: EPIC
+  item: STONE_SWORD
+  set: paper
+  req: 4
+  attributes:
+    damage: +45
+    health: -25
+    
+adventurers_sword_upgraded:
+  name: Adventurer's Cutlass
+  type: weapon
+  rarity: EPIC
+  item: GOLDEN_SWORD
+  glow: true
+  req: 4
+  attributes:
+    damage: +20
+    attackspeed: +30
+    killcoins: +3
+    
+rabbit_sword:
+  name: Rabbit Rampager
+  type: weapon
+  rarity: INCREDIBLE
+  item: WOODEN_SWORD
+  slots: 2
+  req: 6
+  attributes:
+    damage: +32
+    attackspeed: +50
+    luck: +5
+    
+water_flower_sword:
+  name: Watertuning Wavecrasher
+  type: weapon
+  rarity: INCREDIBLE
+  item: DIAMOND_SWORD
+  set: water
+  slots: 4
+  req: 6
+  attributes:
+    damage: +30
+    attackspeed: +30
+    

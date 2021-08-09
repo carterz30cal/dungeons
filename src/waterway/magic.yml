@@ -44,8 +44,8 @@ spell_waterbolt:
   item: BOOK
   glow: true
   spell:
-    damage: 43
-    mana: -7
+    damage: 50
+    mana: -6
     colour: 0,80,165
     pierces: 3
     speed: 0.45

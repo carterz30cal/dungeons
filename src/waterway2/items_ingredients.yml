@@ -1,0 +1,67 @@
+wet_paper:
+  name: Wet Paper
+  type: ingredient
+  description: Most drenched love a good novel. It's a;shame that any book they touch gets ruined;by them. They're their own worst enemy.
+  item: PAPER
+  
+water_fragment:
+  name: Water Fragment
+  type: ingredient
+  description: A strange form of putty that some drenched carry;around. It seems to be composed mostly of water.
+  item: CYAN_DYE
+  
+leaf_mush:
+  name: Leaf Mush
+  type: ingredient
+  description: Hitting this with a pickaxe seems to have mushed it;into something with interesting healing properties.
+  item: GREEN_DYE
+  
+paper:
+  name: Paper
+  type: ingredient
+  description: Compressing many pieces of wet paper together;seems to have made a useable sheet of paper.
+  rarity: RARE
+  item: PAPER
+  glow: true
+  
+ocean_fragment:
+  name: Ocean Fragment
+  type: ingredient
+  description: Mixing water fragments and leaf mush together;has formed a rigid substance that feels;cold to the touch.
+  rarity: RARE
+  item: CYAN_DYE
+  glow: true
+  
+gold_leaf:
+  name: Gold Leaf
+  type: ingredient
+  description: Apparently some leaves are more equal than others.
+  rarity: RARE
+  item: YELLOW_DYE
+  
+magic_dust:
+  name: Magic Dust
+  type: ingredient
+  description: The dust glitters peacefully.
+  rarity: RARE
+  item: GLOWSTONE_DUST
+  glow: true
+  
+water_flower:
+  name: Water Flower
+  type: ingredient
+  description: Who was this meant for?
+  rarity: EPIC
+  item: CORNFLOWER
+  
+waterway_core:
+  name: Waterway Core
+  rarity: EPIC
+  item: PLAYER_HEAD
+  skull:
+    data: ewogICJ0aW1lc3RhbXAiIDogMTYwMjUzMjcxNzAyNiwKICAicHJvZmlsZUlkIiA6ICJkNjBmMzQ3MzZhMTI0N2EyOWI4MmNjNzE1YjAwNDhkYiIsCiAgInByb2ZpbGVOYW1lIiA6ICJCSl9EYW5pZWwiLAogICJzaWduYXR1cmVSZXF1aXJlZCIgOiB0cnVlLAogICJ0ZXh0dXJlcyIgOiB7CiAgICAiU0tJTiIgOiB7CiAgICAgICJ1cmwiIDogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOGVhYjE5MDhlZGFhMzJhMDM2ZGEwYzFkMDdmMDgxZmU3ZWY1Zjg4ZmFhMTMyNjNiMmM0MmE3Yzc2MDVlZTY0YyIKICAgIH0KICB9Cn0=
+    sig: pw93ehb06oSW99tl/4Ux8wR9IXfigt72WdoN/tIAl/ohArXucM37iqreU7k7YIRYd+CnRuKLxZKCUP9+64SKtUtZiYEgWOZl8MzwlAL1/oK1BrVVNpyp1ov8ZN3cXS1+k4BSjVJ8aHnLdJNgxKKw/r/+TGVl3Un4WqA1o+uUtSqwK/1pE2cEx9cnJEPw/TWA9YD0/ugmgKBpX4ynGE/OHDH5NAQ6OUYhrRI6v8X03Vqhr8hrcXgFKAXOMu7CEnFMCfUUYq0jFJhhbTb8UTrOyNkTAyc6UDZ7Z9H74m0D5Q4fanYQ6oAo45Nsrshe8ltcuhrSbsooAo6ohi4aMsQZ8AbwS3eTfBV9mrVT/YGpj27h8c9dRBiWjTL3GL8L61QZtRiBdSTdmvPEeDuhbBZrbNTJwJoZZYRnLM+bVlnssqEVZfjFA4VHM2CEuN9G6yIGyWfJO2lPWQ5m1mr8re2uqvNd/KU7A9MIgGAhTyelnNWZpMw6gk+5vECukQv3ofFyASw/hRIIgTZqS+ldGbFv2QpgczEp6H2R/9MJVVesV6OLbnDWtHNbE+eiF4HnYPfJei2mqnpuXcRA31xBHF5qhykuDnxfykvzfeKUQ3WR9cUFIY9m5FIdhDi76e5+qgWPXUF6SaA2VfdPYQC+piar1G0Fs0f19DR/Q0iz7K+inHA=
+
+  
+  
+  

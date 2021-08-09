@@ -2,12 +2,12 @@
 waterwayboss_boss:
   name: Dried Drench
   type: HUSK
-  health: 7500
+  health: 8250
   damage: 75
   level: 9
   speed: 0.8
   kbresist: 1
-  armour: 14
+  armour: 18
   boss: true
   equipment:
     main: GOLDEN_SWORD
@@ -18,10 +18,10 @@ waterwayboss_boss:
   abilities:
     rewarder:
       reward: loot_waterway
-      threshold: 210
+      threshold: 170
     overkill:
-      threshold: 160
-      reward: 3
+      threshold: 130
+      reward: 2
 waterwayboss_drenched1:
   name: Servant
   type: DROWNED

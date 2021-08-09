@@ -1,0 +1,45 @@
+crude_flint:
+  name: Crude Flint
+  type: sharpener
+  rarity: COMMON
+  item: FLINT
+  sharpener:
+    plus: '-'
+    colour: GRAY
+  attributes:
+    damage: +5
+
+sharp_flint:
+  name: Sharp Flint
+  type: sharpener
+  rarity: RARE
+  item: FLINT
+  glow: true
+  sharpener:
+    plus: +
+    colour: GRAY
+  attributes:
+    damage: +8
+    
+balancing_weight:
+  name: Balancing Weight
+  type: sharpener
+  rarity: RARE
+  item: IRON_BLOCK
+  sharpener:
+    plus: =
+    colour: GRAY
+  attributes:
+    attackspeed: +22
+    
+midas_flint:
+  name: Midas Flint
+  type: sharpener
+  rarity: EPIC
+  item: GOLD_INGOT
+  glow: true
+  sharpener:
+    plus: C
+    colour: GOLD
+  attributes:
+    killcoins: +2

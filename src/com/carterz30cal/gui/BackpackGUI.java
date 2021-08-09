@@ -48,7 +48,7 @@ public class BackpackGUI extends GUI
 				BackpackItem item = p[i];
 				if (item != null)
 				{
-					if (!ItemBuilder.i.items.containsKey(item.itemType) && !item.itemType.equals("book"))
+					if (!ItemBuilder.i.items.containsKey(item.itemType) && !(item.itemType.equals("book") || item.itemType.equals("potion") || item.itemType.equals("overflow_jar")))
 					{
 						int compensation = 5*item.amount;
 						

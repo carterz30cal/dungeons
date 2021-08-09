@@ -38,7 +38,12 @@ public class MobCaster extends DMobAbility
 		cooldown = data.getInt(path + ".cooldown",40);
 		lifespan = data.getInt(path + ".lifespan",100);
 		
-		colour = data.getColor(path + ".colour",Color.WHITE);
+		if (data.contains(path + ".colour"))
+		{
+			String[] c = data.getString(path + ".colour", "255,255,255").split(",");
+			colour = Color.fromRGB(Integer.parseInt(c[0]), Integer.parseInt(c[1]), Integer.parseInt(c[2]));
+		}
+		else colour = Color.WHITE;
 	}
 	@Override
 	public void tick(DMob mob)

@@ -20,6 +20,7 @@ public class MobDamageRewarder extends DMobAbility
 	public HashMap<DMob,HashMap<DungeonsPlayer,Integer>> damages;
 	public String reward;
 	public int threshold;
+	public boolean grantxp;
 	
 	
 	public MobDamageRewarder(FileConfiguration data, String path)
@@ -29,6 +30,8 @@ public class MobDamageRewarder extends DMobAbility
 		damages = new HashMap<DMob,HashMap<DungeonsPlayer,Integer>>();
 		reward = data.getString(path + ".reward", "BEDROCK");
 		threshold = data.getInt(path + ".threshold", 1);
+		
+		grantxp = data.getBoolean(path + ".grantxp", false);
 	}
 	@Override
 	public void add(DMob mob)
@@ -58,6 +61,7 @@ public class MobDamageRewarder extends DMobAbility
 				reci.player.sendMessage(ChatColor.AQUA + "You dealt " + entry.getValue() + 
 						" damage to " + mob.type.name + " and received a " + 
 						itemReward.getItemMeta().getDisplayName() + ChatColor.RESET + "" + ChatColor.AQUA + "!");
+				if (grantxp) reci.level.give(mob.xp(), true);
 				InventoryHandler.addItem(reci, itemReward.clone());
 				TutorialManager.fireEvent(reci, TutorialTrigger.KILL_ENEMY, mob.type.id);
 			}

@@ -1,0 +1,18 @@
+armour-corrupt:
+  name: Corrupted
+  suffix: Helmet,Chestplate,Leggings,Boots
+  rarity: EPIC
+  req: 17
+  colour: 0,0,0
+  item: LEATHER
+  set: corrupt
+  attributes:
+    damage: +20,+30,+25,+15
+    health: -60,-120,-90,-30
+    
+corrupt_goo:
+  name: Corrupt Goo
+  rarity: UNUSUAL
+  item: PURPLE_DYE
+  glow: true
+  description: ;It hisses and spits.

@@ -30,7 +30,38 @@ sword_holyknight:
   glow: true
   attributes:
     damage: +50
-    regen: +15
+    regen: +12
+    
+    
+kings_crest:
+  name: King's Crest
+  type: ingredient
+  item: HONEYCOMB
+  rarity: LEGENDARY
+  description: The official crest of whatever kingdom this;king used to rule. Can upgrade certain items.
+  
+kings_sword:
+  name: King's Longsword
+  type: weapon
+  item: GOLDEN_SWORD
+  rarity: LEGENDARY
+  req: 21
+  ability: kingsword
+  glow: true
+  attributes:
+    damage: +77
+    
+queens_sword:
+  name: Queen's Rapier
+  type: weapon
+  item: GOLDEN_SHOVEL
+  rarity: LEGENDARY
+  req: 21
+  ability: queensword
+  glow: true
+  attributes:
+    damage: +69
+    regen: +8
     
 sword_web:
   name: Webber
@@ -56,28 +87,14 @@ sword_soulfire:
     damage: +45
     mana: +250
 
-armour-corrupt:
-  name: Corrupted
-  suffix: Helmet,Chestplate,Leggings,Boots
-  rarity: EPIC
-  req: 17
-  colour: 0,0,0
-  item: LEATHER
-  attributes:
-    damage: +20,+40,+30,+10
-    health: -60,-120,-90,-30
+
     
 crypt_dust:
   name: Crypt Dust
   rarity: RARE
   item: GRAY_DYE
   description: ;This slowly accumulates in Crypts. It has;many different uses, including improving;armours and weapons
-corrupt_goo:
-  name: Corrupt Goo
-  rarity: UNUSUAL
-  item: PURPLE_DYE
-  glow: true
-  description: ;It hisses and spits.
+
 magic_cactus:
   name: Magic Cactus
   rarity: RARE
@@ -92,6 +109,61 @@ rune_cloth:
   glow: true
   description: ;Apply to any weapon to;remove the rune.
   
+crypts_plasma:
+  name: Crypt Plasma
+  rarity: RARE
+  item: PLAYER_HEAD
+  description: ;Slowly forms from the tortured;ghosts of lost individuals.
+  skull:
+    data: ewogICJ0aW1lc3RhbXAiIDogMTYyMzY4MzIzNzAxOCwKICAicHJvZmlsZUlkIiA6ICIwYWFjMWRlZjUwZmI0N2RjODNmOGU2Njk3MTg1ODRkZSIsCiAgInByb2ZpbGVOYW1lIiA6ICJ0aGVhcGlpc2JhZCIsCiAgInNpZ25hdHVyZVJlcXVpcmVkIiA6IHRydWUsCiAgInRleHR1cmVzIiA6IHsKICAgICJTS0lOIiA6IHsKICAgICAgInVybCIgOiAiaHR0cDovL3RleHR1cmVzLm1pbmVjcmFmdC5uZXQvdGV4dHVyZS9lN2VmMWZjZjgxN2Y0NGRkNWZiMmQxY2MyNGQ4MTg5NDk4YzBlNjBjMzVmODQwYTJlZmZhMmYwZTEwOGFlNDMxIiwKICAgICAgIm1ldGFkYXRhIiA6IHsKICAgICAgICAibW9kZWwiIDogInNsaW0iCiAgICAgIH0KICAgIH0KICB9Cn0=
+    sig: x83z1rm14RkMPoVi4ssKKkXeJxP3dE/f73OZKAGEDP+66EYFtdsdpTx42/5nCTu9cXBqymFK7cYFRyCM0Ophj/32mh8bUimz0GJGiS1vYJIBOJNAvxvNKjG2Ms5pc8Dl0szOOnMvF78I+K9KldiHfWZrR9EUrJwgrJ3NDAQ9OXowh6T/JjjTMWnc7RusRi/Y+6s/rbVTfZhZnHY3DHVZ3btiaOA1Kx2gXjpta85ifNTy8KTRmGMecVyZM48TeFp8PFOvX+Z31qi9wsREVA7XKWse4eDm/WvJCG+BVjg/sl1NtGAb6D3sfHTu8BqPd8LiTqQMqjK58fRZEZO2cM+KdpvrEOcnN/8WonwBOgNfegB0KccIsxf8enj7xsFSfzcrkp1tI0i4ZpjQpkhx6efvgg5O1V/6L0Wn60rklVTJnR8OYfh2WeCJZiqBGiWJ+Fr68DX+4xKd03OgfYgBbNADqiIPbgREKTQEVXa83T4uPatuD3VRvbXks0tvXhkw6x7HbYLd5BHg4bheama81xJpe9dM5WXWIXSKmwtaa2B4nyx2g6nrzLcnGA4oLvlLiX24seCqZ1tkCMfdI0GCooA8zqbRddy6YTek8GlIG634BL4Q645zKlUtBHkKFPsc+ebfxYvsw62KeMgK3akyo05z7vfq2fcaZu+8SU2W3L1EAbg=
+  
+crypts_exotic:
+  name: Exotic Crypt Plasma
+  rarity: INCREDIBLE
+  item: PLAYER_HEAD
+  description: ;Forms only from the most angry and;powerful ghosts. Handle with extreme caution.
+  skull:
+    data: ewogICJ0aW1lc3RhbXAiIDogMTYyMzY5OTAxNTQzMiwKICAicHJvZmlsZUlkIiA6ICIwYTUzMDU0MTM4YWI0YjIyOTVhMGNlZmJiMGU4MmFkYiIsCiAgInByb2ZpbGVOYW1lIiA6ICJQX0hpc2lybyIsCiAgInNpZ25hdHVyZVJlcXVpcmVkIiA6IHRydWUsCiAgInRleHR1cmVzIiA6IHsKICAgICJTS0lOIiA6IHsKICAgICAgInVybCIgOiAiaHR0cDovL3RleHR1cmVzLm1pbmVjcmFmdC5uZXQvdGV4dHVyZS8yODI1Y2UzZmI5MWVkMGE4NGIzYmI0NmRmODQ4OWU5YjdjMjhjMzIwOWQ4YzEyMTk3N2ZmMWRkMWJiMDRjMmM5IiwKICAgICAgIm1ldGFkYXRhIiA6IHsKICAgICAgICAibW9kZWwiIDogInNsaW0iCiAgICAgIH0KICAgIH0KICB9Cn0=
+    sig: RDhLOH09YfKNG07YTFEPfMTcln4PALYREzLGiTaf2yWHIzXISQNvjPY3M84nQOp64RkP6V3Tcu6G6ZHR/BQOczBaewqzH6GpLBjxKRC2zNmAUlXcFzW1a8+SpouJNoKQqb86MkO4LC86qkm334oa8uKlB6DVtmJGVrln/M61LFFESia8ro88/k2hC6z5njmm1XFXMTXWZ3VGsPLCZrRH2nyzEmOx7iakqUMhjzPxvJqueIFZsoFW14NC9zHBn9a8PRS5tfPBJYHcinwyqiSjHavXjFtmuq59gdAL5EtHTMAslJiX5TgLJImWsvTQOrZvWF1xb71cg4g4nfrIigluBDR1eOGRcq9mVuVyxrhQqWe5h+XVMBewn51lao1xy3fBBKYVwjwHGPDpuo1iWCK67RsZ4C+CQrUmYK555CISbxuYfA3BHoAq9C+wLXHv00jYR0sHIdr6TcFz2hMGYqyXLBtRKzMbV3UwXE89mUTR5J8nu+0g3J/loEH7c7IKQ2DBuHqk0mu6E3Ugi8acRtcHnbSJw9J5qQUB+pbRxyhRe59NjefdUKZoTUEl4SguneI4w7hMYZpUeaMs+1USIWlWLYq0S62ARSr4Iv7OL3XIpg74b9za4VdtvR24DJXBdVZkPDF3ilgyT20YOUIQswqpj+Q0mZ71j+3jXUGP3ueyEVU=
+  
+crypts_soul:
+  name: Soul Matter
+  rarity: INCREDIBLE
+  item: LAPIS_LAZULI
+  description: ;The raw essence of a soul. Can be;used in many twisted rituals to boost your gear.
+  glow: true
+  
+  
+polish_jar:
+  name: Jar of Polish
+  rarity: INCREDIBLE
+  item: PLAYER_HEAD
+  description: ;Can be used to upgrade Crypt Raider armour;to Crypt Master armour. Shiny!
+  nostack: true
+  skull:
+    data: ewogICJ0aW1lc3RhbXAiIDogMTYyMzY5NDExNzA1MCwKICAicHJvZmlsZUlkIiA6ICJmYzUwMjkzYTVkMGI0NzViYWYwNDJhNzIwMWJhMzBkMiIsCiAgInByb2ZpbGVOYW1lIiA6ICJDVUNGTDE3IiwKICAic2lnbmF0dXJlUmVxdWlyZWQiIDogdHJ1ZSwKICAidGV4dHVyZXMiIDogewogICAgIlNLSU4iIDogewogICAgICAidXJsIiA6ICJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlLzdkNTU3MzdmOTY2ZDQ1YmUyYTIwMTYxZGViZmEzZTQ5ZWFiZTQ0NjQ3ZGI3Nzg5OWMzOWE3Mjg0ZDNjNjc0NTMiLAogICAgICAibWV0YWRhdGEiIDogewogICAgICAgICJtb2RlbCIgOiAic2xpbSIKICAgICAgfQogICAgfQogIH0KfQ==
+    sig: pR9b4vZS+qnROJwBN+74PlayEuR69MgpLsWbCshGtxNfjLdnxvOxIaMUIzveHPtGbC5baHc0tavhQHSfFOert4aUuY7ToTsqZqpXnvQKbOykMACTX27fvlS8DdfXZ3kKJXjddr5Kb4ASRvd0FYLqZDDAxDMUWd1rrU22VlRcdLdgU6jYPhYxvzDU0UMfVxGPZhVNVtnckl12JrPlthGZFUGpJbkKQHUk7KbrioIegHRqAhOwMLDBtE1D8InxLntg+kn9W8VG6aCYddI35/PCdci7seYLw08PCc1t7yypdcOuOD9oBRqGYiH0nNvQDO3/pSm/FhB5BqL/o9j0yMLQFnGM1gFqB6Y/vW6aoUw+urp6mTDbYeL0aILg3tLlxeQDPecIlX4W5aNI/PboBSDlnEDFzIcEzOP7fQFZaOiAyATr10qMN7aSwNcR7oMLpi55CF+pp5DzehN5RZNhR1uBSDfjdez+02oStK/mO1wnszeJRHOCa39O74dhod2CIUL1oYTD9N+hKhHFjYzgi+kdkvjXOW4QHs3L+43D8mDYc67W8uhjVU0raHL4k3ZFcxi7krgLOwL+pTAbuntf7bcFGAg7Waxgyysz7MudoGWLnAVhbP9E96WSTTt3dOcwp2F2cs9DRQQln4BChUXqES133839XmaoU4TLSKuwYtK2kLY=
+sharpener_spiritalloy:
+  name: Spirit Stone
+  type: sharpener
+  rarity: INCREDIBLE
+  item: SNOWBALL
+  glow: true
+  sharpener:
+    id: spirit
+    plus: BLUE
+  attributes:
+    mana: +30
+    damagep: +0.02
+
+potions_cryptroot:
+  name: Cryptroot
+  rarity: RARE
+  type: potionmat
+  item: BEETROOT
+  potion: water,2;water,1;venom,1;venom,1
+
 crypt_stone:
   name: Crypt Stone
   type: appliable
@@ -104,6 +176,67 @@ crypt_stone:
     attributes:
       damage: +6
   description: An old, crumbling rock. Gives;a small damage bonus when;applied to boots.
+  
+sacrifice:
+  name: A Curious Sacrifice
+  type: appliable
+  rarity: LEGENDARY
+  item: PAPER
+  nostack: true
+  modifier:
+    types: LEATHER_HELMET,IRON_HELMET,GOLDEN_HELMET,DIAMOND_HELMET,CHAINMAIL_HELMET,NETHERITE_HELMET,PLAYER_HEAD,LEATHER_CHESTPLATE,IRON_CHESTPLATE,GOLDEN_CHESTPLATE,DIAMOND_CHESTPLATE,CHAINMAIL_CHESTPLATE,NETHERITE_CHESTPLATE,LEATHER_LEGGINGS,IRON_LEGGINGS,GOLDEN_LEGGINGS,DIAMOND_LEGGINGS,CHAINMAIL_LEGGINGS,NETHERITE_LEGGINGS,LEATHER_BOOTS,IRON_BOOTS,GOLDEN_BOOTS,DIAMOND_BOOTS,CHAINMAIL_BOOTS,NETHERITE_BOOTS
+    prefix: Curious
+    attributes:
+      damage: -5
+      armour: -5
+      damagep: +0.1
+  description: I wonder...?
+  attributes:
+    damage: -5
+    armour: -7
+    damagep: +0.1
+    
+twisted_sacrifice:
+  name: A Twisted Sacrifice
+  type: appliable
+  rarity: LEGENDARY
+  item: LAVA_BUCKET
+  nostack: true
+  modifier:
+    types: LEATHER_HELMET,IRON_HELMET,GOLDEN_HELMET,DIAMOND_HELMET,CHAINMAIL_HELMET,NETHERITE_HELMET,PLAYER_HEAD,LEATHER_CHESTPLATE,IRON_CHESTPLATE,GOLDEN_CHESTPLATE,DIAMOND_CHESTPLATE,CHAINMAIL_CHESTPLATE,NETHERITE_CHESTPLATE,LEATHER_LEGGINGS,IRON_LEGGINGS,GOLDEN_LEGGINGS,DIAMOND_LEGGINGS,CHAINMAIL_LEGGINGS,NETHERITE_LEGGINGS,LEATHER_BOOTS,IRON_BOOTS,GOLDEN_BOOTS,DIAMOND_BOOTS,CHAINMAIL_BOOTS,NETHERITE_BOOTS
+    prefix: Twisted
+    attributes:
+      damage: -11
+      health: -25
+      damagep: +0.18
+  description: Deal with the Devil.;But is it worth it??
+  attributes:
+    damage: -11
+    health: -25
+    damagep: +0.18
+    
+    
+ritual_pain:
+  name: Ritual of Pain
+  type: ritual
+  rarity: INCREDIBLE
+  nostack: true
+  item: BOOK
+ritual_dyingpower:
+  name: Ritual of Dying Power
+  type: ritual
+  rarity: INCREDIBLE
+  nostack: true
+  item: BOOK
+ritual_twistedvitality:
+  name: Ritual of Twisted Vitality
+  type: ritual
+  rarity: INCREDIBLE
+  nostack: true
+  item: BOOK
+  
+  
+  
   
 web:
   name: Crypt Web

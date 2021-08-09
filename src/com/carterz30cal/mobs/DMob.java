@@ -82,7 +82,7 @@ public class DMob
 	}
 	public long xp()
 	{
-		return CharacterSkill.requirement(type.level) / 50;
+		return Math.max(type.level+1, CharacterSkill.tonextlevel(type.level) / 100);
 	}
 	
 	public int health()
@@ -104,7 +104,9 @@ public class DMob
 	{
 		for (Entity e : entities) 
 		{
-			((LivingEntity)e).setAI(false);
+			net.minecraft.server.v1_16_R3.Entity entity = ((CraftEntity)e).getHandle();
+			if (entity instanceof EntitySkinned) ((EntitySkinned)((CraftPlayer)((Player)e)).getHandle()).navigator.setAI(false);
+			else ((LivingEntity)e).setAI(false);
 		}
 	}
 	public void setInvulnerable()
@@ -125,7 +127,9 @@ public class DMob
 	{
 		for (Entity e : entities) 
 		{
-			((LivingEntity)e).setAI(true);
+			net.minecraft.server.v1_16_R3.Entity entity = ((CraftEntity)e).getHandle();
+			if (entity instanceof EntitySkinned) ((EntitySkinned)((CraftPlayer)((Player)e)).getHandle()).navigator.setAI(true);
+			else ((LivingEntity)e).setAI(true);
 		}
 	}
 	
@@ -134,12 +138,14 @@ public class DMob
 	public void remove()
 	{
 		health = -1;
+		if (display != null) display.remove();
+		if (entities == null) return;
 		for (Entity e : entities) 
 		{
 			if (e instanceof Player) ((EntitySkinned)((CraftPlayer)((Player)e)).getHandle()).remove();
 			else e.remove();
 		}
-		if (display != null) display.remove();
+		
 		
 		for (DMobAbility a : type.abilities) 
 		{
@@ -150,11 +156,24 @@ public class DMob
 	public void destroy(Player damager)
 	{
 		if (display == null) return;
-		for (Entity e : entities) 
+		
+		if (type.vanish)
 		{
-			if (e instanceof Player) ((EntitySkinned)((CraftPlayer)((Player)e)).getHandle()).kill();
-			else ((LivingEntity)e).setHealth(0);
+			for (Entity e : entities) 
+			{
+				if (e instanceof Player) ((EntitySkinned)((CraftPlayer)((Player)e)).getHandle()).remove();
+				else e.remove();
+			}
 		}
+		else
+		{
+			for (Entity e : entities) 
+			{
+				if (e instanceof Player) ((EntitySkinned)((CraftPlayer)((Player)e)).getHandle()).kill();
+				else ((LivingEntity)e).setHealth(0);
+			}
+		}
+		
 		
 		DMobManager.mobs.remove(ident);
 		display.remove();
@@ -197,16 +216,24 @@ public class DMob
 	{
 		DungeonsPlayer d = DungeonsPlayerManager.i.get(damager);
 
-		if (type.level != 0) d.level.give(xp());
 		
-		for (AbsAbility a : d.stats.abilities) a.onKill(d,type);
+		
+		for (AbsAbility a : d.stats.abilities) 
+		{
+			a.onKill(d,type);
+			a.onKill2(d, this);
+		}
 		int coinreward = coins() + d.stats.bonuskillcoins;
 		if (modifier != null) coinreward += 5;
-		d.coins += (int)((double)coinreward*type.coinmulti);
+		int fincoin = (int)((double)coinreward*type.coinmulti);
+		d.coins += fincoin;
 		d.explorer.add(d.area.id,1);
+		if (type.level != 0) d.level.give(xp(),fincoin);
 		if (type.drops == null) return;
 		for (MobDrop drop : type.drops)
 		{
+			double adj = drop.chance;
+			if (adj <= 0.1) adj *= (100d+d.stats.luck)/100d;
 			if (r.nextDouble() <= drop.chance)
 			{
 				ItemStack item;
@@ -221,7 +248,12 @@ public class DMob
 					{
 						damager.sendMessage(ChatColor.LIGHT_PURPLE + "" + ChatColor.BOLD + "INCREDIBLE DROP! " + ChatColor.RESET + item.getItemMeta().getDisplayName());
 					}
-					else damager.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "RARE DROP! " + ChatColor.RESET + item.getItemMeta().getDisplayName());
+					else 
+					{
+						if (d.stats.luck == 0) damager.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "RARE DROP! " + ChatColor.RESET + item.getItemMeta().getDisplayName());
+						else damager.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "RARE DROP! " + 
+						ChatColor.RESET + item.getItemMeta().getDisplayName() + " " + ChatColor.GREEN + "+" + d.stats.luck + "% Luck!");
+					}
 					new SoundTask(damager.getLocation(),damager,Sound.BLOCK_NOTE_BLOCK_PLING,0.5f,0.8f).runTaskLater(Dungeons.instance, 1);
 					new SoundTask(damager.getLocation(),damager,Sound.BLOCK_NOTE_BLOCK_PLING,0.5f,0.9f).runTaskLater(Dungeons.instance, 6);
 					new SoundTask(damager.getLocation(),damager,Sound.BLOCK_NOTE_BLOCK_PLING,0.5f,1.1f).runTaskLater(Dungeons.instance, 11);
@@ -260,6 +292,7 @@ public class DMob
 		if (damager != null && activateabs) for (String s : damager.skills.keySet()) damage = AbsSkill.skills.get(s).onAttack(damager.skills.get(s), damager, damage);
 		for (DMobAbility mab : type.abilities) damage = mab.damaged(this, damager,damage);
 		damageFinal = damage;
+		if (damager != null) damager.combatTicks = 100;
 		if (dtype == DamageType.TRUE) 
 		{
 			indicatorColour = ChatColor.GOLD;
@@ -379,7 +412,7 @@ public class DMob
 		this.type = type;
 		modifier = DMobModifier.base;
 		health = health();
-		new TaskArmourstand(this);
+		
 		for (int j = 0; j < type.entities.size();j++)
 		{
 			EntityType t = type.entities.get(j);
@@ -408,12 +441,13 @@ public class DMob
 				if (entity instanceof ArmorStand)
 				{
 					if (StringManipulator.contains(type.entityData.get(j),"small")) ((ArmorStand)entity).setSmall(true);
-					if (StringManipulator.contains(type.entityData.get(j),"invisible")) ((ArmorStand)entity).setVisible(false);
+					if (StringManipulator.contains(type.entityData.get(j),"invisible") || type.invisible) ((ArmorStand)entity).setVisible(false);
 					if (StringManipulator.contains(type.entityData.get(j),"offset"))
 					{
 						entity.setGravity(false);
 						entity.teleport(entity.getLocation().subtract(0, entity.getHeight() - 0.3, 0));
 					}
+					if (StringManipulator.contains(type.entityData.get(j),"nogravity")) entity.setGravity(false);
 				}
 				
 				if (entity instanceof Slime)
@@ -422,7 +456,8 @@ public class DMob
 				}
 				for (PotionEffect potion : entity.getActivePotionEffects()) entity.removePotionEffect(potion.getType());
 				if (type.invisible || StringManipulator.contains(type.entityData.get(j),"invisible")) entity.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY,1000000,0,true));
-				entity.setSilent(type.silent);
+				entity.setSilent(type.silent || StringManipulator.contains(type.entityData.get(j),"silent"));
+				entity.setAI(!StringManipulator.contains(type.entityData.get(j),"noai"));
 				entity.getEquipment().clear();
 			}
 			
@@ -431,6 +466,7 @@ public class DMob
 			
 			
 		}
+		
 		display = (ArmorStand)position.getWorld().spawnEntity(entities.get(entities.size()-1).getLocation(), EntityType.ARMOR_STAND);
 		
 		display.setVisible(false);
@@ -438,6 +474,8 @@ public class DMob
 		display.setMarker(true);
 		display.setCustomNameVisible(true);
 		display.setGravity(false);
+		
+		new TaskArmourstand(this);
 		
 		if (o != null) 
 		{

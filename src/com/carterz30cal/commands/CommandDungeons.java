@@ -14,6 +14,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import com.carterz30cal.areas.InfestedTimeShop;
 import com.carterz30cal.bosses.BossManager;
 import com.carterz30cal.dungeons.Dungeons;
 import com.carterz30cal.dungeons.ListenerPlayerJoin;
@@ -40,6 +41,7 @@ import com.carterz30cal.utility.StringManipulator;
 
 public class CommandDungeons implements CommandExecutor
 {
+	@SuppressWarnings("deprecation")
 	@Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
 	{
@@ -58,6 +60,9 @@ public class CommandDungeons implements CommandExecutor
 				if (args[1].equals("monsterhunter")) new MonsterHunterGUI((Player)sender);
 				else if (args[1].equals("trade")) new TradeGUI((Player)sender);
 				break;
+			case "fastforward":
+				InfestedTimeShop.tick = 35900;
+				break;
 			case "removevote":
 				if (args.length == 1) return true;
 				Player targ = Bukkit.getPlayerExact(args[1]);
@@ -66,6 +71,20 @@ public class CommandDungeons implements CommandExecutor
 			case "boss":
 				if (args.length == 1) return false;
 				BossManager.summon(args[1]);
+				break;
+			case "setlevel":
+				if (args.length == 1) return false;
+				DungeonsPlayer dm = DungeonsPlayerManager.i.get((Player)sender);
+				if (args.length == 3) dm = DungeonsPlayerManager.i.get(Bukkit.getPlayer(args[1]));
+				int i = args.length == 3 ? Integer.parseInt(args[2]) : Integer.parseInt(args[1]);
+				
+				dm.level.level = i-1;
+				dm.level.giveFlat(CharacterSkill.tonextlevel(dm.level.level) + 1);
+				break;
+			case "levelrequirement":
+				if (args.length == 1) return false;
+				int req = Integer.parseInt(args[1]);
+				sender.sendMessage(CharacterSkill.prettyText(req) + " requires " + StringManipulator.truncateLess(CharacterSkill.xpforlevel(req)) + " xp.");
 				break;
 			case "archive":
 				DungeonsPlayerManager.i.archive((Player)sender);
@@ -120,23 +139,6 @@ public class CommandDungeons implements CommandExecutor
 					d.coins += Integer.parseInt(args[1]);
 				}
 				break;
-			case "levelreq":
-				if (args.length == 1) return false;
-				int req = Integer.parseInt(args[1]);
-				sender.sendMessage(CharacterSkill.prettyText(req) + " requires " + StringManipulator.truncateLess(CharacterSkill.requirement(req)) + " xp.");
-				break;
-			case "level":
-				if (args.length == 1) return false;
-				DungeonsPlayer d = DungeonsPlayerManager.i.get((Player)sender);
-				if (args.length == 3) d = DungeonsPlayerManager.i.get(Bukkit.getPlayer(args[2]));
-				
-				int request = Integer.parseInt(args[1]);
-				d.level.experience = 0;
-				d.level.pointAllocation.clear();
-				d.level.points = 0;
-				d.skills.clear();
-				if (request > 0) d.level.giveFlat(CharacterSkill.requirement(request)+1);
-				break;
 			case "xp":
 				if (args.length < 2) return false;
 				DungeonsPlayer dn = DungeonsPlayerManager.i.get((Player)sender);
@@ -151,7 +153,7 @@ public class CommandDungeons implements CommandExecutor
 				break;
 			case "deliver":
 				PlayerDelivery delivery = new PlayerDelivery();
-				@SuppressWarnings("deprecation") UUID recipient = Bukkit.getOfflinePlayer(args[1]).getUniqueId();
+				UUID recipient = Bukkit.getOfflinePlayer(args[1]).getUniqueId();
 				delivery.recipient = recipient;
 				delivery.xp = Long.parseLong(args[2]);
 				delivery.coins = Integer.parseInt(args[3]);

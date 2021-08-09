@@ -11,6 +11,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockDamageEvent;
+import org.bukkit.event.block.BlockExplodeEvent;
 import org.bukkit.event.block.BlockFormEvent;
 import org.bukkit.event.block.BlockPhysicsEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
@@ -22,7 +23,6 @@ import org.bukkit.inventory.ItemStack;
 import com.carterz30cal.dungeons.Dungeon;
 import com.carterz30cal.dungeons.DungeonMiningTable;
 import com.carterz30cal.dungeons.Dungeons;
-import com.carterz30cal.dungeons.SoundTask;
 import com.carterz30cal.enchants.AbsEnchant;
 import com.carterz30cal.enchants.EnchantManager;
 import com.carterz30cal.items.ItemBuilder;
@@ -56,6 +56,7 @@ public class ListenerBlockEvents implements Listener
 	@EventHandler
 	public void onPlayerBucketEmpty(PlayerBucketEmptyEvent event)
 	{
+		if (event.getPlayer().getGameMode() == GameMode.CREATIVE) return;
 		event.setCancelled(true);
 	}
 	@EventHandler
@@ -63,7 +64,7 @@ public class ListenerBlockEvents implements Listener
 	{
 		DungeonsPlayer d = DungeonsPlayerManager.i.get(e.getPlayer());
 		
-		if (d.player.getGameMode() != GameMode.SURVIVAL) return;
+		if (d.player.getGameMode() == GameMode.CREATIVE) return;
 		
 		Material m = e.getBlock().getType();
 		
@@ -77,7 +78,7 @@ public class ListenerBlockEvents implements Listener
 			
 			int ores = (int) Math.floor((double)d.stats.fortune / 100);
 			if (RandomFunctions.random(1, 100) <= d.stats.fortune - (ores*100)) ores++;
-			if (ores > 0) mine.loot.put(du.mining.ores.get(m), ores * RandomFunctions.random(3, 6));
+			if (ores > 0 && !du.mining.ores.get(m).equals("bad_item")) mine.loot.put(du.mining.ores.get(m), ores * RandomFunctions.random(3, 6));
 			for (AbsEnchant enchant : EnchantManager.get(e.getPlayer().getInventory().getItemInMainHand().getItemMeta().getPersistentDataContainer()))
 			{
 				if (enchant == null) continue;
@@ -91,13 +92,9 @@ public class ListenerBlockEvents implements Listener
 				
 				InventoryHandler.addItem(d, o, true);
 			}
-			if (mine.loot.size() > 0)
-			{
-				new SoundTask(e.getPlayer().getLocation(),e.getPlayer(),Sound.ENTITY_ITEM_PICKUP,1f,0.5f).runTask(Dungeons.instance);
-				d.level.giveFlat(mine.xp);
-			}
-			else d.player.playSound(d.player.getLocation(), Sound.BLOCK_STONE_BREAK, 1, 1);
-			
+
+			d.level.giveFlat(mine.xp);
+			d.player.playSound(d.player.getLocation(), Sound.BLOCK_STONE_BREAK, 1, 1);
 			du.mining.progress();
 			
 			int chance = du.mining.chance;
@@ -118,19 +115,21 @@ public class ListenerBlockEvents implements Listener
 			{
 				Dungeons.instance.blocks.get(e.getBlock()).run();
 			}
-			else if (RandomFunctions.random(1, (int)c) <= chance && m != du.mining.rareore)
+			else if (RandomFunctions.random(1, (int)c) <= chance && m != du.mining.rareore && du.mining.replace)
 			{
 				e.getBlock().setType(du.mining.rareore);
 				TaskBlockReplace tbr = new TaskBlockReplace(e.getBlock(),m);
 				Dungeons.instance.blocks.put(e.getBlock(), tbr);
 			}
-			else
+			else 
 			{
 				e.getBlock().setType(du.mining.blocks.get(m));
-				
-				TaskBlockReplace tbr = new TaskBlockReplace(e.getBlock(),m);
-				tbr.runTaskLater(Dungeons.instance, 100);
-				Dungeons.instance.blocks.put(e.getBlock(), tbr);
+				if (du.mining.replace)
+				{
+					TaskBlockReplace tbr = new TaskBlockReplace(e.getBlock(),m);
+					tbr.runTaskLater(Dungeons.instance, 100);
+					Dungeons.instance.blocks.put(e.getBlock(), tbr);
+				}
 			}
 			
 			
@@ -155,7 +154,11 @@ public class ListenerBlockEvents implements Listener
 		*/
 	}
 	
-	
+	@EventHandler
+	public void onExplode(BlockExplodeEvent e)
+	{
+		e.setYield(0);
+	}
 	
 	
 	@EventHandler(priority=EventPriority.MONITOR)

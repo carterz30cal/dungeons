@@ -1,0 +1,88 @@
+engine_frame:
+  name: Engine Frame
+  type: ingredient
+  rarity: RARE
+  item: PLAYER_HEAD
+  nostack: true
+  skull:
+    data: ewogICJ0aW1lc3RhbXAiIDogMTYyNDk3NDM2NDAxMCwKICAicHJvZmlsZUlkIiA6ICIxYTc1ZTNiYmI1NTk0MTc2OTVjMmY4NTY1YzNlMDAzZCIsCiAgInByb2ZpbGVOYW1lIiA6ICJUZXJvZmFyIiwKICAic2lnbmF0dXJlUmVxdWlyZWQiIDogdHJ1ZSwKICAidGV4dHVyZXMiIDogewogICAgIlNLSU4iIDogewogICAgICAidXJsIiA6ICJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlLzViNjA5NGVhOTI5MGVmYTI2OTE3MzJiNDNmMTQ1ZjE2NjFkZGVmYWNjMDk5MDFlMjQyNDY4ZDQ5M2NkMWQwODEiLAogICAgICAibWV0YWRhdGEiIDogewogICAgICAgICJtb2RlbCIgOiAic2xpbSIKICAgICAgfQogICAgfQogIH0KfQ==
+    sig: TghhH9DOPYdOovriSCCjJuxQoEkkjTgdnV6s3XexZPbw+uRyOaStsXuOW+BP/6JeLYniMA8EPuhGaOYhpHcRO40KR/0c/eQ0ay9h2Lmo+5VtPNitDKw7gKtSd+Srkw6zi56O0tK+PVa7y2GtHgLMMTAxwjQlww3w7EzLgDCCb1sfsuKSyhftvExjHES9BdH1lV7Iacc9ZkOboD5+K84ZXWLaTC9kuNHvp5aosbmap940pZTnMtvrK28w1PDdGMLCs73JUBWpZ4AeHZBaja6paGcNU69zeNsuYir/KR30CtaLBGNMUvrHDlzo3rjjmHXf+7/BCRsTnftYV3XWy5Sm9vaM72SzKwmESfIYkLCDN6fGIo+deEng5uvSlPL47VdMeCAC1VQa6syxct27+JCM8uWuL/p90MSQHrmvXPV3oFV+zEMqsMR6n6hdKdWvDURimnDCqAq2PB6WU8SeIrf5dwSO6cZXExberYxRLdVc2ByBghTtDvoTqddNtbQVX37pzsIAhNooL8wYvohVHdL1fh0VAnS/MoF44f/LXlVD1zXq2SkHak104wP4RmIifiC9tFAks4VKuyK9177Vel0X1TsxLWsqD0uqQOnagAXPPGfBdAWNUSgFhRmrmMgPsui4cC7nO+LOhrwEW7QbdSPNs0AdKyS7s49bG8BtG9bAccY=
+
+acidic_compound:
+  name: Acidic Compound
+  type: ingredient
+  rarity: RARE
+  item: POTION
+  colour: 0,200,80
+  nostack: true
+
+luxium:
+  name: Luxium
+  type: ingredient
+  rarity: RARE
+  item: PLAYER_HEAD
+  description: Left click on an Engine to add 25✦
+  skull:
+    data: ewogICJ0aW1lc3RhbXAiIDogMTYyNDk2MjY3OTI4NCwKICAicHJvZmlsZUlkIiA6ICJiYjdjY2E3MTA0MzQ0NDEyOGQzMDg5ZTEzYmRmYWI1OSIsCiAgInByb2ZpbGVOYW1lIiA6ICJsYXVyZW5jaW8zMDMiLAogICJzaWduYXR1cmVSZXF1aXJlZCIgOiB0cnVlLAogICJ0ZXh0dXJlcyIgOiB7CiAgICAiU0tJTiIgOiB7CiAgICAgICJ1cmwiIDogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTIzYjliNzdmMmI4YWY1YWRlYjk2NWY5ZGFjNTA1MzAxYmJkM2JlYTM2MGIzZmIyNjY1NGMzZjk4OWQwM2JlZCIsCiAgICAgICJtZXRhZGF0YSIgOiB7CiAgICAgICAgIm1vZGVsIiA6ICJzbGltIgogICAgICB9CiAgICB9CiAgfQp9
+    sig: iJ3HsyrNFqIHkKXxB/bT/y8umPQFgLQ/fsAUrBAa3K1stQs80en2yt1OiCmjoxkvtgMg2QDu2G2O+9qnXsUg5Z6jUNRm6zxjndEQsM4wGLdDTvhdyWA+CB/of6jhJce1qaoLdFdnr1bZIsdigPaX8oo0N2JW1vQCInwmb/pxQHgl5VCaNJKbq+dGvmaFp+B7pNCvpQzKIOIjwQIjOGTURXLM/j/qV52CIXwO1brJQQv0ZrFxX3NHq6yxCK2whzoztsRGC2pbrwPjQlqccLdzOUyP0lTVKiHVX+aXIQCRuxGZIHqWi+k+bLRlEFtvDDzA5x1cE0sDcBN6qrhaBls5wucJl02Pi0R1UI5WUrWcgxBjE+SzCqcWeOGpUCxor9DJ1rZ16a6jUeTU++V7VXIVfpD63NalwPdvNijcK0hy3MdTDSHTUSQLnroe3PNXlGnrh2N6jJb4kxmPN8FjnZsYv3nNdQPOlEeDLd6MPcPDCVmCval5581bcrHA5577xT5FJ0n1GiBIzAz9Czo1kpdQwgGY1D5+Qj67YqPdRNfJtd1jqBV8faJRxwRbRKsaGXr7Uo86mx3gAkd/FX8Iwbn66i96yEuUicNtjxGip5VwgbqTZmKqwOdalQwDONY/5o1IP/RY17vOHoKNEigFH9Mq7BXDwbIBiG4vKnvuXOsXByc=
+
+luxium_engine:
+  name: Luxium Engine
+  type: engine
+  rarity: RARE
+  item: PLAYER_HEAD
+  capacity: 1000
+  skull:
+    data: ewogICJ0aW1lc3RhbXAiIDogMTYyNDk2MjQ4NDc4OCwKICAicHJvZmlsZUlkIiA6ICI5ZDIyZGRhOTVmZGI0MjFmOGZhNjAzNTI1YThkZmE4ZCIsCiAgInByb2ZpbGVOYW1lIiA6ICJTYWZlRHJpZnQ0OCIsCiAgInNpZ25hdHVyZVJlcXVpcmVkIiA6IHRydWUsCiAgInRleHR1cmVzIiA6IHsKICAgICJTS0lOIiA6IHsKICAgICAgInVybCIgOiAiaHR0cDovL3RleHR1cmVzLm1pbmVjcmFmdC5uZXQvdGV4dHVyZS8xY2EzMGRjN2UyNTE5YTY5YWMzNDI0NjQwOGUyMDYzMmI4MTVkMWNmZDMyN2M4MzIxZDZhMTBkMjA0ZDBhNjc0IiwKICAgICAgIm1ldGFkYXRhIiA6IHsKICAgICAgICAibW9kZWwiIDogInNsaW0iCiAgICAgIH0KICAgIH0KICB9Cn0=
+    sig: t9zjiZGYP1bvxQo4VQqkM/SqAb3+NoVL+dCollzCTrLlQOeMW74rqt8uD3xMYiAJuT/ngMfQDoMv1mVx4XtPLC2GnTRWWcxuRSnLaNmDVxSM/AyFv/vrIM9sasQf5kkgAJHruDfhjmGBNyDKIJhQdazDKnM7aUb1TGl4aNvyW96CNQVRXo/+yEKK3dRVDTiFdNo96XjsWUdcpe1WU6qCHayK8IqXSTeEB26eHp2Ur9NxBQDB74mRRXWplviDhktocxeptB8FeSTWjxN3sGsYW9WoZj1sgOUx/qDhyGSfDHIwoS5BVvG+CiFY5GVVnBQ/+KrznDpWahn5Bq+HxjbwLk9vNSox4a6tbrXO0HFsHx0QYho0LeuzSnF+H9l+0XKdbV9KBExqrrYuQh3v7V9Kdpddqy/9ZAL/Nzi23BCKkAexauDbtSUSaUKku+CTUIyzA5BULF46UwuSY2AjaOP/YRRvpniEkrzeEZ2hL6K4kucwaRuj9wE/a6GlhV0INTGtKxD8EELB0CgX7/HBTkLGjSfygiNSY9Dbo00hrwvkz1oh21KzRjuPfbiJPJG9vn3VxvDqcQmOOzIZiaNX3PSUsXewKJSOz6U9n+toIxC+3G/EOEVXZAuIiUMKmngsPmZ3Rkbto86yOoyp34MEbJWYMuDCmanTfmtKhp2JxxxIc1U=
+    
+regen_engine:
+  name: Regenerative Engine
+  type: engine
+  rarity: EPIC
+  item: PLAYER_HEAD
+  capacity: 800
+  skull:
+    data: ewogICJ0aW1lc3RhbXAiIDogMTYyNTc2Nzg5MTM4MiwKICAicHJvZmlsZUlkIiA6ICJkODAwZDI4MDlmNTE0ZjkxODk4YTU4MWYzODE0Yzc5OSIsCiAgInByb2ZpbGVOYW1lIiA6ICJ0aGVCTFJ4eCIsCiAgInNpZ25hdHVyZVJlcXVpcmVkIiA6IHRydWUsCiAgInRleHR1cmVzIiA6IHsKICAgICJTS0lOIiA6IHsKICAgICAgInVybCIgOiAiaHR0cDovL3RleHR1cmVzLm1pbmVjcmFmdC5uZXQvdGV4dHVyZS85MjcyNzM3M2M5ZjQ0OTc2ZTMxMmM4MjA4M2MzZWFjNDVmOTJlODAzZjkwMjkwYWI4MWE4MmMwNjMxOWMyMWVhIiwKICAgICAgIm1ldGFkYXRhIiA6IHsKICAgICAgICAibW9kZWwiIDogInNsaW0iCiAgICAgIH0KICAgIH0KICB9Cn0=
+    sig: uZt76RJ+R3Bc/G+UcdJBJCE+7puuA0SwBgup/KQGQDoGiAiDdV5n1O5gNsULVcQAH5WZCvfGm3P83ykM+vH+XLG7EO/WH6SPQ5y8ePqTqaKVmPI7aoLEPWurIyOHtq66TfkJ+i/7+IgPpvg+umJTvqDZ0qNJyBVkmO92WY/j1akdZgSHOWYp2M3tWEZqU6nZygDGe/xsKmgNwL4gawd/c2wmAgPTZq3Eya5OOlOvai7h8VuESD+OzU4jmeUhkrU8r369R1uSiz/oIGKuayVCfJyuuOpcxG7Rk5tV79a/skKrBvuoIw2WY/i5ETLdqlRReq8ylPXDH4gfnmuZIjifKURCZOIug4pxV9tYfA/4+8fJulnURjMM477wtQ1hGdq2fhsZqBa939dhfW6CV+Zc+Emq2b9UA2mUwB4czGA/zE2UjOJeaGGU/vVUKhoQe+wSn1YSLavUuiqwSltnemjVtt7xJcF/F+UR1GYd2/3WEJLKO+5tg4jDHBGYDFIlFhJPAGJQbMccQaBEaZSzOFbZI0p322TbVxqSAq13KzqWrRI3LFlOfOgB7VfHTbevTbPk1lods36ZvIneTbYThLzBO9o9GTKCqSaPWqUhRzyjCF+Q4b6wt4x6R2MF7NC71IGRBYRqQmQl4TnGU78bTXnnZM2J7qbufl5cyRgTYxlnzGM=
+  attributes:
+    regen: +3
+
+light_staff:
+  name: Staff of Light
+  type: weapon
+  rarity: RARE
+  item: GOLDEN_HOE
+  glow: true
+  ability: lightstaff
+  nostack: true
+  attributes:
+    mana: +200
+    regen: +15
+    
+    
+healing_wand5:
+  name: Asclepius' Revival
+  type: artifact
+  rarity: MYTHICAL
+  item: SWEET_BERRIES
+  glow: true
+  ability: healingwand5
+  attributes:
+    mana: +100
+    
+armour-stargazer:
+  name: Stargazer
+  suffix: Salakot,Shirt,Shorts,Sandals
+  rarity: RARE
+  item: LEATHER
+  colours:
+    0: 50,50,60
+    1: 40,40,70
+    2: 30,30,80
+    3: 10,35,95
+  set: stargazer
+  attributes:
+    health: 80,100,90,70
+    armour: 20,30,25,15
+    mana: 110,180,140,100

@@ -21,6 +21,7 @@ public class BackpackItem
 	public String extras;
 	public String spell;
 	public String modifier;
+	public int fuel;
 	public int slot;
 	public int amount;
 	
@@ -55,6 +56,8 @@ public class BackpackItem
 		else players.set(slotPath + ".spell", null);
 		if (!modifier.equals("")) players.set(slotPath + ".modifier", modifier);
 		else players.set(slotPath + ".modifier", null);
+		if (fuel > 0) players.set(slotPath + ".fuel", fuel);
+		else players.set(slotPath + ".fuel", null);
 	}
 	
 	public ItemStack create()
@@ -68,6 +71,8 @@ public class BackpackItem
 		ItemMeta meta = base.getItemMeta();
 		if (!spell.equals("")) meta.getPersistentDataContainer().set(ItemWand.kSpell, PersistentDataType.STRING,spell);
 		if (!modifier.equals("")) meta.getPersistentDataContainer().set(ItemWand.kModifier, PersistentDataType.STRING,modifier);
+		ItemBuilder.setFuel(meta, fuel);
+		
 		meta = ItemBuilder.i.updateMeta(meta, null);
 		base.setItemMeta(meta);
 		
@@ -94,6 +99,7 @@ public class BackpackItem
 		rune = players.getString(path + ".rune","");
 		spell = players.getString(path + ".spell", "");
 		modifier = players.getString(path + ".modifier","");
+		fuel = players.getInt(path + ".fuel", 0);
 	}
 	
 	public BackpackItem (ItemStack item,int Slot)
@@ -114,5 +120,6 @@ public class BackpackItem
 		
 		spell = p.getOrDefault(ItemWand.kSpell, PersistentDataType.STRING, "");
 		modifier = p.getOrDefault(ItemWand.kModifier, PersistentDataType.STRING, "");
+		fuel = ItemBuilder.getFuel(item.getItemMeta());
 	}
 }

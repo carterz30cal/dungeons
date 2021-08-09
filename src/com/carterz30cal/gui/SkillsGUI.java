@@ -40,10 +40,10 @@ public class SkillsGUI extends GUI
 		
 		ItemStack head = new ItemStack(Material.PLAYER_HEAD);
 		ItemMeta meta = ItemBuilder.generateSkullMeta(head.getItemMeta(), d.player);
-		meta.setDisplayName(CharacterSkill.prettyText(d.level.level()) +" "+ d.player.getDisplayName());
+		meta.setDisplayName(CharacterSkill.prettyText(d.level.level) +" "+ d.player.getDisplayName());
 		ArrayList<String> lore = new ArrayList<String>();
 		lore.add(ChatColor.BLUE + "Experience: " + ChatColor.WHITE + StringManipulator.truncateLess(d.level.experience)
-				+ " / " + StringManipulator.truncateLess(CharacterSkill.requirement(d.level.level()+1))
+				+ " / " + StringManipulator.truncateLess(CharacterSkill.tonextlevel(d.level.level))
 				+ ChatColor.BLUE + " (" + d.level.prettyProgress() + "%)");
 		lore.add("");
 		lore.add("");

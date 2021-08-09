@@ -1,7 +1,7 @@
 name: Dungeons
 author: carterz30cal
 main: com.carterz30cal.dungeons.Dungeons
-version: 0.1.15
+version: 0.1.16
 api-version: 1.13
 depend: [ProtocolLib,Votifier]
 commands:
@@ -42,4 +42,7 @@ commands:
   usage: "Players only"
  vote:
   description: "links to voting sites"
+ effects:
+  description: "See your active effects!"
+  aliases: ef
   

@@ -323,7 +323,7 @@ timeless:
   product: timeless_blade
   materials:
     U: digging_stick,1
-    D: digging_diamond,6
+    D: digging_diamond,8
     T: digging_truthcrystal,2
   recipe:
     0: 0 T 0

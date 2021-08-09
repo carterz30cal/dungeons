@@ -1,0 +1,32 @@
+armour-water:
+  name: Water
+  suffix: Cap,Suit,Shorts,Boots
+  item: LEATHER
+  colour: 0,85,170
+  set: water
+  attributes:
+    health: 20,40,30,10
+    
+armour-leaf:
+  name: Leaf
+  suffix: Hat,Chestplate,Leggings,Boots
+  rarity: RARE
+  item: LEATHER
+  colour: 0,190,45
+  set: leaf
+  req: 2
+  attributes:
+    health: +75,+125,+100,+50
+    damagep: -0.1,-0.1,-0.1,-0.1
+    
+armour-paper:
+  name: Paper
+  suffix: Hat,Shirt,Leggings,Shoes
+  set: paper
+  rarity: EPIC
+  item: LEATHER
+  colour: 255,255,255
+  req: 5
+  attributes:
+    damagep: +0.1,+0.2,+0.15,+0.05
+    health: -25,-25,-25,-25

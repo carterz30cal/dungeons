@@ -9,6 +9,7 @@ import com.carterz30cal.mobs.abilities.DMobAbility;
 
 public class TaskMobAbilities extends BukkitRunnable
 {
+	public static int tick;
 	public DMob mob;
 	public TaskMobAbilities (DMob m)
 	{
@@ -19,9 +20,12 @@ public class TaskMobAbilities extends BukkitRunnable
 	@Override
 	public void run()
 	{
+		
 		if (mob.health < 1) cancel();
 		if (!((LivingEntity)mob.entities.get(0)).hasAI()) return;
 		
+		
+		tick++;
 		for (DMobAbility a : mob.type.abilities) a.tick(mob);
 	}
 	

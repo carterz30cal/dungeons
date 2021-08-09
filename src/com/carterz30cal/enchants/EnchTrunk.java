@@ -1,10 +1,7 @@
 package com.carterz30cal.enchants;
 
-import org.bukkit.entity.ArmorStand;
 
 import com.carterz30cal.dungeons.DungeonMiningTable;
-import com.carterz30cal.mobs.DungeonMob;
-import com.carterz30cal.player.DungeonsPlayer;
 import com.carterz30cal.player.DungeonsPlayerStatBank;
 
 public class EnchTrunk extends AbsEnchant {
@@ -12,7 +9,7 @@ public class EnchTrunk extends AbsEnchant {
 	@Override
 	public String description() {
 		// TODO Auto-generated method stub
-		return "+" + (level) + " armour per base item regen";
+		return "+" + (level*2) + " armour per base item regen";
 	}
 
 	@Override
@@ -44,7 +41,7 @@ public class EnchTrunk extends AbsEnchant {
 	@Override
 	public DungeonsPlayerStatBank onBank(DungeonsPlayerStatBank bank) {
 		double reg = bank.base.getOrDefault("regen", 0d);
-		bank.armour += reg * level;
+		bank.armour += reg * level * 2;
 		return bank;
 	}
 

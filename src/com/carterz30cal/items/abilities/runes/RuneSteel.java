@@ -11,13 +11,13 @@ public class RuneSteel extends AbsAbility {
 	public ArrayList<String> description() {
 		ArrayList<String> d = new ArrayList<String>();
 		d.add(rune + "Steel");
-		d.add("Gain 50 armour.");
+		d.add("Gain 100 armour.");
 		return d;
 	}
 	
 	@Override
 	public void stats(DungeonsPlayerStats s) 
 	{
-		s.armour += 50;
+		s.armour += 100;
 	}
 }
