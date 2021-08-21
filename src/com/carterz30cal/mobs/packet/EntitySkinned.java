@@ -241,7 +241,7 @@ public class EntitySkinned extends EntityPlayer
         
 		DataWatcher watcher = new DataWatcher(null);
 
-        watcher.register(new DataWatcherObject<>(16, DataWatcherRegistry.a), (byte)127);
+        watcher.register(new DataWatcherObject<>(17, DataWatcherRegistry.a), (byte)127);
         for (Player player : Bukkit.getOnlinePlayers())
 	    {
 	        PlayerConnection connection = ((CraftPlayer) player).getHandle().playerConnection;

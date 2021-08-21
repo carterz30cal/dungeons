@@ -80,7 +80,7 @@ public class GUI
 			contents[10] = GUICreator.pane(Material.WHITE_STAINED_GLASS_PANE);
 			contents[11] = GUICreator.item(Material.STONE_SWORD, "Skill Tree", null, 1);
 			contents[12] = GUICreator.item(Material.COMPASS, ChatColor.GREEN + "Dungeon Explorer", null, 1);
-			contents[13] = GUICreator.item(Material.BARRIER, "Coming soon!", null, 1);
+			contents[13] = GUICreator.item(Material.ACACIA_FENCE, "Bestiary", null, 1);
 			contents[14] = GUICreator.item(Material.ENCHANTING_TABLE, "Enchantment Guide", null, 1);
 			contents[15] = GUICreator.item(Material.BARRIER, "Coming soon!", null, 1);
 			contents[16] = GUICreator.pane(Material.WHITE_STAINED_GLASS_PANE);
@@ -256,7 +256,7 @@ public class GUI
 				new DungeonExplorerGUI(p);
 				break;
 			case 13:
-				//new GUI(MenuType.FRIENDS,p);
+				new BestiaryGUI(p);
 				break;
 			case 14:
 				new EnchantGuideGUI(p);

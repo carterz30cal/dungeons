@@ -32,7 +32,7 @@ import com.carterz30cal.dungeons.Dungeons;
 import com.carterz30cal.dungeons.SoundTask;
 import com.carterz30cal.gui.GUI;
 import com.carterz30cal.items.ItemBuilder;
-import com.carterz30cal.items.abilities.AbsAbility;
+import com.carterz30cal.items.ability.AbsAbility;
 import com.carterz30cal.mining.TaskMining;
 import com.carterz30cal.packets.Packetz;
 import com.carterz30cal.utility.Square;
@@ -62,6 +62,7 @@ public class DungeonsPlayer
 	
 	public HashMap<String,String> questProgress;
 	public Map<String,Integer> skills;
+	public Map<String,Integer> bestiary = new HashMap<>();
 	public List<String> tutorials = new ArrayList<>();
 	
 	public boolean inCrypt;
@@ -141,6 +142,13 @@ public class DungeonsPlayer
 			for (String slo : i.getConfigurationSection(u + ".sack").getKeys(false))
 			{
 				sack.put(slo, i.getInt(u + ".sack." + slo));
+			}
+		}
+		if (i.contains(u + ".bestiary"))
+		{
+			for (String slo : i.getConfigurationSection(u + ".bestiary").getKeys(false))
+			{
+				bestiary.put(slo, i.getInt(u + ".bestiary." + slo));
 			}
 		}
 		

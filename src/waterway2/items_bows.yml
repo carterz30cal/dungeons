@@ -38,3 +38,14 @@ paper_bow:
   attributes:
     damage: +60
     health: -25
+    
+gem_bow:
+  name: Gem Bow
+  type: weapon
+  rarity: INCREDIBLE
+  item: BOW
+  slots: 6
+  req: 8
+  attributes:
+    damage: +85
+    damagep: -0.1

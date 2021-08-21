@@ -1,6 +1,7 @@
 package com.carterz30cal.player;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Map.Entry;
 
 public class DungeonsPlayerStatBank
@@ -33,26 +34,26 @@ public class DungeonsPlayerStatBank
 	{
 		base = new HashMap<String,Double>();
 	}
-	public void add(HashMap<String,Double> attr)
+	public void add(Map<String, Double> attributes)
 	{
-		health    += attr.getOrDefault("health", 0d).intValue();
-		mana      += attr.getOrDefault("mana", 0d).intValue();
-		armour    += attr.getOrDefault("armour", 0d).intValue();
-		regen     += attr.getOrDefault("regen", 0d).intValue();
-		damage    += attr.getOrDefault("damage", 0d).intValue();
-		sweep     += attr.getOrDefault("sweep", 0d).intValue();
-		attackspeed += attr.getOrDefault("attackspeed", 0d).intValue();
-		damagemod += attr.getOrDefault("damagep", 0d);
-		killcoins += attr.getOrDefault("killcoins", 0d).intValue();
-		fortune += attr.getOrDefault("fortune", 0d).intValue();
-		xpbonus   += attr.getOrDefault("bonusxp", 0d);
+		health    += attributes.getOrDefault("health", 0d).intValue();
+		mana      += attributes.getOrDefault("mana", 0d).intValue();
+		armour    += attributes.getOrDefault("armour", 0d).intValue();
+		regen     += attributes.getOrDefault("regen", 0d).intValue();
+		damage    += attributes.getOrDefault("damage", 0d).intValue();
+		sweep     += attributes.getOrDefault("sweep", 0d).intValue();
+		attackspeed += attributes.getOrDefault("attackspeed", 0d).intValue();
+		damagemod += attributes.getOrDefault("damagep", 0d);
+		killcoins += attributes.getOrDefault("killcoins", 0d).intValue();
+		fortune += attributes.getOrDefault("fortune", 0d).intValue();
+		xpbonus   += attributes.getOrDefault("bonusxp", 0d);
 		
-		miningspeed += attr.getOrDefault("miningspeed", 0d).intValue();
+		miningspeed += attributes.getOrDefault("miningspeed", 0d).intValue();
 		
-		luck += attr.getOrDefault("luck", 0d).intValue();
-		fishingspeed += attr.getOrDefault("fishingspeed", 0d).intValue();
+		luck += attributes.getOrDefault("luck", 0d).intValue();
+		fishingspeed += attributes.getOrDefault("fishingspeed", 0d).intValue();
 		
-		for (Entry<String,Double> a : attr.entrySet())
+		for (Entry<String,Double> a : attributes.entrySet())
 		{
 			if (base.containsKey(a.getKey()))
 			{

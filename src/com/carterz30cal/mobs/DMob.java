@@ -21,6 +21,8 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Rabbit;
+import org.bukkit.entity.Rabbit.Type;
 import org.bukkit.entity.Slime;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
@@ -33,9 +35,8 @@ import com.carterz30cal.dungeons.DungeonManager;
 import com.carterz30cal.dungeons.Dungeons;
 import com.carterz30cal.dungeons.IndicatorTask;
 import com.carterz30cal.dungeons.SoundTask;
-import com.carterz30cal.enchants.AbsEnchant;
 import com.carterz30cal.items.ItemBuilder;
-import com.carterz30cal.items.abilities.AbsAbility;
+import com.carterz30cal.items.ability.AbsAbility;
 import com.carterz30cal.mobs.abilities.DMobAbility;
 import com.carterz30cal.mobs.packet.EntitySkinned;
 import com.carterz30cal.player.CharacterSkill;
@@ -191,6 +192,9 @@ public class DMob
 		if (damager != null) 
 		{
 			DungeonsPlayer d = DungeonsPlayerManager.i.get(damager);
+			
+			if (!type.bestiary.equals("none")) d.bestiary.put(type.bestiary, d.bestiary.getOrDefault(type.bestiary, 0)+1);
+			
 			if (!type.id.equals("tutorial_dummy")) d.kills++;
 			if (d.kills >= 2500 && !d.questProgress.containsKey("kills_2500")) 
 			{
@@ -207,7 +211,7 @@ public class DMob
 				d.questProgress.put("kills_10000", "done");
 			}
 			TutorialManager.fireEvent(d, TutorialTrigger.KILL_ENEMY, type.id);
-			for (AbsEnchant e : d.stats.ench) e.onKill(d, this);
+			//for (AbsEnchant e : d.stats.ench) e.onKill(d, this);
 			rewards(damager);
 		}
 	}
@@ -252,7 +256,7 @@ public class DMob
 					{
 						if (d.stats.luck == 0) damager.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "RARE DROP! " + ChatColor.RESET + item.getItemMeta().getDisplayName());
 						else damager.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "RARE DROP! " + 
-						ChatColor.RESET + item.getItemMeta().getDisplayName() + " " + ChatColor.GREEN + "+" + d.stats.luck + "% Luck!");
+						ChatColor.RESET + item.getItemMeta().getDisplayName() + " " + ChatColor.GREEN + "" + ChatColor.BOLD + "+" + d.stats.luck + "% Luck!");
 					}
 					new SoundTask(damager.getLocation(),damager,Sound.BLOCK_NOTE_BLOCK_PLING,0.5f,0.8f).runTaskLater(Dungeons.instance, 1);
 					new SoundTask(damager.getLocation(),damager,Sound.BLOCK_NOTE_BLOCK_PLING,0.5f,0.9f).runTaskLater(Dungeons.instance, 6);
@@ -449,7 +453,12 @@ public class DMob
 					}
 					if (StringManipulator.contains(type.entityData.get(j),"nogravity")) entity.setGravity(false);
 				}
-				
+				if (entity instanceof Rabbit)
+				{
+					Rabbit rabbit = (Rabbit)entity;
+					rabbit.setCustomName("");
+					if (StringManipulator.contains(type.entityData.get(j),"killer")) rabbit.setRabbitType(Type.THE_KILLER_BUNNY);
+				}
 				if (entity instanceof Slime)
 				{
 					((Slime)entity).setSize(Integer.parseInt(StringManipulator.get(type.entityData.get(j),"size")));

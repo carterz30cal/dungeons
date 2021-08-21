@@ -19,6 +19,18 @@ armour-leaf:
     health: +75,+125,+100,+50
     damagep: -0.1,-0.1,-0.1,-0.1
     
+armour-ocean:
+  name: Ocean
+  suffix: Cap,Suit,Shorts,Boots
+  rarity: RARE
+  item: LEATHER
+  colour: 0,65,150
+  set: water
+  req: 2
+  attributes:
+    health: +15,+30,+20,+5
+    armour: +5,+15,+10,+5
+    
 armour-paper:
   name: Paper
   suffix: Hat,Shirt,Leggings,Shoes
@@ -30,3 +42,67 @@ armour-paper:
   attributes:
     damagep: +0.1,+0.2,+0.15,+0.05
     health: -25,-25,-25,-25
+    
+armour_titan_helmet:
+  name: Titan Helm
+  rarity: EPIC
+  type: armour
+  item: PLAYER_HEAD
+  req: 5
+  skull:
+    data: ewogICJ0aW1lc3RhbXAiIDogMTYxMjQ0ODkwMDM3MSwKICAicHJvZmlsZUlkIiA6ICIwZjczMDA3NjEyNGU0NGM3YWYxMTE1NDY5YzQ5OTY3OSIsCiAgInByb2ZpbGVOYW1lIiA6ICJPcmVfTWluZXIxMjMiLAogICJzaWduYXR1cmVSZXF1aXJlZCIgOiB0cnVlLAogICJ0ZXh0dXJlcyIgOiB7CiAgICAiU0tJTiIgOiB7CiAgICAgICJ1cmwiIDogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTE4MDNhNTk5MWU3ZDRjNjE0NWFhNGQ5NTBmZjE0OTI0ODYxNWRjZTlhMTVjOTI5MWU2Mjg4ODZkYjgyNjdhNCIsCiAgICAgICJtZXRhZGF0YSIgOiB7CiAgICAgICAgIm1vZGVsIiA6ICJzbGltIgogICAgICB9CiAgICB9CiAgfQp9
+    sig: hJ+i/ceaJKw59CybXWwM+Vn9/7vJi/iXbFpacmd1EWTW0T21iLB+C4F41oBLJEw+oY8tYH/JIBA4Rio0Ar83ppu21EoauHlc8FhtOvoM/M6jLQV8sPJ5YEvYxY6WWKC5rPcnp9LzmhgayvVlr/Xyk5zgEt009Td3TRnXXqh5mF/ZpES/vRkM8dyytTygu1PLcju72UQeaZuld959IlmBLhlolcZwaviX7+9ZOKX+bpQci8K0yafslLoeh3aBiTk4yqZPgYeM+Dp7i85NgxHm5IFGqk055NtO9a610exQDhseXVc6I/rB4kqefgx+NFMpo9lZKP58e6TkNLFQySTQd4GSf9wMHcUp1+ysI61FnaY8HB/6Q4yZZ5fj24PlWjIBEQAqhZcwKavr2J+hoUP5bPelqrhDVTGRTCUV5TDV3hBtVuqTc4QA5upFNR5T20BLsa0stoVw7o2LneXN9ILDYwVsHFPYNUokh46RyYvXm/nwjYEIvZz4j+qsfQ7pRHIB7aERqEuub9QVHsAuiRCH8BE/A2sUEJi+BhXvKh3qaeJAk1e0RC0oHEZekwVoN8xxvUNUszZsoBIui1VEheSXHc/dl6SsMOwxEVPViLsO3CGCHHe84Q35RaGlEcMSOZYBS4PtT/SNnO77VfmpuezqW/lFON3/zY99nujGTVWg1uw=
+  attributes:
+    armour: +50
+    health: -25
+    
+    
+armour-rabbit:
+  name: Rabbit
+  suffix: Helmet,Chestplate,Leggings,Boots
+  set: rabbit
+  rarity: EPIC
+  item: LEATHER
+  colour: 192,184,178
+  req: 5
+  attributes:
+    damage: +1,+2,+2,+1
+    health: +15,+30,+25,+5
+    armour: +5,+5,+5,+5
+    
+armour-goldleaf:
+  name: Gold Leaf
+  suffix: Hat,Chestplate,Leggings,Boots
+  rarity: EPIC
+  item: GOLDEN
+  set: leaf
+  req: 5
+  attributes:
+    health: +50,+100,+75,+25
+    armour: +10,+20,+15,+5
+    damagep: -0.1,-0.1,-0.1,-0.1
+    
+armour-gem:
+  name: Gem
+  suffix: Helmet,Chestplate,Leggings,Boots
+  set: gem
+  rarity: INCREDIBLE
+  item: LEATHER
+  colour: 255,192,203
+  req: 7
+  attributes:
+    armour: +15,+25,+20,+10
+    fortune: +5,+5,+5,+5
+    
+armour-goldgem:
+  name: Gold Gem
+  suffix: Helmet,Chestplate,Leggings,Boots
+  set: goldgem
+  rarity: LEGENDARY
+  item: LEATHER
+  colour: 255,215,0
+  req: 10
+  attributes:
+    armour: +20,+30,+25,+15
+    fortune: +8,+8,+8,+8
+    miningspeed: +5,+10,+10,+5

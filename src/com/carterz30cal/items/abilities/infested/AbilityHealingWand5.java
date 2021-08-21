@@ -9,7 +9,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 import com.carterz30cal.dungeons.Dungeons;
-import com.carterz30cal.items.abilities.AbsAbility;
+import com.carterz30cal.items.ability.AbsAbility;
 import com.carterz30cal.player.DungeonsPlayer;
 import com.carterz30cal.player.DungeonsPlayerManager;
 

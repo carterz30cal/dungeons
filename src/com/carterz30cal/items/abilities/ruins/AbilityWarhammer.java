@@ -7,7 +7,7 @@ import org.bukkit.Location;
 import org.bukkit.Sound;
 
 import com.carterz30cal.dungeons.Dungeons;
-import com.carterz30cal.items.abilities.AbsAbility;
+import com.carterz30cal.items.ability.AbsAbility;
 import com.carterz30cal.mobs.DMob;
 import com.carterz30cal.player.DungeonsPlayer;
 import com.carterz30cal.utility.BoundingBox;

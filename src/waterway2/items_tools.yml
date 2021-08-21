@@ -1,0 +1,53 @@
+flimsy_pickaxe:
+  name: Flimsy Pickaxe
+  type: tool
+  rarity: COMMON
+  item: WOODEN_PICKAXE
+  areareq: waterway
+  attributes:
+    miningspeed: +25
+    fortune: +50
+    
+water_pickaxe:
+  name: Water Pickaxe
+  type: tool
+  rarity: RARE
+  item: DIAMOND_PICKAXE
+  areareq: waterway
+  req: 2
+  attributes:
+    miningspeed: +35
+    fortune: +55
+    
+paper_pickaxe:
+  name: Paper Pickaxe
+  type: tool
+  rarity: EPIC
+  item: STONE_PICKAXE
+  areareq: waterway
+  req: 5
+  attributes:
+    miningspeed: +40
+    fortune: +60
+    
+gem_pickaxe:
+  name: Rough Gem Pick
+  type: tool
+  rarity: INCREDIBLE
+  item: GOLDEN_PICKAXE
+  areareq: waterway
+  req: 7
+  attributes:
+    miningspeed: +50
+    fortune: +65
+    
+refined_gem_pickaxe:
+  name: Refined Gem Pick
+  type: tool
+  rarity: LEGENDARY
+  item: GOLDEN_PICKAXE
+  areareq: waterway
+  req: 9
+  attributes:
+    miningspeed: +55
+    fortune: +75

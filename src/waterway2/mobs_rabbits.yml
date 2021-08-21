@@ -1,0 +1,95 @@
+rabbit1:
+  name: Rabid Rabbit
+  type: RABBIT
+  level: 5
+  health: 495
+  armour: 10
+  damage: 70
+  speed: 1
+  kbresist: -0.2
+  bestiary: rabbit
+  data:
+    0: killer
+  drops:
+    rabbit_skin:
+      drop: 1/1
+      amount: 1-2
+    rabbit_sword:
+      drop: 1/200
+      amount: 1-1
+      rare: true
+    catalyst=0:
+      drop: 1/150
+      amount: 1-1
+      rare: true
+    clover:
+      drop: 1/400
+      amount: 1-1
+      rare: true
+      
+rabbit2:
+  name: Rabid Rabbit
+  type: RABBIT
+  level: 6
+  health: 640
+  armour: 12
+  damage: 75
+  speed: 1
+  kbresist: -0.3
+  bestiary: rabbit
+  data:
+    0: killer
+  drops:
+    rabbit_skin:
+      drop: 1/1
+      amount: 1-2
+    rabbit_sword:
+      drop: 1/200
+      amount: 1-1
+      rare: true
+    rabbit_meat:
+      drop: 1/500
+      amount: 2-3
+      rare: true
+    catalyst=0:
+      drop: 1/150
+      amount: 1-1
+      rare: true
+    clover:
+      drop: 1/400
+      amount: 1-1
+      rare: true
+      
+rabbit_boss:
+  name: Savage Rabbit
+  type: SKINNED
+  level: 10
+  health: 3000
+  armour: 15
+  damage: 100
+  speed: 1.25
+  kbresist: 0.4
+  boss: true
+  bestiary: rabbit
+  skin:
+    data: ewogICJ0aW1lc3RhbXAiIDogMTYyOTE0NDg2MjczNywKICAicHJvZmlsZUlkIiA6ICI4OGU0YWNiYTQwOTc0YWZkYmE0ZDM1YjdlYzdmNmJmYSIsCiAgInByb2ZpbGVOYW1lIiA6ICJKb2FvMDkxNSIsCiAgInNpZ25hdHVyZVJlcXVpcmVkIiA6IHRydWUsCiAgInRleHR1cmVzIiA6IHsKICAgICJTS0lOIiA6IHsKICAgICAgInVybCIgOiAiaHR0cDovL3RleHR1cmVzLm1pbmVjcmFmdC5uZXQvdGV4dHVyZS82ZTVhM2Q3ZmExZjE5ZWY4ZjkzNTllODc1ZjBiNzc1NzEyMTc3Yjk3NTAwMTIzZWIyNDIwMjA4OWZiNDI5MTg4IgogICAgfQogIH0KfQ==
+    sig: sXIvBJarAweGQrOwRyMIORwNpvHwH54eLsDlp1OqP+kdK0Z4KNHROy29a4ESTo0hHkdNSAaz5oFLNxGZrJFsC85bFJg+XxdaFmB84aOvkaDI58zpuEhcqCN+QRN39UdUs3Nz+p3VeHkzTkmaUTa95hWEaBouyIfqi3UhHKzbhu6fIKtugCRDKrOv/wD7ysJz0mOz9Sovqxi1lTst3dfAUWmPH4H2YPgcen5a/efzEv0WQFmrZwlRasdgRz63nbz01kkW0cA7hNX/kMBIBFutn1U6ZioUXniaryW4jK5hWnwkAAGo4/L0IyekWp9Y6CmBlmZGQEviftnUPP1dxwvyVs2CUuMFVeELUjNKL77vBkgSxZfeZ8ojNDfEfGp3JtrZAgCOBlphbw3yK3Fl6OrkIGqvv6C/Skpmp3vAN7Ae2ZjJrh6oZYBvMplmjl/ZEO1sPfcKfcoYcc95ze3l1EkZqp2JOMDdgrWgUhTJJNIe8ZEk/7rgYERynbexZpz/mqod4aXjO4t8qL3B4gt2NpE+WGLrjZgu/FFX02rtsZV60rAIFEU+UqFU0XBHleqbaBOOp3EZDohun3j+yEjP8SUBEXgIJ73M3FbArgiW4kEQZaU/ShqdtxLG3i1WTsgQXmV/qFujw1PXqt1S+yroqGZpCFUY1muxJ7Q4SKYz5G0Iuqs=
+  abilities:
+    launcher:
+      volley: 3
+      cooldown: 60
+      spread: 20
+  equipment:
+    main: GHAST_TEAR
+  drops:
+    rabbit_skin:
+      drop: 1/1
+      amount: 3-11
+    rabbit_meat:
+      drop: 1/135
+      amount: 2-5
+      rare: true
+    clover:
+      drop: 1/75
+      amount: 1-1
+      rare: true

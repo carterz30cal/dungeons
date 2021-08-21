@@ -15,16 +15,16 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffectType;
 
-import com.carterz30cal.enchants.AbsEnchant;
-import com.carterz30cal.enchants.EnchantManager;
+import com.carterz30cal.enchants.AbsEnch;
+import com.carterz30cal.enchants.AbsEnchTypes;
 import com.carterz30cal.items.Item;
 import com.carterz30cal.items.ItemAppliable;
 import com.carterz30cal.items.ItemBuilder;
 import com.carterz30cal.items.ItemEngine;
 import com.carterz30cal.items.ItemSet;
 import com.carterz30cal.items.ItemSharpener;
-import com.carterz30cal.items.abilities.AbilityManager;
-import com.carterz30cal.items.abilities.AbsAbility;
+import com.carterz30cal.items.ability.AbilityManager;
+import com.carterz30cal.items.ability.AbsAbility;
 import com.carterz30cal.player.skilltree.AbsSkill;
 import com.carterz30cal.potions.ActivePotion;
 import com.carterz30cal.utility.StringManipulator;
@@ -63,7 +63,7 @@ public class DungeonsPlayerStats
 	
 	public int maxsouls;
 	
-	public List<AbsEnchant> ench;
+	public List<AbsEnch> ench;
 	
 	public List<String> persistentdata = new ArrayList<>();
 	
@@ -82,6 +82,7 @@ public class DungeonsPlayerStats
 		//o = DungeonsPlayerManager.i.get(p);
 		abilities = new ArrayList<AbsAbility>();
 	}
+	@SuppressWarnings("unchecked")
 	public void refresh()
 	{
 		if (o == null) o = DungeonsPlayerManager.i.get(p);
@@ -177,7 +178,26 @@ public class DungeonsPlayerStats
 			else if (i.areaReq != null && !i.areaReq.equals(dp.area.id)) continue;
 			DungeonsPlayerStatBank bank = new DungeonsPlayerStatBank();
 			bank.d = dp;
-			bank.add(i.attributes);
+			
+			Map<String,Double> attributes = (Map<String, Double>) i.attributes.clone();
+			List<AbsEnch> enchants = AbsEnchTypes.get(meta.getPersistentDataContainer());
+			ench.addAll(enchants);
+			AbsEnch special = null;
+			if (enchants != null && !enchants.isEmpty()) 
+			{
+				for (AbsEnch e : enchants) 
+				{
+					if (e.max() == 0)
+					{
+						special = e;
+						continue;
+					}
+					e.stats(o,attributes);
+				}
+			}
+			if (special != null) special.stats(o,attributes);
+			
+			bank.add(attributes);
 			if (i.type.equals("weapon")) 
 			{
 				String[] sharps = meta.getPersistentDataContainer().getOrDefault(ItemBuilder.kSharps, PersistentDataType.STRING, "").split(";");
@@ -202,28 +222,7 @@ public class DungeonsPlayerStats
 				abilities.add(a);
 				if (a != null) a.statbank(bank);
 			}
-			ArrayList<AbsEnchant> enchants = EnchantManager.get(meta.getPersistentDataContainer());
-			ench.addAll(enchants);
-			AbsEnchant special = null;
-			if (enchants != null && !enchants.isEmpty()) 
-			{
-				for (AbsEnchant e : enchants) 
-				{
-					if (e.max() == 0)
-					{
-						special = e;
-						continue;
-					}
-					if (!e.type().equals(i.type)) continue;
-					DungeonsPlayerStatBank b = e.onBank(bank);
-					if (b != null) bank = b;
-				}
-			}
-			if (special != null)
-			{
-				DungeonsPlayerStatBank b = special.onBank(bank);
-				if (b != null) bank = b;
-			}
+			
 			
 			add(fbank,bank);
 		}
@@ -256,11 +255,13 @@ public class DungeonsPlayerStats
 			add(fbank,bank);
 		}
 		
+		/*
 		for (AbsEnchant ench : ench) 
 		{
 			DungeonsPlayerStatBank sb = ench.onFinalBank(fbank);
 			if (sb != null) fbank = sb;
 		}
+		*/
 		add(fbank);
 		
 		if (dp != null && dp.area != null && dp.explorer.areas() > 0)
@@ -309,7 +310,7 @@ public class DungeonsPlayerStats
 		regen = Math.max(-rituals, regen);
 		if (p.getGameMode() == GameMode.CREATIVE) damage = Integer.MAX_VALUE;
 	}
-	public double get (HashMap<String,Double> map,String value)
+	public double get (Map<String,Double> map,String value)
 	{
 		return map.getOrDefault(value, 0d);
 	}

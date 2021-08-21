@@ -25,6 +25,7 @@ public class DMobType
 	public double dmgresist;
 	public double coinmulti;
 	public String perk;
+	public String bestiary;
 	
 	public ItemStack main;
 	public ItemStack off;
@@ -72,6 +73,7 @@ public class DMobType
 		dmgresist = data.getDouble(path + ".dmgresist",0);
 		coinmulti = data.getDouble(path + ".coinm",1);
 		perk = data.getString(path + ".perk", "none");
+		bestiary = data.getString(path + ".bestiary","none");
 		name = data.getString(path + ".name");
 		
 		boss = data.getBoolean(path + ".boss",false);

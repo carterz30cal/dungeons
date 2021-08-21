@@ -104,6 +104,7 @@ public class DungeonsPlayerManager
 			playerc.createSection(path + ".explorer");
 			playerc.createSection(path + ".quests");
 			playerc.createSection(path + ".sack");
+			playerc.createSection(path + ".bestiary");
 		}
 	}
 	public void save(DungeonsPlayer dp)
@@ -125,6 +126,8 @@ public class DungeonsPlayerManager
 		playerc.createSection(path + ".backpack");
 		playerc.set(path + ".sack", null);
 		playerc.createSection(path + ".sack");
+		playerc.set(path + ".bestiary", null);
+		playerc.createSection(path + ".bestiary");
 		playerc.set(path + ".tutorials", dp.tutorials);
 		playerc.set(path + ".playtime", dp.playtime);
 		playerc.set(path + ".kills", dp.kills);
@@ -145,7 +148,11 @@ public class DungeonsPlayerManager
 		{
 			playerc.set(path + ".sack." + ingredient.getKey(), ingredient.getValue());
 		} 
-		playerc.set(path +".location", dp.area.id);
+		for (Entry<String,Integer> ingredient : dp.bestiary.entrySet())
+		{
+			playerc.set(path + ".bestiary." + ingredient.getKey(), ingredient.getValue());
+		} 
+		playerc.set(path + ".location", dp.area.id);
 		playerc.set(path + ".coins", dp.coins);
 		playerc.set(path + ".rank",dp.rank.ordinal());
 		

@@ -86,6 +86,8 @@ public class DungeonManager
 				dungeon.mining.blocks.put(block, Material.valueOf(data.getString(d + ".mining.ores." + o + ".replacement", "BEDROCK")));
 				dungeon.mining.ores.put(block, data.getString(d + ".mining.ores." + o + ".ore", "bad_item"));
 				dungeon.mining.hardness.put(block, data.getInt(d + ".mining.ores." + o + ".hardness",1000));
+				dungeon.mining.baseDrop.put(block, data.getInt(d + ".mining.ores." + o + ".basedrop",3));
+				dungeon.mining.allowRare.put(block, data.getBoolean(d + ".mining.ores." + o + ".allowrare", true));
 			}
 			dungeon.mining.replace = data.getBoolean(d + ".mining.replace",true);
 			dungeon.mining.requirement = data.getInt(d + ".mining.boss.requirement", 500);

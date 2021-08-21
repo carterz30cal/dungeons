@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.bukkit.ChatColor;
 
-import com.carterz30cal.items.abilities.AbsAbility;
+import com.carterz30cal.items.ability.AbsAbility;
 
 public abstract class AbsPotion extends AbsAbility
 {

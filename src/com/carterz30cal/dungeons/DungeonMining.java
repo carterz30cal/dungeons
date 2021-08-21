@@ -2,6 +2,7 @@ package com.carterz30cal.dungeons;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -19,6 +20,8 @@ public class DungeonMining
 	
 	public HashMap<Material,Material> blocks;
 	public HashMap<Material,Integer> hardness;
+	public Map<Material,Integer> baseDrop = new HashMap<>();
+	public Map<Material,Boolean> allowRare = new HashMap<>();
 	public HashMap<Material,String> ores;
 	public int xp;
 	

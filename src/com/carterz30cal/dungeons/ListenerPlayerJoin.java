@@ -18,7 +18,7 @@ import com.carterz30cal.areas.EventTicker;
 import com.carterz30cal.areas.WaterwayTutorial;
 import com.carterz30cal.bosses.AliveBossHandler;
 import com.carterz30cal.bosses.BossManager;
-import com.carterz30cal.items.abilities.AbsAbility;
+import com.carterz30cal.items.ability.AbsAbility;
 import com.carterz30cal.npcs.NPC;
 import com.carterz30cal.npcs.NPCManager;
 import com.carterz30cal.packets.Packetz;

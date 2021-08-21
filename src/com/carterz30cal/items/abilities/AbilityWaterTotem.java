@@ -11,6 +11,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import com.carterz30cal.dungeons.DungeonManager;
 import com.carterz30cal.dungeons.Dungeons;
+import com.carterz30cal.items.ability.AbsAbility;
 import com.carterz30cal.mobs.DMobManager;
 import com.carterz30cal.mobs.SpawnPosition;
 import com.carterz30cal.player.DungeonsPlayer;

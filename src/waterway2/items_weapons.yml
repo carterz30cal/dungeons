@@ -61,6 +61,18 @@ dust_sword:
     damagep: +0.05
     attackspeed: +60
     
+titan_sword:
+  name: Hyperblade
+  type: weapon
+  rarity: EPIC
+  item: WOODEN_SWORD
+  slots: 3
+  req: 6
+  attributes:
+    damage: +16
+    attackspeed: +75
+    health: -20
+    
 paper_sword:
   name: Paper Sword
   type: weapon
@@ -89,6 +101,7 @@ rabbit_sword:
   type: weapon
   rarity: INCREDIBLE
   item: WOODEN_SWORD
+  set: rabbit
   slots: 2
   req: 6
   attributes:
@@ -107,4 +120,27 @@ water_flower_sword:
   attributes:
     damage: +30
     attackspeed: +30
+    
+paper_cutlass:
+  name: Paper Broadsword
+  type: weapon
+  rarity: INCREDIBLE
+  item: IRON_SWORD
+  set: paper
+  slots: 1
+  req: 6
+  attributes:
+    damage: +80
+    attackspeed: -50
+    
+test_sword:
+  name: Test Sword
+  type: weapon
+  rarity: MYTHICAL
+  item: NETHERITE_SWORD
+  slots: 10
+  attributes:
+    damage: +10
+    attackspeed: +700
+    luck: +1000
     

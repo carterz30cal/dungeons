@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import com.carterz30cal.items.ItemBuilder;
+import com.carterz30cal.items.ability.AbsAbility;
 import com.carterz30cal.items.magic.ItemWand;
 
 public class ModManaEfficient extends AbsAbility

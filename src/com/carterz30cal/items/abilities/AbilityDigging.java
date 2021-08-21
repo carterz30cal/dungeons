@@ -17,6 +17,7 @@ import org.bukkit.util.Vector;
 import com.carterz30cal.dungeons.Dungeons;
 import com.carterz30cal.dungeons.SoundTask;
 import com.carterz30cal.items.ItemBuilder;
+import com.carterz30cal.items.ability.AbsAbility;
 import com.carterz30cal.mobs.DMobManager;
 import com.carterz30cal.mobs.DMobType;
 import com.carterz30cal.mobs.SpawnPosition;

@@ -37,7 +37,7 @@ public class SkillTraining extends AbsSkill {
 	@Override
 	public int levelreq() 
 	{
-		return 15;
+		return 10;
 	}
 	
 	public void stats(int level,DungeonsPlayerStats bank) 

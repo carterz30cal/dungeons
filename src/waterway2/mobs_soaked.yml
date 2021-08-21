@@ -1,0 +1,223 @@
+soaked1:
+  name: Soaked
+  type: DROWNED
+  health: 65
+  level: 1
+  damage: 15
+  speed: 0.9
+  kbresist: 0
+  bestiary: soaked
+  equipment:
+    main: ocean_sword
+    helmet: armour_ocean_helmet
+    chestplate: armour_ocean_chestplate
+    leggings: armour_ocean_leggings
+    boots: armour_ocean_boots
+  drops:
+    wet_paper:
+      drop: 1/1
+      amount: 2-4
+    storm_crystals:
+      drop: 1/3
+      amount: 1-5
+    magic_dust:
+      drop: 1/300
+      amount: 1-1
+    armour_water_helmet:
+      drop: 1/125
+      amount: 1-1
+      rare: true
+    armour_water_chestplate:
+      drop: 1/125
+      amount: 1-1
+      rare: true
+    armour_water_leggings:
+      drop: 1/125
+      amount: 1-1
+      rare: true
+    armour_water_boots:
+      drop: 1/125
+      amount: 1-1
+      rare: true
+      
+soaked2:
+  name: Soaked
+  type: DROWNED
+  health: 120
+  level: 2
+  damage: 25
+  speed: 1
+  kbresist: 0
+  bestiary: soaked
+  equipment:
+    main: ocean_sword
+    helmet: armour_ocean_helmet
+    chestplate: armour_ocean_chestplate
+    leggings: armour_ocean_leggings
+    boots: armour_ocean_boots
+  drops:
+    wet_paper:
+      drop: 1/1
+      amount: 2-4
+    storm_crystals:
+      drop: 1/3
+      amount: 1-6
+    magic_dust:
+      drop: 1/300
+      amount: 1-1
+    armour_water_helmet:
+      drop: 1/125
+      amount: 1-1
+      rare: true
+    armour_water_chestplate:
+      drop: 1/125
+      amount: 1-1
+      rare: true
+    armour_water_leggings:
+      drop: 1/125
+      amount: 1-1
+      rare: true
+    armour_water_boots:
+      drop: 1/125
+      amount: 1-1
+      rare: true
+      
+soaked3:
+  name: Soaked
+  type: DROWNED
+  health: 270
+  level: 3
+  damage: 35
+  speed: 1
+  kbresist: 0.1
+  bestiary: soaked
+  equipment:
+    main: ocean_sword
+    helmet: armour_ocean_helmet
+    chestplate: armour_ocean_chestplate
+    leggings: armour_ocean_leggings
+    boots: armour_ocean_boots
+  drops:
+    wet_paper:
+      drop: 1/1
+      amount: 2-4
+    storm_crystals:
+      drop: 1/3
+      amount: 1-7
+    magic_dust:
+      drop: 1/300
+      amount: 1-1
+    armour_water_helmet:
+      drop: 1/125
+      amount: 1-1
+      rare: true
+    armour_water_chestplate:
+      drop: 1/125
+      amount: 1-1
+      rare: true
+    armour_water_leggings:
+      drop: 1/125
+      amount: 1-1
+      rare: true
+    armour_water_boots:
+      drop: 1/125
+      amount: 1-1
+      rare: true
+      
+soaked4:
+  name: Soaked
+  type: DROWNED
+  health: 460
+  level: 4
+  damage: 45
+  speed: 1.1
+  kbresist: 0.2
+  bestiary: soaked
+  equipment:
+    main: ocean_sword
+    helmet: armour_ocean_helmet
+    chestplate: armour_ocean_chestplate
+    leggings: armour_ocean_leggings
+    boots: armour_ocean_boots
+  drops:
+    wet_paper:
+      drop: 1/1
+      amount: 2-4
+    storm_crystals:
+      drop: 1/3
+      amount: 1-8
+    magic_dust:
+      drop: 1/300
+      amount: 1-1
+    book:
+      drop: 1/125
+      amount: 1-1
+      enchants: BLADE,1
+      rare: true
+    armour_water_helmet:
+      drop: 1/125
+      amount: 1-1
+      rare: true
+    armour_water_chestplate:
+      drop: 1/125
+      amount: 1-1
+      rare: true
+    armour_water_leggings:
+      drop: 1/125
+      amount: 1-1
+      rare: true
+    armour_water_boots:
+      drop: 1/125
+      amount: 1-1
+      rare: true
+      
+soaked5:
+  name: Soaked
+  type: DROWNED
+  health: 630
+  armour: 10
+  level: 5
+  damage: 55
+  speed: 1.2
+  kbresist: 0.2
+  bestiary: soaked
+  equipment:
+    main: ocean_sword
+    helmet: armour_ocean_helmet
+    chestplate: armour_ocean_chestplate
+    leggings: armour_ocean_leggings
+    boots: armour_ocean_boots
+  drops:
+    wet_paper:
+      drop: 1/1
+      amount: 2-4
+    storm_crystals:
+      drop: 1/3
+      amount: 1-9
+    water_flower:
+      drop: 1/150
+      amount: 1-1
+    magic_dust:
+      drop: 1/300
+      amount: 1-1
+    book:
+      drop: 1/125
+      amount: 1-1
+      enchants: BLADE,1
+      rare: true
+    armour_water_helmet:
+      drop: 1/125
+      amount: 1-1
+      rare: true
+    armour_water_chestplate:
+      drop: 1/125
+      amount: 1-1
+      rare: true
+    armour_water_leggings:
+      drop: 1/125
+      amount: 1-1
+      rare: true
+    armour_water_boots:
+      drop: 1/125
+      amount: 1-1
+      rare: true

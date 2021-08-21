@@ -32,10 +32,17 @@ ocean_fragment:
   item: CYAN_DYE
   glow: true
   
+storm_crystals: # rain event item.
+  name: Storm Crystals
+  type: ingredient
+  description: These glow under the power of the storm.
+  rarity: UNUSUAL
+  item: PRISMARINE_CRYSTALS
+  
 gold_leaf:
   name: Gold Leaf
   type: ingredient
-  description: Apparently some leaves are more equal than others.
+  description: Some leaves are more equal than others.
   rarity: RARE
   item: YELLOW_DYE
   
@@ -53,6 +60,50 @@ water_flower:
   description: Who was this meant for?
   rarity: EPIC
   item: CORNFLOWER
+  
+rabbit_skin:
+  name: Rabbit Skin
+  type: ingredient
+  description: For such a cute creature, they sure;have a terrifying bite.
+  rarity: EPIC
+  item: RABBIT_HIDE
+  
+rabbit_meat:
+  name: Rabid Rabbit Meat
+  type: ingredient
+  description: Makes a wonderful stew.
+  rarity: LEGENDARY
+  item: RABBIT
+  glow: true
+  nostack: true
+  
+catalyst=0:
+  name: Combination Catalyst Shard
+  type: catalyst
+  rarity: RARE
+  item: QUARTZ
+  glow: true
+  
+rough_gem:
+  name: Rough Gem
+  type: ingredient
+  description: Sparkly!
+  rarity: INCREDIBLE
+  item: MAGENTA_DYE
+  
+golden_gem:
+  name: Golden Gemstone
+  type: ingredient
+  description: Super sparkly!
+  rarity: LEGENDARY
+  item: ORANGE_DYE
+  
+gold_flower:
+  name: Gold Flower
+  type: ingredient
+  description: The rarest of all flowers.
+  rarity: LEGENDARY
+  item: DANDELION
   
 waterway_core:
   name: Waterway Core

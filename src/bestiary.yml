@@ -1,0 +1,17 @@
+drenched:
+  name: Drenched
+  icon: water_fragment
+  area: waterway
+  description: These guys love water.
+  
+soaked:
+  name: Soaked
+  icon: storm_crystals
+  area: waterway
+  description: They only come out during the storm.
+  
+rabbit:
+  name: Rabbits
+  icon: RABBIT
+  area: waterway
+  description: Cute and violent animals.

@@ -17,7 +17,7 @@ public class SkillBlessing extends AbsSkill {
 	@Override
 	protected String description(int level) {
 		// TODO Auto-generated method stub
-		return "Grants " + level + " luck and " + level*2 + " health.";
+		return "Grants +" + level + "% luck and " + level*2 + " health.";
 	}
 
 	@Override
@@ -26,6 +26,12 @@ public class SkillBlessing extends AbsSkill {
 		return "charisma";
 	}
 
+	@Override
+	public int levelreq() 
+	{
+		return 10;
+	}
+	
 	@Override
 	public Position position() {
 		// TODO Auto-generated method stub

@@ -8,8 +8,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 
-import com.carterz30cal.enchants.AbsEnchant;
-import com.carterz30cal.enchants.EnchantManager;
+import com.carterz30cal.enchants.AbsEnchTypes;
 import com.carterz30cal.items.Item;
 import com.carterz30cal.items.ItemBuilder;
 
@@ -23,13 +22,9 @@ public class CommandMaxItem implements CommandExecutor {
 			Item dung_item = ItemBuilder.get(i);
 			
 			String finished_enchants = "";
-			for (String et : EnchantManager.enchantments.keySet())
+			for (AbsEnchTypes et : AbsEnchTypes.values()) 
 			{
-				AbsEnchant enchant = EnchantManager.get(et);
-				if (enchant.type().equals(dung_item.type) && enchant.max() > 0)
-				{
-					finished_enchants += et + "," + enchant.level + ";";
-				}
+				if (et.type.equals(dung_item.type) && !et.special) finished_enchants += et + "," + AbsEnchTypes.get(et.toString()).max() + ";";
 			}
 			finished_enchants = finished_enchants.substring(0, finished_enchants.length()-1);
 			ItemMeta meta = i.getItemMeta();

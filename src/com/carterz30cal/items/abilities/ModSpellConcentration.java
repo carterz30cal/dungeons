@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.bukkit.inventory.meta.ItemMeta;
 
+import com.carterz30cal.items.ability.AbsAbility;
 import com.carterz30cal.items.magic.ProjectileParticle;
 import com.carterz30cal.player.DungeonsPlayer;
 

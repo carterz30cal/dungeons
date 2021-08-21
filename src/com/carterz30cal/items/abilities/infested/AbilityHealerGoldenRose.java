@@ -13,7 +13,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import com.carterz30cal.dungeons.Dungeons;
-import com.carterz30cal.items.abilities.AbsAbility;
+import com.carterz30cal.items.ability.AbsAbility;
 import com.carterz30cal.mobs.DMob;
 import com.carterz30cal.mobs.DMobManager;
 import com.carterz30cal.mobs.DamageType;

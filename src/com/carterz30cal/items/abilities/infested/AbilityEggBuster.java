@@ -2,7 +2,7 @@ package com.carterz30cal.items.abilities.infested;
 
 import java.util.ArrayList;
 
-import com.carterz30cal.items.abilities.AbsAbility;
+import com.carterz30cal.items.ability.AbsAbility;
 import com.carterz30cal.mobs.DMob;
 import com.carterz30cal.mobs.DMobType;
 import com.carterz30cal.player.DungeonsPlayer;

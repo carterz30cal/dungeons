@@ -35,6 +35,7 @@ public abstract class AbsSkill
 		new SkillHealing();
 		new SkillWarrior();
 		new SkillBlessing();
+		new SkillIronskin();
 	}
 	
 	public List<String> template(DungeonsPlayer player,int level)

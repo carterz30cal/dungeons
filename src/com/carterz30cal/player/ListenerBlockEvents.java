@@ -23,8 +23,7 @@ import org.bukkit.inventory.ItemStack;
 import com.carterz30cal.dungeons.Dungeon;
 import com.carterz30cal.dungeons.DungeonMiningTable;
 import com.carterz30cal.dungeons.Dungeons;
-import com.carterz30cal.enchants.AbsEnchant;
-import com.carterz30cal.enchants.EnchantManager;
+import com.carterz30cal.enchants.AbsEnch;
 import com.carterz30cal.items.ItemBuilder;
 import com.carterz30cal.tasks.TaskBlockReplace;
 import com.carterz30cal.utility.InventoryHandler;
@@ -78,13 +77,14 @@ public class ListenerBlockEvents implements Listener
 			
 			int ores = (int) Math.floor((double)d.stats.fortune / 100);
 			if (RandomFunctions.random(1, 100) <= d.stats.fortune - (ores*100)) ores++;
-			if (ores > 0 && !du.mining.ores.get(m).equals("bad_item")) mine.loot.put(du.mining.ores.get(m), ores * RandomFunctions.random(3, 6));
-			for (AbsEnchant enchant : EnchantManager.get(e.getPlayer().getInventory().getItemInMainHand().getItemMeta().getPersistentDataContainer()))
+			if (ores > 0 && !du.mining.ores.get(m).equals("bad_item")) 
 			{
-				if (enchant == null) continue;
-				DungeonMiningTable table = enchant.onMine(mine);
-				if (table != null) mine = table;
+				int amount = ores * (int)(du.mining.baseDrop.getOrDefault(m, 3) * RandomFunctions.random(1d, 2d));
+				mine.loot.put(du.mining.ores.get(m), amount);
 			}
+			
+			for (AbsEnch enchant : d.stats.ench) enchant.onMine(mine);
+			
 			for (String loot : mine.loot.keySet())
 			{
 				ItemStack o = ItemBuilder.i.build(loot, null);
@@ -100,7 +100,7 @@ public class ListenerBlockEvents implements Listener
 			int chance = du.mining.chance;
 			int out = du.mining.outof;
 			double mult = 1;
-			for (AbsEnchant en : d.stats.ench) mult = en.setRareOreMultiplier(d, mult);
+			//for (AbsEnchant en : d.stats.ench) mult = en.setRareOreMultiplier(d, mult);
 			double c = 1/(((double)chance*mult)/out);
 			
 			if (d.inCrypt)
@@ -115,7 +115,8 @@ public class ListenerBlockEvents implements Listener
 			{
 				Dungeons.instance.blocks.get(e.getBlock()).run();
 			}
-			else if (RandomFunctions.random(1, (int)c) <= chance && m != du.mining.rareore && du.mining.replace)
+			else if (RandomFunctions.random(1, (int)c) <= chance && m != du.mining.rareore && du.mining.replace
+					&& du.mining.allowRare.getOrDefault(m, true))
 			{
 				e.getBlock().setType(du.mining.rareore);
 				TaskBlockReplace tbr = new TaskBlockReplace(e.getBlock(),m);

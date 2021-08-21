@@ -280,7 +280,7 @@ public class CharacterSkill
 	public static int bonus(int level)
 	{
 		int b = 1 + prestige(level);
-		if (level % 5 == 0 && level != 0) b += 3;
+		if (level % 5 == 0 && level != 0) b += 1;
 		return b;
 	}
 	public void give(long amount)

@@ -7,6 +7,7 @@ import com.carterz30cal.mobs.DMob;
 import com.carterz30cal.player.DungeonsPlayer;
 import com.carterz30cal.player.DungeonsPlayerStatBank;
 
+@Deprecated
 public abstract class AbsEnchant
 {
 	public int level;

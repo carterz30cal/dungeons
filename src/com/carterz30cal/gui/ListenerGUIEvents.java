@@ -37,7 +37,7 @@ import com.carterz30cal.items.ItemEngine;
 import com.carterz30cal.items.ItemLootbox;
 import com.carterz30cal.items.Shop;
 import com.carterz30cal.items.ShopManager;
-import com.carterz30cal.items.abilities.AbsAbility;
+import com.carterz30cal.items.ability.AbsAbility;
 import com.carterz30cal.items.magic.ItemWand;
 import com.carterz30cal.player.DungeonsPlayer;
 import com.carterz30cal.player.DungeonsPlayerManager;

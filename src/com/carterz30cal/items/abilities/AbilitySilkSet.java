@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import com.carterz30cal.items.ability.AbsAbility;
 import com.carterz30cal.player.DungeonsPlayer;
 
 public class AbilitySilkSet extends AbsAbility

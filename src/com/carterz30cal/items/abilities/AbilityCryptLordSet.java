@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.bukkit.ChatColor;
 
+import com.carterz30cal.items.ability.AbsAbility;
 import com.carterz30cal.player.DungeonsPlayerStats;
 
 public class AbilityCryptLordSet extends AbsAbility {

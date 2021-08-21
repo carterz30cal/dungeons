@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.carterz30cal.dungeons.DungeonManager;
 import com.carterz30cal.dungeons.Dungeons;
+import com.carterz30cal.items.ability.AbsAbility;
 import com.carterz30cal.mobs.DMob;
 import com.carterz30cal.player.DungeonsPlayer;
 

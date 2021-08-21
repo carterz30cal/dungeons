@@ -47,7 +47,7 @@ public class SkillWarrior extends AbsSkill {
 	@Override
 	public int levelreq() {
 		// TODO Auto-generated method stub
-		return 20;
+		return 15;
 	}
 
 }

@@ -7,7 +7,7 @@ import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 
 import com.carterz30cal.areas.InfestedHunter;
-import com.carterz30cal.items.abilities.AbsAbility;
+import com.carterz30cal.items.ability.AbsAbility;
 import com.carterz30cal.mobs.DMob;
 import com.carterz30cal.mobs.DMobType;
 import com.carterz30cal.player.DungeonsPlayer;

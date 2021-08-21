@@ -9,7 +9,7 @@ import org.bukkit.Particle.DustOptions;
 import org.bukkit.entity.LivingEntity;
 
 import com.carterz30cal.dungeons.Dungeons;
-import com.carterz30cal.items.abilities.AbsAbility;
+import com.carterz30cal.items.ability.AbsAbility;
 import com.carterz30cal.mobs.DMob;
 import com.carterz30cal.player.DungeonsPlayer;
 

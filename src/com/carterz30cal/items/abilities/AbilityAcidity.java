@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 
+import com.carterz30cal.items.ability.AbsAbility;
 import com.carterz30cal.mobs.DMob;
 import com.carterz30cal.player.DungeonsPlayer;
 

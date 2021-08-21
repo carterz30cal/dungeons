@@ -32,7 +32,7 @@ public class LootboxGUI extends GUI
 			int chance = lootbox.chance.get(i);
 			if (Math.floor(Math.random()*chance) == 0) loots.add(i);
 		}
-		
+
 		ItemStack[] contents = new ItemStack[36];
 		
 		for (int s = 0; s < 36; s++)

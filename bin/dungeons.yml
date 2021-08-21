@@ -16,21 +16,34 @@ waterway:
       requirement: 125
     xp: 1
     rare:
-      chance: 1/20
+      chance: 1/25
       material: GOLD_BLOCK
       correction: GREEN_TERRACOTTA,GREEN_CONCRETE
     ores:
       GREEN_TERRACOTTA:
-        ore: leafmash
+        ore: leaf_mush
         replacement: BROWN_WOOL
-        hardness: 400
+        hardness: 300
       GREEN_CONCRETE:
-        ore: leafmash
+        ore: leaf_mush
         replacement: BROWN_WOOL
-        hardness: 400
+        hardness: 300
       GOLD_BLOCK:
-        ore: royalleaf
-        hardness: 3200
+        ore: gold_leaf
+        hardness: 2800
+        basedrop: 4
+      MAGENTA_STAINED_GLASS:
+        ore: rough_gem
+        replacement: AIR
+        allowrare: false
+        hardness: 1600
+        basedrop: 2
+      MAGENTA_STAINED_GLASS_PANE:
+        ore: rough_gem
+        replacement: AIR
+        allowrare: false
+        hardness: 1100
+        basedrop: 1
     
   spawns:
     -15,100,21002: drenched1

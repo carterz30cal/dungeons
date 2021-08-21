@@ -182,7 +182,7 @@ public class AnvilGUI extends GUI
 				ItemStack book = inventory.getItem(25);
 				ItemStack catalyst = inventory.getItem(22);
 				
-				int can = ItemBuilder.canEnchant(item, book, catalyst);
+				int can = ItemBuilder.enchantable(item, book, catalyst);
 				if (can == 0)
 				{
 					ItemStack product = inventory.getItem(19).clone();

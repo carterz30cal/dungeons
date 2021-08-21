@@ -6,6 +6,7 @@ drenched1:
   damage: 20
   speed: 0.8
   kbresist: 0
+  bestiary: drenched
   equipment:
     main: DIAMOND_SWORD
     helmet: armour_water_helmet
@@ -47,6 +48,7 @@ drenched2:
   damage: 30
   speed: 1
   kbresist: 0
+  bestiary: drenched
   equipment:
     main: DIAMOND_SWORD
     helmet: armour_water_helmet
@@ -88,6 +90,7 @@ drenched3:
   damage: 40
   speed: 1
   kbresist: 0.1
+  bestiary: drenched
   equipment:
     main: DIAMOND_SWORD
     helmet: armour_water_helmet
@@ -129,6 +132,7 @@ drenched4:
   damage: 50
   speed: 1.1
   kbresist: 0.2
+  bestiary: drenched
   equipment:
     main: DIAMOND_SWORD
     helmet: armour_water_helmet
@@ -145,6 +149,11 @@ drenched4:
     magic_dust:
       drop: 1/200
       amount: 1-1
+    book:
+      drop: 1/125
+      amount: 1-1
+      enchants: BLADE,1
+      rare: true
     armour_water_helmet:
       drop: 1/125
       amount: 1-1
@@ -162,6 +171,7 @@ drenched4:
       amount: 1-1
       rare: true
       
+
 drenched5:
   name: Drenched
   type: DROWNED
@@ -171,6 +181,7 @@ drenched5:
   damage: 60
   speed: 1.2
   kbresist: 0.2
+  bestiary: drenched
   equipment:
     main: DIAMOND_SWORD
     helmet: armour_water_helmet
@@ -190,6 +201,11 @@ drenched5:
     magic_dust:
       drop: 1/100
       amount: 1-1
+    book:
+      drop: 1/125
+      amount: 1-1
+      enchants: BLADE,1
+      rare: true
     armour_water_helmet:
       drop: 1/125
       amount: 1-1
@@ -206,3 +222,41 @@ drenched5:
       drop: 1/125
       amount: 1-1
       rare: true
+      
+drenched_titan:
+  name: The Drenched Titan
+  type: DROWNED
+  level: 9
+  health: 2500
+  armour: 10
+  damage: 90
+  kbresist: 0.8
+  speed: 0.8
+  bestiary: drenched
+  boss: true
+  equipment:
+    main: IRON_SWORD
+    helmet: armour_titan_helmet
+    chestplate: DIAMOND_CHESTPLATE
+    leggings: DIAMOND_LEGGINGS
+    boots: DIAMOND_BOOTS
+  abilities:
+    caster:
+      projectiles: -1
+      speed: 3
+      range: 12
+      damage: 25
+      cooldown: 30
+    rewarder:
+      reward: lootbox_drenched_titan
+      threshold: 100
+    healcircle:
+      radius: 8
+      healing: 25
+      selfheal: 50
+      cooldown: 100
+    overkill:
+      threshold: 100
+      reward: 4
+      
+      

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import org.bukkit.ChatColor;
@@ -29,11 +30,12 @@ public class DMobManager
 	public static HashMap<UUID,DMob> mobs;
 	public static HashMap<String,DMobType> types;
 	public static HashMap<String,DMobModifier> modifiers;
+	public static Map<String,BestiaryEntry> bestiaryEntries = new HashMap<>();
 	
 	public static List<SpawnJob> queue = new ArrayList<>();
 	
 	private static final String[] files = {
-			"waterway2/mobs_drenched"
+			"waterway2/mobs_drenched","waterway2/mobs_soaked","waterway2/mobs_rabbits"
 	};
 	/*
 	private static final String[] files = {
@@ -107,6 +109,36 @@ public class DMobManager
 		types = new HashMap<String,DMobType>();
 		modifiers = new HashMap<String,DMobModifier>();
 		DMobModifier.base = new DMobModifier();
+		
+		File be = null;
+		try {
+			be = File.createTempFile("bestiary", null);
+		} catch (IOException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+		ItemBuilder.copyToFile(Dungeons.instance.getResource("bestiary.yml"),be);
+		FileConfiguration best = new YamlConfiguration();
+		try 
+		{
+			best.load(be);
+		}
+		catch (IOException | InvalidConfigurationException e) 
+		{ 
+	        e.printStackTrace();
+	    }
+		for (String ent : best.getKeys(false))
+		{
+			BestiaryEntry entry = new BestiaryEntry();
+			entry.name = ChatColor.GOLD + "" + ChatColor.BOLD + best.getString(ent + ".name", "null");
+			entry.id = ent;
+			entry.icon = best.getString(ent + ".icon", "BEDROCK");
+			entry.area = best.getString(ent + ".area", "waterway");
+			entry.description = best.getString(ent + ".description","").split(";");
+			
+			bestiaryEntries.put(ent, entry);
+		}
+		
 		for (String f : files)
 		{
 			File file = null;
@@ -134,6 +166,9 @@ public class DMobManager
 				if (data.getString(mob + ".type").equals("SKINNED")) types.put(mob, new SkinnedType(data,mob));
 				else if (data.getBoolean(mob + ".loadcustom",false)) types.put(mob, new CustomType(data,mob));
 				else types.put(mob,new DMobType(data,mob));
+				
+				String besti = data.getString(mob + ".bestiary", "none");
+				if (!besti.equals("none")) bestiaryEntries.get(besti).mobs.add(mob);
 			}
 		}
 	}

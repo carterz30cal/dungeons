@@ -21,6 +21,18 @@ sharp_flint:
   attributes:
     damage: +8
     
+ice_stone:
+  name: Ice Stone
+  type: sharpener
+  rarity: RARE
+  item: LIGHT_BLUE_DYE
+  glow: true
+  sharpener:
+    plus: '#'
+    colour: AQUA
+  attributes:
+    health: +12
+    
 balancing_weight:
   name: Balancing Weight
   type: sharpener
@@ -30,7 +42,8 @@ balancing_weight:
     plus: =
     colour: GRAY
   attributes:
-    attackspeed: +22
+    damagep: -0.01
+    attackspeed: +25
     
 midas_flint:
   name: Midas Flint
@@ -39,7 +52,41 @@ midas_flint:
   item: GOLD_INGOT
   glow: true
   sharpener:
-    plus: C
+    plus: '&'
     colour: GOLD
   attributes:
     killcoins: +2
+    
+clover:
+  name: Four-leaf Clover
+  type: sharpener
+  rarity: INCREDIBLE
+  item: LILY_PAD
+  sharpener:
+    plus: ♣
+    colour: GREEN
+  attributes:
+    luck: +1
+    
+gold_weights:
+  name: Gold Weights
+  type: sharpener
+  rarity: LEGENDARY
+  item: GOLD_BLOCK
+  sharpener:
+    plus: =
+    colour: GOLD
+  attributes:
+    damagep: -0.02
+    attackspeed: +35
+gold_clover:
+  name: Gold Clover
+  type: sharpener
+  rarity: LEGENDARY
+  item: ORANGE_TULIP
+  sharpener:
+    plus: ♣
+    colour: GOLD
+  attributes:
+    luck: +1
+    health: +3

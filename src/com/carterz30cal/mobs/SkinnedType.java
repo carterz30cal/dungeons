@@ -29,6 +29,7 @@ public class SkinnedType extends DMobType
 		kbresist  = data.getDouble(path + ".kbresist",0);
 		dmgresist = data.getDouble(path + ".dmgresist",0);
 		perk = data.getString(path + ".perk", "none");
+		bestiary = data.getString(path + ".bestiary", "none");
 		name = data.getString(path + ".name");
 		
 		boss = data.getBoolean(path + ".boss",false);

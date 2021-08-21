@@ -59,9 +59,9 @@ import com.carterz30cal.dungeons.SoundTask;
 import com.carterz30cal.enchants.AbsEnchant;
 import com.carterz30cal.items.Item;
 import com.carterz30cal.items.ItemBuilder;
-import com.carterz30cal.items.abilities.AbilityManager;
 import com.carterz30cal.items.abilities.AbilityReaperLeggings;
-import com.carterz30cal.items.abilities.AbsAbility;
+import com.carterz30cal.items.ability.AbilityManager;
+import com.carterz30cal.items.ability.AbsAbility;
 import com.carterz30cal.mobs.DMob;
 import com.carterz30cal.mobs.DMobManager;
 import com.carterz30cal.mobs.DamageType;
@@ -156,7 +156,7 @@ public class ListenerEntityDamage implements Listener
 				}
 			}
 			DungeonsPlayer d = DungeonsPlayerManager.i.get((Player)e.getEntity());
-			for (AbsEnchant en : d.stats.ench) en.onDamaged(d, mob);
+			//for (AbsEnchant en : d.stats.ench) en.onDamaged(d, mob);
 			if (d.stats.abilities != null) for (AbsAbility a : d.stats.abilities) if (a != null && mob != null) damage *= a.onDamage(d,damage,e.getCause(),mob.type);
 			d.damage((int)damage, false);
 		}
@@ -247,7 +247,7 @@ public class ListenerEntityDamage implements Listener
 			//for (AbsAbility a : abilities) damage = a.onAttack(dp, mob,damage);
 			
 			if (arrowh) for (AbsAbility a : abilities) damage = a.onArrowLand(DungeonsPlayerManager.i.get(damager), mob, damage);
-			for (AbsEnchant a : dp.stats.ench) damage += a.onHit(dp, mob);
+			//for (AbsEnchant a : dp.stats.ench) damage += a.onHit(dp, mob);
 			damage = Math.max(0, damage);
 			final int dmg = damage;
 			if (dp.stats.attackspeed > 100)
@@ -304,7 +304,7 @@ public class ListenerEntityDamage implements Listener
 				mob.entities.get(0).setVelocity(kb);
 			}
 			//if (damager.getInventory().getItemInMainHand().hasItemMeta()) for (AbsEnchant en : EnchantManager.get(damager.getInventory().getItemInMainHand().getItemMeta().getPersistentDataContainer())) if (en != null) en.onHitAfter(dp, mob,h);
-			for (AbsEnchant ench : dp.stats.ench) ench.afterHit(dp, mob);
+			//for (AbsEnchant ench : dp.stats.ench) ench.afterHit(dp, mob);
 		}
 	}
 	

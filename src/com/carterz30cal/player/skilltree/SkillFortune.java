@@ -19,7 +19,7 @@ public class SkillFortune extends AbsSkill {
 	@Override
 	public String description(int level) {
 		
-		return "+" + level*8 + " mining fortune.";
+		return "+" + level*5 + " mining fortune.";
 	}
 
 	@Override
@@ -37,12 +37,12 @@ public class SkillFortune extends AbsSkill {
 	@Override
 	public int levelreq() 
 	{
-		return 20;
+		return 10;
 	}
 	
 	public void stats(int level,DungeonsPlayerStats bank) 
 	{
-		bank.fortune += 8*level;
+		bank.fortune += 5*level;
 	}
 	
 	@Override

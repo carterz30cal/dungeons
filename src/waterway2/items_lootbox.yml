@@ -1,0 +1,39 @@
+lootbox_drenched_titan:
+  name: Titan Lootbox
+  type: lootbox
+  rarity: RARE
+  item: CHEST
+  loot:
+    waterway_core:
+      amount: 3-10
+      chance: 1
+    paper:
+      amount: 1-2
+      chance: 5
+    book:
+      amount: 1
+      chance: 6
+      enchants: PROTECTION,1
+    ice_stone:
+      amount: 1-2
+      chance: 12
+    balancing_weight:
+      amount: 1-2
+      chance: 12
+    titan_sword:
+      amount: 1
+      chance: 18
+      
+lootbox_dried:
+  name: Waterway Lootbox
+  type: lootbox
+  rarity: LEGENDARY
+  item: CHEST
+  loot:
+    waterway_core:
+      amount: 6-19
+      chance: 3
+    gold_flower:
+      amount: 1-2
+      chance: 8
+    

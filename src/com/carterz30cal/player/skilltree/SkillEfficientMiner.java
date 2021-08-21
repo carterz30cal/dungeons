@@ -19,7 +19,7 @@ public class SkillEfficientMiner extends AbsSkill {
 	@Override
 	public String description(int level) {
 		
-		return "+" + level*12 + " mining speed.";
+		return "+" + level*4 + " mining speed.";
 	}
 
 	@Override
@@ -37,18 +37,18 @@ public class SkillEfficientMiner extends AbsSkill {
 	@Override
 	public int levelreq() 
 	{
-		return 15;
+		return 10;
 	}
 	
 	public void stats(int level,DungeonsPlayerStats bank) 
 	{
-		bank.miningspeed += 12*level;
+		bank.miningspeed += 4*level;
 	}
 	
 	@Override
 	public int max() {
 		// TODO Auto-generated method stub
-		return 5;
+		return 25;
 	}
 
 

@@ -1,4 +1,4 @@
-package com.carterz30cal.items.abilities;
+package com.carterz30cal.items.ability;
 
 import java.util.ArrayList;
 
@@ -54,6 +54,12 @@ public abstract class AbsAbility
 	
 	public boolean isUnique() {return false;}
 	public boolean isRitual() {return false;}
+	
+	
+	public static String textArmour(int amount)
+	{
+		return ChatColor.BLUE + " " + amount + " Armour" + ChatColor.GRAY;
+	}
 	
 	protected String luxiumCost(int amount)
 	{

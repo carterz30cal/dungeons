@@ -8,6 +8,7 @@ import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 
 import com.carterz30cal.dungeons.DungeonManager;
 import com.carterz30cal.dungeons.Dungeons;
+import com.carterz30cal.items.ability.AbsAbility;
 import com.carterz30cal.mobs.DMob;
 import com.carterz30cal.mobs.DMobManager;
 import com.carterz30cal.mobs.DMobType;

@@ -6,6 +6,7 @@ import org.bukkit.Sound;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
+import com.carterz30cal.items.ability.AbsAbility;
 import com.carterz30cal.player.DungeonsPlayer;
 
 import net.md_5.bungee.api.ChatColor;

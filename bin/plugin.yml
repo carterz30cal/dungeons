@@ -1,7 +1,7 @@
 name: Dungeons
 author: carterz30cal
 main: com.carterz30cal.dungeons.Dungeons
-version: 0.1.16
+version: 0.2.0
 api-version: 1.13
 depend: [ProtocolLib,Votifier]
 commands:

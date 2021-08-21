@@ -41,10 +41,12 @@ import org.bukkit.persistence.PersistentDataType;
 
 import com.carterz30cal.dungeons.DungeonManager;
 import com.carterz30cal.dungeons.Dungeons;
+import com.carterz30cal.enchants.AbsEnch;
+import com.carterz30cal.enchants.AbsEnchTypes;
 import com.carterz30cal.enchants.AbsEnchant;
 import com.carterz30cal.enchants.EnchantManager;
-import com.carterz30cal.items.abilities.AbilityManager;
-import com.carterz30cal.items.abilities.AbsAbility;
+import com.carterz30cal.items.ability.AbilityManager;
+import com.carterz30cal.items.ability.AbsAbility;
 import com.carterz30cal.items.magic.ItemSpell;
 import com.carterz30cal.items.magic.ItemWand;
 import com.carterz30cal.player.BackpackItem;
@@ -52,6 +54,7 @@ import com.carterz30cal.player.DungeonsPlayer;
 import com.carterz30cal.potions.AbsPotion;
 import com.carterz30cal.potions.PotionColour;
 import com.carterz30cal.potions.PotionType;
+import com.carterz30cal.utility.Pair;
 import com.carterz30cal.utility.RandomFunctions;
 import com.carterz30cal.utility.StringManipulator;
 import com.mojang.authlib.GameProfile;
@@ -88,8 +91,8 @@ public class ItemBuilder
 			"_HELMET","_CHESTPLATE","_LEGGINGS","_BOOTS"
 	};
 	public static final String[] files = {
-			"waterway2/items_weapons","waterway2/items_bows","waterway2/items_sharpeners","waterway2/items_quests",
-			"waterway2/items_armour","waterway2/items_ingredients"
+			"waterway2/items_weapons","waterway2/items_bows","waterway2/items_tools","waterway2/items_sharpeners","waterway2/items_quests",
+			"waterway2/items_lootbox","waterway2/items_armour","waterway2/items_ingredients"
 	};
 	/*
 	public static final String[] files = {
@@ -692,29 +695,30 @@ public class ItemBuilder
 			if (t.equals("book"))
 			{
 				boolean hasSpecial = false;
-				ArrayList<AbsEnchant> enchants = EnchantManager.get(meta.getPersistentDataContainer());
-				for (AbsEnchant e : enchants) if (e.max() == 0) hasSpecial = true;
+				List<Pair<AbsEnchTypes,AbsEnch>> pairs = AbsEnchTypes.getPairs(meta.getPersistentDataContainer());
+				
+				for (Pair<AbsEnchTypes,AbsEnch> e : pairs) if (e.key.special) hasSpecial = true;
 				if (hasSpecial) lore.add(ChatColor.DARK_GRAY + "An item can only have 1 special enchant!");
 				
 				int rarity = 0;
 				lore.add("");
-				for (AbsEnchant e : enchants)
+				for (Pair<AbsEnchTypes,AbsEnch> e : pairs)
 				{
-					rarity = Math.max(rarity, e.rarity());
+					rarity = Math.max(rarity, e.value.rarity());
 					rarity = Math.min(rarity, Rarity.values().length-1);
-					if (enchants.size() > 4) lore.add(ChatColor.DARK_PURPLE + e.name());
+					if (pairs.size() > 4) lore.add(ChatColor.DARK_PURPLE + e.key.name + " " + e.value.level);
 					else
 					{
-						if (e.level < e.max()) lore.add(ChatColor.DARK_PURPLE + e.name());
-						else if (e.level == e.max()) lore.add(ChatColor.BLUE + e.name());
-						else if (e.max() == 0) lore.add(ChatColor.RED + e.name());
-						else lore.add(ChatColor.GOLD + e.name());
-						lore.add(ChatColor.LIGHT_PURPLE + " " + e.description());
+						if (e.value.level < e.value.max()) lore.add(ChatColor.DARK_PURPLE + e.key.name + " " + e.value.level);
+						else if (e.value.level == e.value.max()) lore.add(ChatColor.BLUE + e.key.name + " " + e.value.level);
+						else if (e.value.max() == 0) lore.add(ChatColor.RED + e.key.name + " " + e.value.level);
+						else lore.add(ChatColor.GOLD + e.key.name + " " + e.value.level);
+						for (String l : e.value.description()) lore.add(ChatColor.GRAY + " " + l);
 					}
 				}
 				meta.setDisplayName(rarityColours[rarity] + ChatColor.stripColor(meta.getDisplayName()));
 				lore.add(0,ChatColor.DARK_GRAY + StringManipulator.capitalise(Rarity.values()[rarity].toString()) +
-						" " + StringManipulator.capitalise(enchants.get(0).type()) + " Book");
+						" " + StringManipulator.capitalise(pairs.get(0).key.type) + " Book");
 				meta.setLore(lore);
 			}
 			return meta;
@@ -878,6 +882,8 @@ public class ItemBuilder
 					}
 				}
 			}
+			for (AbsEnch enchants : AbsEnchTypes.get(meta.getPersistentDataContainer())) enchants.stats(owner,attributes);
+			
 			lore.add("");
 			if (hasAttribute(attributes,"damage")) lore.add(ChatColor.GRAY + "Damage: " + ChatColor.RED + getIntAttribute(attributes,"damage"));
 			if (hasAttribute(attributes,"damagep")) lore.add(ChatColor.GRAY + "Power: " + ChatColor.RED + getDoubleAttribute(attributes,"damagep"));
@@ -942,53 +948,58 @@ public class ItemBuilder
 		}
 		if (!meta.getPersistentDataContainer().get(kEnchants, PersistentDataType.STRING).equals(""))
 		{
-			if (item.type != "armour" || item.glow) meta.addEnchant(Enchantment.DURABILITY, 1, true);
 			lore.add("");
-			ArrayList<AbsEnchant> enchants = EnchantManager.get(meta.getPersistentDataContainer());
-			if (enchants.size() > 8)
+			
+			List<Pair<AbsEnchTypes,AbsEnch>> pairs = AbsEnchTypes.getPairs(meta.getPersistentDataContainer());
+			if (pairs.size() > 8)
 			{
 				boolean next = false;
 				String lor = "";
-				for (AbsEnchant e : enchants)
+				for (Pair<AbsEnchTypes,AbsEnch> e : pairs)
 				{
+					int level = e.value.level;
+					int max = e.value.max();
+					String name = e.key.name + " " + level;
+					
 					if (!next)
 					{
-						if (e.level < e.max()) lor = ChatColor.DARK_PURPLE + e.name();
-						else if (e.level == e.max()) lor = ChatColor.BLUE + e.name();
-						else if (e.max() == 0) lor = ChatColor.RED + e.name();
-						else lor = ChatColor.GOLD + e.name();
-						next = true;
+						if (e.key.special) lor = ChatColor.RED + e.key.name;
+						else if (level < max) lor = ChatColor.DARK_PURPLE + name;
+						else if (level == max) lor = ChatColor.BLUE + name;
+						else lor = ChatColor.GOLD + name;
 					}
 					else
 					{
-						if (e.level < e.max()) lor = lor + ", " + ChatColor.DARK_PURPLE + e.name();
-						else if (e.level == e.max()) lor = lor + ", " + ChatColor.BLUE + e.name();
-						else if (e.max() == 0) lor = lor + ", " + ChatColor.RED + e.name();
-						else lor = lor + ", " + ChatColor.GOLD + e.name();
+						if (e.key.special) lor = ChatColor.RED + e.key.name;
+						else if (level < max) lor = lor + ", " + ChatColor.DARK_PURPLE + name;
+						else if (level == max) lor = lor + ", " + ChatColor.BLUE + name;
+						else lor = lor + ", " + ChatColor.GOLD + name;
 						lore.add(lor);
-						next = false;
 					}
+					next = !next;
 				}
 				if (next) lore.add(lor);
 			}
 			else
 			{
-				for (AbsEnchant e : enchants)
+				for (Pair<AbsEnchTypes,AbsEnch> e : pairs)
 				{
-					if (e.level < e.max()) lore.add(ChatColor.DARK_PURPLE + e.name());
-					else if (e.level == e.max()) lore.add(ChatColor.BLUE + e.name());
-					else if (e.max() == 0) lore.add(ChatColor.RED + e.name());
-					else lore.add(ChatColor.GOLD + e.name());
-					if (enchants.size() <= 4) lore.add(ChatColor.LIGHT_PURPLE + " " + e.description());
+					int level = e.value.level;
+					int max = e.value.max();
+					String name = e.key.name + " " + level;
+					
+					if (e.key.special) lore.add(ChatColor.RED + e.key.name);
+					else if (level < max) lore.add(ChatColor.DARK_PURPLE + name);
+					else if (level == max) lore.add(ChatColor.BLUE + name);
+					else lore.add(ChatColor.GOLD + name);
+					if (pairs.size() <= 4) for (String l : e.value.description()) lore.add(ChatColor.GRAY + " " + l);
 				}
 			}
 		}
-		else 
-		{
-			if (item.glow) meta.addEnchant(Enchantment.DIG_SPEED, 2, true);
-			else meta.removeEnchant(Enchantment.DIG_SPEED);
-		}
+		else if (item.glow) meta.addEnchant(Enchantment.DIG_SPEED, 2, true);
+		else meta.removeEnchant(Enchantment.DIG_SPEED);
 		if (item.material == Material.TRIDENT) meta.addEnchant(Enchantment.LOYALTY, 5, true);
+		
 		if (item.data.containsKey("ability"))
 		{
 			lore.add("");
@@ -1255,7 +1266,33 @@ public class ItemBuilder
 		item.setItemMeta(moot);
 		return item;
 	}
-	
+	@SuppressWarnings("unchecked")
+	public static int enchantable(ItemStack item1,ItemStack item2,ItemStack catalyst)
+	{
+		if (item1 == null || item2 == null || catalyst == null) return 4;
+		List<AbsEnch> enchants = AbsEnchTypes.get(item1.getItemMeta().getPersistentDataContainer());
+		List<AbsEnchTypes> types = AbsEnchTypes.getTypes(item1.getItemMeta().getPersistentDataContainer());
+		enchants.addAll(AbsEnchTypes.get(item2.getItemMeta().getPersistentDataContainer()));
+		types.addAll(AbsEnchTypes.getTypes(item2.getItemMeta().getPersistentDataContainer()));
+		
+		int c = Integer.parseInt(catalyst.getItemMeta().getPersistentDataContainer().get(kItem, PersistentDataType.STRING).split("=")[1]);
+		String type = "book";
+		if (ItemBuilder.get(item1) != null) type = ItemBuilder.get(item1).type;
+		
+		List<AbsEnchTypes> specialcheck = (List<AbsEnchTypes>) ((ArrayList<AbsEnchTypes>)types).clone();
+		specialcheck.removeIf((AbsEnchTypes e) -> !e.special);
+		if (specialcheck.size() > 1) return 6;
+		//if (type.equals("book")) return 2;
+		if (bothBooks(item1,item2))
+		{
+			for (AbsEnch e : enchants) if (e.level == e.max()) return 5;
+			if (AbsEnchTypes.catalyst(item2) == c) return 0;
+			else return 3;
+		}
+		if (AbsEnchTypes.catalyst(item2) != c) return 3;
+		for (AbsEnchTypes e : types) if (!e.type.equals(type)) return 1;
+		return 0;
+	}
 	/*
 	 * ITEM1 must be the item being enchanted.
 	 * 0 = YES
@@ -1266,7 +1303,8 @@ public class ItemBuilder
 	 * 5 = max level
 	 * 6 = already has special enchantment
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "deprecation" })
+	@Deprecated
 	public static int canEnchant(ItemStack item1,ItemStack item2,ItemStack catalyst)
 	{
 		if (item1 == null || item2 == null || catalyst == null) return 4;
@@ -1276,7 +1314,7 @@ public class ItemBuilder
 		int c = Integer.parseInt(catalyst.getItemMeta().getPersistentDataContainer().get(kItem, PersistentDataType.STRING).split("=")[1]);
 		String type = "book";
 		if (ItemBuilder.get(item1) != null) type = ItemBuilder.get(item1).type;
-		
+
 		ArrayList<AbsEnchant> specialcheck = (ArrayList<AbsEnchant>)enchants.clone();
 		specialcheck.removeIf((AbsEnchant e) -> e.max() != 0);
 		if (specialcheck.size() > 1) return 6;
@@ -1441,15 +1479,10 @@ public class ItemBuilder
 		return ret;
 	}
 	
-	@SuppressWarnings("deprecation")
 	public static boolean isMax(int level, String enchant)
 	{
-		try {
-			if (level < EnchantManager.enchantments.get(enchant).newInstance().max()) return false;
-			else return true;
-		} 
-		catch (InstantiationException | IllegalAccessException e1) { e1.printStackTrace(); }
-		return true;
+		if (level < AbsEnchTypes.get(enchant).max()) return false;
+		else return true;
 	}
 
 	public static Item get(ItemMeta item, NamespacedKey key) 

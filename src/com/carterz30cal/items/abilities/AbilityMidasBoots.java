@@ -7,6 +7,7 @@ import org.bukkit.Location;
 import org.bukkit.Particle;
 
 import com.carterz30cal.dungeons.Dungeons;
+import com.carterz30cal.items.ability.AbsAbility;
 import com.carterz30cal.player.DungeonsPlayer;
 
 public class AbilityMidasBoots extends AbsAbility {
